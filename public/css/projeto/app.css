@@ -1,0 +1,197 @@
+/* General */
+input { 
+  text-align: center; 
+}
+
+/* CSS da listagem */
+#list{
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.listing-card{
+  border-radius: 50px;
+  box-shadow: 0px 0px 7px #DCDCDC;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 25px;
+
+}
+
+.status{
+  text-align: center;
+  margin-top: 15px;
+}
+
+.status-icon{
+  height: 60px;
+  width: 60px;
+}
+
+.informacoes{
+  padding-top: 5px;
+  font-size: 17px;
+  text-align: left;
+}
+
+.labelIndex:hover{
+  color: rgb(162, 160, 160);
+}
+
+.opcoes{
+  padding-top: 25px;
+  text-align: right;
+  /* margin-left: 400px; */
+}
+
+.option-button{
+  width: 35px;
+  height: 35px;
+  margin-right: 20px;
+}
+
+.relatorio-icon{
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+
+.empty{
+  padding-top: 200px;
+  padding-bottom: 200px;
+}
+
+/* Ícon para criar um registro (professor, aluno, bolsa e servidor) */
+.add-button{
+  width: 50px;
+  height: 50px;
+}
+
+/* CSS do modal */
+.modal-create {
+  text-align: center;
+  border-radius: 20px;
+}
+
+
+.input-modal-create{
+  padding: 10px;
+  background: #FFFFFF;
+  box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+};
+
+input {
+  text-align: center;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder {
+  text-align: center;
+}
+
+.title{
+  margin-left: auto;
+}
+
+.submit-button{
+  background: #143BC2;
+  box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.card-form{
+  padding: 100px;
+}
+
+/* CSS do Footer */
+.footer-card {
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  position: fixed;
+  width: 100%;
+}
+
+.font-logo{
+  font-size: 35px;
+  font-family: sen;
+}
+
+/* login */
+.logo{
+  padding-top: 20px;
+  width: 90%;
+  height: 90%;
+}
+
+.form-content{
+  padding-right: 60px;
+  padding-left: 60px;
+}
+
+.form-card{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.divider{
+  margin: 1rem 0;
+  width: 300px;
+}
+
+/* modal ver */
+div.modal-ver{
+  padding: 10px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+
+.block-programas {
+  width: 300px;
+  height: 260px;
+
+  margin-top: 40px;
+  margin-left: 4%;
+  margin-bottom: 20px;
+  
+  background: #FFFFFF;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  
+  justify-content: center;
+  align-items: center;
+  display:flexbox;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+}
+
+.text-home {
+  margin-top: 2.5rem;
+}
+
+/* usados apenas no modal de editar e cadastrar vinculo */
+.input-modal-vinculo{
+  height: 27px; 
+  border-radius: 10px;
+}
+
+/* Barra de pesquisa */
+.input-search{
+  width: 400px;
+  border: none;
+};
+
+@media screen and (min-width: 1024px) {
+  .container{
+    margin: auto;
+  }
+}
+
