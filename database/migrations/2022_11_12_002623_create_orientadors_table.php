@@ -15,8 +15,8 @@ class CreateOrientadorsTable extends Migration
     {
         Schema::create('orientadors', function (Blueprint $table) {
             $table->id();
-            $table->string('cpf', 14)->unique();
-            $table->string('matricula');
+            $table->string('cpf', 14)->unique()->nullable(false);
+            $table->string('matricula')->nullable(false);
             $table->timestamps();
         });
     }
