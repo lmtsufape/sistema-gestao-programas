@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             PermissionsSeeder::class,
             OrientadorsSeeder::class,
             ServidorSeeder::class,
+            AlunosSeeder::class,
             ProgramasSeeder::class,
             AlunosSeeder::class
         ]);
