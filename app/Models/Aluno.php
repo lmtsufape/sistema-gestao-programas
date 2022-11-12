@@ -20,11 +20,6 @@ class Aluno extends Model
         return $this->morphOne(User::class, "typage");
     }
 
-    public function vinculos()
-    {
-        return $this->hasMany(Vinculo::class);
-    }
-
     public static $rules = [
         'cpf' => 'bail|required|formato_cpf|cpf|unique:servidors|unique:alunos',
         'curso' => 'bail|required|min:2|max:100',
