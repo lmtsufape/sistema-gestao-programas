@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
             AlunosSeeder::class,
             ProfessoresSeeder::class,
             ServidorSeeder::class,
-            VinculosSeeder::class
+            VinculosSeeder::class,
+            CursoSeeder::class
         ]);
     }
 }
