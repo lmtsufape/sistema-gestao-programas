@@ -52,10 +52,11 @@
       </div>
     </div>
 
-    <footer class="mt-auto">
+    <footer style="background: #FFFFFF; box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25); margin-top: auto;">
       <div class="text-center"">
-        <label style="font-size: 10px;">Desenvolvido por:</label><br/>
-        <strong><label style="font-size: 20px; font-family: fantasy;">TJDV</label></strong>
+        <img src="./../../../public/images/UFAPELOGO.svg" alt="Logo UFAPE">
+        <!-- baixar o png -->
+
       </div>
     </footer>
   </body>
