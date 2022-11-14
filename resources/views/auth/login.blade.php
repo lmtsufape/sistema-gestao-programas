@@ -22,19 +22,24 @@
                 </p>
             </div>
             <div class="col form-card">
-                <h2 style="font-style: normal; font-weight: 700; font-size: 30px; line-height: 59px; color: #131833; text-align: center">Entrar</h2>
+                <h2 style="font-style: normal; font-weight: 700; font-size: 30px; line-height: 59px;
+                 color: #131833; text-align: center">Entrar</h2>
                 <hr style="margin-right: 60px; margin-left: 60px;" >
                 <form class="form-content" method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="mb-3" style="text-align: left">
-                        <label for="email" style="font-weight: 400; font-size: 20px; line-height: 35px; color: #000000;">Email:</label>
-                        <input id="email" name="email" style="background: #F5F5F5; border-radius: 10px; height: 40px;" class="form-control input-modal-create" type="text" placeholder="Digite seu email" >
+                        <label for="email" style="font-weight: 400; font-size: 20px;
+                         line-height: 35px; color: #000000;">Email:</label>
+                        <input id="email" name="email" style="background: #F5F5F5; border-radius: 10px;
+                         height: 40px;" class="form-control input-modal-create" type="text" placeholder="Digite seu email" >
                     </div>
 
                     <div class="mb-3" style="text-align: left">
-                        <label for="password" style="font-weight: 400; font-size: 20px; line-height: 35px; color: #000000;">Senha:</label>
-                        <input id="password" name="password" style="background: #F5F5F5; border-radius: 10px; height: 40px;" class="form-control input-modal-create" type="password" placeholder="Digite sua senha" >
+                        <label for="password" style="font-weight: 400; font-size: 20px;
+                         line-height: 35px; color: #000000;">Senha:</label>
+                        <input id="password" name="password" style="background: #F5F5F5; border-radius: 10px;
+                         height: 40px;" class="form-control input-modal-create" type="password" placeholder="Digite sua senha" >
                     </div>
 
                     <div style="display: flex;">
@@ -50,10 +55,14 @@
                     
                     <div style="display:flex">
                         <!-- :<div> -->
-                        <button type="submit" class="btn btn-primary submit-button" style="background: #34A853; height: 40px; width: 200px; border-radius: 15px; margin-left: 0; margin-top: 30px; width: 30%">Entrar</button>
+                        <button type="submit" class="btn btn-primary submit-button" 
+                        style="background: #34A853; height: 40px; width: 200px; border-radius: 15px;
+                         margin-left: 0; margin-top: 30px; width: 30%; border: none;">Entrar</button>
                         <!-- </div> -->
                         <!-- <div style="margin-left: auto; margin-right: 0;"> -->
-                        <button type="cadastro" class="btn btn-primary submit-button" style="background: #2D3875; height: 40px; width: 200px; border-radius: 15px; margin-left: auto; margin-right: 0; margin-top: 30px; width: 30%">Cadastre-se</button>
+                        <button type="cadastro" class="btn btn-primary submit-button" style="background: #2D3875; height: 40px;
+                         width: 200px; border-radius: 15px; margin-left: auto; margin-right: 0; margin-top: 30px;
+                          width: 30%; border: none;">Cadastre-se</button>
                         <!-- </div> -->
 
                     <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#modal_create" style="text-decoration: none; cursor: point;">Cadastre-se</a> -->
