@@ -18,7 +18,7 @@
 
   <body class="d-flex flex-column min-vh-100">
     <header>
-      <nav class="navbar navbar-dark d-flex" style="background-color: #0D2579">
+      <nav class="navbar navbar-dark d-flex" style="background: #F4F5FB; box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);">
         <div class="container-fluid">
           @auth
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
@@ -29,10 +29,17 @@
           @endauth
         
           <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
-            <a href="{{route("vinculos.index")}}" type="button" style="color: white;text-decoration: none; margin-left: 50px">
-              TJDV - Programas acadêmicos
+            <a href="{{route("vinculos.index")}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: #131833; margin-left: 50px">
+              PROGRAMA
             </a>
           </ul>
+          <a href="{{route("vinculos.index")}}" type="button" style=" text-decoration: none ; font-weight: 400; font-size: 20px; line-height: 29px; color: #131833; margin-left: 50px">
+              Contato
+          </a>
+          <div style="border-right: 1px solid #131833; width: 1px; height: 30px; padding-left: 2%;"></div>
+          <a href="{{route("vinculos.index")}}" type="button" style="text-decoration: none ; font-weight: 400; font-size: 20px; line-height: 29px; color: #131833; margin-left: 2%; margin-right: 25px">
+              Sobre
+          </a>
         </div>
       </nav>
     </header>
@@ -53,9 +60,14 @@
     </div>
 
     <footer style="background: #FFFFFF; box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25); margin-top: auto;">
-      <div class="text-center"">
-        <img src="./../../../public/images/UFAPELOGO.svg" alt="Logo UFAPE">
-        <!-- baixar o png -->
+        
+      <div class="text-center" style="margin-top: 5px; margin-bottom: 5px">
+        <a href="{{route("vinculos.index")}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: rgba(0, 0, 0, 0.46);">
+              PROGRAMA
+        </a>
+        <!-- TODO: Falta alinhar à esquerda! -->
+        <img src="{{asset("images/logoufape.png")}}" alt="Logo da UFAPE" style="height: 50px;">
+        <img src="{{asset("images/logoupe.png")}}" alt="Logo da UPE" style="height: 40px; margin-left: 10px;">
 
       </div>
     </footer>
