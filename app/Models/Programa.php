@@ -12,4 +12,9 @@ class Programa extends Model
     protected $fillable = [
         'nome'
     ];
+
+    public function programa_servidors()
+    {
+        return $this->hasMany(Programa_servidor::class);
+    }
 }

@@ -17,6 +17,11 @@ class Servidor extends Model
         return $this->morphOne(User::class, "typage");
     }
 
+    public function programa_servidors()
+    {
+        return $this->hasMany(Programa_servidor::class);
+    }
+
     public static $rules = [
         'cpf' => 'bail|required|formato_cpf|cpf|unique:servidors|unique:alunos|unique:professors',
         'tipo_servidor' => 'bail|required',
