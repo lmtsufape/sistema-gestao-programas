@@ -22,10 +22,6 @@ class CreateFrequenciaMensalsTable extends Migration
             $table->string('observacao')->nullable();
             $table->timestamps();
         });
-
-        Schema::table('frequencia_mensals', function ($table) {
-            $table->foreignId('vinculo_id')->constrained('vinculos');
-        });
     }
 
     /**
