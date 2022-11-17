@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
             PermissionsSeeder::class,
             OrientadorsSeeder::class,
             ServidorSeeder::class,
-            VinculosSeeder::class,
             AlunosSeeder::class,
             ProgramasSeeder::class,
             CursoSeeder::class,
