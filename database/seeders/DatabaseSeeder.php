@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             ProgramasSeeder::class,
             CursoSeeder::class,
             DisciplinaSeeder::class,
-            Programa_servidorSeeder::class
+            Programa_servidorSeeder::class,
+            Curso_disciplinaSeeder::class
         ]);
     }
 }
