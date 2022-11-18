@@ -10,9 +10,10 @@
             {{ session('status') }}
         </div>
     @endif --}}
-    <div class="container">
+    <div class="container" style="padding-top: 5%">
     
-        <div class="row" style="padding-top: 40px">
+        <div class="row" style="justify-content: center; align-items: center">
+
             <div class="col">
                 <p style="font-weight: 700; font-size:30px; text-align: start">O que é?</p>
                 <p style="font-weight: 400; font-size:20px; text-align: justify; padding-right: 5%; padding-top: 3%">
@@ -21,6 +22,7 @@
                 poderão ter mais controle da sua função, tornando o processo mais eficaz.
                 </p>
             </div>
+            
             <div class="col form-card">
                 <h2 style="font-style: normal; font-weight: 700; font-size: 30px; line-height: 59px;
                  color: #131833; text-align: center">Entrar</h2>
