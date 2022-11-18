@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
             ProgramasSeeder::class,
             CursoSeeder::class,
             DisciplinaSeeder::class,
+            AlunosSeeder::class,
             Programa_servidorSeeder::class,
             Curso_disciplinaSeeder::class,
-            AlunosSeeder::class,
             EditalSeeder::class
         ]);
     }

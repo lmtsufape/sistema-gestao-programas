@@ -15,8 +15,8 @@ class CreateProgramaServidorsTable extends Migration
     {
         Schema::create('programa_servidors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_programa')->nullable()->constrained('programas');
-            $table->foreignId('id_servidor')->nullable()->constrained('servidors');
+            $table->foreignId('id_programa')->nullable(false)->constrained('programas');
+            $table->foreignId('id_servidor')->nullable(false)->constrained('servidors');
             $table->timestamps();
         });
     }
