@@ -143,7 +143,7 @@
         
             </div>
         
-            <div style="display: flex; gap: 5%; align-items: center; margin: auto;">
+            <div style="display: flex; gap: 5%; align-items: center; margin-top: 1% ; margin-bottom: 1% ; margin-left: 2%">
         
             <button class="botaoverde">
                 <img src="{{asset("images/DocumentAdd.png")}}" alt="logodoc" style="padding-right: 10px;">
