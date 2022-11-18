@@ -18,4 +18,9 @@ class Orientador extends Model
     {
         return $this->morphOne(User::class, "typage");
     }
+
+    public function edital_orientadors()
+    {
+        return $this->hasMany(Edital_orientador::class);
+    }
 }
