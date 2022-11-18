@@ -12,11 +12,12 @@ class DatabaseSeeder extends Seeder
             PermissionsSeeder::class,
             OrientadorsSeeder::class,
             ServidorSeeder::class,
-            AlunosSeeder::class,
             ProgramasSeeder::class,
             CursoSeeder::class,
             DisciplinaSeeder::class,
-            Programa_servidorSeeder::class
+            Programa_servidorSeeder::class,
+            AlunosSeeder::class,
+            EditalSeeder::class
         ]);
     }
 }
