@@ -16,7 +16,7 @@ class OrientadorsSeeder extends Seeder
     public function run()
     {
         $orientador = Orientador::create([
-            'cpf' => "348.126.240-02",
+            'cpf' => "827.846.340-94",
             'matricula' => "123456"
         ]);
 

@@ -12,4 +12,8 @@ class Programa extends Model
     protected $fillable = [
         'nome'
     ];
+    public function editals()
+    {
+        return $this->hasMany(Edital::class);
+    }
 }
