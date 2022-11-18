@@ -17,4 +17,9 @@ class Programa extends Model
     {
         return $this->hasMany(Programa_servidor::class);
     }
+  
+    public function editals()
+    {
+        return $this->hasMany(Edital::class);
+    }
 }
