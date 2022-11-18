@@ -1,3 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.base{
+    background-color: #F5F5F5;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulos {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+}
