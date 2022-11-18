@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             CursoSeeder::class,
             DisciplinaSeeder::class,
             Programa_servidorSeeder::class,
+            Curso_disciplinaSeeder::class,
             AlunosSeeder::class,
             EditalSeeder::class
         ]);
