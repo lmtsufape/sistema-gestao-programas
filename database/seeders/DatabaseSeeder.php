@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             Programa_servidorSeeder::class,
             Curso_disciplinaSeeder::class,
             EditalSeeder::class,
-            Edital_orientadorSeeder::class
+            Edital_orientadorSeeder::class,
+            Edital_alunoSeeder::class
         ]);
     }
 }
