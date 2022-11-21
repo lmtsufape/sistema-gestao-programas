@@ -26,4 +26,9 @@ class Edital extends Model
     {
         return $this->hasMany(Edital_orientador::class);
     }
+
+    public function edital_alunos()
+    {
+        return $this->hasMany(Edital_aluno::class);
+    }
 }
