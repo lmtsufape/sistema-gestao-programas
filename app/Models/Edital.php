@@ -21,4 +21,9 @@ class Edital extends Model
     {
         return $this->belongsTo(Programa::class);
     } 
+
+    public function edital_orientadors()
+    {
+        return $this->hasMany(Edital_orientador::class);
+    }
 }
