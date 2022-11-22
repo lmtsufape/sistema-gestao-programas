@@ -1,12 +1,35 @@
 @extends("templates.app")
 
 @section("body")
+
   @can('servidor')
   <div class="container">
     <h1><strong>Alunos</strong></h1>
-    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_create">
+    {{--  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_create">
       <img src="{{asset("images/add-icon.png")}}" class="add-button" alt="Adicionar aluno">
-    </a>
+    </a>  --}}
+    <hr>
+    
+  <div style="background-color: #34A853; border-radius: 45px; padding-left: 2%; padding-right: 2%; display: flex">
+    <div style="align-self: center; margin-right: auto">
+      <h4>Legenda</h4>
+      <h5>dos icones:</h5>
+    </div>
+    <div style="display: flex; align-self: center; margin-right: auto">
+      <div style="display: flex; margin: 10px">
+        <a><img src="/images/info.png" alt="Editar" style="size: 60px"></a>
+        <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Editar</p>
+      </div>
+      <div style="display: flex; margin: 10px">
+        <a><img src="/images/document.png" alt="Documentos" style="size: 60px"></a>
+        <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Documentos</p>
+      </div>
+      <div style="display: flex; margin: 10px">
+        <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno"></a>
+        <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Deletar</p>
+      </div>
+    </div>
+  </div>
 
     @include("Alunos.components.modal_create")
   
@@ -17,9 +40,38 @@
         </p>
       </div>
     @else
-      <div id="list">
+     <table class="table">
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Situação</th>
+        <th scope="col">Programa</th>
+        <th scope="col">Ações</th>
+      </tr>
       @foreach ($alunos as $aluno)
-          <div class="row justify-content-md-center listing-card">
+            <tr>
+              <td>{{$aluno->nome}}</td>
+              <td></td>
+              <td></td>
+              <td>
+                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
+                  <img src="{{asset("images/info.png")}}" alt="Info aluno">
+                </a>
+                <a type="button" data-bs-toggle="modal" data-bs-target="">
+                  <img src="{{asset("images/document.png")}}" alt="Documento aluno">
+                </a>
+                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->id}}">
+                  <img src="{{asset("images/delete.png")}}" alt="Deletar aluno">
+                </a>
+                
+              </td>
+            </tr>
+            @include("Alunos.components.modal_edit", ["aluno" => $aluno])
+            @include("Alunos.components.modal_delete", ["aluno" => $aluno])
+          @endforeach
+     </table>
+      {{--  <div id="list">  --}}
+      {{--  @foreach ($alunos as $aluno)  --}}
+          {{--  <div class="row justify-content-md-center listing-card">
             <div class="col-md-9 col-lg-9 informacoes">
               <a type="button" class="ver" style="text-decoration: none; color: black;" onclick="exibirModalVisualizar({{$aluno->id}})">
                 <label class="labelIndex">{{$aluno->user->name}}</label>
@@ -35,12 +87,12 @@
                 <img src="{{asset("images/excluir.png")}}" class="option-button" alt="Excluir aluno">
               </a>
             </div>
-          </div>
-          <br>
-        @include("Alunos.components.modal_edit", ['aluno' => $aluno])
+          </div>  --}}
+          {{--  <br>  --}}
+        {{--  @include("Alunos.components.modal_edit", ['aluno' => $aluno])
         @include("Alunos.components.modal_show")
         @include("Alunos.components.modal_delete")
-      @endforeach
+      @endforeach  --}}
       </div>
     @endif
   </div>
