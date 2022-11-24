@@ -31,11 +31,7 @@ Route::post('/alunos/criar/aluno', [AlunoController::class, 'criar_aluno'])->nam
 Route::delete('/alunos/destroy', [AlunoController::class, 'destroy'])->name("alunos.destroy");
 
 // Rotas de servidor
-Route::resource('/servidores', ServidorController::class)->only([
-    "create", "index", "store"
-]);
-Route::post('/servidor/update', [ServidorController::class, 'update'])->name("servidor.update");
-Route::delete('/servidores/destroy', [ServidorController::class, 'destroy'])->name("servidores.destroy");
+Route::resource('/servidores', ServidorController::class);
 
 // Rotas de professor
 Route::resource('/professores', ProfessorController::class)->only([
