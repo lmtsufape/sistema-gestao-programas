@@ -58,3 +58,6 @@ Route::get('/getFrequenciaMensal/{idVinculo}/{mes}', [VinculoController::class, 
 Route::get('/vinculos/declaracao/{id}', [VinculoController::class, 'declaracao'])->name("vinculos.declaracao");
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//criado apenas para visualizar a tela de cadastro do aluno
+Route::get('/cadastro', [App\Http\Controllers\Controller::class, 'cadastro'])->name('cadastro');
