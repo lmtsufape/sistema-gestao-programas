@@ -17,9 +17,10 @@ class CreateFrequenciaMensalsTable extends Migration
             $table->id();
             $table->string('mes')->nullable(false);
             $table->json('frequencia')->nullable(false);
-            $table->integer('tempo_total')->nullable(false);
-            $table->enum('status', ['enviada','aprovada', 'recusada'])->default('enviada')->nullable(false);
+            $table->float('tempo_total')->nullable(false);
+            $table->enum('status', ['enviada', 'aprovada', 'recusada'])->default('enviada')->nullable(false);
             $table->string('observacao')->nullable();
+            $table->foreignId('id_edital_aluno')->nullable(false)->constrained('edital_alunos');
             $table->timestamps();
         });
     }
