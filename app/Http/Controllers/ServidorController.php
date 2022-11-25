@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServidorFormUpdateRequest;
 use App\Models\Servidor;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -37,33 +39,34 @@ class ServidorController extends Controller
         return redirect(route("servidores.index"));
     }
 
-    public function update(Request $request)
+    public function edit($id)
     {
-        $servidor = Servidor::find($request->id);
+        $servidor = Servidor::find($id);
+        return view("servidores.editar", compact('servidor'));
+    }
 
-        $rulesUser = User::$rules;
-        $rulesUser['email'] = [
-            'bail', 'required', 'email', 'max:100',
-            Rule::unique('users')->ignore($servidor->user->id)
-        ];
+    public function update(ServidorFormUpdateRequest $request, $id)
+    {
+        $servidor = Servidor::find($id);
+        
+        $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
+        $servidor->tipo_servidor = $request->tipo_servidor;
 
-        $rulesServidor = Servidor::$rules;
-        $rulesServidor['cpf'] = [
-            'bail', 'required', 'formato_cpf', 'cpf', 'unique:professors', 'unique:alunos',
-            Rule::unique('servidors')->ignore($servidor->id)
-        ];
-
-        Validator::make($request->all(), array_merge($rulesServidor, $rulesUser), array_merge(Servidor::$messages, User::$messages))->validateWithBag('update');
-
-        $servidor->cpf = $request->cpf;
-        $servidor->setor = $request->setor;
-
-        $servidor->user->name = $request->name;
+        $servidor->user->name = $request->nome;
         $servidor->user->email = $request->email;
-        $servidor->user->password = Hash::make($request->password);
+        $servidor->user->password = $request->senha && $request->senha != null ? Hash::make($request->password) : $servidor->user->password;
 
-        if ($servidor->save() && $servidor->user->save()) {
-            return redirect(route("servidores.index"));
+        if ($servidor->save()){
+            
+            if ($servidor->user->update()){
+                $mensagem_sucesso = "Orientador cadastrado com sucesso.";
+                return redirect('/servidores/'. $servidor->id .'/edit')->with('sucesso', 'Servidor Atualizado com sucesso.');
+            } else {
+                return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+            }
+
+        } else {
+            return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
         }
     }
 
