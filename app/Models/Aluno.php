@@ -22,7 +22,7 @@ class Aluno extends Model
 
     public function curso()
     {
-        return $this->belongsTo(Curso::class);
+        return $this->belongsTo(Curso::class, "id_curso");
     }
 
     public function edital_alunos()
