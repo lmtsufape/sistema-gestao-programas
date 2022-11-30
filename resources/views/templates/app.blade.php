@@ -29,15 +29,15 @@
           @endauth
         
           <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
-            <a href="{{route("vinculos.index")}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: #131833; margin-left: 50px">
+            <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: #131833; margin-left: 50px">
               PROGRAMA
             </a>
           </ul>
-          <a href="{{route("vinculos.index")}}" type="button" style=" text-decoration: none ; font-weight: 400; font-size: 20px; line-height: 29px; color: #131833; margin-left: 50px">
+          <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 400; font-size: 20px; line-height: 29px; color: #131833; margin-left: 50px">
               Contato
           </a>
           <div style="border-right: 1px solid #131833; width: 1px; height: 30px; padding-left: 2%;"></div>
-          <a href="{{route("vinculos.index")}}" type="button" style="text-decoration: none ; font-weight: 400; font-size: 20px; line-height: 29px; color: #131833; margin-left: 2%; margin-right: 25px">
+          <a href="{{route('home')}}" type="button" style="text-decoration: none ; font-weight: 400; font-size: 20px; line-height: 29px; color: #131833; margin-left: 2%; margin-right: 25px">
               Sobre
           </a>
         </div>
@@ -61,7 +61,7 @@
 
     <footer style="background: #FFFFFF; box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25); margin-top: auto;
      display: flex; align-items: center; padding-top: 10px; padding-bottom: 10px;">
-      <a href="{{route("vinculos.index")}}" type="button" style=" text-decoration: none ; font-weight: 700;
+      <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 700;
           font-size: 24px; line-height: 29px; color: rgba(0, 0, 0, 0.46); margin-left: 60px;">
                 PROGRAMA
           </a>
