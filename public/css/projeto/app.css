@@ -72,14 +72,21 @@ input {
 .modal-create {
   text-align: center;
   border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+}
+
+.modal-title{
+  font-weight: 700;
+  color: #131833;
 }
 
 
 .input-modal-create{
   padding: 10px;
   background: #FFFFFF;
-  box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 13px;
 };
 
 input {
@@ -99,9 +106,16 @@ input {
 }
 
 .submit-button{
-  background: #143BC2;
+  background: #34A853;
   box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  font-weight: bold;
+  border-color:#3c9b54;
+}
+
+.submit-button:hover{
+  background: #48bf67;
+  border-color:#34A853;
 }
 
 .card-form{
