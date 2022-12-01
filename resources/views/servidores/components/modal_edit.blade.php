@@ -33,14 +33,13 @@
                 @endif
               </div> 
             <div class="col-sm- 12 col-md-6 mb-3">
-              <label for="setor_edit" class="form-label">Setor</label>
-              <input name="setor" type="text" placeholder="Digite o setor" value="{{old('setor', $servidor->setor)}}"
-              class="form-control input-modal-create @if(!empty($errors->update->first('setor'))) is-invalid @endif form-control-sm">
-                @if(!empty($errors->update->first('setor')))
-                  <span class="invalid-feedback d-block">
-                    <strong> {{$errors->update->first('setor')}} </strong>
-                  </span>
-                @endif
+            <label for="tipo_servidor">Tipo do servidor: </label>
+            <select class="form-select mt-2 " aria-label="Default select example">
+              <option selected>Escolha uma opção</option>
+              <option value="adm" {{$servidor->tipo_servidor == "adm" ? "selected" : ""}}>Administrador</option>
+              <option value="pro_reitor" {{$servidor->tipo_servidor == "pro_reitor" ? "selected" : ""}}>Pró-reitor</option>
+              <option value="servidor" {{$servidor->tipo_servidor == "servidor" ? "selected" : ""}}>Servidor</option>
+            </select>
             </div>
           </div>
           <div class="row">
