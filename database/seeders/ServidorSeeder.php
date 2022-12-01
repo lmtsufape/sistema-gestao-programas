@@ -11,12 +11,12 @@ class ServidorSeeder extends Seeder
 
     public function run()
     {
-        $servidor1 = Servidor::create([
+        $servidor = Servidor::create([
             'cpf' => "73946545084",
-            'setor' => "Escolaridade",
+            'tipo_servidor' => "servidor",
         ]);
 
-        $servidor1->user()->create([
+        $servidor->user()->create([
             'name' => "Vanessa Passos",
             'email' => "vanessa@gmail.com",
             'password' => Hash::make('12345678')

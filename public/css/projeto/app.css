@@ -1,4 +1,4 @@
-/* General */
+* General */
 input { 
   text-align: center; 
 }
@@ -93,16 +93,9 @@ input {
   text-align: center;
 }
 
-.form-select{
-  border-radius: 13px; 
-  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.25); 
-  padding: 10px;
-  font-size: .875rem;
-}
-
-::-webkit-input-placeholder {
+/* ::-webkit-input-placeholder {
   text-align: center;
-}
+} */
 
 :-moz-placeholder {
   text-align: center;
@@ -214,5 +207,56 @@ div.modal-ver{
   .container{
     margin: auto;
   }
+}
+
+
+/*Cadastro do aluno */
+
+.btn{
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 13px;
+  width: 170px;
+}
+.btn-primary{
+  color: #fff;
+  background-color: #34a853;
+  border-color: #34a853;
+}
+.btn-primary:hover{
+  background-color: #40b760;
+  border-color: #40b760;
+}
+.btn-secondary{
+  color: #fff;
+  background-color: #2d3875;
+  border-color: #2d3875;
+}
+.btn-secondary:hover{
+  background-color: #4353ab;
+  border-color: #4353ab;
+}
+
+.form-control{
+  background: #F5F5F5;
+  border-radius: 8px;
+  box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.25);
+  text-align: start;
+}
+
+.card.card-cadastro{
+  border-radius: 20px;
+  width: 700px;
+}
+.form-label{
+  font-size: 0.9rem;
+}
+
+/*Servidor*/
+
+.form-select{
+  border-radius: 13px; 
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.25); 
+  padding: 10px;
+  font-size: .875rem;
 }
 

@@ -10,16 +10,21 @@ class Servidor extends Model
 {
     protected $fillable = [
         'cpf',
-        'setor'
+        'tipo_servidor'
     ];
 
     public function user(){
         return $this->morphOne(User::class, "typage");
     }
 
+    public function programa_servidors()
+    {
+        return $this->hasMany(Programa_servidor::class);
+    }
+
     public static $rules = [
         'cpf' => 'bail|required|formato_cpf|cpf|unique:servidors|unique:alunos|unique:professors',
-        'setor' => 'bail|required|max:100',
+        'tipo_servidor' => 'bail|required',
     ];
 
     public static $messages = [
@@ -27,8 +32,7 @@ class Servidor extends Model
         'cpf.formato_cpf' => 'Padrão deve ser 999.999.999-99',
         'cpf.cpf' => 'CPF inválido',
         'cpf.unique' => 'CPF já cadastrado',
-        'setor.required' => 'Setor é obrigatório',
-        'setor.max' => 'Setor deve possuir no máximo 100 caracteres',
+        'tipo_servidor.required' => 'Setor é obrigatório'
     ];
 
 }

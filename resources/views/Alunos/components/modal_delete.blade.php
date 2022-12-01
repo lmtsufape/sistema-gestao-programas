@@ -2,11 +2,12 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title " id="exampleModalLabel">Confirmação</h5>
+        <h5 style="color: #131833; font-style: normal; font-weight: 600; font-size: 30px; line-height: 47px;">Confirmação</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Tem certeza?
+        <h5 style="color: #131833; font-style: normal; font-weight: 600; font-size: 20px; line-height: 47px;">
+          Deseja realmente deletar o aluno? {{$aluno->nome}}?</h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

@@ -14,18 +14,10 @@
             </div> 
 
             <div class="col-sm- 12 col-md-6 mb-3">
-              <label class="form-label">Setor</label>
-              <div class="modal-ver"> {{$servidor->setor}}</div>
+              <label class="form-label">Tipo de servidor</label>
+              <div class="modal-ver"> {{$servidor->tipo_servidor}}</div>
             </div>
           </div>
-
-          <div class="row">
-            <div class="">
-              <label class="form-label">E-mail</label>
-              <div class="modal-ver">{{$servidor->user->email}}</div>
-            </div> 
-          </div>
-
           <p></p>
           <a class="btn btn-primary submit-button" data-bs-dismiss="modal" style="width: 200px" role="button">Voltar</a>
         </div>

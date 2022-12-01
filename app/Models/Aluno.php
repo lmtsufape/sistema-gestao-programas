@@ -20,9 +20,14 @@ class Aluno extends Model
         return $this->morphOne(User::class, "typage");
     }
 
-    public function vinculos()
+    public function curso()
     {
-        return $this->hasMany(Vinculo::class);
+        return $this->belongsTo(Curso::class);
+    }
+
+    public function edital_alunos()
+    {
+        return $this->hasMany(Edital_aluno::class);
     }
 
     public static $rules = [
