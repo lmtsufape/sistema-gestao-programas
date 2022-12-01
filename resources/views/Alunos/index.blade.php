@@ -57,9 +57,19 @@
       <img src="{{asset("images/add-icon.png")}}" class="add-button" alt="Adicionar aluno">
     </a>  --}}
      
+    <div style="display: contents; align-content: center; align-items: center">
+    <button style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; align-content: center; align-items: center; padding-right: 10px; margin: 0% 5% 1% 0%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"> 
+      <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno 
+    </button>
+    <button style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; align-content: center; align-items: center; padding-right: 10px;
+    margin-bottom: 2%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+      <img src="{{asset("images/edit-outline.png")}}" alt="Cadastrar aluno" style="padding: 0px 5px 5px 5px">Editar aluno
+    </button>
+    </div>
     
-    
-    <div style="background-color: #34A853; border-radius: 45px; padding-left: 2%; padding-right: 2%;
+    <div style="background-color: #34A853; border-radius: 25px; padding-left: 2%; padding-right: 2%;
      display: flex; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
       <div style="align-self: center; margin-right: auto">
         <h4>Legenda</h4>
