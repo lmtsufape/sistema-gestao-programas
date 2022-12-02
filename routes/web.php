@@ -31,6 +31,7 @@ Route::post('/alunos/update', [AlunoController::class, 'update'])->name("alunos.
 Route::post('/alunos/criar/aluno', [AlunoController::class, 'criar_aluno'])->name("alunos.criar_aluno");
 Route::delete('/alunos/destroy', [AlunoController::class, 'destroy'])->name("alunos.destroy");
 
+
 // Rotas de servidor
 Route::resource('/servidores', ServidorController::class);
 Route::delete('/servidores/destroy', [ServidorController::class, 'destroy'])->name("servidores.destroy");
