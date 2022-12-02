@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             EditalSeeder::class,
             Edital_orientadorSeeder::class,
             Edital_alunoSeeder::class,
-            Frequencia_mensalSeeder::class
+            Frequencia_mensalSeeder::class,
+            Termo_compromissoSeeder::class
         ]);
     }
 }
