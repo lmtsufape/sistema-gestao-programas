@@ -80,4 +80,8 @@ class ServidorController extends Controller
             return redirect(route("servidores.index"));
         }
     }
+    // Criado para visualizar a tela de editar servidor
+    public function editar(){
+        return view('servidores.editar');
+    }
 }
