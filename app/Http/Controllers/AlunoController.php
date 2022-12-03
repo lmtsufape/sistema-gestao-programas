@@ -94,33 +94,6 @@ class AlunoController extends Controller
         } else {
             return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
         }
-
-        // $rulesUser = User::$rules;
-        // $rulesUser['email'] = [
-        //     'bail', 'required', 'email', 'max:100',
-        //     Rule::unique('users')->ignore($aluno->user->id)
-        // ];
-
-        // $rulesAluno = Aluno::$rules;
-        // $rulesAluno['cpf'] = [
-        //     'bail', 'required', 'formato_cpf', 'cpf', 'unique:servidors', 'unique:professors',
-        //     Rule::unique('alunos')->ignore($aluno->id)
-        // ];
-
-        // Validator::make($request->all(), array_merge($rulesAluno, $rulesUser), array_merge(Aluno::$messages, User::$messages))->validateWithBag('update');
-
-        // $aluno->cpf = $request->cpf;
-        // $aluno->curso = $request->curso;
-        // $aluno->semestre_entrada = $request->semestre_entrada;
-
-
-        // $aluno->user->name = $request->name;
-        // $aluno->user->email = $request->email;
-        // $aluno->user->password = Hash::make($request->password);
-
-        // if ($aluno->save() && $aluno->user->save()) {
-        //     return redirect(route("alunos.index"));
-        // }
     }
 
     public function delete($id)
