@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AlunoUpdateFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Aluno;
+use App\Models\Curso;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -63,35 +65,34 @@ class AlunoController extends Controller
         return redirect(url("/login"));
     }
 
-    public function update(Request $request)
+    public function update(AlunoUpdateFormRequest $request, $id)
     {
-        $aluno = Aluno::find($request->id);
+        $aluno = Aluno::find($id);
 
-        $rulesUser = User::$rules;
-        $rulesUser['email'] = [
-            'bail', 'required', 'email', 'max:100',
-            Rule::unique('users')->ignore($aluno->user->id)
-        ];
-
-        $rulesAluno = Aluno::$rules;
-        $rulesAluno['cpf'] = [
-            'bail', 'required', 'formato_cpf', 'cpf', 'unique:servidors', 'unique:professors',
-            Rule::unique('alunos')->ignore($aluno->id)
-        ];
-
-        Validator::make($request->all(), array_merge($rulesAluno, $rulesUser), array_merge(Aluno::$messages, User::$messages))->validateWithBag('update');
-
-        $aluno->cpf = $request->cpf;
-        $aluno->curso = $request->curso;
+        $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
         $aluno->semestre_entrada = $request->semestre_entrada;
+        $aluno->id_curso = $request->curso;
 
-
-        $aluno->user->name = $request->name;
+        $aluno->user->name = $request->nome;
         $aluno->user->email = $request->email;
-        $aluno->user->password = Hash::make($request->password);
+        if ($request->senha && $request->senha != null){
+            if (strlen($request->senha) > 3 && strlen($request->senha) < 9){
+                $aluno->user->password = Hash::make($request->password);
+            } else {
+                return redirect()->back()->withErrors( "Senha deve ter entre 4 e 8 dígitos" );
+            }
+        }
 
-        if ($aluno->save() && $aluno->user->save()) {
-            return redirect(route("alunos.index"));
+        if ($aluno->save()){
+            
+            if ($aluno->user->update()){
+                return redirect('/alunos')->with('sucesso', 'Aluno atualizado com sucesso.');
+            } else {
+                return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+            }
+
+        } else {
+            return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
         }
     }
 
@@ -137,6 +138,12 @@ class AlunoController extends Controller
             $alunos = Aluno::all();
             return view("Alunos.index", compact("alunos"));
         }
+    }
+
+    public function edit($id){
+        $aluno = Aluno::find($id);
+        $cursos = Curso::all();
+        return view("Alunos.editar-aluno", compact('aluno', 'cursos'));
     }
 
 }

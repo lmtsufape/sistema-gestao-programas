@@ -6,7 +6,7 @@
         Informações do aluno</h5>
         <button class="btn-close" data-bs-dismiss="modal" onClick="window.location.reload();" aria-label="Close"></button>
       </div>
-      <form action="{{route('alunos.update')}}" method="post">
+      <form action="{{route('home')}}" method="post">
         @csrf
         <input type="hidden" name="id" value="{{$aluno->id}}">
         <div class="modal-body">

@@ -17,5 +17,9 @@ class CursoSeeder extends Seeder
         $curso = Curso::create([
             'nome' => "BCC"
         ]);
+
+        $curso2 = Curso::create([
+            'nome' => "Veterinaria"
+        ]);
     }
 }

@@ -11,7 +11,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <form action="{{route("alunos.destroy")}}" method="post">
+        <form action="{{url("/alunos/1")}}" method="post">
           @method("DELETE")
           @csrf
           <input type="hidden" name="id" value="{{$aluno->id}}">
