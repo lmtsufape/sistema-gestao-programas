@@ -33,6 +33,13 @@
 
   @can('servidor')
   <div class="container">
+    @if (session('sucesso'))
+    <div class="alert alert-danger">
+        {{session('sucesso')}}
+    </div>
+    @endif
+    <br>
+
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
     <h1><strong>Alunos</strong></h1>
     <div style="margin: auto"></div>
@@ -110,8 +117,6 @@
         </div>
       </div>
     </div>
-
-    @include("Alunos.components.modal_create")
   
     @if (sizeof($alunos) == 0)
       <div class="empty">
@@ -130,6 +135,7 @@
             <th scope="col" style="border-right: 1px solid #d3d3d3;">Email</th>
             <th scope="col" style="border-right: 1px solid #d3d3d3;">CPF</th>
             <th scope="col" style="border-right: 1px solid #d3d3d3;">Curso</th>
+            <th scope="col" style="border-right: 1px solid #d3d3d3;">Semestre de entrada</th>
             <th scope="col">Ações</th>
           </tr>
           </thead>
@@ -140,6 +146,7 @@
                   <td style="border-right: 1px solid #d3d3d3;">{{$aluno->user->email}}</td>
                   <td style="border-right: 1px solid #d3d3d3;">{{$aluno->cpf}}</td>
                   <td style="border-right: 1px solid #d3d3d3;">{{$aluno->curso->nome}}</td>
+                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->semestre_entrada}}</td>
                   <td>
                     <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
                       <img src="{{asset("images/info.png")}}" alt="Info aluno">

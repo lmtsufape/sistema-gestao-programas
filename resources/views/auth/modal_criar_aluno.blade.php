@@ -5,7 +5,7 @@
           <h5 class="modal-title title">Cadastro de aluno</h5>
           <button class="btn-close" data-bs-dismiss="modal" onClick="window.location.reload();" aria-label="Close"></button>
         </div>
-        <form action="{{route("alunos.criar_aluno")}}" method="post">
+        <form action="{{route("alunos.create")}}" method="post">
           @csrf
           <div class="modal-body">
             <div class="mb-3" style="">
