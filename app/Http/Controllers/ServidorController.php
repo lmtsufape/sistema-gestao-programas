@@ -54,7 +54,13 @@ class ServidorController extends Controller
 
         $servidor->user->name = $request->nome;
         $servidor->user->email = $request->email;
-        $servidor->user->password = $request->senha && $request->senha != null ? Hash::make($request->password) : $servidor->user->password;
+        if ($request->senha && $request->senha != null){
+            if (strlen($request->senha) > 3 && strlen($request->senha) < 9){
+                $servidor->user->password = Hash::make($request->password);
+            } else {
+                return redirect()->back()->withErrors( "Senha deve ter entre 4 e 8 dígitos" );
+            }
+        }
 
         if ($servidor->save()){
             

@@ -2,7 +2,7 @@
 
 @section("body")
 
-<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em">
+<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px">
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -21,7 +21,7 @@
     <br>
     <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
         <div class="row">
-            <h1 style="font-weight: 600; font-size: 40px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
                 Cadastrar Orientador</h1>
         </div>
 
@@ -54,7 +54,7 @@
             style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
              box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br><br>
             
-            <div style="display: flex; gap: 71%; align-content: center; align-items: center">
+            <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" href="{{route('home')}}" onclick="window.location.href='{{route('home')}}'"
                 style="background: #2D3875; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                 border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;

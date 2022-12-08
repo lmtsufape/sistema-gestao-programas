@@ -24,12 +24,7 @@ Route::middleware([
 });
 
 // Rotas de aluno
-Route::resource('/alunos', AlunoController::class)->only([
-    "create", "index", "store"
-]);
-Route::post('/alunos/update', [AlunoController::class, 'update'])->name("alunos.update");
-Route::post('/alunos/criar/aluno', [AlunoController::class, 'criar_aluno'])->name("alunos.criar_aluno");
-Route::delete('/alunos/destroy', [AlunoController::class, 'destroy'])->name("alunos.destroy");
+Route::resource('/alunos', AlunoController::class);
 
 // Rotas de servidor
 Route::resource('/servidores', ServidorController::class);
@@ -42,4 +37,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //criado apenas para visualizar a tela de cadastro do aluno
 Route::get('/editar', [App\Http\Controllers\Controller::class, 'editar'])->name('editar');
+
 

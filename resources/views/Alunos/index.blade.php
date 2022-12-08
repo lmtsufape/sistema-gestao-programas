@@ -33,33 +33,58 @@
 
   @can('servidor')
   <div class="container">
-    <div style="margin-bottom: 10px; display: flex; gap: 20px; margin-top: 20px">
+    @if (session('sucesso'))
+    <div class="alert alert-danger">
+        {{session('sucesso')}}
+    </div>
+    @endif
+    <br>
+
+    <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
     <h1><strong>Alunos</strong></h1>
     <div style="margin: auto"></div>
     {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
-    <button style="background-color: #D9D9D9; border-radius: 30px; height: 45px;
-    border: 1px solid #ddd; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"> 
-    <a><img src="/images/filtraricon.png" alt="Documentos"></a>
-    </button>
-    <input type="text" onkeyup="" placeholder="Buscar" title="Barra de pesquisa" 
-    style="background-image: url('/images/searchicon.png'); 
-          background-color: #D9D9D9;
-          border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-          background-position: 10px 2px;
-          background-repeat: no-repeat;
-          width: 35%;
-          font-size: 16px;
-          height: 45px;
-          border: 1px solid #ddd;
-          margin-bottom: 12px;">
-    </div>
+    <form action="{{route("alunos.index")}}" method="GET">
+      <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
+      style="background-color: #D9D9D9;
+            border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            background-position: 10px 2px;
+            background-repeat: no-repeat;
+            width: 35%;
+            font-size: 16px;
+            height: 45px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;">
+      <input type="submit" value=""
+      style="background-image: url('/images/searchicon.png');
+            background-color: #D9D9D9;
+            border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            width: 40px;
+            font-size: 16px;
+            height: 45px;
+            border: 1px solid #ddd;
+            position: absolute;
+            margin: auto;"
+      />
+    </form>
+  </div>
     {{--  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_create">
       <img src="{{asset("images/add-icon.png")}}" class="add-button" alt="Adicionar aluno">
     </a>  --}}
      
+    <div style="display: contents; align-content: center; align-items: center">
+    <button style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; align-content: center; align-items: center; padding-right: 10px; margin: 0% 5% 1% 0%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"> 
+      <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno 
+    </button>
+    {{--  <button style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; align-content: center; align-items: center; padding-right: 10px;
+    margin-bottom: 2%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+      <img src="{{asset("images/edit-outline.png")}}" alt="Cadastrar aluno" style="padding: 0px 5px 5px 5px">Editar aluno
+    </button>  --}}
+    </div>
     
-    
-    <div style="background-color: #34A853; border-radius: 45px; padding-left: 2%; padding-right: 2%;
+    <div style="background-color: #34A853; border-radius: 25px; padding-left: 2%; padding-right: 2%;
      display: flex; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
       <div style="align-self: center; margin-right: auto">
         <h4>Legenda</h4>
@@ -67,20 +92,20 @@
       </div>
       <div style="display: flex; align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/filtraricon.png")}}" alt="Botao filtrar"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Filtrar</p>
-        </div>
-        <div style="display: flex; margin: 10px">
           <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
         <div style="display: flex; margin: 10px">
-          <a><img src="/images/info.png" alt="Editar" style="size: 60px"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Editar</p>
+          <a><img src="/images/info.png" alt="Informacoes" style="size: 60px"></a>
+          <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Informações</p>
         </div>
         <div style="display: flex; margin: 10px">
           <a><img src="/images/document.png" alt="Documentos" style="size: 60px"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Documentos</p>
+        </div>
+        <div style="display: flex; margin: 10px">
+          <a><img src="/images/edit-outline-blue.png" alt="Editar" style="size: 60px"></a>
+          <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Editar</p>
         </div>
         <div style="display: flex; margin: 10px">
           <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno"></a>
@@ -88,8 +113,6 @@
         </div>
       </div>
     </div>
-
-    @include("Alunos.components.modal_create")
   
     @if (sizeof($alunos) == 0)
       <div class="empty">
@@ -105,17 +128,21 @@
           <thead>
           <tr>
             <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">Situação</th>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">Programa</th>
+            <th scope="col" style="border-right: 1px solid #d3d3d3;">Email</th>
+            <th scope="col" style="border-right: 1px solid #d3d3d3;">CPF</th>
+            <th scope="col" style="border-right: 1px solid #d3d3d3;">Curso</th>
+            <th scope="col" style="border-right: 1px solid #d3d3d3;">Semestre de entrada</th>
             <th scope="col">Ações</th>
           </tr>
           </thead>
           @foreach ($alunos as $aluno)
           <tbody>
                 <tr> 
-                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->nome}}</td>
-                  <td style="border-right: 1px solid #d3d3d3;"></td>
-                  <td style="border-right: 1px solid #d3d3d3;"></td>
+                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->user->name}}</td>
+                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->user->email}}</td>
+                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->cpf}}</td>
+                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->curso->nome}}</td>
+                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->semestre_entrada}}</td>
                   <td>
                     <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
                       <img src="{{asset("images/info.png")}}" alt="Info aluno">
@@ -124,9 +151,13 @@
                       <img src="{{asset("images/document.png")}}" alt="Documento aluno">
                       {{--  TODO: Fica pra fazer o modal depois  --}}
                     </a>
+                    <a href="{{url("/alunos/$aluno->id/edit")}}">
+                      <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar aluno">
+                    </a>
                     <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->id}}">
                       <img src="{{asset("images/delete.png")}}" alt="Deletar aluno">
                     </a>
+                    
                     
                   </td>
                 </tr>
@@ -196,7 +227,7 @@
   
   @elsecan('aluno')
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{route("vinculos.index")}}">Voltar</a>
+    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{route('home')}}">Voltar</a>
   @else
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
     <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
