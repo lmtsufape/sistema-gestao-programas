@@ -40,7 +40,7 @@ class OrientadorController extends Controller
             return view("Orientadors.index", compact("orientadors"));
         } else {
             $orientador = Orientador::all();
-            return view("Orientadors.index", compact("orientadors"));
+            return view("Orientador.index", compact("orientador"));
         }
     }
 
@@ -106,7 +106,8 @@ class OrientadorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $orientador = Orientador::find($id);
+        return view("Orientador.editar-orientador", compact('orientador'));
     }
 
     /**
@@ -127,8 +128,20 @@ class OrientadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function delete($id) 
+    {
+        $orientador = Orientador::findOrFail($id);
+        return view('orientadors.delete', ['aluno' => $aluno]);
+    }
+
     public function destroy($id)
     {
-        //
+        $id = $request->only(['id']);
+        $orientador = Orientador::findOrFail($id)->first();
+
+        if ($orientador->user->delete() && $orientador->delete()) {
+            return redirect(route("orientadors.index"));
+        }
     }
 }
