@@ -81,7 +81,8 @@ class OrientadorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $orientador = Orientador::find($id);
+        return view("Orientador.editar-orientador", compact('orientador'));
     }
 
     /**
