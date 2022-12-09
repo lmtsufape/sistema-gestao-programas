@@ -77,7 +77,7 @@
                     </button>
                 
                     <button class="botaoverde">
-                        <img src="{{asset("images/listuser.png")}}" alt="logodoc" style="padding-right: 10px;">
+                        <img src="{{asset("images/listuser.png")}}" alt="logodoc" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'" style="padding-right: 10px;">
                         Listar alunos
                     </button>
                 

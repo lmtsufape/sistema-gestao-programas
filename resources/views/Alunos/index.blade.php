@@ -92,10 +92,6 @@
       </div>
       <div style="display: flex; align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/filtraricon.png")}}" alt="Botao filtrar"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Filtrar</p>
-        </div>
-        <div style="display: flex; margin: 10px">
           <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
@@ -155,7 +151,7 @@
                       <img src="{{asset("images/document.png")}}" alt="Documento aluno">
                       {{--  TODO: Fica pra fazer o modal depois  --}}
                     </a>
-                    <a href="{{route('home')}}">
+                    <a href="{{url("/alunos/$aluno->id/edit")}}">
                       <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar aluno">
                     </a>
                     <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->id}}">

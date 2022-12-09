@@ -28,7 +28,6 @@ Route::resource('/alunos', AlunoController::class);
 
 // Rotas de servidor
 Route::resource('/servidores', ServidorController::class);
-Route::delete('/servidores/destroy', [ServidorController::class, 'destroy'])->name("servidores.destroy");
 
 // Rotas de orientador
 Route::resource('/orientadors', OrientadorController::class);
