@@ -10,10 +10,5 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    
-//criado apenas para visualizar a tela de cadastro do aluno (apagar depois)
-    public function cadastro(){
-        return view('alunos.cadastro-aluno');
-    }
- 
+
 }
