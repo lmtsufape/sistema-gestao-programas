@@ -34,7 +34,6 @@ Route::resource('/orientadors', OrientadorController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//criado apenas para visualizar a tela de cadastro do aluno
-Route::get('/cadastro', [App\Http\Controllers\Controller::class, 'cadastro'])->name('cadastro');
+
 
 
