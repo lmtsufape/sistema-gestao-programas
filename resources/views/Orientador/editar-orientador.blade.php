@@ -1,3 +1,5 @@
+@extends("templates.app")
+@section("body")
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -13,15 +15,12 @@
         {{session('sucesso')}}
     </div>
 @endif
-<br>
-@extends("templates.app")
-@section("body")
 <div class="d-flex justify-content-center align-items-center">
     <div class="container-fluid p-5" style="margin: auto; font-family: 'Roboto', sans-serif;">
         <div class="d-flex justify-content-center align-items-center">
             <div class="card card-cadastro bg-white shadow">
                 <div class="card-body p-5">                       
-                    <form class="row needs-validation" novalidate style="text-align:start;" action="{{route('orientador.update')}}" method="post">
+                    <form class="row needs-validation" novalidate style="text-align:start;" action="{{url('/orientadors/'. strval($orientador->id))}}" method="post">
                         @csrf
                         <input type="hidden" name="id" value="{{$orientador->id}}">
                         @method("PUT")
@@ -64,8 +63,54 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(function () {
-        $('#cpf_edit').mask('000.000.000-00');
-    });
-</script> 
+	$(document).ready(function(){
+		$("#cpf").mask("999.999.999-99");
+	});
+</script>
+<style>
+    .btn{
+        box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 13px;
+        width: 170px;
+    }
+    .btn-primary{
+        color: #fff;
+        background-color: #34a853;
+        border-color: #34a853;
+    }
+    .btn-primary:hover{
+        background-color: #40b760;
+        border-color: #40b760;
+    }
+    .btn-secondary{
+        color: #fff;
+        background-color: #2d3875;
+        border-color: #2d3875;
+    }
+    .btn-secondary:hover{
+        background-color: #4353ab;
+        border-color: #4353ab;
+    }
+    .form-control{
+        border-radius: 8px;
+        box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.25);
+        text-align: start;
+        font-size: 16px;
+    }
+    .card.card-cadastro{
+        border-radius: 20px;
+        width: 700px;
+    }
+    .form-label{
+        font-size: 0.9rem;
+    }
+     /* CSS editar servidor */
+     .form-select{
+        border-radius: 8px;
+        box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.25);
+        text-align: start;
+        padding-right: 12px;
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
 @endsection
