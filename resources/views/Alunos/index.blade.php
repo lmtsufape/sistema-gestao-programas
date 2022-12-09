@@ -161,7 +161,7 @@
                     
                   </td>
                 </tr>
-                @include("Alunos.components.modal_edit", ["aluno" => $aluno])
+                @include("Alunos.components.modal_show", ["aluno" => $aluno])
                 @include("Alunos.components.modal_delete", ["aluno" => $aluno])
               @endforeach
           </tbody>
