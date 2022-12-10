@@ -13,11 +13,8 @@ class Frequencia_mensal extends Model
         'mes',
         'frequencia',
         'tempo_total',
-        'vinculo_id'
+        'status',
+        'observacao',
+        'id_edital_aluno'
     ];
-
-    public function vinculo()
-    {
-        return $this->belongsTo(Vinculo::class);
-    }
 }

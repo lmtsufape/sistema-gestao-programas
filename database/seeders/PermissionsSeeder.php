@@ -24,6 +24,11 @@ class PermissionsSeeder extends Seeder
             'name' => 'aluno',
             'guard_name' => 'web',
             'created_at' => date('Y-m-d h:i:s')
+            ],
+            [
+            'name' => 'orientador',
+            'guard_name' => 'web',
+            'created_at' => date('Y-m-d h:i:s')
             ]
         ]);
     }
