@@ -5,9 +5,9 @@
 <style>
   pagination {
     display: inline-block;
-    
+
   }
-  
+
   .pagination a {
     color: black;
     float: left;
@@ -17,17 +17,17 @@
     border: 1px solid #ddd;
     margin: 10px 4px;
   }
-  
+
   .pagination a.active {
     background-color: #3B864F;
     color: white;
     border: 1px solid #3B864F;
   }
-  
+
   .pagination a:hover:not(.active) {
     background-color: #34A853;
   }
-  
+
 </style>
 
 
@@ -68,22 +68,14 @@
       />
     </form>
   </div>
-    {{--  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_create">
-      <img src="{{asset("images/add-icon.png")}}" class="add-button" alt="Adicionar aluno">
-    </a>  --}}
-     
     <div style="display: contents; align-content: center; align-items: center">
-    <button style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; align-content: center; align-items: center; padding-right: 10px; margin: 0% 5% 1% 0%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"> 
-      <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno 
-    </button>
-    {{--  <button style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; align-content: center; align-items: center; padding-right: 10px;
-    margin-bottom: 2%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-      <img src="{{asset("images/edit-outline.png")}}" alt="Cadastrar aluno" style="padding: 0px 5px 5px 5px">Editar aluno
-    </button>  --}}
+    <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+    font-weight: 400; font-size: 24px; text-decoration: none; line-height: 28px; padding-top: 6px; align-content: center; align-items: center; padding-right: 10px; margin: 0% 5% 1% 0%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+    href="{{route('alunos.create')}}">
+      <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
+    </a>
     </div>
-    
+
     <div style="background-color: #34A853; border-radius: 25px; padding-left: 2%; padding-right: 2%;
      display: flex; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
       <div style="align-self: center; margin-right: auto">
@@ -113,7 +105,7 @@
         </div>
       </div>
     </div>
-  
+
     @if (sizeof($alunos) == 0)
       <div class="empty">
         <p>
@@ -137,7 +129,7 @@
           </thead>
           @foreach ($alunos as $aluno)
           <tbody>
-                <tr> 
+                <tr>
                   <td style="border-right: 1px solid #d3d3d3;">{{$aluno->user->name}}</td>
                   <td style="border-right: 1px solid #d3d3d3;">{{$aluno->user->email}}</td>
                   <td style="border-right: 1px solid #d3d3d3;">{{$aluno->cpf}}</td>
@@ -157,8 +149,8 @@
                     <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->id}}">
                       <img src="{{asset("images/delete.png")}}" alt="Deletar aluno">
                     </a>
-                    
-                    
+
+
                   </td>
                 </tr>
                 @include("Alunos.components.modal_edit", ["aluno" => $aluno])
@@ -181,7 +173,7 @@
           <a href="#" style="border-radius: 15px; background: #131833; color: white;">Próximo</a>
         </div>
       </div>
-     
+
   </div>
     @endif
   </div>
@@ -224,10 +216,10 @@
     });
   </script>
   @endif
-  
+
   @elsecan('aluno')
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{route('home')}}">Voltar</a>
+    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{route('alunos.index')}}">Voltar</a>
   @else
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
     <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
