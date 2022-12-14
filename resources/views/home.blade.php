@@ -18,7 +18,7 @@
       display: flex;
       align-items: center;
       padding-left: 20px;
-
+      min-width: 270px;
       background: #34A853;
       box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
       border-radius: 20px;
@@ -39,11 +39,11 @@
       display: flex;
       align-items: center;
       padding-left: 20px;
-      
-
+      min-width: 270px;  
       background: #2D3875;
       box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
       border-radius: 20px;
+      padding: 15px;
     }
   </style>
     @auth
@@ -76,13 +76,13 @@
                         Listar orientadores
                     </button>
                 
-                    <button class="botaoverde">
-                        <img src="{{asset("images/listuser.png")}}" alt="logodoc" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'" style="padding-right: 10px;">
+                    <button class="botaoverde" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'" >
+                        <img src="{{asset("images/listuser.png")}}" alt="logodoc"style="padding-right: 10px;">
                         Listar alunos
                     </button>
                 
                     <button class="botaoazul">
-                        <img src="{{asset("images/adduser.png")}}" alt="logodoc" style="padding-right: 10px;">
+                        <img src="{{asset("images/adduser.png")}}" alt="logodoc" style="padding-right: 10px; padding-left: 10px;">
                         Adicionar aluno
                     </button>
                 
@@ -106,7 +106,7 @@
                     </button>
                 
                     <button class="botaoazul">
-                        <img src="{{asset("images/gear.png")}}" alt="logodoc" style="padding-right: 10px;">
+                        <img src="{{asset("images/gear.png")}}" alt="logodoc" style="padding-right: 10px;  padding-left: 10px;">
                         Gerenciar certificados e declarações
                     </button>
                     
