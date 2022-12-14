@@ -104,7 +104,7 @@
           <thead>
           <tr>
             <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">Email</th>
+            <th scope="col" style="border-right: 1px solid #d3d3d3;">E-mail</th>
             <th scope="col" style="border-right: 1px solid #d3d3d3;">CPF</th>
             <th scope="col" style="border-right: 1px solid #d3d3d3;">Curso</th>
             <th scope="col" style="border-right: 1px solid #d3d3d3;">Semestre de entrada</th>

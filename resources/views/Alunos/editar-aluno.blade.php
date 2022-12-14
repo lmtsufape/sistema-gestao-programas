@@ -32,7 +32,7 @@
             style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 
-            <label for="email" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Email:</label>
+            <label for="email" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">E-mail:</label>
             <input type="text" id="email" name="email" value="{{$aluno->user->email}}" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 
