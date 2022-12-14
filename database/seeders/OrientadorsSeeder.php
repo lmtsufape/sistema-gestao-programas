@@ -25,5 +25,16 @@ class OrientadorsSeeder extends Seeder
             'email' => "Marcius@gmail.com",
             'password' =>  Hash::make('12345678')
         ])->givePermissionTo('orientador');
+
+        $orientador1 = Orientador::create([
+            'cpf' => "786.116.540-05",
+            'matricula' => "246810"
+        ]);
+
+        $orientador1->user()->create([
+            'name' => "Rodrigo Rocha",
+            'email' => "Rodrigo@gmail.com",
+            'password' =>  Hash::make('12345678')
+        ])->givePermissionTo('orientador');
     }
 }
