@@ -68,7 +68,7 @@
             
                     <button class="botaoverde">
                         <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        Listagem programas
+                        Listar programas
                     </button>
                 
                     <button class="botaoazul">
@@ -136,7 +136,7 @@
             style="font-style: normal; padding-top: 38px;
             font-weight: 700; text-align:start ;
             font-size: 35px; line-height: 41px; color: #131833;">
-            Bem vindo(a)!
+            Bem-vindo(a)!
             </h1>
             <hr>
         
@@ -147,7 +147,7 @@
         
             <button class="botaoverde">
                 <img src="{{asset("images/DocumentAdd.png")}}" alt="logodoc" style="padding-right: 10px;">
-                Listagem de documentos
+                Listar documentos
             </button>
         
             <button class="botaoazul">
@@ -157,12 +157,12 @@
         
             <button class="botaoverde">
                 <img src="{{asset("images/certificadoicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                Meus certificados
+                Ver meus certificados
             </button>
         
             <button class="botaoazul">
                 <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                Meus programas
+                Ver meus programas
             </button>
             
             </div>    
