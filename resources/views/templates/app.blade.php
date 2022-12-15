@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- Scripts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="css/projeto/app.css" rel="stylesheet" type="text/css" />
@@ -24,10 +26,10 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
               <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             @include('templates.menu_lateral')
           @endauth
-        
+
           <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
             <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: #131833; margin-left: 50px">
               PROGRAMA
@@ -54,7 +56,8 @@
                 @endforeach
             </ul>
         </div>
-        @endif  
+
+        @endif
         @yield('body')
       </div>
     </div>
@@ -66,7 +69,7 @@
                 PROGRAMA
           </a>
       <div style="margin-top: 5px; margin-bottom: 5px; margin-left:27% ; margin-right: auto; display: flex; align-items: center;">
-          
+
         <img src="{{asset("images/logoufape.png")}}" alt="Logo da UFAPE" style="height: 50px;">
         <img src="{{asset("images/logoupe.png")}}" alt="Logo da UPE" style="height: 40px; margin-left: 10px;">
 

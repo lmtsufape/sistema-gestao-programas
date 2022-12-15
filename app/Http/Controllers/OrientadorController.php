@@ -6,6 +6,7 @@ use App\Http\Requests\OrientadorFormRequest;
 use App\Models\Orientador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class OrientadorController extends Controller
 {
@@ -14,9 +15,33 @@ class OrientadorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if (sizeof($request-> query()) > 0){
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
+
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $orientadors = Orientador::join("users", "users.typage_id", "=", "orientadors.id")->join("cursos", "cursos.id", "=", "orientadors.id");
+            $orientadors = $orientadors->where(function ($query) use ($valor) {
+                if ($valor) {
+                    $query->orWhere("users.name", "LIKE", "%{$valor}%");
+                    $query->orWhere("users.email", "LIKE", "%{$valor}%");
+                    $query->orWhere("orientadors.nome", "LIKE", "%{$valor}%");
+                    $query->orWhere("orientadors.cpf", "LIKE", "%{$valor}%");
+                    $query->orWhere("orientadors.matricula", "LIKE", "%{$valor}%");
+                }
+            })->orderBy('orientadors.created_at', 'desc')->select("orientadors.*")->get();
+
+
+            return view("Orientadors.index", compact("orientadors"));
+        } else {
+            $orientador = Orientador::all();
+            return view("Orientador.index", compact("orientador"));
+        }
     }
 
     /**
@@ -81,7 +106,8 @@ class OrientadorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $orientador = Orientador::find($id);
+        return view("Orientador.editar-orientador", compact('orientador'));
     }
 
     /**
@@ -102,8 +128,20 @@ class OrientadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function delete($id) 
+    {
+        $orientador = Orientador::findOrFail($id);
+        return view('orientadors.delete', ['aluno' => $aluno]);
+    }
+
     public function destroy($id)
     {
-        //
+        $id = $request->only(['id']);
+        $orientador = Orientador::findOrFail($id)->first();
+
+        if ($orientador->user->delete() && $orientador->delete()) {
+            return redirect(route("orientadors.index"));
+        }
     }
 }

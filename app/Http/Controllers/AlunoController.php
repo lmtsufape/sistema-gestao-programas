@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AlunoUpdateFormRequest;
+use App\Http\Requests\AlunoStoreFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Aluno;
@@ -14,24 +15,32 @@ use Illuminate\Support\Facades\DB;
 
 class AlunoController extends Controller
 {
-    public function store(Request $request)
+    public function store(AlunoStoreFormRequest $request)
     {
+        $aluno = new Aluno();
+        $aluno->cpf = $request->cpf;
+        $aluno->id_curso = $request->curso;
+        $aluno->semestre_entrada = $request->semestre_entrada;
 
-        Validator::make($request->all(), array_merge(Aluno::$rules, User::$rules), array_merge(Aluno::$messages, User::$messages))->validateWithBag('create');
+        if ($aluno->save()){
 
-        $aluno = Aluno::create([
-            'cpf' => $request->input('cpf'),
-            'curso' => $request->input('curso'),
-            'semestre_entrada' => $request->input('semestre_entrada')
-        ]);
+            if ( 
+                $aluno->user()->create([
+                    'name' => $request->nome,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->senha)
+                ])->givePermissionTo('aluno') 
+            ){
 
-        $aluno->user()->create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password'))
-        ])->givePermissionTo('aluno');
+                $mensagem_sucesso = "Aluno cadastrado com sucesso.";
+                return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
 
-        return redirect(route("alunos.index"));
+            } else {
+                return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
+            }
+        }else{
+            return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
+        }
     }
 
     public function criar_aluno(Request $request)
@@ -144,6 +153,11 @@ class AlunoController extends Controller
         $aluno = Aluno::find($id);
         $cursos = Curso::all();
         return view("Alunos.editar-aluno", compact('aluno', 'cursos'));
+    }
+
+    public function create(){
+        $cursos = Curso::all();
+        return view("Alunos.cadastro-aluno", compact('cursos'));
     }
 
 }

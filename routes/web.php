@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\ServidorController;
 use App\Http\Controllers\OrientadorController;
@@ -32,9 +33,11 @@ Route::resource('/servidores', ServidorController::class);
 // Rotas de orientador
 Route::resource('/orientadors', OrientadorController::class);
 
+// Rotas de programa
+Route::resource('/programas', ProgramaController::class);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//criado apenas para visualizar a tela de cadastro do aluno
-Route::get('/cadastro', [App\Http\Controllers\Controller::class, 'cadastro'])->name('cadastro');
+
 
 
