@@ -54,7 +54,8 @@
             font-size: 16px;
             height: 45px;
             border: 1px solid #ddd;
-            margin-bottom: 12px;">
+            margin-bottom: 12px; margin-right: 10px">
+
       <input type="submit" value=""
       style="background-image: url('/images/searchicon.png');
             background-color: #D9D9D9;
@@ -66,14 +67,20 @@
             position: absolute;
             margin: auto;"
       />
+
     </form>
   </div>
-    <div style="display: contents; align-content: center; align-items: center">
-    <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-    font-weight: 400; font-size: 24px; text-decoration: none; line-height: 28px; padding-top: 6px; align-content: center; align-items: center; padding-right: 10px; margin: 0% 5% 1% 0%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-    href="{{route('alunos.create')}}">
-      <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
-    </a>
+    <div style="display: contents; align-content: center; align-items: center; justify-content: center">
+      <button style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 6px; padding-right: 15px; margin: 0% 0% 10px 0%;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"> 
+
+        <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px; ">
+        Cadastrar aluno 
+        
+      </button>
+
+
     </div>
 
     <div style="background-color: #34A853; border-radius: 25px; padding-left: 2%; padding-right: 2%;
@@ -105,7 +112,7 @@
         </div>
       </div>
     </div>
-
+    
     @if (sizeof($alunos) == 0)
       <div class="empty">
         <p>
@@ -114,13 +121,14 @@
       </div>
     @else
     <br>
-      <div style="border: 1px solid #d3d3d3; border-radius: 45px; padding: 15px; background: #F2F2F2; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-{{--  TODO: Arrumar um jeito da table ser sortable  --}}
-        <table class="table" style="background-color: #F2F2F2; ">
+      <div style="display: flex; gap: 30px">
+        
+        <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
+        ;margin-bottom: 5px; min-height: 350px">
           <thead>
           <tr>
             <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">Email</th>
+            <th scope="col" style="border-right: 1px solid #d3d3d3;">E-mail</th>
             <th scope="col" style="border-right: 1px solid #d3d3d3;">CPF</th>
             <th scope="col" style="border-right: 1px solid #d3d3d3;">Curso</th>
             <th scope="col" style="border-right: 1px solid #d3d3d3;">Semestre de entrada</th>
@@ -160,6 +168,41 @@
         </table>
 {{--  TODO: A tabela tem que limitar para aparecer x usuarios em cada página, e a paginação mudar o ultimo número
   de acordo com o tanto de páginas que tem disponiveis para olhar  --}}
+        <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
+        ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; margin-bottom: 5px">
+
+          <div style="align-self: center; margin-right: auto">
+            <br>
+            <h4 style="font-size: 15px">Legenda dos ícones:</h4>
+          </div>
+
+          <div style="align-self: center; margin-right: auto">
+            <div style="display: flex; margin: 10px">
+              <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+              <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
+            </div>
+            <div style="display: flex; margin: 10px">
+              <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
+              <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
+            </div>
+            <div style="display: flex; margin: 10px">
+              <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
+              <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
+            </div>
+            
+          </div>
+
+          <div style="align-self: center; margin-right: auto">
+            <div style="display: flex; margin: 10px">
+              <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
+              <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
+            </div>
+            <div style="display: flex; margin: 10px">
+              <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
+              <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
+            </div>
+          </div>
+      </div>
       </div>
       <div style="margin: auto; width: 45%; padding: 10px;">
         <div class="pagination">
