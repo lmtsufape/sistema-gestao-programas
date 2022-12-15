@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProgramaFormRequest;
+use App\Models\Programa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class ProgramaController extends Controller
 {
@@ -11,9 +15,31 @@ class ProgramaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if (sizeof($request-> query()) > 0){
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
+
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $programas = Programa::join("users", "users.typage_id", "=", "programas.id")->join("programas.id");
+            $programas = $programas->where(function ($query) use ($valor) {
+                if ($valor) {
+                    $query->orWhere("users.name", "LIKE", "%{$valor}%");
+                    $query->orWhere("users.email", "LIKE", "%{$valor}%");
+                    $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
+                }
+            })->orderBy('programas.created_at', 'desc')->select("programas.*")->get();
+
+
+            return view("Programas.index", compact("programas"));
+        } else {
+            $programas = Programa::all();
+            return view("Programa.index", compact("programas"));
+        }
     }
 
     /**
@@ -56,7 +82,8 @@ class ProgramaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $programa = Programa::find($id);
+        //return view("Programa.components.modal_edit", compact('programa'));
     }
 
     /**
@@ -71,14 +98,19 @@ class ProgramaController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function delete($id) 
     {
-        //
+        $programa = Programa::findOrFail($id);
+        return view('programas.delete');
+    }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->only(['id']);
+        $programa = Programa::findOrFail($id)->first();
+
+        if ($programa->delete()) {
+            return redirect(route("programas.index"));
+        }
     }
 }
