@@ -25,17 +25,14 @@ class ProgramaController extends Controller
                 return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
             }
 
-            $programas = Programa::join("users", "users.typage_id", "=", "programas.id")->join("programas.id");
-            $programas = $programas->where(function ($query) use ($valor) {
+            $programas = Programa::where(function ($query) use ($valor) {
                 if ($valor) {
-                    $query->orWhere("users.name", "LIKE", "%{$valor}%");
-                    $query->orWhere("users.email", "LIKE", "%{$valor}%");
                     $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
                 }
             })->orderBy('programas.created_at', 'desc')->select("programas.*")->get();
 
 
-            return view("Programas.index", compact("programas"));
+            return view("Programa.index", compact("programas"));
         } else {
             $programas = Programa::all();
             return view("Programa.index", compact("programas"));
