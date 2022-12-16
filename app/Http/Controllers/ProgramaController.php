@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProgramaFormRequest;
 use App\Models\Programa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProgramaStoreFormRequest;
+use App\Http\Requests\ProgramaUpdateFormRequest;
 use App\Models\Servidor;
-use App\Models\Programa;
 use App\Models\Programa_servidor;
 
 class ProgramaController extends Controller
@@ -78,10 +77,9 @@ class ProgramaController extends Controller
 
             DB::commit();
 
-            return redirect('/programas/create')->with('sucesso', 'Programa cadastrado com sucesso.');
+            return redirect('/programas')->with('sucesso', 'Programa cadastrado com sucesso.');
 
         } catch(exception $e){
-            dd("sfd");
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao cadastrar Programa. tente novamente mais tarde." );
         }
@@ -107,7 +105,14 @@ class ProgramaController extends Controller
     public function edit($id)
     {
         $programa = Programa::find($id);
-        //return view("Programa.components.modal_edit", compact('programa'));
+        $servidores = Servidor::all();
+        $idsServidoresDoPrograma = [];
+
+        foreach ($programa->programa_servidors as $programa_servidor){
+            $idsServidoresDoPrograma[] = $programa_servidor->id_servidor;
+        }
+
+        return view("Programa.editar", compact('programa', 'servidores', 'idsServidoresDoPrograma'));
     }
 
     /**
@@ -117,12 +122,36 @@ class ProgramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProgramaUpdateFormRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try{
+            $programa = Programa::find($id);
+            $programa->nome = $request->nome ? $request->nome : $programa->nome;
+            $programa->update();
+
+            Programa_servidor::where("id_programa", $programa->id)->delete();
+
+            if ($request->servidores){
+                foreach($request->servidores as $id_servidor){
+                    $programa_servidor = new Programa_servidor();
+                    $programa_servidor->id_programa = $programa->id;
+                    $programa_servidor->id_servidor = $id_servidor;
+                    $programa_servidor->save();
+                }
+            }
+
+            DB::commit();
+
+            return redirect('/programas')->with('sucesso', 'Programa editado com sucesso.');
+
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao editar Programa. tente novamente mais tarde." );
+        }
     }
 
-    public function delete($id) 
+    public function delete($id)
     {
         $programa = Programa::findOrFail($id);
         return view('programas.delete');
@@ -130,11 +159,22 @@ class ProgramaController extends Controller
 
     public function destroy(Request $request)
     {
-        $id = $request->only(['id']);
-        $programa = Programa::findOrFail($id)->first();
+        DB::beginTransaction();
+        try{
+            $id = $request->only(['id']);
+            $programa = Programa::findOrFail($id)->first();
 
-        if ($programa->delete()) {
-            return redirect(route("programas.index"));
+            Programa_servidor::where("id_programa", $programa->id)->delete();
+
+            $programa->delete();
+
+
+            DB::commit();
+
+            return redirect('/programas')->with('sucesso', 'Programa deletado com sucesso.');
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao deletarm um Programa. tente novamente mais tarde." );
         }
     }
 }

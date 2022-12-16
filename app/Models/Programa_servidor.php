@@ -16,11 +16,11 @@ class Programa_servidor extends Model
 
     public function programa()
     {
-        return $this->belongsTo(Programa::class);
+        return $this->belongsTo(Programa::class, "id_programa");
     }
 
     public function servidor()
     {
-        return $this->belongsTo(Servidor::class);
+        return $this->belongsTo(Servidor::class, "id_servidor");
     }
 }

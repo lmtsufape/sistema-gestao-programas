@@ -5,9 +5,9 @@
 <style>
   pagination {
     display: inline-block;
-    
+
   }
-  
+
   .pagination a {
     color: black;
     float: left;
@@ -17,24 +17,24 @@
     border: 1px solid #ddd;
     margin: 10px 4px;
   }
-  
+
   .pagination a.active {
     background-color: #3B864F;
     color: white;
     border: 1px solid #3B864F;
   }
-  
+
   .pagination a:hover:not(.active) {
     background-color: #34A853;
   }
-  
+
 </style>
 
 
   @can('servidor')
   <div class="container">
     @if (session('sucesso'))
-    <div class="alert alert-danger">
+    <div class="alert alert-success">
         {{session('sucesso')}}
     </div>
     @endif
@@ -68,22 +68,15 @@
       />
     </form>
   </div>
-    {{--  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_create">
-      <img src="{{asset("images/add-icon.png")}}" class="add-button" alt="Adicionar programa">
-    </a>  --}}
-     
+
     <div style="display: contents; align-content: center; align-items: center">
-    <button style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; align-content: center; align-items: center; padding-right: 10px; margin: 0% 5% 1% 0%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"> 
-      <img src="{{asset("images/plus.png")}}" alt="Cadastrar programa" style="padding-bottom: 5px"> Cadastrar programa 
-    </button>
-    {{--  <button style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; align-content: center; align-items: center; padding-right: 10px;
-    margin-bottom: 2%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-      <img src="{{asset("images/edit-outline.png")}}" alt="Cadastrar programa" style="padding: 0px 5px 5px 5px">Editar programa
-    </button>  --}}
+    <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; align-content: center; align-items: center; padding-right: 10px; margin: 0% 5% 1% 0%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;"
+    href="{{route("programas.create")}}">
+      <img src="{{asset("images/plus.png")}}" alt="Cadastrar programa" style="padding-bottom: 5px"> Cadastrar programa
+    </a>
     </div>
-    
+
     <div style="background-color: #34A853; border-radius: 25px; padding-left: 2%; padding-right: 2%;
      display: flex; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
       <div style="align-self: center; margin-right: auto">
@@ -113,7 +106,7 @@
         </div>
       </div>
     </div>
-  
+
     @if (sizeof($programas) == 0)
       <div class="empty">
         <p>
@@ -133,31 +126,25 @@
           </thead>
           @foreach ($programas as $programas)
           <tbody>
-                <tr> 
+                <tr>
                   <td style="border-right: 1px solid #d3d3d3;">{{$programas->nome}}</td>
                   <td>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$programas->id}}">
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$programas->id}}">
                       <img src="{{asset("images/info.png")}}" alt="Info programa">
-                    </a>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$programas->id}}">
-                      <img src="{{asset("images/document.png")}}" alt="Documento programa">
-                      {{--  TODO: Fica pra fazer o modal depois  --}}
                     </a>
                     <a href="{{url("/programas/$programas->id/edit")}}">
                       <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar programa">
                     </a>
                     <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$programas->id}}">
                       <img src="{{asset("images/delete.png")}}" alt="Deletar programa">
-                    </a>                                     
+                    </a>
                   </td>
                 </tr>
-                @include("Programa.components.modal_edit", ["programa" => $programas])
+                @include("Programa.components.modal_show", ["programa" => $programas])
                 @include("Programa.components.modal_delete", ["programa" => $programas])
               @endforeach
           </tbody>
         </table>
-{{--  TODO: A tabela tem que limitar para aparecer x usuarios em cada página, e a paginação mudar o ultimo número
-  de acordo com o tanto de páginas que tem disponiveis para olhar  --}}
       </div>
       <div style="margin: auto; width: 45%; padding: 10px;">
         <div class="pagination">
@@ -171,7 +158,7 @@
           <a href="#" style="border-radius: 15px; background: #131833; color: white;">Próximo</a>
         </div>
       </div>
-     
+
   </div>
     @endif
   </div>
@@ -210,7 +197,7 @@
     });
   </script>
   @endif
-  
+
   @elsecan('orientador')
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
     <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{route('home')}}">Voltar</a>
