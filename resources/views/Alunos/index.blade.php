@@ -73,46 +73,18 @@
     <div style="display: contents; align-content: center; align-items: center; justify-content: center">
       <button style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
       font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 6px; padding-right: 15px; margin: 0% 0% 10px 0%;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"> 
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
 
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px; ">
-        Cadastrar aluno 
-        
+        Cadastrar aluno
+
       </button>
 
 
     </div>
 
-    <div style="background-color: #34A853; border-radius: 25px; padding-left: 2%; padding-right: 2%;
-     display: flex; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-      <div style="align-self: center; margin-right: auto">
-        <h4>Legenda</h4>
-        <h5>dos icones:</h5>
-      </div>
-      <div style="display: flex; align-self: center; margin-right: auto">
-        <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Pesquisar</p>
-        </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="/images/info.png" alt="Informacoes" style="size: 60px"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Informações</p>
-        </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="/images/document.png" alt="Documentos" style="size: 60px"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Documentos</p>
-        </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="/images/edit-outline-blue.png" alt="Editar" style="size: 60px"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Editar</p>
-        </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 20px; line-height: 130%; margin:5px">Deletar</p>
-        </div>
-      </div>
-    </div>
     
+
     @if (sizeof($alunos) == 0)
       <div class="empty">
         <p>
@@ -122,7 +94,7 @@
     @else
     <br>
       <div style="display: flex; gap: 30px">
-        
+
         <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
         ;margin-bottom: 5px; min-height: 350px">
           <thead>
@@ -189,7 +161,7 @@
               <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
               <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
             </div>
-            
+
           </div>
 
           <div style="align-self: center; margin-right: auto">
