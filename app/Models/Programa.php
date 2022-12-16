@@ -15,9 +15,9 @@ class Programa extends Model
 
     public function programa_servidors()
     {
-        return $this->hasMany(Programa_servidor::class);
+        return $this->hasMany(Programa_servidor::class, "id_programa");
     }
-  
+
     public function editals()
     {
         return $this->hasMany(Edital::class);
