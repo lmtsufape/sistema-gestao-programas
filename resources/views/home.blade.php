@@ -18,7 +18,7 @@
       display: flex;
       align-items: center;
       padding-left: 20px;
-
+      min-width: 270px;
       background: #34A853;
       box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
       border-radius: 20px;
@@ -39,11 +39,11 @@
       display: flex;
       align-items: center;
       padding-left: 20px;
-      
-
+      min-width: 270px;  
       background: #2D3875;
       box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
       border-radius: 20px;
+      padding: 15px;
     }
   </style>
     @auth
@@ -68,7 +68,7 @@
             
                     <button class="botaoverde">
                         <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        Listagem programas
+                        Listar programas
                     </button>
                 
                     <button class="botaoazul">
@@ -76,13 +76,13 @@
                         Listar orientadores
                     </button>
                 
-                    <button class="botaoverde">
-                        <img src="{{asset("images/listuser.png")}}" alt="logodoc" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'" style="padding-right: 10px;">
+                    <button class="botaoverde" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'" >
+                        <img src="{{asset("images/listuser.png")}}" alt="logodoc"style="padding-right: 10px;">
                         Listar alunos
                     </button>
                 
                     <button class="botaoazul">
-                        <img src="{{asset("images/adduser.png")}}" alt="logodoc" style="padding-right: 10px;">
+                        <img src="{{asset("images/adduser.png")}}" alt="logodoc" style="padding-right: 10px; padding-left: 10px;">
                         Adicionar aluno
                     </button>
                 
@@ -106,7 +106,7 @@
                     </button>
                 
                     <button class="botaoazul">
-                        <img src="{{asset("images/gear.png")}}" alt="logodoc" style="padding-right: 10px;">
+                        <img src="{{asset("images/gear.png")}}" alt="logodoc" style="padding-right: 10px;  padding-left: 10px;">
                         Gerenciar certificados e declarações
                     </button>
                     
@@ -136,7 +136,7 @@
             style="font-style: normal; padding-top: 38px;
             font-weight: 700; text-align:start ;
             font-size: 35px; line-height: 41px; color: #131833;">
-            Bem vindo(a)!
+            Bem-vindo(a)!
             </h1>
             <hr>
         
@@ -147,7 +147,7 @@
         
             <button class="botaoverde">
                 <img src="{{asset("images/DocumentAdd.png")}}" alt="logodoc" style="padding-right: 10px;">
-                Listagem de documentos
+                Listar documentos
             </button>
         
             <button class="botaoazul">
@@ -157,12 +157,12 @@
         
             <button class="botaoverde">
                 <img src="{{asset("images/certificadoicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                Meus certificados
+                Ver meus certificados
             </button>
         
             <button class="botaoazul">
                 <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                Meus programas
+                Ver meus programas
             </button>
             
             </div>    
