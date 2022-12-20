@@ -70,20 +70,19 @@
 
     </form>
   </div>
-    <div style="display: contents; align-content: center; align-items: center; justify-content: center">
-      <button style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 6px; padding-right: 15px; margin: 0% 0% 10px 0%;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+    <div style="display: contents; align-content: center; align-items: center;">
 
-        <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px; ">
-        Cadastrar aluno
-
-      </button>
-
-
+        <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+        font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
+        align-items: center; padding-right: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
+        padding-left: 10px;"
+        href="{{route("alunos.create")}}">
+        <img src="{{asset("images/plus.png")}}" alt="Cadastrar programa" style="padding-bottom: 5px"> Cadastrar programa
+        </a>
+        <br>
     </div>
 
-    
+
 
     @if (sizeof($alunos) == 0)
       <div class="empty">
@@ -138,10 +137,9 @@
               @endforeach
           </tbody>
         </table>
-{{--  TODO: A tabela tem que limitar para aparecer x usuarios em cada página, e a paginação mudar o ultimo número
-  de acordo com o tanto de páginas que tem disponiveis para olhar  --}}
+
         <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
-        ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; margin-bottom: 5px">
+        ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
 
           <div style="align-self: center; margin-right: auto">
             <br>
@@ -174,9 +172,9 @@
               <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
             </div>
           </div>
+        </div>
       </div>
-      </div>
-      <div style="margin: auto; width: 45%; padding: 10px;">
+      {{--  <div style="margin: auto; width: 45%; padding: 10px;">
         <div class="pagination">
           <a href="#" style="border-radius: 15px; background: #131833; color: white;">Anterior</a>
           <a href="#" style="border-radius: 15px; background: #34A853; color: white;">1</a>
@@ -187,7 +185,7 @@
           <a href="#" style="border-radius: 15px; background: #34A853; color: white;">15</a>
           <a href="#" style="border-radius: 15px; background: #131833; color: white;">Próximo</a>
         </div>
-      </div>
+      </div>  --}}
 
   </div>
     @endif
