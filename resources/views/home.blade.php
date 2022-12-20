@@ -81,7 +81,7 @@
                         Listar alunos
                     </button>
 
-                    <button class="botaoazul">
+                    <button class="botaoazul" ref="{{url("/alunos/create")}}" onclick="window.location.href='{{url("/alunos/create")}}'">
                         <img src="{{asset("images/adduser.png")}}" alt="logodoc" style="padding-right: 10px; padding-left: 10px;">
                         Adicionar aluno
                     </button>
