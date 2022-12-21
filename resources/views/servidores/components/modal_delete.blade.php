@@ -10,7 +10,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <form action="{{route("servidores.destroy")}}" method="post">
+        <form action="{{url("/servidores/1")}}" method="post">
           @method("DELETE")
           @csrf
           <input type="hidden" name="id" value="{{$servidor->id}}">
