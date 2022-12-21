@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrientadorFormRequest;
+use App\Http\Requests\OrientadorFormUpdateRequest;
 use App\Models\Orientador;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class OrientadorController extends Controller
 {
@@ -110,24 +115,36 @@ class OrientadorController extends Controller
         return view("Orientador.editar-orientador", compact('orientador'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(OrientadorFormUpdateRequest $request, $id)
     {
-        //
+        $orientador = Orientador::find($id);
+        
+        $orientador->cpf = $request->cpf == $orientador->cpf ? $orientador->cpf : $request->cpf;
+        $orientador->matricula = $request->matricula;
+
+        $orientador->user->name = $request->nome;
+        $orientador->user->email = $request->email;
+        if ($request->senha && $request->senha != null){
+            if (strlen($request->senha) > 3 && strlen($request->senha) < 9){
+                $orientador->user->password = Hash::make($request->password);
+            } else {
+                return redirect()->back()->withErrors( "Senha deve ter entre 4 e 8 dígitos" );
+            }
+        }
+        if ($orientador->save()){
+            
+            if ($orientador->user->update()){
+                $mensagem_sucesso = "Orientador cadastrado com sucesso.";
+                return redirect('/orientadors/'. $orientador->id .'/edit')->with('sucesso', 'Orientador Atualizado com sucesso.');
+            } else {
+                return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+            }
+
+        } else {
+            return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     public function delete($id) 
     {
