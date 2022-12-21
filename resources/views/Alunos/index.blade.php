@@ -116,17 +116,17 @@
                   <td style="border-right: 1px solid #d3d3d3;">{{$aluno->semestre_entrada}}</td>
                   <td>
                     <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
-                      <img src="{{asset("images/info.png")}}" alt="Info aluno">
+                      <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
                     </a>
                     <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$aluno->id}}">
-                      <img src="{{asset("images/document.png")}}" alt="Documento aluno">
+                      <img src="{{asset("images/document.png")}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
                       {{--  TODO: Fica pra fazer o modal depois  --}}
                     </a>
                     <a href="{{url("/alunos/$aluno->id/edit")}}">
-                      <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar aluno">
+                      <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar aluno"  style="height: 30px; width: 30px;">
                     </a>
                     <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->id}}">
-                      <img src="{{asset("images/delete.png")}}" alt="Deletar aluno">
+                      <img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
                     </a>
 
 
