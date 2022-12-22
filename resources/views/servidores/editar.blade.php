@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-4" style="padding-right:48px;">
-                            <a href="{{url("/servidores/")}}" class="btn btn-secondary">Voltar <a>
+                            <a href="{{url("/servidores")}}" class="btn btn-secondary">Voltar <a>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>     
                     </form>
