@@ -5,7 +5,7 @@ use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\ServidorController;
 use App\Http\Controllers\OrientadorController;
-use App\Http\Controllers\VinculoController;
+use App\Http\Controllers\EditalController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +35,9 @@ Route::resource('/orientadors', OrientadorController::class);
 
 // Rotas de programa
 Route::resource('/programas', ProgramaController::class);
+
+// Rotas de Edital
+Route::resource('/editals', EditalController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
