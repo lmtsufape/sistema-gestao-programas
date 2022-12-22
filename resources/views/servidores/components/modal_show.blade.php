@@ -9,9 +9,19 @@
 
           <div class="row">
             <div class="col-sm- 12 col-md-6 mb-3">
+              <label class="form-label">Nome</label>
+              <div class="modal-ver"> {{$servidor->user->name}}</div>
+            </div> 
+
+            <div class="col-sm- 12 col-md-6 mb-3">
+              <label class="form-label">E-mail</label>
+              <div class="modal-ver"> {{$servidor->user->email}}</div>
+            </div>
+
+            <div class="col-sm- 12 col-md-6 mb-3">
               <label class="form-label">CPF</label>
               <div class="modal-ver"> {{$servidor->cpf}}</div>
-            </div> 
+            </div>
 
             <div class="col-sm- 12 col-md-6 mb-3">
               <label class="form-label">Tipo de servidor</label>
