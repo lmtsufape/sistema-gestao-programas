@@ -84,7 +84,7 @@
 
 
 
-    @if (sizeof($orientador) == 0)
+    @if (sizeof($orientadors) == 0)
       <div class="empty">
         <p>
           Não há orientadores cadastrados
@@ -105,7 +105,7 @@
             <th scope="col">Ações</th>
           </tr>
           </thead>
-          @foreach ($orientador as $orientador)
+          @foreach ($orientadors as $orientador)
           <tbody>
                 <tr>
                   <td style="border-right: 1px solid #d3d3d3;">{{$orientador->user->name}}</td>
