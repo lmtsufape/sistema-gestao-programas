@@ -28,8 +28,8 @@
                         <hr>
                         <div class="row"> 
                             <div class="col-12 mb-3" style="padding-top: 12px;">                          
-                                <label for="nome_editar" class="form-label">Nome</label>
-                                <input name="name" type="text" placeholder="Digite o nome" class="form-control bg-light" value="{{$orientador->user->name}}">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input name="nome" type="text" placeholder="Digite o nome" class="form-control bg-light" value="{{$orientador->user->name}}">
                             </div>
                         </div>
                         <div class="row">

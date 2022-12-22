@@ -17,7 +17,7 @@
             </div> 
             <div class="col-sm- 12 col-md-6 mb-3">
               <label class="form-label"><strong>E-mail</strong></label>
-              <div class="modal-ver" style="background: #F5F5F5; padding:3px; height: 30px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25); border-radius: 45px;">{{$orientador->user->email}}</div>
+              <div class="modal-ver" style="background: #F5F5F5; padding:3px; height: 30px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25); border-radius: 45px;">{{$servidor->user->email}}</div>
             </div> 
             <div class="col-sm- 12 col-md-6 mb-3">
               <label class="form-label"><strong>Tipo de servidor</strong></label>

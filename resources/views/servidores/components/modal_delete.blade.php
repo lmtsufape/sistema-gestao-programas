@@ -8,8 +8,10 @@
       <div class="modal-body">
         <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">Deseja realmente deletar o servidor?</p>
       </div>
+
       <div class="modal-footer d-flex justify-content-between">
         <button stype="button" class="btn btn-secondary" style="border-radius: 45px; " data-bs-dismiss="modal">Cancelar</button>
+
         <form action="{{url("/servidores/1")}}" method="post">
           @method("DELETE")
           @csrf
