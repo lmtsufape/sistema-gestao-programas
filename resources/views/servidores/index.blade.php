@@ -77,7 +77,7 @@
         align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
         padding-left: 10px;"
         href="{{route("servidores.create")}}">
-        <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar servidor
+        <img src="{{asset("images/plus.png")}}" alt="Cadastrar servidor" style="padding-bottom: 5px"> Cadastrar servidor
         </a>
         <br>
     </div>
@@ -108,12 +108,12 @@
           @foreach ($servidores as $servidor)
           <tbody>
                 <tr>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$servidor->user->name}}</td>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$servidor->user->email}}</td>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$servidor->cpf}}</td>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$servidor->tipo_servidor}}</td>
+                <td style="border-right: 1px solid #d3d3d3;">{{$servidor->user->name}}</td>
+                <td style="border-right: 1px solid #d3d3d3;">{{$servidor->user->email}}</td>
+                <td style="border-right: 1px solid #d3d3d3;">{{$servidor->cpf}}</td>
+                <td style="border-right: 1px solid #d3d3d3;">{{$servidor->tipo_servidor}}</td>
                   <td>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$servidor->id}}">
+                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$servidor->id}}">
                       <img src="{{asset("images/info.png")}}" alt="Info servidor" style="height: 30px; width: 30px;">
                     </a>
                     <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$servidor->id}}">
