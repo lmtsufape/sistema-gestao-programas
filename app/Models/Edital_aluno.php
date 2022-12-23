@@ -18,11 +18,11 @@ class Edital_aluno extends Model
 
     public function edital()
     {
-        return $this->belongsTo(Edital::class);
+        return $this->belongsTo(Edital::class, "id_edital");
     }
 
     public function aluno()
     {
-        return $this->belongsTo(Aluno::class);
+        return $this->belongsTo(Aluno::class, "id_aluno");
     }
 }

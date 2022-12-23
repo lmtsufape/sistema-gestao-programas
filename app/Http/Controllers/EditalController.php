@@ -10,6 +10,7 @@ use App\Models\Programa;
 use App\Models\Orientador;
 use App\Models\Edital_orientador;
 use App\Http\Requests\EditalStoreFormRequest;
+use App\Http\Requests\EditalUpdateFormRequest;
 
 class EditalController extends Controller
 {
@@ -91,7 +92,16 @@ class EditalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edital = Edital::find($id);
+        $cursos = Curso::all();
+        $programas = Programa::all();
+        $orientadores = Orientador::all();
+        $idsOrientadoresDoEdital = [];
+
+        foreach ($edital->edital_orientadors as $edital_orientadores){
+            $idsOrientadoresDoEdital[] = $edital_orientadores->id_orientador;
+        }
+        return view("Edital.editar", compact("edital", "orientadores", "cursos", "programas", "idsOrientadoresDoEdital"));
     }
 
     /**
@@ -101,9 +111,37 @@ class EditalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditalUpdateFormRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try{
+            $edital = Edital::find($id);
+            $edital->data_inicio = $request->data_inicio ? $request->data_inicio : $edital->data_inicio;
+            $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
+            $edital->semestre = $request->semestre ? $request->semestre : $edital->semestre;
+            $edital->id_curso = $request->curso ? $request->curso : $edital->id_curso;
+            $edital->id_programa = $request->programa ? $request->programa : $edital->id_programa;
+            $edital->update();
+
+            Edital_orientador::where("id_edital", $edital->id)->delete();
+
+            if ($request->orientadores){
+                foreach($request->orientadores as $id_orientador){
+                    $edital_orientador = new Edital_orientador();
+                    $edital_orientador->id_edital = $edital->id;
+                    $edital_orientador->id_orientador = $id_orientador;
+                    $edital_orientador->save();
+                }
+            }
+
+            DB::commit();
+
+            return redirect("/editals/$edital->id/edit")->with('sucesso', 'Edital editado com sucesso.');
+
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
+        }
     }
 
     /**

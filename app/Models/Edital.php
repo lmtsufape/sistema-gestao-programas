@@ -19,16 +19,16 @@ class Edital extends Model
 
     public function programa()
     {
-        return $this->belongsTo(Programa::class);
-    } 
+        return $this->belongsTo(Programa::class, "id_programa");
+    }
 
     public function edital_orientadors()
     {
-        return $this->hasMany(Edital_orientador::class);
+        return $this->hasMany(Edital_orientador::class, "id_edital");
     }
 
     public function edital_alunos()
     {
-        return $this->hasMany(Edital_aluno::class);
+        return $this->hasMany(Edital_aluno::class, "id_edital");
     }
 }

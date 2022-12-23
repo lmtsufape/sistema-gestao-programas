@@ -20,6 +20,6 @@ class Programa extends Model
 
     public function editals()
     {
-        return $this->hasMany(Edital::class);
+        return $this->hasMany(Edital::class, "id_programa");
     }
 }
