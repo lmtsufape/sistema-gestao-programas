@@ -26,10 +26,11 @@
 
             <label for="servidores" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Servidores:</label>
 
-            <select name="servidores[]" id="servidores" multiple style="width: 100%">
+            <select name="servidores[]" id="servidores" style="width: 100%;" multiple>
                 <option value=""></option>
                 @foreach ($servidores as $servidor)
-                    <option value="{{$servidor->id}}" {{in_array($servidor->id, $idsServidoresDoPrograma) ? 'selected' : ''}} style="color: white;"> {{$servidor->user->name}} </option>
+                    <option value="{{$servidor->id}}" {{in_array($servidor->id, $idsServidoresDoPrograma) ? 'selected' : ''}}
+                    style="color: black; border-radius: 5px;"> {{$servidor->user->name}} </option>
                 @endforeach
             </select>
 
@@ -51,6 +52,8 @@
         // max_shown_results : 5,
         no_results_text: "Não possui alunos."
     });
+        $('div.chosen-container-single').addClass('required');
+        $('div.chosen-container-multi').addClass('required');
     </script>
 
 @endsection
