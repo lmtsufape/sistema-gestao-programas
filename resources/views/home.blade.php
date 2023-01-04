@@ -173,7 +173,7 @@
     @endauth
 
     @auth
-        @if (auth()->user()->typage_type == "App\Models\Professor")
+        @if (auth()->user()->typage_type == "App\Models\Orientador")
 
         <div class="container">
             <div>
@@ -192,12 +192,12 @@
             <div style="display: flex; gap: 5%; align-items: center; margin: auto;">
 
                 <button class="botaoverde">
-                    <img src="{{asset("images/DocumentAdd.png")}}" alt="logodoc" style="padding-right: 10px;">
-                    Listagem de documentos
+                    <img src="{{asset("images/user.png")}}" alt="user" style="padding-right: 20px;">
+                    Listar alunos
                 </button>
 
                 <button class="botaoazul">
-                    <img src="{{asset("images/documentoadicionaricon.png")}}" alt="logodoc" style="padding-right: 10px;">
+                    <img src="{{asset("images/documentoadicionaricon.png")}}" alt="logodoc" style="padding-right: 20px;">
                     Gerar documentos
                 </button>
 
