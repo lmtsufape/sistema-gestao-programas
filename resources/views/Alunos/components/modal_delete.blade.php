@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         <h5 style="color: #131833; font-style: normal; font-weight: 600; font-size: 20px; line-height: 47px;">
-          Deseja realmente deletar o aluno? {{$aluno->nome}}?</h5>
+          Deseja realmente deletar o aluno {{$aluno->user->name}}?</h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
