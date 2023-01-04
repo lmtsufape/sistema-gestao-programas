@@ -193,24 +193,33 @@
 
                 <button class="botaoverde">
                     <img src="{{asset("images/user.png")}}" alt="user" style="padding-right: 20px;">
-                    Listar alunos
+                    <p style="margin: auto">Listar alunos </p>
                 </button>
 
                 <button class="botaoazul">
-                    <img src="{{asset("images/documentoadicionaricon.png")}}" alt="logodoc" style="padding-right: 20px;">
-                    Gerar documentos
+                    <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 20px;">
+                    <p style="margin: auto"> Meus programas </p>
                 </button>
 
                 <button class="botaoverde">
                     <img src="{{asset("images/certificadoicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                    Meus certificados
+                    <p style="margin: auto"> Meus certificados </p>
                 </button>
 
                 <button class="botaoazul">
                     <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                    Meus programas
+                    <p style="margin: auto">  Visualizar documentos </p>
                 </button>
 
+            </div>
+
+            <br>
+
+            <div style="display: flex; gap: 5%; align-items: center; margin: auto;">
+                <button class="botaoverde">
+                    <img src="{{asset("images/calendar.png")}}" alt="calendario" style="padding-right: 20px;">
+                    <p style="margin: auto"> Visualizar frequência mensal </p>
+                </button>
             </div>
 
         </div>
