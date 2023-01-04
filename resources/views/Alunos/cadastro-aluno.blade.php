@@ -31,26 +31,26 @@
             @csrf
             <label for="inputName" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" class="form-label ">Nome:</label>
             <input type="text" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" class="form-control" id="inputName" name="nome" required>
+            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" class="form-control" id="inputName" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
 
             <label for="inputCpf" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" class="form-label ">CPF:</label>
             <input type="text" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" class="form-control" id="inputCpf" name="cpf" required>
+            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" class="form-control" id="inputCpf" name="cpf" required placeholder="Digite o CPF">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
 
             <label for="inputSemestre" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" class="form-label ">Semestre de Entrada:</label>
             <input type="text" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" class="form-control" id="inputSemestre" name="semestre_entrada" required>
+            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" class="form-control" id="inputSemestre" name="semestre_entrada" required placeholder="Digite o semestre">
             <div class="invalid-feedback"> Por favor preencha esse campo</div> <br>
 
 
             <label for="inputCurso" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" class="form-label ">Curso:</label>
             <select style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" class="form-control" id="inputCurso" name="curso">
-                <option value=""></option>
+                <option value="">Selecione o curso</option>
                 @foreach ($cursos as $curso)
                 <option value="{{$curso->id}}">{{$curso->nome}}</option>
                 @endforeach
@@ -59,16 +59,16 @@
 
             <label for="inputEmail4" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" class="form-label ">Email:</label>
             <input type="email" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" id="inputEmail4" name="email" required>
+            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" id="inputEmail4" name="email" required placeholder="Digite o email">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputPassword4" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" class="form-label ">Senha:</label>
             <input type="password" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" class="form-control" id="inputPassword4" name="senha" required>
+                            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" class="form-control" id="inputPassword4" name="senha" required placeholder="Digite a senha">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                <input type="button" value="Voltar" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'" style="background: #2D3875; 
+                <input type="button" value="Voltar" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'" style="background: #2D3875;
                             box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                             border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                             line-height: 29px; text-align: center; padding: 5px 15px;">
