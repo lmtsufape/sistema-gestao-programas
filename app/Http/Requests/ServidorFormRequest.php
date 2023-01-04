@@ -29,7 +29,7 @@ class ServidorFormRequest extends FormRequest
             "email"=>"required|email",
             "senha"=>"required|min:4|max:8",
             "cpf" => "required|formato_cpf|cpf|unique:servidors|unique:alunos|unique:orientadors",
-            "tipo_servidor" => [Rule::in(["servidor", "pro_reitor", "adm"])]
+            "tipo_servidor" => "required|numeric"
         ];
     }
 

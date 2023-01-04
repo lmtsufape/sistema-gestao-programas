@@ -2,18 +2,8 @@
 
 @section("body")
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 @if (session('sucesso'))
-    <div class="alert alert-danger">
+    <div class="alert alert-success">
         {{session('sucesso')}}
     </div>
 @endif
@@ -22,14 +12,14 @@
     <div class="container-fluid p-5" style="margin: auto; font-family: 'Roboto', sans-serif;">
         <div class="d-flex justify-content-center align-items-center">
             <div class="card card-cadastro bg-white shadow">
-                <div class="card-body p-5">                       
+                <div class="card-body p-5">
                     <form class="row needs-validation" novalidate style="text-align:start;" action="{{url('/servidores/'. strval($servidor->id))}}" method="post">
                         @csrf
                         @method("PUT")
                         <h2 class="fw-bold mb-3 text-start">Editar Servidor</h2>
                         <hr>
-                        <div class="row"> 
-                            <div class="col-12 mb-3" style="padding-top: 12px;">                          
+                        <div class="row">
+                            <div class="col-12 mb-3" style="padding-top: 12px;">
                                 <label for="nome" class="form-label">Nome</label>
                                 <input name="nome" type="text" placeholder="Digite o nome" class="form-control bg-light" value="{{$servidor->user->name}}">
                             </div>
@@ -38,13 +28,13 @@
                             <div class="col-md-6 mb-3">
                                 <label for="cpf_editar" class="form-label">CPF</label>
                                 <input name="cpf" id="cpf" type="text" placeholder="Digite o CPF" class="form-control bg-light" value="{{$servidor->cpf}}">
-                            </div> 
+                            </div>
                             <div class="col-md-6 mb-3">
                                 <label class="mb-2" for="tipo_servidor_editar" style="font-size:14.4px;">Tipo do servidor: </label>
                                 <select class="form-select bg-light" aria-label="Default select example" name="tipo_servidor"  id="tipo_servidor">
-                                    <option value="adm" {{$servidor->tipo_servidor == "adm" ? "selected" : ""}}>Administrador</option>
-                                    <option value="pro_reitor" {{$servidor->tipo_servidor == "pro_reitor" ? "selected" : ""}}>Pró-reitor</option>
-                                    <option value="servidor" {{$servidor->tipo_servidor == "servidor" ? "selected" : ""}}>Servidor</option>
+                                    @foreach ($tipo_servidores as $tipo_servidor)
+                                        <option value="{{$tipo_servidor->id}}" {{$tipo_servidor->id == $servidor->id ? 'selected' : ''}}>{{$tipo_servidor->nome}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -61,7 +51,7 @@
                         <div class="d-flex justify-content-between align-items-center mt-4" style="padding-right:48px;">
                             <a href="{{url("/servidores")}}" class="btn btn-secondary">Voltar <a>
                             <button type="submit" class="btn btn-primary">Salvar</button>
-                        </div>     
+                        </div>
                     </form>
                 </div>
             </div>
