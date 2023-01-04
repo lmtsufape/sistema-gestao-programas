@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PermissionsSeeder::class,
             OrientadorsSeeder::class,
+            Tipo_servidorSeeder::class,
             ServidorSeeder::class,
             ProgramasSeeder::class,
             CursoSeeder::class,
@@ -21,8 +22,7 @@ class DatabaseSeeder extends Seeder
             EditalSeeder::class,
             Edital_orientadorSeeder::class,
             Edital_alunoSeeder::class,
-            Frequencia_mensalSeeder::class,
-            Tipo_servidorSeeder::class
+            Frequencia_mensalSeeder::class
         ]);
     }
 }
