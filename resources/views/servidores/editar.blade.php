@@ -30,8 +30,8 @@
                         <hr>
                         <div class="row"> 
                             <div class="col-12 mb-3" style="padding-top: 12px;">                          
-                                <label for="nome_editar" class="form-label">Nome</label>
-                                <input name="name" type="text" placeholder="Digite o nome" class="form-control bg-light" value="{{$servidor->user->name}}">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input name="nome" type="text" placeholder="Digite o nome" class="form-control bg-light" value="{{$servidor->user->name}}">
                             </div>
                         </div>
                         <div class="row">
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-4" style="padding-right:48px;">
-                            <a href="#" class="btn btn-secondary">Voltar <a>
+                            <a href="{{url("/servidores")}}" class="btn btn-secondary">Voltar <a>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>     
                     </form>

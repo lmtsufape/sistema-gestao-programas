@@ -20,7 +20,6 @@ class ServidorController extends Controller
 
         $servidores = Servidor::all();
         return view("servidores.index", compact('servidores'));
-
     }
 
 
@@ -88,16 +87,22 @@ class ServidorController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
+        $servidor = Servidor::findOrFail($id);
+        return view('servidores.delete', ['servidor' => $servidor]);
+    }
 
-        $id = only(['id']);
-        $servidor = Servidor::find($id)->first();
+    public function destroy(Request $request)
+    {
+        $id = $request->only(['id']);
+        $servidor = Servidor::findOrFail($id)->first();
 
-        if ($servidor->user->delete() && $servidor->delete()) {
+        if ($servidor->delete()) {
             return redirect(route("servidores.index"));
         }
     }
+
     // Criado para visualizar a tela de editar servidor
     public function editar(){
         return view('servidores.editar');
