@@ -30,22 +30,21 @@ class OrientadorController extends Controller
                 return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
             }
 
-            $orientadors = Orientador::join("users", "users.typage_id", "=", "orientadors.id")->join("cursos", "cursos.id", "=", "orientadors.id");
+            $orientadors = Orientador::join("users", "users.typage_id", "=", "orientadors.id");
             $orientadors = $orientadors->where(function ($query) use ($valor) {
                 if ($valor) {
                     $query->orWhere("users.name", "LIKE", "%{$valor}%");
                     $query->orWhere("users.email", "LIKE", "%{$valor}%");
-                    $query->orWhere("orientadors.nome", "LIKE", "%{$valor}%");
                     $query->orWhere("orientadors.cpf", "LIKE", "%{$valor}%");
                     $query->orWhere("orientadors.matricula", "LIKE", "%{$valor}%");
                 }
             })->orderBy('orientadors.created_at', 'desc')->select("orientadors.*")->get();
 
 
-            return view("Orientadors.index", compact("orientadors"));
+            return view("Orientador.index", compact("orientadors"));
         } else {
-            $orientador = Orientador::all();
-            return view("Orientador.index", compact("orientador"));
+            $orientadors = Orientador::all();
+            return view("Orientador.index", compact("orientadors"));
         }
     }
 
