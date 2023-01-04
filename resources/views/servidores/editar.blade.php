@@ -2,24 +2,15 @@
 
 @section("body")
 
-
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     @if (session('sucesso'))
-        <div class="alert alert-danger">
+        <div class="alert alert-success">
             {{session('sucesso')}}
         </div>
     @endif
     <br>
+    
     <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
         <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
             Editar Servidor</h1>
@@ -47,9 +38,9 @@
             <label for="tipo_servidor_editar" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor:</label>
             <select aria-label="Default select example" name="tipo_servidor" id="tipo_servidor" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
-                <option value="adm" {{$servidor->tipo_servidor == "adm" ? "selected" : ""}}>Administrador</option>
-                <option value="pro_reitor" {{$servidor->tipo_servidor == "pro_reitor" ? "selected" : ""}}>Pró-reitor</option>
-                <option value="servidor" {{$servidor->tipo_servidor == "servidor" ? "selected" : ""}}>Servidor</option>
+                @foreach ($tipo_servidores as $tipo_servidor)
+                    <option value="{{$tipo_servidor->id}}" {{$tipo_servidor->id == $servidor->id ? 'selected' : ''}}>{{$tipo_servidor->nome}}</option>
+                @endforeach
             </select><br><br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
@@ -65,5 +56,4 @@
         </form>
     </div>
 </div>
-
 @endsection
