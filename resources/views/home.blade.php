@@ -191,24 +191,24 @@
 
             <div style="display: flex; gap: 5%; align-items: center; margin: auto;">
 
-                <button class="botaoverde">
+                <button class="botaoverde" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'">
                     <img src="{{asset("images/user.png")}}" alt="user" style="padding-right: 20px;">
-                    <p style="margin: auto">Listar alunos </p>
+                    <p style="margin: auto; padding-right: 5px">Listar alunos </p>
+                </button>
+
+                <button class="botaoazul" href="{{url("/programas/")}}" onclick="window.location.href='{{url("/programas/")}}'">
+                    <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 20px;">
+                    <p style="margin: auto; padding-right: 5px"> Meus programas </p>
+                </button>
+
+                <button class="botaoverde">
+                    <img src="{{asset("images/certificadoicon.png")}}" alt="logodoc" style="padding-right: 20px;">
+                    <p style="margin: auto; padding-right: 5px"> Meus certificados </p>
                 </button>
 
                 <button class="botaoazul">
                     <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 20px;">
-                    <p style="margin: auto"> Meus programas </p>
-                </button>
-
-                <button class="botaoverde">
-                    <img src="{{asset("images/certificadoicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                    <p style="margin: auto"> Meus certificados </p>
-                </button>
-
-                <button class="botaoazul">
-                    <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                    <p style="margin: auto">  Visualizar documentos </p>
+                    <p style="margin: auto; padding-right: 5px">  Visualizar documentos </p>
                 </button>
 
             </div>
@@ -218,7 +218,7 @@
             <div style="display: flex; gap: 5%; align-items: center; margin: auto;">
                 <button class="botaoverde">
                     <img src="{{asset("images/calendar.png")}}" alt="calendario" style="padding-right: 20px;">
-                    <p style="margin: auto"> Visualizar frequência mensal </p>
+                    <p style="margin: auto; padding-right: 10px"> Visualizar frequência mensal </p>
                 </button>
             </div>
 
