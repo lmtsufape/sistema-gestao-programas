@@ -57,6 +57,24 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
         </div>
 
       @endif
+
+      @if (auth()->user()->typage_type == "App\Models\Orientador")
+        <a href="{{route('home')}}">Meu perfil</a>
+        <hr>
+        <a href="{{route("alunos.index")}}">Listar alunos</a>
+        <hr>
+        <a href="{{route('home')}}">Meus programas</a>
+        <hr>
+        <a href="{{route('home')}}">Meus documentos</a>
+        <hr>
+        <a href="{{route('home')}}">Meus certificados</a>
+        <hr>
+        <a href="{{route('home')}}">Visualizar documentos</a>
+        <hr>
+        <a href="{{route('home')}}">Visualizar frequência mensal</a>
+        <hr>
+      @endif
+
     @endauth
 
     <form action="/logout" method="POST">
