@@ -147,22 +147,22 @@
 
             <button class="botaoverde">
                 <img src="{{asset("images/DocumentAdd.png")}}" alt="logodoc" style="padding-right: 10px;">
-                Listar documentos
+                <p style="margin: auto; padding-right: 5px"> Listar documentos </p>
             </button>
 
             <button class="botaoazul">
                 <img src="{{asset("images/documentoadicionaricon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                Gerar documentos
+                <p style="margin: auto; padding-right: 5px"> Gerar documentos </p>
             </button>
 
             <button class="botaoverde">
                 <img src="{{asset("images/certificadoicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                Ver meus certificados
+                <p style="margin: auto; padding-right: 5px"> Ver meus certificados </p>
             </button>
 
             <button class="botaoazul">
                 <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                Ver meus programas
+                <p style="margin: auto; padding-right: 5px"> Ver meus programas </p>
             </button>
 
             </div>
