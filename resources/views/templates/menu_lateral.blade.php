@@ -75,6 +75,20 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
         <hr>
       @endif
 
+
+      @if (auth()->user()->typage_type == "App\Models\Aluno")
+        <a href="{{route('home')}}">Meu perfil</a>
+        <hr>
+        <a href="{{route('home')}}">Ver meus certificados</a>
+        <hr>
+        <a href="{{route('home')}}">Ver meu perfil</a>
+        <hr>
+        <h6 style="font-style: normal; font-weight: 700; font-size: 16px; line-height: 19px;">Documentos</h6>
+            <a href="{{route('home')}}">Listar documentos</a>
+            <a href="{{route('home')}}">Gerar documentos</a>
+            <hr>
+
+      @endif
     @endauth
 
     <form action="/logout" method="POST">
