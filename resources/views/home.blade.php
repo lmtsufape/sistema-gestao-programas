@@ -173,7 +173,7 @@
     @endauth
 
     @auth
-        @if (auth()->user()->typage_type == "App\Models\Professor")
+        @if (auth()->user()->typage_type == "App\Models\Orientador")
 
         <div class="container">
             <div>
@@ -191,26 +191,35 @@
 
             <div style="display: flex; gap: 5%; align-items: center; margin: auto;">
 
+                <button class="botaoverde" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'">
+                    <img src="{{asset("images/user.png")}}" alt="user" style="padding-right: 20px;">
+                    <p style="margin: auto; padding-right: 5px">Listar alunos </p>
+                </button>
+
+                <button class="botaoazul" href="{{url("/programas/")}}" onclick="window.location.href='{{url("/programas/")}}'">
+                    <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 20px;">
+                    <p style="margin: auto; padding-right: 5px"> Meus programas </p>
+                </button>
+
                 <button class="botaoverde">
-                    <img src="{{asset("images/DocumentAdd.png")}}" alt="logodoc" style="padding-right: 10px;">
-                    Listagem de documentos
+                    <img src="{{asset("images/certificadoicon.png")}}" alt="logodoc" style="padding-right: 20px;">
+                    <p style="margin: auto; padding-right: 5px"> Meus certificados </p>
                 </button>
 
                 <button class="botaoazul">
-                    <img src="{{asset("images/documentoadicionaricon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                    Gerar documentos
+                    <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 20px;">
+                    <p style="margin: auto; padding-right: 5px">  Visualizar documentos </p>
                 </button>
 
+            </div>
+
+            <br>
+
+            <div style="display: flex; gap: 5%; align-items: center; margin: auto;">
                 <button class="botaoverde">
-                    <img src="{{asset("images/certificadoicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                    Meus certificados
+                    <img src="{{asset("images/calendar.png")}}" alt="calendario" style="padding-right: 20px;">
+                    <p style="margin: auto; padding-right: 10px"> Visualizar frequência mensal </p>
                 </button>
-
-                <button class="botaoazul">
-                    <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                    Meus programas
-                </button>
-
             </div>
 
         </div>
