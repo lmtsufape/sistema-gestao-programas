@@ -68,22 +68,22 @@
 
                     <button class="botaoverde" href="{{url("/programas/")}}" onclick="window.location.href='{{url("/programas/")}}'" >
                         <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        Listar programas
+                        <p style="margin: auto; padding-right: 5px">Listar programas </p>
                     </button>
 
                     <button class="botaoazul" href="{{url("/orientadors/")}}" onclick="window.location.href='{{url("/orientadors/")}}'">
                         <img src="{{asset("images/listuser.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        Listar orientadores
+                        <p style="margin: auto; padding-right: 5px">Listar orientadores </p>
                     </button>
 
                     <button class="botaoverde" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'" >
                         <img src="{{asset("images/listuser.png")}}" alt="logodoc"style="padding-right: 10px;">
-                        Listar alunos
+                        <p style="margin: auto; padding-right: 5px">Listar alunos </p>
                     </button>
 
                     <button class="botaoazul" ref="{{url("/alunos/create")}}" onclick="window.location.href='{{url("/alunos/create")}}'">
                         <img src="{{asset("images/adduser.png")}}" alt="logodoc" style="padding-right: 10px; padding-left: 10px;">
-                        Adicionar aluno
+                        <p style="margin: auto; padding-right: 5px">Adicionar aluno </p>
                     </button>
 
                 </div>
@@ -92,22 +92,22 @@
 
                     <button class="botaoverde">
                         <img src="{{asset("images/ion_documents-outline.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        Analisar documentos
+                        <p style="margin: auto; padding-right: 5px">Analisar documentos </p>
                     </button>
 
                     <button class="botaoazul">
                         <img src="{{asset("images/listdoc.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        Listar documentos
+                        <p style="margin: auto; padding-right: 5px">Listar documentos </p>
                     </button>
 
                     <button class="botaoverde">
                         <img src="{{asset("images/gear.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        Gerenciar editais
+                        <p style="margin: auto; padding-right: 5px">Gerenciar editais </p>
                     </button>
 
                     <button class="botaoazul">
                         <img src="{{asset("images/gear.png")}}" alt="logodoc" style="padding-right: 10px;  padding-left: 10px;">
-                        Gerenciar certificados e declarações
+                        <p style="margin: auto; padding-right: 5px"> Gerenciar certificados e declarações  </p>
                     </button>
 
                 </div>
@@ -116,7 +116,11 @@
 
                     <button class="botaoverde">
                         <img src="{{asset("images/calendar-exclamation.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        Notificar prazos
+                        <p style="margin: auto; padding-right: 5px"> Notificar prazos de relatórios </p>
+                    </button>
+                    <button class="botaoazul">
+                        <img src="{{asset("images/calendar-exclamation.png")}}" alt="logodoc" style="padding-right: 10px;">
+                        <p style="margin: auto; padding-right: 5px"> Notificar prazos de frequência </p>
                     </button>
 
                 </div>
