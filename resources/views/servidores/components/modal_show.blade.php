@@ -7,17 +7,17 @@
       </div>
         <div class="modal-body">
           <div class="row mb-3">
-              <label style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3"><strong>Nome</strong></label>
-              <div  style="background: #FFFFFF; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->user->name}}</div>
+              <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">Nome:</label>
+              <div  style="background: #F9F9F9; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->user->name}}</div>
             
-              <label style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3"><strong>CPF</strong></label>
-              <div  style="background: #FFFFFF; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->cpf}}</div>
+              <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">CPF:</label>
+              <div  style="background: #F9F9F9; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->cpf}}</div>
            
-              <label style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3"><strong>E-mail</strong></label>
-              <div style="background: #FFFFFF; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$servidor->user->email}}</div>
+              <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">E-mail:</label>
+              <div style="background: #F9F9F9; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$servidor->user->email}}</div>
            
-              <label style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3"><strong>Tipo de servidor</strong></label>
-              <div style="background: #FFFFFF; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->tipo_servidor->nome}}</div>
+              <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">Tipo de servidor:</label>
+              <div style="background: #F9F9F9; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->tipo_servidor->nome}}</div>
             </div>
           </div>
 
