@@ -6,6 +6,7 @@ use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\ServidorController;
 use App\Http\Controllers\OrientadorController;
 use App\Http\Controllers\EditalController;
+use App\Http\Controllers\DisciplinaController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,9 @@ Route::resource('/programas', ProgramaController::class);
 
 // Rotas de Edital
 Route::resource('/editals', EditalController::class);
+
+// Rotas de Disciplina
+Route::resource('/disciplinas', DisciplinaController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
