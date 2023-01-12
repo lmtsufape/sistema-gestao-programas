@@ -49,7 +49,7 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
             <hr>
             <a href="{{route("servidores.index")}}">Listagem de servidores</a>
             <hr>
-            <a class="links-menu" href="{{route('home')}}">Gerenciar editais</a>
+            <a class="links-menu" href="{{route('editals.index')}}">Gerenciar editais</a>
             <hr>
             <h6 style="font-style: normal; font-weight: 700; font-size: 16px; line-height: 19px;">Envio de e-mails</h6>
             <a href="{{route("email.notificarPrazoFrequencia")}}" >Notificar prazo de frequência mensal</a> <br>

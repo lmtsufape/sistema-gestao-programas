@@ -21,10 +21,34 @@ class EditalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $editals = Edital::all();
-        return view("Edital.index", compact('editals'));
+        if (sizeof($request-> query()) > 0){
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
+
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $editals = Edital::join("programas", "programas.id", "=", "editals.id_programa")->join("cursos", "cursos.id", "=", "editals.id_curso");
+            $editals = $editals->where(function ($query) use ($valor) {
+                if ($valor) {
+                    $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
+                    $query->orWhere("cursos.nome", "LIKE", "%{$valor}%");
+                    $query->orWhere("editals.semestre", "LIKE", "%{$valor}%");
+                    $query->orWhere("editals.data_inicio", "LIKE", "%{$valor}%");
+                    $query->orWhere("editals.data_fim", "LIKE", "%{$valor}%");
+                }
+            })->select("editals.*")->get();
+
+            $orientadores = Orientador::all();
+            return view("Edital.index", compact("editals", "orientadores"));
+        } else {
+            $orientadores = Orientador::all();
+            $editals = Edital::all();
+            return view("Edital.index", compact('editals', 'orientadores'));
+        }
     }
 
     /**
