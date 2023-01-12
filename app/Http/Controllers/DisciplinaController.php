@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
+use App\Http\Requests\DisciplinaUpdateFormRequest;
 
 class DisciplinaController extends Controller
 {
@@ -44,4 +45,26 @@ class DisciplinaController extends Controller
         }
     }
 
+    public function edit($id) {
+        $disciplina = Disciplina::find($id);
+        return view("disciplina.editar", compact('disciplina'));
+    }
+
+    public function update(DisciplinaUpdateFormRequest $request, $id) {
+        $disciplina = Disciplina::find($id);
+
+        $disciplina->nome = $request->nome;
+
+        if ($disciplina->save()){
+            if ($disciplina->update()){
+                $mensagem_sucesso = "Disciplina cadastrada com sucesso.";
+                return redirect('/disciplinas/'. $disciplina->id .'/edit')->with('sucesso', 'Disciplina Atualizada com sucesso.');
+            } else {
+                return redirect()->back()->withErrors( "Falha ao cadastrar disciplina. tente novamente mais tarde." );
+            }
+
+        } else {
+            return redirect()->back()->withErrors( "Falha ao cadastrar disciplina. tente novamente mais tarde." );
+        }
+    }
 }
