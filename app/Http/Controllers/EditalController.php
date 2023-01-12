@@ -9,6 +9,8 @@ use App\Models\Curso;
 use App\Models\Programa;
 use App\Models\Orientador;
 use App\Models\Edital_orientador;
+use App\Models\Edital_aluno;
+use App\Models\Frequencia_mensal;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
 
@@ -19,9 +21,34 @@ class EditalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if (sizeof($request-> query()) > 0){
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
+
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $editals = Edital::join("programas", "programas.id", "=", "editals.id_programa")->join("cursos", "cursos.id", "=", "editals.id_curso");
+            $editals = $editals->where(function ($query) use ($valor) {
+                if ($valor) {
+                    $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
+                    $query->orWhere("cursos.nome", "LIKE", "%{$valor}%");
+                    $query->orWhere("editals.semestre", "LIKE", "%{$valor}%");
+                    $query->orWhere("editals.data_inicio", "LIKE", "%{$valor}%");
+                    $query->orWhere("editals.data_fim", "LIKE", "%{$valor}%");
+                }
+            })->select("editals.*")->get();
+
+            $orientadores = Orientador::all();
+            return view("Edital.index", compact("editals", "orientadores"));
+        } else {
+            $orientadores = Orientador::all();
+            $editals = Edital::all();
+            return view("Edital.index", compact('editals', 'orientadores'));
+        }
     }
 
     /**
@@ -65,7 +92,7 @@ class EditalController extends Controller
 
             DB::commit();
 
-            return redirect('/editals/create')->with('sucesso', 'Edital cadastrado com sucesso.');
+            return redirect('/editals')->with('sucesso', 'Edital cadastrado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();
@@ -136,7 +163,7 @@ class EditalController extends Controller
 
             DB::commit();
 
-            return redirect("/editals/$edital->id/edit")->with('sucesso', 'Edital editado com sucesso.');
+            return redirect("/editals")->with('sucesso', 'Edital editado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();
@@ -152,6 +179,27 @@ class EditalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try{
+            $edital = Edital::find($id);
+
+            Edital_orientador::where("id_edital", $id)->delete();
+
+            foreach($edital->edital_alunos as $edital_aluno){
+                Frequencia_mensal::where("id_edital_aluno", $edital_aluno->id)->delete();
+            }
+
+            Edital_aluno::where("id_edital", $id)->delete();
+
+            Edital::where("id", $id)->delete();
+
+            DB::commit();
+
+            return redirect("/editals")->with('sucesso', 'Edital deletado com sucesso.');
+
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
+        }
     }
 }
