@@ -32,48 +32,48 @@
 
 
   @can('servidor')
-  <div class="container">
-    @if (session('sucesso'))
-    <div class="alert alert-success">
-        {{session('sucesso')}}
-    </div>
-    @endif
+    <div class="container">
+        @if (session('sucesso'))
+            <div class="alert alert-success">
+                {{session('sucesso')}}
+            </div>
+        @endif
     <br>
 
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1><strong>Programas</strong></h1>
-    <div style="margin: auto"></div>
-    {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
-    <form action="{{route("programas.index")}}" method="GET">
-      <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
-      style="background-color: #D9D9D9;
-            border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            background-position: 10px 2px;
-            background-repeat: no-repeat;
-            width: 35%;
-            font-size: 16px;
-            height: 45px;
-            border: 1px solid #ddd;
-            margin-bottom: 12px;  margin-right: 10px"">
-      <input type="submit" value=""
-      style="background-image: url('/images/searchicon.png');
-            background-color: #D9D9D9;
-            border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            width: 40px;
-            font-size: 16px;
-            height: 45px;
-            border: 1px solid #ddd;
-            position: absolute;
-            margin: auto;"
-      />
-    </form>
+        <h1><strong>Programas</strong></h1>
+        <div style="margin: auto"></div>
+        {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
+        <form action="{{route("programas.index")}}" method="GET">
+            <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
+            style="background-color: #D9D9D9;
+                border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                background-position: 10px 2px;
+                background-repeat: no-repeat;
+                width: 35%;
+                font-size: 16px;
+                height: 45px;
+                border: 1px solid #ddd;
+                margin-bottom: 12px;  margin-right: 10px"">
+            <input type="submit" value=""
+            style="background-image: url('/images/searchicon.png');
+                background-color: #D9D9D9;
+                border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                width: 40px;
+                font-size: 16px;
+                height: 45px;
+                border: 1px solid #ddd;
+                position: absolute;
+                margin: auto;"
+            />
+            </form>
   </div>
 
     <div style="display: contents; align-content: center; align-items: center;">
 
         <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
         font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
-        align-items: center; padding-right: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
+        align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
         padding-left: 10px;"
         href="{{route("programas.create")}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar programa" style="padding-bottom: 5px"> Cadastrar programa
@@ -91,7 +91,7 @@
       </div>
     @else
     <br>
-        <div style="display: flex; gap: 30px">
+        <div style="display: flex; gap: 30px; margin: 15px 15px 15px 15px;">
 
             <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
             ;margin-bottom: 5px; min-height: 350px">

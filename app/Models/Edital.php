@@ -31,4 +31,9 @@ class Edital extends Model
     {
         return $this->hasMany(Edital_aluno::class, "id_edital");
     }
+
+    public function curso()
+    {
+        return $this->belongsTo(Curso::class, "id_curso");
+    }
 }
