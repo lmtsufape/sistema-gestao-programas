@@ -40,11 +40,11 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
       @if (auth()->user()->typage_type == "App\Models\Servidor")
 
         <div style="padding: 5px;">
-                <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
-                    <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
-                    <p style="font-style: normal; font-weight: 400; font-size: 14px;
-                    line-height: 16px; padding-left: 5px; padding-top: 4px">Meu perfil</p>
-                </a>
+            <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+                <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
+                <p style="font-style: normal; font-weight: 400; font-size: 14px;
+                line-height: 16px; padding-left: 5px; padding-top: 4px">Meu perfil</p>
+            </a>
             <hr>
 
             <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
@@ -90,35 +90,76 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
       @endif
 
       @if (auth()->user()->typage_type == "App\Models\Orientador")
-        <a href="{{route('home')}}">Meu perfil</a>
+      <div style="padding: 5px;">
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px;
+            line-height: 16px; padding-left: 5px; padding-top: 4px">Meu perfil</p>
+        </a>
         <hr>
-        <a href="{{route("alunos.index")}}">Listar alunos</a>
+        <a href="{{route("alunos.index")}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarAlunos" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 4px">Listar de alunos </p>
+        </a>
         <hr>
-        <a href="{{route('home')}}">Meus programas</a>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/listarbl.png")}}" alt="listarprog" style="height:17px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 1px">Meus programas</p>
+        </a>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/listardocbl.png")}}" alt="listardoc" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 4px">Meus documentos</p>
+        </a>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/certificadobl.png")}}" alt="certificados" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 4px">Meus certificados</p>
+        </a>
         <hr>
-        <a href="{{route('home')}}">Meus documentos</a>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/listardocbl.png")}}" alt="listardoc" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 4px">Visualizar documentos</p>
+        </a>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/prazobl.png")}}" alt="frequenciaMes" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 5px">Visualizar frequência mensal</p>
+        </a>
         <hr>
-        <a href="{{route('home')}}">Meus certificados</a>
-        <hr>
-        <a href="{{route('home')}}">Visualizar documentos</a>
-        <hr>
-        <a href="{{route('home')}}">Visualizar frequência mensal</a>
-        <hr>
+      </div>
       @endif
 
 
       @if (auth()->user()->typage_type == "App\Models\Aluno")
-        <a href="{{route('home')}}">Meu perfil</a>
+      <div style="padding: 5px;">
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px;
+            line-height: 16px; padding-left: 5px; padding-top: 4px">Meu perfil</p>
+        </a>
         <hr>
-        <a href="{{route('home')}}">Ver meus certificados</a>
-        <hr>
-        <a href="{{route('home')}}">Ver meu perfil</a>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/certificadobl.png")}}" alt="certificados" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 4px">Meus certificados</p>
+        </a>
         <hr>
         <h6 style="font-style: normal; font-weight: 700; font-size: 16px; line-height: 19px;">Documentos</h6>
-            <a href="{{route('home')}}">Listar documentos</a>
-            <a href="{{route('home')}}">Gerar documentos</a>
-            <hr>
-
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/listardocbl.png")}}" alt="listardoc" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 3px">Listar documentos</p>
+        </a>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/novodocbl.png")}}" alt="novodoc" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 5px">Gerar documentos</p>
+        </a>
+        </div>
       @endif
     @endauth
 
