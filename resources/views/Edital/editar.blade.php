@@ -3,6 +3,35 @@
 @section("body")
 
 <style>
+    select[multiple] {
+        overflow: hidden;
+        background: #f5f5f5;
+        width:100%;
+        height:auto;
+        padding: 0px 5px;
+        margin:0;
+        border-width: 2px;
+        border-radius: 5px;
+        -moz-appearance: menulist;
+        -webkit-appearance: menulist;
+        appearance: menulist;
+      }
+      /* select single */
+      .required .chosen-single {
+        background: #F5F5F5;
+        border-radius: 5px;
+        border: 1px #D3D3D3;
+        padding: 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+    }
+    /* select multiple */
+    .required .chosen-choices {
+        background: #F5F5F5;
+        border-radius: 5px;
+        border: 1px #D3D3D3;
+        padding: 0px 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+    }
     .titulo {
         font-weight: 600;
         font-size: 20px;
@@ -12,32 +41,35 @@
     }
     .boxinfo{
         background: #F5F5F5;
-        border-radius: 13px;
-        border: 1px #D3D3D3;
+        border-radius: 6px;
+        bborder: 1px #D3D3D3;
         width: 100%;
         padding: 5px;
         box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+
     }
-    .boxparent{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1em;
-        margin-bottom:10px
+    .boxchild{
+        background: #FFFFFF;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        padding: 34px;
+        width: 65%
     }
 </style>
-    <div class="boxparent" >
+    <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; ">
     @if (session('sucesso'))
         <div class="alert alert-success">
             {{session('sucesso')}}
         </div>
     @endif
     <br>
-        <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%">
+        <div class="boxchild">
             <div class="row">
                 <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
                     Editar Edital</h1>
             </div>
+
+            <hr>
                 <form action="{{url("/editals/$edital->id")}}" method="post">
                     @csrf
                     @method("put")
@@ -52,7 +84,7 @@
                     <input class="boxinfo" type="text" name="semestre" id="semestre" value="{{$edital->semestre}}"><br><br>
 
                     <label class="titulo" for="programa">Programa:</label>
-                    <select class="boxinfo" name="programa" id="programa">
+                    <select aria-label="Default select example" class="boxinfo"> name="programa" id="programa">
                         <option value=""></option>
                         @foreach ($programas as $programa)
                             <option value="{{$programa->id}}" {{$edital->id_programa == $programa->id ? 'selected' : ''}}>{{$programa->nome}}</option>
@@ -60,7 +92,7 @@
                     </select><br><br>
 
                     <label class="titulo" for="curso">Cursos:</label>
-                    <select class="boxinfo" name="curso" id="curso">
+                    <select aria-label="Default select example" class="boxinfo"> name="curso" id="curso">
                         <option value=""></option>
                         @foreach ($cursos as $curso)
                             <option value="{{$curso->id}}" {{$edital->id_curso == $curso->id ? 'selected' : ''}}>{{$curso->nome}}</option>
@@ -68,10 +100,10 @@
                     </select><br><br>
 
                     <label class="titulo" for="orientadores">Orientadores:</label>
-                    <select class="boxinfo" name="orientadores[]" id="orientadores" multiple>
+                    <select name="orientadores[]" id="orientadores" multiple>
                         <option value=""></option>
                         @foreach ($orientadores as $orientador)
-                            <option value="{{$orientador->id}}" {{in_array($orientador->id, $idsOrientadoresDoEdital) ? 'selected' : ''}}>{{$orientador->user->name}}</option>
+                            <option value="{{$orientador->id}}" style="color: black;" {{in_array($orientador->id, $idsOrientadoresDoEdital) ? 'selected' : ''}}>{{$orientador->user->name}}</option>
                         @endforeach
                     </select><br><br>
 
@@ -84,7 +116,7 @@
                         display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
                         font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
                     </div>
-                    
+
 
                 </form>
         </div>
@@ -107,6 +139,8 @@
             // max_shown_results : 5,
             no_results_text: "Não possui orientadores."
         });
+        $('div.chosen-container-single').addClass('required');
+        $('div.chosen-container-multi').addClass('required');
     </script>
 
 @endsection
