@@ -130,8 +130,8 @@
 
                   </td>
                 </tr>
-                @include("orientador.components.modal_show", ["orientador" => $orientador])
-                @include("orientador.components.modal_delete", ["orientador" => $orientador])
+                @include("Orientador.components.modal_show", ["orientador" => $orientador])
+                @include("Orientador.components.modal_delete", ["orientador" => $orientador])
               @endforeach
           </tbody>
         </table>
