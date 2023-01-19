@@ -42,7 +42,7 @@
     .boxinfo{
         background: #F5F5F5;
         border-radius: 6px;
-        bborder: 1px #D3D3D3;
+        border: 1px #D3D3D3;
         width: 100%;
         padding: 5px;
         box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
