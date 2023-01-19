@@ -2,6 +2,61 @@
 
 @section("body")
 
+<style>
+    select[multiple] {
+        overflow: hidden;
+        background: #f5f5f5;
+        width:100%;
+        height:auto;
+        padding: 0px 5px;
+        margin:0;
+        border-width: 2px;
+        border-radius: 5px;
+        -moz-appearance: menulist;
+        -webkit-appearance: menulist;
+        appearance: menulist;
+      }
+      /* select single */
+      .required .chosen-single {
+        background: #F5F5F5;
+        border-radius: 5px;
+        border: 1px #D3D3D3;
+        padding: 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+    }
+    /* select multiple */
+    .required .chosen-choices {
+        background: #F5F5F5;
+        border-radius: 5px;
+        border: 1px #D3D3D3;
+        padding: 0px 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+    }
+    .titulo {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        display: flex;
+        color: #131833;
+    }
+    .boxinfo{
+        background: #F5F5F5;
+        border-radius: 6px;
+        border: 1px #D3D3D3;
+        width: 100%;
+        padding: 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+
+    }
+    .boxchild{
+        background: #FFFFFF;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        padding: 34px;
+        width: 65%
+    }
+</style>
+
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px">
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -19,7 +74,7 @@
         </div>
     @endif
     <br>
-    <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
+    <div class="boxchild">
         <div class="row">
             <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
                 Cadastrar Orientador</h1>
@@ -29,30 +84,20 @@
 
         <form action="{{route("orientadors.store")}}" method="POST">
             @csrf
-            <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome: </label>
-            <input type="text" name="nome" id="nome" placeholder="Digite o nome"
-            style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br><br>
+            <label for="nome" class="titulo">Nome: </label>
+            <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome"><br><br>
 
-            <label for="email" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">E-mail: </label>
-            <input type="text" name="email" id="email" placeholder="Digite o e-mail"
-            style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br><br>
+            <label for="email" class="titulo">E-mail: </label>
+            <input class="boxinfo" type="text" name="email" id="email" placeholder="Digite o e-mail"><br><br>
 
-            <label for="senha" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Senha: </label>
-            <input type="password" name="senha" id="senha" placeholder="Digite a senha"
-            style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br><br>
+            <label for="senha" class="titulo">Senha: </label>
+            <input class="boxinfo" type="password" name="senha" id="senha" placeholder="Digite a senha"><br><br>
 
-            <label for="cpf" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">CPF: </label>
-            <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF"
-            style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br><br>
+            <label for="cpf" class="titulo">CPF: </label>
+            <input class="boxinfo" type="text" name="cpf" id="cpf" placeholder="Digite o CPF"><br><br>
 
-            <label for="matricula" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Matrícula: </label>
-            <input type="text" name="matricula" id="matricula" placeholder="Digite a matrícula"
-            style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br><br>
+            <label for="matricula" class="titulo">Matrícula: </label>
+            <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula"><br><br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" href="{{route('home')}}" onclick="window.location.href='{{route('home')}}'"
