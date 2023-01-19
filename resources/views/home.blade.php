@@ -100,7 +100,7 @@
                         <p style="margin: auto; padding-right: 5px">Listar documentos </p>
                     </button>
 
-                    <button class="botaoverde">
+                    <button class="botaoverde" ref="{{url("/editals")}}" onclick="window.location.href='{{url("/editals")}}'">
                         <img src="{{asset("images/gear.png")}}" alt="logodoc" style="padding-right: 10px;">
                         <p style="margin: auto; padding-right: 5px">Gerenciar editais </p>
                     </button>
