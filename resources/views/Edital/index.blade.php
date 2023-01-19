@@ -88,8 +88,6 @@
                 <tr>
                     <th scope="col" style="border-right: 1px solid #d3d3d3;">Data de início</th>
                     <th scope="col" style="border-right: 1px solid #d3d3d3;">Data de fim</th>
-                    <th scope="col" style="border-right: 1px solid #d3d3d3;">Semestre</th>
-                    <th scope="col" style="border-right: 1px solid #d3d3d3;">Curso</th>
                     <th scope="col" style="border-right: 1px solid #d3d3d3;">Programa</th>
                     <th scope="col">Ações</th>
                 </tr>
@@ -99,8 +97,6 @@
                     <tr>
                         <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
                         <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
-                        <td style="border-right: 1px solid #d3d3d3;">{{$edital->semestre}}</td>
-                        <td style="border-right: 1px solid #d3d3d3;">{{$edital->curso->nome}}</td>
                         <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
                         <td>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">

@@ -79,35 +79,13 @@
                 <label for="data_fim" class="titulo">Data de fim:</label>
                 <input class="boxinfo"  type="date" name="data_fim" id="data_fim" id="data_inicio" ><br><br>
 
-                <label for="semestre" class="titulo">Semestre:</label>
-                <input class="boxinfo" type="text" name="semestre" id="semestre"><br><br>
-
-
                 <label for="programa" class="titulo">Programa:</label>
-                <select aria-label="Default select example" class="boxinfo"> name="programa" id="programa" >
-                <option value=""></option>
-                @foreach ($programas as $programa)
-                    <option value="{{$programa->id}}">{{$programa->nome}}</option>
-                @endforeach
-                </select><br><br>
-
-                <label for="curso" class="titulo">Curso:</label>
-                <select aria-label="Default select example" class="boxinfo"> name="curso" id="curso">
-                    <option value="">Selecione o curso</option>
-                    @foreach ($cursos as $curso)
-                        <option value="{{$curso->id}}">{{$curso->nome}}</option>
-                    @endforeach
-                </select><br><br>
-
-                <label for="orientadores" class="titulo">Orientadores:</label>
-                <select name="orientadores[]" id="orientadores" multiple >
+                <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
                     <option value=""></option>
-                    @foreach ($orientadores as $orientador)
-                        <option value="{{$orientador->id}}" style="color: black;">{{$orientador->user->name}}</option>
+                    @foreach ($programas as $programa)
+                        <option value="{{$programa->id}}">{{$programa->nome}}</option>
                     @endforeach
                 </select><br><br>
-
-
 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                     <input type="button" value="Voltar" href="{{url("/editals/")}}" onclick="window.location.href='{{url("/editals/")}}'" style="background: #2D3875;

@@ -17,9 +17,4 @@ class Curso extends Model
     {
         return $this->hasMany(Aluno::class, "id_curso");
     }
-
-    public function editals()
-    {
-        return $this->hasMany(Edital::class, "id_curso");
-    }
 }
