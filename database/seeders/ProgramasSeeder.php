@@ -15,23 +15,28 @@ class ProgramasSeeder extends Seeder
     public function run()
     {
         $programa = Programa::create([
-            'nome' => "PAVI"
+            'nome' => "PAVI",
+            'descricao' => 'Projeto PAVI'
         ]);
 
         $programa1 = Programa::create([
-            'nome' => "Monitoria"
+            'nome' => "Monitoria",
+            'descricao' => 'Projeto Monitoria'
         ]);
 
         $programa2 = Programa::create([
-            'nome' => "Tutoria"
+            'nome' => "Tutoria",
+            'descricao' => 'Projeto Tutoria'
         ]);
 
         $programa3 = Programa::create([
-            'nome' => "BIA"
+            'nome' => "BIA",
+            'descricao' => 'Projeto BIA'
         ]);
 
         $programa4 = Programa::create([
-            'nome' => "PETI"
+            'nome' => "PETI",
+            'descricao' => 'Projeto PETI'
         ]);
     }
 }

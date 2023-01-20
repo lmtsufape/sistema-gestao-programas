@@ -12,6 +12,12 @@
 
                 <div style="background: #F9F9F9; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
                 {{$programa->nome}}</div>
+
+                <label for="nome_edit" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">
+                    Descrição:</label>
+
+                    <div style="background: #F9F9F9; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
+                    {{$programa->descricao}}</div>
                 @if(!empty($errors->update->first('name')))
                       <span class="invalid-feedback d-block">
                         <strong> {{$errors->update->first('name')}} </strong>
