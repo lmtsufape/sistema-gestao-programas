@@ -31,12 +31,10 @@ class EditalController extends Controller
                 return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
             }
 
-            $editals = Edital::join("programas", "programas.id", "=", "editals.id_programa")->join("cursos", "cursos.id", "=", "editals.id_curso");
+            $editals = Edital::join("programas", "programas.id", "=", "editals.id_programa");
             $editals = $editals->where(function ($query) use ($valor) {
                 if ($valor) {
                     $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
-                    $query->orWhere("cursos.nome", "LIKE", "%{$valor}%");
-                    $query->orWhere("editals.semestre", "LIKE", "%{$valor}%");
                     $query->orWhere("editals.data_inicio", "LIKE", "%{$valor}%");
                     $query->orWhere("editals.data_fim", "LIKE", "%{$valor}%");
                 }
@@ -58,10 +56,8 @@ class EditalController extends Controller
      */
     public function create()
     {
-        $cursos = Curso::all();
         $programas = Programa::all();
-        $orientadores = Orientador::all();
-        return view("Edital.cadastrar", compact("cursos", "programas", "orientadores"));
+        return view("Edital.cadastrar", compact("programas"));
     }
 
     /**
@@ -78,17 +74,8 @@ class EditalController extends Controller
             $edital = new Edital();
             $edital->data_inicio = $request->data_inicio;
             $edital->data_fim = $request->data_fim;
-            $edital->semestre = $request->semestre;
-            $edital->id_curso = $request->curso;
-            $edital->id_programa = $request->curso;
+            $edital->id_programa = $request->programa;
             $edital->save();
-
-            foreach($request->orientadores as $id_orientador){
-                $edital_orientador = new Edital_orientador();
-                $edital_orientador->id_edital = $edital->id;
-                $edital_orientador->id_orientador = $id_orientador;
-                $edital_orientador->save();
-            }
 
             DB::commit();
 
@@ -120,15 +107,8 @@ class EditalController extends Controller
     public function edit($id)
     {
         $edital = Edital::find($id);
-        $cursos = Curso::all();
         $programas = Programa::all();
-        $orientadores = Orientador::all();
-        $idsOrientadoresDoEdital = [];
-
-        foreach ($edital->edital_orientadors as $edital_orientadores){
-            $idsOrientadoresDoEdital[] = $edital_orientadores->id_orientador;
-        }
-        return view("Edital.editar", compact("edital", "orientadores", "cursos", "programas", "idsOrientadoresDoEdital"));
+        return view("Edital.editar", compact("edital", "programas"));
     }
 
     /**
@@ -145,21 +125,8 @@ class EditalController extends Controller
             $edital = Edital::find($id);
             $edital->data_inicio = $request->data_inicio ? $request->data_inicio : $edital->data_inicio;
             $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
-            $edital->semestre = $request->semestre ? $request->semestre : $edital->semestre;
-            $edital->id_curso = $request->curso ? $request->curso : $edital->id_curso;
             $edital->id_programa = $request->programa ? $request->programa : $edital->id_programa;
             $edital->update();
-
-            Edital_orientador::where("id_edital", $edital->id)->delete();
-
-            if ($request->orientadores){
-                foreach($request->orientadores as $id_orientador){
-                    $edital_orientador = new Edital_orientador();
-                    $edital_orientador->id_edital = $edital->id;
-                    $edital_orientador->id_orientador = $id_orientador;
-                    $edital_orientador->save();
-                }
-            }
 
             DB::commit();
 
@@ -182,14 +149,6 @@ class EditalController extends Controller
         DB::beginTransaction();
         try{
             $edital = Edital::find($id);
-
-            Edital_orientador::where("id_edital", $id)->delete();
-
-            foreach($edital->edital_alunos as $edital_aluno){
-                Frequencia_mensal::where("id_edital_aluno", $edital_aluno->id)->delete();
-            }
-
-            Edital_aluno::where("id_edital", $id)->delete();
 
             Edital::where("id", $id)->delete();
 

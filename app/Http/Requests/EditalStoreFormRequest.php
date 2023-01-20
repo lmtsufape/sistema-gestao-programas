@@ -24,12 +24,9 @@ class EditalStoreFormRequest extends FormRequest
     public function rules()
         {
             return [
-                "semestre"=>"required|string",
                 "data_inicio"=>"required|date",
                 "data_fim"=>"required|date",
-                "curso"=>"required|numeric",
                 "programa"=>"required|numeric",
-                "orientadores"=>"required|array",
             ];
         }
 
@@ -37,10 +34,8 @@ class EditalStoreFormRequest extends FormRequest
     public function messages(){
         return [
             "required" => "O campo :attribute é obrigatório.",
-            "string" => "O campo :atribute deve ser uma string.",
             "date" => "O campo :atribute deve ser um date.",
-            "numeric" => "O campo :atribute deve ser um número.",
-            "array" => "O campo :atribute deve ser um array."
+            "numeric" => "O campo :atribute deve ser um número."
         ];
     }
 }

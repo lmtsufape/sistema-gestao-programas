@@ -80,30 +80,11 @@
                     <label class="titulo" for="data_fim">Data de fim:</label>
                     <input class="boxinfo" type="date" name="data_fim" id="data_fim" value="{{$edital->data_fim}}"><br><br>
 
-                    <label class="titulo" for="semestre">Semestre:</label>
-                    <input class="boxinfo" type="text" name="semestre" id="semestre" value="{{$edital->semestre}}"><br><br>
-
                     <label class="titulo" for="programa">Programa:</label>
-                    <select aria-label="Default select example" class="boxinfo"> name="programa" id="programa">
+                    <select aria-label="Default select example" class="boxinfo" name="programa" id="programa">
                         <option value=""></option>
                         @foreach ($programas as $programa)
                             <option value="{{$programa->id}}" {{$edital->id_programa == $programa->id ? 'selected' : ''}}>{{$programa->nome}}</option>
-                        @endforeach
-                    </select><br><br>
-
-                    <label class="titulo" for="curso">Cursos:</label>
-                    <select aria-label="Default select example" class="boxinfo"> name="curso" id="curso">
-                        <option value=""></option>
-                        @foreach ($cursos as $curso)
-                            <option value="{{$curso->id}}" {{$edital->id_curso == $curso->id ? 'selected' : ''}}>{{$curso->nome}}</option>
-                        @endforeach
-                    </select><br><br>
-
-                    <label class="titulo" for="orientadores">Orientadores:</label>
-                    <select name="orientadores[]" id="orientadores" multiple>
-                        <option value=""></option>
-                        @foreach ($orientadores as $orientador)
-                            <option value="{{$orientador->id}}" style="color: black;" {{in_array($orientador->id, $idsOrientadoresDoEdital) ? 'selected' : ''}}>{{$orientador->user->name}}</option>
                         @endforeach
                     </select><br><br>
 
