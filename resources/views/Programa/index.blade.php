@@ -117,7 +117,7 @@
                     <td style="border-right: 1px solid #d3d3d3;">{{$programas->descricao}}</td>
                     <td>
                         {{--  URL provisoria apenas para testar  --}}
-                        <a href="{{url("/editals")}}">
+                        <a href="{{url("/programas/$programas->id/editals")}}">
                             <img src="{{asset("images/listaredital.png")}}" alt="Listar edital">
                         </a>
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$programas->id}}">
