@@ -106,6 +106,7 @@
             <thead>
             <tr>
                 <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
+                <th scope="col" style="border-right: 1px solid #d3d3d3;">Descrição</th>
                 <th scope="col">Ações</th>
             </tr>
             </thead>
@@ -113,6 +114,7 @@
             <tbody>
                     <tr>
                     <td style="border-right: 1px solid #d3d3d3;">{{$programas->nome}}</td>
+                    <td style="border-right: 1px solid #d3d3d3;">{{$programas->descricao}}</td>
                     <td>
                         {{--  URL provisoria apenas para testar  --}}
                         <a href="{{url("/editals")}}">

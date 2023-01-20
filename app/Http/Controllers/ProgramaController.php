@@ -31,6 +31,7 @@ class ProgramaController extends Controller
             $programas = Programa::where(function ($query) use ($valor) {
                 if ($valor) {
                     $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
+                    $query->orWhere("programas.descricao", "LIKE", "%{$valor}%");
                 }
             })->orderBy('programas.created_at', 'desc')->select("programas.*")->get();
 
@@ -66,6 +67,7 @@ class ProgramaController extends Controller
 
             $programa = new Programa();
             $programa->nome = $request->nome;
+            $programa->descricao = $request->descricao;
             $programa->save();
 
             foreach($request->servidores as $id_servidor){
@@ -128,6 +130,7 @@ class ProgramaController extends Controller
         try{
             $programa = Programa::find($id);
             $programa->nome = $request->nome ? $request->nome : $programa->nome;
+            $programa->descricao = $request->descricao ? $request->descricao : $programa->descricao;
             $programa->update();
 
             Programa_servidor::where("id_programa", $programa->id)->delete();
