@@ -31,6 +31,19 @@ class DisciplinaController extends Controller
         }
     }
 
+    public function store(Request $request){
+        $disciplina = new Disciplina();
+        $disciplina->nome = $request->nome;
+        $disciplina ->save();
+        return redirect(route("disciplinas.index"));
+
+    }
+
+    public function create(){
+        return view('cadastrar');
+    }
+
+
     public function delete($id) {
         $disciplina = Disciplina::findOrFail($id);
         return view('disciplinas.delete');
