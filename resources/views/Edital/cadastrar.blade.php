@@ -54,52 +54,52 @@
         width: 65%
     }
 </style>
-<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; ">
+<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
     @if (session('sucesso'))
-        <div class="alert alert-success">
+        <div class="alert alert-success" style="width: 100%;">
             {{session('sucesso')}}
         </div>
     @endif
     <br>
 
     <div class="boxchild">
-            <div class="row">
-                <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
-                    Cadastrar Edital</h1>
+        <div class="row">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+            Cadastrar Edital</h1>
+        </div>
+
+        <hr>
+
+        <form action="{{route('editals.store')}}" method="post">
+            @csrf
+
+            <label for="data_inicio" class="titulo">Data de início:</label>
+            <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" ><br><br>
+
+            <label for="data_fim" class="titulo">Data de fim:</label>
+            <input class="boxinfo"  type="date" name="data_fim" id="data_fim" id="data_inicio" ><br><br>
+
+            <label for="programa" class="titulo">Programa:</label>
+            <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
+                <option value=""></option>
+                @foreach ($programas as $programa)
+                    <option value="{{$programa->id}}">{{$programa->nome}}</option>
+                @endforeach
+            </select><br><br>
+
+            <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
+                <input type="button" value="Voltar" href="{{url("/editals/")}}" onclick="window.location.href='{{url("/editals/")}}'" style="background: #2D3875;
+                box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
+                border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
+                line-height: 29px; text-align: center; padding: 5px 15px;">
+                <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
+                display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
+                font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
             </div>
 
-            <hr>
-
-            <form action="{{route('editals.store')}}" method="post">
-                @csrf
-
-                <label for="data_inicio" class="titulo">Data de início:</label>
-                <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" ><br><br>
-
-                <label for="data_fim" class="titulo">Data de fim:</label>
-                <input class="boxinfo"  type="date" name="data_fim" id="data_fim" id="data_inicio" ><br><br>
-
-                <label for="programa" class="titulo">Programa:</label>
-                <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
-                    <option value=""></option>
-                    @foreach ($programas as $programa)
-                        <option value="{{$programa->id}}">{{$programa->nome}}</option>
-                    @endforeach
-                </select><br><br>
-
-                <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                    <input type="button" value="Voltar" href="{{url("/editals/")}}" onclick="window.location.href='{{url("/editals/")}}'" style="background: #2D3875;
-                                box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                                border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                                line-height: 29px; text-align: center; padding: 5px 15px;">
-                    <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                    display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                    font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
-                </div>
 
 
-
-            </form>
+        </form>
     </div>
 </div>
 

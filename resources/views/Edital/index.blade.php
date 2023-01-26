@@ -28,15 +28,15 @@
       background-color: #34A853;
     }
 
-  </style>
+</style>
 
-    <div class="container">
+<div class="container" style="font-family: 'Roboto', sans-serif;">
         @if (session('sucesso'))
             <div class="alert alert-success">
                 {{session('sucesso')}}
             </div>
         @endif
-    <br>
+  <br>
 
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
         <h1><strong>Editais</strong></h1>

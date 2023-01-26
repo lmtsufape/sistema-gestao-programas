@@ -57,19 +57,9 @@
     }
 </style>
 
-<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
+<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
     @if (session('sucesso'))
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" style="width: 100%;">
             {{session('sucesso')}}
         </div>
     @endif
@@ -100,7 +90,7 @@
             <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula"><br><br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                <input type="button" value="Voltar" href="{{route('home')}}" onclick="window.location.href='{{route('home')}}'"
+                <input type="button" value="Voltar" href="{{url("/orientadors/")}}" onclick="window.location.href='{{url("/orientadors/")}}'"
                 style="background: #2D3875; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                 border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                 line-height: 29px; text-align: center; padding: 5px 15px;">

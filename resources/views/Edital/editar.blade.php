@@ -56,13 +56,13 @@
         width: 65%
     }
 </style>
-    <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; ">
-    @if (session('sucesso'))
-        <div class="alert alert-success">
-            {{session('sucesso')}}
-        </div>
-    @endif
-    <br>
+    <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
+        @if (session('sucesso'))
+            <div class="alert alert-success" style="width: 100%;">
+                {{session('sucesso')}}
+            </div>
+        @endif
+        <br>
         <div class="boxchild">
             <div class="row">
                 <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
