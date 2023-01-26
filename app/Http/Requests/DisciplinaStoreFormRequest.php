@@ -13,6 +13,7 @@ class DisciplinaStoreFormRequest extends FormRequest
 
     public function rules() {
         return [
+            "nome" => "required",
             "nome" => "max:50",
         ];
     }

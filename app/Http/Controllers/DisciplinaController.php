@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DisciplinaStoreFormRequest;
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
 use App\Http\Requests\DisciplinaUpdateFormRequest;
@@ -31,16 +32,14 @@ class DisciplinaController extends Controller
         }
     }
 
-    public function store(Request $request){
-        $disciplina = new Disciplina();
-        $disciplina->nome = $request->nome;
-        $disciplina ->save();
+    public function store(DisciplinaStoreFormRequest $request){
+       $request -> validated();
         return redirect(route("disciplinas.index"));
 
     }
 
     public function create(){
-        return view('cadastrar');
+        return view('disciplinas.cadastrar');
     }
 
 
