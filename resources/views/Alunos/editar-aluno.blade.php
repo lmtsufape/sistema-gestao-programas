@@ -58,7 +58,7 @@
 
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
     @if (session('sucesso'))
-        <div class="alert alert-danger" style="width: 100%;">
+        <div class="alert alert-success">
             {{session('sucesso')}}
         </div>
     @endif

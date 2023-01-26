@@ -34,7 +34,7 @@
   @can('servidor')
   <div class="container">
     @if (session('sucesso'))
-    <div class="alert alert-danger">
+    <div class="alert alert-success">
         {{session('sucesso')}}
     </div>
     @endif
