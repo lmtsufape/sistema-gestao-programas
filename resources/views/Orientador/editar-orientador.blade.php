@@ -48,30 +48,19 @@
         box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
 
     }
-    .boxchild{
-        background: #FFFFFF;
-        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-        padding: 34px;
-        width: 65%
-    }
 </style>
 
-<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px">
+<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
 
     @if (session('sucesso'))
-        <div class="alert alert-success">
+        <div class="alert alert-success" style="width: 100%;">
             {{session('sucesso')}}
         </div>
     @endif
     <br>
 
-    <div class="boxchild">
-        <div class="row">
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
-                Editar Orientador</h1>
-        </div>
-
+    <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
+        <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">Editar Orientador</h1>
         <hr>
         <form action="{{url("/orientadors/$orientador->id")}}" method="POST">
             @csrf
