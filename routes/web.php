@@ -8,6 +8,7 @@ use App\Http\Controllers\ServidorController;
 use App\Http\Controllers\OrientadorController;
 use App\Http\Controllers\EditalController;
 use App\Http\Controllers\DisciplinaController;
+use App\Http\Controllers\CadastrarSeController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +49,9 @@ Route::resource('/disciplinas', DisciplinaController::class);
 
 // Rotas de curso
 Route::resource('/cursos', CursoController::class);
+
+// Rotas de Cadastrar-se
+Route::get('/cadastrar-se', [CadastrarSeController::class, "cadastrarSe"]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
