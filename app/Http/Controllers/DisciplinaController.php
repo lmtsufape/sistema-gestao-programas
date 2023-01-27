@@ -33,13 +33,24 @@ class DisciplinaController extends Controller
     }
 
     public function store(DisciplinaStoreFormRequest $request){
-       $request -> validated();
-        return redirect(route("disciplinas.index"));
+        try{
 
+            $disciplina = new Disciplina();
+            $disciplina ->nome = $request->nome;
+            $disciplina->save();
+
+            return redirect('/disciplinas')->with('sucesso', 'Disciplina cadastrada com sucesso.');
+
+        }
+        catch(exception $e){
+
+            return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
+        }
     }
 
+
     public function create(){
-        return view('disciplinas.cadastrar');
+        return view("Disciplina.cadastrar");
     }
 
 

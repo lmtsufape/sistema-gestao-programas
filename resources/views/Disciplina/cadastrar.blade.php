@@ -8,12 +8,14 @@
     <title>Document</title>
 </head>
 <body>
-<form action="{{route('disciplina.store')}}" method="post">
-    <label for="">Disciplina: </label>
-    <input type="text" name="nome">
-    <input type="submit" value="Cadastrar disciplina">
-
+    <form action="{{route("disciplinas.store")}}" method="post">
+        @csrf
+        <label for="">Disciplinas: </label>
+        <input type="text" name="nome">
+        <input type="submit" value="Cadastrar disciplinas">
+    </form>
 </form>
-
 </body>
 </html>
+
+
