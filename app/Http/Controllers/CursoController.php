@@ -17,16 +17,11 @@ class CursoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $disciplinas = Disciplina::all();
@@ -34,12 +29,6 @@ class CursoController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(CursoStoreFormRequest $request)
     {
         DB::beginTransaction();
@@ -47,13 +36,14 @@ class CursoController extends Controller
             $curso = new Curso();
             $curso-> nome = $request->nome;
             $curso->save();
-
-            // foreach($request->disciplina as $id_disciplina){
-            //     $curso_disciplina = new Curso_disciplina();
-            //     $curso_disciplina->id_curso = $curso->id;
-            //     $curso_disciplina->id_disciplina = $id_disciplina;
-            //     $curso_disciplina->save();
-            // }
+            if($request->disciplinas){
+                foreach($request->disciplinas as $id_disciplina){
+                    $curso_disciplina = new Curso_disciplina();
+                    $curso_disciplina->id_curso = $curso->id;
+                    $curso_disciplina->id_disciplina = $id_disciplina;
+                    $curso_disciplina->save();
+                }
+            }
             DB::commit();
             return redirect('/cursos')->with('sucesso', 'Curso cadastrado com sucesso.');
         } catch(exception $e){
