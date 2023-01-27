@@ -101,16 +101,15 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="tipoUser" class="titulo">Tipo do usuário:</label>
-            <select aria-label="Default select example" class="boxinfo">  name="tipoUser" id="tipoUser">
-                <option value="">Selecione o tipo de usuário</option>
-                <option value="1">Aluno</option>
+            <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
+                <option value="1">Servidor</option>
                 <option value="2">Orientador</option>
-                <option value="3">Servidor</option>
+                <option value="3">Aluno</option>
             </select> <br><br>
 
             <div id="curso" hidden>
                 <label for="cursoAluno">Curso:</label>
-                <select aria-label="Default select example" class="boxinfo"> id="cursoAluno" name="curso">
+                <select aria-label="Default select example" class="boxinfo" id="cursoAluno" name="curso">
                     <option value="">Selecione o curso</option>
                     //TO DO: Colocar foreach para listar os cursos
                 </select>
@@ -146,34 +145,18 @@
     console.log("ooi1")
     $(document).ready(function() {
         $("#tipoUser").change(function() {
-            console.log("ooi")
-            /*if ($(this).val() == 1) {
-                $("#curso").show();
-                $("#semestre").show();
-                $("#matriculaOri").hide();
-            } else if ($(this).val() == 2) {
-                $("#curso").hide();
-                $("#semestre").hide();
-                $("#matriculaOri").removeClass("hidden");
-            } else {
-                $("#curso").hide();
-                $("#semestre").hide();
-                $("#matriculaOri").hide();
-            }*/
-            console.log($("#tipoUser").val())
             if ($("#tipoUser").val() == 1) {
-                console.log("oi")
-                $("#curso").show();
-                $("#semestre").show();
-                $("#matriculaOri").hide();
+                $("#curso").attr("hidden", true);
+                $("#semestre").attr("hidden", true);
+                $("#matriculaOri").attr("hidden", true);
             } else if ($("#tipoUser").val() == 2) {
-                $("#curso").hide();
-                $("#semestre").hide();
-                $("#matriculaOri").show();
+                $("#curso").attr("hidden", true);
+                $("#semestre").attr("hidden", true);
+                $("#matriculaOri").removeAttr("hidden");
             } else {
-                $("#curso").hide();
-                $("#semestre").hide();
-                $("#matriculaOri").hide();
+                $("#curso").removeAttr("hidden");
+                $("#semestre").removeAttr("hidden");
+                $("#matriculaOri").attr("hidden", true);
             }
         });
     });
