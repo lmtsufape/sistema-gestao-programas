@@ -99,7 +99,7 @@
 
 
             <label for="inputCurso" class="titulo">Curso:</label>
-            <select aria-label="Default select example" class="boxinfo">      id="inputCurso" name="curso">
+            <select aria-label="Default select example" class="boxinfo"> id="inputCurso" name="curso">
                 <option value="">Selecione o curso</option>
                 @foreach ($cursos as $curso)
                 <option value="{{$curso->id}}">{{$curso->nome}}</option>
