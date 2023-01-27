@@ -108,21 +108,24 @@
             </select> <br><br>
 
             <div id="curso" hidden>
-                <label for="cursoAluno">Curso:</label>
+                <label class="titulo" for="cursoAluno">Curso:</label>
                 <select aria-label="Default select example" class="boxinfo" id="cursoAluno" name="curso">
                     <option value="">Selecione o curso</option>
                     //TO DO: Colocar foreach para listar os cursos
                 </select>
+                <br><br>
             </div>
 
             <div id="semestre" hidden>
-                <label for="sementreEntradaAluno">Semestre de entrada:</label>
-                <input class="boxinfo" type="text"  id="sementreEntradaAluno" name="ssementreEntradaAluno" required placeholder="Digite o semestre">
-            </div>
 
+                <label class="titulo" for="sementreEntradaAluno">Semestre de entrada:</label>
+                <input class="boxinfo" type="text"  id="sementreEntradaAluno" name="ssementreEntradaAluno" required placeholder="Digite o semestre">
+                <br><br>
+            </div>
             <div id="matriculaOri" hidden>
-                <label for="matriculaOrientador">Matrícula:</label>
+                <label class="titulo" for="matriculaOrientador">Matrícula:</label>
                 <input class="boxinfo" type="text"  id="matriculaOrientador" name="matriculaOrientador" required placeholder="Digite a matrícula">
+                <br><br>
             </div>
 
 
@@ -142,7 +145,6 @@
 </div>
 
 <script>
-    console.log("ooi1")
     $(document).ready(function() {
         $("#tipoUser").change(function() {
             if ($("#tipoUser").val() == 1) {
