@@ -41,6 +41,8 @@ Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editai
 Route::delete("programas/{id}/editals/{id_edital}", [ProgramaController::class, "deletar_edital"]);
 Route::get("/programas/{id}/create/edital", [ProgramaController::class, "criar_edital"]);
 Route::post("/programas/store/edital", [ProgramaController::class, "store_edital"]);
+Route::get("/programas/edit/{id}/edital", [ProgramaController::class, "editar_edital"]);
+Route::put("/programas/update/{id}/edital", [ProgramaController::class, "update_edital"]);
 
 // Rotas de Edital
 Route::resource('/editals', EditalController::class);
