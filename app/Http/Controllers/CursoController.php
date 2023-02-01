@@ -9,6 +9,7 @@ use App\Models\Disciplina;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use App\Http\Requests\CursoStoreFormRequest;
+use App\Http\Requests\CursoUpdateFormRequest;
 
 class CursoController extends Controller
 {
@@ -63,27 +64,43 @@ class CursoController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $curso = Curso::find($id);
+        $disciplinas = Disciplina::all();
+        $idsDisciplinasDoCurso = [];
+
+        foreach($curso->curso_disciplinas as $curso_disciplinas){
+            $idsDisciplinasDoCurso[] = $curso_disciplinas->id_disciplina;
+        }
+        return view("Curso.editar", compact("curso", "disciplinas", "idsDisciplinasDoCurso"));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(CursoUpdateFormRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try{
+            $curso = Curso::find($id);
+            $curso->nome = $request->nome ? $request->nome : $curso->nome;
+            $curso->update();
+
+            Curso_disciplina::where("id_curso", $curso->id)->delete();
+
+            if($request->disciplinas){
+                foreach($request->disciplinas as $id_disciplina){
+                    $curso_disciplina = new Curso_disciplina();
+                    $curso_disciplina->id_curso = $curso->id;
+                    $curso_disciplina->id_disciplina = $id_disciplina;
+                    $curso_disciplina->save();
+                }
+            }
+            DB::commit();
+            
+            return redirect("/cursos/$curso->id/edit")->with('sucesso', 'Curso cadastrado com sucesso');
+        } catch(exception $e){
+            DB::rollBack();
+            return redirect()->back()->withErrors("Falha ao editar curso.");
+        }
     }
 
     /**
