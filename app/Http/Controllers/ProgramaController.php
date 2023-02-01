@@ -13,6 +13,7 @@ use App\Models\Programa_servidor;
 use App\Models\Edital;
 use App\Models\Edital_aluno;
 use App\Models\Frequencia_mensal;
+use App\Http\Requests\EditalStoreFormRequest;
 
 class ProgramaController extends Controller
 {
@@ -233,6 +234,33 @@ class ProgramaController extends Controller
         } catch(exception $e){
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
+        }
+    }
+
+    public function criar_edital($id)
+    {
+        $programa = Programa::find($id);
+        return view("Programa.criar_edital", compact("programa"));
+    }
+
+    public function store_edital(EditalStoreFormRequest $request)
+    {
+        DB::beginTransaction();
+        try{
+
+            $edital = new Edital();
+            $edital->data_inicio = $request->data_inicio;
+            $edital->data_fim = $request->data_fim;
+            $edital->id_programa = $request->programa;
+            $edital->save();
+
+            DB::commit();
+
+            return redirect("/programas/$edital->id_programa/editals")->with('sucesso', 'Edital cadastrado com sucesso.');
+
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
         }
     }
 }

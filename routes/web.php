@@ -40,6 +40,8 @@ Route::resource('/orientadors', OrientadorController::class);
 Route::resource('/programas', ProgramaController::class);
 Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editais"]);
 Route::delete("programas/{id}/editals/{id_edital}", [ProgramaController::class, "deletar_edital"]);
+Route::get("/programas/{id}/create/edital", [ProgramaController::class, "criar_edital"]);
+Route::post("/programas/store/edital", [ProgramaController::class, "store_edital"]);
 
 // Rotas de Edital
 Route::resource('/editals', EditalController::class);
