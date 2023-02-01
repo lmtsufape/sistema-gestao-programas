@@ -28,6 +28,14 @@
     background-color: #34A853;
   }
 
+  .textolegenda {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 130%;
+    margin:5px
+  }
+
 </style>
 
 
@@ -98,6 +106,7 @@
             <thead>
             <tr>
                 <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
+                <th scope="col" style="border-right: 1px solid #d3d3d3;">Descrição</th>
                 <th scope="col">Ações</th>
             </tr>
             </thead>
@@ -105,15 +114,20 @@
             <tbody>
                     <tr>
                     <td style="border-right: 1px solid #d3d3d3;">{{$programas->nome}}</td>
+                    <td style="border-right: 1px solid #d3d3d3;">{{$programas->descricao}}</td>
                     <td>
+                        {{--  URL provisoria apenas para testar  --}}
+                        <a href="{{url("/programas/$programas->id/editals")}}">
+                            <img src="{{asset("images/listaredital.png")}}" alt="Listar edital">
+                        </a>
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$programas->id}}">
-                        <img src="{{asset("images/info.png")}}" alt="Info programa">
+                            <img src="{{asset("images/info.png")}}" alt="Info programa">
                         </a>
                         <a href="{{url("/programas/$programas->id/edit")}}">
-                        <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar programa">
+                            <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar programa">
                         </a>
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$programas->id}}">
-                        <img src="{{asset("images/delete.png")}}" alt="Deletar programa">
+                            <img src="{{asset("images/delete.png")}}" alt="Deletar programa">
                         </a>
                     </td>
                     </tr>
@@ -133,44 +147,32 @@
                 <div style="align-self: center; margin-right: auto">
                     <div style="display: flex; margin: 10px">
                     <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
+                    <p class="textolegenda">Pesquisar</p>
                     </div>
                     <div style="display: flex; margin: 10px">
                     <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
-                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
+                    <p class="textolegenda">Informações</p>
                     </div>
-                    <div style="display: flex; margin: 10px">
-                    <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
-                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
-                    </div>
-
                     <div style="align-self: center; margin-right: auto">
                         <div style="display: flex; margin: 10px">
-                        <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
-                        <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
+                            <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
+                            <p class="textolegenda">Editar</p>
                         </div>
                         <div style="display: flex; margin: 10px">
-                        <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
-                        <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
+                            <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
+                            <p class="textolegenda">Deletar</p>
+                        </div>
+                    </div>
+                    <div style="align-self: center; margin-right: auto">
+                        <div style="display: flex; margin: 10px">
+                            <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
+                            <p class="textolegenda">Listar Edital</p>
                         </div>
                     </div>
                 </div>
 
             </div>
         </div>
-    {{--  </div>
-      <div style="margin: auto; width: 45%; padding: 10px;">
-        <div class="pagination">
-          <a href="#" style="border-radius: 15px; background: #131833; color: white;">Anterior</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">1</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">2</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">3</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">4</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">...</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">15</a>
-          <a href="#" style="border-radius: 15px; background: #131833; color: white;">Próximo</a>
-        </div>
-    </div>  --}}
 
 
   </div>

@@ -2,31 +2,88 @@
 
 @section("body")
 
+<style>
+    select[multiple] {
+        overflow: hidden;
+        background: #f5f5f5;
+        width:100%;
+        height:auto;
+        padding: 0px 5px;
+        margin:0;
+        border-width: 2px;
+        border-radius: 5px;
+        -moz-appearance: menulist;
+        -webkit-appearance: menulist;
+        appearance: menulist;
+      }
+      /* select single */
+      .required .chosen-single {
+        background: #F5F5F5;
+        border-radius: 5px;
+        border: 1px #D3D3D3;
+        padding: 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+    }
+    /* select multiple */
+    .required .chosen-choices {
+        background: #F5F5F5;
+        border-radius: 5px;
+        border: 1px #D3D3D3;
+        padding: 0px 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+    }
+    .titulo {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        display: flex;
+        color: #131833;
+    }
+    .boxinfo{
+        background: #F5F5F5;
+        border-radius: 6px;
+        border: 1px #D3D3D3;
+        width: 100%;
+        padding: 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
 
-<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px">
+    }
+    .boxchild{
+        background: #FFFFFF;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        padding: 34px;
+        width: 65%
+    }
+</style>
+
+<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
 
     @if (session('sucesso'))
-        <div class="alert alert-success">
+        <div class="alert alert-success" style="width: 100%;">
             {{session('sucesso')}}
         </div>
     @endif
     <br>
-    <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
-        <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
-            Editar Programa</h1>
-            <hr>
+    <div class="boxchild">
+        <div class="row">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+                Editar Programa</h1>
+        </div>
+        <hr>
 
         <form action="{{url("/programas/$programa->id")}}" method="post">
             @csrf
             @method("PUT")
-            <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome:</label>
-            <input type="text" name="nome" id="nome" value="{{$programa->nome}}"
-            style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br><br>
+            <label for="nome" class="titulo">Nome:</label>
+            <input class="boxinfo" type="text" name="nome" id="nome" value="{{$programa->nome}}"><br><br>
 
-            <label for="servidores" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Servidores:</label>
+            <label for="descricao" class="titulo">Descricao:</label>
+            <input class="boxinfo" type="text" name="descricao" id="descricao" value="{{$programa->descricao}}"><br><br>
 
-            <select name="servidores[]" id="servidores" style="width: 100%;" multiple>
+            <label for="servidores" class="titulo">Servidores:</label>
+
+            <select name="servidores[]" id="servidores" multiple>
                 <option value=""></option>
                 @foreach ($servidores as $servidor)
                     <option value="{{$servidor->id}}" {{in_array($servidor->id, $idsServidoresDoPrograma) ? 'selected' : ''}}

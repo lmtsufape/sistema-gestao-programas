@@ -7,6 +7,7 @@ use App\Http\Controllers\ServidorController;
 use App\Http\Controllers\OrientadorController;
 use App\Http\Controllers\EditalController;
 use App\Http\Controllers\DisciplinaController;
+use App\Http\Controllers\CadastrarSeController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -36,12 +37,17 @@ Route::resource('/orientadors', OrientadorController::class);
 
 // Rotas de programa
 Route::resource('/programas', ProgramaController::class);
+Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editais"]);
+Route::delete("programas/{id}/editals/{id_edital}", [ProgramaController::class, "deletar_edital"]);
 
 // Rotas de Edital
 Route::resource('/editals', EditalController::class);
 
 // Rotas de Disciplina
 Route::resource('/disciplinas', DisciplinaController::class);
+
+// Rotas de Cadastrar-se
+Route::get('/cadastrar-se', [CadastrarSeController::class, "cadastrarSe"]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

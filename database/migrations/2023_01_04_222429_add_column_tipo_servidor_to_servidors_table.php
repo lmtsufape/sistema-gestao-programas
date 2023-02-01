@@ -26,6 +26,7 @@ class AddColumnTipoServidorToServidorsTable extends Migration
     public function down()
     {
         Schema::table('servidors', function (Blueprint $table) {
+            $table->dropForeign('servidors_id_tipo_servidor_foreign');
             $table->dropColumn('id_tipo_servidor');
         });
     }

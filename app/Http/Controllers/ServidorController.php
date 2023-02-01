@@ -35,11 +35,11 @@ class ServidorController extends Controller
                     $query->orWhere("servidors.id_tipo_servidor", "LIKE", "%{$valor}%");
                 }
             })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->get();
-            
-            return view("Servidores.index", compact("servidores"));
+
+            return view("servidores.index", compact("servidores"));
         } else {
             $servidores = Servidor::all();
-            return view("Servidores.index", compact("servidores"));
+            return view("servidores.index", compact("servidores"));
         }
     }
 

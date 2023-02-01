@@ -28,18 +28,18 @@
       background-color: #34A853;
     }
 
-</style>
+  </style>
 
-<div class="container" style="font-family: 'Roboto', sans-serif;">
+    <div class="container">
         @if (session('sucesso'))
             <div class="alert alert-success">
                 {{session('sucesso')}}
             </div>
         @endif
-  <br>
+    <br>
 
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-        <h1><strong>Editais</strong></h1>
+        <h1><strong>{{$programa->nome}} - Editais</strong></h1>
         <div style="margin: auto"></div>
         <form action="{{route("editals.index")}}" method="GET">
             <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
@@ -113,8 +113,8 @@
                         </td>
                     </tr>
 
-                    @include("Edital.components.modal_show", ["edital" => $edital, "orientadores" => $orientadores])
-                    @include("Edital.components.modal_delete", ["edital" => $edital])
+                    @include("Programa.components_edital.modal_show", ["edital" => $edital])
+                    @include("Programa.components_edital.modal_delete", ["edital" => $edital, "programa" => $programa])
 
                 @endforeach
             </tbody>
