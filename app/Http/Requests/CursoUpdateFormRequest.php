@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CursoStoreFormRequest extends FormRequest
+class CursoUpdateFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,15 @@ class CursoStoreFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome'=>'required|string',
+            'nome'=>'string',
             'disciplina'=>'array'
         ];
     }
     public function messages()
     {
         return [
-            "required" => "O campo :atribute é obrigatório."
+            "string" => "O campo :atribute deve ser uma string.",
+            "array" => "O campo :atribute deve ser um array"
         ];
     }
 }
