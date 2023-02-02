@@ -19,7 +19,8 @@ class CursoController extends Controller
      */
     public function index()
     {
-        //
+        $cursos = Curso::all();
+        return view('curso.index' , compact('cursos'));
     }
 
     /**
@@ -47,13 +48,14 @@ class CursoController extends Controller
             $curso = new Curso();
             $curso-> nome = $request->nome;
             $curso->save();
-
-            // foreach($request->disciplina as $id_disciplina){
-            //     $curso_disciplina = new Curso_disciplina();
-            //     $curso_disciplina->id_curso = $curso->id;
-            //     $curso_disciplina->id_disciplina = $id_disciplina;
-            //     $curso_disciplina->save();
-            // }
+            if($request->disciplinas){
+                foreach($request->disciplinas as $id_disciplina){
+                    $curso_disciplina = new Curso_disciplina();
+                    $curso_disciplina->id_curso = $curso->id;
+                    $curso_disciplina->id_disciplina = $id_disciplina;
+                    $curso_disciplina->save();
+                }
+            }
             DB::commit();
             return redirect('/cursos')->with('sucesso', 'Curso cadastrado com sucesso.');
         } catch(exception $e){
@@ -70,7 +72,7 @@ class CursoController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -81,7 +83,9 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $curso = Curso::find($id);
+        $disciplinas = Disciplina::all();
+        return view("Curso.editar", compact("curso", "disciplinas"));
     }
 
     /**
