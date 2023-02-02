@@ -96,7 +96,7 @@ class CursoController extends Controller
             }
             DB::commit();
             
-            return redirect("/cursos/$curso->id/edit")->with('sucesso', 'Curso cadastrado com sucesso');
+            return redirect("/cursos/$curso->id/edit")->with('sucesso', 'Curso editado com sucesso');
         } catch(exception $e){
             DB::rollBack();
             return redirect()->back()->withErrors("Falha ao editar curso.");
