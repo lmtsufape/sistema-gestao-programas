@@ -28,4 +28,11 @@ class CursoUpdateFormRequest extends FormRequest
             'disciplina'=>'array'
         ];
     }
+    public function messages()
+    {
+        return [
+            "string" => "O campo :atribute deve ser uma string.",
+            "array" => "O campo :atribute deve ser um array"
+        ];
+    }
 }
