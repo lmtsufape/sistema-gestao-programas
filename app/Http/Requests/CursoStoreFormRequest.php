@@ -28,4 +28,10 @@ class CursoStoreFormRequest extends FormRequest
             'disciplina'=>'array'
         ];
     }
+    public function messages()
+    {
+        return [
+            "required" => "O campo :attribute é obrigatório."
+        ];
+    }
 }

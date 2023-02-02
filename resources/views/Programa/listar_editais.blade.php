@@ -102,7 +102,7 @@
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
                             <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
                             </a>
-                            <a href="{{url("/editals/$edital->id/edit")}}">
+                            <a href="{{url("/programas/edit/$edital->id/edital")}}">
                             <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital"  style="height: 30px; width: 30px;">
                             </a>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$edital->id}}">
