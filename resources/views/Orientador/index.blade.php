@@ -32,10 +32,10 @@
 
 
   @can('servidor')
-  <div class="container">
+  <div class="container" style="font-family: 'Roboto', sans-serif;">
     @if (session('sucesso'))
-    <div class="alert alert-danger">
-        {{session('sucesso')}}
+    <div class="alert alert-success">
+      {{session('sucesso')}}
     </div>
     @endif
     <br>
@@ -130,8 +130,8 @@
 
                   </td>
                 </tr>
-                @include("orientador.components.modal_show", ["orientador" => $orientador])
-                @include("orientador.components.modal_delete", ["orientador" => $orientador])
+                @include("Orientador.components.modal_show", ["orientador" => $orientador])
+                @include("Orientador.components.modal_delete", ["orientador" => $orientador])
               @endforeach
           </tbody>
         </table>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ServidorFormRequest;
 use App\Http\Requests\ServidorFormUpdateRequest;
 use App\Models\Servidor;
+use App\Models\Tipo_servidor;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -15,26 +16,46 @@ use Illuminate\Validation\Rule;
 class ServidorController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
+        if (sizeof($request-> query()) > 0){
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
 
-        $servidores = Servidor::all();
-        return view("servidores.index", compact('servidores'));
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $servidores = Servidor::join("users", "users.typage_id", "=", "servidors.id");
+            $servidores = $servidores->where(function ($query) use ($valor) {
+                if ($valor) {
+                    $query->orWhere("users.name", "LIKE", "%{$valor}%");
+                    $query->orWhere("users.email", "LIKE", "%{$valor}%");
+                    $query->orWhere("servidors.cpf", "LIKE", "%{$valor}%");
+                    $query->orWhere("servidors.id_tipo_servidor", "LIKE", "%{$valor}%");
+                }
+            })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->get();
+
+            return view("servidores.index", compact("servidores"));
+        } else {
+            $servidores = Servidor::all();
+            return view("servidores.index", compact("servidores"));
+        }
     }
 
 
     public function create(){
-        return view("servidores.cadastrar");
+        $tipo_servidores = Tipo_servidor::all();
+        return view("servidores.cadastrar", compact("tipo_servidores"));
     }
 
     public function store(ServidorFormRequest $request)
     {
-
         $servidor = Servidor::Create([
             'cpf' => $request->input('cpf'),
-            'tipo_servidor' => $request->input('tipo_servidor')
+            'id_tipo_servidor' => (int) $request->input('tipo_servidor')
         ]);
- 
+
         if(
             $servidor->user()->create([
                 'name' => $request->input('nome'),
@@ -43,7 +64,7 @@ class ServidorController extends Controller
             ])->givePermissionTo('servidor')
         ){
             $mensagem_sucesso = "Orientador cadastrado com sucesso.";
-            return redirect('/servidores/create')->with('sucesso', 'Servidor cadastrado com sucesso.');
+            return redirect('/servidores')->with('sucesso', 'Servidor cadastrado com sucesso.');
 
         } else {
             return redirect()->back()->withErrors( "Falha ao cadastrar servidor. tente novamente mais tarde." );
@@ -53,15 +74,16 @@ class ServidorController extends Controller
     public function edit($id)
     {
         $servidor = Servidor::find($id);
-        return view("servidores.editar", compact('servidor'));
+        $tipo_servidores = Tipo_servidor::all();
+        return view("servidores.editar", compact('servidor', 'tipo_servidores'));
     }
 
     public function update(ServidorFormUpdateRequest $request, $id)
     {
         $servidor = Servidor::find($id);
-        
+
         $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
-        $servidor->tipo_servidor = $request->tipo_servidor;
+        $servidor->id_tipo_servidor = $request->tipo_servidor;
 
         $servidor->user->name = $request->nome;
         $servidor->user->email = $request->email;
@@ -74,16 +96,16 @@ class ServidorController extends Controller
         }
 
         if ($servidor->save()){
-            
+
             if ($servidor->user->update()){
-                $mensagem_sucesso = "Orientador cadastrado com sucesso.";
-                return redirect('/servidores/'. $servidor->id .'/edit')->with('sucesso', 'Servidor Atualizado com sucesso.');
+                $mensagem_sucesso = "Servidor editado com sucesso.";
+                return redirect("/servidores")->with('sucesso', 'Servidor editado com sucesso.');
             } else {
-                return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+                return redirect()->back()->withErrors( "Falha ao editar servidor. tente novamente mais tarde." );
             }
 
         } else {
-            return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+            return redirect()->back()->withErrors( "Falha ao editar servidor. tente novamente mais tarde." );
         }
     }
 

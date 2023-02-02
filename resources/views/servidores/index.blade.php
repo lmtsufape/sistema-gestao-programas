@@ -3,7 +3,7 @@
 @can('servidor')
 <div class="container" style="font-family: 'Roboto', sans-serif;">
   @if (session('sucesso'))
-  <div class="alert alert-danger">
+  <div class="alert alert-success">
     {{session('sucesso')}}
   </div>
   @endif
@@ -70,7 +70,7 @@
           <td style="border-right: 1px solid #d3d3d3;">{{$servidor->user->name}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{$servidor->user->email}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{$servidor->cpf}}</td>
-            <td style="border-right: 1px solid #d3d3d3;">{{$servidor->tipo_servidor}}</td>
+            <td style="border-right: 1px solid #d3d3d3;">{{$servidor->tipo_servidor->nome}}</td>
             <td>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$servidor->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info servidor">
@@ -124,7 +124,7 @@
     </div>
     @endif
   </div>
-  {{--  TODO: A tabela tem que limitar para aparecer x usuarios em cada página, e a paginação mudar o ultimo númerode acordo com o tanto de páginas que tem disponiveis para olhar  --}}   
+  {{--  TODO: A tabela tem que limitar para aparecer x usuarios em cada página, e a paginação mudar o ultimo númerode acordo com o tanto de páginas que tem disponiveis para olhar  --}}
   <div style="margin: auto; padding: 10px; justify-content:center;">
     <div class="pagination" style="display: flex; justify-content: center;">
       <a href="#" style="border-radius: 15px; background: #131833; color: white;">Anterior</a>

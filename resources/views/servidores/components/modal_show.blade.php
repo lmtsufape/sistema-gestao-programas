@@ -1,30 +1,26 @@
 <div class="modal fade " id="modal_show_{{$servidor->id}}" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered ">
-    <div class="modal-content modal-create" style="border-radius: 15px; background-color: #EEEEEE; font-family: 'Roboto', sans-serif;">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #EEEEEE; font-family: 'Roboto', sans-serif;">
       <div class="modal-header" >
-        <h5 class="modal-title title fw-bold">Informações</h5>
+        <h5 style="color: #131833; font-style: normal; font-weight: 600; font-size: 30px; line-height: 47px;" class="modal-title title fw-bold">Informações do Servidor</h5>
         <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
         <div class="modal-body">
-          <div class="row pb-3">
-            <div class="col-sm- 12 col-md-6 mb-3">
-              <label class="form-label"><strong>Nome</strong></label>
-              <div  style="background: #F5F5F5; padding:3px; height: 30px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25); border-radius: 45px;"> {{$servidor->user->name}}</div>
-            </div> 
-            <div class="col-sm- 12 col-md-6 mb-3">
-              <label class="form-label"><strong>CPF</strong></label>
-              <div  style="background: #F5F5F5; padding:3px; height: 30px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25); border-radius: 45px;"> {{$servidor->cpf}}</div>
-            </div> 
-            <div class="col-sm- 12 col-md-6 mb-3">
-              <label class="form-label"><strong>E-mail</strong></label>
-              <div class="modal-ver" style="background: #F5F5F5; padding:3px; height: 30px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25); border-radius: 45px;">{{$servidor->user->email}}</div>
-            </div> 
-            <div class="col-sm- 12 col-md-6 mb-3">
-              <label class="form-label"><strong>Tipo de servidor</strong></label>
-              <div  style="background: #F5F5F5; padding:3px; height: 30px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25); border-radius: 45px;"> {{$servidor->tipo_servidor}}</div>
+          <div class="row mb-3">
+              <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">Nome:</label>
+              <div  style="background: #F9F9F9; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->user->name}}</div>
+            
+              <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">CPF:</label>
+              <div  style="background: #F9F9F9; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->cpf}}</div>
+           
+              <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">E-mail:</label>
+              <div style="background: #F9F9F9; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$servidor->user->email}}</div>
+           
+              <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">Tipo de servidor:</label>
+              <div style="background: #F9F9F9; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->tipo_servidor->nome}}</div>
             </div>
           </div>
-             
+
         </div>
     </div>
   </div>

@@ -6,13 +6,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">Deseja realmente deletar o servidor?</p>
+        <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">Deseja realmente deletar o servidor {{$servidor->user->name}}?</p>
       </div>
 
       <div class="modal-footer d-flex justify-content-between">
         <button stype="button" class="btn btn-secondary" style="border-radius: 45px; " data-bs-dismiss="modal">Cancelar</button>
 
-        <form action="{{url("/servidores/1")}}" method="post">
+        <form action="{{url("/servidores/$servidor->id")}}" method="post">
           @method("DELETE")
           @csrf
           <input type="hidden" name="id" value="{{$servidor->id}}">
@@ -23,7 +23,7 @@
   </div>
 </div>
 <style>
-  
+
     .btn-secondary{
         color: #fff;
         background-color: #2d3875;

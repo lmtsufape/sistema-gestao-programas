@@ -10,7 +10,8 @@ class Programa extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nome'
+        'nome',
+        'descricao'
     ];
 
     public function programa_servidors()

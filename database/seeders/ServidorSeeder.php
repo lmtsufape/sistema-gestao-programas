@@ -13,7 +13,7 @@ class ServidorSeeder extends Seeder
     {
         $servidor = Servidor::create([
             'cpf' => "770.934.340-61",
-            'tipo_servidor' => "servidor",
+            'id_tipo_servidor' => 1,
         ]);
 
         $servidor->user()->create([
@@ -24,7 +24,7 @@ class ServidorSeeder extends Seeder
 
         $servidor1 = Servidor::create([
             'cpf' => "929.053.520-27",
-            'tipo_servidor' => "servidor",
+            'id_tipo_servidor' => 2,
         ]);
 
         $servidor1->user()->create([

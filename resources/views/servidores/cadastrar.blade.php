@@ -2,15 +2,6 @@
 
 @section("body")
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px">
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
 @if (session('sucesso'))
     <div class="alert alert-success">
@@ -34,49 +25,48 @@
                             style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" >
                         </div>
-                    </div>
-                    <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="cpf" class="form-label">CPF:</label>
+                        <div class="col-12 mb-3">
+                            <label for="tipo_servidor" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor: </label>
+                            <select name="tipo_servidor" id="tipo_servidor" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
+                            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" aria-label="Default select example">
+                                <option value=""></option>
+                                @foreach ($tipo_servidores as $tipo_servidor)
+                                    <option value="{{$tipo_servidor->id}}">{{$tipo_servidor->nome}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <label for="cpf" class="form-label">CPF:</label>
                             <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF"
                             style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-12 mb-3">
                             <label for="email" class="form-label">E-mail:</label>
                             <input type="text" name="email" id="email" placeholder="Digite o E-mail"
                             style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 md-3">
+                
+                        <div class="col-12 mb-3">
                             <label for="senha" class="form-label">Senha:</label>
                             <input type="password" name="senha" id="senha" placeholder="Digite a senha"
                             style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="tipo_servidor" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor: </label>
-                            <select name="tipo_servidor" id="tipo_servidor" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" aria-label="Default select example">
-                                <option value="adm">Administrador</option>
-                                <option value="pro_reitor">Pró-reitor</option>
-                                <option value="servidor">Servidor</option>
-                            </select>
-                        </div>
                         <br>
                     </div>
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                        <input type="button" value="Voltar" href="{{route('home')}}" onclick="window.location.href='{{route('home')}}'"
+                        <input type="button" value="Voltar" href="{{url("/servidores/")}}" onclick="window.location.href='{{url("/servidores/")}}'"
                         style="background: #2D3875; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                         border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                         line-height: 29px; text-align: center; padding: 5px 15px;">
                         <input type="submit" name="salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
                         display: inline-block;
                         border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal; font-weight: 400; font-size: 24px;
-                        line-height: 29px; text-align: center; padding: 5px 15px;">
+                        line-height: 29px; text-align: center; padding: 5px 15px;" value="Salvar">
                     </div>
                 </form>
 

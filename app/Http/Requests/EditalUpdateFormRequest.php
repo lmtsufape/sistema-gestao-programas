@@ -24,22 +24,17 @@ class EditalUpdateFormRequest extends FormRequest
     public function rules()
         {
             return [
-                "semestre"=>"string",
                 "data_inicio"=>"date",
                 "data_fim"=>"date",
-                "curso"=>"numeric",
-                "programa"=>"numeric",
-                "orientadores"=>"array",
+                "programa"=>"numeric"
             ];
         }
 
 
     public function messages(){
         return [
-            "string" => "O campo :atribute deve ser uma string.",
             "date" => "O campo :atribute deve ser um date.",
-            "numeric" => "O campo :atribute deve ser um número.",
-            "array" => "O campo :atribute deve ser um array."
+            "numeric" => "O campo :atribute deve ser um número."
         ];
     }
 }

@@ -24,6 +24,7 @@
     a:active {
       text-decoration: underline;
     }
+
 </style>
 
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
@@ -39,33 +40,136 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
       @if (auth()->user()->typage_type == "App\Models\Servidor")
 
         <div style="padding: 5px;">
-            <a href="{{route('home')}}">Meu perfil</a>
+            <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+                <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
+                <p style="font-style: normal; font-weight: 400; font-size: 14px;
+                line-height: 16px; padding-left: 5px; padding-top: 4px">Meu perfil</p>
+            </a>
             <hr>
-            <a href="{{route('home')}}">Listar programas</a>
+
+            <a href="{{route("programas.index")}}" style="display: flex; color: #000; text-decoration: none;">
+              <img src="{{asset("images/iconsbarralateral/listarbl.png")}}" alt="listarprog" style="height:17px; width:24px;">
+              <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+              padding-top: 1px">Listar programas</p>
+            </a>
+
+            <a href="{{route("alunos.index")}}" style="display: flex; color: #000; text-decoration: none;">
+              <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarAlunos" style="height:24px; width:24px;">
+              <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+              padding-top: 4px">Listagem de alunos </p>
+            </a>
+            <a href="{{route("orientadors.index")}}" style="display: flex; color: #000; text-decoration: none;">
+              <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarOri" style="height:24px; width:24px;">
+              <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+              padding-top: 4px">Listagem de orientadores </p>
+            </a>
+            <a href="{{route("servidores.index")}}" style="display: flex; color: #000; text-decoration: none;">
+              <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarServ" style="height:24px; width:24px;">
+              <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+              padding-top: 4px">Listagem de servidores</p></a>
             <hr>
-            <a href="{{route("alunos.index")}}">Listagem de alunos</a>
-            <hr>
-            <a href="{{route('home')}}">Listagem de professores</a>
-            <hr>
-            <a href="{{route("servidores.index")}}">Listagem de servidores</a>
-            <hr>
-            <a class="links-menu" href="{{route('home')}}">Gerenciar editais</a>
+            <a href="{{route("editals.index")}}" style="display: flex; color: #000; text-decoration: none;">
+              <img src="{{asset("images/iconsbarralateral/gearbl.png")}}" alt="gerenciar" style="height:24px; width:24px;">
+              <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+              padding-top: 4px">Gerenciar editais</p>
+            </a>
             <hr>
             <h6 style="font-style: normal; font-weight: 700; font-size: 16px; line-height: 19px;">Envio de e-mails</h6>
-            <a href="{{route("email.notificarPrazoFrequencia")}}" >Notificar prazo de frequência mensal</a> <br>
-            <a href="{{route("email.notificarPrazoRelatorio")}}">Notificar prazo de relatório final</a>
+            <a href="{{route("email.notificarPrazoFrequencia")}}" style="display: flex; color: #000; text-decoration: none;">
+              <img src="{{asset("images/iconsbarralateral/prazobl.png")}}" alt="email" style="height:24px; width:24px;">
+              <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+              padding-top: 5px">Notificar prazo de frequência mensal</p>
+            </a>
+            <a href="{{route("email.notificarPrazoRelatorio")}}" style="display: flex; color: #000; text-decoration: none;">
+              <img src="{{asset("images/iconsbarralateral/prazobl.png")}}" alt="email" style="height:24px; width:24px;">
+              <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+              padding-top: 5px">Notificar prazo de relatório final</p>
+            </a>
         </div>
 
+      @endif
+
+      @if (auth()->user()->typage_type == "App\Models\Orientador")
+      <div style="padding: 5px;">
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px;
+            line-height: 16px; padding-left: 5px; padding-top: 4px">Meu perfil</p>
+        </a>
+        <hr>
+        <a href="{{route("alunos.index")}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarAlunos" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 4px">Listar de alunos </p>
+        </a>
+        <hr>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/listarbl.png")}}" alt="listarprog" style="height:17px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 1px">Meus programas</p>
+        </a>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/listardocbl.png")}}" alt="listardoc" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 4px">Meus documentos</p>
+        </a>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/certificadobl.png")}}" alt="certificados" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 4px">Meus certificados</p>
+        </a>
+        <hr>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/listardocbl.png")}}" alt="listardoc" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 4px">Visualizar documentos</p>
+        </a>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/prazobl.png")}}" alt="frequenciaMes" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 5px">Visualizar frequência mensal</p>
+        </a>
+        <hr>
+      </div>
+      @endif
+
+
+      @if (auth()->user()->typage_type == "App\Models\Aluno")
+      <div style="padding: 5px;">
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px;
+            line-height: 16px; padding-left: 5px; padding-top: 4px">Meu perfil</p>
+        </a>
+        <hr>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/certificadobl.png")}}" alt="certificados" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 4px">Meus certificados</p>
+        </a>
+        <hr>
+        <h6 style="font-style: normal; font-weight: 700; font-size: 16px; line-height: 19px;">Documentos</h6>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/listardocbl.png")}}" alt="listardoc" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 3px">Listar documentos</p>
+        </a>
+        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <img src="{{asset("images/iconsbarralateral/novodocbl.png")}}" alt="novodoc" style="height:24px; width:24px;">
+            <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+            padding-top: 5px">Gerar documentos</p>
+        </a>
+        </div>
       @endif
     @endauth
 
     <form action="/logout" method="POST">
         @csrf
         <hr>
-        <a href="/logout"  onclick="event.preventDefault(); this.closest('form').submit()" style="display: flex; align-self: center;
+        <a href="/logout"  onclick="event.preventDefault(); this.closest('form').submit()" style="display: flex;
         color: #000; text-decoration: none;">
           <img src="{{asset("images/logout.png")}}" alt="logout" style="height:30px; width:30px;">
-           <p style="align-self: center; font-style: normal; font-weight: 400; font-size: 24px; line-height: 29px;
+           <p style="font-style: normal; font-weight: 400; font-size: 18px; line-height: 29px;
            padding-left: 5px;"> Sair </p>
         </a>
 
