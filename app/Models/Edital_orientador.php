@@ -16,7 +16,7 @@ class Edital_orientador extends Model
 
     public function edital()
     {
-        return $this->belongsTo(Edital::class, "id_edital");
+        return $this->belongsTo(Edital_aluno::class, "id_edital_aluno");
     }
 
     public function orientador()
