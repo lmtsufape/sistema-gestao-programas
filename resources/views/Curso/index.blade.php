@@ -2,12 +2,6 @@
 
 @section("body")
 
-@if (session('sucesso'))
-        <div class="alert alert-success">
-            {{session('sucesso')}}
-        </div>
-    @endif
-    <br>
 
 <style>
   pagination {
@@ -36,20 +30,26 @@
   }
 
 </style>
-
-@can('servidor')
-  <div class="container">
-    @if (session('sucesso'))
-      <div class="alert alert-danger">
-        {{session('sucesso')}}
-      </div>
+<div class="container">
+@if (session('sucesso'))
+        <div class="alert alert-success">
+            {{session('sucesso')}}
+        </div>
     @endif
     <br>
+
+@can('servidor')
+    <div class="container">
+      @if (session('sucesso'))
+        <div class="alert alert-danger">
+          {{session('sucesso')}}
+        </div>
+      @endif
+      <br>
 
       <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
         <h1><strong>Cursos</strong></h1>
       <div style="margin: auto"></div>
-      {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
       <form action="{{route("cursos.index")}}" method="GET">
         <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
         style="background-color: #D9D9D9;
@@ -87,19 +87,6 @@
         </a>
         <br>
     </div>
-    <br> 
-
-      </select><br><br>
-
-      <label for="cursos">Cursos:</label>
-      <select name="cursos[]" id="cursos" multiple>
-          <option value=""></option>
-          @foreach ($cursos as $curso)
-              <option value="{{$curso->id}}">{{$curso->user->name}}</option>
-          @endforeach
-      </select><br><br>
-
-      <input type="submit" value="salvar">
 
     @if (sizeof($cursos) == 0)
       <div class="empty">
@@ -112,18 +99,18 @@
         <br>
             <div style="display: flex; gap: 30px">
 
-                <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);margin-bottom: 5px; min-height: 350px">
+              <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);margin-bottom: 5px; min-height: 350px">
                 <thead>
-                <tr>
+                  <tr>
                     <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
                     <th scope="col">Ações</th>
-                </tr>
+                  </tr>
                 </thead>
                 @foreach ($cursos as $cursos)
-                  <tbody>
+                <tbody>
                         <tr>
                         <td style="border-right: 1px solid #d3d3d3;">{{$cursos->nome}}</td>
-                        <td>
+                          <td>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$cursos->id}}">
                             <img src="{{asset("images/info.png")}}" alt="Info curso">
                             </a>
@@ -133,16 +120,16 @@
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$cursos->id}}">
                             <img src="{{asset("images/delete.png")}}" alt="Deletar curso">
                             </a>
-                        </td>
+                          </td>
                         </tr>
-                        @include("Curso.components.modal_show", ["curso" => $cursos])
-                        @include("Curso.components.modal_delete", ["curso" => $cursos])
-                @endforeach
+                      @include("Curso.components.modal_show", ["curso" => $cursos])
+                      @include("Curso.components.modal_delete", ["curso" => $cursos])
+                  @endforeach
                 </tbody>
-                </table>
+              </table>
 
                 <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
-                ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
+                  ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
                     <div style="align-self: center; margin-right: auto">
                         <br>
                         <h4 style="font-size: 15px">Legenda dos ícones:</h4>
@@ -150,16 +137,16 @@
 
                     <div style="align-self: center; margin-right: auto">
                         <div style="display: flex; margin: 10px">
-                        <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-                        <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
+                          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+                          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
                         </div>
                         <div style="display: flex; margin: 10px">
-                        <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
-                        <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
+                          <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
+                          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
                         </div>
                         <div style="display: flex; margin: 10px">
-                        <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
-                        <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
+                          <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
+                          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
                         </div>
 
                         <div style="align-self: center; margin-right: auto">
@@ -173,7 +160,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         {{--  </div>
@@ -194,8 +180,28 @@
   </div>
    @endif
   </div>
-<script>
-   
+
+  <script type="text/javascript">
+
+function exibirModalDeletar(id){
+  $('#modal_delete_' + id).modal('show');
+}
+
+function exibirModalVisualizar(id){
+  $('#modal_show_' + id).modal('show');
+}
+</script>
+
+<script >
+
+   function exibirModalDeletar(id){
+          $('#modal_delete_' + id).modal('show');
+        }
+
+        function exibirModalVisualizar(id){
+          $('#modal_show_' + id).modal('show');
+        }
+
    $("#cursos").chosen({
             placeholder_text_multiple: "Selecione um curso",
             // max_shown_results : 5,
@@ -203,3 +209,5 @@
         });
 
 </script>
+
+@endsection
