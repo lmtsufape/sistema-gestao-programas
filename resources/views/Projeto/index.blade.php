@@ -112,9 +112,9 @@
                       <td style="border-right: 1px solid #d3d3d3;">{{$projetos->descricao}}</td>
                       <td>
                           {{--  URL provisoria apenas para testar  --}}
-                          <a href="{{url("/projetos/$projetos->id/editals")}}">
+                          {{--  <a href="{{url("/projetos/$projetos->id/editals")}}">
                               <img src="{{asset("images/listaredital.png")}}" alt="Listar edital">
-                          </a>
+                          </a>  --}}
                           <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$projetos->id}}">
                               <img src="{{asset("images/info.png")}}" alt="Info projeto">
                           </a>
@@ -161,10 +161,10 @@
                           </div>
                       </div>
                       <div style="align-self: center; margin-right: auto">
-                          <div style="display: flex; margin: 10px">
+                          {{--  <div style="display: flex; margin: 10px">
                               <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
                               <p class="textolegenda">Listar Edital</p>
-                          </div>
+                          </div>  --}}
                       </div>
                   </div>
 
