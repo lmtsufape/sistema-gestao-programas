@@ -127,9 +127,8 @@
                       </td>
                       </tr>
 
-                      {{--  TODO: Fazer os modais  --}}
-                      {{--  @include("Programa.components.modal_show", ["programa" => $projetos])  --}}
-                      @include("Projeto.components.modal_delete", ["programa" => $projetos])
+                      @include("Projeto.components.modal_show", ["projeto" => $projetos])
+                      @include("Projeto.components.modal_delete", ["projeto" => $projetos])
                   @endforeach
               </tbody>
               </table>
