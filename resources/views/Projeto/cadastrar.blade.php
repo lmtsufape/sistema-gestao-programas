@@ -67,23 +67,52 @@
     <br>
     <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
         <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
-            Cadastrar Programa</h1>
+            Cadastrar Projeto</h1>
             <hr>
 
         <form action="{{route('projetos.store')}}" method="post">
             @csrf
 
-            <label for="nome" class="titulo">Nome:</label>
-            <input type="text" name="nome" id="nome" placeholder="Digite o nome do projeto" class="boxinfo"><br><br>
+            <label for="inputBolsa" class="titulo">Bolsa:</label>
+            <select aria-label="Default select example" class="boxinfo"> id="inputBolsa" name="curso">
+                <option value="">Selecione o tipo da bolsa:</option>
+                <option value="1">Voluntária</option>
+                <option value="2">Bolsista</option>
+            </select>
+            <br><br>
 
-            <label for="descricao" class="titulo">Descricao:</label>
-            <input type="text" name="descricao" id="descricao" placeholder="Digite a descrição do projeto" class="boxinfo"><br><br>
+            <label for="valorBolsa" class="titulo">Valor da bolsa:</label>
+            <input type="number" min="1" step="any" name="valorBolsa" id="valorBolsa" placeholder="Digite o valor da bolsa" class="boxinfo"><br><br>
 
+            <label for="inputOrientadores" class="titulo">Orientadores:</label>
+            <select aria-label="Default select example" class="boxinfo" id="orientadores" name="orientadores[]" multiple>
+                <option value="">Selecione um orientador:</option>
+                {{--  @foreach ($orientadores as $orientador)
+                    <option value="{{$orientador->id}}">{{$orientador->nome}}</option>
+                @endforeach  --}}
+            </select>
+            <br><br>
 
+            <label for="inputOrientadores" class="titulo">Alunos:</label>
+            <select aria-label="Default select example" class="boxinfo" id="alunos" name="alunos[]" multiple>
+                <option value="">Selecione um aluno:</option>
+                {{--  @foreach ($alunos as $aluno)
+                    <option value="{{$aluno->id}}">{{$aluno->nome}}</option>
+                @endforeach  --}}
+            </select>
 
-            <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
+            <br><br>
+            <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
+                <input type="button" value="Voltar" href="{{url("/projetos/")}}" onclick="window.location.href='{{url("/projetos/")}}'" style="background: #2D3875;
+                            box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
+                            border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
+                            line-height: 29px; text-align: center; padding: 5px 15px;">
+
+                <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
+                            display: inline-block;
+                            border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal; font-weight: 400; font-size: 24px;
+                            line-height: 29px; text-align: center; padding: 5px 15px;">
+            </div>
 
         </form>
     </div>
@@ -97,7 +126,7 @@
     });
     // max_shown_results : 5,
     no_results_text: "Não possui alunos."
-});
+
     $('div.chosen-container-single').addClass('required');
     $('div.chosen-container-multi').addClass('required');
 </script>
