@@ -13,4 +13,13 @@ class Curso_disciplina extends Model
         'id_curso',
         'id_disciplina'
     ];
+
+    public function curso()
+    {
+        return $this->belongsTo(Curso::class, "id_curso");
+    }
+
+    public function disciplina(){
+        return $this->belongsTo(Disciplina::class, "id_disciplina");
+    }
 }

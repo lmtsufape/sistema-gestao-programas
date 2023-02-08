@@ -74,7 +74,7 @@
         font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
         align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
         padding-left: 10px;"
-        href="{{route("editals.create")}}">
+        href="{{url("/programas/$programa->id/create/edital")}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar edital" style="padding-bottom: 5px"> Cadastrar Edital
         </a>
         <br>
@@ -102,7 +102,7 @@
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
                             <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
                             </a>
-                            <a href="{{url("/editals/$edital->id/edit")}}">
+                            <a href="{{url("/programas/edit/$edital->id/edital")}}">
                             <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital"  style="height: 30px; width: 30px;">
                             </a>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$edital->id}}">
