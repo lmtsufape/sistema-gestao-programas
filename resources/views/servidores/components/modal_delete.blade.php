@@ -1,4 +1,5 @@
-<div class="modal fade" id="modal_delete_{{$servidor->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+@canany(['admin', 'pro_reitor'])
+  <div class="modal fade" id="modal_delete_{{$servidor->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content modal-create" style="border-radius: 15px; background-color: #F2F2F2; font-family: 'Roboto', sans-serif;">
       <div class="modal-header">
@@ -21,8 +22,8 @@
       </div>
     </div>
   </div>
-</div>
-<style>
+  </div>
+  <style>
 
     .btn-secondary{
         color: #fff;
@@ -33,4 +34,8 @@
         background-color: #4353ab;
         border-color: #4353ab;
     }
-</style>
+  </style>
+@else
+  <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
+@endcan
