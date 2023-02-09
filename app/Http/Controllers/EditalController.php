@@ -13,6 +13,7 @@ use App\Models\Edital_aluno;
 use App\Models\Frequencia_mensal;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
+use Exception;
 
 class EditalController extends Controller
 {
