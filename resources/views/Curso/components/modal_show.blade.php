@@ -10,9 +10,9 @@
                     <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">Curso:</label>
                     <div  style="background: #EEEEEE; border-radius: 13px; border: 1px #EEEEEE; width: 100%; padding: 5px; box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);">{{$curso->nome}} </div>
 
-                    <la bel style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">Disciplinas:</label>
+                    <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">Disciplinas:</label>
                     <div  style="background: #EEEEEE; border-radius: 13px; border: 1px #EEEEEE; width: 100%; padding: 5px; box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                    
+                    {{$curso->curso_disciplinas}}
                     
                     </div>
                     
