@@ -20,6 +20,26 @@ class CursoController extends Controller
      */
     public function index(Request $request)
     {
+        if(sizeof($request->query()) > 0){
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
+
+            if($valor == null){
+                return redirect()->back()->withErrors("Deve ser informado algum valor para o filtro.");
+            }
+
+            $cursos = Curso::where(function($query) use ($valor){
+                if($valor){
+                    $query->orWhere("cursos.nome", "LIKE", "%($valor)%");
+                }
+            })->select("cursos.*")->get();
+            $disciplinas = Disciplina::all();
+            return view("Curso.index", compact("cursos", "disciplinas"));
+        } else{
+            $disciplinas = Disciplina::all();
+            $cursos = Curso::all();
+            return view("Curso.index", compact('cursos', 'disciplinas'));
+        }
 
     }
 
