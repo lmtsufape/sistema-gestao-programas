@@ -83,7 +83,7 @@
     <div style="display: flex; gap: 30px; margin: 15px 15px 15px 15px;">
 
         <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-        ;margin-bottom: 5px; min-height: 350px">
+        ;margin-bottom: 5px; min-height: 50px">
             <thead>
                 <tr>
                     <th scope="col" style="border-right: 1px solid #d3d3d3;">Data de início</th>
@@ -99,6 +99,9 @@
                         <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
                         <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
                         <td>
+                            <a href="{{url("/projetos")}}">
+                                <img src="{{asset("images/listaredital.png")}}" alt="Listar projetos" style="height: 30px; width: 30px;">
+                            </a>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
                             <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
                             </a>
@@ -151,7 +154,12 @@
               <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
               <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
             </div>
+            <div style="display: flex; margin-left: 10px">
+                <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
+                <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar projetos</p>
+            </div>
           </div>
+        </div>
         </div>
     </div>
 </div>
