@@ -68,9 +68,9 @@
           @foreach ($disciplinas as $disciplinas)
             <tbody>
               <tr> 
-                <td style="border-right: 1px solid #d3d3d3;">{{$disciplinas->nome}}</td>
-                <td>
-                  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$disciplinas->id}}">
+                <td style="border-right: 1px solid #d3d3d3; border-bottom: 1px solid #d3d3d3;">{{$disciplinas->nome}}</td>
+                <td style="border-bottom: 1px solid #d3d3d3;">
+                  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$disciplinas->id}}" >
                     <img src="{{asset("images/info.png")}}" alt="Info programa" style="height: 30px; width: 30px;">
                   </a>
                   <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$disciplinas->id}}">
