@@ -101,21 +101,21 @@
     <br>
         <div style="display: flex; gap: 30px; margin: 15px 15px 15px 15px;">
 
-            <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-            ;margin-bottom: 5px; min-height: 350px">
+          <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
+          ;margin-bottom: 5px; min-height: 350px">
             <thead>
             <tr>
-                <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
-                <th scope="col" style="border-right: 1px solid #d3d3d3;">Descrição</th>
-                <th scope="col">Ações</th>
+              <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
+              <th scope="col" style="border-right: 1px solid #d3d3d3;">Descrição</th>
+              <th scope="col">Ações</th>
             </tr>
             </thead>
             @foreach ($programas as $programas)
             <tbody>
-                    <tr>
-                    <td style="border-right: 1px solid #d3d3d3;">{{$programas->nome}}</td>
-                    <td style="border-right: 1px solid #d3d3d3;">{{$programas->descricao}}</td>
-                    <td>
+                  <tr>
+                    <td style="border-right: 1px solid #d3d3d3; border-bottom: 1px solid #d3d3d3;">{{$programas->nome}}</td>
+                    <td style="border-right: 1px solid #d3d3d3; border-bottom: 1px solid #d3d3d3;">{{$programas->descricao}}</td>
+                    <td style="border-bottom: 1px solid #d3d3d3;">
                         {{--  URL provisoria apenas para testar  --}}
                         <a href="{{url("/programas/$programas->id/editals")}}">
                             <img src="{{asset("images/listaredital.png")}}" alt="Listar edital">
@@ -130,12 +130,12 @@
                             <img src="{{asset("images/delete.png")}}" alt="Deletar programa">
                         </a>
                     </td>
-                    </tr>
-                    @include("Programa.components.modal_show", ["programa" => $programas])
-                    @include("Programa.components.modal_delete", ["programa" => $programas])
+                  </tr>
+                  @include("Programa.components.modal_show", ["programa" => $programas])
+                  @include("Programa.components.modal_delete", ["programa" => $programas])
                 @endforeach
             </tbody>
-            </table>
+          </table>
 
             <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
             ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
