@@ -75,6 +75,9 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$servidor->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info servidor">
               </a>
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_permission_{{$servidor->id}}">
+                <img src="{{asset("images/user-key.png")}}"  alt="Permissoes servidor">
+              </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$servidor->id}}">
                 <img src="{{asset("images/document.png")}}" alt="Documento servidor">
                 {{-- TODO: Fica pra fazer o modal depois  --}}
@@ -105,7 +108,10 @@
         <div style="display: flex; margin: 10px">
           <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
-        </div>
+        </div><div style="display: flex; margin: 10px">
+            <a><img src="/images/user-key.png" alt="permissoes" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Permissões</p>
+          </div>
         <div style="display: flex; margin: 10px">
           <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
