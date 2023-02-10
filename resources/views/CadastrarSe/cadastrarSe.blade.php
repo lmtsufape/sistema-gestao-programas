@@ -45,7 +45,7 @@
         width: 100%;
         padding: 5px;
         box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
-
+        text-align: start;
     }
     .boxchild{
         background: #FFFFFF;
@@ -87,6 +87,9 @@
             <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
+            <label for="inputNomeSocial" class="titulo">Nome Social:</label>
+            <input class="boxinfo" type="text" id="inputNomeSocial" name="nome_social" required placeholder="Digite o nome social">
+            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputCpf" class="titulo">CPF:</label>
             <input class="boxinfo" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF">
