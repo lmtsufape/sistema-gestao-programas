@@ -10,6 +10,13 @@
             {{ session('status') }}
         </div>
     @endif --}}
+    @if (session('sucesso'))
+    <div class="alert alert-sucess">
+        <p style="color: green">{{session('sucesso')}}</p>
+    </div>
+    @endif
+    <br>
+
     <div class="container" style="padding-top: 5%">
 
         <div class="row" style="justify-content: center; align-items: center">
