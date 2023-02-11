@@ -1,11 +1,9 @@
 @extends("templates.app")
 
 @section("body")
-
 <style>
   pagination {
     display: inline-block;
-
   }
 
   .pagination a {
@@ -35,11 +33,9 @@
     line-height: 130%;
     margin:5px
   }
-
 </style>
 
-
-  @can('servidor')
+  @canany(['admin', 'pro_reitor'])
     <div class="container">
         @if (session('sucesso'))
             <div class="alert alert-success">
@@ -48,34 +44,34 @@
         @endif
     <br>
 
-    <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-        <h1><strong>Programas</strong></h1>
-        <div style="margin: auto"></div>
-        {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
-        <form action="{{route("programas.index")}}" method="GET">
-            <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
-            style="background-color: #D9D9D9;
-                border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                background-position: 10px 2px;
-                background-repeat: no-repeat;
-                width: 35%;
-                font-size: 16px;
-                height: 45px;
-                border: 1px solid #ddd;
-                margin-bottom: 12px;  margin-right: 10px"">
-            <input type="submit" value=""
-            style="background-image: url('/images/searchicon.png');
-                background-color: #D9D9D9;
-                border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                width: 40px;
-                font-size: 16px;
-                height: 45px;
-                border: 1px solid #ddd;
-                position: absolute;
-                margin: auto;"
-            />
-            </form>
-  </div>
+      <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
+          <h1><strong>Programas</strong></h1>
+          <div style="margin: auto"></div>
+          {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
+          <form action="{{route("programas.index")}}" method="GET">
+              <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
+              style="background-color: #D9D9D9;
+                  border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                  background-position: 10px 2px;
+                  background-repeat: no-repeat;
+                  width: 35%;
+                  font-size: 16px;
+                  height: 45px;
+                  border: 1px solid #ddd;
+                  margin-bottom: 12px;  margin-right: 10px"">
+              <input type="submit" value=""
+              style="background-image: url('/images/searchicon.png');
+                  background-color: #D9D9D9;
+                  border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                  width: 40px;
+                  font-size: 16px;
+                  height: 45px;
+                  border: 1px solid #ddd;
+                  position: absolute;
+                  margin: auto;"
+              />
+              </form>
+      </div>
 
     <div style="display: contents; align-content: center; align-items: center;">
 
@@ -175,48 +171,45 @@
         </div>
 
 
-  </div>
-    @endif
-  </div>
+    </div>
+      @endif
+    </div>
 
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-    function exibirModalDeletar(id){
-      $('#modal_delete_' + id).modal('show');
-    }
+      function exibirModalDeletar(id){
+        $('#modal_delete_' + id).modal('show');
+      }
 
-    function exibirModalVisualizar(id){
-      $('#modal_show_' + id).modal('show');
-    }
-  </script>
+      function exibirModalVisualizar(id){
+        $('#modal_show_' + id).modal('show');
+      }
+    </script>
 
-  <!-- Exibindo erros de validacao ao criar -->
- @if(count($errors->create) > 0)
-  <script type="text/javascript">
-    $(function () {
-      // Bloqueando o usuario na tela de modal apos falha na validacao.
-      // Forcando ele a clicar no botao de fechar, para limpar os erros
-      $("#modal_create").modal({backdrop:"static", keyboard:false});
-      $("#modal_create").modal('show');
-    });
-  </script>
-  @endif
+    <!-- Exibindo erros de validacao ao criar -->
+    @if(count($errors->create) > 0)
+      <script type="text/javascript">
+        $(function () {
+          // Bloqueando o usuario na tela de modal apos falha na validacao.
+          // Forcando ele a clicar no botao de fechar, para limpar os erros
+          $("#modal_create").modal({backdrop:"static", keyboard:false});
+          $("#modal_create").modal('show');
+        });
+      </script>
+      @endif
 
-  <!-- Exibindo erros de validacao ao editar -->
-  @if(count($errors->update) > 0)
-  <script type="text/javascript">
-    $(function () {
-      // Bloqueando o usuario na tela de modal apos falha na validacao.
-      // Forcando ele a clicar no botao de fechar, para limpar os erros
-      $("#modal_edit_{{old( 'id' )}}").modal({backdrop:"static", keyboard:false});
-      $("#modal_edit_{{old( 'id' )}}").modal('show');
-    });
-  </script>
-  @endif
+      <!-- Exibindo erros de validacao ao editar -->
+      @if(count($errors->update) > 0)
+      <script type="text/javascript">
+        $(function () {
+          // Bloqueando o usuario na tela de modal apos falha na validacao.
+          // Forcando ele a clicar no botao de fechar, para limpar os erros
+          $("#modal_edit_{{old( 'id' )}}").modal({backdrop:"static", keyboard:false});
+          $("#modal_edit_{{old( 'id' )}}").modal('show');
+        });
+      </script>
+      @endif
 
-  @elsecan('orientador')
-    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{route('home')}}">Voltar</a>
   @else
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
     <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
