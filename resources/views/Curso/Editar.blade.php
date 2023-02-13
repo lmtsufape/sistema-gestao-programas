@@ -68,7 +68,7 @@
             @method("put")
 
             <label for="nome" class="titulo">Nome:</label>
-            <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome do curso" valeu="{{$curso->nome}}">
+            <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome do curso" value="{{$curso->nome}}">
 
             <label class="titulo" for="disciplinas">Disciplinas:</label>
             <select aria-label="Default select example" class="boxinfo" name="disciplinas[]" id="disciplinas" multiple>

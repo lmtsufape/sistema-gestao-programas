@@ -86,6 +86,13 @@
                     <option value="{{$programa->id}}">{{$programa->nome}}</option>
                 @endforeach
             </select><br><br>
+            <label class="titulo" for="disciplinas">Disciplinas:</label>
+            <select aria-label="Default select example" class="boxinfo" name="disciplinas[]" id="disciplinas" multiple>
+                <option value=""></option>
+                @foreach ($disciplinas as $disciplina)
+                    <option value="{{$disciplina->id}}">{{$disciplina->nome}}</option>
+                @endforeach
+            </select><br><br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" href="{{url("/editals/")}}" onclick="window.location.href='{{url("/editals/")}}'" style="background: #2D3875;
@@ -121,6 +128,13 @@
             // max_shown_results : 5,
             no_results_text: "Não possui orientadores."
         });
+
+        $("#disciplinas").chosen({
+            placeholder_text_multiple: "Selecione uma disciplina",
+            // max_shown_results : 5,
+            no_results_text: "Não possui disciplinas."
+            });
+
 
         $('div.chosen-container-single').addClass('required');
         $('div.chosen-container-multi').addClass('required');

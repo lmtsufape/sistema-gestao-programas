@@ -112,7 +112,7 @@
 
                         </td>
                     </tr>
-
+                  
                     @include("Edital.components.modal_show", ["edital" => $edital, "orientadores" => $orientadores])
                     @include("Edital.components.modal_delete", ["edital" => $edital])
 

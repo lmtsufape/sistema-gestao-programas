@@ -26,7 +26,8 @@ class EditalUpdateFormRequest extends FormRequest
             return [
                 "data_inicio"=>"date",
                 "data_fim"=>"date",
-                "programa"=>"numeric"
+                "programa"=>"numeric",
+                'disciplina'=>'array'
             ];
         }
 
