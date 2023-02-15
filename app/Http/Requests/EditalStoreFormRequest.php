@@ -27,6 +27,7 @@ class EditalStoreFormRequest extends FormRequest
                 "data_inicio"=>"required|date",
                 "data_fim"=>"required|date",
                 "programa"=>"required|numeric",
+                'disciplinas'=>'array'
             ];
         }
 
