@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Edital_aluno;
+use App\Models\Edital;
 
 class ProjetoController extends Controller
 {
@@ -83,5 +84,12 @@ class ProjetoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function projetos_edital($id)
+    {
+        $projetos = Edital_aluno::where("id_edital", $id)->get();
+        $edital = Edital::find($id);
+        return view("Projeto.projetos_edital", compact('projetos', 'edital'));
     }
 }

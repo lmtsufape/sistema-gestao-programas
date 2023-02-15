@@ -48,7 +48,7 @@
     <br>
 
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-        <h1><strong>Projetos{{$projetos[0]->bolsa}}</strong></h1>
+        <h1><strong>Projetos: {{$edital->programa->nome}} - Edital ({{date_format(date_create($edital->data_inicio), "d/m/Y")}} - {{date_format(date_create($edital->data_fim), "d/m/Y")}})</strong></h1>
         <div style="margin: auto"></div>
         <form action="{{route("projetos.index")}}" method="GET">
             <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
