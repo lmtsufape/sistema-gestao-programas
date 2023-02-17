@@ -97,6 +97,7 @@
         </p>
       </div>
     @else
+    
     <br>
 
     <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
