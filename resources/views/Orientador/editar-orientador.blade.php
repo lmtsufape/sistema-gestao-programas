@@ -60,8 +60,10 @@
     <br>
 
     <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
-        <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">Editar Orientador</h1>
-        <hr>
+        <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">Editar Orientador</h1>
+        
+        <hr style="color:#2D3875;">
+
         <form action="{{url("/orientadors/$orientador->id")}}" method="POST">
             @csrf
             @method("PUT")
