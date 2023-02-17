@@ -98,20 +98,20 @@
             min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
                 <thead>
                     <tr>
-                        <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
-                        <th scope="col" style="border-right: 1px solid #d3d3d3;">E-mail</th>
-                        <th scope="col" style="border-right: 1px solid #d3d3d3;">CPF</th>
-                        <th scope="col" style="border-right: 1px solid #d3d3d3;">Matricula</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Matricula</th>
                         <th scope="col">Ações</th>
                     </tr>
                     </thead>
                     @foreach ($orientadors as $orientador)
                 <tbody>
                         <tr>
-                            <td style="border-right: 1px solid #d3d3d3;">{{$orientador->user->name}}</td>
-                            <td style="border-right: 1px solid #d3d3d3;">{{$orientador->user->email}}</td>
-                            <td style="border-right: 1px solid #d3d3d3;">{{$orientador->cpf}}</td>
-                            <td style="border-right: 1px solid #d3d3d3;">{{$orientador->matricula}}</td>
+                            <td>{{$orientador->user->name}}</td>
+                            <td>{{$orientador->user->email}}</td>
+                            <td>{{$orientador->cpf}}</td>
+                            <td>{{$orientador->matricula}}</td>
                             <td>
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$orientador->id}}">
                                 <img src="{{asset("images/info.png")}}" alt="Info orientador" style="height: 30px; width: 30px;">
