@@ -42,7 +42,7 @@
         <h1><strong>{{$programa->nome}} - Editais</strong></h1>
         <div style="margin: auto"></div>
         <form action="{{route("editals.index")}}" method="GET">
-            <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
+            <input class="text-center p-3" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
             style="background-color: #D9D9D9;
                   border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                   background-position: 10px 2px;
@@ -51,7 +51,8 @@
                   font-size: 16px;
                   height: 45px;
                   border: 1px solid #ddd;
-                  margin-bottom: 12px; margin-right: 10px">
+                  margin-bottom: 12px; margin-right: 10px
+                  ">
 
             <input type="submit" value=""
             style="background-image: url('/images/searchicon.png');
