@@ -11,9 +11,9 @@
 <br>
     <div class="d-flex justify-content-center align-items-center">
         <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color:#2D3875;">
                 Cadastrar Servidor</h2>
-            <hr>
+            <hr style="color:#2D3875;">
                 <form action="{{route('servidores.store')}}" method="POST" class="row needs-validation" novalidate style="text-align:start;">
                     @csrf
                     @method("POST")
@@ -22,12 +22,12 @@
                         <div class="col-12 mb-3" style="padding-top: 12px;">
                             <label for="nome" class="form-label">Nome:</label>
                             <input type="text" name="nome" id="nome" placeholder="Digite o nome"
-                            style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
+                            style="background: #F5F5F5; border-radius: 6px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" >
                         </div>
                         <div class="col-12 mb-3">
                             <label for="tipo_servidor" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor: </label>
-                            <select name="tipo_servidor" id="tipo_servidor" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
+                            <select name="tipo_servidor" id="tipo_servidor" style="background: #F5F5F5; border-radius: 6px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" aria-label="Default select example">
                                 <option value=""></option>
                                 @foreach ($tipo_servidores as $tipo_servidor)
@@ -39,20 +39,20 @@
                         <div class="col-12 mb-3">
                             <label for="cpf" class="form-label">CPF:</label>
                             <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF"
-                            style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
+                            style="background: #F5F5F5; border-radius: 6px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
                         </div>
                         <div class="col-12 mb-3">
                             <label for="email" class="form-label">E-mail:</label>
                             <input type="text" name="email" id="email" placeholder="Digite o E-mail"
-                            style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
+                            style="background: #F5F5F5; border-radius: 6px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
                         </div>
                 
                         <div class="col-12 mb-3">
                             <label for="senha" class="form-label">Senha:</label>
                             <input type="password" name="senha" id="senha" placeholder="Digite a senha"
-                            style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
+                            style="background: #F5F5F5; border-radius: 6px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
                         </div>
                         <br>
@@ -81,7 +81,7 @@
 <style>
     .btn{
         box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 13px;
+        border-radius: 6px;
         width: 170px;
     }
     .btn-primary{
