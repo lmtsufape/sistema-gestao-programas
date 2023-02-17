@@ -99,10 +99,10 @@
     @else
     <br>
 
-    <div class="d-flex flex-wrap justify-content-center">
+    <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
        <div class="col-md-9 corpo p-2 px-3">
         <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
-        min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px">
+        min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
             <thead>
               <tr>
                 <th scope="col">Nome</th>
