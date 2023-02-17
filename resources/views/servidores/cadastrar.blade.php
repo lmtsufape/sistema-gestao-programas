@@ -20,16 +20,21 @@
 
                     <div class="row">
                         <div class="col-12 mb-3" style="padding-top: 12px;">
-                            <label for="nome" class="form-label">Nome:</label>
-                            <input type="text" name="nome" id="nome" placeholder="Digite o nome"
-                            style="background: #F5F5F5; border-radius: 6px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" >
+                            <label for="nome" class="titulo">Nome:</label>
+                            <input type="text" class="boxinfo" name="nome" id="nome" required placeholder="Digite o nome">
                         </div>
+
+                        <div class="col-12">
+                            <label for="inputNomeSocial" class="titulo">Nome Social:</label>
+                            <input type="text" class="boxinfo" id="inputNomeSocial" required name="nome_social" placeholder="Digite o nome social"><br><br>
+                        </div>
+
                         <div class="col-12 mb-3">
-                            <label for="tipo_servidor" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor: </label>
-                            <select name="tipo_servidor" id="tipo_servidor" style="background: #F5F5F5; border-radius: 6px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" aria-label="Default select example">
-                                <option value=""></option>
+
+                            <label for="tipo_servidor" class="titulo" >Tipo do servidor: </label>
+                            <select name="tipo_servidor" id="tipo_servidor" class="boxinfo" required aria-label="Default select example">
+                                <option value="">Selecione o tipo de servidor</option>
+
                                 @foreach ($tipo_servidores as $tipo_servidor)
                                     <option value="{{$tipo_servidor->id}}">{{$tipo_servidor->nome}}</option>
                                 @endforeach
@@ -37,23 +42,18 @@
                         </div>
 
                         <div class="col-12 mb-3">
-                            <label for="cpf" class="form-label">CPF:</label>
-                            <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF"
-                            style="background: #F5F5F5; border-radius: 6px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
+                            <label for="cpf" class="titulo">CPF:</label>
+                            <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF" class="boxinfo">
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="email" class="form-label">E-mail:</label>
-                            <input type="text" name="email" id="email" placeholder="Digite o E-mail"
-                            style="background: #F5F5F5; border-radius: 6px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
+                            <label for="email" class="titulo">E-mail:</label>
+                            <input type="text" name="email" id="email" placeholder="Digite o E-mail" class="boxinfo">
                         </div>
                 
                         <div class="col-12 mb-3">
-                            <label for="senha" class="form-label">Senha:</label>
-                            <input type="password" name="senha" id="senha" placeholder="Digite a senha"
-                            style="background: #F5F5F5; border-radius: 6px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
+                            <label for="senha" class="titulo">Senha:</label>
+                            <input type="password" name="senha" id="senha" placeholder="Digite a senha" class="boxinfo">
+
                         </div>
                         <br>
                     </div>
@@ -103,11 +103,20 @@
         border-color: #4353ab;
     }
 
-    .form-control{
-        border-radius: 8px;
-        box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.25);
-        text-align: start;
-        font-size: 16px;
+    .titulo {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        display: flex;
+        color: #131833;
+    }
+    .boxinfo{
+        background: #F5F5F5;
+        border-radius: 6px;
+        border: 1px #D3D3D3;
+        width: 100%;
+        padding: 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
     }
 
     .card.card-cadastro{
