@@ -92,59 +92,60 @@
       </div>
     @else
     <br>
-      <div style="display: flex; gap: 30px">
-
-        <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-        ;margin-bottom: 5px; min-height: 350px">
+    <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+        <div class="col-md-9 corpo p-2 px-3">
+         <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
+         min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
           <thead>
-          <tr>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">E-mail</th>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">CPF</th>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">Curso</th>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">Semestre de entrada</th>
-            <th scope="col">Ações</th>
-          </tr>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Curso</th>
+                <th scope="col">Semestre de entrada</th>
+                <th class="text-center">Ações</th>
+            </tr>
           </thead>
           @foreach ($alunos as $aluno)
           <tbody>
                 <tr>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->user->name}}</td>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->user->email}}</td>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->cpf}}</td>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->curso->nome}}</td>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$aluno->semestre_entrada}}</td>
-                  <td>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
-                      <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
-                    </a>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$aluno->id}}">
-                      <img src="{{asset("images/document.png")}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
-                      {{--  TODO: Fica pra fazer o modal depois  --}}
-                    </a>
-                    <a href="{{url("/alunos/$aluno->id/edit")}}">
-                      <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar aluno"  style="height: 30px; width: 30px;">
-                    </a>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->id}}">
-                      <img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
-                    </a>
+                  <td class="align-middle">{{$aluno->user->name}}</td>
+                  <td class="align-middle">{{$aluno->user->email}}</td>
+                  <td class="align-middle">{{$aluno->cpf}}</td>
+                  <td class="align-middle">{{$aluno->curso->nome}}</td>
+                  <td class="align-middle">{{$aluno->semestre_entrada}}</td>
+                  <td class="align-middle">
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
+                            <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
+                        </a>
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$aluno->id}}">
+                            <img src="{{asset("images/document.png")}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
+                        </a>
+                        <a href="{{url("/alunos/$aluno->id/edit")}}">
+                            <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar aluno"  style="height: 30px; width: 30px;">
+                        </a>
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->id}}">
+                            <img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
+                        </a>
 
 
                   </td>
                 </tr>
+                <tr></tr>
                 @include("Alunos.components.modal_show", ["aluno" => $aluno])
                 @include("Alunos.components.modal_delete", ["aluno" => $aluno])
               @endforeach
           </tbody>
         </table>
 
-        <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
-        ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
+        </div>
 
-          <div style="align-self: center; margin-right: auto">
-            <br>
-            <h4 style="font-size: 15px">Legenda dos ícones:</h4>
-          </div>
+        <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+        width: 150px; height: 50%;">
+                <div style="align-self: center; margin-right: auto">
+                    <br>
+                    <h4 style="font-size: 15px">Legenda dos ícones:</h4>
+                </div>
 
           <div style="align-self: center; margin-right: auto">
             <div style="display: flex; margin: 10px">
@@ -174,19 +175,8 @@
           </div>
         </div>
       </div>
-      {{--  <div style="margin: auto; width: 45%; padding: 10px;">
-        <div class="pagination">
-          <a href="#" style="border-radius: 15px; background: #131833; color: white;">Anterior</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">1</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">2</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">3</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">4</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">...</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">15</a>
-          <a href="#" style="border-radius: 15px; background: #131833; color: white;">Próximo</a>
-        </div>
-      </div>  --}}
 
+  </div>
   </div>
     @endif
   </div>

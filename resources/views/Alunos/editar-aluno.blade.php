@@ -64,9 +64,9 @@
     @endif
     <br>
     <div class="boxchild">
-        <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+        <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
             Editar Aluno</h1>
-        <hr>
+        <hr style="color: #2D3875;">
         <form action="{{url("/alunos/$aluno->id")}}" method="POST">
             @csrf
             @method("PUT")

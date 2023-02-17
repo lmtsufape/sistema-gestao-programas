@@ -80,25 +80,25 @@
         <br>
     </div>
 
-    <div style="display: flex; gap: 30px; margin: 15px 15px 15px 15px;">
-
-        <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-        ;margin-bottom: 5px; min-height: 350px">
+<div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+       <div class="col-md-9 corpo p-2 px-3">
+        <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
+        min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
             <thead>
                 <tr>
-                    <th scope="col" style="border-right: 1px solid #d3d3d3;">Data de início</th>
-                    <th scope="col" style="border-right: 1px solid #d3d3d3;">Data de fim</th>
-                    <th scope="col" style="border-right: 1px solid #d3d3d3;">Programa</th>
+                    <th scope="col">Data de início</th>
+                    <th scope="col">Data de fim</th>
+                    <th scope="col">Programa</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($editals as $edital)
                     <tr>
-                        <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
-                        <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
-                        <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
-                        <td>
+                        <td class="align-middle">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td class="align-middle">
+                        <td class="align-middle">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td class="align-middle">
+                        <td class="align-middle">{{$edital->programa->nome}}</td class="align-middle">
+                        <td class="align-middle">
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
                             <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
                             </a>
@@ -112,6 +112,9 @@
 
                         </td>
                     </tr>
+                    <tr>
+                        {{--  Não apagar esse tr  --}}
+                    </tr>
 
                     @include("Edital.components.modal_show", ["edital" => $edital, "orientadores" => $orientadores])
                     @include("Edital.components.modal_delete", ["edital" => $edital])
@@ -119,14 +122,14 @@
                 @endforeach
             </tbody>
         </table>
+       </div>
 
-        <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
-            ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
-
-          <div style="align-self: center; margin-right: auto">
-            <br>
-            <h4 style="font-size: 15px">Legenda dos ícones:</h4>
-          </div>
+       <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+       width: 150px; height: 50%;">
+               <div style="align-self: center; margin-right: auto">
+                   <br>
+                   <h4 style="font-size: 15px">Legenda dos ícones:</h4>
+               </div>
 
           <div style="align-self: center; margin-right: auto">
             <div style="display: flex; margin: 10px">

@@ -37,11 +37,11 @@
     <br>
     <div class="boxchild">
         <div class="row">
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
                 Cadastrar Disciplina</h1>
         </div>
 
-        <hr>
+        <hr style="color:#2D3875;">
 
         <form action="{{route("disciplinas.store")}}" method="post">
             @csrf

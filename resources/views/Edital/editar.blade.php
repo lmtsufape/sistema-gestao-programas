@@ -65,11 +65,11 @@
         <br>
         <div class="boxchild">
             <div class="row">
-                <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+                <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
                     Editar Edital</h1>
             </div>
 
-            <hr>
+            <hr style="color: #2D3875;">
                 <form action="{{url("/editals/$edital->id")}}" method="post">
                     @csrf
                     @method("put")
@@ -85,6 +85,14 @@
                         <option value=""></option>
                         @foreach ($programas as $programa)
                             <option value="{{$programa->id}}" {{$edital->id_programa == $programa->id ? 'selected' : ''}}>{{$programa->nome}}</option>
+                        @endforeach
+                    </select><br><br>
+
+                    <label class="titulo" for="disciplinas">Disciplinas:</label>
+                    <select aria-label="Default select example" class="boxinfo" name="disciplinas[]" id="disciplinas" multiple>
+                        <option value=""></option>
+                        @foreach ($disciplinas as $disciplina)
+                            <option value="{{$disciplina->id}}" {{in_array($disciplina->id, $idsDisciplinasDoEdital) ? 'selected' : ''}}>{{$disciplina->nome}}</option>
                         @endforeach
                     </select><br><br>
 
@@ -108,6 +116,12 @@
             // max_shown_results : 5,
             no_results_text: "Não possui programas."
         });
+
+        $("#disciplinas").chosen({
+            placeholder_text_multiple: "Selecione uma disciplina",
+            // max_shown_results : 5,
+            no_results_text: "Não possui disciplinas."
+            });
 
         $("#curso").chosen({
             placeholder_text_single: "Selecione um curso",

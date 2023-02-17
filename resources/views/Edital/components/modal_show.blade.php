@@ -15,6 +15,20 @@
 
                     <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">Programa:</label>
                     <div style="background: #EEEEEE; border-radius: 13px; border: 1px #EEEEEE; width: 100%; padding: 5px; box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);">{{$edital->programa->nome}}</div>
+
+                    <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833;" class="form-label mt-3">Disciplinas:</label>
+                    <div  style="background: #EEEEEE; border-radius: 13px; border: 1px #EEEEEE; width: 100%; padding: 5px; box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);">
+
+                      @foreach ($edital->edital_disciplina as $edital_disciplina)
+                              @foreach ($disciplinas as $disciplina)
+                                  @if ($edital_disciplina->id_disciplina == $disciplina->id)
+                                    <label>- {{$disciplina->nome}}</label><br>
+                                    @break
+                                  @endif
+                              @endforeach
+                      @endforeach
+                    
+                  </div>
                 </div>
             </div>
         </div>

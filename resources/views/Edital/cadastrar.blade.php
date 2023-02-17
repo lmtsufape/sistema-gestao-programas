@@ -64,11 +64,11 @@
 
     <div class="boxchild">
         <div class="row">
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
             Cadastrar Edital</h1>
         </div>
 
-        <hr>
+        <hr style="color: #2D3875;">
 
         <form action="{{route('editals.store')}}" method="post">
             @csrf
@@ -84,6 +84,13 @@
                 <option value=""></option>
                 @foreach ($programas as $programa)
                     <option value="{{$programa->id}}">{{$programa->nome}}</option>
+                @endforeach
+            </select><br><br>
+            <label class="titulo" for="disciplinas">Disciplinas:</label>
+            <select aria-label="Default select example" class="boxinfo" name="disciplinas[]" id="disciplinas" multiple>
+                <option value=""></option>
+                @foreach ($disciplinas as $disciplina)
+                    <option value="{{$disciplina->id}}">{{$disciplina->nome}}</option>
                 @endforeach
             </select><br><br>
 
@@ -121,6 +128,13 @@
             // max_shown_results : 5,
             no_results_text: "Não possui orientadores."
         });
+
+        $("#disciplinas").chosen({
+            placeholder_text_multiple: "Selecione uma disciplina",
+            // max_shown_results : 5,
+            no_results_text: "Não possui disciplinas."
+            });
+
 
         $('div.chosen-container-single').addClass('required');
         $('div.chosen-container-multi').addClass('required');

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Edital;
 use App\Models\Curso;
+use App\Models\Disciplina;
+use App\Models\Edital_disciplina;
 use App\Models\Programa;
 use App\Models\Orientador;
 use App\Models\Edital_orientador;
@@ -41,12 +43,14 @@ class EditalController extends Controller
                 }
             })->select("editals.*")->get();
 
+            $disciplinas = Disciplina::all();
             $orientadores = Orientador::all();
-            return view("Edital.index", compact("editals", "orientadores"));
+            return view("Edital.index", compact("editals", "orientadores", "disciplinas"));
         } else {
+            $disciplinas = Disciplina::all();
             $orientadores = Orientador::all();
             $editals = Edital::all();
-            return view("Edital.index", compact('editals', 'orientadores'));
+            return view("Edital.index", compact('editals', 'orientadores', 'disciplinas'));
         }
     }
 
@@ -57,16 +61,11 @@ class EditalController extends Controller
      */
     public function create()
     {
+        $disciplinas = Disciplina::all();
         $programas = Programa::all();
-        return view("Edital.cadastrar", compact("programas"));
+        return view("Edital.cadastrar", compact("programas", "disciplinas"));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(EditalStoreFormRequest $request)
     {
         DB::beginTransaction();
@@ -76,7 +75,17 @@ class EditalController extends Controller
             $edital->data_inicio = $request->data_inicio;
             $edital->data_fim = $request->data_fim;
             $edital->id_programa = $request->programa;
+            //$edital ->id_disciplina = $request ->disciplina;
             $edital->save();
+
+            if($request->disciplinas){
+                foreach($request->disciplinas as $id_disciplina){
+                    $edital_disciplina = new Edital_disciplina();
+                    $edital_disciplina->id_edital = $edital->id;
+                    $edital_disciplina->id_disciplina = $id_disciplina;
+                    $edital_disciplina->save();
+                }
+            }
 
             DB::commit();
 
@@ -109,7 +118,13 @@ class EditalController extends Controller
     {
         $edital = Edital::find($id);
         $programas = Programa::all();
-        return view("Edital.editar", compact("edital", "programas"));
+        $disciplinas = Disciplina::all();
+        $idsDisciplinasDoEdital = [];
+
+        foreach($edital->edital_disciplina as $edital_disciplina){
+            $idsDisciplinasDoEdital[] = $edital_disciplina->id_disciplina;
+        }
+        return view("Edital.editar", compact("edital", "programas", "disciplinas", "idsDisciplinasDoEdital"));
     }
 
     /**
@@ -128,6 +143,16 @@ class EditalController extends Controller
             $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
             $edital->id_programa = $request->programa ? $request->programa : $edital->id_programa;
             $edital->update();
+
+            Edital_disciplina::where("id_edital", $edital->id)->delete();
+            if($request->disciplinas){
+                foreach($request->disciplinas as $id_disciplina){
+                    $edital_disciplina = new Edital_disciplina();
+                    $edital_disciplina->id_edital = $edital->id;
+                    $edital_disciplina->id_disciplina = $id_disciplina;
+                    $edital_disciplina->save();
+                }
+            }
 
             DB::commit();
 

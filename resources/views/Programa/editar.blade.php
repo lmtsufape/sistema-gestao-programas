@@ -67,10 +67,10 @@
     <br>
     <div class="boxchild">
         <div class="row">
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
                 Editar Programa</h1>
         </div>
-        <hr>
+        <hr style="color:#2D3875;">
 
         <form action="{{url("/programas/$programa->id")}}" method="post">
             @csrf

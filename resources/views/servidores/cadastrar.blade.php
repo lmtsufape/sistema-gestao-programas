@@ -11,9 +11,9 @@
 <br>
     <div class="d-flex justify-content-center align-items-center">
         <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color:#2D3875;">
                 Cadastrar Servidor</h2>
-            <hr>
+            <hr style="color:#2D3875;">
                 <form action="{{route('servidores.store')}}" method="POST" class="row needs-validation" novalidate style="text-align:start;">
                     @csrf
                     @method("POST")
@@ -30,9 +30,11 @@
                         </div>
 
                         <div class="col-12 mb-3">
+
                             <label for="tipo_servidor" class="titulo" >Tipo do servidor: </label>
                             <select name="tipo_servidor" id="tipo_servidor" class="boxinfo" required aria-label="Default select example">
                                 <option value="">Selecione o tipo de servidor</option>
+
                                 @foreach ($tipo_servidores as $tipo_servidor)
                                     <option value="{{$tipo_servidor->id}}">{{$tipo_servidor->nome}}</option>
                                 @endforeach
@@ -51,6 +53,7 @@
                         <div class="col-12 mb-3">
                             <label for="senha" class="titulo">Senha:</label>
                             <input type="password" name="senha" id="senha" placeholder="Digite a senha" class="boxinfo">
+
                         </div>
                         <br>
                     </div>
@@ -78,7 +81,7 @@
 <style>
     .btn{
         box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 13px;
+        border-radius: 6px;
         width: 170px;
     }
     .btn-primary{
