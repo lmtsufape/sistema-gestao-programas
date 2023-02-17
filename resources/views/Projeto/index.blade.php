@@ -94,51 +94,49 @@
       </div>
       @else
       <br>
-          <div style="display: flex; gap: 30px; margin: 15px 15px 15px 15px;">
+    <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+       <div class="col-md-9 corpo p-2 px-3">
+            <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
+            min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
+                <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                </thead>
+                @foreach ($projetos as $projetos)
+                <tbody>
+                        <tr>
+                        <td>{{$projetos->nome}}</td>
+                        <td>{{$projetos->descricao}}</td>
+                        <td>
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$projetos->id}}">
+                                <img src="{{asset("images/info.png")}}" alt="Info projeto">
+                            </a>
+                            <a href="{{url("/projetos/$projetos->id/edit")}}">
+                                <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar projeto">
+                            </a>
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$projetos->id}}">
+                                <img src="{{asset("images/delete.png")}}" alt="Deletar projeto">
+                            </a>
+                        </td>
+                        </tr>
+                        <tr></tr>
 
-              <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-              ;margin-bottom: 5px; min-height: 50px">
-              <thead>
-              <tr>
-                  <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
-                  <th scope="col" style="border-right: 1px solid #d3d3d3;">Descrição</th>
-                  <th scope="col">Ações</th>
-              </tr>
-              </thead>
-              @foreach ($projetos as $projetos)
-              <tbody>
-                      <tr>
-                      <td style="border-right: 1px solid #d3d3d3;">{{$projetos->nome}}</td>
-                      <td style="border-right: 1px solid #d3d3d3;">{{$projetos->descricao}}</td>
-                      <td>
-                          {{--  URL provisoria apenas para testar  --}}
-                          {{--  <a href="{{url("/projetos/$projetos->id/editals")}}">
-                              <img src="{{asset("images/listaredital.png")}}" alt="Listar edital">
-                          </a>  --}}
-                          <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$projetos->id}}">
-                              <img src="{{asset("images/info.png")}}" alt="Info projeto">
-                          </a>
-                          <a href="{{url("/projetos/$projetos->id/edit")}}">
-                              <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar projeto">
-                          </a>
-                          <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$projetos->id}}">
-                              <img src="{{asset("images/delete.png")}}" alt="Deletar projeto">
-                          </a>
-                      </td>
-                      </tr>
-
-                      @include("Projeto.components.modal_show", ["projeto" => $projetos])
-                      @include("Projeto.components.modal_delete", ["projeto" => $projetos])
-                  @endforeach
-              </tbody>
+                    @include("Projeto.components.modal_show", ["projeto" => $projetos])
+                    @include("Projeto.components.modal_delete", ["projeto" => $projetos])
+                    @endforeach
+                </tbody>
               </table>
+       </div>
 
-              <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
-              ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
-                  <div style="align-self: center; margin-right: auto">
-                      <br>
-                      <h4 style="font-size: 15px">Legenda dos ícones:</h4>
-                  </div>
+       <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+       width: 150px; height: 50%;">
+               <div style="align-self: center; margin-right: auto">
+                   <br>
+                   <h4 style="font-size: 15px">Legenda dos ícones:</h4>
+               </div>
 
                   <div style="align-self: center; margin-right: auto">
                       <div style="display: flex; margin: 10px">
