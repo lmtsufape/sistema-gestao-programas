@@ -138,11 +138,17 @@ class ServidorController extends Controller
         try{
             $servidor = Servidor::find($id);
 
-            $servidor->user->givePermission($request->permissao);
+            DB::beginTransaction();
 
+            DB::table('model_has_permissions')->where('model_id', $servidor->user->id)->delete();
+
+            $servidor->user->givePermissionTo($request->permissao);
+
+            DB::commit();
             return redirect("/servidores")->with('sucesso', 'Permissão adicionada com sucesso.');
 
         } catch(exception $e){
+            DB::rollback();
             return redirect()->back()->withErrors( "Falha ao adicionar permissao. tente novamente mais tarde." );
         }
     }
