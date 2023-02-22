@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ServidorFormRequest;
 use App\Http\Requests\ServidorFormUpdateRequest;
+use App\Http\Requests\AdicionarPermissaoFormRequest;
 use App\Models\Servidor;
 use App\Models\Tipo_servidor;
 use App\Models\User;
@@ -12,12 +13,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class ServidorController extends Controller
 {
 
     public function index(Request $request)
     {
+        $permissoes = DB::select('select * from permissions');
+
         if (sizeof($request-> query()) > 0){
             $campo = $request->query('campo');
             $valor = $request->query('valor');
@@ -36,10 +40,10 @@ class ServidorController extends Controller
                 }
             })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->get();
 
-            return view("servidores.index", compact("servidores"));
+            return view("servidores.index", compact("servidores", "permissoes"));
         } else {
             $servidores = Servidor::all();
-            return view("servidores.index", compact("servidores"));
+            return view("servidores.index", compact("servidores", "permissoes"));
         }
     }
 
@@ -128,5 +132,18 @@ class ServidorController extends Controller
     // Criado para visualizar a tela de editar servidor
     public function editar(){
         return view('servidores.editar');
+    }
+
+    public function adicionar_permissao($id, AdicionarPermissaoFormRequest $request){
+        try{
+            $servidor = Servidor::find($id);
+
+            $servidor->user->givePermission($request->permissao);
+
+            return redirect("/servidores")->with('sucesso', 'Permissão adicionada com sucesso.');
+
+        } catch(exception $e){
+            return redirect()->back()->withErrors( "Falha ao adicionar permissao. tente novamente mais tarde." );
+        }
     }
 }

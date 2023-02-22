@@ -119,12 +119,12 @@
             <div id="semestre" hidden>
 
                 <label class="titulo" for="sementreEntradaAluno">Semestre de entrada:</label>
-                <input class="boxinfo" type="text"  id="sementreEntradaAluno" name="ssementreEntradaAluno" required placeholder="Digite o semestre">
+                <input class="boxinfo" type="text"  id="sementreEntradaAluno" name="sementreEntradaAluno" placeholder="Digite o semestre">
                 <br><br>
             </div>
             <div id="matriculaOri" hidden>
                 <label class="titulo" for="matriculaOrientador">Matrícula:</label>
-                <input class="boxinfo" type="text"  id="matriculaOrientador" name="matriculaOrientador" required placeholder="Digite a matrícula">
+                <input class="boxinfo" type="text"  id="matriculaOrientador" name="matriculaOrientador" placeholder="Digite a matrícula">
                 <br><br>
             </div>
 

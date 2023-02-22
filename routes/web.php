@@ -33,6 +33,7 @@ Route::resource('/alunos', AlunoController::class);
 
 // Rotas de servidor
 Route::resource('/servidores', ServidorController::class);
+Route::post("/servidores/permissao/{id}", [ServidorController::class, "adicionar_permissao"]);
 
 // Rotas de orientador
 Route::resource('/orientadors', OrientadorController::class);
