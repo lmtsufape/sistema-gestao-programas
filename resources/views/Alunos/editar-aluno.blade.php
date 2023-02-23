@@ -94,16 +94,6 @@
             <label for="semestre_entrada" for="nome" class="titulo">Semestre de entrada:</label>
             <input type="text" id="semestre_entrada" name="semestre_entrada" value="{{$aluno->semestre_entrada}}" class="boxinfo"><br/><br>
 
-            <label for="tipo_servidor_editar" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nível de acesso:</label>
-            <select aria-label="Default select example" name="nivel_acesso" id="nivel_acesso" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
-                <option value="admin">Administrador</option>
-                <option value="servidor">Servidor</option>
-                <option value="pro_reitor">Pró-reitor</option>
-                <option value="orientador">Orientador</option>
-                <option value="aluno">Aluno</option>
-            </select><br><br>
-
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'"
                 style="background: #2D3875; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
