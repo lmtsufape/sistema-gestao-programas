@@ -1,6 +1,6 @@
 <div class="modal fade" id="modal_delete_{{$programa->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="border-radius: 15px; background-color: #F2F2F2; font-family: 'Roboto', sans-serif;">
+    <div class="modal-content" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header">
         <h5 class="modal-title title fw-bold " style="color: #131833; font-size: 25px; line-height: 47px;">Deletar Programa</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -21,3 +21,15 @@
     </div>
   </div>
 </div>
+<style>
+
+    .btn-secondary{
+        color: #fff;
+        background-color: #2d3875;
+        border-color: #2d3875;
+    }
+    .btn-secondary:hover{
+        background-color: #4353ab;
+        border-color: #4353ab;
+    }
+</style>
