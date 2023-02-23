@@ -24,4 +24,9 @@ class Edital extends Model
     {
         return $this->hasMany(Edital_aluno::class, "id_edital");
     }
+
+    public function edital_disciplina()
+    {
+        return $this->hasMany(Edital_disciplina::class, "id_edital");
+    }
 }

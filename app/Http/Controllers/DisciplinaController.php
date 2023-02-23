@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DisciplinaStoreFormRequest;
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
+use Exception;
 use App\Http\Requests\DisciplinaUpdateFormRequest;
 
 class DisciplinaController extends Controller

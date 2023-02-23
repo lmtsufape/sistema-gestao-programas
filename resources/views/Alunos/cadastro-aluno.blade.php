@@ -67,11 +67,11 @@
     <br>
     <div class="boxchild">
         <div class="row">
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
                 Cadastrar Aluno</h1>
         </div>
 
-        <hr>
+        <hr style="color: #2D3875;">
 
         <form action="{{route("alunos.store")}}" method="POST">
             @csrf
@@ -79,6 +79,9 @@
             <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
+            <label for="inputNomeSocial" class="titulo">Nome Social:</label>
+            <input class="boxinfo" type="text" id="inputNomeSocial" name="nome_social" required placeholder="Digite o nome social">
+            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputCpf" class="titulo">CPF:</label>
             <input class="boxinfo" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF">
@@ -91,7 +94,7 @@
 
 
             <label for="inputCurso" class="titulo">Curso:</label>
-            <select aria-label="Default select example" class="boxinfo"> id="inputCurso" name="curso">
+            <select aria-label="Default select example" class="boxinfo" id="inputCurso" name="curso">
                 <option value="">Selecione o curso</option>
                 @foreach ($cursos as $curso)
                 <option value="{{$curso->id}}">{{$curso->nome}}</option>

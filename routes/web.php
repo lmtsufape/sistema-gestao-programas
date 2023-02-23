@@ -58,6 +58,7 @@ Route::resource('/cursos', CursoController::class);
 
 // Rotas de Cadastrar-se
 Route::get('/cadastrar-se', [CadastrarSeController::class, "cadastrarSe"]);
+Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 
 // Rotas de projeto
 Route::resource('/projetos', ProjetoController::class);

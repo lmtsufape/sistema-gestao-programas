@@ -13,14 +13,28 @@ use App\Http\Requests\CursoUpdateFormRequest;
 
 class CursoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
 
+    public function index(Request $request) {
+        if (sizeof($request-> query()) > 0){
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
+
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $cursos = Curso::where(function ($query) use ($valor) {
+                if ($valor) {
+                    $query->orWhere("cursos.nome", "LIKE", "%{$valor}%");
+                }
+            })->orderBy('cursos.created_at', 'desc')->select("cursos.*")->get();
+            $disciplinas = Disciplina::all();
+            return view("Curso.index", compact("cursos", "disciplinas"));
+        } else {
+            $cursos = Curso::all();
+            $disciplinas = Disciplina::all();
+            return view("Curso.index", compact("cursos", "disciplinas"));
+        }
     }
 
     public function create()
@@ -96,7 +110,7 @@ class CursoController extends Controller
             }
             DB::commit();
             
-            return redirect("/cursos/$curso->id/edit")->with('sucesso', 'Curso editado com sucesso');
+            return redirect("/cursos")->with('sucesso', 'Curso editado com sucesso');
         } catch(exception $e){
             DB::rollBack();
             return redirect()->back()->withErrors("Falha ao editar curso.");
@@ -111,6 +125,21 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try{
+            $curso = Curso::find($id);
+
+            Curso_disciplina::where("id_curso", $id)->delete();
+
+            Curso::where("id", $id)->delete();
+
+            DB::commit();
+
+            return redirect("/cursos")->with('sucesso', 'Curso deletado com sucesso.');
+
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao deletar curso. tente novamente mais tarde." );
+        }
     }
 }
