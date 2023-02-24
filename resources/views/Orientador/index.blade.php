@@ -1,13 +1,11 @@
-@extends("templates.app")
+extends("templates.app")
 
 @section("body")
 
 <style>
   pagination {
     display: inline-block;
-
   }
-
   .pagination a {
     color: black;
     float: left;
@@ -17,17 +15,14 @@
     border: 1px solid #ddd;
     margin: 10px 4px;
   }
-
   .pagination a.active {
     background-color: #3B864F;
     color: white;
     border: 1px solid #3B864F;
   }
-
   .pagination a:hover:not(.active) {
     background-color: #34A853;
   }
-
 </style>
 
 
@@ -191,15 +186,12 @@
   </div>
 
   <script type="text/javascript">
-
     function exibirModalEditar(id){
       $('#modal_edit_' + id).modal('show');
     }
-
     function exibirModalDeletar(id){
       $('#modal_delete_' + id).modal('show');
     }
-
     function exibirModalVisualizar(id){
       $('#modal_show_' + id).modal('show');
     }
@@ -229,9 +221,8 @@
   </script>
   @endif
 
-  @else
-    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
-  @endcan
+@else
+  <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
+@endcan
 @endsection
-
