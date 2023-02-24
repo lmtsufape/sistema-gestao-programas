@@ -12,7 +12,6 @@
     <br>
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
       <h1><strong>Disciplinas</strong></h1>
-      {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
       <form action="{{route("disciplinas.index")}}" method="GET">
         <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
               border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -35,7 +34,7 @@
               margin: auto;"/>
       </form>
     </div>
-    <div style="display: contents; align-content: center; align-items: center;">
+    <div style="padding-bottom: 6px">
 
         <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
         font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
@@ -44,7 +43,7 @@
         href="{{route("disciplinas.create")}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar Disciplina" style="padding-bottom: 5px"> Cadastrar Disciplina
         </a>
-        <br>
+
     </div>
 
     @if (sizeof($disciplinas) == 0)
@@ -54,7 +53,7 @@
         </p>
       </div>
     @else
-      <br>
+
 
       <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
         <div class="col-md-9 corpo p-2 px-3">
