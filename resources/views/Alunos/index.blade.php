@@ -69,18 +69,18 @@
       />
 
     </form>
-  </div>
-    <div style="display: contents; align-content: center; align-items: center;">
 
-        <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-        font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
-        align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-        padding-left: 10px;"
-        href="{{route("alunos.create")}}">
+  </div>
+
+    <div style="padding-bottom: 6px">
+    <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
+    font-weight: 400; font-size: 24px; padding-top: 5px; padding-bottom: 6px; padding-right: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none; padding-left: 10px;"
+    href="{{route("alunos.create")}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
-        </a>
-        <br>
+    </a>
     </div>
+
 
 
 
@@ -91,12 +91,13 @@
         </p>
       </div>
     @else
-    <br>
+
     <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
         <div class="col-md-9 corpo p-2 px-3">
          <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
          min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
           <thead>
+
             <tr>
                 <th scope="col">Nome</th>
                 <th scope="col">E-mail</th>
