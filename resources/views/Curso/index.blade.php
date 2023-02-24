@@ -82,7 +82,7 @@
         href="{{route("cursos.create")}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar curso" style="padding-bottom: 5px"> Cadastrar Curso
         </a>
-        <br>
+
     </div>
 
     @if (sizeof($cursos) == 0)
@@ -93,7 +93,7 @@
       </div>
     @else
     @endif
-        <br>
+        
         <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
             <div class="col-md-9 corpo p-2 px-3">
              <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
