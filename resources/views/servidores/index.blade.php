@@ -84,17 +84,17 @@
                   <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar servidor">
                 </a>
                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$servidor->id}}">
-                  <img src="{{asset("images/delete.png")}}" alt="Deletar servidor">
-                </a>
-                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_adicionaPermissao_{{$servidor->id}}">
-                    Permissão
-                </a>
-              </td>
-          </tr>
-          @include("servidores.components.modal_show", ["servidor" => $servidor])
-          @include("servidores.components.modal_delete", ["servidor" => $servidor])
-          @include("servidores.components.modal_adicionaPermissao", ["servidor" => $servidor])
-          @endforeach
+                    <img src="{{asset("images/delete.png")}}" alt="Deletar servidor">
+                  </a>
+                  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_adicionaPermissao_{{$servidor->id}}">
+                    <img src="{{asset("images/user-key.png")}}" alt="Permissão servidor">
+                  </a>
+                </td>
+            </tr>
+            @include("servidores.components.modal_show", ["servidor" => $servidor])
+            @include("servidores.components.modal_delete", ["servidor" => $servidor])
+            @include("servidores.components.modal_adicionaPermissao", ["servidor" => $servidor])
+            @endforeach
         </tbody>
       </table>
       </div>
@@ -127,7 +127,10 @@
             <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
           </div>
-
+          <div style="display: flex; margin: 10px">
+            <a><img src="{{asset("images/user-key.png")}}" alt="Permissão servidor" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Permissões</p>
+          </div>
         </div>
       </div>
       @endif
@@ -178,3 +181,4 @@
   <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
 @endcan
 @endsection
+
