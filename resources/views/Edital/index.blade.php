@@ -74,8 +74,16 @@
           </a>
           <br>
       </div>
+    <div style="padding-bottom: 6px">
+        <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
+        font-weight: 400; font-size: 24px; padding-top: 5px; padding-bottom: 6px; padding-right: 15px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none; padding-left: 10px;"
+        href="{{route("editals.create")}}">
+        <img src="{{asset("images/plus.png")}}" alt="Cadastrar edital" style="padding-bottom: 5px"> Cadastrar Edital
+        </a>
+    </div>
 
-  <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+      <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
         <div class="col-md-9 corpo p-2 px-3">
           <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
           min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
