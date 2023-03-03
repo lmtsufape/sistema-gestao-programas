@@ -1,4 +1,4 @@
-extends("templates.app")
+@extends("templates.app")
 
 @section("body")
 
