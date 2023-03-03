@@ -138,6 +138,9 @@
   </div>
 
   <script type="text/javascript">
+    function exibirModalAdicionaPermissao(id) {
+      $('#modal_adicionaPermissao_' + id).modal('show');
+    }
     function exibirModalDeletar(id) {
       $('#modal_delete_' + id).modal('show');
     }
