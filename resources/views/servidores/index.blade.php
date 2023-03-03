@@ -86,10 +86,14 @@
                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$servidor->id}}">
                   <img src="{{asset("images/delete.png")}}" alt="Deletar servidor">
                 </a>
+                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_adicionaPermissao_{{$servidor->id}}">
+                    Permissão
+                </a>
               </td>
           </tr>
           @include("servidores.components.modal_show", ["servidor" => $servidor])
           @include("servidores.components.modal_delete", ["servidor" => $servidor])
+          @include("servidores.components.modal_adicionaPermissao", ["servidor" => $servidor])
           @endforeach
         </tbody>
       </table>
@@ -123,6 +127,7 @@
             <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
           </div>
+
         </div>
       </div>
       @endif
@@ -130,6 +135,9 @@
   </div>
 
   <script type="text/javascript">
+    function exibirModalAdicionaPermissao(id) {
+      $('#modal_adicionaPermissao_' + id).modal('show');
+    }
     function exibirModalDeletar(id) {
       $('#modal_delete_' + id).modal('show');
     }
