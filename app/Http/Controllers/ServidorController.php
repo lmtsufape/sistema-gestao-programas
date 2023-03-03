@@ -64,6 +64,8 @@ class ServidorController extends Controller
             ])->givePermissionTo('servidor')
         ){
             $mensagem_sucesso = "Orientador cadastrado com sucesso.";
+
+
             return redirect('/servidores')->with('sucesso', 'Servidor cadastrado com sucesso.');
 
         } else {
