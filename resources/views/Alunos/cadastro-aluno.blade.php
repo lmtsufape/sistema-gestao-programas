@@ -56,6 +56,7 @@
     }
 </style>
 
+@canany(['admin', 'servidor'])
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
 
     @if (session('sucesso'))
@@ -123,6 +124,10 @@
         </form>
     </div>
 </div>
+@elsecan
+    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
+@endcan
 
 <script type="text/javascript">
     (() => {

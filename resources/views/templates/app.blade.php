@@ -18,7 +18,7 @@
             padding: 5px;
             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
         }
-        
+
     </style>
   <head>
     <meta charset="UTF-8">
@@ -42,11 +42,11 @@
 
   <body class="d-flex flex-column min-vh-100">
     <header>
-      <!-- Isso aqui é a barra de cima --!>
+      <!-- Isso aqui é a barra de cima -->
       <nav class="navbar navbar-dark d-flex" style="background: #F4F5FB; box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);">
         <div class="container-fluid">
           @auth
-          <!-- Isso aqui é o botão da barra lateral --!>
+          <!-- Isso aqui é o botão da barra lateral -->
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
             aria-controls="offcanvasWithBothOptions">
               <span><img src="{{asset("images/sanduiche.png")}}" alt="sanduiche" style="width: 20px; height: 20px;"></span>

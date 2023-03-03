@@ -1,12 +1,12 @@
 <div class="modal fade" id="modal_delete_{{$curso->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content modal-create" style="border-radius: 15px; background-color: #F2F2F2; font-family: 'Roboto', sans-serif;">
+    <div class="modal-content modal-create" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header">
       <h5 class="modal-title title fw-bold " style="color: #131833; font-size: 25px; line-height: 47px;">Deletar Curso</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">Deseja realmente deletar o curso?</p>
+        <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">Deseja realmente deletar o curso de {{$curso->nome}}?</p>
       </div>
 
       <div class="modal-footer d-flex justify-content-between">
