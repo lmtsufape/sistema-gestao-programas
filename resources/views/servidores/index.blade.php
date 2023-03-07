@@ -34,14 +34,13 @@
                 margin: auto;" />
       </form>
     </div>
-    <div style="display: contents; align-content: center; align-items: center;">
-      <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-      font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
-      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;" href="{{route('servidores.create')}}">
+    <div style="padding-bottom: 6px">
+      <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
+      font-weight: 400; font-size: 24px; padding-top: 5px; padding-bottom: 6px; padding-right: 15px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none; padding-left: 10px;"
+      href="{{route('servidores.create')}}">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar servidor" style="padding-bottom: 5px;"> Cadastrar servidor
       </a>
-      <br>
     </div>
 
     @if (sizeof($servidores) == 0)
@@ -51,8 +50,7 @@
       </p>
     </div>
     @else
-    <br>
-    <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+      <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
       <div class="col-md-9 corpo p-2 px-3">
       <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
       min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
@@ -84,13 +82,17 @@
                   <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar servidor">
                 </a>
                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$servidor->id}}">
-                  <img src="{{asset("images/delete.png")}}" alt="Deletar servidor">
-                </a>
-              </td>
-          </tr>
-          @include("servidores.components.modal_show", ["servidor" => $servidor])
-          @include("servidores.components.modal_delete", ["servidor" => $servidor])
-          @endforeach
+                    <img src="{{asset("images/delete.png")}}" alt="Deletar servidor">
+                  </a>
+                  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_adicionaPermissao_{{$servidor->id}}">
+                    <img src="{{asset("images/user-key.png")}}" alt="Permissão servidor">
+                  </a>
+                </td>
+            </tr>
+            @include("servidores.components.modal_show", ["servidor" => $servidor])
+            @include("servidores.components.modal_delete", ["servidor" => $servidor])
+            @include("servidores.components.modal_adicionaPermissao", ["servidor" => $servidor])
+            @endforeach
         </tbody>
       </table>
       </div>
@@ -123,6 +125,10 @@
             <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
           </div>
+          <div style="display: flex; margin: 10px">
+            <a><img src="{{asset("images/user-key.png")}}" alt="Permissão servidor" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Permissões</p>
+          </div>
         </div>
       </div>
       @endif
@@ -130,6 +136,9 @@
   </div>
 
   <script type="text/javascript">
+    function exibirModalAdicionaPermissao(id) {
+      $('#modal_adicionaPermissao_' + id).modal('show');
+    }
     function exibirModalDeletar(id) {
       $('#modal_delete_' + id).modal('show');
     }

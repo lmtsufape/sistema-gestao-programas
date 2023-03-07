@@ -10,6 +10,7 @@ use App\Http\Controllers\EditalController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\CadastrarSeController;
 use App\Http\Controllers\ProjetoController;
+use App\Http\Controllers\FrequenciaController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +66,7 @@ Route::resource('/projetos', ProjetoController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+// Rotas de Frequencia mensal
+Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
 
 
