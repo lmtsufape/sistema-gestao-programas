@@ -37,7 +37,7 @@
             <br>
             <div class="boxchild">
                 <div class="row">
-                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
                         Cadastrar Disciplina</h1>
                 </div>
 
@@ -58,7 +58,7 @@
                         <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
                                     display: inline-block;
                                     border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal; font-weight: 400; font-size: 24px;
-                                    line-height: 29px; text-align: center; padding: 5px 15px;"> 
+                                    line-height: 29px; text-align: center; padding: 5px 15px;">
                     </div>
                 </form>
             </div>
