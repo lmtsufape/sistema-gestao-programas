@@ -112,7 +112,9 @@
         </tr>
 
         <!-- Modal show -->
+        @include('Programa.components_alunos.modal_show')
         <!-- Modal delete-->
+        @include('Programa.components_alunos.modal_delete')
 
 
         <!-- endforeach -->
