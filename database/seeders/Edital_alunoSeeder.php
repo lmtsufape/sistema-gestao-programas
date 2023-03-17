@@ -15,6 +15,7 @@ class Edital_alunoSeeder extends Seeder
     public function run()
     {
         $edital_aluno = Edital_aluno::create([
+            'nome' => "Teste",
             'id_edital' => 1,
             'id_aluno' => 1,
             'bolsa' => "Voluntária",

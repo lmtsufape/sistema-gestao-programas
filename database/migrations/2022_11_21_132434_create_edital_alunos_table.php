@@ -15,10 +15,11 @@ class CreateEditalAlunosTable extends Migration
     {
         Schema::create('edital_alunos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_edital')->nullable(false)->constrained('editals');
-            $table->foreignId('id_aluno')->nullable(false)->constrained('alunos');
-            $table->string('bolsa')->nullable(false);
-            $table->string('valor_bolsa')->nullable(false);
+            $table->string('nome')->nullable(false);
+            $table->foreignId('id_edital')->nullable(true)->constrained('editals');
+            $table->foreignId('id_aluno')->nullable(true)->constrained('alunos');
+            $table->string('bolsa')->nullable(true);
+            $table->string('valor_bolsa')->nullable(true);
             $table->timestamps();
         });
     }

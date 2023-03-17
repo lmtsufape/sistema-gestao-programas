@@ -10,6 +10,7 @@ class Edital_aluno extends Model
     use HasFactory;
 
     protected $fillable = [
+        'nome',
         'id_edital',
         'id_aluno',
         'bolsa',

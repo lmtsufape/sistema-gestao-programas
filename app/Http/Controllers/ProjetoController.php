@@ -3,16 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ProjetoStoreFormRequest;
 use App\Models\Edital_aluno;
 use App\Models\Edital;
 
 class ProjetoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $projetos = Edital_aluno::all();
@@ -35,9 +32,13 @@ class ProjetoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjetoStoreFormRequest $request)
     {
-        //
+        $projeto = new Edital_aluno();
+        $projeto->nome=$request->nome;
+        $projeto->save();
+
+        return redirect('/projetos/create')->with('sucesso', 'Projeto cadastrado com sucesso.');
     }
 
     /**

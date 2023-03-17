@@ -109,9 +109,9 @@
               @foreach ($projetos as $projeto)
               <tbody>
                       <tr>
-                      <td style="border-right: 1px solid #d3d3d3;">{{$projeto->aluno->user->name}}</td>
-                      <td style="border-right: 1px solid #d3d3d3;">{{$projeto->bolsa}}</td>
-                      <td style="border-right: 1px solid #d3d3d3;">{{$projeto->valor_bolsa}}</td>
+                      <td style="border-right: 1px solid #d3d3d3;">{{$projeto->name}}</td>
+                      <!-- <td style="border-right: 1px solid #d3d3d3;">{{$projeto->bolsa}}</td>
+                      <td style="border-right: 1px solid #d3d3d3;">{{$projeto->valor_bolsa}}</td> -->
                       <td>
                           {{--  URL provisoria apenas para testar  --}}
                           {{--  <a href="{{url("/projeto/$projeto->id/editals")}}">

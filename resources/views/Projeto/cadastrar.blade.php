@@ -73,33 +73,8 @@
         <form action="{{route('projetos.store')}}" method="post">
             @csrf
 
-            <label for="inputBolsa" class="titulo">Bolsa:</label>
-            <select aria-label="Default select example" class="boxinfo"> id="inputBolsa" name="curso">
-                <option value="">Selecione o tipo da bolsa:</option>
-                <option value="1">Voluntária</option>
-                <option value="2">Bolsista</option>
-            </select>
-            <br><br>
-
-            <label for="valorBolsa" class="titulo">Valor da bolsa:</label>
-            <input type="number" min="1" step="any" name="valorBolsa" id="valorBolsa" placeholder="Digite o valor da bolsa" class="boxinfo"><br><br>
-
-            <label for="inputOrientadores" class="titulo">Orientadores:</label>
-            <select aria-label="Default select example" class="boxinfo" id="orientadores" name="orientadores[]" multiple>
-                <option value="">Selecione um orientador:</option>
-                {{--  @foreach ($orientadores as $orientador)
-                    <option value="{{$orientador->id}}">{{$orientador->nome}}</option>
-                @endforeach  --}}
-            </select>
-            <br><br>
-
-            <label for="inputOrientadores" class="titulo">Alunos:</label>
-            <select aria-label="Default select example" class="boxinfo" id="alunos" name="alunos[]" multiple>
-                <option value="">Selecione um aluno:</option>
-                {{--  @foreach ($alunos as $aluno)
-                    <option value="{{$aluno->id}}">{{$aluno->nome}}</option>
-                @endforeach  --}}
-            </select>
+            <label for="nome" class="titulo">Nome:</label>
+            <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome do projeto"><br><br>
 
             <br><br>
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
@@ -112,6 +87,7 @@
                             display: inline-block;
                             border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal; font-weight: 400; font-size: 24px;
                             line-height: 29px; text-align: center; padding: 5px 15px;">
+            </div>
             </div>
 
         </form>
