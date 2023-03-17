@@ -61,6 +61,7 @@ Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 
 // Rotas de projeto
 Route::resource('/projetos', ProjetoController::class);
+Route::get('/projetos/{id}/edital', [ProjetoController::class, "projetos_edital"]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

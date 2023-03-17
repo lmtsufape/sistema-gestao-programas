@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal_delete_{{$projetos->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_delete_{{$projeto->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content" style="border-radius: 15px; background-color: #F2F2F2; font-family: 'Roboto', sans-serif;">
         <div class="modal-header">
@@ -7,14 +7,14 @@
         </div>
         <div class="modal-body">
           <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">
-            Deseja realmente deletar o projeto {{$projetos->nome}}?</p>
+            Deseja realmente deletar o projeto?</p>
         </div>
         <div class="modal-footer d-flex justify-content-between">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <form action="{{url("/projetos/>1")}}" method="post">
             @method("DELETE")
             @csrf
-            <input type="hidden" name="id" value="{{$projetos->id}}">
+            <input type="hidden" name="id" value="{{$projeto->id}}">
             <button type="submit" class="btn btn-danger">Deletar</button>
           </form>
         </div>

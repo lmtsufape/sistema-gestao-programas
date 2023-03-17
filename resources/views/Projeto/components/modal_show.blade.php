@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal_show_{{$projetos->id}}" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modal_show_{{$projeto->id}}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #EEEEEE; font-family: 'Roboto', sans-serif;">
         <div class="modal-header">

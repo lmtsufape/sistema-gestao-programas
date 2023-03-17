@@ -48,7 +48,7 @@
     <br>
 
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-        <h1><strong>Projetos{{$projetos[0]->bolsa}}</strong></h1>
+        <h1><strong>Projetos: {{$edital->programa->nome}} - Edital ({{date_format(date_create($edital->data_inicio), "d/m/Y")}} - {{date_format(date_create($edital->data_fim), "d/m/Y")}})</strong></h1>
         <div style="margin: auto"></div>
         <form action="{{route("projetos.index")}}" method="GET">
             <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
@@ -134,14 +134,13 @@
                   @endforeach
               </tbody>
               </table>
-       </div>
 
-       <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-       width: 150px; height: 50%;">
-               <div style="align-self: center; margin-right: auto">
-                   <br>
-                   <h4 style="font-size: 15px">Legenda dos ícones:</h4>
-               </div>
+              <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
+              ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
+                  <div style="align-self: center; margin-right: auto">
+                      <br>
+                      <h4 style="font-size: 15px">Legenda dos ícones:</h4>
+                  </div>
 
                   <div style="align-self: center; margin-right: auto">
                       <div style="display: flex; margin: 10px">

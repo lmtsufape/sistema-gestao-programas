@@ -17,8 +17,8 @@ class Edital_alunoSeeder extends Seeder
         $edital_aluno = Edital_aluno::create([
             'id_edital' => 1,
             'id_aluno' => 1,
-            'bolsa' => "PAVI",
-            'valor_bolsa' => "500"
+            'bolsa' => "Voluntária",
+            'valor_bolsa' => "-"
         ]);
     }
 }

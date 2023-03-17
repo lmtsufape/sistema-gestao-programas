@@ -108,6 +108,7 @@
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$edital->id}}">
                             <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
                             </a>
+                            <a href="{{url("projetos/$edital->id/edital")}}">projetos</a>
 
 
                         </td>

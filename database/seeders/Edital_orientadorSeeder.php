@@ -15,7 +15,7 @@ class Edital_orientadorSeeder extends Seeder
     public function run()
     {
         $edital_orientador = Edital_orientador::create([
-            'id_edital' => 1,
+            'id_edital_aluno' => 1,
             'id_orientador' => 1
         ]);
     }
