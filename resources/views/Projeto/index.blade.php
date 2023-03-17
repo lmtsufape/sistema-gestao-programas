@@ -48,7 +48,7 @@
     <br>
 
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-        <h1><strong>Projetos{{$projetos[0]->bolsa}}</strong></h1>
+        <h1><strong>Projetos</strong></h1>
         <div style="margin: auto"></div>
         <form action="{{route("projetos.index")}}" method="GET">
             <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
@@ -94,15 +94,15 @@
       </div>
       @else
       <br>
-          <div style="display: flex; gap: 30px; margin: 15px 15px 15px 15px;">
-
-              <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-              ;margin-bottom: 5px; min-height: 50px">
-              <thead>
+      <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+        <div class="col-md-9 corpo p-2 px-3">
+         <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
+         min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
+             <thead>
               <tr>
-                  <th scope="col" style="border-right: 1px solid #d3d3d3;">Aluno</th>
-                  <th scope="col" style="border-right: 1px solid #d3d3d3;">Bolsa</th>
-                  <th scope="col" style="border-right: 1px solid #d3d3d3;">Valor da bolsa</th>
+                  <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome do Projeto</th>
+                  {{--  <th scope="col" style="border-right: 1px solid #d3d3d3;">Bolsa</th>
+                  <th scope="col" style="border-right: 1px solid #d3d3d3;">Valor da bolsa</th>  --}}
                   <th scope="col">Ações</th>
               </tr>
               </thead>
@@ -162,12 +162,12 @@
                               <p class="textolegenda">Deletar</p>
                           </div>
                       </div>
-                      <div style="align-self: center; margin-right: auto">
+                      {{--  <div style="align-self: center; margin-right: auto">  --}}
                           {{--  <div style="display: flex; margin: 10px">
                               <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
                               <p class="textolegenda">Listar Edital</p>
                           </div>  --}}
-                      </div>
+                      {{--  </div>  --}}
                   </div>
 
               </div>
