@@ -42,6 +42,7 @@ Route::resource('/orientadors', OrientadorController::class);
 // Rotas de programa
 Route::resource('/programas', ProgramaController::class);
 Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editais"]);
+Route::get('/programas/{id}/alunos', [ProgramaController::class, "listar_alunos"]);
 Route::delete("programas/{id}/editals/{id_edital}", [ProgramaController::class, "deletar_edital"]);
 Route::get("/programas/{id}/create/edital", [ProgramaController::class, "criar_edital"]);
 Route::post("/programas/store/edital", [ProgramaController::class, "store_edital"]);

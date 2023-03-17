@@ -39,9 +39,9 @@
     <br>
 
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-        <h1><strong>{{$programa->nome}} - Editais</strong></h1>
+        <h1><strong>{{$programa->nome}} - Alunos</strong></h1>
         <div style="margin: auto"></div>
-        <form action="{{route("editals.index")}}" method="GET">
+        <form action="" method="GET">
             <input class="text-center p-3" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
             style="background-color: #D9D9D9;
                   border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -75,8 +75,8 @@
         font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
         align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
         padding-left: 10px;"
-        href="{{url("/programas/$programa->id/create/edital")}}">
-        <img src="{{asset("images/plus.png")}}" alt="Cadastrar edital" style="padding-bottom: 5px"> Cadastrar Edital
+        href="">
+        <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar Aluno
         </a>
         <br>
     </div>
@@ -87,37 +87,40 @@
         ;margin-bottom: 5px; min-height: 350px">
             <thead>
                 <tr>
-                    <th scope="col"> Data de início</th>
-                    <th scope="col"> Data de fim</th>
-                    <th scope="col"> Programa</th>
-                    <th scope="col">Ações</th>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Curso</th>
+                <th scope="col">Semestre de entrada</th>
+                <th class="text-center">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($editals as $edital)
+                <!-- Foreach para listar os alunos --> 
                     <tr>
-                        <td> {{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
-                        <td> {{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
-                        <td> {{$edital->programa->nome}}</td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
                         <td>
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_">
                             <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
                             </a>
-                            <a href="{{url("/programas/edit/$edital->id/edital")}}">
+                            <a href="">
                             <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital"  style="height: 30px; width: 30px;">
                             </a>
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$edital->id}}">
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_">
                             <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
                             </a>
-
-
                         </td>
                     </tr>
 
-                    @include("Programa.components_edital.modal_show", ["edital" => $edital])
-                    @include("Programa.components_edital.modal_delete", ["edital" => $edital, "programa" => $programa])
+                    <!-- Modal show -->
+                    <!-- Modal delete-->
 
-                @endforeach
+
+                <!-- endforeach -->
             </tbody>
         </table>
 
