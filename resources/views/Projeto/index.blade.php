@@ -38,7 +38,7 @@
 
 </style>
 
-@can('servidor')
+@canany(['admin', 'servidor'])
     <div class="container">
         @if (session('sucesso'))
             <div class="alert alert-success">
