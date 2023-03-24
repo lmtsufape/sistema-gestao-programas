@@ -2,6 +2,8 @@
 
 @section("body")
 
+@canany(['admin', 'servidor'])
+
 
 <style>
   pagination {
@@ -29,6 +31,7 @@
     background-color: #34A853;
   }
 </style>
+
 <div class="container">
   @if (session('sucesso'))
   <div class="alert alert-success">
@@ -37,7 +40,6 @@
   @endif
   <br>
 
-  @can('servidor')
   <div class="container">
     @if (session('sucesso'))
     @endif
@@ -189,5 +191,10 @@
     no_results_text: "Não possui cursos."
   });
 </script>
+
+@else
+  <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
+@endcan
 
 @endsection

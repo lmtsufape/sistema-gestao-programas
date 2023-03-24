@@ -40,9 +40,9 @@
 @canany(['admin', 'pro_reitor'])
 <div class="container">
   @if (session('sucesso'))
-  <div class="alert alert-success">
-    {{session('sucesso')}}
-  </div>
+    <div class="alert alert-success">
+      {{session('sucesso')}}
+    </div>
   @endif
   <br>
 
