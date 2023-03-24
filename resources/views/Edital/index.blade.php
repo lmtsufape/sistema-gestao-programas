@@ -94,6 +94,9 @@
               <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
               <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
               <td>
+              <a style="padding:2px" href="{{url("/editals/$edital->id/alunos")}}">
+                <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
+              </a>
                 <a href="{{url("/projetos")}}">
                   <img src="{{asset("images/listaredital.png")}}" alt="Listar projetos" style="height: 30px; width: 30px;">
                 </a>
@@ -151,6 +154,10 @@
           <div style="display: flex; margin-left: 10px">
             <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar projetos</p>
+          </div>
+          <div style="display: flex; margin-left: 10px">
+            <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar alunos</p>
           </div>
         </div>
       </div>
