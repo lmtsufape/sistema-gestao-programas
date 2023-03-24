@@ -38,7 +38,7 @@
   <br>
 
   <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1><strong>{{$programa->nome}} - Alunos</strong></h1>
+    <h1 style="color:#2D3875;"><strong>{{$programa->nome}} - Alunos</strong></h1>
     <div style="margin: auto"></div>
     <form action="" method="GET">
       <input class="text-center p-3" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
@@ -66,13 +66,13 @@
   </div>
 
   <div style="display: contents; align-content: center; align-items: center;">
-
-    <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-        font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
-        align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-        padding-left: 10px;" href="">
+    <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+      font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
+      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
+      padding-left: 10px;" href="">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar Aluno
     </a>
+    <br>
     <br>
   </div>
 
@@ -126,7 +126,7 @@
 
       <div style="align-self: center; margin-right: auto">
         <br>
-        <h4 style="font-size: 15px">Legenda dos ícones:</h4>
+        <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
       </div>
 
       <div style="align-self: center; margin-right: auto">
