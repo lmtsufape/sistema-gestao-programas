@@ -40,9 +40,9 @@
 @canany(['admin', 'pro_reitor'])
 <div class="container">
   @if (session('sucesso'))
-    <div class="alert alert-success">
-      {{session('sucesso')}}
-    </div>
+  <div class="alert alert-success">
+    {{session('sucesso')}}
+  </div>
   @endif
   <br>
 
@@ -59,6 +59,7 @@
               height: 45px;
               border: 1px solid #ddd;
               margin-bottom: 12px;  margin-right: 10px">
+          
           <input type=" submit" value="" style="background-image: url('/images/searchicon.png');
               background-color: #D9D9D9;
               border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -104,6 +105,9 @@
             <td class="align-middle"> {{$programas->nome}} </td>
             <td class="align-middle"> {{$programas->descricao}} </td>
             <td class="align-middle">
+              <a style="padding:2px" href="{{url("/programas/$programas->id/alunos")}}">
+                <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
+              </a>
               <a style="padding:2px" href="{{url("/programas/$programas->id/editals")}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="Listar edital">
               </a>
@@ -160,6 +164,12 @@
           <div style="display: flex; margin: 10px">
             <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
             <p class="textolegenda">Listar Edital</p>
+          </div>
+        </div>
+        <div style="align-self: center; margin-right: auto">
+          <div style="display: flex; margin: 10px">
+            <a><img src="/images/bx_user.png" alt="Listar alunos" style="width: 20px; height: 20px;"></a>
+            <p class="textolegenda">Listar Alunos</p>
           </div>
         </div>
       </div>

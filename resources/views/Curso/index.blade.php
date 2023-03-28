@@ -3,33 +3,31 @@
 @section("body")
 
 @canany(['admin', 'servidor'])
+  <style>
+    pagination {
+      display: inline-block;
 
+    }
 
-<style>
-  pagination {
-    display: inline-block;
+    .pagination a {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s;
+      border: 1px solid #ddd;
+      margin: 10px 4px;
+    }
 
-  }
+    .pagination a.active {
+      background-color: #3B864F;
+      color: white;
+      border: 1px solid #3B864F;
+    }
 
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 10px 4px;
-  }
-
-  .pagination a.active {
-    background-color: #3B864F;
-    color: white;
-    border: 1px solid #3B864F;
-  }
-
-  .pagination a:hover:not(.active) {
-    background-color: #34A853;
-  }
+    .pagination a:hover:not(.active) {
+      background-color: #34A853;
+    }
 </style>
 
 <div class="container">
@@ -76,7 +74,8 @@
         padding-left: 10px;" href="{{route("cursos.create")}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar curso" style="padding-bottom: 5px"> Cadastrar Curso
       </a>
-
+      <br>
+      <br>
     </div>
 
     @if (sizeof($cursos) == 0)
@@ -155,7 +154,7 @@
         </div>
       </div>
     </div>
-    {{-- </div>
+    <!-- </div>
           <div style="margin: auto; width: 45%; padding: 10px;">
             <div class="pagination">
               <a href="#" style="border-radius: 15px; background: #131833; color: white;">Anterior</a>
@@ -167,31 +166,29 @@
               <a href="#" style="border-radius: 15px; background: #34A853; color: white;">15</a>
               <a href="#" style="border-radius: 15px; background: #131833; color: white;">Próximo</a>
             </div>
-        </div>  --}}
+        </div>  -->
 
 
   </div>
-  @endif
+
 </div>
 
 <script type="text/javascript">
-  function exibirModalDeletar(id) {
+  function exibirModalDeletar(id){
     $('#modal_delete_' + id).modal('show');
   }
-
-  function exibirModalVisualizar(id) {
+  function exibirModalVisualizar(id){
     $('#modal_show_' + id).modal('show');
   }
 </script>
 
-<script>
-  $("#cursos").chosen({
-    placeholder_text_multiple: "Selecione um curso",
-    // max_shown_results : 5,
-    no_results_text: "Não possui cursos."
-  });
+<script >
+    $("#cursos").chosen({
+              placeholder_text_multiple: "Selecione um curso",
+              // max_shown_results : 5,
+              no_results_text: "Não possui cursos."
+          });
 </script>
-
 @else
   <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
   <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
