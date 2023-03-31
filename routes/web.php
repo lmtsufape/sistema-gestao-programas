@@ -69,4 +69,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Rotas de Frequencia mensal
 Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
 
+//Rotas de listar modelos de documentos
+Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
+
 
