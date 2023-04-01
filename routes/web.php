@@ -10,6 +10,7 @@ use App\Http\Controllers\EditalController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\CadastrarSeController;
 use App\Http\Controllers\ProjetoController;
+use App\Http\Controllers\FrequenciaController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::resource('/alunos', AlunoController::class);
 
 // Rotas de servidor
 Route::resource('/servidores', ServidorController::class);
+Route::post("/servidores/permissao/{id}", [ServidorController::class, "adicionar_permissao"]);
 
 // Rotas de orientador
 Route::resource('/orientadors', OrientadorController::class);
@@ -57,12 +59,17 @@ Route::resource('/cursos', CursoController::class);
 
 // Rotas de Cadastrar-se
 Route::get('/cadastrar-se', [CadastrarSeController::class, "cadastrarSe"]);
+Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 
 // Rotas de projeto
 Route::resource('/projetos', ProjetoController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Rotas de Frequencia mensal
+Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
 
+//Rotas de listar modelos de documentos
+Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
 
 

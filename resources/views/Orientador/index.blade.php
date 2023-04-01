@@ -5,9 +5,7 @@
 <style>
   pagination {
     display: inline-block;
-
   }
-
   .pagination a {
     color: black;
     float: left;
@@ -17,21 +15,18 @@
     border: 1px solid #ddd;
     margin: 10px 4px;
   }
-
   .pagination a.active {
     background-color: #3B864F;
     color: white;
     border: 1px solid #3B864F;
   }
-
   .pagination a:hover:not(.active) {
     background-color: #34A853;
   }
-
 </style>
 
 
-  @can('servidor')
+@canany(['admin', 'servidor'])
   <div class="container" style="font-family: 'Roboto', sans-serif;">
     @if (session('sucesso'))
     <div class="alert alert-success">
@@ -43,7 +38,6 @@
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
     <h1><strong>Orientadores</strong></h1>
     <div style="margin: auto"></div>
-    {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
     <form action="{{route("orientadors.index")}}" method="GET">
       <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
       style="background-color: #D9D9D9;
@@ -70,16 +64,13 @@
 
     </form>
   </div>
-    <div style="display: contents; align-content: center; align-items: center;">
-
-        <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-        font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
-        align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-        padding-left: 10px;"
+  <div style="padding-bottom: 6px">
+    <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
+    font-weight: 400; font-size: 24px; padding-top: 5px; padding-bottom: 5px; padding-right: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none; padding-left: 10px;"
         href="{{route("orientadors.create")}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar orientador" style="padding-bottom: 5px"> Cadastrar Orientador
         </a>
-        <br>
     </div>
 
 
@@ -91,58 +82,60 @@
         </p>
       </div>
     @else
-    <br>
-      <div style="display: flex; gap: 30px">
+    <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+        <div class="col-md-9 corpo p-2 px-3">
+            <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
+            min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Matricula</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                    </thead>
+                    @foreach ($orientadors as $orientador)
+                <tbody>
+                        <tr>
+                            <td>{{$orientador->user->name}}</td>
+                            <td>{{$orientador->user->email}}</td>
+                            <td>{{$orientador->cpf}}</td>
+                            <td>{{$orientador->matricula}}</td>
+                            <td>
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$orientador->id}}">
+                                <img src="{{asset("images/info.png")}}" alt="Info orientador" style="height: 30px; width: 30px;">
+                                </a>
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$orientador->id}}">
+                                <img src="{{asset("images/document.png")}}" alt="Documento orientador"  style="height: 30px; width: 30px;">
+                                {{--  TODO: Fica pra fazer o modal depois  --}}
+                                </a>
+                                <a href="{{url("/orientadors/$orientador->id/edit")}}">
+                                <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar orientador"  style="height: 30px; width: 30px;">
+                                </a>
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$orientador->id}}">
+                                <img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="height: 30px; width: 30px;">
+                                </a>
 
-        <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-        ;margin-bottom: 5px; min-height: 350px">
-          <thead>
-          <tr>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">E-mail</th>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">CPF</th>
-            <th scope="col" style="border-right: 1px solid #d3d3d3;">Matricula</th>
-            <th scope="col">Ações</th>
-          </tr>
-          </thead>
-          @foreach ($orientadors as $orientador)
-          <tbody>
-                <tr>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$orientador->user->name}}</td>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$orientador->user->email}}</td>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$orientador->cpf}}</td>
-                  <td style="border-right: 1px solid #d3d3d3;">{{$orientador->matricula}}</td>
-                  <td>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$orientador->id}}">
-                      <img src="{{asset("images/info.png")}}" alt="Info orientador" style="height: 30px; width: 30px;">
-                    </a>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$orientador->id}}">
-                      <img src="{{asset("images/document.png")}}" alt="Documento orientador"  style="height: 30px; width: 30px;">
-                      {{--  TODO: Fica pra fazer o modal depois  --}}
-                    </a>
-                    <a href="{{url("/orientadors/$orientador->id/edit")}}">
-                      <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar orientador"  style="height: 30px; width: 30px;">
-                    </a>
-                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$orientador->id}}">
-                      <img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="height: 30px; width: 30px;">
-                    </a>
 
+                            </td>
+                        </tr>
+                        <tr>
+                            {{--  nao apagar o tr  --}}
+                        </tr>
+                        @include("Orientador.components.modal_show", ["orientador" => $orientador])
+                        @include("Orientador.components.modal_delete", ["orientador" => $orientador])
+                        @endforeach
+                </tbody>
+            </table>
+        </div>
 
-                  </td>
-                </tr>
-                @include("Orientador.components.modal_show", ["orientador" => $orientador])
-                @include("Orientador.components.modal_delete", ["orientador" => $orientador])
-              @endforeach
-          </tbody>
-        </table>
-
-        <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
-        ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
-
-          <div style="align-self: center; margin-right: auto">
-            <br>
-            <h4 style="font-size: 15px">Legenda dos ícones:</h4>
-          </div>
+        <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+        width: 150px; height: 50%;">
+                <div style="align-self: center; margin-right: auto">
+                    <br>
+                    <h4 style="font-size: 15px; font-weight: 600">Legenda dos ícones:</h4>
+                </div>
 
           <div style="align-self: center; margin-right: auto">
             <div style="display: flex; margin: 10px">
@@ -188,15 +181,12 @@
   </div>
 
   <script type="text/javascript">
-
     function exibirModalEditar(id){
       $('#modal_edit_' + id).modal('show');
     }
-
     function exibirModalDeletar(id){
       $('#modal_delete_' + id).modal('show');
     }
-
     function exibirModalVisualizar(id){
       $('#modal_show_' + id).modal('show');
     }
@@ -226,12 +216,8 @@
   </script>
   @endif
 
-  @elsecan('orientador')
-    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{route('orientador.index')}}">Voltar</a>
-  @else
-    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
-  @endcan
+@else
+  <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
+@endcan
 @endsection
-

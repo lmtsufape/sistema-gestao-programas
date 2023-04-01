@@ -56,6 +56,7 @@
     }
 </style>
 
+@canany(['admin', 'servidor'])
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
 
     @if (session('sucesso'))
@@ -66,11 +67,11 @@
     <br>
     <div class="boxchild">
         <div class="row">
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
                 Cadastrar Aluno</h1>
         </div>
 
-        <hr>
+        <hr style="color: #2D3875;">
 
         <form action="{{route("alunos.store")}}" method="POST">
             @csrf
@@ -78,6 +79,9 @@
             <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
+            <label for="inputNomeSocial" class="titulo">Nome Social:</label>
+            <input class="boxinfo" type="text" id="inputNomeSocial" name="nome_social" required placeholder="Digite o nome social">
+            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputCpf" class="titulo">CPF:</label>
             <input class="boxinfo" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF">
@@ -90,7 +94,7 @@
 
 
             <label for="inputCurso" class="titulo">Curso:</label>
-            <select aria-label="Default select example" class="boxinfo"> id="inputCurso" name="curso">
+            <select aria-label="Default select example" class="boxinfo" id="inputCurso" name="curso">
                 <option value="">Selecione o curso</option>
                 @foreach ($cursos as $curso)
                 <option value="{{$curso->id}}">{{$curso->nome}}</option>
@@ -120,6 +124,10 @@
         </form>
     </div>
 </div>
+@elsecan
+    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
+@endcan
 
 <script type="text/javascript">
     (() => {

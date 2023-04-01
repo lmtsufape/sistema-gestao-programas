@@ -29,6 +29,16 @@ class PermissionsSeeder extends Seeder
             'name' => 'orientador',
             'guard_name' => 'web',
             'created_at' => date('Y-m-d h:i:s')
+            ],
+            [
+            'name' => 'admin',
+            'guard_name' => 'web',
+            'created_at' => date('Y-m-d h:i:s')
+            ],
+            [
+            'name' => 'pro_reitor',
+            'guard_name' => 'web',
+            'created_at' => date('Y-m-d h:i:s')
             ]
         ]);
     }

@@ -1,7 +1,6 @@
 @extends("templates.app")
 
 @section("body")
-
 <style>
     select[multiple] {
         overflow: hidden;
@@ -57,53 +56,53 @@
     }
 </style>
 
-<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
+@canany(['admin', 'pro_reitor'])
+    <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
 
-    @if (session('sucesso'))
-        <div class="alert alert-success" style="width: 100%;">
-            {{session('sucesso')}}
+        @if (session('sucesso'))
+            <div class="alert alert-success" style="width: 100%;">
+                {{session('sucesso')}}
+            </div>
+        @endif
+        <br>
+        <div class="boxchild">
+            <div class="row">
+                <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+                    Editar Programa</h1>
+            </div>
+            <hr>
+
+            <form action="{{url("/programas/$programa->id")}}" method="post">
+                @csrf
+                @method("PUT")
+                <label for="nome" class="titulo">Nome:</label>
+                <input class="boxinfo" type="text" name="nome" id="nome" value="{{$programa->nome}}"><br><br>
+
+                <label for="descricao" class="titulo">Descricao:</label>
+                <input class="boxinfo" type="text" name="descricao" id="descricao" value="{{$programa->descricao}}"><br><br>
+
+                <label for="servidores" class="titulo">Servidores:</label>
+
+                <select name="servidores[]" id="servidores" multiple>
+                    <option value=""></option>
+                    @foreach ($servidores as $servidor)
+                        <option value="{{$servidor->id}}" {{in_array($servidor->id, $idsServidoresDoPrograma) ? 'selected' : ''}}
+                        style="color: black; border-radius: 5px;"> {{$servidor->user->name}} </option>
+                    @endforeach
+                </select>
+
+                <br><br>
+
+
+                <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
+                display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
+                font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
+
+            </form>
         </div>
-    @endif
-    <br>
-    <div class="boxchild">
-        <div class="row">
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
-                Editar Programa</h1>
-        </div>
-        <hr>
-
-        <form action="{{url("/programas/$programa->id")}}" method="post">
-            @csrf
-            @method("PUT")
-            <label for="nome" class="titulo">Nome:</label>
-            <input class="boxinfo" type="text" name="nome" id="nome" value="{{$programa->nome}}"><br><br>
-
-            <label for="descricao" class="titulo">Descricao:</label>
-            <input class="boxinfo" type="text" name="descricao" id="descricao" value="{{$programa->descricao}}"><br><br>
-
-            <label for="servidores" class="titulo">Servidores:</label>
-
-            <select name="servidores[]" id="servidores" multiple>
-                <option value=""></option>
-                @foreach ($servidores as $servidor)
-                    <option value="{{$servidor->id}}" {{in_array($servidor->id, $idsServidoresDoPrograma) ? 'selected' : ''}}
-                    style="color: black; border-radius: 5px;"> {{$servidor->user->name}} </option>
-                @endforeach
-            </select>
-
-            <br><br>
-
-
-            <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-            display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-            font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
-
-        </form>
     </div>
-</div>
 
     <script>
-
         $("#servidores").chosen({
         placeholder_text_multiple: "Selecione um servidor",
         // max_shown_results : 5,
@@ -112,5 +111,9 @@
         $('div.chosen-container-single').addClass('required');
         $('div.chosen-container-multi').addClass('required');
     </script>
+@else
+    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
+@endcan
 
 @endsection

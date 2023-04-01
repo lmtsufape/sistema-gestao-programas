@@ -2,7 +2,7 @@
 
 @section("body")
 
-  @can('servidor')
+@canany(['admin', 'servidor'])
   <div class="container" style="font-family: 'Roboto', sans-serif;">
     @if (session('sucesso'))
     <div class="alert alert-success">
@@ -12,7 +12,6 @@
     <br>
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
       <h1><strong>Disciplinas</strong></h1>
-      {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
       <form action="{{route("disciplinas.index")}}" method="GET">
         <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
               border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -35,7 +34,7 @@
               margin: auto;"/>
       </form>
     </div>
-    <div style="display: contents; align-content: center; align-items: center;">
+    <div style="padding-bottom: 6px">
 
         <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
         font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
@@ -44,7 +43,7 @@
         href="{{route("disciplinas.create")}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar Disciplina" style="padding-bottom: 5px"> Cadastrar Disciplina
         </a>
-        <br>
+
     </div>
 
     @if (sizeof($disciplinas) == 0)
@@ -54,22 +53,23 @@
         </p>
       </div>
     @else
-      <br>
-      
-      <div style="display: flex; gap: 30px">
-        <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-        ;margin-bottom: 5px; min-height: 350px">
+
+
+      <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+        <div class="col-md-9 corpo p-2 px-3">
+         <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
+         min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
           <thead>
             <tr>
-              <th scope="col" style="border-right: 1px solid #d3d3d3;">Nome</th>
+              <th scope="col">Nome</th>
               <th scope="col">Ações</th>
             </tr>
           </thead>
           @foreach ($disciplinas as $disciplinas)
             <tbody>
-              <tr> 
-                <td style="border-right: 1px solid #d3d3d3; border-bottom: 1px solid #d3d3d3;">{{$disciplinas->nome}}</td>
-                <td style="border-bottom: 1px solid #d3d3d3;">
+              <tr>
+                <td>{{$disciplinas->nome}}</td>
+                <td>
                   <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$disciplinas->id}}" >
                     <img src="{{asset("images/info.png")}}" alt="Info programa" style="height: 30px; width: 30px;">
                   </a>
@@ -82,16 +82,19 @@
                   </a>
                   <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$disciplinas->id}}">
                     <img src="{{asset("images/delete.png")}}" alt="Deletar programa" style="height: 30px; width: 30px;">
-                  </a>                                     
+                  </a>
                 </td>
-              </tr>
-              @include("Disciplina.components.modal_show", ["disciplina" => $disciplinas])
-              @include("Disciplina.components.modal_delete", ["disciplina" => $disciplinas])
-            </tbody>          
-          @endforeach            
+                </tr>
+                <tr>                 {{--  Não apagar esse tr vazio senão a linha da tabela fica mt preta/grossa  --}}
+                </tr>
+            </tbody>
+            @include("Disciplina.components.modal_show", ["disciplina" => $disciplinas])
+            @include("Disciplina.components.modal_delete", ["disciplina" => $disciplinas])
+            @endforeach
         </table>
-        <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
-          ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
+        </div>
+        <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+        width: 150px; height: 50%;">
           <div style="align-self: center; margin-right: auto">
             <br>
             <h4 style="font-size: 15px">Legenda dos ícones:</h4>
@@ -137,10 +140,10 @@
           <a href="#" style="border-radius: 15px; background: #131833; color: white;">Próximo</a>
         </div>
       </div>  --}}
-  
+
   </div>
     @endif
-  
+
 
   <script type="text/javascript">
     function exibirModalDeletar(id){
@@ -175,11 +178,8 @@
     </script>
   @endif
 
-  @elsecan('orientador')
-    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{route('home')}}">Voltar</a>
-  @else
-    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
-  @endcan
+@else
+  <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
+@endcan
 @endsection

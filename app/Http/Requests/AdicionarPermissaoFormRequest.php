@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditalUpdateFormRequest extends FormRequest
+class AdicionarPermissaoFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,20 +22,15 @@ class EditalUpdateFormRequest extends FormRequest
      * @return array
      */
     public function rules()
-        {
-            return [
-                "data_inicio"=>"date",
-                "data_fim"=>"date",
-                "programa"=>"numeric",
-                'disciplina'=>'array'
-            ];
-        }
-
+    {
+        return [
+            "permissao" => "required|string"
+        ];
+    }
 
     public function messages(){
         return [
-            "date" => "O campo :atribute deve ser um date.",
-            "numeric" => "O campo :atribute deve ser um número."
+            "required" => "O campo :attribute é obrigatório."
         ];
     }
 }

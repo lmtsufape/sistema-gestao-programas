@@ -56,6 +56,7 @@
     }
 </style>
 
+@canany(['admin', 'servidor'])
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
     @if (session('sucesso'))
         <div class="alert alert-success" style="width: 100%;">
@@ -64,9 +65,9 @@
     @endif
     <br>
     <div class="boxchild">
-        <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+        <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
             Editar Aluno</h1>
-        <hr>
+        <hr style="color: #2D3875;">
         <form action="{{url("/alunos/$aluno->id")}}" method="POST">
             @csrf
             @method("PUT")
@@ -106,5 +107,8 @@
         </form>
     </div>
 </div>
-
+@elsecan
+    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
+@endcan
 @endsection

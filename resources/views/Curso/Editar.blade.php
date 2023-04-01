@@ -57,18 +57,18 @@
 
     <div class="boxchild">
         <div class="row">
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
                 Editar Curso</h1>
         </div>
 
-        <hr>
+        <hr style="color:#2D3875;">
 
         <form action="{{url("/cursos/$curso->id")}}"method="post">
             @csrf
             @method("put")
 
             <label for="nome" class="titulo">Nome:</label>
-            <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome do curso" valeu="{{$curso->nome}}">
+            <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome do curso" value="{{$curso->nome}}">
 
             <label class="titulo" for="disciplinas">Disciplinas:</label>
             <select aria-label="Default select example" class="boxinfo" name="disciplinas[]" id="disciplinas" multiple>
