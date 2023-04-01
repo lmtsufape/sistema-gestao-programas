@@ -95,6 +95,9 @@
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
             <td>
+              <a style="padding:2px" href="{{url("/editals/$edital->id/alunos")}}">
+                <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
+              </a>
               <a href="{{url("/projetos")}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="Listar projetos" style="height: 30px; width: 30px;">
               </a>
@@ -125,7 +128,6 @@
         <br>
         <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
       </div>
-
       <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
           <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
@@ -135,23 +137,23 @@
           <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
         </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
-        </div>
-      </div>
-      <div style="align-self: center; margin-right: auto">
-        <div style="display: flex; margin: 10px">
-          <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
-        </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
-        </div>
-        <div style="display: flex; margin-left: 10px">
-          <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar projetos</p>
+        <div style="align-self: center; margin-right: auto">
+          <div style="display: flex; margin: 10px">
+            <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
+          </div>
+          <div style="display: flex; margin: 10px">
+            <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
+          </div>
+          <div style="display: flex; margin: 10px">
+            <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar projetos</p>
+          </div>
+          <div style="display: flex; margin: 10px">
+            <a><img src="{{asset("images/bx_user.png")}}" alt="Listar editais" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar alunos</p>
+          </div>
         </div>
       </div>
     </div>

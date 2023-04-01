@@ -51,6 +51,7 @@ Route::put("/programas/update/{id}/edital", [ProgramaController::class, "update_
 
 // Rotas de Edital
 Route::resource('/editals', EditalController::class);
+Route::get('/editals/{id}/alunos', [EditalController::class, "listar_alunos"]);
 
 // Rotas de Disciplina
 Route::resource('/disciplinas', DisciplinaController::class);
