@@ -69,6 +69,6 @@ Route::resource('/projetos', ProjetoController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Rotas de Frequencia mensal
-Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
+// Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
 
 
