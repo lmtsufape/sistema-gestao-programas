@@ -72,14 +72,16 @@ class OrientadorController extends Controller
 
         if ($orientador->save()){
 
-            if ( 
+            if (
                 $orientador->user()->create([
                     'name' => $request->nome,
                     'email' => $request->email,
                     'password' => Hash::make($request->senha)
-                ])->givePermissionTo('orientador') 
-            ){
 
+                ])->givePermissionTo('orientador')
+            ){
+                $confirm = new ConfirmandoEmail($request);
+                $confirm -> enviandoEmail();
                 $mensagem_sucesso = "Orientador cadastrado com sucesso.";
                 return redirect('/orientadors/create')->with('sucesso', 'Orientador cadastrado com sucesso.');
 
@@ -117,7 +119,7 @@ class OrientadorController extends Controller
     public function update(OrientadorFormUpdateRequest $request, $id)
     {
         $orientador = Orientador::find($id);
-        
+
         $orientador->cpf = $request->cpf == $orientador->cpf ? $orientador->cpf : $request->cpf;
         $orientador->matricula = $request->matricula;
 
@@ -131,7 +133,7 @@ class OrientadorController extends Controller
             }
         }
         if ($orientador->save()){
-            
+
             if ($orientador->user->update()){
                 $mensagem_sucesso = "Orientador cadastrado com sucesso.";
                 return redirect('/orientadors/'. $orientador->id .'/edit')->with('sucesso', 'Orientador Atualizado com sucesso.');
@@ -145,7 +147,7 @@ class OrientadorController extends Controller
     }
 
 
-    public function delete($id) 
+    public function delete($id)
     {
         $orientador = Orientador::findOrFail($id);
         return view('orientadors.delete', ['aluno' => $aluno]);
