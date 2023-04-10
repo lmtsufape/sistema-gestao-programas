@@ -13,6 +13,7 @@ use App\Http\Controllers\ProjetoController;
 use App\Http\Controllers\FrequenciaController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MeusAlunosController;
 
 // Rotas de autenticacao
 Route::get('/', function () {
@@ -38,6 +39,7 @@ Route::post("/servidores/permissao/{id}", [ServidorController::class, "adicionar
 
 // Rotas de orientador
 Route::resource('/orientadors', OrientadorController::class);
+Route::get('/MeusAlunos', [MeusAlunosController::class, "index"]);
 
 // Rotas de programa
 Route::resource('/programas', ProgramaController::class);
