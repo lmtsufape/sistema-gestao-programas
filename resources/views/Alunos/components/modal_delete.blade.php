@@ -1,7 +1,7 @@
 @canany(['admin', 'servidor'])
   <div class="modal fade" id="modal_delete_{{$aluno->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content" style="border-radius: 15px; background-color: #F2F2F2; font-family: 'Roboto', sans-serif;">
+      <div class="modal-content" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
         <div class="modal-header">
           <h5 class="modal-title title fw-bold " style="color: #131833; font-size: 25px; line-height: 47px;" id="exampleModalLabel">Deletar aluno</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -23,16 +23,16 @@
   </div>
 
   <style>
-    
-      .btn-secondary{
-          color: #fff;
-          background-color: #2d3875;
-          border-color: #2d3875;
-      }
-      .btn-secondary:hover{
-          background-color: #4353ab;
-          border-color: #4353ab;
-      }
+    .btn-secondary {
+      color: #fff;
+      background-color: #2d3875;
+      border-color: #2d3875;
+    }
+
+    .btn-secondary:hover {
+      background-color: #4353ab;
+      border-color: #4353ab;
+    }
   </style>
 @elsecan
   <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
