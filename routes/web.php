@@ -74,4 +74,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
 
+//Rota de meu perfil
+Route::get('/meu-perfil', [App\Http\Controllers\MeuPerfilController::class, 'index'])->name('meu-perfil');
+
 
