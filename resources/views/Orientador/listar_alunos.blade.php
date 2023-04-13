@@ -73,9 +73,9 @@
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar Aluno
     </a>
     <br>
-    <br>
   </div> -->
-
+    <br>
+    
   <div style="display: flex; gap: 30px; margin: 15px 15px 15px 15px;">
 
     <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
