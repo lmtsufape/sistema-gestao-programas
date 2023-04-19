@@ -169,7 +169,7 @@
                 <p style="margin: auto; padding-right: 5px"> Ver meus certificados </p>
             </button>  --}}
 
-            <button class="botaoazul">
+            <button class="botaoazul" ref="{{url("/index_aluno")}}" onclick="window.location.href='{{url("/listar_alunos")}}>
                 <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
                 <p style="margin: auto; padding-right: 5px"> Ver meus programas </p>
             </button>
