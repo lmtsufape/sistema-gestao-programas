@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aluno;
 use Illuminate\Http\Request;
-use App\Models\Edital_aluno;
+use App\Models\Projeto;
+use PhpParser\Node\Stmt\TraitUseAdaptation\Alias;
 
 class ProjetoController extends Controller
 {
@@ -14,8 +16,9 @@ class ProjetoController extends Controller
      */
     public function index()
     {
-        $projetos = Edital_aluno::all();
-        return view("Projeto.index", compact('projetos'));
+        $projetos = Projeto::all();
+        //dd($projetos);
+        return view('Projeto.index', compact('projetos'), ['projetos' => $projetos]);
     }
 
     /**
@@ -24,8 +27,11 @@ class ProjetoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view("Projeto.cadastrar");
+    {      
+        $alunos = Aluno::all();
+        //dd($alunos);
+
+        return view("Projeto.cadastrar", ['alunos' => $alunos]);
     }
 
     /**
@@ -35,8 +41,20 @@ class ProjetoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $projeto = new Projeto;
+        $projeto->bolsista = $request->bolsista;
+        $projeto->valorBolsa = $request->valorBolsa;
+        
+        $aluno_id = $request->aluno_id;
+        //dd($aluno_id);
+
+        $projeto->save();
+        
+       $projeto->alunos()->attach($aluno_id);
+       dd($projeto);
+        // $projeto_id = Projeto::find('projeto');
+        redirect('Projeto.index', compact('projetos'));
     }
 
     /**
@@ -47,7 +65,7 @@ class ProjetoController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -58,7 +76,6 @@ class ProjetoController extends Controller
      */
     public function edit($id)
     {
-        $projeto = Edital_aluno::find($id);
         return view("Projeto.editar", compact('projeto'));
     }
 

@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -63,6 +66,14 @@ Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 
 // Rotas de projeto
 Route::resource('/projetos', ProjetoController::class);
+//Route::get('/home', [ProjetoController::class, 'index'])->name('projetos-index');
+ Route::get('/create', [ProjetoController::class, 'create'])->name('projetos-create');
+// Route::post('/', [ProjetoController::class, 'store'])->name('projetos-store');
+Route::post('/projetos', [ProjetoController::class, 'store'])->name('projetos.store');
+
+
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

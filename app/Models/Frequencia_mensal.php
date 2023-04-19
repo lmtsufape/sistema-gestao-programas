@@ -15,6 +15,5 @@ class Frequencia_mensal extends Model
         'tempo_total',
         'status',
         'observacao',
-        'id_edital_aluno'
     ];
 }

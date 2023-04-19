@@ -21,7 +21,7 @@ class AlunoController extends Controller
         $aluno->cpf = $request->cpf;
         $aluno->id_curso = $request->curso;
         $aluno->semestre_entrada = $request->semestre_entrada;
-
+        //dd($request);
         if ($aluno->save()){
 
             if ( 
@@ -140,7 +140,6 @@ class AlunoController extends Controller
                     $query->orWhere("cursos.nome", "LIKE", "%{$valor}%");
                 }
             })->orderBy('alunos.created_at', 'desc')->select("alunos.*")->get();
-            
 
             return view("Alunos.index", compact("alunos"));
         } else {

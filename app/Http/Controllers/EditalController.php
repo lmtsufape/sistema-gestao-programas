@@ -176,12 +176,6 @@ class EditalController extends Controller
         try{
             $edital = Edital::find($id);
 
-            foreach($edital->edital_alunos as $edital_aluno){
-                Frequencia_mensal::where("id_edital_aluno", $edital_aluno->id)->delete();
-            }
-
-            Edital_aluno::where("id_edital", $id)->delete();
-
             Edital::where("id", $id)->delete();
 
             DB::commit();

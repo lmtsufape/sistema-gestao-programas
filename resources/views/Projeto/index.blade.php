@@ -46,11 +46,12 @@
             </div>
         @endif
     <br>
-
+<h1>blablau ablau</h1>
+    {{-- {{ dd($projetos) }}  --}}
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
         <h1><strong>Projetos</strong></h1>
         <div style="margin: auto"></div>
-        <form action="{{route("projetos.index")}}" method="GET">
+        <form action="{{route    ('projetos.index')   }}" method="GET">
             <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
             style="background-color: #D9D9D9;
                 border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -78,8 +79,8 @@
         <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
         font-weight: 400; font-size: 24px; padding-top: 4px; padding-bottom: 6px; padding-right: 15px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none; padding-left: 10px;"
-        href="{{route("projetos.create")}}">
-        <img src="{{asset("images/plus.png")}}" alt="Cadastrar projeto" style="padding-bottom: 3px"> Cadastrar projeto
+        href="{{  route('projetos.create')  }}">
+        <img src="{{  asset('images/plus.png')  }}" alt="Cadastrar projeto" style="padding-bottom: 3px"> Cadastrar projeto
         </a>
     </div>
 
@@ -105,23 +106,23 @@
                 @foreach ($projetos as $projetos)
                 <tbody>
                         <tr>
-                        <td>{{$projetos->nome}}</td>
-                        <td>{{$projetos->descricao}}</td>
+                        <td>{{$projetos->id}}</td>
+                        <!--<td>{{$projetos->descricao}}</td> -->
                         <td>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$projetos->id}}">
-                                <img src="{{asset("images/info.png")}}" alt="Info projeto">
+                                <img src="{{  asset('images/info.png')  }}" alt="Info projeto">
                             </a>
-                            <a href="{{url("/projetos/$projetos->id/edit")}}">
-                                <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar projeto">
+                            <a href="{{  url('/projetos/$projetos->id/edit')  }}">
+                                <img src="{{  asset('images/edit-outline-blue.png')}}  " alt="Editar projeto">
                             </a>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$projetos->id}}">
-                                <img src="{{asset("images/delete.png")}}" alt="Deletar projeto">
+                                <img src="{{  asset('images/delete.png')  }}" alt="Deletar projeto">
                             </a>
                         </td>
                         </tr>
                         <tr></tr>
 
-                    @include("Projeto.components.modal_show", ["projeto" => $projetos])
+                    @include("Projeto.components.modal_show", ['projeto' => $projetos])
                     @include("Projeto.components.modal_delete", ["projeto" => $projetos])
                     @endforeach
                 </tbody>
@@ -137,7 +138,7 @@
 
                   <div style="align-self: center; margin-right: auto">
                       <div style="display: flex; margin: 10px">
-                      <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+                      <a><img src="{{  asset('images/searchicon.png')  }}" alt="Procurar" style="width: 20px; height: 20px;"></a>
                       <p class="textolegenda">Pesquisar</p>
                       </div>
                       <div style="display: flex; margin: 10px">
@@ -150,7 +151,7 @@
                               <p class="textolegenda">Editar</p>
                           </div>
                           <div style="display: flex; margin: 10px">
-                              <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
+                              <a><img src="{{  asset('images/delete.png')  }}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
                               <p class="textolegenda">Deletar</p>
                           </div>
                       </div>
@@ -207,6 +208,6 @@
 
 @else
   <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
+  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{  url('/login')  }}">Voltar</a>
 @endcan
 @endsection
