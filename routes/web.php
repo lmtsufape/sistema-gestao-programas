@@ -11,6 +11,7 @@ use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\CadastrarSeController;
 use App\Http\Controllers\ProjetoController;
 use App\Http\Controllers\FrequenciaController;
+use App\Http\Controllers\MeusProgramasController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -82,5 +83,8 @@ Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
 
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
+
+//Rota para listar os projetos do aluno
+Route::get('/index_aluno', [MeusProgramasController::class, 'index']);
 
 

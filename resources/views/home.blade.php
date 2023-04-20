@@ -169,20 +169,21 @@
                 <p style="margin: auto; padding-right: 5px"> Ver meus certificados </p>
             </button>  --}}
 
-            <button class="botaoazul" ref="{{url("/index_aluno")}}" onclick="window.location.href='{{url("/listar_alunos")}}>
+            <button class="botaoazul" ref="{{url("/index_aluno")}}" onclick="window.location.href='{{url("/index_aluno")}}'">
                 <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
                 <p style="margin: auto; padding-right: 5px"> Ver meus programas </p>
             </button>
 
-
             </div>
 
-            {{--  <div style="display: flex; gap: 5%; align-items: center; margin-top: 1% ; margin-bottom: 1% ; margin-left: 2%">
+            {{--
+                  <div style="display: flex; gap: 5%; align-items: center; margin-top: 1% ; margin-bottom: 1% ; margin-left: 2%">
             <button class="botaoverde" ref="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
                 <img src="{{asset("images/DocumentAdd.png")}}" alt="logodoc" style="padding-right: 10px;">
                 <p style="margin: auto; padding-right: 5px"> Listar modelos de documentos </p>
             </button>
-            </div>  --}}
+            </div>
+             --}}
 
         </div>
 
