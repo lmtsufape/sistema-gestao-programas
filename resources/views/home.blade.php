@@ -49,83 +49,52 @@
     @auth
         @if (auth()->user()->typage_type == "App\Models\Servidor")
 
-        <div class="container">
-            <div>
-
-              <h1
-              style="font-style: normal; padding-top: 38px;
-              font-weight: 700; text-align:start ;
-              font-size: 35px; line-height: 41px; color: #131833;">
-              Bem-vindo(a)!
-              </h1>
-              <hr>
-
-
-            </div>
-
-            <div>
-                <div style="display: flex; gap: 5%; align-items: center; margin-top: 1% ; margin-bottom: 1% ; margin-left: 2%">
-
-                    <button class="botaoverde" href="{{url("/programas/")}}" onclick="window.location.href='{{url("/programas/")}}'" >
-                        <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Listar programas </p>
-                    </button>
-
-                    <button class="botaoazul" href="{{url("/orientadors/")}}" onclick="window.location.href='{{url("/orientadors/")}}'">
-                        <img src="{{asset("images/listuser.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Listar orientadores </p>
-                    </button>
-
-                    <button class="botaoverde" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'" >
-                        <img src="{{asset("images/listuser.png")}}" alt="logodoc"style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Listar alunos </p>
-                    </button>
-
-                    <button class="botaoazul" ref="{{url("/alunos/create")}}" onclick="window.location.href='{{url("/alunos/create")}}'">
-                        <img src="{{asset("images/adduser.png")}}" alt="logodoc" style="padding-right: 10px; padding-left: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Adicionar aluno </p>
-                    </button>
-
+            <div class="container">
+                <div>
+                    <h1 style="font-style: normal; padding-top: 38px;
+                            font-weight: 700; text-align:start ;
+                            font-size: 35px; line-height: 41px; color: #131833;">
+                        Bem-vindo(a)!
+                    </h1>
+                    <hr>
+                    <br>
                 </div>
 
-                <div style="display: flex; gap: 5%; align-items: center; margin-top: 1% ; margin-bottom: 1% ; margin-left: 2%">
+                <div style="margin-bottom: 17%; ">
+                    <div style="display: flex; gap: 5%; align-items: center; margin-top: 1% ; margin-bottom: 1% ; margin-left: 2%">
 
-                    <button class="botaoverde">
-                        <img src="{{asset("images/ion_documents-outline.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Analisar documentos </p>
-                    </button>
+                        <button class="botaoverde" href="{{url("/programas/1/editals")}}" onclick="window.location.href='{{url("/programas/1/editals")}}'">
+                            <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
+                            <p style="margin: auto; padding-right: 5px">PAVI </p>
+                        </button>
 
-                    <button class="botaoazul">
-                        <img src="{{asset("images/listdoc.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Listar documentos </p>
-                    </button>
+                        <button class="botaoazul" href="{{url("/programas/2/editals")}}" onclick="window.location.href='{{url("/programas/2/editals")}}'">
+                            <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
+                            <p style="margin: auto; padding-right: 5px">Monitoria </p>
+                        </button>
 
-                    <button class="botaoverde" ref="{{url("/editals")}}" onclick="window.location.href='{{url("/editals")}}'">
-                        <img src="{{asset("images/gear.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Gerenciar editais </p>
-                    </button>
+                        <button class="botaoverde" href="{{url("/programas/3/editals")}}" onclick="window.location.href='{{url("/programas/3/editals")}}'">
+                            <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
+                            <p style="margin: auto; padding-right: 5px">Tutoria </p>
+                        </button>
 
-                    <button class="botaoazul">
-                        <img src="{{asset("images/gear.png")}}" alt="logodoc" style="padding-right: 10px;  padding-left: 10px;">
-                        <p style="margin: auto; padding-right: 5px"> Gerenciar certificados e declarações  </p>
-                    </button>
+                        <button class="botaoazul" ref="{{url("/programas/4/editals")}}" onclick="window.location.href='{{url("/programas/4/editals")}}'">
+                            <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px; padding-left: 10px;">
+                            <p style="margin: auto; padding-right: 5px">Bia </p>
+                        </button>
 
-                </div>
 
-                <div style="display: flex; gap: 5%; align-items: center; margin-top: 1% ; margin-bottom: 1% ; margin-left: 2%">
+                    </div>
 
-                    <button class="botaoverde">
-                        <img src="{{asset("images/calendar-exclamation.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px"> Notificar prazos de relatórios </p>
-                    </button>
-                    <button class="botaoazul">
-                        <img src="{{asset("images/calendar-exclamation.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px"> Notificar prazos de frequência </p>
-                    </button>
+                    <div style="display: flex; gap: 5%; align-items: center; margin-top: 1% ; margin-bottom: 1% ; margin-left: 2%">
 
+                        <button class="botaoverde" ref="{{url("/programas/5/editals")}}" onclick="window.location.href='{{url("/programas/5/editals")}}'">
+                            <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
+                            <p style="margin: auto; padding-right: 5px">PETI </p>
+                        </button>
+                    </div>
                 </div>
             </div>
-          </div>
 
         @endif
     @endauth
