@@ -18,7 +18,6 @@ class Frequencia_mensalSeeder extends Seeder
             'mes' => 'agosto',
             'tempo_total' => 12.3,
             'frequencia' => json_encode(['dia1' => 10, 'dia2' => 12]),
-            'id_edital_aluno' => 1
         ]);
     }
 }

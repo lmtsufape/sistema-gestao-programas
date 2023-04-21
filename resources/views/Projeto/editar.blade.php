@@ -70,15 +70,16 @@
             Editar Projeto</h1>
             <hr style="color:#2D3875;">
 
-        <form action="{{route('projetos.store')}}" method="post">
+        <form action="{{route('projetos.store')}}" method="POST">
             @csrf
 
-            <label for="inputBolsa" class="titulo">Bolsa:</label>
-            <select aria-label="Default select example" class="boxinfo"> id="inputBolsa" name="curso">
-                <option value="">Selecione o tipo da bolsa:</option>
-                <option value="1">Voluntária</option>
-                <option value="2">Bolsista</option>
+            <label for="vinculo" class="titulo">Tipo do Vinculo:</label>
+            <select aria-label="Default select example" class="boxinfo" id="vinculo" name="tipo_vinculo">
+                <option value="">Selecione o vinculo:</option>
+                <option value="voluntario">Voluntária</option>
+                <option value="bolista">Bolsista</option>
             </select>
+
             <br><br>
 
             <label for="valorBolsa" class="titulo">Valor da bolsa:</label>
@@ -103,7 +104,7 @@
 
             <br><br>
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                <input type="button" value="Voltar" href="{{url("/projetos/")}}" onclick="window.location.href='{{url("/projetos/")}}'" style="background: #2D3875;
+                <input type="button" value="Voltar" href="{{url(    '/projetos/')   }}" onclick="window.location.href='{{   url('/projetos/')}}'" style="background: #2D3875;
                             box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                             border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                             line-height: 29px; text-align: center; padding: 5px 15px;">
