@@ -25,10 +25,10 @@ class Aluno extends Model
         return $this->belongsTo(Curso::class, "curso_id");
     }
 
-    // public function edital_alunos()
-    // {
-    //     return $this->hasMany(Edital_aluno::class);
-    // }
+    public function edital_alunos()
+    {
+        return $this->hasMany(Edital_Aluno::class);
+    }
 
     public static $rules = [
         'cpf' => 'bail|required|formato_cpf|cpf|unique:servidors|unique:alunos',

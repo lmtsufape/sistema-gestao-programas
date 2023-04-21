@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEditalAlunoTable extends Migration
+class CreateEditalAlunosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEditalAlunoTable extends Migration
      */
     public function up()
     {
-        Schema::create('edital_aluno', function (Blueprint $table) {
+        Schema::create('edital__alunos', function (Blueprint $table) {
             $table->id();
             $table->string('nome_aluno');
             $table->string('titulo_edital');
@@ -26,7 +26,6 @@ class CreateEditalAlunoTable extends Migration
             $table->foreignId('edital_id');
             $table->foreignId('disciplina_id');
             $table->timestamps();
-
         });
     }
 
@@ -37,6 +36,6 @@ class CreateEditalAlunoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('edital_projeto');
+        Schema::dropIfExists('edital__alunos');
     }
 }

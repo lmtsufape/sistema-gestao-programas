@@ -11,7 +11,7 @@ use App\Models\Edital_disciplina;
 use App\Models\Programa;
 use App\Models\Orientador;
 use App\Models\Edital_orientador;
-use App\Models\Edital_aluno;
+use App\Models\Edital_Aluno;
 use App\Models\Frequencia_mensal;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
