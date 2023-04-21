@@ -10,17 +10,17 @@ class Edital_disciplina extends Model
     use HasFactory;
     
     protected $fillable = [
-        'id_edital',
-        'id_disciplina'
+        'edital_id',
+        'disciplina_id'
     ];
 
     public function edital()
     {
-        return $this->belongsTo(Edital::class, "id_edital");
+        return $this->belongsTo(Edital::class, "edital_id");
     }
 
     public function disciplinas(){
-        return $this->belongsTo(Disciplina::class, "id_disciplina");
+        return $this->belongsTo(Disciplina::class, "disciplina_id");
     }
 
 }

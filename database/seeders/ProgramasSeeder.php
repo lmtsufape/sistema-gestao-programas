@@ -16,27 +16,32 @@ class ProgramasSeeder extends Seeder
     {
         $programa = Programa::create([
             'nome' => "PAVI",
-            'descricao' => 'Projeto PAVI'
+            'descricao' => 'Projeto PAVI',
+            'tipo' => 'Programa',
         ]);
 
         $programa1 = Programa::create([
             'nome' => "Monitoria",
-            'descricao' => 'Projeto Monitoria'
+            'descricao' => 'Projeto Monitoria',
+            'tipo' => 'Monitoria',
         ]);
 
         $programa2 = Programa::create([
             'nome' => "Tutoria",
-            'descricao' => 'Projeto Tutoria'
+            'descricao' => 'Projeto Tutoria',
+            'tipo' => 'Tutoria',
         ]);
 
         $programa3 = Programa::create([
             'nome' => "BIA",
-            'descricao' => 'Projeto BIA'
+            'descricao' => 'Projeto BIA',
+            'tipo' => 'BIA',
         ]);
 
         $programa4 = Programa::create([
             'nome' => "PETI",
-            'descricao' => 'Projeto PETI'
+            'descricao' => 'Projeto PETI',
+            'tipo' => 'PETI',
         ]);
     }
 }

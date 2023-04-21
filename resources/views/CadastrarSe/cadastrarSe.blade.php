@@ -107,7 +107,7 @@
                 <select name="tipo_servidor" id="tipo_servidor" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                 box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" aria-label="Default select example">
                     <option value=""></option>
-                    @foreach ($tipo_servidores as $tipo_servidor)
+                    @foreach ($tipo_servidors as $tipo_servidor)
                         <option value="{{$tipo_servidor->id}}">{{$tipo_servidor->nome}}</option>
                     @endforeach
                 </select>

@@ -15,8 +15,8 @@ class Edital_disciplinaSeeder extends Seeder
     public function run()
     {
         $edital_disciplina = Edital_disciplina::create([
-            'id_edital' => 1,
-            'id_disciplina' => 5
+            'edital_id' => 1,
+            'disciplina_id' => 5
         ]);
     }
 }

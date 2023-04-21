@@ -117,10 +117,10 @@
                 no_results_text: "Não possui cursos."
             });
 
-            $("#orientadores").chosen({
+            $("#orientadors").chosen({
                 placeholder_text_multiple: "Selecione um orientador",
                 // max_shown_results : 5,
-                no_results_text: "Não possui orientadores."
+                no_results_text: "Não possui orientadors."
             });
 
             $('div.chosen-container-single').addClass('required');

@@ -15,7 +15,7 @@
 
             @foreach ($curso->curso_disciplinas as $curso_disciplinas)
                 @foreach ($disciplinas as $disciplina)
-                    @if ($curso_disciplinas->id_disciplina == $disciplina->id)
+                    @if ($curso_disciplinas->disciplina_id == $disciplina->id)
                         <label>{{$disciplina->nome}}</label><br>
                         @break
                     @endif

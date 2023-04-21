@@ -6,7 +6,7 @@ use App\Models\Orientador;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class OrientadorsSeeder extends Seeder
+class orientadorsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,8 +21,8 @@ class OrientadorsSeeder extends Seeder
         ]);
 
         $orientador->user()->create([
-            'name' => "Marcius Petrucio",
-            'email' => "Marcius@gmail.com",
+            'name' => "Orientador 1",
+            'email' => "orientador@gmail.com",
             'password' =>  Hash::make('12345678')
         ])->givePermissionTo('orientador');
 
@@ -32,8 +32,8 @@ class OrientadorsSeeder extends Seeder
         ]);
 
         $orientador1->user()->create([
-            'name' => "Rodrigo Rocha",
-            'email' => "Rodrigo@gmail.com",
+            'name' => "Orientador 2",
+            'email' => "orientador2@gmail.com",
             'password' =>  Hash::make('12345678')
         ])->givePermissionTo('orientador');
     }

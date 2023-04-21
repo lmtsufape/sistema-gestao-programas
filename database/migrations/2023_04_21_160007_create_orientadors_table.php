@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoServidorsTable extends Migration
+class CreateorientadorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateTipoServidorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_servidors', function (Blueprint $table) {
+        Schema::create('orientadors', function (Blueprint $table) {
             $table->id();
-            $table->string("nome");
+            $table->string('cpf', 14)->unique()->nullable(false);
+            $table->string('matricula')->nullable(false);
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTipoServidorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_servidors');
+        Schema::dropIfExists('orientadors');
     }
 }

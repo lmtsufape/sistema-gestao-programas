@@ -16,6 +16,7 @@ class CreateDisciplinasTable extends Migration
         Schema::create('disciplinas', function (Blueprint $table) {
             $table->id();
             $table->string('nome')->nullable(false);
+            $table->foreignId('curso_id')->nullable(false)->constrained('cursos');
             $table->timestamps();
         });
     }

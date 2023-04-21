@@ -87,7 +87,7 @@
             <label for="curso" for="nome" class="titulo">Curso:</label>
             <select name="curso" id="curso" class="boxinfo"> name="curso" id="curso">
                 @foreach ($cursos as $curso)
-                    <option value="{{$curso->id}}" {{$aluno->id_curso == $curso->id ? "selected" : ""}}>{{$curso->nome}}</option>
+                    <option value="{{$curso->id}}" {{$aluno->curso_id == $curso->id ? "selected" : ""}}>{{$curso->nome}}</option>
                 @endforeach
             </select><br><br>
 

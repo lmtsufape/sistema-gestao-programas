@@ -10,7 +10,6 @@ class Servidor extends Model
 {
     protected $fillable = [
         'cpf',
-        'id_tipo_servidor'
     ];
 
     public function user(){
@@ -20,11 +19,6 @@ class Servidor extends Model
     public function programa_servidors()
     {
         return $this->hasMany(Programa_servidor::class, "id_servidor");
-    }
-
-    public function tipo_servidor()
-    {
-        return $this->belongsTo(Tipo_servidor::class, "id_tipo_servidor");
     }
 
     public static $rules = [

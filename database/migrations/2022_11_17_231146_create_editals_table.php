@@ -15,11 +15,13 @@ class CreateEditalsTable extends Migration
     {
         Schema::create('editals', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->text('descricao');
             $table->string("semestre");
             $table->date("data_inicio");
             $table->date("data_fim");
-            $table->foreignId('id_curso')->nullable(false)->constrained('cursos');
-            $table->foreignId('id_programa')->nullable(false)->constrained('programas');
+            $table->foreignId('curso_id')->nullable(false)->constrained('cursos');
+            $table->foreignId('programa_id')->nullable(false)->constrained('programas');
             $table->timestamps();
         });
     }

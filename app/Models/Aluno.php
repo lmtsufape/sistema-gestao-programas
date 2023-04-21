@@ -22,7 +22,7 @@ class Aluno extends Model
 
     public function curso()
     {
-        return $this->belongsTo(Curso::class, "id_curso");
+        return $this->belongsTo(Curso::class, "curso_id");
     }
 
     // public function edital_alunos()
@@ -51,6 +51,6 @@ class Aluno extends Model
     ];
 
     public function projetos() {
-        return $this->belongsToMany(Projeto::class, 'aluno_projeto');
+        return $this->belongsToMany(Projeto::class, 'edital_aluno');
     }
 }

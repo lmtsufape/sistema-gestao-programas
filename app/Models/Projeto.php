@@ -10,19 +10,24 @@ class Projeto extends Model
     use HasFactory;
 
     protected  $fillable = [
+        'nome',
+        'disciplina',
+        'informacoes_complementares',
         'valorBolsa',
         'bolsista',
+        'data_inicio',
+        'data_fim',
 
 
     ];
+    protected $dates = ['data_inicio', 'data_fim'];
 
     public function alunos() {
-        return $this->belongsToMany(Aluno::class, 'aluno_projeto');
+        return $this->belongsToMany(Aluno::class, 'edital_aluno');
     }
 
-    // public function inserirAlunoProjeto($projeto_id, $aluno_id) {
-
-    //     $projeto_id->alunos()->attach($aluno_id);
-    // }
+    public function edital() {
+        return $this->belongsTo(Edital::class, 'edital_aluno');
+    }
 
 }

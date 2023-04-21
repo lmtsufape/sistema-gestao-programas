@@ -54,8 +54,8 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        $servidores = Servidor::all();
-        return view("Programa.cadastrar", compact('servidores'));
+        $servidors = Servidor::all();
+        return view("Programa.cadastrar", compact('servidors'));
     }
 
     /**
@@ -74,9 +74,9 @@ class ProgramaController extends Controller
             $programa->descricao = $request->descricao;
             $programa->save();
 
-            foreach($request->servidores as $id_servidor){
+            foreach($request->servidors as $id_servidor){
                 $programa_servidor = new Programa_servidor();
-                $programa_servidor->id_programa = $programa->id;
+                $programa_servidor->programa_id = $programa->id;
                 $programa_servidor->id_servidor = $id_servidor;
                 $programa_servidor->save();
             }
@@ -111,14 +111,14 @@ class ProgramaController extends Controller
     public function edit($id)
     {
         $programa = Programa::find($id);
-        $servidores = Servidor::all();
-        $idsServidoresDoPrograma = [];
+        $servidors = Servidor::all();
+        $idsservidorsDoPrograma = [];
 
         foreach ($programa->programa_servidors as $programa_servidor){
-            $idsServidoresDoPrograma[] = $programa_servidor->id_servidor;
+            $idsservidorsDoPrograma[] = $programa_servidor->id_servidor;
         }
 
-        return view("Programa.editar", compact('programa', 'servidores', 'idsServidoresDoPrograma'));
+        return view("Programa.editar", compact('programa', 'servidors', 'idsservidorsDoPrograma'));
     }
 
     /**
@@ -137,12 +137,12 @@ class ProgramaController extends Controller
             $programa->descricao = $request->descricao ? $request->descricao : $programa->descricao;
             $programa->update();
 
-            Programa_servidor::where("id_programa", $programa->id)->delete();
+            Programa_servidor::where("programa_id", $programa->id)->delete();
 
-            if ($request->servidores){
-                foreach($request->servidores as $id_servidor){
+            if ($request->servidors){
+                foreach($request->servidors as $id_servidor){
                     $programa_servidor = new Programa_servidor();
-                    $programa_servidor->id_programa = $programa->id;
+                    $programa_servidor->programa_id = $programa->id;
                     $programa_servidor->id_servidor = $id_servidor;
                     $programa_servidor->save();
                 }
@@ -171,7 +171,7 @@ class ProgramaController extends Controller
             $id = $request->only(['id']);
             $programa = Programa::findOrFail($id)->first();
 
-            Programa_servidor::where("id_programa", $programa->id)->delete();
+            Programa_servidor::where("programa_id", $programa->id)->delete();
 
             $programa->delete();
 
@@ -196,8 +196,8 @@ class ProgramaController extends Controller
                 return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
             }
 
-            $editals = Edital::join("programas", "programas.id", "=", "editals.id_programa");
-            $editals = $editals->where("editals.id_programa", $id);
+            $editals = Edital::join("programas", "programas.id", "=", "editals.programa_id");
+            $editals = $editals->where("editals.programa_id", $id);
             $editals = $editals->where(function ($query) use ($valor) {
                 if ($valor) {
                     $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
@@ -208,18 +208,18 @@ class ProgramaController extends Controller
 
             return view("Programa.listar_editais", compact("editals", "programa"));
         } else {
-            $editals = Edital::where("editals.id_programa", $id)->get();
+            $editals = Edital::where("editals.programa_id", $id)->get();
             return view("Programa.listar_editais", compact('editals', "programa"));
         }
     }
 
-    public function deletar_edital($id, $id_edital, Request $request)
+    public function deletar_edital($id, $edital_id, Request $request)
     {
         DB::beginTransaction();
         try{
-            $edital = Edital::find($id_edital);
+            $edital = Edital::find($edital_id);
 
-            Edital::where("id", $id_edital)->delete();
+            Edital::where("id", $edital_id)->delete();
 
             DB::commit();
 
@@ -245,12 +245,12 @@ class ProgramaController extends Controller
             $edital = new Edital();
             $edital->data_inicio = $request->data_inicio;
             $edital->data_fim = $request->data_fim;
-            $edital->id_programa = $request->programa;
+            $edital->programa_id = $request->programa;
             $edital->save();
 
             DB::commit();
 
-            return redirect("/programas/$edital->id_programa/editals")->with('sucesso', 'Edital cadastrado com sucesso.');
+            return redirect("/programas/$edital->programa_id/editals")->with('sucesso', 'Edital cadastrado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();
@@ -272,12 +272,12 @@ class ProgramaController extends Controller
             $edital = Edital::find($id);
             $edital->data_inicio = $request->data_inicio ? $request->data_inicio : $edital->data_inicio;
             $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
-            $edital->id_programa = $request->programa ? $request->programa : $edital->id_programa;
+            $edital->programa_id = $request->programa ? $request->programa : $edital->programa_id;
             $edital->update();
 
             DB::commit();
 
-            return redirect("/programas/$edital->id_programa/editals")->with('sucesso', 'Edital editado com sucesso.');
+            return redirect("/programas/$edital->programa_id/editals")->with('sucesso', 'Edital editado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();

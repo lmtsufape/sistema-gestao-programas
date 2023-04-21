@@ -85,16 +85,16 @@
             <label for="valorBolsa" class="titulo">Valor da bolsa:</label>
             <input type="number" min="1" step="any" name="valorBolsa" id="valorBolsa" placeholder="Digite o valor da bolsa" class="boxinfo"><br><br>
 
-            <label for="inputOrientadores" class="titulo">Orientadores:</label>
-            <select aria-label="Default select example" class="boxinfo" id="orientadores" name="orientadores[]" multiple>
+            <label for="inputorientadors" class="titulo">orientadors:</label>
+            <select aria-label="Default select example" class="boxinfo" id="orientadors" name="orientadors[]" multiple>
                 <option value="">Selecione um orientador:</option>
-                {{--  @foreach ($orientadores as $orientador)
+                {{--  @foreach ($orientadors as $orientador)
                     <option value="{{$orientador->id}}">{{$orientador->nome}}</option>
                 @endforeach  --}}
             </select>
             <br><br>
 
-            <label for="inputOrientadores" class="titulo">Alunos:</label>
+            <label for="inputorientadors" class="titulo">Alunos:</label>
             <select aria-label="Default select example" class="boxinfo" id="alunos" name="alunos[]" multiple>
                 <option value="">Selecione um aluno:</option>
                 {{--  @foreach ($alunos as $aluno)
@@ -120,10 +120,10 @@
 </div>
 
 <script>
-    $("#orientadores").chosen({
+    $("#orientadors").chosen({
         placeholder_text_multiple: "Selecione um orientador",
         // max_shown_results : 5,
-        no_results_text: "Não possui orientadores."
+        no_results_text: "Não possui orientadors."
     });
     // max_shown_results : 5,
     no_results_text: "Não possui alunos."

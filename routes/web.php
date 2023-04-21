@@ -36,8 +36,8 @@ Route::middleware([
 Route::resource('/alunos', AlunoController::class);
 
 // Rotas de servidor
-Route::resource('/servidores', ServidorController::class);
-Route::post("/servidores/permissao/{id}", [ServidorController::class, "adicionar_permissao"]);
+Route::resource('/servidors', ServidorController::class);
+Route::post("/servidors/permissao/{id}", [ServidorController::class, "adicionar_permissao"]);
 
 // Rotas de orientador
 Route::resource('/orientadors', OrientadorController::class);
@@ -45,7 +45,7 @@ Route::resource('/orientadors', OrientadorController::class);
 // Rotas de programa
 Route::resource('/programas', ProgramaController::class);
 Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editais"]);
-Route::delete("programas/{id}/editals/{id_edital}", [ProgramaController::class, "deletar_edital"]);
+Route::delete("programas/{id}/editals/{edital_id}", [ProgramaController::class, "deletar_edital"]);
 Route::get("/programas/{id}/create/edital", [ProgramaController::class, "criar_edital"]);
 Route::post("/programas/store/edital", [ProgramaController::class, "store_edital"]);
 Route::get("/programas/edit/{id}/edital", [ProgramaController::class, "editar_edital"]);

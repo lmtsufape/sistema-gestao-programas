@@ -83,7 +83,7 @@
                 <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula" value="{{$orientador->matricula}}"><br><br>
 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                    <input type="button" class="btn btn-secondary" value="Voltar" href="{{url("/orientadors/")}}" onclick="window.location.href='{{url("/orientadors/")}}'"
+                    <input type="button" class="btn btn-secondary" value="Voltar" href="{{url('/orientadors/')}}" onclick="window.location.href='{{url('/orientadors/')}}'"
                     style=" display: inline-block;
                     border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                     line-height: 29px; text-align: center; padding: 5px 15px;">

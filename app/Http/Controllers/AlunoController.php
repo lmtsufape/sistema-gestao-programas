@@ -19,7 +19,7 @@ class AlunoController extends Controller
     {
         $aluno = new Aluno();
         $aluno->cpf = $request->cpf;
-        $aluno->id_curso = $request->curso;
+        $aluno->curso_id = $request->curso;
         $aluno->semestre_entrada = $request->semestre_entrada;
         //dd($request);
         if ($aluno->save()){
@@ -80,7 +80,7 @@ class AlunoController extends Controller
 
         $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
         $aluno->semestre_entrada = $request->semestre_entrada;
-        $aluno->id_curso = $request->curso;
+        $aluno->curso_id = $request->curso;
 
         $aluno->user->name = $request->nome;
         $aluno->user->email = $request->email;
@@ -131,7 +131,7 @@ class AlunoController extends Controller
                 return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
             }
 
-            $alunos = Aluno::join("users", "users.typage_id", "=", "alunos.id")->join("cursos", "cursos.id", "=", "alunos.id_curso");
+            $alunos = Aluno::join("users", "users.typage_id", "=", "alunos.id")->join("cursos", "cursos.id", "=", "alunos.curso_id");
             $alunos = $alunos->where(function ($query) use ($valor) {
                 if ($valor) {
                     $query->orWhere("users.name", "LIKE", "%{$valor}%");

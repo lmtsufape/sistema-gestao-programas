@@ -7,7 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="{{url("/servidores/permissao/$servidor->id")}}" method="post">
+        <form action="{{url("/servidors/permissao/$servidor->id")}}" method="post">
             @csrf
             <input type="hidden" name="id" value="{{$servidor->id}}">
             <label for="permissao" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Permissão: </label>

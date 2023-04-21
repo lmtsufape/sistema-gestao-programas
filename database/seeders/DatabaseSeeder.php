@@ -10,18 +10,16 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PermissionsSeeder::class,
-            OrientadorsSeeder::class,
-            Tipo_servidorSeeder::class,
-            ServidorSeeder::class,
-            ProgramasSeeder::class,
             CursoSeeder::class,
-            DisciplinaSeeder::class,
             AlunosSeeder::class,
-            Programa_servidorSeeder::class,
-            Curso_disciplinaSeeder::class,
+            OrientadorsSeeder::class,
+            ServidorsSeeder::class,
+            ProgramasSeeder::class,
+            DisciplinaSeeder::class,
+            Programa_servidorsSeeder::class,
             EditalSeeder::class,
-            // Edital_orientadorSeeder::class,
-            Frequencia_mensalSeeder::class
+            Edital_AlunoSeeder::class,
+            Edital_disciplinaSeeder::class
         ]);
     }
 }

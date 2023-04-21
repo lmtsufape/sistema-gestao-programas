@@ -36,7 +36,7 @@
     <br>
 
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1><strong>Orientadores</strong></h1>
+    <h1><strong>orientadors</strong></h1>
     <div style="margin: auto"></div>
     <form action="{{route("orientadors.index")}}" method="GET">
       <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
@@ -78,7 +78,7 @@
     @if (sizeof($orientadors) == 0)
       <div class="empty">
         <p>
-          Não há orientadores cadastrados
+          Não há orientadors cadastrados
         </p>
       </div>
     @else

@@ -9,10 +9,10 @@
     @endif
     <br>
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-      <h1><strong>Servidores</strong></h1>
+      <h1><strong>servidors</strong></h1>
       <div style="margin: auto"></div>
       {{-- TODO: Falta adicionar um modal com os possiveis filtros  --}}
-      <form action="{{route("servidores.index")}}" method="GET" id="myForm">
+      <form action="{{route("servidors.index")}}" method="GET" id="myForm">
         <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
                 border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                 background-position: 10px 2px;
@@ -38,15 +38,15 @@
       <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
       font-weight: 400; font-size: 24px; padding-top: 5px; padding-bottom: 6px; padding-right: 15px;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none; padding-left: 10px;"
-      href="{{route('servidores.create')}}">
+      href="{{route('servidors.create')}}">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar servidor" style="padding-bottom: 5px;"> Cadastrar servidor
       </a>
     </div>
 
-    @if (sizeof($servidores) == 0)
+    @if (sizeof($servidors) == 0)
     <div class="empty">
       <p>
-        Não há servidores cadastrados
+        Não há servidors cadastrados
       </p>
     </div>
     @else
@@ -63,7 +63,7 @@
             <th scope="col">Ações</th>
           </tr>
         </thead>
-        @foreach ($servidores as $servidor)
+        @foreach ($servidors as $servidor)
         <tbody>
           <tr>
             <td class="align-middle">{{$servidor->user->name}}</td>
@@ -78,7 +78,7 @@
                   <img src="{{asset("images/document.png")}}" alt="Documento servidor">
                   {{-- TODO: Fica pra fazer o modal depois  --}}
                 </a>
-                <a href="{{url("/servidores/$servidor->id/edit")}}">
+                <a href="{{url("/servidors/$servidor->id/edit")}}">
                   <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar servidor">
                 </a>
                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$servidor->id}}">
@@ -89,9 +89,9 @@
                   </a>
                 </td>
             </tr>
-            @include("servidores.components.modal_show", ["servidor" => $servidor])
-            @include("servidores.components.modal_delete", ["servidor" => $servidor])
-            @include("servidores.components.modal_adicionaPermissao", ["servidor" => $servidor])
+            @include("servidors.components.modal_show", ["servidor" => $servidor])
+            @include("servidors.components.modal_delete", ["servidor" => $servidor])
+            @include("servidors.components.modal_adicionaPermissao", ["servidor" => $servidor])
             @endforeach
         </tbody>
       </table>

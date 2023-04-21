@@ -34,7 +34,7 @@ class EditalController extends Controller
                 return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
             }
 
-            $editals = Edital::join("programas", "programas.id", "=", "editals.id_programa");
+            $editals = Edital::join("programas", "programas.id", "=", "editals.programa_id");
             $editals = $editals->where(function ($query) use ($valor) {
                 if ($valor) {
                     $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
@@ -44,13 +44,13 @@ class EditalController extends Controller
             })->select("editals.*")->get();
 
             $disciplinas = Disciplina::all();
-            $orientadores = Orientador::all();
-            return view("Edital.index", compact("editals", "orientadores", "disciplinas"));
+            $orientadors = Orientador::all();
+            return view("Edital.index", compact("editals", "orientadors", "disciplinas"));
         } else {
             $disciplinas = Disciplina::all();
-            $orientadores = Orientador::all();
+            $orientadors = Orientador::all();
             $editals = Edital::all();
-            return view("Edital.index", compact('editals', 'orientadores', 'disciplinas'));
+            return view("Edital.index", compact('editals', 'orientadors', 'disciplinas'));
         }
     }
 
@@ -74,15 +74,15 @@ class EditalController extends Controller
             $edital = new Edital();
             $edital->data_inicio = $request->data_inicio;
             $edital->data_fim = $request->data_fim;
-            $edital->id_programa = $request->programa;
-            //$edital ->id_disciplina = $request ->disciplina;
+            $edital->programa_id = $request->programa;
+            //$edital ->disciplina_id = $request ->disciplina;
             $edital->save();
 
             if($request->disciplinas){
-                foreach($request->disciplinas as $id_disciplina){
+                foreach($request->disciplinas as $disciplina_id){
                     $edital_disciplina = new Edital_disciplina();
-                    $edital_disciplina->id_edital = $edital->id;
-                    $edital_disciplina->id_disciplina = $id_disciplina;
+                    $edital_disciplina->edital_id = $edital->id;
+                    $edital_disciplina->disciplina_id = $disciplina_id;
                     $edital_disciplina->save();
                 }
             }
@@ -122,7 +122,7 @@ class EditalController extends Controller
         $idsDisciplinasDoEdital = [];
 
         foreach($edital->edital_disciplina as $edital_disciplina){
-            $idsDisciplinasDoEdital[] = $edital_disciplina->id_disciplina;
+            $idsDisciplinasDoEdital[] = $edital_disciplina->disciplina_id;
         }
         return view("Edital.editar", compact("edital", "programas", "disciplinas", "idsDisciplinasDoEdital"));
     }
@@ -141,15 +141,15 @@ class EditalController extends Controller
             $edital = Edital::find($id);
             $edital->data_inicio = $request->data_inicio ? $request->data_inicio : $edital->data_inicio;
             $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
-            $edital->id_programa = $request->programa ? $request->programa : $edital->id_programa;
+            $edital->programa_id = $request->programa ? $request->programa : $edital->programa_id;
             $edital->update();
 
-            Edital_disciplina::where("id_edital", $edital->id)->delete();
+            Edital_disciplina::where("edital_id", $edital->id)->delete();
             if($request->disciplinas){
-                foreach($request->disciplinas as $id_disciplina){
+                foreach($request->disciplinas as $disciplina_id){
                     $edital_disciplina = new Edital_disciplina();
-                    $edital_disciplina->id_edital = $edital->id;
-                    $edital_disciplina->id_disciplina = $id_disciplina;
+                    $edital_disciplina->edital_id = $edital->id;
+                    $edital_disciplina->disciplina_id = $disciplina_id;
                     $edital_disciplina->save();
                 }
             }

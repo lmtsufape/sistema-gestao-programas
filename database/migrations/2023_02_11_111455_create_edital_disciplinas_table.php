@@ -15,8 +15,8 @@ class CreateEditalDisciplinasTable extends Migration
     {
         Schema::create('edital_disciplinas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_edital')->nullable(false)->constrained('editals');
-            $table->foreignId('id_disciplina')->nullable(false)->constrained('disciplinas');
+            $table->foreignId('edital_id')->nullable(false)->constrained('editals');
+            $table->foreignId('disciplina_id')->nullable(false)->constrained('disciplinas');
             $table->timestamps();
         });
     }
