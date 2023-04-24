@@ -63,15 +63,18 @@ class EditalController extends Controller
     {
         $disciplinas = Disciplina::all();
         $programas = Programa::all();
-        return view("Edital.cadastrar", compact("programas", "disciplinas"));
+        $cursos = Curso::all();
+        return view("Edital.cadastrar", compact("programas", "cursos"));
     }
 
     public function store(EditalStoreFormRequest $request)
     {
         DB::beginTransaction();
-        try{
+        //try{
 
             $edital = new Edital();
+            $edital->nome = $request->nome;
+            $edital->nome = $request->descricao;
             $edital->data_inicio = $request->data_inicio;
             $edital->data_fim = $request->data_fim;
             $edital->programa_id = $request->programa;
@@ -91,10 +94,10 @@ class EditalController extends Controller
 
             return redirect('/editals')->with('sucesso', 'Edital cadastrado com sucesso.');
 
-        } catch(exception $e){
-            DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
-        }
+        // } catch(exception $e){
+        //     DB::rollback();
+        //     return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
+        // }
     }
 
     /**

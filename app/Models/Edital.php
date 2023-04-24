@@ -10,9 +10,17 @@ class Edital extends Model
     use HasFactory;
 
     protected $fillable = [
-        'programa_id',
+        'nome',
+        'descricao',
+        'semestre',
+        'data_inicio',
         'data_fim',
-        'data_inicio'
+    ];
+
+
+    protected $dates = [
+        'data_inicio',
+        'data_fim'
     ];
 
     public function programa()

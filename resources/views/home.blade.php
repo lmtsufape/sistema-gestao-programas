@@ -83,8 +83,9 @@
 
                     <button class="botaoazul" ref="{{url('/alunos/create')}}" onclick="window.location.href='{{url('/alunos/create')}}'">
                         <img src="{{asset('images/adduser.png')}}" alt="logodoc" style="padding-right: 10px; padding-left: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Adicionar aluno </p>
+                        <p style="margin: auto; padding-right: 5px;">Adicionar aluno</p>
                     </button>
+
 
                 </div>
 
@@ -102,8 +103,9 @@
 
                     <button class="botaoverde" ref="{{url('/editals')}}" onclick="window.location.href='{{url('/editals')}}'">
                         <img src="{{asset('images/gear.png')}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Gerenciar editais </p>
+                        <p style="margin: auto; padding-right: 5px;">Gerenciar editais</p>
                     </button>
+
 
                     <button class="botaoazul">
                         <img src="{{asset('images/gear.png')}}" alt="logodoc" style="padding-right: 10px;  padding-left: 10px;">
@@ -154,7 +156,7 @@
                 <p style="margin: auto; padding-right: 5px"> Listar documentos </p>
             </button>  --}}
 
-            <button class="botaoverde" ref="{{url('/listar-modelos')}}" onclick="window.location.href="{{url('/listar-modelos')}}">
+            <button class="botaoverde" ref="{{url('/listar-modelos')}}" onclick="window.location.href="{{ url('/listar-modelos') }}">
                 <img src="{{asset('images/DocumentAdd.png')}}" alt="logodoc" style="padding-right: 10px;">
                 <p style="margin: auto; padding-right: 5px"> Listar modelos de documentos </p>
             </button>
@@ -213,10 +215,11 @@
                     <p style="margin: auto; padding-right: 5px">Listar alunos </p>
                 </button>
 
-                <button class="botaoazul" href="{{url('/programas/'}}" onclick="window.location.href='{{url('/programas/')}}'">
-                    <img src="{{asset('images/programaicon.png'}}" alt="logodoc" style="padding-right: 20px;">
-                    <p style="margin: auto; padding-right: 5px"> Meus programas </p>
+                <button class="botaoazul" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}';">
+                    <img src="{{asset('images/programaicon.png')}}" alt="logodoc" style="padding-right: 20px;">
+                    <p style="margin: auto; padding-right: 5px;">Meus programas</p>
                 </button>
+
 
                 {{--  <button class="botaoverde">
                     <img src="{{asset('images/certificadoicon.png')}}" alt="logodoc" style="padding-right: 20px;">
