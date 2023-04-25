@@ -215,9 +215,15 @@
                     <p style="margin: auto; padding-right: 5px">Listar alunos </p>
                 </button>
 
+<<<<<<< HEAD
                 <button class="botaoazul" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}';">
                     <img src="{{asset('images/programaicon.png')}}" alt="logodoc" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 5px;">Meus programas</p>
+=======
+                <button class="botaoazul" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'">
+                    <img src="{{asset('images/programaicon.png')}}" alt="logodoc" style="padding-right: 20px;">
+                    <p style="margin: auto; padding-right: 5px"> Meus programas </p>
+>>>>>>> refs/remotes/origin/main
                 </button>
 
 

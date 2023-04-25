@@ -27,9 +27,10 @@ class AlunoController extends Controller
             if ( 
                 $aluno->user()->create([
                     'name' => $request->nome,
+                    'name_social' => $request->nome_social == null ? "-": $request->nome_social,
                     'email' => $request->email,
                     'password' => Hash::make($request->senha)
-                ])->givePermissionTo('aluno') 
+                ])->givePermissionTo('aluno')
             ){
 
                 $mensagem_sucesso = "Aluno cadastrado com sucesso.";
@@ -47,7 +48,7 @@ class AlunoController extends Controller
     {
         $validacao = $request->validate(
             [
-                'name' => ['required'],
+                'nome' => ['required'],
                 'cpf' => ['required'],
                 'email' => ['required'],
                 'semestre_entrada' => ['required'],
@@ -66,7 +67,7 @@ class AlunoController extends Controller
         ]);
 
         $aluno->user()->create([
-            'name' => $request->input('name'),
+            'name' => $request->input('nome'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password'))
         ])->givePermissionTo('aluno');
@@ -123,7 +124,10 @@ class AlunoController extends Controller
 
     public function index(Request $request)
     {
-        if (sizeof($request-> query()) > 0){
+        $alunos = Aluno::with('user')->get();
+        return view("Alunos.index", compact("alunos"));
+
+        /*if (sizeof($request-> query()) > 0){
             $campo = $request->query('campo');
             $valor = $request->query('valor');
 
@@ -135,6 +139,7 @@ class AlunoController extends Controller
             $alunos = $alunos->where(function ($query) use ($valor) {
                 if ($valor) {
                     $query->orWhere("users.name", "LIKE", "%{$valor}%");
+                    $query->orWhere("users.name_social", "LIKE", "%{$valor}%");
                     $query->orWhere("users.email", "LIKE", "%{$valor}%");
                     $query->orWhere("alunos.cpf", "LIKE", "%{$valor}%");
                     $query->orWhere("cursos.nome", "LIKE", "%{$valor}%");
@@ -143,9 +148,10 @@ class AlunoController extends Controller
 
             return view("Alunos.index", compact("alunos"));
         } else {
-            $alunos = Aluno::all();
+            $alunos = Aluno::join("users", "users.typage_id", "=", "alunos.id")->join("cursos", "cursos.id", "=", "alunos.curso_id");
+            $alunos = $alunos->get();
             return view("Alunos.index", compact("alunos"));
-        }
+        }*/
     }
 
     public function edit($id){

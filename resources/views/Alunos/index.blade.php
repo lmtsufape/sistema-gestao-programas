@@ -95,6 +95,7 @@
 
             <tr>
                 <th scope="col">Nome</th>
+                <th scope="col">Nome Social</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">CPF</th>
                 <th scope="col">Curso</th>
@@ -106,6 +107,7 @@
           <tbody>
                 <tr>
                   <td class="align-middle">{{$aluno->user->name}}</td>
+                  <td class="align-middle">{{$aluno->user->name_social}}</td>
                   <td class="align-middle">{{$aluno->user->email}}</td>
                   <td class="align-middle">{{$aluno->cpf}}</td>
                   <td class="align-middle">{{$aluno->curso->nome}}</td>
@@ -189,7 +191,7 @@
     }
   </script>
 
-  <!-- Exibindo erros de validacao ao criar -->
+   <!--Exibindo erros de validacao ao criar -->
  @if(count($errors->create) > 0)
   <script type="text/javascript">
     $(function () {
@@ -201,7 +203,7 @@
   </script>
   @endif
 
-  <!-- Exibindo erros de validacao ao editar -->
+   <!--Exibindo erros de validacao ao editar -->
   @if(count($errors->update) > 0)
   <script type="text/javascript">
     $(function () {
@@ -217,4 +219,4 @@
   <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
   <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
 @endcan
-@endsection
+@endsection 
