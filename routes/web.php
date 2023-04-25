@@ -41,7 +41,7 @@ Route::post("/servidors/permissao/{id}", [ServidorController::class, "adicionar_
 
 // Rotas de orientador
 Route::resource('/orientadors', OrientadorController::class);
-
+//aaaaaa
 // Rotas de programa
 Route::resource('/programas', ProgramaController::class);
 Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editais"]);
