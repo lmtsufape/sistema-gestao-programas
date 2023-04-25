@@ -58,6 +58,9 @@ Route::prefix('edital')->group(function() {
     Route::get('/', [EditalController::class, 'index'])->name('edital.index');
     Route::get('/create', [EditalController::class, 'create'])->name('edital.create');
     Route::post('/', [EditalController::class, 'store'])->name('edital.store');
+    Route::get('/{id}/edit', [EditalController::class, 'edit'])->where('id', '[0-9+')->name('edital.edit');
+    Route::put('/{id}', [EditalController::class, 'update'])->name('edital.update');
+    Route::delete('/{id}', [EditalController::class, 'destroy'])->name('edital.delete');
 });    
 
 // Rotas de Disciplina

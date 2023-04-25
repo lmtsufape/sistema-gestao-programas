@@ -32,13 +32,4 @@ class Edital extends Model
     {
         return $this->hasMany(Edital_Aluno::class, "edital_id");
     }
-
-    public function edital_disciplina()
-    {
-        return $this->hasMany(Edital_disciplina::class, "edital_id");
-    }
-
-    public function projetos() {
-        return $this->hasMany(Projeto::class, 'edital_projeto');
-    }
 }

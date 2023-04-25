@@ -101,12 +101,17 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
-              <a href="{{url("/editals/$edital->id/edit")}}">
+              <a href="{{  route('edital.edit', ['id' => $edital->id] )  }}">
                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$edital->id}}">
-                <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
-              </a>
+              <form action="{{ route('edital.delete', ['id' => $edital->id]) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger">
+                    <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
+                  </button>
+              </form>
+
             </td>
           </tr>
           <tr>
