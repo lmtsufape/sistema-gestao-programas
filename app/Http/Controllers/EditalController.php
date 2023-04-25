@@ -95,7 +95,7 @@ class EditalController extends Controller
             }
             DB::commit();
 
-            return redirect('/editals')->with('sucesso', 'Edital cadastrado com sucesso.');
+            return redirect('/edital')->with('sucesso', 'Edital cadastrado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();

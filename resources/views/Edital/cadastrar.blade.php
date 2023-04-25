@@ -71,7 +71,7 @@
 
                 <hr>
 
-                <form action="{{route('editals.store')}}" method="POST">
+                <form action="{{route('edital.store')}}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="nome">Nome</label>
@@ -119,7 +119,7 @@
                     </div>
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                        <input type="button" value="Voltar" href="{{url('/editals/')}}" onclick="window.location.href='{{url("/editals/")}}'" style="background: #2D3875;
+                        <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;
                         box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                         border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                         line-height: 29px; text-align: center; padding: 5px 15px;">
