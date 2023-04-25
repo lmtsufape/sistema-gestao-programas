@@ -52,10 +52,13 @@ Route::get("/programas/edit/{id}/edital", [ProgramaController::class, "editar_ed
 Route::put("/programas/update/{id}/edital", [ProgramaController::class, "update_edital"]);
 
 // Rotas de Edital
-Route::resource('/editals', EditalController::class);
+Route::resource('/edital', EditalController::class);
 
-
-
+Route::prefix('edital')->group(function() {
+    Route::get('/', [EditalController::class, 'index'])->name('edital.index');
+    Route::get('/create', [EditalController::class, 'create'])->name('edital.create');
+    Route::post('/', [EditalController::class, 'store'])->name('edital.store');
+});    
 
 // Rotas de Disciplina
 Route::resource('/disciplinas', DisciplinaController::class);

@@ -71,7 +71,7 @@
 
                 <hr>
 
-                <form action="{{route('editals.store')}}" method="POST">
+                <form action="{{route('edital.store')}}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="nome">Nome</label>
@@ -80,7 +80,12 @@
 
                     <div class="form-group">
                         <label for="descricao">Descrição</label>
-                        <input type="text" id="descricao" class="form-control" name="descricao" placeholder="Descrição do edital" required>
+                        <input type="textarea" id="descricao" class="form-control" name="descricao" placeholder="Descrição do edital" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="semestre">Semestre</label>
+                        <input type="text" id="semestre" class="form-control" name="semestre" placeholder="Semestre do edital" required>
                     </div>
 
                     <div class="form-group">
@@ -105,16 +110,16 @@
 
                     <div class="form-group">
                         <label for="programa">Curso:</label>
-                        <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
+                        <select aria-label="Default select example" class="boxinfo" name="curso" id="curso" >
                             <option value=""></option>
                                 @foreach ($cursos as $curso)
-                                    <option value="{{$programa->id}}">{{$curso->nome}}</option>
+                                    <option value="{{$curso->id}}">{{$curso->nome}}</option>
                                 @endforeach
                         </select><br><br>
                     </div>
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                        <input type="button" value="Voltar" href="{{url('/editals/')}}" onclick="window.location.href='{{url("/editals/")}}'" style="background: #2D3875;
+                        <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;
                         box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                         border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                         line-height: 29px; text-align: center; padding: 5px 15px;">
