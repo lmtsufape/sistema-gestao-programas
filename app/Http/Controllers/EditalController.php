@@ -7,12 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Edital;
 use App\Models\Curso;
 use App\Models\Disciplina;
-use App\Models\Edital_disciplina;
 use App\Models\Programa;
 use App\Models\Orientador;
-use App\Models\Edital_orientador;
 use App\Models\Edital_Aluno;
-use App\Models\Frequencia_mensal;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
 use Exception;
@@ -26,7 +23,7 @@ class EditalController extends Controller
      */
     public function index(Request $request)
     {
-        if (sizeof($request-> query()) > 0){
+        if (sizeof($request->query()) > 0){
             $campo = $request->query('campo');
             $valor = $request->query('valor');
 
@@ -35,6 +32,7 @@ class EditalController extends Controller
             }
 
             $editals = Edital::join("programas", "programas.id", "=", "editals.programa_id");
+
             $editals = $editals->where(function ($query) use ($valor) {
                 if ($valor) {
                     $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
@@ -63,33 +61,32 @@ class EditalController extends Controller
     {
         $disciplinas = Disciplina::all();
         $programas = Programa::all();
-        return view("Edital.cadastrar", compact("programas", "disciplinas"));
+        
+        $cursos = Curso::all();
+        return view("Edital.cadastrar", compact("programas", "cursos"));
     }
 
-    public function store(EditalStoreFormRequest $request)
+    public function store(editalstoreFormRequest $request)
     {
         DB::beginTransaction();
         try{
-
+            
+            // dd($request);
             $edital = new Edital();
+            $edital->nome = $request->nome;
+            $edital->descricao = $request->descricao;
+            $edital->semestre = $request->semestre;
             $edital->data_inicio = $request->data_inicio;
             $edital->data_fim = $request->data_fim;
+            $edital->curso_id = $request->curso;
             $edital->programa_id = $request->programa;
             //$edital ->disciplina_id = $request ->disciplina;
+            //dd($edital);
             $edital->save();
-
-            if($request->disciplinas){
-                foreach($request->disciplinas as $disciplina_id){
-                    $edital_disciplina = new Edital_disciplina();
-                    $edital_disciplina->edital_id = $edital->id;
-                    $edital_disciplina->disciplina_id = $disciplina_id;
-                    $edital_disciplina->save();
-                }
-            }
 
             DB::commit();
 
-            return redirect('/editals')->with('sucesso', 'Edital cadastrado com sucesso.');
+            return redirect('/edital')->with('sucesso', 'Edital cadastrado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();
@@ -101,7 +98,7 @@ class EditalController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response87
      */
     public function show($id)
     {
@@ -116,15 +113,11 @@ class EditalController extends Controller
      */
     public function edit($id)
     {
-        $edital = Edital::find($id);
+        $edital = Edital::Where('id', $id)->first();
+        //dd($edital);
         $programas = Programa::all();
-        $disciplinas = Disciplina::all();
-        $idsDisciplinasDoEdital = [];
-
-        foreach($edital->edital_disciplina as $edital_disciplina){
-            $idsDisciplinasDoEdital[] = $edital_disciplina->disciplina_id;
-        }
-        return view("Edital.editar", compact("edital", "programas", "disciplinas", "idsDisciplinasDoEdital"));
+        
+        return view("Edital.editar", compact("edital", "programas"));
     }
 
     /**
@@ -135,28 +128,24 @@ class EditalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(EditalUpdateFormRequest $request, $id)
-    {
+    {   
         DB::beginTransaction();
         try{
             $edital = Edital::find($id);
+
+            $edital->nome = $request->nome ? $request->nome : $edital->nome;
+            $edital->descricao = $request->descricao ? $request->descricao : $edital->descricao;
+            $edital->semestre = $request->semestre ? $request->semestre : $edital->semestre;
             $edital->data_inicio = $request->data_inicio ? $request->data_inicio : $edital->data_inicio;
             $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
             $edital->programa_id = $request->programa ? $request->programa : $edital->programa_id;
             $edital->update();
-
-            Edital_disciplina::where("edital_id", $edital->id)->delete();
-            if($request->disciplinas){
-                foreach($request->disciplinas as $disciplina_id){
-                    $edital_disciplina = new Edital_disciplina();
-                    $edital_disciplina->edital_id = $edital->id;
-                    $edital_disciplina->disciplina_id = $disciplina_id;
-                    $edital_disciplina->save();
-                }
-            }
+            //dd($edital);
 
             DB::commit();
 
-            return redirect("/editals")->with('sucesso', 'Edital editado com sucesso.');
+            return redirect()->route('edital.index')
+            ->with('sucesso', 'Edital editado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();
@@ -174,13 +163,13 @@ class EditalController extends Controller
     {
         DB::beginTransaction();
         try{
-            $edital = Edital::find($id);
 
             Edital::where("id", $id)->delete();
 
             DB::commit();
 
-            return redirect("/editals")->with('sucesso', 'Edital deletado com sucesso.');
+            return redirect()->route('edital.index')
+            ->with('sucesso', 'Edital deletado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();

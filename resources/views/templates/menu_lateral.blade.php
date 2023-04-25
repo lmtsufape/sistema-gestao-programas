@@ -68,7 +68,7 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
               <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
               padding-top: 4px">Listagem de servidors</p></a>
             <hr>
-            <a href="{{route("editals.index")}}" style="display: flex; color: #000; text-decoration: none;">
+            <a href="{{route("edital.index")}}" style="display: flex; color: #000; text-decoration: none;">
               <img src="{{asset("images/iconsbarralateral/gearbl.png")}}" alt="gerenciar" style="height:24px; width:24px;">
               <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
               padding-top: 4px">Gerenciar editais</p>

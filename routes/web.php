@@ -41,7 +41,7 @@ Route::post("/servidors/permissao/{id}", [ServidorController::class, "adicionar_
 
 // Rotas de orientador
 Route::resource('/orientadors', OrientadorController::class);
-
+//aaaaaa
 // Rotas de programa
 Route::resource('/programas', ProgramaController::class);
 Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editais"]);
@@ -52,7 +52,16 @@ Route::get("/programas/edit/{id}/edital", [ProgramaController::class, "editar_ed
 Route::put("/programas/update/{id}/edital", [ProgramaController::class, "update_edital"]);
 
 // Rotas de Edital
-Route::resource('/editals', EditalController::class);
+Route::resource('/edital', EditalController::class);
+
+Route::prefix('edital')->group(function() {
+    Route::get('/', [EditalController::class, 'index'])->name('edital.index');
+    Route::get('/create', [EditalController::class, 'create'])->name('edital.create');
+    Route::post('/', [EditalController::class, 'store'])->name('edital.store');
+    Route::get('/{id}/edit', [EditalController::class, 'edit'])->where('id', '[0-9+')->name('edital.edit');
+    Route::put('/{id}', [EditalController::class, 'update'])->name('edital.update');
+    Route::delete('/{id}', [EditalController::class, 'destroy'])->name('edital.delete');
+});    
 
 // Rotas de Disciplina
 Route::resource('/disciplinas', DisciplinaController::class);

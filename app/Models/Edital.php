@@ -10,9 +10,17 @@ class Edital extends Model
     use HasFactory;
 
     protected $fillable = [
-        'programa_id',
+        'nome',
+        'descricao',
+        'semestre',
+        'data_inicio',
         'data_fim',
-        'data_inicio'
+    ];
+
+
+    protected $dates = [
+        'data_inicio',
+        'data_fim'
     ];
 
     public function programa()
@@ -23,14 +31,5 @@ class Edital extends Model
     public function edital_alunos()
     {
         return $this->hasMany(Edital_Aluno::class, "edital_id");
-    }
-
-    public function edital_disciplina()
-    {
-        return $this->hasMany(Edital_disciplina::class, "edital_id");
-    }
-
-    public function projetos() {
-        return $this->hasMany(Projeto::class, 'edital_projeto');
     }
 }
