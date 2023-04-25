@@ -80,7 +80,7 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputNomeSocial" class="titulo">Nome Social:</label>
-            <input class="boxinfo" type="text" id="inputNomeSocial" name="nome_social" required placeholder="Digite o nome social">
+            <input class="boxinfo" type="text" id="inputNomeSocial" name="nome_social" placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputCpf" class="titulo">CPF:</label>
