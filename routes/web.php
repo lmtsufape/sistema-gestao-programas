@@ -52,8 +52,8 @@ Route::get("/programas/edit/{id}/edital", [ProgramaController::class, "editar_ed
 Route::put("/programas/update/{id}/edital", [ProgramaController::class, "update_edital"]);
 
 // Rotas de Edital
-Route::resource('/editals', EditalController::class);
-
+Route::resource('/editais', EditalController::class);
+//Route::get('/')
 
 
 

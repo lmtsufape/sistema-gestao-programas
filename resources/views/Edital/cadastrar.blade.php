@@ -80,7 +80,12 @@
 
                     <div class="form-group">
                         <label for="descricao">Descrição</label>
-                        <input type="text" id="descricao" class="form-control" name="descricao" placeholder="Descrição do edital" required>
+                        <input type="textarea" id="descricao" class="form-control" name="descricao" placeholder="Descrição do edital" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="semestre">Semestre</label>
+                        <input type="text" id="semestre" class="form-control" name="semestre" placeholder="Semestre do edital" required>
                     </div>
 
                     <div class="form-group">
@@ -105,10 +110,10 @@
 
                     <div class="form-group">
                         <label for="programa">Curso:</label>
-                        <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
+                        <select aria-label="Default select example" class="boxinfo" name="curso" id="curso" >
                             <option value=""></option>
                                 @foreach ($cursos as $curso)
-                                    <option value="{{$programa->id}}">{{$curso->nome}}</option>
+                                    <option value="{{$curso->id}}">{{$curso->nome}}</option>
                                 @endforeach
                         </select><br><br>
                     </div>
