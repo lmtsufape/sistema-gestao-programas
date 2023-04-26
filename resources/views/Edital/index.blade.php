@@ -95,7 +95,7 @@
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
             <td>
-              <a href="{{url("/projetos")}}">
+              <a href="{{  route("edital.index")  }}">
                 <img src="{{asset("images/listaredital.png")}}" alt="Listar projetos" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
