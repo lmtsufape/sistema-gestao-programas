@@ -105,19 +105,19 @@
         <div class="container">
             <div>
 
-            <h1
-            style="font-style: normal; padding-top: 38px;
-            font-weight: 700; text-align:start ;
-            font-size: 35px; line-height: 41px; color: #131833;">
-            Bem-vindo(a)!
-            </h1>
-            <hr>
-
+                <h1
+                style="font-style: normal; padding-top: 38px;
+                font-weight: 700; text-align:start ;
+                font-size: 35px; line-height: 41px; color: #131833;">
+                Bem-vindo(a)!
+                </h1>
+                <hr>
+                <br>
 
             </div>
 
             <div style="display: flex; gap: 5%; align-items: center; margin-top: 1% ; margin-bottom: 1% ; margin-left: 2%">
-
+            
             {{--  <button class="botaoverde">
                 <img src="{{asset("images/DocumentAdd.png")}}" alt="logodoc" style="padding-right: 10px;">
                 <p style="margin: auto; padding-right: 5px"> Listar documentos </p>
@@ -147,12 +147,15 @@
 
             {{--
                   <div style="display: flex; gap: 5%; align-items: center; margin-top: 1% ; margin-bottom: 1% ; margin-left: 2%">
+                  
             <button class="botaoverde" ref="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
                 <img src="{{asset("images/DocumentAdd.png")}}" alt="logodoc" style="padding-right: 10px;">
                 <p style="margin: auto; padding-right: 5px"> Listar modelos de documentos </p>
             </button>
+
             </div>
              --}}
+
 
         </div>
 
@@ -172,18 +175,18 @@
             Bem vindo(a)!
             </h1>
             <hr>
-
+            <br>
 
             </div>
 
             <div style="display: flex; gap: 5%; align-items: center; margin: auto;">
 
-                <button class="botaoverde" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'">
+                <button class="botaoverde" href="{{url("/MeusAlunos")}}" onclick="window.location.href='{{url("/MeusAlunos")}}'">
                     <img src="{{asset("images/user.png")}}" alt="user" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 5px">Listar alunos </p>
                 </button>
 
-                <button class="botaoazul" href="{{url("/programas/")}}" onclick="window.location.href='{{url("/programas/")}}'">
+                <button class="botaoazul" href="{{url("/MeusProgramas/")}}" onclick="window.location.href='{{url("/MeusProgramas/")}}'">
                     <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 5px"> Meus programas </p>
                 </button>
@@ -193,9 +196,11 @@
                     <p style="margin: auto; padding-right: 5px"> Meus certificados </p>
                 </button>  --}}
 
+
                 {{--  <button class="botaoazul">
                     <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 5px">  Visualizar documentos </p>
+
                 </button>  --}}
 
                 <button class="botaoverde">
@@ -211,6 +216,7 @@
                     <img src="{{asset("images/calendar.png")}}" alt="calendario" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 10px"> Visualizar frequência mensal </p>
                 </button>
+
             </div>  --}}
 
         </div>
