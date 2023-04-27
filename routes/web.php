@@ -42,6 +42,8 @@ Route::middleware([
 // Rotas de aluno
 Route::resource('/alunos', AlunoController::class);
 // Route::get('/alunos', [AlunoController::class, 'index'])->name('aluno.index');
+Route::get('/alunos/{id}/edit', [AlunoController::class, 'edit'])->where('id', '[0-9+')->name('aluno.edit');
+Route::put('/alunos/{id}', [AlunoController::class, 'update'])->name('aluno.update');
 
 // Rotas de servidor
 Route::resource('/servidors', ServidorController::class);
