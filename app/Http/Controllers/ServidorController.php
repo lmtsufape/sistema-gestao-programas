@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
-class ServidorController extends Controller
-{
+class ServidorController extends Controller {
 
     public function index(Request $request)
     {
