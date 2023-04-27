@@ -36,7 +36,7 @@
   @endif
   <br>
 
-      {{-- dd($editals); --}}
+      {{-- dd($editais); --}}
   
   <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
     <h1><strong>Editais</strong></h1>
@@ -89,7 +89,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($editals as $edital)
+          @foreach ($editais as $edital)
           <tr>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
