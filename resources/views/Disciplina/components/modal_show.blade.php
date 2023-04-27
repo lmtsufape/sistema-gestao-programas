@@ -8,9 +8,15 @@
         </div>
           <div class="modal-body">
             <div class="row mb-3">
-              <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;">Nome:</label>
+              <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;">Disciplina:</label>
               <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$disciplina->nome}}</div>              
             </div>
+
+            <div class="row mb-3">
+              <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;">Curso:</label>
+              <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">curso</div>              
+            </div>
+
             <div class="modal-footer">
               <button type="button" style="background: #34A853; border: #34A853;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>

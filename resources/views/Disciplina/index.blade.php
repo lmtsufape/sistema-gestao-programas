@@ -34,6 +34,7 @@
               margin: auto;" />
     </form>
   </div>
+
   <div style="display: contents; align-content: center; align-items: center;">
     <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
       font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
@@ -41,8 +42,9 @@
       padding-left: 10px;" href="{{route("disciplinas.create")}}">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar Disciplina" style="padding-bottom: 5px"> Cadastrar Disciplina
     </a>
-
   </div>
+  <br>
+  <br>
 
   @if (sizeof($disciplinas) == 0)
   <div class="empty">
@@ -60,6 +62,7 @@
         <thead>
           <tr>
             <th scope="col">Nome</th>
+            <th scope="col">Curso</th>
             <th scope="col">Ações</th>
           </tr>
         </thead>
@@ -67,6 +70,7 @@
         <tbody>
           <tr>
             <td>{{$disciplinas->nome}}</td>
+            <td>curso</td>
             <td>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$disciplinas->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info programa" style="height: 30px; width: 30px;">
