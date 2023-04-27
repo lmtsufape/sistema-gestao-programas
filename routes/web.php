@@ -14,11 +14,15 @@ use App\Http\Controllers\FrequenciaController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MeusAlunosController;
+use App\Http\Controllers\MeusProgramasController;
 
 // Rotas de autenticacao
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -40,7 +44,7 @@ Route::post("/servidores/permissao/{id}", [ServidorController::class, "adicionar
 // Rotas de orientador
 Route::resource('/orientadors', OrientadorController::class);
 Route::get('/MeusAlunos', [MeusAlunosController::class, "index"]);
-
+Route::get('/MeusProgramas', [MeusProgramasController::class, "index"]);
 // Rotas de programa
 Route::resource('/programas', ProgramaController::class);
 Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editais"]);
@@ -67,6 +71,14 @@ Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 
 // Rotas de projeto
 Route::resource('/projetos', ProjetoController::class);
+//Route::get('/home', [ProjetoController::class, 'index'])->name('projetos-index');
+ Route::get('/create', [ProjetoController::class, 'create'])->name('projetos-create');
+// Route::post('/', [ProjetoController::class, 'store'])->name('projetos-store');
+Route::post('/projetos', [ProjetoController::class, 'store'])->name('projetos.store');
+
+
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -75,5 +87,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
+
+//Rota para listar os projetos do aluno
+Route::get('/index_aluno', [MeusProgramasController::class, 'index_aluno']);
+
 
 

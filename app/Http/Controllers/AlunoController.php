@@ -21,7 +21,7 @@ class AlunoController extends Controller
         $aluno->cpf = $request->cpf;
         $aluno->id_curso = $request->curso;
         $aluno->semestre_entrada = $request->semestre_entrada;
-
+        //dd($request);
         if ($aluno->save()){
 
             if (

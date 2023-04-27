@@ -58,7 +58,6 @@
 </style>
 
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
-
     @if (session('sucesso'))
         <div class="alert alert-success" style="width: 100%;">
             {{session('sucesso')}}
@@ -67,24 +66,23 @@
     <br>
     <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
         <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
-            Cadastrar Projeto</h1>
+            Cadastrar Projeto/Disciplinas</h1>
             <hr style="color:#2D3875;">
 
-        <form action="{{route('projetos.store')}}" method="post">
+        <form action="{{route('projetos.store')}}" method="POST">
             @csrf
-
-            <label for="inputBolsa" class="titulo">Bolsa:</label>
-            <select aria-label="Default select example" class="boxinfo"> id="inputBolsa" name="curso">
-                <option value="">Selecione o tipo da bolsa:</option>
-                <option value="1">Voluntária</option>
-                <option value="2">Bolsista</option>
+            <label for="vinculo">O aluno é bolsista? :</label>
+            <select aria-label="Default select example" class="boxinfo" id="vinculo" name="bolsista">
+                <option value=""></option>
+                <option value="1" nome="vinculo">Sim</option>
+                <option value="0" nome="vinculo">Não</option>
             </select>
             <br><br>
 
             <label for="valorBolsa" class="titulo">Valor da bolsa:</label>
             <input type="number" min="1" step="any" name="valorBolsa" id="valorBolsa" placeholder="Digite o valor da bolsa" class="boxinfo"><br><br>
 
-            <label for="inputOrientadores" class="titulo">Orientadores:</label>
+            <label for="inputOrientadores" class="titulo">Orientador:</label>
             <select aria-label="Default select example" class="boxinfo" id="orientadores" name="orientadores[]" multiple>
                 <option value="">Selecione um orientador:</option>
                 {{--  @foreach ($orientadores as $orientador)
@@ -92,18 +90,24 @@
                 @endforeach  --}}
             </select>
             <br><br>
+                
+            {{--
+                @foreach($alunos as $aluno)
+                   {{ $aluno }}
+                @endforeach
+            --}}
+            
 
-            <label for="inputOrientadores" class="titulo">Alunos:</label>
-            <select aria-label="Default select example" class="boxinfo" id="alunos" name="alunos[]" multiple>
-                <option value="">Selecione um aluno:</option>
-                {{--  @foreach ($alunos as $aluno)
-                    <option value="{{$aluno->id}}">{{$aluno->nome}}</option>
-                @endforeach  --}}
+            <select class="form-control" id="" name="aluno_id">
+                <option value="" disabled selected hidden>Selecione aluno</option>
+                @foreach($alunos as $aluno)
+                <option value="{{  $aluno->id  }}">{{$aluno->id}}</option>
+                @endforeach
             </select>
 
             <br><br>
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                <input type="button" value="Voltar" href="{{url("/projetos/")}}" onclick="window.location.href='{{url("/projetos/")}}'" style="background: #2D3875;
+                <input type="button" value="Voltar" href="{{url   ('/projetos/')   }}" onclick="window.location.href='{{    url('/projetos/')   }}'" style="background: #2D3875;
                             box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                             border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                             line-height: 29px; text-align: center; padding: 5px 15px;">
@@ -119,12 +123,15 @@
 </div>
 
 <script>
+
+    
+
     $("#orientadores").chosen({
         placeholder_text_multiple: "Selecione um orientador",
         // max_shown_results : 5,
         no_results_text: "Não possui orientadores."
     });
-    // max_shown_results : 5,
+    max_shown_results : 5;
     no_results_text: "Não possui alunos."
 
     $('div.chosen-container-single').addClass('required');
