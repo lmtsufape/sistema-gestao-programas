@@ -81,6 +81,9 @@
                 <label for="descricao" class="titulo">Descricao:</label>
                 <input class="boxinfo" type="text" name="descricao" id="descricao" value="{{$programa->descricao}}"><br><br>
 
+                <label for="descricao" class="titulo">Tipo:</label>
+                <input class="boxinfo" type="text" name="tipo" id="tipo" value=""><br><br>
+
                 <label for="servidores" class="titulo">Servidores:</label>
 
                 <select name="servidores[]" id="servidores" multiple>

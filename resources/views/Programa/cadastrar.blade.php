@@ -80,6 +80,9 @@
                 <label for="descricao" class="titulo">Descricao:</label>
                 <input type="text" name="descricao" id="descricao" placeholder="Digite a descrição do programa" class="boxinfo"><br><br>
 
+                <label for="descricao" class="titulo">Tipo:</label>
+                <input class="boxinfo" type="text" name="tipo" id="tipo" value=""><br><br>
+
                 <label for="servidores" class="titulo">Servidores:</label>
                 <select name="servidores[]" id="servidores" style="width: 100%;" multiple>
                     <option value=""></option>
