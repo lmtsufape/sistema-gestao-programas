@@ -303,4 +303,9 @@ class ProgramaController extends Controller
     //         return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
     //     }
     // }
+    public function listar_alunos($id, Request $request){
+        $programa = Programa::find($id);
+
+        return view("Programa.listar_alunos", compact("programa"));
+    }
 }

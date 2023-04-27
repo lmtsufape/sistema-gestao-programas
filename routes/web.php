@@ -12,6 +12,8 @@ use App\Http\Controllers\CadastrarSeController;
 use App\Http\Controllers\FrequenciaController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MeusAlunosController;
+use App\Http\Controllers\MeusProgramasController;
 
 // Rotas de autenticacao
 Route::get('/', function () {
@@ -40,11 +42,13 @@ Route::post("/servidors/permissao/{id}", [ServidorController::class, "adicionar_
 
 // Rotas de orientador
 Route::resource('/orientadors', OrientadorController::class);
-//aaaaaa
+Route::get('/MeusAlunos', [MeusAlunosController::class, "index"]);
+Route::get('/MeusProgramas', [MeusProgramasController::class, "index"]);
 // Rotas de programa
 Route::resource('/programas', ProgramaController::class);
 Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editais"]);
-Route::delete("programas/{id}/editals/{edital_id}", [ProgramaController::class, "deletar_edital"]);
+Route::get('/programas/{id}/alunos', [ProgramaController::class, "listar_alunos"]);
+Route::delete("programas/{id}/editals/{id_edital}", [ProgramaController::class, "deletar_edital"]);
 Route::get("/programas/{id}/create/edital", [ProgramaController::class, "criar_edital"]);
 Route::post("/programas/store/edital", [ProgramaController::class, "store_edital"]);
 Route::get("/programas/edit/{id}/edital", [ProgramaController::class, "editar_edital"]);
@@ -60,7 +64,9 @@ Route::prefix('edital')->group(function() {
     Route::get('/{id}/edit', [EditalController::class, 'edit'])->where('id', '[0-9+')->name('edital.edit');
     Route::put('/{id}', [EditalController::class, 'update'])->name('edital.update');
     Route::delete('/{id}', [EditalController::class, 'destroy'])->name('edital.delete');
+    Route::get('/{id}/alunos', [EditalController::class, "listar_alunos"]);
 });    
+
 
 // Rotas de Disciplina
 Route::resource('/disciplinas', DisciplinaController::class);
@@ -75,9 +81,13 @@ Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Rotas de Frequencia mensal
-Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
+// Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
 
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
+
+//Rota para listar os projetos do aluno
+Route::get('/index_aluno', [MeusProgramasController::class, 'index_aluno']);
+
 
 

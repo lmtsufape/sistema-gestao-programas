@@ -2,6 +2,8 @@
 
 @section("body")
 
+@canany(['admin', 'servidor'])
+
 <style>
   pagination {
     display: inline-block;
@@ -39,7 +41,7 @@
       {{-- dd($editais); --}}
   
   <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1><strong>Editais</strong></h1>
+    <h1 style="color:#2D3875;"><strong>Editais</strong></h1>
     <div style="margin: auto"></div>
     <form action="{{  route('edital.index')  }}" method="GET">
       <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
@@ -66,13 +68,13 @@
   </div>
 
   <div style="display: contents; align-content: center; align-items: center;">
-
-    <a style="background: #2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-        font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
-        align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-        padding-left: 10px;" href="{{route("edital.create")}}">
+    <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
+    align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
+    padding-left: 10px;" href="{{route("editals.create")}}">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar edital" style="padding-bottom: 5px"> Cadastrar Edital
     </a>
+    <br>
     <br>
   </div>
 
@@ -95,7 +97,10 @@
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
             <td>
-              <a href="{{  route("edital.index")  }}">
+              <a style="padding:2px" href="{{url("/editals/$edital->id/alunos")}}">
+                <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
+              </a>
+              <a href="{{url("/projetos")}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="Listar projetos" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
@@ -128,9 +133,8 @@
        width: 150px; height: 50%;">
       <div style="align-self: center; margin-right: auto">
         <br>
-        <h4 style="font-size: 15px">Legenda dos ícones:</h4>
+        <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
       </div>
-
       <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
           <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
@@ -140,23 +144,23 @@
           <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
         </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
-        </div>
-      </div>
-      <div style="align-self: center; margin-right: auto">
-        <div style="display: flex; margin: 10px">
-          <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
-        </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
-        </div>
-        <div style="display: flex; margin-left: 10px">
-          <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar projetos</p>
+        <div style="align-self: center; margin-right: auto">
+          <div style="display: flex; margin: 10px">
+            <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
+          </div>
+          <div style="display: flex; margin: 10px">
+            <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
+          </div>
+          <div style="display: flex; margin: 10px">
+            <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar projetos</p>
+          </div>
+          <div style="display: flex; margin: 10px">
+            <a><img src="{{asset("images/bx_user.png")}}" alt="Listar editais" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar alunos</p>
+          </div>
         </div>
       </div>
     </div>
@@ -174,5 +178,9 @@
   }
 </script>
 
+@else
+<h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+<a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
+@endcan
 
 @endsection

@@ -24,7 +24,7 @@ class AlunoController extends Controller
         //dd($request);
         if ($aluno->save()){
 
-            if ( 
+            if (
                 $aluno->user()->create([
                     'name' => $request->nome,
                     'name_social' => $request->nome_social == null ? "-": $request->nome_social,
@@ -32,7 +32,8 @@ class AlunoController extends Controller
                     'password' => Hash::make($request->senha)
                 ])->givePermissionTo('aluno')
             ){
-
+                $confirm = new ConfirmandoEmail($request);
+                $confirm -> enviandoEmail();
                 $mensagem_sucesso = "Aluno cadastrado com sucesso.";
                 return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
 
@@ -94,7 +95,7 @@ class AlunoController extends Controller
         }
 
         if ($aluno->save()){
-            
+
             if ($aluno->user->update()){
                 return redirect('/alunos')->with('sucesso', 'Aluno atualizado com sucesso.');
             } else {
@@ -145,6 +146,7 @@ class AlunoController extends Controller
                     $query->orWhere("cursos.nome", "LIKE", "%{$valor}%");
                 }
             })->orderBy('alunos.created_at', 'desc')->select("alunos.*")->get();
+
 
             return view("Alunos.index", compact("alunos"));
         } else {
