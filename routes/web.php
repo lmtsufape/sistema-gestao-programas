@@ -87,12 +87,6 @@ Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-<<<<<<< HEAD
-// Rotas de Frequencia mensal
-// Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
-
-=======
->>>>>>> 032b30c (att)
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
 

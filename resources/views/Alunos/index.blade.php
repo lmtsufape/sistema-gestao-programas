@@ -67,7 +67,7 @@
 
   </div>
 
-<<<<<<< HEAD
+
   <div style="display: contents; align-content: center; align-items: center;">
     <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
     font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
@@ -76,7 +76,6 @@
     href="{{route("alunos.create")}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
     </a>
-=======
     <div style="padding-bottom: 6px">
       <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
       font-weight: 400; font-size: 24px; padding-top: 5px; padding-bottom: 6px; padding-right: 15px;
@@ -84,7 +83,6 @@
       href="{{route('alunos.create')}}">
           <img src="{{asset('images/plus.png')}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
       </a>
->>>>>>> 032b30c (att)
     </div>
     <br>
     <br>

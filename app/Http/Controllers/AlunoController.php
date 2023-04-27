@@ -17,7 +17,6 @@ class AlunoController extends Controller
 {
     public function store(AlunoStoreFormRequest $request)
     {
-<<<<<<< HEAD
         $aluno = new Aluno();
         $aluno->cpf = $request->cpf;
         $aluno->curso_id = $request->curso;
@@ -40,7 +39,7 @@ class AlunoController extends Controller
 
             } else {
                 return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
-=======
+
         try {
             $aluno = new Aluno();
             $aluno->cpf = $request->cpf;
@@ -65,7 +64,6 @@ class AlunoController extends Controller
             }
         } catch (Exception $e) {
                 return redirect()->back()->withErrors("Falha ao cadastrar aluno. Tente novamente mais tarde.");
->>>>>>> 032b30c (att)
             }
     }
 
@@ -152,7 +150,6 @@ class AlunoController extends Controller
         $alunos = Aluno::with('user')->get();
         //dd($alunos);
         return view("Alunos.index", compact("alunos"));
-<<<<<<< HEAD
 
         /*if (sizeof($request-> query()) > 0){
             $campo = $request->query('campo');
@@ -180,8 +177,7 @@ class AlunoController extends Controller
             $alunos = $alunos->get();
             return view("Alunos.index", compact("alunos"));
         }*/
-=======
->>>>>>> 032b30c (att)
+
     }
 
     public function edit($id){
