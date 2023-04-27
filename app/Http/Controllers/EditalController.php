@@ -167,15 +167,15 @@ class EditalController extends Controller
      */
     public function destroy($id)
     {
-        //DB::beginTransaction();
-        //try{
+        DB::beginTransaction();
+        try{
 
             Edital::where("id", $id)->delete();
 
-            //DB::commit();
+            DB::commit();
             //verifica a página de origem da solicitação
-            $referer = request()->headers->get('referer');
-            dd($referer);
+            /*$referer = request()->headers->get('referer');
+            //dd($referer);
             //o método strpos para verificar se a string /programas/ está presente no cabeçalho Referer.
             if(strpos($referer, '/programas/editais') !== false)
             {
@@ -185,12 +185,13 @@ class EditalController extends Controller
             {
                 return redirect()->route('edital.index')
                 ->with('sucesso', 'Edital deletado com sucesso.');
-            }
+            }*/
 
+            return redirect()->route('edital.index')->with('sucesso', 'Edital deletado com sucesso.');
 
-        /*} catch(exception $e){
+        } catch(exception $e){
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
-        }*/
+        }
     }
 }
