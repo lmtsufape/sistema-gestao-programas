@@ -28,35 +28,6 @@ class EditalController extends Controller
         $editais = Edital::all();
         
         return view("Edital.index", compact("editais", "orientadors"));
-
-
-        // if (sizeof($request->query()) > 0){
-        //     $campo = $request->query('campo');
-        //     $valor = $request->query('valor');
-
-        //     if ($valor == null){
-        //         return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
-        //     }
-
-        //     $editals = Edital::join("programas", "programas.id", "=", "editals.programa_id");
-
-        //     $editals = $editals->where(function ($query) use ($valor) {
-        //         if ($valor) {
-        //             $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
-        //             $query->orWhere("editals.data_inicio", "LIKE", "%{$valor}%");
-        //             $query->orWhere("editals.data_fim", "LIKE", "%{$valor}%");
-        //         }
-        //     })->select("editals.*")->get();
-
-        //     $disciplinas = Disciplina::all();
-        //     $orientadors = Orientador::all();
-        //     return view("Edital.index", compact("editals", "orientadors", "disciplinas"));
-        // } else {
-        //     $disciplinas = Disciplina::all();
-        //     $orientadors = Orientador::all();
-        //     $editals = Edital::all();
-        //     return view("Edital.index", compact('editals', 'orientadors', 'disciplinas'));
-        // }
     }
 
     /**

@@ -32,7 +32,7 @@ class Aluno extends Model
 
     public function edital_alunos()
     {
-        return $this->hasMany(Edital_Aluno::class);
+        return $this->belongsToMany(Edital_Aluno::class);
     }
 
     public static $rules = [
