@@ -23,6 +23,12 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+//usuario
+// Route::prefix('usuario')->group(function () {
+//     Route::get('/', User)
+// });
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -35,6 +41,7 @@ Route::middleware([
 
 // Rotas de aluno
 Route::resource('/alunos', AlunoController::class);
+// Route::get('/alunos', [AlunoController::class, 'index'])->name('aluno.index');
 
 // Rotas de servidor
 Route::resource('/servidors', ServidorController::class);
@@ -79,9 +86,6 @@ Route::get('/cadastrar-se', [CadastrarSeController::class, "cadastrarSe"]);
 Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Rotas de Frequencia mensal
-// Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
 
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
