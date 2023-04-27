@@ -9,7 +9,7 @@
                 </div>
             @endif
             <br>
-            
+
             <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
                 <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
                     Editar Servidor</h1>
@@ -18,7 +18,12 @@
                     @csrf
                     @method("PUT")
                     <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome:</label>
-                    <input type="text" id="nome" name="nome" placeholder="Digite o nome" value="{{$servidor->user->name}}" 
+                    <input type="text" id="nome" name="nome" placeholder="Digite o nome" value="{{$servidor->user->name}}"
+                    style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
+                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
+
+                    <label for="nome_social" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome Social:</label>
+                    <input type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social" value="{{$servidor->nome_social}}"
                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 

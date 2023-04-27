@@ -78,6 +78,9 @@
                 <label for="nome" class="titulo">Nome: </label>
                 <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome"><br><br>
 
+                <label for="nomesocial" class="titulo">Nome Social: </label>
+                <input class="boxinfo" type="text" name="nomesocial" id="nomesocial" placeholder="Digite o nome social"><br><br>
+
                 <label for="email" class="titulo">E-mail: </label>
                 <input class="boxinfo" type="text" name="email" id="email" placeholder="Digite o e-mail"><br><br>
 
