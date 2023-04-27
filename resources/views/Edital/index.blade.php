@@ -37,11 +37,11 @@
   </div>
   @endif
   <br>
-
+  
   <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
     <h1 style="color:#2D3875;"><strong>Editais</strong></h1>
     <div style="margin: auto"></div>
-    <form action="{{route("editals.index")}}" method="GET">
+    <form action="{{  route('editals.index')  }}" method="GET">
       <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
                   border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                   background-position: 10px 2px;

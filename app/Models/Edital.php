@@ -20,10 +20,10 @@ class Edital extends Model
         return $this->belongsTo(Programa::class, "id_programa");
     }
 
-    public function edital_alunos()
-    {
-        return $this->hasMany(Edital_aluno::class, "id_edital");
-    }
+    // public function edital_alunos()
+    // {
+    //     return $this->hasMany(Edital_aluno::class, "id_edital");
+    // }
 
     public function edital_disciplina()
     {

@@ -9,4 +9,9 @@ class MeusProgramasController extends Controller
     public function index() {
         return view('orientador.listar_programas');
     }
+
+    public function index_aluno() {
+        return view('Programa.index_aluno');
+    }
 }
+

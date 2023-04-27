@@ -11,7 +11,6 @@ use App\Http\Requests\ProgramaUpdateFormRequest;
 use App\Models\Servidor;
 use App\Models\Programa_servidor;
 use App\Models\Edital;
-use App\Models\Edital_aluno;
 use App\Models\Frequencia_mensal;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
@@ -219,12 +218,6 @@ class ProgramaController extends Controller
         DB::beginTransaction();
         try{
             $edital = Edital::find($id_edital);
-
-            foreach($edital->edital_alunos as $edital_aluno){
-                Frequencia_mensal::where("id_edital_aluno", $edital_aluno->id)->delete();
-            }
-
-            Edital_aluno::where("id_edital", $id_edital)->delete();
 
             Edital::where("id", $id_edital)->delete();
 
