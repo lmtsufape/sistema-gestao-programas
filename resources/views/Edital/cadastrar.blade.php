@@ -75,13 +75,13 @@
                     @csrf
 
                     <label class="titulo" for="nome">Nome:</label>
-                    <input class="boxinfo" type="text" name="nome" id="nome" value=""><br><br>
+                    <input class="boxinfo" placeholder="Digite o nome" type="text" name="nome" id="nome" value=""><br><br>
 
                     <label class="titulo" for="semestre">Semestre:</label>
-                    <input class="boxinfo" type="text" name="semestre" id="semestre" value=""><br><br>
+                    <input class="boxinfo" placeholder="Digite o semestre" type="text" name="semestre" id="semestre" value=""><br><br>
 
                     <label class="titulo" for="Descrição">Descrição:</label>
-                    <textarea class="boxinfo" name="descricao" id="descricao" cols="30" rows="10"></textarea><br><br>
+                    <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="10"></textarea><br><br>
 
                     <label for="data_inicio" class="titulo">Data de início:</label>
                     <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" ><br><br>
