@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class MeusProgramasController extends Controller
 {
     public function index() {
-        return view('orientador.listar_programas');
+        return view('Programa.programas_orientadores');
     }
 
     public function index_aluno() {

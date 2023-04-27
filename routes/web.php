@@ -11,7 +11,6 @@ use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\CadastrarSeController;
 use App\Http\Controllers\ProjetoController;
 use App\Http\Controllers\FrequenciaController;
-use App\Http\Controllers\MeusProgramasController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MeusAlunosController;
