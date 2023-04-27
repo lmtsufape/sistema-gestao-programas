@@ -78,8 +78,8 @@
             <!-- foreach de programas -->
             <tbody>
                 <tr>
-                    <td class="align-middle"> </td>
-                    <td class="align-middle"> </td>
+                    <td class="align-middle"> Teste </td>
+                    <td class="align-middle"> Teste </td>
                     <td class="align-middle">
 
 
