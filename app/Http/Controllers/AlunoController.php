@@ -17,29 +17,28 @@ class AlunoController extends Controller
 {
     public function store(AlunoStoreFormRequest $request)
     {
-        $aluno = new Aluno();
-        $aluno->cpf = $request->cpf;
-        $aluno->curso_id = $request->curso;
-        $aluno->semestre_entrada = $request->semestre_entrada;
-        //dd($request);
-        if ($aluno->save()){
+        // $aluno = new Aluno();
+        // $aluno->cpf = $request->cpf;
+        // $aluno->curso_id = $request->curso;
+        // $aluno->semestre_entrada = $request->semestre_entrada;
+        // //dd($request);
+        // if ($aluno->save()){
 
-            if (
-                $aluno->user()->create([
-                    'name' => $request->nome,
-                    'name_social' => $request->nome_social == null ? "-": $request->nome_social,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->senha)
-                ])->givePermissionTo('aluno')
-            ){
-                $confirm = new ConfirmandoEmail($request);
-                $confirm -> enviandoEmail();
-                $mensagem_sucesso = "Aluno cadastrado com sucesso.";
-                return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
+        //     if (
+        //         $aluno->user()->create([
+        //             'name' => $request->nome,
+        //             'name_social' => $request->nome_social == null ? "-": $request->nome_social,
+        //             'email' => $request->email,
+        //             'password' => Hash::make($request->senha)
+        //         ])->givePermissionTo('aluno')
+        //     ){
+        //         $confirm = new ConfirmandoEmail($request);
+        //         $confirm -> enviandoEmail();
+        //         $mensagem_sucesso = "Aluno cadastrado com sucesso.";
+        //         return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
 
-            } else {
-                return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
-
+        //     } else {
+        //         return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
         try {
             $aluno = new Aluno();
             $aluno->cpf = $request->cpf;

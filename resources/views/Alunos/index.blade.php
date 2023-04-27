@@ -73,8 +73,8 @@
     font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
     align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
     padding-left: 10px;"
-    href="{{route("alunos.create")}}">
-        <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
+    href="{{route('alunos.create')}}">
+        <img src="{{asset('images/plus.png')}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
     </a>
     <div style="padding-bottom: 6px">
       <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
@@ -129,9 +129,11 @@
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$aluno->id}}">
                             <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
                         </a>
-                        <a href="{{url('/alunos/$aluno->id/edit')}}">
-                            <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar aluno"  style="height: 30px; width: 30px;">
+                        
+                        <a href="{{  route('aluno.edit', ['id' => $aluno->id])  }}">
+                            <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar aluno" style="height: 30px; width: 30px;">
                         </a>
+
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->id}}">
                             <img src="{{asset('images/delete.png')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
                         </a>
