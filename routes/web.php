@@ -23,12 +23,6 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-//usuario
-// Route::prefix('usuario')->group(function () {
-//     Route::get('/', User)
-// });
-
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -41,23 +35,32 @@ Route::middleware([
 
 // Rotas de aluno
 Route::resource('/alunos', AlunoController::class);
-// Route::get('/alunos', [AlunoController::class, 'index'])->name('aluno.index');
-Route::get('/alunos/{id}/edit', [AlunoController::class, 'edit'])->where('id', '[0-9+')->name('aluno.edit');
-Route::put('/alunos/{id}', [AlunoController::class, 'update'])->name('aluno.update');
 
 // Rotas de servidor
 Route::resource('/servidors', ServidorController::class);
 Route::post("/servidors/permissao/{id}", [ServidorController::class, "adicionar_permissao"]);
 
-// Rotas de orientador
+// Rotas de orientador //Fazer  - colocar todos os métodos do Controler
 Route::resource('/orientadors', OrientadorController::class);
+
+Route::prefix('orientadors')->group(function() { 
+    Route::get('/', [OrientadorController::class, 'index'])->name('orientadors.index');
+    Route::get('/create', [OrientadorController::class, 'create'])->name('orientadors.create');
+    Route::post('/', [OrientadorController::class, 'store'])->name('orientadors.store');
+    Route::get('/{id}/edit', [OrientadorController::class, 'edit'])->where('id', '[0-9+')->name('orientadors.edit');
+    Route::put('/{id}', [OrientadorController::class, 'update'])->name('orientadors.update');
+    Route::delete('/{id}', [OrientadorController::class, 'destroy'])->name('orientadors.delete');
+});    
+
+// Rotas de programa //Organizar rotas em grupos
 Route::get('/MeusAlunos', [MeusAlunosController::class, "index"]);
 Route::get('/MeusProgramas', [MeusProgramasController::class, "index"]);
-// Rotas de programa
+
+//aaaaaa
+// Rotas de programa //Organizar rotas em grupos
 Route::resource('/programas', ProgramaController::class);
 Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editais"]);
-Route::get('/programas/{id}/alunos', [ProgramaController::class, "listar_alunos"]);
-Route::delete("programas/{id}/editals/{id_edital}", [ProgramaController::class, "deletar_edital"]);
+Route::delete("programas/{id}/editals/{edital_id}", [ProgramaController::class, "deletar_edital"]);
 Route::get("/programas/{id}/create/edital", [ProgramaController::class, "criar_edital"]);
 Route::post("/programas/store/edital", [ProgramaController::class, "store_edital"]);
 Route::get("/programas/edit/{id}/edital", [ProgramaController::class, "editar_edital"]);
@@ -66,16 +69,14 @@ Route::put("/programas/update/{id}/edital", [ProgramaController::class, "update_
 // Rotas de Edital
 Route::resource('/edital', EditalController::class);
 
-Route::prefix('edital')->group(function() {
+Route::prefix('edital')->group(function() { 
     Route::get('/', [EditalController::class, 'index'])->name('edital.index');
     Route::get('/create', [EditalController::class, 'create'])->name('edital.create');
     Route::post('/', [EditalController::class, 'store'])->name('edital.store');
     Route::get('/{id}/edit', [EditalController::class, 'edit'])->where('id', '[0-9+')->name('edital.edit');
     Route::put('/{id}', [EditalController::class, 'update'])->name('edital.update');
     Route::delete('/{id}', [EditalController::class, 'destroy'])->name('edital.delete');
-    Route::get('/{id}/alunos', [EditalController::class, "listar_alunos"]);
 });    
-
 
 // Rotas de Disciplina
 Route::resource('/disciplinas', DisciplinaController::class);
@@ -89,11 +90,11 @@ Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Rotas de Frequencia mensal
+Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
+
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
 
 //Rota para listar os projetos do aluno
 Route::get('/index_aluno', [MeusProgramasController::class, 'index_aluno']);
-
-
-
