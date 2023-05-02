@@ -38,10 +38,20 @@ Route::resource('/alunos', AlunoController::class);
 Route::resource('/servidors', ServidorController::class);
 Route::post("/servidors/permissao/{id}", [ServidorController::class, "adicionar_permissao"]);
 
-// Rotas de orientador
+// Rotas de orientador //Fazer  - colocar todos os métodos do Controler
 Route::resource('/orientadors', OrientadorController::class);
+
+Route::prefix('orientadors')->group(function() { 
+    Route::get('/', [OrientadorController::class, 'index'])->name('orientadors.index');
+    Route::get('/create', [OrientadorController::class, 'create'])->name('orientadors.create');
+    Route::post('/', [OrientadorController::class, 'store'])->name('orientadors.store');
+    Route::get('/{id}/edit', [OrientadorController::class, 'edit'])->where('id', '[0-9+')->name('orientadors.edit');
+    Route::put('/{id}', [OrientadorController::class, 'update'])->name('orientadors.update');
+    Route::delete('/{id}', [OrientadorController::class, 'destroy'])->name('orientadors.delete');
+});    
+
 //aaaaaa
-// Rotas de programa
+// Rotas de programa //Organizar rotas em grupos
 Route::resource('/programas', ProgramaController::class);
 Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editais"]);
 Route::delete("programas/{id}/editals/{edital_id}", [ProgramaController::class, "deletar_edital"]);
@@ -53,7 +63,7 @@ Route::put("/programas/update/{id}/edital", [ProgramaController::class, "update_
 // Rotas de Edital
 Route::resource('/edital', EditalController::class);
 
-Route::prefix('edital')->group(function() {
+Route::prefix('edital')->group(function() { 
     Route::get('/', [EditalController::class, 'index'])->name('edital.index');
     Route::get('/create', [EditalController::class, 'create'])->name('edital.create');
     Route::post('/', [EditalController::class, 'store'])->name('edital.store');

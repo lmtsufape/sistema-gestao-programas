@@ -68,7 +68,7 @@
     <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
     font-weight: 400; font-size: 24px; padding-top: 5px; padding-bottom: 5px; padding-right: 15px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none; padding-left: 10px;"
-        href="{{route("orientadors.create")}}">
+        href="{{route('orientadors.create')}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar orientador" style="padding-bottom: 5px"> Cadastrar Orientador
         </a>
     </div>
@@ -110,7 +110,7 @@
                                 <img src="{{asset("images/document.png")}}" alt="Documento orientador"  style="height: 30px; width: 30px;">
                                 {{--  TODO: Fica pra fazer o modal depois  --}}
                                 </a>
-                                <a href="{{url("/orientadors/$orientador->id/edit")}}">
+                                <a href=" {{route('orientadors.edit', ['id' => $orientador->id] )}}">
                                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar orientador"  style="height: 30px; width: 30px;">
                                 </a>
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$orientador->id}}">
