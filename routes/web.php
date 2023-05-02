@@ -36,8 +36,29 @@ Route::middleware([
 // Rotas de aluno
 Route::resource('/alunos', AlunoController::class);
 
+Route::prefix('alunos')->group(function() {
+    Route::get('/', [AlunoController::class, 'index'])->name('alunos.index');
+    Route::get('/create', [AlunoController::class, 'create'])->name('alunos.create');
+    Route::post('/', [AlunoController::class, 'store'])->name('alunos.store');
+    Route::get('/{id}/edit', [AlunoController::class, 'edit'])->where('id', '[0-9]+')->name('alunos.edit');
+    Route::put('/{id}', [AlunoController::class, 'update'])->name('alunos.update');
+    Route::delete('/{id}', [AlunoController::class, 'destroy'])->name('alunos.delete');
+});
+
+
 // Rotas de servidor
 Route::resource('/servidors', ServidorController::class);
+
+Route::prefix('servidors')->group(function() { 
+    Route::get('/', [ServidorController::class, 'index'])->name('servidors.index');
+    Route::get('/create', [ServidorController::class, 'create'])->name('servidors.create');
+    Route::post('/', [ServidorController::class, 'store'])->name('servidors.store');
+    Route::get('/{id}/edit', [ServidorController::class, 'edit'])->where('id', '[0-9]+')->name('servidors.edit');
+    Route::put('/{id}', [ServidorController::class, 'update'])->name('servidors.update');
+    Route::delete('/{id}', [ServidorController::class, 'destroy'])->name('servidors.delete');
+});
+
+
 Route::post("/servidors/permissao/{id}", [ServidorController::class, "adicionar_permissao"]);
 
 // Rotas de orientador //Fazer  - colocar todos os métodos do Controler
@@ -47,7 +68,7 @@ Route::prefix('orientadors')->group(function() {
     Route::get('/', [OrientadorController::class, 'index'])->name('orientadors.index');
     Route::get('/create', [OrientadorController::class, 'create'])->name('orientadors.create');
     Route::post('/', [OrientadorController::class, 'store'])->name('orientadors.store');
-    Route::get('/{id}/edit', [OrientadorController::class, 'edit'])->where('id', '[0-9+')->name('orientadors.edit');
+    Route::get('/{id}/edit', [OrientadorController::class, 'edit'])->where('id', '[0-9]+')->name('orientadors.edit');
     Route::put('/{id}', [OrientadorController::class, 'update'])->name('orientadors.update');
     Route::delete('/{id}', [OrientadorController::class, 'destroy'])->name('orientadors.delete');
 });    
@@ -73,7 +94,7 @@ Route::prefix('edital')->group(function() {
     Route::get('/', [EditalController::class, 'index'])->name('edital.index');
     Route::get('/create', [EditalController::class, 'create'])->name('edital.create');
     Route::post('/', [EditalController::class, 'store'])->name('edital.store');
-    Route::get('/{id}/edit', [EditalController::class, 'edit'])->where('id', '[0-9+')->name('edital.edit');
+    Route::get('/{id}/edit', [EditalController::class, 'edit'])->where('id', '[0-9]+')->name('edital.edit');
     Route::put('/{id}', [EditalController::class, 'update'])->name('edital.update');
     Route::delete('/{id}', [EditalController::class, 'destroy'])->name('edital.delete');
 });    
