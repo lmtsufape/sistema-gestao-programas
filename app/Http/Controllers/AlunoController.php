@@ -17,63 +17,85 @@ class AlunoController extends Controller
 {
     public function store(AlunoStoreFormRequest $request)
     {
-        $aluno = new Aluno();
-        $aluno->cpf = $request->cpf;
-        $aluno->curso_id = $request->curso;
-        $aluno->semestre_entrada = $request->semestre_entrada;
-        //dd($request);
-        if ($aluno->save()){
+        // $aluno = new Aluno();
+        // $aluno->cpf = $request->cpf;
+        // $aluno->curso_id = $request->curso;
+        // $aluno->semestre_entrada = $request->semestre_entrada;
+        // //dd($request);
+        // if ($aluno->save()){
 
-            if ( 
-                $aluno->user()->create([
-                    'name' => $request->nome,
-                    'name_social' => $request->nome_social == null ? "-": $request->nome_social,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->senha)
-                ])->givePermissionTo('aluno')
-            ){
+        //     if (
+        //         $aluno->user()->create([
+        //             'name' => $request->nome,
+        //             'name_social' => $request->nome_social == null ? "-": $request->nome_social,
+        //             'email' => $request->email,
+        //             'password' => Hash::make($request->senha)
+        //         ])->givePermissionTo('aluno')
+        //     ){
+        //         $confirm = new ConfirmandoEmail($request);
+        //         $confirm -> enviandoEmail();
+        //         $mensagem_sucesso = "Aluno cadastrado com sucesso.";
+        //         return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
 
-                $mensagem_sucesso = "Aluno cadastrado com sucesso.";
-                return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
-
-            } else {
-                return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
+        //     } else {
+        //         return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
+        try {
+            $aluno = new Aluno();
+            $aluno->cpf = $request->cpf;
+            $aluno->curso_id = $request->curso;
+            $aluno->semestre_entrada = $request->semestre_entrada;
+            // dd($request);
+            if ($aluno->save()){
+                if ( 
+                    $aluno->user()->create([
+                        'name' => $request->nome,
+                        'name_social' => $request->nome_social == null ? "-": $request->nome_social,
+                        'email' => $request->email,
+                        'password' => Hash::make($request->senha)
+                    ])->givePermissionTo('aluno')
+                ){
+                    
+                    return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
+    
+                } else {
+                    return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
+                }
             }
-        }else{
-            return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
-        }
+        } catch (Exception $e) {
+                return redirect()->back()->withErrors("Falha ao cadastrar aluno. Tente novamente mais tarde.");
+            }
     }
 
-    public function criar_aluno(Request $request)
-    {
-        $validacao = $request->validate(
-            [
-                'nome' => ['required'],
-                'cpf' => ['required'],
-                'email' => ['required'],
-                'semestre_entrada' => ['required'],
-                'curso' => ['required'],
-                'password' => ['required']
-            ],
-            [
-                'required' => 'O campo :attribute é obrigatório.'
-            ]
-        );
+    // public function criar_aluno(Request $request)
+    // {
+    //     $validacao = $request->validate(
+    //         [
+    //             'nome' => ['required'],
+    //             'cpf' => ['required'],
+    //             'email' => ['required'],
+    //             'semestre_entrada' => ['required'],
+    //             'curso' => ['required'],
+    //             'password' => ['required']
+    //         ],
+    //         [
+    //             'required' => 'O campo :attribute é obrigatório.'
+    //         ]
+    //     );
 
-        $aluno = Aluno::create([
-            'cpf' => $request->input('cpf'),
-            'curso' => $request->input('curso'),
-            'semestre_entrada' => $request->input('semestre_entrada')
-        ]);
+    //     $aluno = Aluno::create([
+    //         'cpf' => $request->input('cpf'),
+    //         'curso' => $request->input('curso'),
+    //         'semestre_entrada' => $request->input('semestre_entrada')
+    //     ]);
 
-        $aluno->user()->create([
-            'name' => $request->input('nome'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password'))
-        ])->givePermissionTo('aluno');
+    //     $aluno->user()->create([
+    //         'name' => $request->input('nome'),
+    //         'email' => $request->input('email'),
+    //         'password' => Hash::make($request->input('password'))
+    //     ])->givePermissionTo('aluno');
 
-        return redirect(url("/login"));
-    }
+    //     return redirect(url("/login"));
+    // }
 
     public function update(AlunoUpdateFormRequest $request, $id)
     {
@@ -94,7 +116,7 @@ class AlunoController extends Controller
         }
 
         if ($aluno->save()){
-            
+
             if ($aluno->user->update()){
                 return redirect('/alunos')->with('sucesso', 'Aluno atualizado com sucesso.');
             } else {
@@ -125,6 +147,7 @@ class AlunoController extends Controller
     public function index(Request $request)
     {
         $alunos = Aluno::with('user')->get();
+        //dd($alunos);
         return view("Alunos.index", compact("alunos"));
 
         /*if (sizeof($request-> query()) > 0){
@@ -146,12 +169,14 @@ class AlunoController extends Controller
                 }
             })->orderBy('alunos.created_at', 'desc')->select("alunos.*")->get();
 
+
             return view("Alunos.index", compact("alunos"));
         } else {
             $alunos = Aluno::join("users", "users.typage_id", "=", "alunos.id")->join("cursos", "cursos.id", "=", "alunos.curso_id");
             $alunos = $alunos->get();
             return view("Alunos.index", compact("alunos"));
         }*/
+
     }
 
     public function edit($id){

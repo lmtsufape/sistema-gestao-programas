@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
-class ServidorController extends Controller
-{
+class ServidorController extends Controller {
 
     public function index(Request $request)
     {
@@ -68,7 +67,9 @@ class ServidorController extends Controller
             ])->givePermissionTo('servidor')
         ){
             $mensagem_sucesso = "Orientador cadastrado com sucesso.";
-            return redirect('/servidors')->with('sucesso', 'Servidor cadastrado com sucesso.');
+
+
+            return redirect('/servidores')->with('sucesso', 'Servidor cadastrado com sucesso.');
 
         } else {
             return redirect()->back()->withErrors( "Falha ao cadastrar servidor. tente novamente mais tarde." );
