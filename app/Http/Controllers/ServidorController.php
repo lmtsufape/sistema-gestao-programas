@@ -49,7 +49,7 @@ class ServidorController extends Controller {
 
     public function create(){
         $tipo_servidors = Tipo_servidor::all();
-        return view("servidors.cadastrar", compact("tipo_servidors"));
+        return view("servidors.create", compact("tipo_servidors"));
     }
 
     public function store(ServidorFormRequest $request)
@@ -69,7 +69,7 @@ class ServidorController extends Controller {
             $mensagem_sucesso = "Orientador cadastrado com sucesso.";
 
 
-            return redirect('/servidores')->with('sucesso', 'Servidor cadastrado com sucesso.');
+            return redirect('/servidors')->with('sucesso', 'Servidor cadastrado com sucesso.');
 
         } else {
             return redirect()->back()->withErrors( "Falha ao cadastrar servidor. tente novamente mais tarde." );
@@ -80,7 +80,7 @@ class ServidorController extends Controller {
     {
         $servidor = Servidor::find($id);
         $tipo_servidors = Tipo_servidor::all();
-        return view("servidors.editar", compact('servidor', 'tipo_servidors'));
+        return view("servidors.edit", compact('servidor', 'tipo_servidors'));
     }
 
     public function update(ServidorFormUpdateRequest $request, $id)
@@ -131,7 +131,7 @@ class ServidorController extends Controller {
 
     // Criado para visualizar a tela de editar servidor
     public function editar(){
-        return view('servidors.editar');
+        return view('servidors.edit');
     }
 
     public function adicionar_permissao($id, AdicionarPermissaoFormRequest $request) {
