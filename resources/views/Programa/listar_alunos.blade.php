@@ -83,10 +83,9 @@
             <thead>
                 <tr>
                     <th scope="col">Nome</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">CPF</th>
-                    <th scope="col">Curso</th>
-                    <th scope="col">Semestre de entrada</th>
+                    <th scope="col">Edital</th>
+                    <th scope="col">Bolsa</th>
+                    <th scope="col">Valor da bolsa</th>
                     <th class="text-center">Ações</th>
                 </tr>
             </thead>

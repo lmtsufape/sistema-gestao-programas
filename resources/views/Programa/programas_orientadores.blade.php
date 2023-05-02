@@ -37,7 +37,6 @@
 </style>
 
 
-
 <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
     <h1 style="color:#2D3875;"><strong>Meus Programas</strong></h1>
     <div style="margin: auto"></div>
@@ -79,43 +78,53 @@
             <!-- foreach de programas -->
             <tbody>
                 <tr>
-                        <td class="align-middle"> Teste </td>
-                        <td class="align-middle">teste </td>
-                        <td class="align-middle">
-                            <a type="button" data-bs-toggle="modal"
-                            {{--  data-bs-target="#modal_show_{{$programas->id}}"  --}}
-                            >
-                            <img src="{{asset("images/info.png")}}" alt="Info programa">
-                            </a>
-                        </td>
-                    </tr>
+                    <td class="align-middle"> Teste </td>
+                    <td class="align-middle"> Teste </td>
+                    <td class="align-middle">
 
-                </tbody>
-            </table>
+
+                        <a style="padding:2px" type="button" data-bs-toggle="modal" data-bs-target="#modal_show_">
+                            <img src="{{asset("images/info.png")}}" alt="Info programa">
+                        </a>
+
+                    </td>
+                </tr>
+                <tr>
+                    {{-- Não apagar esse tr vazio senão a linha da tabela fica mt preta/grossa  --}}
+                </tr>
+                @include("orientador.components_programa.modal_show" )
+
+                <!-- endforeach -->
+            </tbody>
+        </table>
+    </div>
+
+    <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+        width: 150px; height: 50%;">
+        <div style="align-self: center; margin-right: auto">
+            <br>
+            <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
         </div>
 
-        <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-            width: 150px; height: 50%;">
-            <div style="align-self: center; margin-right: auto">
-                <br>
-                <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
+        <div style="align-self: center; margin-right: auto">
+            <div style="display: flex; margin: 10px">
+                <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+                <p class="textolegenda">Pesquisar</p>
             </div>
-
-            <div style="align-self: center; margin-right: auto">
-                <div style="display: flex; margin: 10px">
-                    <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-                    <p class="textolegenda">Pesquisar</p>
-                </div>
-                <div style="display: flex; margin: 10px">
-                    <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
-                    <p class="textolegenda">Informações</p>
-                </div>
+            <div style="display: flex; margin: 10px">
+                <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
+                <p class="textolegenda">Informações</p>
             </div>
-
         </div>
 
     </div>
-
 </div>
 
+
+
+<script type="text/javascript">
+    function exibirModalVisualizar(id) {
+        $('#modal_show_' + id).modal('show');
+    }
+</script>
 @endsection
