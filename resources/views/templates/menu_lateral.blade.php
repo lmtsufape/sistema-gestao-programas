@@ -68,11 +68,11 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
               <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
               padding-top: 4px">Listagem de servidores</p></a>
             <hr>
-            <a href="{  {route('edital.index')  }}" style="display: flex; color: #000; text-decoration: none;">
-              <img src="{{asset("images/iconsbarralateral/gearbl.png")}}" alt="gerenciar" style="height:24px; width:24px;">
-              <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
-              padding-top: 4px">Gerenciar editais</p>
+            <a href="{{ route('edital.index') }}" style="display: flex; color: #000; text-decoration: none;">
+              <img src="{{ asset('images/iconsbarralateral/gearbl.png') }}" alt="gerenciar" style="height:24px; width:24px;">
+              <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px; padding-top: 4px;">Gerenciar editais</p>
             </a>
+
             <hr>
             <h6 style="font-style: normal; font-weight: 700; font-size: 16px; line-height: 19px;">Envio de e-mails</h6>
             <a href="{{route("email.notificarPrazoFrequencia")}}" style="display: flex; color: #000; text-decoration: none;">
