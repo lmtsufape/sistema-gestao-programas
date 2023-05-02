@@ -46,7 +46,7 @@
                   border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                   background-position: 10px 2px;
                   background-repeat: no-repeat;
-                  width: 35%;
+                  width: 35%; align-items: center;
                   font-size: 16px;
                   height: 45px;
                   border: 1px solid #ddd;
@@ -64,18 +64,27 @@
 
     </form>
   </div>
+  <div class="row" style="justify-content: center; ">
+    <div style="display: contents; align-content: center; align-items: center;">
+      <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
+      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
+      padding-left: 10px;margin-right:10px;" href="{{route("editals.create")}}">
+        <img src="{{asset("images/plus.png")}}" alt="Cadastrar edital" style="padding-bottom: 3px"> Cadastrar Edital
+      </a>
+    </div>
 
-  <div style="display: contents; align-content: center; align-items: center;">
-    <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
-    align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-    padding-left: 10px;" href="{{route("editals.create")}}">
-      <img src="{{asset("images/plus.png")}}" alt="Cadastrar edital" style="padding-bottom: 5px"> Cadastrar Edital
-    </a>
-    <br>
-    <br>
+    <div style="display: contents; align-content: center; align-items: center;">
+      <a style="background:#2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
+      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
+      padding-left: 10px; margin-left:10px" href="{{url("/vinculo")}}">
+        <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos" style="padding-bottom: 3px"> Alunos vinculados
+      </a>
+    </div>
   </div>
-
+  <br>
+  <br>
   <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">
       <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
@@ -93,14 +102,11 @@
           <tr>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
-            <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
+            <td style="border-right: 1px solid #d3d3d3;">programa</td>
             <td>
-              <a style="padding:2px" href="{{url("/editals/$edital->id/alunos")}}">
+              <!-- <a style="padding:2px" href="{{url("/editals/alunos")}}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
-              </a>
-              <a href="{{url("/projetos")}}">
-                <img src="{{asset("images/listaredital.png")}}" alt="Listar projetos" style="height: 30px; width: 30px;">
-              </a>
+              </a> -->
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
@@ -146,14 +152,10 @@
             <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
           </div>
-          <div style="display: flex; margin: 10px">
-            <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar projetos</p>
-          </div>
-          <div style="display: flex; margin: 10px">
+          <!-- <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/bx_user.png")}}" alt="Listar editais" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar alunos</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
