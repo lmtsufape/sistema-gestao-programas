@@ -38,7 +38,7 @@
   @endif
   <br>
 
-      {{-- dd($editais); --}}
+      {{ dd($editais); }} 
   
   <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
     <h1 style="color:#2D3875;"><strong>Editais</strong></h1>
