@@ -27,12 +27,19 @@ class Aluno extends Model
 
     public function editais() 
     {
-        return $this->hasMany(Edital::class);
-    }
-
-    public function edital_alunos()
-    {
-        return $this->belongsToMany(Edital_Aluno::class);
+        return $this->belongsToMany(Edital::class, 'edital_alunos')
+            ->withPivot([
+                'nome_aluno', 
+                'titulo_edital', 
+                'data_inicio', 
+                'data_fim', 
+                'valor_bolsa', 
+                'bolsa', 
+                'info_complementares', 
+                'disciplina_id',
+                'aluno_id',
+                'edital_id'
+            ]);
     }
 
     public static $rules = [

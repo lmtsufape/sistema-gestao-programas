@@ -28,8 +28,21 @@ class Edital extends Model
         return $this->belongsTo(Programa::class, "programa_id");
     }
 
-    public function edital_alunos()
+    public function alunos()
     {
-        return $this->hasMany(Edital_Aluno::class, "edital_id");
+        return $this->belongsToMany(Aluno::class, 'edital_alunos')
+            ->withPivot([
+                'nome_aluno', 
+                'titulo_edital', 
+                'data_inicio', 
+                'data_fim', 
+                'valor_bolsa', 
+                'bolsa', 
+                'info_complementares', 
+                'disciplina_id',
+                'aluno_id',
+                'edital_id'
+            ]);
     }
+
 }

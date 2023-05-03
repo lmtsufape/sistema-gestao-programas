@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Edital;
 use App\Models\Curso;
+use App\Models\Aluno;
 use App\Models\Disciplina;
 use App\Models\Programa;
 use App\Models\Orientador;
@@ -79,7 +80,28 @@ class EditalController extends Controller
      */
     public function show($id)
     {
-        //
+        $edital = Edital::findOrFail($id);
+
+        return view('Edital.show', ['edital' => $edital]);
+    }
+
+    public function inscrever_aluno(Request $request, $id) {
+
+        $edital = Edital::find($id);
+        $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
+        $data = [
+            'nome_aluno' => $aluno->user->name,
+            'titulo_edital' => $edital->nome,
+            'data_inicio' => $edital->data_inicio,
+            'data_fim' => $edital->data_fim,
+            'valor_bolsa' => $request->valor_bolsa,
+            'bolsa' => $request->bolsa,
+            'info_complementares' => $request->info_complementares,
+            'disciplina_id' => 1
+        ];
+        $edital->alunos()->syncWithoutDetaching([$aluno->id => $data]);
+
+        return redirect()->back()->with('success', 'O aluno foi inscrito com sucesso no edital.');
     }
 
     /**
