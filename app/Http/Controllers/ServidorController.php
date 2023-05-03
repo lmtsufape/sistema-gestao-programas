@@ -10,6 +10,7 @@ use App\Models\Tipo_servidor;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -19,57 +20,70 @@ class ServidorController extends Controller {
 
     public function index(Request $request)
     {
-        $permissoes = DB::select('select * from permissions');
+        // $permissoes = DB::select('select * from permissions');
 
-        if (sizeof($request-> query()) > 0){
-            $campo = $request->query('campo');
-            $valor = $request->query('valor');
+        // if (sizeof($request-> query()) > 0){
+        //     $campo = $request->query('campo');
+        //     $valor = $request->query('valor');
 
-            if ($valor == null){
-                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
-            }
+        //     if ($valor == null){
+        //         return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+        //     }
 
-            $servidors = Servidor::join("users", "users.typage_id", "=", "servidors.id");
-            $servidors = $servidors->where(function ($query) use ($valor) {
-                if ($valor) {
-                    $query->orWhere("users.name", "LIKE", "%{$valor}%");
-                    $query->orWhere("users.email", "LIKE", "%{$valor}%");
-                    $query->orWhere("servidors.cpf", "LIKE", "%{$valor}%");
-                    //$query->orWhere("servidors.tipo_servidor_id", "LIKE", "%{$valor}%");
-                }
-            })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->get();
-
-            return view("servidors.index", compact("servidors", "permissoes"));
-        } else {
-            $servidors = Servidor::all();
-            return view("servidors.index", compact("servidors", "permissoes"));
-        }
+        //     $servidors = Servidor::join("users", "users.typage_id", "=", "servidors.id");
+        //     $servidors = $servidors->where(function ($query) use ($valor) {
+        //         if ($valor) {
+        //             $query->orWhere("users.name", "LIKE", "%{$valor}%");
+        //             $query->orWhere("users.email", "LIKE", "%{$valor}%");
+        //             $query->orWhere("servidors.cpf", "LIKE", "%{$valor}%");
+        //             //$query->orWhere("servidors.tipo_servidor_id", "LIKE", "%{$valor}%");
+        //         }
+        //     })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->get();
+            
+        //     return view("servidores.index", compact("servidors", "permissoes"));
+        // } else {
+            $servidores = Servidor::all();
+            return view("servidores.index", compact("servidores"));
     }
 
 
     public function create(){
-        $tipo_servidors = Tipo_servidor::all();
-        return view("servidors.create", compact("tipo_servidors"));
+        $servidor = Servidor::all();
+        return view("servidores.cadastrar", compact("servidor"));
     }
 
     public function store(ServidorFormRequest $request)
-    {
+    {   
+        
+        
+        switch($request->input('tipo_servidor')){
+            case 0:
+               $permission = "adm";
+                break;
+            case 1:
+                $permission = "servidor";
+                break;
+            case 2:
+                $permission = "pro_reitor";
+                break;
+        };
+
         $servidor = Servidor::Create([
             'cpf' => $request->input('cpf'),
-           
+            'tipo_servidor' => $permission
         ]);
-
+       
         if(
             $servidor->user()->create([
                 'name' => $request->input('nome'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('senha'))
-            ])->givePermissionTo('servidor')
+            ])->givePermissionTo($permission)
         ){
             $mensagem_sucesso = "Orientador cadastrado com sucesso.";
 
 
-            return redirect('/servidors')->with('sucesso', 'Servidor cadastrado com sucesso.');
+            return redirect('/servidores')->with('sucesso', 'Servidor cadastrado com sucesso.');
 
         } else {
             return redirect()->back()->withErrors( "Falha ao cadastrar servidor. tente novamente mais tarde." );
@@ -79,8 +93,8 @@ class ServidorController extends Controller {
     public function edit($id)
     {
         $servidor = Servidor::find($id);
-        $tipo_servidors = Tipo_servidor::all();
-        return view("servidors.edit", compact('servidor', 'tipo_servidors'));
+        $tipo_servidors = User::where('typage_id', Auth::user()->typage_id)->get();
+        return view("servidores.editar", compact('servidor', 'tipo_servidors'));
     }
 
     public function update(ServidorFormUpdateRequest $request, $id)
@@ -103,7 +117,7 @@ class ServidorController extends Controller {
 
             if ($servidor->user->update()){
                 $mensagem_sucesso = "Servidor editado com sucesso.";
-                return redirect("/servidors")->with('sucesso', 'Servidor editado com sucesso.');
+                return redirect("/servidores")->with('sucesso', 'Servidor editado com sucesso.');
             } else {
                 return redirect()->back()->withErrors( "Falha ao editar servidor. tente novamente mais tarde." );
             }
@@ -116,7 +130,7 @@ class ServidorController extends Controller {
     public function delete($id)
     {
         $servidor = Servidor::findOrFail($id);
-        return view('servidors.delete', ['servidor' => $servidor]);
+        return view('servidores.delete', ['servidor' => $servidor]);
     }
 
     public function destroy(Request $request)
@@ -125,13 +139,13 @@ class ServidorController extends Controller {
         $servidor = Servidor::findOrFail($id)->first();
 
         if ($servidor->delete()) {
-            return redirect(route("servidors.index"));
+            return redirect(route("servidores.index"));
         }
     }
 
     // Criado para visualizar a tela de editar servidor
     public function editar(){
-        return view('servidors.edit');
+        return view('servidores.editar');
     }
 
     public function adicionar_permissao($id, AdicionarPermissaoFormRequest $request) {

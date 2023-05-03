@@ -63,7 +63,7 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
               <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
               padding-top: 4px">Listagem de orientadores </p>
             </a>
-            <a href="{{route("servidors.index")}}" style="display: flex; color: #000; text-decoration: none;">
+            <a href="{{route("servidores.index")}}" style="display: flex; color: #000; text-decoration: none;">
               <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarServ" style="height:24px; width:24px;">
               <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
               padding-top: 4px">Listagem de servidores</p></a>
