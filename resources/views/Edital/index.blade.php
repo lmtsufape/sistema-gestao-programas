@@ -64,22 +64,13 @@
 
     </form>
   </div>
-  <div class="row" style="justify-content: center; ">
+  <div style="justify-content: center; ">
     <div style="display: contents; align-content: center; align-items: center;">
       <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
       font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
       align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
       padding-left: 10px;margin-right:10px;" href="{{route("edital.create")}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar edital" style="padding-bottom: 3px"> Cadastrar Edital
-      </a>
-    </div>
-
-    <div style="display: contents; align-content: center; align-items: center;">
-      <a style="background:#2D3875; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
-      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px; margin-left:10px" href="{{route("edital.vinculo")}}">
-        <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos" style="padding-bottom: 3px"> Alunos vinculados
       </a>
     </div>
   </div>
@@ -104,23 +95,18 @@
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">programa</td>
             <td>
-              <!-- <a style="padding:2px" href="{{url("/editals/alunos")}}">
+              <a style="padding:2px" href="{{route("edital.vinculo")}}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
-              </a> -->
+              </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
-              <a href="{{  route('edital.edit', ['id' => $edital->id] )  }}">
+              <a type="button" href="{{  route('edital.edit', ['id' => $edital->id] )  }}">
                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
-              <form action="{{ route('edital.delete', ['id' => $edital->id]) }}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-danger">
-                    <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
-                  </button>
-              </form>
-
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$edital->id}}">
+                <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
+              </a>
             </td>
           </tr>
           <tr>
@@ -157,10 +143,10 @@
             <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
           </div>
-          <!-- <div style="display: flex; margin: 10px">
+          <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/bx_user.png")}}" alt="Listar editais" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar alunos</p>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
