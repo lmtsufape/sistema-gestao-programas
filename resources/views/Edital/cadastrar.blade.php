@@ -65,7 +65,7 @@
 
             <div class="boxchild">
                 <div class="row">
-                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
                     Cadastrar Edital</h1>
                 </div>
 
@@ -73,50 +73,37 @@
 
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
-                    <div class="form-group">
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome" class="form-control" name="nome" placeholder="Nome do edital" required>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="descricao">Descrição</label>
-                        <input type="textarea" id="descricao" class="form-control" name="descricao" placeholder="Descrição do edital" required>
-                    </div>
+                    <label class="titulo" for="nome">Nome:</label>
+                    <input class="boxinfo" placeholder="Digite o nome" type="text" name="nome" required id="nome" value=""><br><br>
 
-                    <div class="form-group">
-                        <label for="semestre">Semestre</label>
-                        <input type="text" id="semestre" class="form-control" name="semestre" placeholder="Semestre do edital" required>
-                    </div>
+                    <label class="titulo" for="semestre">Semestre:</label>
+                    <input class="boxinfo" placeholder="Digite o semestre" type="text" name="semestre" id="semestre" value=""><br><br>
 
-                    <div class="form-group">
-                        <label for="data_inicio" >Data de início:</label>
-                        <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" required><br><br>
-                    </div>
+                    <label class="titulo" for="Descrição">Descrição:</label>
+                    <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="10"></textarea><br><br>
 
-                    <div class="form-group">
-                        <label for="data_fim" >Data de fim:</label>
-                        <input class="boxinfo"  type="date" name="data_fim" id="data_fim" id="data_inicio" ><br><br>
-                    </div>
+                    <label for="data_inicio" class="titulo">Data de início:</label>
+                    <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" ><br><br>
 
-                    <div class="form-group">
-                        <label for="programa">Programa:</label>
-                        <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
-                            <option value=""></option>
-                                @foreach ($programas as $programa)
-                                    <option value="{{$programa->id}}">{{$programa->nome}}</option>
-                                @endforeach
-                        </select><br><br>
-                    </div>
+                    <label for="data_fim" >Data de fim:</label>
+                    <input class="boxinfo"  type="date" name="data_fim" id="data_fim" ><br><br>
 
-                    <div class="form-group">
-                        <label for="programa">Curso:</label>
-                        <select aria-label="Default select example" class="boxinfo" name="curso" id="curso" >
-                            <option value=""></option>
-                                @foreach ($cursos as $curso)
-                                    <option value="{{$curso->id}}">{{$curso->nome}}</option>
-                                @endforeach
-                        </select><br><br>
-                    </div>
+                    <label for="programa">Programa:</label>
+                    <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
+                        <option value=""></option>
+                            @foreach ($programas as $programa)
+                                <option value="{{$programa->id}}">{{$programa->nome}}</option>
+                            @endforeach
+                    </select><br><br>
+
+                    <label for="programa">Curso:</label>
+                    <select aria-label="Default select example" class="boxinfo" name="curso" id="curso" >
+                        <option value=""></option>
+                            @foreach ($cursos as $curso)
+                                <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                            @endforeach
+                    </select><br><br>
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                         <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;

@@ -37,7 +37,7 @@
             <br>
             <div class="boxchild">
                 <div class="row">
-                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
+                <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
                         Cadastrar Disciplina</h1>
                 </div>
 
@@ -49,6 +49,15 @@
                     <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
                     <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
+                    <label for="inputCurso" class="titulo" >Curso: </label>
+                    <select aria-label="Default select example" class="boxinfo" id="inputCurso" name="curso">
+                        <option value="">Selecione o curso</option>
+                        {{--@foreach ($cursos as $curso)
+                        <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                        @endforeach--}}
+                    </select>
+                    <br>
+                    <br>
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                         <input type="button" value="Voltar" href="{{url("/disciplinas/")}}" onclick="window.location.href='{{url("/disciplinas/")}}'" style="background: #2D3875;
                                     box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;

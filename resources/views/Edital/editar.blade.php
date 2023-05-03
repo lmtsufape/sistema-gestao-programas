@@ -74,6 +74,15 @@
                         @csrf
                         @method("PUT")
 
+                        <label class="titulo" for="nome">Nome:</label>
+                        <input class="boxinfo" type="text" name="nome" id="nome" value=""><br><br>
+
+                        <label class="titulo" for="semestre">Semestre:</label>
+                        <input class="boxinfo" type="text" name="semestre" id="semestre" value=""><br><br>
+
+                        <label class="titulo" for="Descrição">Descrição:</label>
+                        <textarea class="boxinfo" name="descricao" id="descricao" cols="30" rows="10"></textarea><br><br>
+
                         <label class="titulo" for="data_inicio">Data de início:</label>
                         <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" value="{{$edital->data_inicio}}"><br><br>
 

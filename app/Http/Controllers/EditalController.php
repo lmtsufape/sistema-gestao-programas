@@ -187,9 +187,11 @@ class EditalController extends Controller
             return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
         }
     }
-    public function listar_alunos($id, Request $request){
-        $edital = Edital::find($id);
-
-        return view("Edital.listar_alunos", compact("edital"));
+    public function listar_alunos(){
+        return view("Edital.listar_alunos");
     }
+
+    // public function cadastrar_alunos(){
+    //     return view("Edital.cadastrar_alunos");
+    // }
 }

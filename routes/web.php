@@ -88,6 +88,8 @@ Route::get("/programas/edit/{id}/edital", [ProgramaController::class, "editar_ed
 Route::put("/programas/update/{id}/edital", [ProgramaController::class, "update_edital"]);
 
 // Rotas de Edital
+Route::get('/vinculo', [EditalController::class, "listar_alunos"])->name('edital.vinculo');
+    // Route::get('/vinculo/create', [EditalController::class, "cadastrar_alunos"]);
 Route::resource('/edital', EditalController::class);
 
 Route::prefix('edital')->group(function() {
