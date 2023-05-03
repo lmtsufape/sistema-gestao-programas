@@ -13,8 +13,8 @@ class CreateEditalAlunosTable extends Migration
      */
     public function up()
     {
-        Schema::create('edital__alunos', function (Blueprint $table) {
-            $table->id();
+        Schema::create('edital_alunos', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('nome_aluno');
             $table->string('titulo_edital');
             $table->date('data_inicio');
@@ -22,9 +22,9 @@ class CreateEditalAlunosTable extends Migration
             $table->double('valor_bolsa');
             $table->string('bolsa');
             $table->text('info_complementares');
-            $table->foreignId('aluno_id');
-            $table->foreignId('edital_id');
-            $table->foreignId('disciplina_id');
+            $table->foreignId('aluno_id')->contrained('alunos');
+            $table->foreignId('edital_id')->contrained('editals');
+            $table->foreignId('disciplina_id')->contrained('disciplinas');
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ class CreateEditalAlunosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('edital__alunos');
+        Schema::dropIfExists('edital_alunos');
     }
 }

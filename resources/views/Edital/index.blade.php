@@ -98,7 +98,7 @@
               <a style="padding:2px" href="{{url("/editals/$edital->id/alunos")}}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
               </a>
-              <a href="{{url("/projetos")}}">
+              <a href="{{route('edital.show', ['id' => $edital->id]  )}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="Listar projetos" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
