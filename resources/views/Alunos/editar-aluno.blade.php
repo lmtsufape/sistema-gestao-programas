@@ -68,7 +68,7 @@
         <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
             Editar Aluno</h1>
         <hr style="color: #2D3875;">
-        <form action="{{url("/alunos/$aluno->id")}}" method="POST">
+        <form action="{{  route('aluno.update', ['id' => $aluno->id])  }}" method="POST">
             @csrf
             @method("PUT")
             <label for="nome" class="titulo">Nome:</label>
@@ -87,7 +87,7 @@
             <label for="curso" for="nome" class="titulo">Curso:</label>
             <select name="curso" id="curso" class="boxinfo"> name="curso" id="curso">
                 @foreach ($cursos as $curso)
-                    <option value="{{$curso->id}}" {{$aluno->id_curso == $curso->id ? "selected" : ""}}>{{$curso->nome}}</option>
+                    <option value="{{$curso->id}}" {{$aluno->curso_id == $curso->id ? "selected" : ""}}>{{$curso->nome}}</option>
                 @endforeach
             </select><br><br>
 
@@ -95,7 +95,7 @@
             <input type="text" id="semestre_entrada" name="semestre_entrada" value="{{$aluno->semestre_entrada}}" class="boxinfo"><br/><br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                <input type="button" value="Voltar" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'"
+                <input type="button" value="Voltar" href="{{url('/alunos/')}}" onclick="window.location.href='{{url('/alunos/')}}'"
                 style="background: #2D3875; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                 border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                 line-height: 29px; text-align: center; padding: 5px 15px;">
@@ -109,6 +109,6 @@
 </div>
 @elsecan
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
+    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/home')}}">Voltar</a>
 @endcan
 @endsection

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Orientador extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         'cpf',
         'matricula'
@@ -17,10 +17,5 @@ class Orientador extends Model
     public function user()
     {
         return $this->morphOne(User::class, "typage");
-    }
-
-    public function edital_orientadors()
-    {
-        return $this->hasMany(Edital_orientador::class);
     }
 }

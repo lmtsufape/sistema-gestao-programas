@@ -16,9 +16,18 @@
             
                 <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">E-mail:</label>
                 <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$servidor->user->email}}</div>
-            
-                <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Tipo de servidor:</label>
-                <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->tipo_servidor->nome}}</div>
+                
+                <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Tipo Servidor:</label>
+                @switch($servidor->tipo_servidor)
+                  @case('adm')
+                    <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> Administrador</div>
+                    @break
+                  @case('pro_reitor')
+                    <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> Pró-Reitor</div>
+                    @break
+                  @case('servidor')
+                    <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> Servidor</div>                   
+                @endswitch
               </div>
             </div>
             <div class="modal-footer">

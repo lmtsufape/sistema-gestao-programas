@@ -80,10 +80,10 @@
                 <label for="descricao" class="titulo">Descricao:</label>
                 <input type="text" name="descricao" id="descricao" placeholder="Digite a descrição do programa" class="boxinfo"><br><br>
 
-                <label for="servidores" class="titulo">Servidores:</label>
-                <select name="servidores[]" id="servidores" style="width: 100%;" multiple>
+                <label for="servidors" class="titulo">servidors:</label>
+                <select name="servidors[]" id="servidors" style="width: 100%;" multiple>
                     <option value=""></option>
-                    @foreach ($servidores as $servidor)
+                    @foreach ($servidors as $servidor)
                         <option value="{{$servidor->id}}" style="color: black; border-radius: 5px;">{{$servidor->user->name}}</option>
                     @endforeach
                 </select><br><br>
@@ -97,7 +97,7 @@
     </div>
 
         <script>
-            $("#servidores").chosen({
+            $("#servidors").chosen({
             placeholder_text_multiple: "Selecione um servidor",
             // max_shown_results : 5,
             no_results_text: "Não possui alunos."

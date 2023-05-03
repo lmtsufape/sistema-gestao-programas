@@ -10,23 +10,39 @@ class Edital extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_programa',
+        'nome',
+        'descricao',
+        'semestre',
+        'data_inicio',
         'data_fim',
-        'data_inicio'
+    ];
+
+
+    protected $dates = [
+        'data_inicio',
+        'data_fim'
     ];
 
     public function programa()
     {
-        return $this->belongsTo(Programa::class, "id_programa");
+        return $this->belongsTo(Programa::class, "programa_id");
     }
 
-    public function edital_alunos()
+    public function alunos()
     {
-        return $this->hasMany(Edital_aluno::class, "id_edital");
+        return $this->belongsToMany(Aluno::class, 'edital_alunos')
+            ->withPivot([
+                'nome_aluno', 
+                'titulo_edital', 
+                'data_inicio', 
+                'data_fim', 
+                'valor_bolsa', 
+                'bolsa', 
+                'info_complementares', 
+                'disciplina_id',
+                'aluno_id',
+                'edital_id'
+            ]);
     }
 
-    public function edital_disciplina()
-    {
-        return $this->hasMany(Edital_disciplina::class, "id_edital");
-    }
 }

@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
+
 class Servidor extends Model
-{
+{   
     protected $fillable = [
         'cpf',
-        'id_tipo_servidor'
+        'tipo_servidor',
     ];
 
     public function user(){
@@ -22,14 +23,9 @@ class Servidor extends Model
         return $this->hasMany(Programa_servidor::class, "id_servidor");
     }
 
-    public function tipo_servidor()
-    {
-        return $this->belongsTo(Tipo_servidor::class, "id_tipo_servidor");
-    }
-
     public static $rules = [
         'cpf' => 'bail|required|formato_cpf|cpf|unique:servidors|unique:alunos|unique:professors',
-        'tipo_servidor' => 'bail|required',
+        // 'tipo_servidor' => 'bail|required',
     ];
 
     public static $messages = [

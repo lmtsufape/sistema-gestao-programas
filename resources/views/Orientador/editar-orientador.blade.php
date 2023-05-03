@@ -63,7 +63,7 @@
         <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
             <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">Editar Orientador</h1>
             <hr>
-            <form action="{{url("/orientadors/$orientador->id")}}" method="POST">
+            <form action="{{  route('orientadors.update', ['id'=> $orientador->id])   }}" method="POST">
                 @csrf
                 @method("PUT")
                 <label for="nome" class="titulo">Nome:</label>
@@ -83,7 +83,7 @@
                 <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula" value="{{$orientador->matricula}}"><br><br>
 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                    <input type="button" class="btn btn-secondary" value="Voltar" href="{{url("/orientadors/")}}" onclick="window.location.href='{{url("/orientadors/")}}'"
+                    <input type="button" class="btn btn-secondary" value="Voltar" href="{{route('orientadors.index')}}" onclick="window.location.href='{{route('orientadors.index')}}'"
                     style=" display: inline-block;
                     border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                     line-height: 29px; text-align: center; padding: 5px 15px;">

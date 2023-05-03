@@ -37,11 +37,11 @@
   </div>
   @endif
   <br>
-
+  
   <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
     <h1 style="color:#2D3875;"><strong>Editais</strong></h1>
     <div style="margin: auto"></div>
-    <form action="{{route("editals.index")}}" method="GET">
+    <form action="{{  route('edital.index')  }}" method="GET">
       <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
                   border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                   background-position: 10px 2px;
@@ -69,7 +69,7 @@
     <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
     font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
     align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-    padding-left: 10px;" href="{{route("editals.create")}}">
+    padding-left: 10px;" href="{{route("edital.create")}}">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar edital" style="padding-bottom: 5px"> Cadastrar Edital
     </a>
     <br>
@@ -89,7 +89,7 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($editals as $edital)
+          @foreach ($editais as $edital)
           <tr>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
@@ -98,25 +98,30 @@
               <a style="padding:2px" href="{{url("/editals/$edital->id/alunos")}}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
               </a>
-              <a href="{{url("/projetos")}}">
+              <a href="{{route('edital.show', ['id' => $edital->id]  )}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="Listar projetos" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
-              <a href="{{url("/editals/$edital->id/edit")}}">
+              <a href="{{  route('edital.edit', ['id' => $edital->id] )  }}">
                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$edital->id}}">
-                <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
-              </a>
+              <form action="{{ route('edital.delete', ['id' => $edital->id]) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger">
+                    <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
+                  </button>
+              </form>
+
             </td>
           </tr>
           <tr>
             {{-- Não apagar esse tr  --}}
           </tr>
         </tbody>
-        @include("Edital.components.modal_show", ["edital" => $edital, "orientadores" => $orientadores])
+        @include("Edital.components.modal_show", ["edital" => $edital, "orientadors" => $orientadors])
         @include("Edital.components.modal_delete", ["edital" => $edital])
         @endforeach
       </table>

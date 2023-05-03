@@ -1,0 +1,248 @@
+[33mcommit e23f2fca67305c7a65345da7ed32618a2cdad3bc[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Luann Ferreira <Luo.luann@gmail.com>
+Date:   Mon Apr 24 20:36:54 2023 -0300
+
+    feito model de edital e view básica para testes
+
+[33mcommit 8c77f0a34988156b29755278439af41dfe589b9f[m[33m ([m[1;31mupstream/main[m[33m)[m
+Author: Luann Ferreira <Luo.luann@gmail.com>
+Date:   Fri Apr 21 17:42:49 2023 -0300
+
+    a
+
+[33mcommit ef782cb1f5e57b0e4bebaa342dc2518bd3c66553[m
+Author: Luann Ferreira <Luo.luann@gmail.com>
+Date:   Fri Apr 21 17:35:58 2023 -0300
+
+    corrigindo edital_aluno seeder
+
+[33mcommit 8bea09ba240a13ee00d33ecd48cb68f0a080e27d[m
+Author: Luann Ferreira <Luo.luann@gmail.com>
+Date:   Fri Apr 21 16:50:45 2023 -0300
+
+    refatorando o banco de acordo com o moodelo
+
+[33mcommit 72fe1edec851804067f1982f5735dbfa59edbe93[m
+Author: Luann Ferreira <Luo.luann@gmail.com>
+Date:   Wed Apr 19 15:29:50 2023 -0300
+
+    salvando id_projeto e id_aluno na tabela pivo aluno_projeto
+
+[33mcommit f2410fe02b82a15d19805974c4418617dccd64e9[m
+Merge: b5d7a64 76e95ca
+Author: Daniel Duarte <danielduartefilho.df@gmail.com>
+Date:   Fri Mar 31 23:53:42 2023 -0300
+
+    Merge pull request #300 from lmtsufape/listar-documentos-models
+    
+    Listar documentos models
+
+[33mcommit 76e95ca3b768ac2069bc9da2f65670b19af7b977[m[33m ([m[1;31morigin/listar-documentos-models[m[33m)[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Mar 31 17:01:09 2023 -0300
+
+    edição boxes
+
+[33mcommit 2af59f7b29eff77b475dd33e196455b4ff21f546[m
+Merge: 42ad1eb 6828042
+Author: Camila Claudino <camila.claudino@upe.br>
+Date:   Fri Mar 10 15:31:47 2023 -0300
+
+    Merge branch 'develop' of https://github.com/lmtsufape/sistema-gestao-programas into develop
+
+[33mcommit 682804295a94f95108c8e154bdd754d63fecfa83[m
+Merge: e2baf2b 7f822ed
+Author: jacksonlmp <jacksonlmp17.jl@gmail.com>
+Date:   Thu Mar 9 19:43:32 2023 -0300
+
+    Merge branch 'develop' of https://github.com/lmtsufape/sistema-gestao-programas into develop
+
+[33mcommit 42ad1eb906a0e66639be81c6cf67290c3cdcf2b5[m
+Merge: 8ddf770 6fabc00
+Author: Jackson Lima <45649262+jacksonlmp@users.noreply.github.com>
+Date:   Fri Mar 3 19:33:07 2023 -0300
+
+    Merge pull request #282 from lmtsufape/ajuste-botao-cadastrar
+    
+    Ajuste botão cadastrar
+
+[33mcommit 6fabc000cc0e12a76c716e666a422ebcf41b7909[m
+Merge: 690aafc 8ddf770
+Author: Anna Victoria Feliciana <88841315+anna-victoria@users.noreply.github.com>
+Date:   Fri Mar 3 19:25:11 2023 -0300
+
+    Merge branch 'develop' into ajuste-botao-cadastrar
+
+[33mcommit 8ddf77081415c71b77fadcfc3d02d9b0c3bed03d[m
+Merge: f7f03f7 3db1ba5
+Author: Jackson Lima <45649262+jacksonlmp@users.noreply.github.com>
+Date:   Fri Mar 3 18:33:07 2023 -0300
+
+    Merge pull request #284 from lmtsufape/49-melhoria-no-design-da-tela-de-cadastro-de-frequencia_mensal-front
+    
+    49 melhoria no design da tela de cadastro de frequencia mensal front
+
+[33mcommit f7f03f7388a4fe5c77828eac8a7d330a665bdadf[m
+Merge: 8205ce8 6ed3bd8
+Author: Jackson Lima <45649262+jacksonlmp@users.noreply.github.com>
+Date:   Fri Mar 3 18:31:48 2023 -0300
+
+    Merge pull request #286 from lmtsufape/adicionar-icon-permissões
+    
+    Adicionar icon permissões
+
+[33mcommit 6ed3bd82839d4a35e4b2d04e5986c2fa8c0d4a20[m
+Merge: 0a0c610 8205ce8
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Mar 3 17:45:28 2023 -0300
+
+    Merge branch 'develop' into adicionar-icon-permissões
+
+[33mcommit 0a0c6106812cf1e34e1d7f97a770d9ade79e614f[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Mar 3 17:39:29 2023 -0300
+
+    Espaçamento entre botões
+
+[33mcommit 74d9c5dd2ab40496dd0099210a3107c36b4b53f0[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Mar 3 17:36:32 2023 -0300
+
+    Adição do ícone de permissão à tabela
+
+[33mcommit 8205ce890f25e44740f33b30b35e04516c18e85f[m
+Merge: e2baf2b f4d05cf
+Author: Jackson Lima <45649262+jacksonlmp@users.noreply.github.com>
+Date:   Fri Mar 3 17:26:58 2023 -0300
+
+    Merge pull request #285 from lmtsufape/niveis_acesso
+    
+    Adiciona modal de permissão
+
+[33mcommit f4d05cff8c96a4cfdf30d1bb763f068d1efa77e9[m[33m ([m[1;31morigin/niveis_acesso[m[33m)[m
+Author: jacksonlmp <jacksonlmp17.jl@gmail.com>
+Date:   Fri Mar 3 17:26:07 2023 -0300
+
+    Adiciona modal de permissão
+
+[33mcommit 8c809cfad9b55cc90a37d59354c912e6ff7188ae[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Mar 3 17:08:00 2023 -0300
+
+    bug fix
+
+[33mcommit c1c9f84933666ba20ae988b7d9575af5e5d0732e[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Mar 3 17:07:53 2023 -0300
+
+    icon permissoes
+
+[33mcommit 690aafc494b28ff8116594871dd2b6a09883dac6[m
+Merge: a16e42e e2baf2b
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Mar 3 16:43:58 2023 -0300
+
+    Merge branch 'develop' into ajuste-botao-cadastrar
+
+[33mcommit 3db1ba59ec11757570802ca84cb7cbc6a4e9977b[m
+Author: Camila Claudino <camila.claudino@upe.br>
+Date:   Fri Mar 3 16:16:12 2023 -0300
+
+    Criação da tela de registrar frequência mensal
+
+[33mcommit ad4033ad3ad4b16553a4edbd8038a5db6347bcd4[m
+Author: Camila Claudino <camila.claudino@upe.br>
+Date:   Fri Mar 3 16:15:21 2023 -0300
+
+    Criação da rota
+
+[33mcommit e2baf2b1ead0017fd50052c282174734a0d7f58d[m
+Merge: 4c78b1e d770984
+Author: victorMendes18 <54566190+victorMendes18@users.noreply.github.com>
+Date:   Fri Feb 24 22:00:03 2023 -0300
+
+    Merge pull request #280 from lmtsufape/niveis_acesso
+    
+    Niveis acesso
+
+[33mcommit d770984046f4a2500cb678ee1fa4caa491f54cf1[m
+Author: jacksonlmp <jacksonlmp17.jl@gmail.com>
+Date:   Fri Feb 24 20:45:28 2023 -0300
+
+    Resolução de conflitos
+
+[33mcommit ed669aec37a3154f38d5b33ba776d58e27ccfeb3[m
+Merge: 0287a5c 4c78b1e
+Author: jacksonlmp <jacksonlmp17.jl@gmail.com>
+Date:   Fri Feb 24 19:50:23 2023 -0300
+
+    Merge branch 'develop' of https://github.com/lmtsufape/sistema-gestao-programas into niveis_acesso
+
+[33mcommit 4c78b1e024db4979baf2349cf1d434de6d424c3a[m
+Merge: 449f908 ea01587
+Author: victorMendes18 <54566190+victorMendes18@users.noreply.github.com>
+Date:   Fri Feb 24 19:30:07 2023 -0300
+
+    Merge pull request #281 from lmtsufape/mudar-design-dos-modais
+    
+    Mudar design dos modais
+
+[33mcommit a16e42ee53937fd4dd41a166ad98b9b92fbb18b0[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Feb 24 17:32:22 2023 -0300
+
+    edição botão cadastrar
+
+[33mcommit a796dc8c3350fb4187064858af99c0df363a321e[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Feb 24 17:24:26 2023 -0300
+
+    botão cadastrar
+
+[33mcommit a07474c25b0a770b93d027e4440319dbb6df8be6[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Feb 24 17:18:58 2023 -0300
+
+    botão cadastrar edital
+
+[33mcommit 3df2dfb4842fc38c05e2bb6af8d598ed52110c56[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Feb 24 17:11:12 2023 -0300
+
+    botão cadastrar disciplinas
+
+[33mcommit 61bccfe261bc86c39a899b064f56a4489785b7a2[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Feb 24 17:10:47 2023 -0300
+
+    ajuste altura cursos
+
+[33mcommit 2a4dc163dd70137dcfeda726831206683443b2a4[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Feb 24 17:04:15 2023 -0300
+
+    botão cadastrar cursos
+
+[33mcommit abfacfcdcffc9672a38371eef95f7df01ffaa335[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Feb 24 17:02:42 2023 -0300
+
+    fix listar cursos
+
+[33mcommit 63975b9d2b65e5532bdd42494cae216bceb9c40f[m
+Author: Anna Victoria Feliciana <anna.feliciana@upe.br>
+Date:   Fri Feb 24 16:59:20 2023 -0300
+
+    cadastrar aluno
+
+[33mcommit ea01587315d53944082da4bdc1e3245456883c3d[m
+Author: Camila Claudino <camila.claudino@upe.br>
+Date:   Thu Feb 23 20:38:46 2023 -0300
+
+    Mudanças no design dos modais de visualizar
+
+[33mcommit 537235ae7bf54b862cc0616da66dd0cc35e62b61[m
+Author: Camila Claudino <camila.claudino@upe.br>
+Date:   Thu Feb 23 17:26:54 2023 -0300
+
+    Mudanças no design dos modais

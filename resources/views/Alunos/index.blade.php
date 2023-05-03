@@ -39,7 +39,7 @@
     <h1 style="color:#2D3875;"><strong>Alunos</strong></h1>
     <div style="margin: auto"></div>
     {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
-    <form action="{{route("alunos.index")}}" method="GET">
+    <form action="{{route('alunos.index')}}" method="GET">
       <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
       style="background-color: #D9D9D9;
             border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -67,14 +67,22 @@
 
   </div>
 
+
   <div style="display: contents; align-content: center; align-items: center;">
-    <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+    {{-- <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
     font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
     align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
     padding-left: 10px;"
-    href="{{route("alunos.create")}}">
-        <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
-    </a>
+    href="{{route('alunos.create')}}">
+        <img src="{{asset('images/plus.png')}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
+    </a> --}}
+    <div style="padding-bottom: 6px">
+      <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
+      font-weight: 400; font-size: 24px; padding-top: 5px; padding-bottom: 6px; padding-right: 15px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none; padding-left: 10px;"
+      href="{{route('alunos.create')}}">
+          <img src="{{asset('images/plus.png')}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
+      </a>
     </div>
     <br>
     <br>
@@ -97,6 +105,7 @@
 
             <tr>
                 <th scope="col">Nome</th>
+                <th scope="col">Nome Social</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">CPF</th>
                 <th scope="col">Curso</th>
@@ -108,22 +117,25 @@
           <tbody>
                 <tr>
                   <td class="align-middle">{{$aluno->user->name}}</td>
+                  <td class="align-middle">{{$aluno->user->name_social}}</td>
                   <td class="align-middle">{{$aluno->user->email}}</td>
                   <td class="align-middle">{{$aluno->cpf}}</td>
                   <td class="align-middle">{{$aluno->curso->nome}}</td>
                   <td class="align-middle">{{$aluno->semestre_entrada}}</td>
                   <td class="align-middle">
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
-                            <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
+                            <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
                         </a>
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$aluno->id}}">
-                            <img src="{{asset("images/document.png")}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
+                            <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
                         </a>
-                        <a href="{{url("/alunos/$aluno->id/edit")}}">
-                            <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar aluno"  style="height: 30px; width: 30px;">
+                        
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
+                            <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar aluno" style="height: 30px; width: 30px;">
                         </a>
+
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->id}}">
-                            <img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
+                            <img src="{{asset('images/delete.png')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
                         </a>
 
 
@@ -147,7 +159,7 @@
 
           <div style="align-self: center; margin-right: auto">
             <div style="display: flex; margin: 10px">
-              <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+              <a><img src="{{asset('images/searchicon.png')}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
               <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
             </div>
             <div style="display: flex; margin: 10px">
@@ -167,7 +179,7 @@
               <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
             </div>
             <div style="display: flex; margin: 10px">
-              <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
+              <a><img src="{{asset('images/delete.png')}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
               <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
             </div>
           </div>
@@ -191,7 +203,7 @@
     }
   </script>
 
-  <!-- Exibindo erros de validacao ao criar -->
+   <!--Exibindo erros de validacao ao criar -->
  @if(count($errors->create) > 0)
   <script type="text/javascript">
     $(function () {
@@ -203,7 +215,7 @@
   </script>
   @endif
 
-  <!-- Exibindo erros de validacao ao editar -->
+   <!--Exibindo erros de validacao ao editar -->
   @if(count($errors->update) > 0)
   <script type="text/javascript">
     $(function () {
@@ -217,6 +229,6 @@
 
 @else
   <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
+  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/login')}}">Voltar</a>
 @endcan
-@endsection
+@endsection 

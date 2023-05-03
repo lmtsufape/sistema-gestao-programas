@@ -22,12 +22,24 @@ class Aluno extends Model
 
     public function curso()
     {
-        return $this->belongsTo(Curso::class, "id_curso");
+        return $this->belongsTo(Curso::class, "curso_id");
     }
 
-    public function edital_alunos()
+    public function editais() 
     {
-        return $this->hasMany(Edital_aluno::class);
+        return $this->belongsToMany(Edital::class, 'edital_alunos')
+            ->withPivot([
+                'nome_aluno', 
+                'titulo_edital', 
+                'data_inicio', 
+                'data_fim', 
+                'valor_bolsa', 
+                'bolsa', 
+                'info_complementares', 
+                'disciplina_id',
+                'aluno_id',
+                'edital_id'
+            ]);
     }
 
     public static $rules = [

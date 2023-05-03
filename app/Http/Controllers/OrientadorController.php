@@ -150,7 +150,7 @@ class OrientadorController extends Controller
     public function delete($id)
     {
         $orientador = Orientador::findOrFail($id);
-        return view('orientadors.delete', ['aluno' => $aluno]);
+        return view('orientadors.delete', ['orientador' => $orientador]);
     }
 
     public function destroy(Request $request)

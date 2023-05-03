@@ -15,23 +15,29 @@ class DisciplinaSeeder extends Seeder
     public function run()
     {
         $disciplina = Disciplina::create([
-            'nome' => "Programação orientada a objetos"
+            'nome' => "Programação orientada a objetos",
+            'curso_id' => 1,
+
         ]);
 
         $disciplina2 = Disciplina::create([
-            'nome' => "Calculo 1"
+            'nome' => "Calculo 1",
+            'curso_id' => 1,
         ]);
 
         $disciplina3 = Disciplina::create([
-            'nome' => "Sistemas Operacionas"
+            'nome' => "Sistemas Operacionas",
+            'curso_id' => 1,
         ]);
 
         $disciplina4 = Disciplina::create([
-            'nome' => "Engenharia de software"
+            'nome' => "Engenharia de software",
+            'curso_id' => 1,
         ]);
 
         $disciplina5 = Disciplina::create([
-            'nome' => "Paradigmas de linguagem de programação"
+            'nome' => "Paradigmas de linguagem de programação",
+            'curso_id' => 1,
         ]);
     }
 }

@@ -10,62 +10,75 @@ use App\Models\Tipo_servidor;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
-class ServidorController extends Controller
-{
+class ServidorController extends Controller {
 
     public function index(Request $request)
     {
-        $permissoes = DB::select('select * from permissions');
+        // $permissoes = DB::select('select * from permissions');
 
-        if (sizeof($request-> query()) > 0){
-            $campo = $request->query('campo');
-            $valor = $request->query('valor');
+        // if (sizeof($request-> query()) > 0){
+        //     $campo = $request->query('campo');
+        //     $valor = $request->query('valor');
 
-            if ($valor == null){
-                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
-            }
+        //     if ($valor == null){
+        //         return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+        //     }
 
-            $servidores = Servidor::join("users", "users.typage_id", "=", "servidors.id");
-            $servidores = $servidores->where(function ($query) use ($valor) {
-                if ($valor) {
-                    $query->orWhere("users.name", "LIKE", "%{$valor}%");
-                    $query->orWhere("users.email", "LIKE", "%{$valor}%");
-                    $query->orWhere("servidors.cpf", "LIKE", "%{$valor}%");
-                    $query->orWhere("servidors.id_tipo_servidor", "LIKE", "%{$valor}%");
-                }
-            })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->get();
-
-            return view("servidores.index", compact("servidores", "permissoes"));
-        } else {
+        //     $servidors = Servidor::join("users", "users.typage_id", "=", "servidors.id");
+        //     $servidors = $servidors->where(function ($query) use ($valor) {
+        //         if ($valor) {
+        //             $query->orWhere("users.name", "LIKE", "%{$valor}%");
+        //             $query->orWhere("users.email", "LIKE", "%{$valor}%");
+        //             $query->orWhere("servidors.cpf", "LIKE", "%{$valor}%");
+        //             //$query->orWhere("servidors.tipo_servidor_id", "LIKE", "%{$valor}%");
+        //         }
+        //     })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->get();
+            
+        //     return view("servidores.index", compact("servidors", "permissoes"));
+        // } else {
             $servidores = Servidor::all();
-            return view("servidores.index", compact("servidores", "permissoes"));
-        }
+            return view("servidores.index", compact("servidores"));
     }
 
 
     public function create(){
-        $tipo_servidores = Tipo_servidor::all();
-        return view("servidores.cadastrar", compact("tipo_servidores"));
+        $servidor = Servidor::all();
+        return view("servidores.cadastrar", compact("servidor"));
     }
 
     public function store(ServidorFormRequest $request)
-    {
+    {   
+        
+        
+        switch($request->input('tipo_servidor')){
+            case 0:
+               $permission = "adm";
+                break;
+            case 1:
+                $permission = "servidor";
+                break;
+            case 2:
+                $permission = "pro_reitor";
+                break;
+        };
+
         $servidor = Servidor::Create([
             'cpf' => $request->input('cpf'),
-            'id_tipo_servidor' => (int) $request->input('tipo_servidor')
+            'tipo_servidor' => $permission
         ]);
-
+       
         if(
             $servidor->user()->create([
                 'name' => $request->input('nome'),
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('senha'))
-            ])->givePermissionTo('servidor')
+            ])->givePermissionTo($permission)
         ){
             $mensagem_sucesso = "Orientador cadastrado com sucesso.";
 
@@ -80,8 +93,8 @@ class ServidorController extends Controller
     public function edit($id)
     {
         $servidor = Servidor::find($id);
-        $tipo_servidores = Tipo_servidor::all();
-        return view("servidores.editar", compact('servidor', 'tipo_servidores'));
+        $tipo_servidors = User::where('typage_id', Auth::user()->typage_id)->get();
+        return view("servidores.editar", compact('servidor', 'tipo_servidors'));
     }
 
     public function update(ServidorFormUpdateRequest $request, $id)
@@ -89,7 +102,6 @@ class ServidorController extends Controller
         $servidor = Servidor::find($id);
 
         $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
-        $servidor->id_tipo_servidor = $request->tipo_servidor;
 
         $servidor->user->name = $request->nome;
         $servidor->user->email = $request->email;
@@ -136,7 +148,7 @@ class ServidorController extends Controller
         return view('servidores.editar');
     }
 
-    public function adicionar_permissao($id, AdicionarPermissaoFormRequest $request){
+    public function adicionar_permissao($id, AdicionarPermissaoFormRequest $request) {
         try{
             $servidor = Servidor::find($id);
 
@@ -147,7 +159,7 @@ class ServidorController extends Controller
             $servidor->user->givePermissionTo($request->permissao);
 
             DB::commit();
-            return redirect("/servidores")->with('sucesso', 'Permissão adicionada com sucesso.');
+            return redirect("/servidors")->with('sucesso', 'Permissão adicionada com sucesso.');
 
         } catch(exception $e){
             DB::rollback();

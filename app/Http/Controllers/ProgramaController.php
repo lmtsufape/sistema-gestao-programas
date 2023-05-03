@@ -11,10 +11,13 @@ use App\Http\Requests\ProgramaUpdateFormRequest;
 use App\Models\Servidor;
 use App\Models\Programa_servidor;
 use App\Models\Edital;
-use App\Models\Edital_aluno;
 use App\Models\Frequencia_mensal;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
+use App\Models\Orientador;
+
+use App\Http\Controllers\EditalController;
+
 
 class ProgramaController extends Controller
 {
@@ -55,8 +58,8 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        $servidores = Servidor::all();
-        return view("Programa.cadastrar", compact('servidores'));
+        $servidors = Servidor::all();
+        return view("Programa.cadastrar", compact('servidors'));
     }
 
     /**
@@ -75,9 +78,9 @@ class ProgramaController extends Controller
             $programa->descricao = $request->descricao;
             $programa->save();
 
-            foreach($request->servidores as $id_servidor){
+            foreach($request->servidors as $id_servidor){
                 $programa_servidor = new Programa_servidor();
-                $programa_servidor->id_programa = $programa->id;
+                $programa_servidor->programa_id = $programa->id;
                 $programa_servidor->id_servidor = $id_servidor;
                 $programa_servidor->save();
             }
@@ -112,14 +115,14 @@ class ProgramaController extends Controller
     public function edit($id)
     {
         $programa = Programa::find($id);
-        $servidores = Servidor::all();
-        $idsServidoresDoPrograma = [];
+        $servidors = Servidor::all();
+        $idsservidorsDoPrograma = [];
 
         foreach ($programa->programa_servidors as $programa_servidor){
-            $idsServidoresDoPrograma[] = $programa_servidor->id_servidor;
+            $idsservidorsDoPrograma[] = $programa_servidor->id_servidor;
         }
 
-        return view("Programa.editar", compact('programa', 'servidores', 'idsServidoresDoPrograma'));
+        return view("Programa.editar", compact('programa', 'servidors', 'idsservidorsDoPrograma'));
     }
 
     /**
@@ -138,12 +141,12 @@ class ProgramaController extends Controller
             $programa->descricao = $request->descricao ? $request->descricao : $programa->descricao;
             $programa->update();
 
-            Programa_servidor::where("id_programa", $programa->id)->delete();
+            Programa_servidor::where("programa_id", $programa->id)->delete();
 
-            if ($request->servidores){
-                foreach($request->servidores as $id_servidor){
+            if ($request->servidors){
+                foreach($request->servidors as $id_servidor){
                     $programa_servidor = new Programa_servidor();
-                    $programa_servidor->id_programa = $programa->id;
+                    $programa_servidor->programa_id = $programa->id;
                     $programa_servidor->id_servidor = $id_servidor;
                     $programa_servidor->save();
                 }
@@ -172,7 +175,7 @@ class ProgramaController extends Controller
             $id = $request->only(['id']);
             $programa = Programa::findOrFail($id)->first();
 
-            Programa_servidor::where("id_programa", $programa->id)->delete();
+            Programa_servidor::where("programa_id", $programa->id)->delete();
 
             $programa->delete();
 
@@ -186,111 +189,120 @@ class ProgramaController extends Controller
         }
     }
 
-    public function listar_editais($id, Request $request)
+    public function listar_editais($id)
     {
         $programa = Programa::find($id);
-        if (sizeof($request-> query()) > 0){
-            $campo = $request->query('campo');
-            $valor = $request->query('valor');
+        $orientadors = Orientador::all();
 
-            if ($valor == null){
-                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
-            }
+        $editais = $programa->editais;
+        
+        return view("Edital.index", compact("editais", "orientadors"));
 
-            $editals = Edital::join("programas", "programas.id", "=", "editals.id_programa");
-            $editals = $editals->where("editals.id_programa", $id);
-            $editals = $editals->where(function ($query) use ($valor) {
-                if ($valor) {
-                    $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
-                    $query->orWhere("editals.data_inicio", "LIKE", "%{$valor}%");
-                    $query->orWhere("editals.data_fim", "LIKE", "%{$valor}%");
-                }
-            })->select("editals.*")->get();
+                // if (sizeof($request-> query()) > 0){
+        //     $campo = $request->query('campo');
+        //     $valor = $request->query('valor');
 
-            return view("Programa.listar_editais", compact("editals", "programa"));
-        } else {
-            $editals = Edital::where("editals.id_programa", $id)->get();
-            return view("Programa.listar_editais", compact('editals', "programa"));
-        }
+        //     if ($valor == null){
+        //         return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+        //     }
+
+        //     $editals = Edital::join("programas", "programas.id", ";=", "editals.programa_id");
+        //     $editals = $editals->where("editals.programa_id", $id);
+        //     $editals = $editals->where(function ($query) use ($valor) {
+        //         if ($valor) {
+        //             $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
+        //             $query->orWhere("editals.data_inicio", "LIKE", "%{$valor}%");
+        //             $query->orWhere("editals.data_fim", "LIKE", "%{$valor}%");
+        //         }
+        //     })->select("editals.*")->get();
+
+        //     return view("Programa.listar_editais", compact("editals", "programa"));
+        // } else {
+        //     $editals = Edital::where("editals.programa_id", $id)->get();
+        //     return view("Programa.listar_editais", compact('editals', "programa"));
+        // }
     }
 
-    public function deletar_edital($id, $id_edital, Request $request)
+    public function deletar_edital($id, $edital_id)
     {
-        DB::beginTransaction();
-        try{
-            $edital = Edital::find($id_edital);
 
-            foreach($edital->edital_alunos as $edital_aluno){
-                Frequencia_mensal::where("id_edital_aluno", $edital_aluno->id)->delete();
-            }
+        $programa_id = 1;
 
-            Edital_aluno::where("id_edital", $id_edital)->delete();
+        $edital_controller = EditalController->destroy($edital_id);
 
-            Edital::where("id", $id_edital)->delete();
+        // return redirect('/programas/editais')->with('Edital deletado com sucesso');
 
-            DB::commit();
+        // DB::beginTransaction();
+        // try{
+        //     $edital = Edital::find($edital_id);
 
-            return redirect("programas/$id/editals")->with('sucesso', 'Edital deletado com sucesso.');
+        //     Edital::where("id", $edital_id)->delete();
 
-        } catch(exception $e){
-            DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
-        }
+        //     DB::commit();
+
+        //     return redirect("programas/$id/editals")->with('sucesso', 'Edital deletado com sucesso.');
+
+        // } catch(exception $e){
+        //     DB::rollback();
+        //     return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
+        // }
     }
 
     public function criar_edital($id)
     {
-        $programa = Programa::find($id);
-        return view("Programa.criar_edital", compact("programa"));
+        $cursos = Curso::all();
+        return view("Edital.cadastrar", compact("programas", "cursos"));
     }
 
-    public function store_edital(EditalStoreFormRequest $request)
-    {
-        DB::beginTransaction();
-        try{
+    // public function store_edital(EditalStoreFormRequest $request)
+    // {
+    //     DB::beginTransaction();
+    //     try{
 
-            $edital = new Edital();
-            $edital->data_inicio = $request->data_inicio;
-            $edital->data_fim = $request->data_fim;
-            $edital->id_programa = $request->programa;
-            $edital->save();
+    //         $edital = new Edital();
+    //         $edital->data_inicio = $request->data_inicio;
+    //         $edital->data_fim = $request->data_fim;
+    //         $edital->programa_id = $request->programa;
+    //         $edital->save();
 
-            DB::commit();
+    //         DB::commit();
 
-            return redirect("/programas/$edital->id_programa/editals")->with('sucesso', 'Edital cadastrado com sucesso.');
+    //         return redirect("/programas/$edital->programa_id/editals")->with('sucesso', 'Edital cadastrado com sucesso.');
 
-        } catch(exception $e){
-            DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
-        }
-    }
+    //     } catch(exception $e){
+    //         DB::rollback();
+    //         return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
+    //     }
+    // }
 
     public function editar_edital($id)
     {
-        $edital = Edital::find($id);
+        $edital = Edital::Where('id', $id)->first();
+        //dd($edital);
         $programas = Programa::all();
-        return view("Programa.editar_edital", compact("edital", "programas"));
+        
+        return view("Edital.editar", compact("edital", "programas"));
     }
 
-    public function update_edital($id, EditalUpdateFormRequest $request)
-    {
-        DB::beginTransaction();
-        try{
-            $edital = Edital::find($id);
-            $edital->data_inicio = $request->data_inicio ? $request->data_inicio : $edital->data_inicio;
-            $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
-            $edital->id_programa = $request->programa ? $request->programa : $edital->id_programa;
-            $edital->update();
+    // public function update_edital($id, EditalUpdateFormRequest $request)
+    // {
+    //     DB::beginTransaction();
+    //     try{
+    //         $edital = Edital::find($id);
+    //         $edital->data_inicio = $request->data_inicio ? $request->data_inicio : $edital->data_inicio;
+    //         $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
+    //         $edital->programa_id = $request->programa ? $request->programa : $edital->programa_id;
+    //         $edital->update();
 
-            DB::commit();
+    //         DB::commit();
 
-            return redirect("/programas/$edital->id_programa/editals")->with('sucesso', 'Edital editado com sucesso.');
+    //         return redirect("/programas/$edital->programa_id/editals")->with('sucesso', 'Edital editado com sucesso.');
 
-        } catch(exception $e){
-            DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
-        }
-    }
+    //     } catch(exception $e){
+    //         DB::rollback();
+    //         return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
+    //     }
+    // }
     public function listar_alunos($id, Request $request){
         $programa = Programa::find($id);
 

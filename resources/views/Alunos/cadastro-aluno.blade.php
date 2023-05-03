@@ -73,14 +73,14 @@
 
         <hr style="color: #2D3875;">
 
-        <form action="{{route("alunos.store")}}" method="POST">
+        <form action="{{route('alunos.store')}}" method="POST">
             @csrf
             <label for="inputName" class="titulo">Nome:</label>
             <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputNomeSocial" class="titulo">Nome Social:</label>
-            <input class="boxinfo" type="text" id="inputNomeSocial" name="nome_social" required placeholder="Digite o nome social">
+            <input class="boxinfo" type="text" id="inputNomeSocial" name="nome_social" placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputCpf" class="titulo">CPF:</label>
@@ -111,7 +111,7 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                <input type="button" value="Voltar" href="{{url("/alunos/")}}" onclick="window.location.href='{{url("/alunos/")}}'" style="background: #2D3875;
+                <input type="button" value="Voltar" href="{{url('/alunos/')}}" onclick="window.location.href='{{url('/alunos/')}}'" style="background: #2D3875;
                             box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                             border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                             line-height: 29px; text-align: center; padding: 5px 15px;">
@@ -126,7 +126,7 @@
 </div>
 @elsecan
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
+    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/home')}}">Voltar</a>
 @endcan
 
 <script type="text/javascript">

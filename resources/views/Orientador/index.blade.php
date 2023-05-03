@@ -65,11 +65,10 @@
     </form>
   </div>
   <div style="padding-bottom: 6px">
-    <div style="display: contents; align-content: center; align-items: center;">
-      <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-      font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
-      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;" href="{{route("orientadors.create")}}">
+    <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
+    font-weight: 400; font-size: 24px; padding-top: 5px; padding-bottom: 5px; padding-right: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none; padding-left: 10px;"
+        href="{{route('orientadors.create')}}">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar orientador" style="padding-bottom: 5px"> Cadastrar Orientador
       </a>
     </div>
@@ -87,49 +86,49 @@
       <div class="col-md-9 corpo p-2 px-3">
         <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
             min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
-          <thead>
-            <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">E-mail</th>
-              <th scope="col">CPF</th>
-              <th scope="col">Matricula</th>
-              <th scope="col">Ações</th>
-            </tr>
-          </thead>
-          @foreach ($orientadors as $orientador)
-          <tbody>
-            <tr>
-              <td>{{$orientador->user->name}}</td>
-              <td>{{$orientador->user->email}}</td>
-              <td>{{$orientador->cpf}}</td>
-              <td>{{$orientador->matricula}}</td>
-              <td>
-                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$orientador->id}}">
-                  <img src="{{asset("images/info.png")}}" alt="Info orientador" style="height: 30px; width: 30px;">
-                </a>
-                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$orientador->id}}">
-                  <img src="{{asset("images/document.png")}}" alt="Documento orientador" style="height: 30px; width: 30px;">
-                  {{-- TODO: Fica pra fazer o modal depois  --}}
-                </a>
-                <a href="{{url("/orientadors/$orientador->id/edit")}}">
-                  <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar orientador" style="height: 30px; width: 30px;">
-                </a>
-                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$orientador->id}}">
-                  <img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="height: 30px; width: 30px;">
-                </a>
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Matricula</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                    </thead>
+                    @foreach ($orientadors as $orientador)
+                <tbody>
+                        <tr>
+                            <td>{{$orientador->user->name}}</td>
+                            <td>{{$orientador->user->email}}</td>
+                            <td>{{$orientador->cpf}}</td>
+                            <td>{{$orientador->matricula}}</td>
+                            <td>
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$orientador->id}}">
+                                <img src="{{asset("images/info.png")}}" alt="Info orientador" style="height: 30px; width: 30px;">
+                                </a>
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$orientador->id}}">
+                                <img src="{{asset("images/document.png")}}" alt="Documento orientador"  style="height: 30px; width: 30px;">
+                                {{--  TODO: Fica pra fazer o modal depois  --}}
+                                </a>
+                                <a href=" {{route('orientadors.edit', ['id' => $orientador->id] )}}">
+                                <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar orientador"  style="height: 30px; width: 30px;">
+                                </a>
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$orientador->id}}">
+                                <img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="height: 30px; width: 30px;">
+                                </a>
 
 
-              </td>
-            </tr>
-            <tr>
-              {{-- nao apagar o tr  --}}
-            </tr>
-            @include("Orientador.components.modal_show", ["orientador" => $orientador])
-            @include("Orientador.components.modal_delete", ["orientador" => $orientador])
-            @endforeach
-          </tbody>
-        </table>
-      </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            {{--  nao apagar o tr  --}}
+                        </tr>
+                        @include("Orientador.components.modal_show", ["orientador" => $orientador])
+                        @include("Orientador.components.modal_delete", ["orientador" => $orientador])
+                        @endforeach
+                </tbody>
+            </table>
+        </div>
 
       <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
         width: 150px; height: 50%;">
