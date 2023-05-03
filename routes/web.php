@@ -49,7 +49,7 @@ Route::prefix('alunos')->group(function() {
 // Rotas de servidor
 Route::resource('/servidores', ServidorController::class);
 
-Route::prefix('servidores')->group(function() { 
+Route::prefix('servidores')->group(function() {
     Route::get('/', [ServidorController::class, 'index'])->name('servidores.index');
     Route::get('/create', [ServidorController::class, 'create'])->name('servidores.create');
     Route::post('/', [ServidorController::class, 'store'])->name('servidores.store');
@@ -64,14 +64,14 @@ Route::post("/servidors/permissao/{id}", [ServidorController::class, "adicionar_
 // Rotas de orientador //Fazer  - colocar todos os métodos do Controler
 Route::resource('/orientadors', OrientadorController::class);
 
-Route::prefix('orientadors')->group(function() { 
+Route::prefix('orientadors')->group(function() {
     Route::get('/', [OrientadorController::class, 'index'])->name('orientadors.index');
     Route::get('/create', [OrientadorController::class, 'create'])->name('orientadors.create');
     Route::post('/', [OrientadorController::class, 'store'])->name('orientadors.store');
     Route::get('/{id}/edit', [OrientadorController::class, 'edit'])->where('id', '[0-9]+')->name('orientadors.edit');
     Route::put('/{id}', [OrientadorController::class, 'update'])->name('orientadors.update');
     Route::delete('/{id}', [OrientadorController::class, 'destroy'])->name('orientadors.delete');
-});    
+});
 
 // Rotas de programa //Organizar rotas em grupos
 Route::get('/MeusAlunos', [MeusAlunosController::class, "index"]);
@@ -90,7 +90,7 @@ Route::put("/programas/update/{id}/edital", [ProgramaController::class, "update_
 // Rotas de Edital
 Route::resource('/edital', EditalController::class);
 
-Route::prefix('edital')->group(function() { 
+Route::prefix('edital')->group(function() {
     Route::get('/', [EditalController::class, 'index'])->name('edital.index');
     Route::get('/create', [EditalController::class, 'create'])->name('edital.create');
     Route::post('/', [EditalController::class, 'store'])->name('edital.store');
@@ -119,6 +119,12 @@ Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
 
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
+
+//Rota de meu perfil
+Route::get('/meu-perfil', [App\Http\Controllers\MeuPerfilController::class, 'index'])->name('meu-perfil');
+
+//Rota de meu perfil
+Route::get('/meu-perfil', [App\Http\Controllers\MeuPerfilController::class, 'index'])->name('meu-perfil');
 
 //Rota para listar os projetos do aluno
 Route::get('/index_aluno', [MeusProgramasController::class, 'index_aluno']);
