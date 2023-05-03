@@ -99,6 +99,7 @@ Route::prefix('edital')->group(function() {
     Route::delete('/{id}', [EditalController::class, 'destroy'])->name('edital.delete');
     Route::get('{id}', [EditalController::class, 'show'])->name('edital.show');
     Route::post('/cadastrar-aluno/{id}', [EditalController::class, 'inscrever_aluno'])->name('edital.aluno');
+    Route::get('/{id}/alunos', [EditalController::class, 'listar_alunos'])->name('edital.alunos');
 });    
 
 // Rotas de Disciplina

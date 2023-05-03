@@ -95,7 +95,7 @@
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
             <td>
-              <a style="padding:2px" href="{{url("/editals/$edital->id/alunos")}}">
+              <a style="padding:2px" href="{{  route('edital.alunos', ['id' => $edital->id] )  }}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
               </a>
               <a href="{{route('edital.show', ['id' => $edital->id]  )}}">

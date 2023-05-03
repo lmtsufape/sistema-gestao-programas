@@ -91,7 +91,10 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Foreach para listar os alunos -->
+          @foreach($alunos as $aluno)
+          
+          {{  $aluno->pivot->nome_aluno; }}
+
           <tr>
             <td> </td>
             <td> </td>
@@ -107,7 +110,7 @@
               </a>
             </td>
           </tr>
-
+          @endforeach
           <!-- Modal show -->
           @include('Programa.components_alunos.modal_show')
           <!-- Modal delete-->
