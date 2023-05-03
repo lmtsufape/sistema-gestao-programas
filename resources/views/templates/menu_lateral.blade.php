@@ -40,7 +40,7 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
       @if (auth()->user()->typage_type == "App\Models\Servidor")
 
         <div style="padding: 5px;">
-            <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+            <a href="{{route('meu-perfil')}}" style="display: flex; color: #000; text-decoration: none;">
                 <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
                 <p style="font-style: normal; font-weight: 400; font-size: 14px;
                 line-height: 16px; padding-left: 5px; padding-top: 4px">Meu perfil</p>
@@ -99,7 +99,7 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
 
       @if (auth()->user()->typage_type == "App\Models\Orientador")
       <div style="padding: 5px;">
-        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+        <a href="{{route('meu-perfil')}}" style="display: flex; color: #000; text-decoration: none;">
             <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
             <p style="font-style: normal; font-weight: 400; font-size: 14px;
             line-height: 16px; padding-left: 5px; padding-top: 4px">Meu perfil</p>
@@ -144,7 +144,7 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
 
       @if (auth()->user()->typage_type == "App\Models\Aluno")
       <div style="padding: 5px;">
-        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+        <a href="{{route('meu-perfil')}}" style="display: flex; color: #000; text-decoration: none;">
             <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
             <p style="font-style: normal; font-weight: 400; font-size: 14px;
             line-height: 16px; padding-left: 5px; padding-top: 4px">Meu perfil</p>
