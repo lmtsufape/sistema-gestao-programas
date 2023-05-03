@@ -19,7 +19,7 @@
     <h1 style="color:#2D3875;"><strong>Servidores</strong></h1>
     <div style="margin: auto"></div>
     {{-- TODO: Falta adicionar um modal com os possiveis filtros  --}}
-    <form action="{{route("servidors.index")}}" method="GET" id="myForm">
+    <form action="{{route("servidores.index")}}" method="GET" id="myForm">
       <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
               border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
               background-position: 10px 2px;
@@ -45,13 +45,13 @@
     <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
     font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
     align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-    padding-left: 10px;" href="{{route('servidors.create')}}">
+    padding-left: 10px;" href="{{route('servidores.create')}}">
     <img src="{{asset("images/plus.png")}}" alt="Cadastrar servidor" style="padding-bottom: 5px;"> Cadastrar servidor
     </a>
     <br>
   </div>
 
-  @if (sizeof($servidores) == 0)
+  @if(empty($servidores))
   <div class="empty">
     <p>
       Não há servidores cadastrados
@@ -70,15 +70,26 @@
           <th scope="col">CPF</th>
           <th scope="col">Tipo do servidor</th>
           <th scope="col">Ações</th>
+          
         </tr>
       </thead>
       @foreach ($servidores as $servidor)
       <tbody>
         <tr>
-          <td class="align-middle">{{$servidor->user->name}}</td>
+            <td class="align-middle">{{$servidor->user->name}}</td>
             <td class="align-middle">{{$servidor->user->email}}</td>
             <td class="align-middle">{{$servidor->cpf}}</td>
-            <td class="align-middle">{{$servidor->tipo_servidor->nome}}</td>
+            @switch($servidor->tipo_servidor)
+              @case("adm")
+              <td class="align-middle">Administrador</td>
+                @break
+              @case("pro_reitor")
+              <td class="align-middle">Pró-reitor</td>
+                @break
+              @case("servidor")
+              <td class="align-middle">Servidor</td>
+                @break
+            @endswitch
             <td class="align-middle">
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$servidor->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info servidor">
@@ -87,7 +98,7 @@
                 <img src="{{asset("images/document.png")}}" alt="Documento servidor">
                 {{-- TODO: Fica pra fazer o modal depois  --}}
               </a>
-              <a href="{{url("/servidores/$servidor->id/edit")}}">
+              <a href="{{url("/servidores/".$servidor->id."/edit")}}">
                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar servidor">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$servidor->id}}">
@@ -95,8 +106,8 @@
               </a>
             </td>
         </tr>
-        @include("servidors.components.modal_show", ["servidor" => $servidor])
-        @include("servidors.components.modal_delete", ["servidor" => $servidor])
+        @include("servidores.components.modal_show", ["servidor" => $servidor])
+        @include("servidores.components.modal_delete", ["servidor" => $servidor])
         @endforeach
       </tbody>
     </table>

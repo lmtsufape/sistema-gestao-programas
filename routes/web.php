@@ -47,15 +47,15 @@ Route::prefix('alunos')->group(function() {
 
 
 // Rotas de servidor
-Route::resource('/servidors', ServidorController::class);
+Route::resource('/servidores', ServidorController::class);
 
-Route::prefix('servidors')->group(function() { 
-    Route::get('/', [ServidorController::class, 'index'])->name('servidors.index');
-    Route::get('/create', [ServidorController::class, 'create'])->name('servidors.create');
-    Route::post('/', [ServidorController::class, 'store'])->name('servidors.store');
-    Route::get('/{id}/edit', [ServidorController::class, 'edit'])->where('id', '[0-9]+')->name('servidors.edit');
-    Route::put('/{id}', [ServidorController::class, 'update'])->name('servidors.update');
-    Route::delete('/{id}', [ServidorController::class, 'destroy'])->name('servidors.delete');
+Route::prefix('servidores')->group(function() { 
+    Route::get('/', [ServidorController::class, 'index'])->name('servidores.index');
+    Route::get('/create', [ServidorController::class, 'create'])->name('servidores.create');
+    Route::post('/', [ServidorController::class, 'store'])->name('servidores.store');
+    Route::get('/{id}/edit', [ServidorController::class, 'edit'])->where('id', '[0-9]+')->name('servidores.edit');
+    Route::put('/{id}', [ServidorController::class, 'update'])->name('servidores.update');
+    Route::delete('/{id}', [ServidorController::class, 'destroy'])->name('servidores.delete');
 });
 
 
