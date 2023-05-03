@@ -14,7 +14,7 @@
             <label for="nome_edit" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" margin-bottom:8px;">
             Nome:</label>
             {{--  <input name="name" type="text" placeholder="Digite o nome" value="{{old('name', $aluno->user->name)}}"
-            class="@if(!empty($errors->update->first('name'))) is-invalid @endif" 
+            class="@if(!empty($errors->update->first('name'))) is-invalid @endif"
             style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">  --}}
             <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
             {{old('name', $aluno->user->name)}}</div>
@@ -24,6 +24,11 @@
                   </span>
             @endif
           </div>
+
+            @if ($aluno->nome_social != null)
+                <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">Nome Social:</label>
+                <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> </div>
+            @endif
 
           <div class="mb-3">
             <label for="email_edit" class="form-label"
@@ -55,7 +60,7 @@
               @endif
             </div>
             {{--  <!-- TODO: Editar as infos do back -->  --}}
-            
+
 
           <div class="row">
             <div class="mb-3">
@@ -73,7 +78,7 @@
                   </span>
               @endif
             </div>
-            
+
             <div class="mb-4">
               <label for="curso_edit" class="form-label"
               style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;"">
@@ -110,8 +115,8 @@
       $('#semestre_entrada_edit').mask('0000.0');
     });
 </script>
-  
+
 @elsecan
-  <h3 style="margin-top: 1rem">Você não possui permissão!</h3> 
+  <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
   <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
 @endcan

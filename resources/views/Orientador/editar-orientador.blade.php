@@ -69,6 +69,10 @@
                 <label for="nome" class="titulo">Nome:</label>
                 <input class="boxinfo" type="text" id="nome" name="nome" placeholder="Digite o nome" value="{{$orientador->user->name}}"
                 ><br/><br>
+                
+                <label for="nome_social" class="titulo">Nome Social:</label>
+                <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social" value="{{$orientador->nome_social}}"
+                ><br/><br>
 
                 <label for="email" for="nome" class="titulo">E-mail:</label>
                 <input class="boxinfo" type="text" id="email" name="email" placeholder="Digite o e-mail" value="{{$orientador->user->email}}"><br/><br>

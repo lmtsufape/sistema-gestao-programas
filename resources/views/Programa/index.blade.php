@@ -74,8 +74,9 @@
 
   <div style="display: contents; align-content: center; align-items: center;">
     <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
-    align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none; padding-left: 10px;" href="{{route("programas.create")}}">
+      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
+      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
+      padding-left: 10px;" href="{{route("programas.create")}}">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar programa" style="padding-bottom: 5px"> Cadastrar programa
     </a>
     <br>
@@ -105,9 +106,9 @@
             <td class="align-middle"> {{$programas->nome}} </td>
             <td class="align-middle"> {{$programas->descricao}} </td>
             <td class="align-middle">
-              <a style="padding:2px" href="{{url("/programas/$programas->id/alunos")}}">
+              <!-- <a style="padding:2px" href="{{url("/programas/$programas->id/alunos")}}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
-              </a>
+              </a> -->
               <a style="padding:2px" href="{{url("/programas/$programas->id/editals")}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="Listar edital">
               </a>
@@ -166,12 +167,12 @@
             <p class="textolegenda">Listar Edital</p>
           </div>
         </div>
-        <div style="align-self: center; margin-right: auto">
+        <!-- <div style="align-self: center; margin-right: auto">
           <div style="display: flex; margin: 10px">
             <a><img src="/images/bx_user.png" alt="Listar alunos" style="width: 20px; height: 20px;"></a>
             <p class="textolegenda">Listar Alunos</p>
           </div>
-        </div>
+        </div> -->
       </div>
 
     </div>

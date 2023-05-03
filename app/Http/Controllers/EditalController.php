@@ -199,5 +199,5 @@ class EditalController extends Controller
         // }
 
         return view("Edital.listar_alunos", compact("alunos"));
-    }
+        }
 }

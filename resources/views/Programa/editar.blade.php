@@ -81,8 +81,7 @@
                 <label for="descricao" class="titulo">Descricao:</label>
                 <input class="boxinfo" type="text" name="descricao" id="descricao" value="{{$programa->descricao}}"><br><br>
 
-                <label for="servidors" class="titulo">servidors:</label>
-
+                <label for="servidores" class="titulo">Servidores:</label>
                 <select name="servidors[]" id="servidors" multiple>
                     <option value=""></option>
                     @foreach ($servidors as $servidor)

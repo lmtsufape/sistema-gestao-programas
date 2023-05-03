@@ -69,20 +69,13 @@
 
 
   <div style="display: contents; align-content: center; align-items: center;">
-    {{-- <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-    font-weight: 400; font-size: 24px; line-height: 28px; padding-top: 6px; padding-bottom: 6px; align-content: center;
-    align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-    padding-left: 10px;"
-    href="{{route('alunos.create')}}">
-        <img src="{{asset('images/plus.png')}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
-    </a> --}}
-    <div style="padding-bottom: 6px">
-      <a style="background: #2D3875; border-radius: 20px; border: #2D3875; color: #f0f0f0;
-      font-weight: 400; font-size: 24px; padding-top: 5px; padding-bottom: 6px; padding-right: 15px;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none; padding-left: 10px;"
-      href="{{route('alunos.create')}}">
-          <img src="{{asset('images/plus.png')}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
-      </a>
+    <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
+      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
+      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
+      padding-left: 10px;"
+    href="{{route("alunos.create")}}">
+        <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
+    </a>
     </div>
     <br>
     <br>
