@@ -80,16 +80,14 @@
                 <label for="descricao" class="titulo">Descricao:</label>
                 <input type="text" name="descricao" id="descricao" placeholder="Digite a descrição do programa" class="boxinfo"><br><br>
 
-                <label for="descricao" class="titulo">Tipo:</label>
-                <input class="boxinfo" placeholder="Digite o tipo" type="text" name="tipo" id="tipo" value=""><br><br>
-
                 <label for="servidores" class="titulo">Servidores:</label>
                 <select name="servidores[]" id="servidores" style="width: 100%;" multiple>
                     <option value=""></option>
-                    @foreach ($servidores as $servidor)
+                    @foreach ($servidors as $servidor)
                         <option value="{{$servidor->id}}" style="color: black; border-radius: 5px;">{{$servidor->user->name}}</option>
                     @endforeach
                 </select><br><br>
+                
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                     <input type="button" value="Voltar" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'" style="background: #2D3875;
                                 box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
@@ -104,7 +102,7 @@
     </div>
 
         <script>
-            $("#servidores").chosen({
+            $("#servidors").chosen({
             placeholder_text_multiple: "Selecione um servidor",
             // max_shown_results : 5,
             no_results_text: "Não possui alunos."

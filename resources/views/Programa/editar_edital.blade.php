@@ -84,7 +84,7 @@
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa">
                         <option value=""></option>
                         @foreach ($programas as $programa)
-                            <option value="{{$programa->id}}" {{$edital->id_programa == $programa->id ? 'selected' : ''}}>{{$programa->nome}}</option>
+                            <option value="{{$programa->id}}" {{$edital->programa_id == $programa->id ? 'selected' : ''}}>{{$programa->nome}}</option>
                         @endforeach
                     </select><br><br>
 
@@ -115,10 +115,10 @@
             no_results_text: "Não possui cursos."
         });
 
-        $("#orientadores").chosen({
+        $("#orientadors").chosen({
             placeholder_text_multiple: "Selecione um orientador",
             // max_shown_results : 5,
-            no_results_text: "Não possui orientadores."
+            no_results_text: "Não possui orientadors."
         });
         $('div.chosen-container-single').addClass('required');
         $('div.chosen-container-multi').addClass('required');

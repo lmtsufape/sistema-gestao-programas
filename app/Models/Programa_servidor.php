@@ -10,13 +10,13 @@ class Programa_servidor extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_programa',
+        'programa_id',
         'id_servidor'
     ];
 
     public function programa()
     {
-        return $this->belongsTo(Programa::class, "id_programa");
+        return $this->belongsTo(Programa::class, "programa_id");
     }
 
     public function servidor()

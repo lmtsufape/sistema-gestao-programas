@@ -73,7 +73,7 @@
 
             <hr>
 
-            <form action="{{route("orientadors.store")}}" method="POST">
+            <form action="{{route('orientadors.store')}}" method="POST">
                 @csrf
                 <label for="nome" class="titulo">Nome: </label>
                 <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome"><br><br>
@@ -94,7 +94,7 @@
                 <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula"><br><br>
 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                    <input type="button" value="Voltar" href="{{url("/orientadors/")}}" onclick="window.location.href='{{url("/orientadors/")}}'"
+                    <input type="button" value="Voltar" href="{{route('orientadors.index')}}" onclick="window.location.href='{{route('orientadors.index')}}'"
                     style="background: #2D3875; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                     border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                     line-height: 29px; text-align: center; padding: 5px 15px;">
@@ -109,7 +109,7 @@
     </div>
 @elsecan
   <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
+  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/home')}}">Voltar</a>
 @endcan
 
 @endsection

@@ -15,8 +15,7 @@ class CadastrarSeController extends Controller
 {
     public function cadastrarSe(){
         $cursos = Curso::all();
-        $tipo_servidores = Tipo_servidor::all();
-        return view('CadastrarSe.cadastrarSe', compact('cursos', 'tipo_servidores'));
+        return view('CadastrarSe.cadastrarSe', compact('cursos', 'tipo_servidors'));
     }
 
     public function store(CadastreSeStoreFormRequest $request)
@@ -24,7 +23,7 @@ class CadastrarSeController extends Controller
         if ($request->tipoUser == "servidor"){
             $servidor = Servidor::Create([
                 'cpf' => $request->input('cpf'),
-                'id_tipo_servidor' => (int) $request->input('tipo_servidor')
+            
             ]);
 
             if(
@@ -67,7 +66,7 @@ class CadastrarSeController extends Controller
         } else {
             $aluno = new Aluno();
             $aluno->cpf = $request->cpf;
-            $aluno->id_curso = $request->curso;
+            $aluno->curso_id = $request->curso;
             $aluno->semestre_entrada = $request->sementreEntradaAluno;
 
             if ($aluno->save()){

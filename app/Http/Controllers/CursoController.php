@@ -52,10 +52,10 @@ class CursoController extends Controller
             $curso-> nome = $request->nome;
             $curso->save();
             if($request->disciplinas){
-                foreach($request->disciplinas as $id_disciplina){
+                foreach($request->disciplinas as $disciplina_id){
                     $curso_disciplina = new Curso_disciplina();
-                    $curso_disciplina->id_curso = $curso->id;
-                    $curso_disciplina->id_disciplina = $id_disciplina;
+                    $curso_disciplina->curso_id = $curso->id;
+                    $curso_disciplina->disciplina_id = $disciplina_id;
                     $curso_disciplina->save();
                 }
             }
@@ -85,7 +85,7 @@ class CursoController extends Controller
         $idsDisciplinasDoCurso = [];
 
         foreach($curso->curso_disciplinas as $curso_disciplinas){
-            $idsDisciplinasDoCurso[] = $curso_disciplinas->id_disciplina;
+            $idsDisciplinasDoCurso[] = $curso_disciplinas->disciplina_id;
         }
         return view("Curso.editar", compact("curso", "disciplinas", "idsDisciplinasDoCurso"));
     }
@@ -98,13 +98,13 @@ class CursoController extends Controller
             $curso->nome = $request->nome ? $request->nome : $curso->nome;
             $curso->update();
 
-            Curso_disciplina::where("id_curso", $curso->id)->delete();
+            Curso_disciplina::where("curso_id", $curso->id)->delete();
 
             if($request->disciplinas){
-                foreach($request->disciplinas as $id_disciplina){
+                foreach($request->disciplinas as $disciplina_id){
                     $curso_disciplina = new Curso_disciplina();
-                    $curso_disciplina->id_curso = $curso->id;
-                    $curso_disciplina->id_disciplina = $id_disciplina;
+                    $curso_disciplina->curso_id = $curso->id;
+                    $curso_disciplina->disciplina_id = $disciplina_id;
                     $curso_disciplina->save();
                 }
             }
@@ -129,7 +129,7 @@ class CursoController extends Controller
         try{
             $curso = Curso::find($id);
 
-            Curso_disciplina::where("id_curso", $id)->delete();
+            Curso_disciplina::where("curso_id", $id)->delete();
 
             Curso::where("id", $id)->delete();
 

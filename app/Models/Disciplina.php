@@ -12,4 +12,8 @@ class Disciplina extends Model
     protected $fillable = [
         'nome'
     ];
+
+    // public function curso() {
+    //     return $this->belongsTo(Curso::class, '')
+    // }
 }

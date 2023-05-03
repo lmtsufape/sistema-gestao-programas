@@ -51,7 +51,7 @@
     <br>
   </div>
 
-  @if (sizeof($servidores) == 0)
+  @if(empty($servidores))
   <div class="empty">
     <p>
       Não há servidores cadastrados
@@ -70,15 +70,26 @@
           <th scope="col">CPF</th>
           <th scope="col">Tipo do servidor</th>
           <th scope="col">Ações</th>
+          
         </tr>
       </thead>
       @foreach ($servidores as $servidor)
       <tbody>
         <tr>
-          <td class="align-middle">{{$servidor->user->name}}</td>
+            <td class="align-middle">{{$servidor->user->name}}</td>
             <td class="align-middle">{{$servidor->user->email}}</td>
             <td class="align-middle">{{$servidor->cpf}}</td>
-            <td class="align-middle">{{$servidor->tipo_servidor->nome}}</td>
+            @switch($servidor->tipo_servidor)
+              @case("adm")
+              <td class="align-middle">Administrador</td>
+                @break
+              @case("pro_reitor")
+              <td class="align-middle">Pró-reitor</td>
+                @break
+              @case("servidor")
+              <td class="align-middle">Servidor</td>
+                @break
+            @endswitch
             <td class="align-middle">
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$servidor->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info servidor">
@@ -87,7 +98,7 @@
                 <img src="{{asset("images/document.png")}}" alt="Documento servidor">
                 {{-- TODO: Fica pra fazer o modal depois  --}}
               </a>
-              <a href="{{url("/servidores/$servidor->id/edit")}}">
+              <a href="{{url("/servidores/".$servidor->id."/edit")}}">
                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar servidor">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$servidor->id}}">

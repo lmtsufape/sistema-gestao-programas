@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEditalDisciplinasTable extends Migration
+class CreateorientadorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateEditalDisciplinasTable extends Migration
      */
     public function up()
     {
-        Schema::create('edital_disciplinas', function (Blueprint $table) {
+        Schema::create('orientadors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_edital')->nullable(false)->constrained('editals');
-            $table->foreignId('id_disciplina')->nullable(false)->constrained('disciplinas');
+            $table->string('cpf', 14)->unique()->nullable(false);
+            $table->string('matricula')->nullable(false);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateEditalDisciplinasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('edital_disciplinas');
+        Schema::dropIfExists('orientadors');
     }
 }

@@ -22,13 +22,18 @@ class Aluno extends Model
 
     public function curso()
     {
-        return $this->belongsTo(Curso::class, "id_curso");
+        return $this->belongsTo(Curso::class, "curso_id");
     }
 
-    // public function edital_alunos()
-    // {
-    //     return $this->hasMany(Edital_aluno::class);
-    // }
+    public function editais() 
+    {
+        return $this->hasMany(Edital::class);
+    }
+
+    public function edital_alunos()
+    {
+        return $this->belongsToMany(Edital_Aluno::class);
+    }
 
     public static $rules = [
         'cpf' => 'bail|required|formato_cpf|cpf|unique:servidors|unique:alunos',
@@ -49,8 +54,4 @@ class Aluno extends Model
         'semestre_entrada.min' => 'Formato deve ser 9999.9',
         'semestre_entrada.max' => 'Formato deve ser 9999.9',
     ];
-
-    public function projetos() {
-        return $this->belongsToMany(Projeto::class, 'aluno_projeto');
-    }
 }

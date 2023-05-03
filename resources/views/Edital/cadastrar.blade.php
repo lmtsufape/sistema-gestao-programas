@@ -71,11 +71,11 @@
 
                 <hr>
 
-                <form action="{{route('editals.store')}}" method="post">
+                <form action="{{route('edital.store')}}" method="POST">
                     @csrf
 
                     <label class="titulo" for="nome">Nome:</label>
-                    <input class="boxinfo" placeholder="Digite o nome" type="text" name="nome" id="nome" value=""><br><br>
+                    <input class="boxinfo" placeholder="Digite o nome" type="text" name="nome" required id="nome" value=""><br><br>
 
                     <label class="titulo" for="semestre">Semestre:</label>
                     <input class="boxinfo" placeholder="Digite o semestre" type="text" name="semestre" id="semestre" value=""><br><br>
@@ -86,19 +86,27 @@
                     <label for="data_inicio" class="titulo">Data de início:</label>
                     <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" ><br><br>
 
-                    <label for="data_fim" class="titulo">Data de fim:</label>
-                    <input class="boxinfo"  type="date" name="data_fim" id="data_fim" id="data_inicio" ><br><br>
+                    <label for="data_fim" >Data de fim:</label>
+                    <input class="boxinfo"  type="date" name="data_fim" id="data_fim" ><br><br>
 
-                    <label for="programa" class="titulo">Programa:</label>
+                    <label for="programa">Programa:</label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
                         <option value=""></option>
-                        @foreach ($programas as $programa)
-                            <option value="{{$programa->id}}">{{$programa->nome}}</option>
-                        @endforeach
+                            @foreach ($programas as $programa)
+                                <option value="{{$programa->id}}">{{$programa->nome}}</option>
+                            @endforeach
+                    </select><br><br>
+
+                    <label for="programa">Curso:</label>
+                    <select aria-label="Default select example" class="boxinfo" name="curso" id="curso" >
+                        <option value=""></option>
+                            @foreach ($cursos as $curso)
+                                <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                            @endforeach
                     </select><br><br>
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                        <input type="button" value="Voltar" href="{{url("/editals/")}}" onclick="window.location.href='{{url("/editals/")}}'" style="background: #2D3875;
+                        <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;
                         box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                         border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                         line-height: 29px; text-align: center; padding: 5px 15px;">
@@ -106,9 +114,6 @@
                         display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
                         font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
                     </div>
-
-
-
                 </form>
             </div>
         </div>
@@ -126,10 +131,10 @@
                 no_results_text: "Não possui cursos."
             });
 
-            $("#orientadores").chosen({
+            $("#orientadors").chosen({
                 placeholder_text_multiple: "Selecione um orientador",
                 // max_shown_results : 5,
-                no_results_text: "Não possui orientadores."
+                no_results_text: "Não possui orientadors."
             });
 
             $('div.chosen-container-single').addClass('required');
@@ -137,6 +142,6 @@
         </script>
     @else
         <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-        <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
+        <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/login')}}">Voltar</a>
   @endcan
 @endsection

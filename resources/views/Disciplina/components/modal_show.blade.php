@@ -1,6 +1,6 @@
 @canany(['admin', 'servidor'])
   <div class="modal fade" id="modal_show_{{$disciplina->id}}" tabindex="-1" aria-hidden="true">
-    <<div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
+    <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
     <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header" >
         <h5 style="color: #2D3875; font-style: normal; font-weight: 600; font-size: 30px; line-height: 47px;" class="modal-title title fw-bold">Informações da Disciplina</h5>
