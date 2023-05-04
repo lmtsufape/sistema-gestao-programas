@@ -17,34 +17,12 @@ class AlunoController extends Controller
 {
     public function store(AlunoStoreFormRequest $request)
     {
-        // $aluno = new Aluno();
-        // $aluno->cpf = $request->cpf;
-        // $aluno->curso_id = $request->curso;
-        // $aluno->semestre_entrada = $request->semestre_entrada;
-        // //dd($request);
-        // if ($aluno->save()){
-
-        //     if (
-        //         $aluno->user()->create([
-        //             'name' => $request->nome,
-        //             'name_social' => $request->nome_social == null ? "-": $request->nome_social,
-        //             'email' => $request->email,
-        //             'password' => Hash::make($request->senha)
-        //         ])->givePermissionTo('aluno')
-        //     ){
-        //         $confirm = new ConfirmandoEmail($request);
-        //         $confirm -> enviandoEmail();
-        //         $mensagem_sucesso = "Aluno cadastrado com sucesso.";
-        //         return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
-
-        //     } else {
-        //         return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
         try {
             $aluno = new Aluno();
             $aluno->cpf = $request->cpf;
             $aluno->curso_id = $request->curso;
             $aluno->semestre_entrada = $request->semestre_entrada;
-            // dd($request);
+
             if ($aluno->save()){
                 if ( 
                     $aluno->user()->create([
@@ -66,37 +44,6 @@ class AlunoController extends Controller
             }
     }
 
-    // public function criar_aluno(Request $request)
-    // {
-    //     $validacao = $request->validate(
-    //         [
-    //             'nome' => ['required'],
-    //             'cpf' => ['required'],
-    //             'email' => ['required'],
-    //             'semestre_entrada' => ['required'],
-    //             'curso' => ['required'],
-    //             'password' => ['required']
-    //         ],
-    //         [
-    //             'required' => 'O campo :attribute é obrigatório.'
-    //         ]
-    //     );
-
-    //     $aluno = Aluno::create([
-    //         'cpf' => $request->input('cpf'),
-    //         'curso' => $request->input('curso'),
-    //         'semestre_entrada' => $request->input('semestre_entrada')
-    //     ]);
-
-    //     $aluno->user()->create([
-    //         'name' => $request->input('nome'),
-    //         'email' => $request->input('email'),
-    //         'password' => Hash::make($request->input('password'))
-    //     ])->givePermissionTo('aluno');
-
-    //     return redirect(url("/login"));
-    // }
-
     public function update(AlunoUpdateFormRequest $request, $id)
     {
         $aluno = Aluno::find($id);
@@ -108,10 +55,10 @@ class AlunoController extends Controller
         $aluno->user->name = $request->nome;
         $aluno->user->email = $request->email;
         if ($request->senha && $request->senha != null){
-            if (strlen($request->senha) > 3 && strlen($request->senha) < 9){
+            if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
                 $aluno->user->password = Hash::make($request->password);
             } else {
-                return redirect()->back()->withErrors( "Senha deve ter entre 4 e 8 dígitos" );
+                return redirect()->back()->withErrors( "Senha deve ter entre 4 e 30 dígitos" );
             }
         }
 

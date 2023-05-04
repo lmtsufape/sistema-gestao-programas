@@ -87,21 +87,36 @@ class EditalController extends Controller
 
     public function inscrever_aluno(Request $request, $id) {
 
-        $edital = Edital::find($id);
-        $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
-        $data = [
-            'nome_aluno' => $aluno->user->name,
-            'titulo_edital' => $edital->nome,
-            'data_inicio' => $edital->data_inicio,
-            'data_fim' => $edital->data_fim,
-            'valor_bolsa' => $request->valor_bolsa,
-            'bolsa' => $request->bolsa,
-            'info_complementares' => $request->info_complementares,
-            'disciplina_id' => 1
-        ];
-        $edital->alunos()->syncWithoutDetaching([$aluno->id => $data]);
+        DB::beginTransaction();
+        try {
+            $edital = Edital::find($id);
+            $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
 
-        return redirect()->back()->with('success', 'O aluno foi inscrito com sucesso no edital.');
+            //dd($aluno);
+            if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
+                return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
+            } else {
+                //dd($aluno);
+                $data = [
+                    'nome_aluno' => $aluno->user->name,
+                    'titulo_edital' => $edital->nome,
+                    'data_inicio' => $edital->data_inicio,
+                    'data_fim' => $edital->data_fim,
+                    'valor_bolsa' => $request->valor_bolsa,
+                    'bolsa' => $request->bolsa,
+                    'info_complementares' => $request->info_complementares,
+                    'disciplina_id' => 1
+                ];
+                $edital->alunos()->syncWithoutDetaching([$aluno->id => $data]);
+                
+                DB::commit();
+                //return redirect()->back()->with('success', 'O aluno foi inscrito com sucesso no edital.');
+                return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
+            }
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
+        }
     }
 
     /**
@@ -113,7 +128,6 @@ class EditalController extends Controller
     public function edit($id)
     {
         $edital = Edital::Where('id', $id)->first();
-        //dd($edital);
         $programas = Programa::all();
         
         return view("Edital.editar", compact("edital", "programas"));
