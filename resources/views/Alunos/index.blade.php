@@ -80,8 +80,6 @@
     <br>
     <br>
 
-
-
     @if (sizeof($alunos) == 0)
       <div class="empty">
         <p>
