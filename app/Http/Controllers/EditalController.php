@@ -88,13 +88,15 @@ class EditalController extends Controller
     public function inscrever_aluno(Request $request, $id) {
 
         DB::beginTransaction();
-        // try {
+        try {
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
 
             //dd($aluno);
-            if($aluno && $aluno->editais->isEmpty()) {
-                dd($aluno);
+            if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
+                return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
+            } else {
+                //dd($aluno);
                 $data = [
                     'nome_aluno' => $aluno->user->name,
                     'titulo_edital' => $edital->nome,
@@ -108,15 +110,13 @@ class EditalController extends Controller
                 $edital->alunos()->syncWithoutDetaching([$aluno->id => $data]);
                 
                 DB::commit();
-
+                //return redirect()->back()->with('success', 'O aluno foi inscrito com sucesso no edital.');
                 return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
-            } else {
-                return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
             }
-        // } catch(exception $e){
-        //     DB::rollback();
-        //     return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
-        // }
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
+        }
     }
 
     /**
