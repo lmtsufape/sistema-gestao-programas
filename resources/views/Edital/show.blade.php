@@ -90,7 +90,12 @@
             <br>
             <br>
             <label class="titulo" for="bolsa">Tipo da bolsa</label>
-            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" required>
+            <select class="boxinfo" name="bolsa" id="bolsa" required>
+                <option >Selecione</option>
+                <option value="Voluntária">Voluntária</option>
+                <option value="Remunerada">Remunerada</option>
+            </select>
+            <!-- <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" required> -->
             <br>
             <br>
             <label class="titulo" for="info_complementares">Informações complementares</label>
