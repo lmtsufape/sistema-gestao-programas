@@ -189,6 +189,7 @@ class EditalController extends Controller
     }
     public function listar_alunos($id){
         $edital = Edital::with('alunos')->find($id);
+        $editais = Edital::all();
         $alunos = $edital->alunos('user');
         $alunos = $edital->alunos;
         // foreach ($alunos as $aluno) {
@@ -199,5 +200,11 @@ class EditalController extends Controller
         // }
 
         return view("Edital.listar_alunos", compact("alunos"));
-        }
+     }
+
+    // public function listar_alunos($id){
+    //     $edital = Edital::find($id);
+    //     $alunos = $edital->alunos()->get();
+    //     return view("Edital.listar_alunos", compact("alunos", "edital"));
+    // }
 }

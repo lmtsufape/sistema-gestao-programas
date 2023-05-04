@@ -99,7 +99,7 @@
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
               </a>
               <a href="{{route('edital.show', ['id' => $edital->id]  )}}">
-                <img src="{{asset("images/listaredital.png")}}" alt="listar edital" style="height: 30px; width: 30px;">
+                <img src="{{asset("images/listaredital.png")}}" alt="criar edital" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
@@ -150,10 +150,10 @@
             <a><img src="{{asset("images/bx_user.png")}}" alt="Listar editais" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar alunos</p>
           </div>
-          <div style="display: flex; margin: 10px">
-            <a><img src="{{asset("images/listaredital.png")}}" alt="Listar editais" style="width: 20px; height: 20px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar editais</p>
-          </div>
+          <!-- <div style="display: flex; margin: 10px">
+            <a><img src="{{asset("images/listaredital.png")}}" alt="Criar edital" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Criar edital</p>
+          </div> -->
         </div>
       </div>
     </div>

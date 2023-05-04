@@ -83,7 +83,6 @@
         <thead>
           <tr>
             <th scope="col">Nome</th>
-            <th scope="col">Edital</th>
             <th scope="col">Bolsa</th>
             <th scope="col">Valor da bolsa</th>
             <th class="text-center">Ações</th>
@@ -92,12 +91,9 @@
         <tbody>
           @foreach($alunos as $aluno)
           
-          {{  $aluno->pivot->nome_aluno; }}
-
           <tr>
-            <td> </td>
-            <td> </td>
-            <td> </td>
+            <td> {{  $aluno->pivot->nome_aluno; }} </td>
+            <td></td>
             <td> </td>
             <td> </td>
             <td>
@@ -114,41 +110,6 @@
           @include('Programa.components_alunos.modal_show')
           <!-- Modal delete-->
           @include('Programa.components_alunos.modal_delete')
-    <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-        ;margin-bottom: 5px; min-height: 350px">
-      <thead>
-        <tr>
-          <th scope="col">Nome do aluno</th>
-          <th scope="col">Disciplina</th>
-          <th scope="col">Edital</th>
-          <th class="text-center">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Foreach para listar os alunos -->
-        <tr>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-          <td> </td>
-          <td>
-            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_">
-              <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
-            </a>
-            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_">
-              <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
-            </a>
-          </td>
-        </tr>
-
-        <!-- Modal show -->
-        @include('Edital.components_alunos.modal_show')
-        <!-- Modal delete-->
-        @include('Edital.components_alunos.modal_delete')
-
-
-          <!-- endforeach -->
         </tbody>
       </table>
     </div>
