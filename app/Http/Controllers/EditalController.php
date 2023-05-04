@@ -189,7 +189,6 @@ class EditalController extends Controller
     }
     public function listar_alunos($id){
         $edital = Edital::with('alunos')->find($id);
-        $editais = Edital::all();
         $alunos = $edital->alunos('user');
         $alunos = $edital->alunos;
         // foreach ($alunos as $aluno) {
