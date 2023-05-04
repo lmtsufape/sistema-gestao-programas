@@ -120,8 +120,8 @@
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$aluno->id}}">
                             <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
                         </a>
-                        
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
+
+                        <a href=" {{route('alunos.edit', ['id' => $aluno->id] )}}">
                             <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar aluno" style="height: 30px; width: 30px;">
                         </a>
 
@@ -222,4 +222,4 @@
   <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
   <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/login')}}">Voltar</a>
 @endcan
-@endsection 
+@endsection
