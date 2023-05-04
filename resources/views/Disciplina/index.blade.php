@@ -70,7 +70,7 @@
         <tbody>
           <tr>
             <td>{{$disciplinas->nome}}</td>
-            <td>curso</td>
+            <td>{{$disciplinas->curso->nome}}</td>
             <td>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$disciplinas->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info programa" style="height: 30px; width: 30px;">

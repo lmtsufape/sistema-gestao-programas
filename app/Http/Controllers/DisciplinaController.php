@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DisciplinaStoreFormRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
 use Exception;
 use App\Http\Requests\DisciplinaUpdateFormRequest;
+use App\Models\Curso;
 
 class DisciplinaController extends Controller
 {
@@ -29,6 +31,7 @@ class DisciplinaController extends Controller
             return view("Disciplina.index", compact("disciplinas"));
         } else {
             $disciplinas = Disciplina::all();
+            
             return view("Disciplina.index", compact("disciplinas"));
         }
     }
@@ -38,6 +41,8 @@ class DisciplinaController extends Controller
 
             $disciplina = new Disciplina();
             $disciplina ->nome = $request->nome;
+            $disciplina->curso_id = $request->curso;
+            
             $disciplina->save();
 
             return redirect('/disciplinas')->with('sucesso', 'Disciplina cadastrada com sucesso.');
@@ -45,13 +50,16 @@ class DisciplinaController extends Controller
         }
         catch(exception $e){
 
-            return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
+            return redirect()->back()->withErrors( "Falha ao cadastrar Disciplina. tente novamente mais tarde." );
         }
     }
 
 
     public function create(){
-        return view("Disciplina.cadastrar");
+        
+        $cursos = Curso::all();
+
+        return view("Disciplina.cadastrar", compact("cursos"));
     }
 
 
@@ -70,25 +78,49 @@ class DisciplinaController extends Controller
     }
 
     public function edit($id) {
+
         $disciplina = Disciplina::find($id);
-        return view("disciplina.editar", compact('disciplina'));
+        $cursos = Curso::all();
+
+        return view("disciplina.editar", compact('disciplina', 'cursos'));
     }
 
     public function update(DisciplinaUpdateFormRequest $request, $id) {
-        $disciplina = Disciplina::find($id);
+        DB::beginTransaction();
+        // $disciplina = Disciplina::find($id);
 
-        $disciplina->nome = $request->nome;
+        // $disciplina->nome = $request->nome;
 
-        if ($disciplina->save()){
-            if ($disciplina->update()){
-                $mensagem_sucesso = "Disciplina cadastrada com sucesso.";
-                return redirect('/disciplinas/'. $disciplina->id .'/edit')->with('sucesso', 'Disciplina Atualizada com sucesso.');
-            } else {
-                return redirect()->back()->withErrors( "Falha ao cadastrar disciplina. tente novamente mais tarde." );
-            }
+        try{
+            $disciplina = Disciplina::find($id);
 
-        } else {
-            return redirect()->back()->withErrors( "Falha ao cadastrar disciplina. tente novamente mais tarde." );
+            $disciplina->nome = $request->nome ? $request->nome :$disciplina->nome;
+            $disciplina->curso_id = $request->curso ? $request->curso : $disciplina->curso_id;
+
+            $disciplina->update();
+            //dd($edital);
+
+            DB::commit();
+
+            return redirect()->route('disciplinas.index')
+            ->with('sucesso', 'Disciplina editada com sucesso.');
+
+        } catch(exception $e){
+            //dd($e);
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao editar Disciplina. tente novamente mais tarde." );
         }
+
+        // if ($disciplina->save()){
+        //     if ($disciplina->update()){
+        //         $mensagem_sucesso = "Disciplina cadastrada com sucesso.";
+        //         return redirect('/disciplinas/'. $disciplina->id .'/edit')->with('sucesso', 'Disciplina Atualizada com sucesso.');
+        //     } else {
+        //         return redirect()->back()->withErrors( "Falha ao cadastrar disciplina. tente novamente mais tarde." );
+        //     }
+
+        // } else {
+        //     return redirect()->back()->withErrors( "Falha ao cadastrar disciplina. tente novamente mais tarde." );
+        // }
     }
 }

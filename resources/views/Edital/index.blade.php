@@ -93,7 +93,7 @@
           <tr>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
-            <td style="border-right: 1px solid #d3d3d3;">programa</td>
+            <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
             <td>
               <a style="padding:2px" href="{{route("edital.vinculo")}}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">

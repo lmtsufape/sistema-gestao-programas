@@ -106,8 +106,27 @@ Route::prefix('edital')->group(function() {
 // Rotas de Disciplina
 Route::resource('/disciplinas', DisciplinaController::class);
 
+Route::prefix('disciplinas')->group(function() {
+    Route::get('/', [DisciplinaController::class, 'index'])->name('disciplinas.index');
+    Route::get('/create', [DisciplinaController::class, 'create'])->name('disciplinas.create');
+    Route::post('/', [DisciplinaController::class, 'store'])->name('disciplinas.store');
+    Route::get('/{id}/edit', [DisciplinaController::class, 'edit'])->where('id', '[0-9]+')->name('disciplinas.edit');
+    Route::put('/{id}', [DisciplinaController::class, 'update'])->name('disciplinas.update');
+    Route::delete('/{id}', [DisciplinaController::class, 'destroy'])->name('disciplinas.delete');
+    Route::get('{id}', [DisciplinaController::class, 'show'])->name('disciplinas.show');
+});
 // Rotas de curso
 Route::resource('/cursos', CursoController::class);
+
+Route::prefix('cursos')->group(function() {
+    Route::get('/', [CursoController::class, 'index'])->name('cursos.index');
+    Route::get('/create', [CursoController::class, 'create'])->name('cursos.create');
+    Route::post('/', [CursoController::class, 'store'])->name('cursos.store');
+    Route::get('/{id}/edit', [CursoController::class, 'edit'])->where('id', '[0-9]+')->name('cursos.edit');
+    Route::put('/{id}', [CursoController::class, 'update'])->name('cursos.update');
+    Route::delete('/{id}', [CursoController::class, 'destroy'])->name('cursos.delete');
+    Route::get('{id}', [CursoController::class, 'show'])->name('cursos.show');
+});
 
 // Rotas de Cadastrar-se
 Route::get('/cadastrar-se', [CadastrarSeController::class, "cadastrarSe"]);
