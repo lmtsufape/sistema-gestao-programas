@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEditalAlunosTable extends Migration
+class CreateEditalAlunoOrientadorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class CreateEditalAlunosTable extends Migration
      */
     public function up()
     {
-        Schema::create('edital_alunos', function (Blueprint $table) {
+        Schema::create('edital_aluno_orientadors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome_aluno');
-            $table->string('titulo_edital');
+            $table->string('titulo');
             $table->date('data_inicio');
             $table->date('data_fim');
-            $table->double('valor_bolsa');
             $table->string('bolsa');
             $table->text('info_complementares');
+            $table->string('termo_compromisso_aluno');
+            $table->string('termo_compromisso_orientador');
             $table->foreignId('aluno_id')->contrained('alunos');
             $table->foreignId('edital_id')->contrained('editals');
             $table->foreignId('disciplina_id')->contrained('disciplinas');
+            $table->foreignId('orientador_id')->contrained('orientadors');
             $table->timestamps();
         });
     }

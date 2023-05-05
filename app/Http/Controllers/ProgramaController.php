@@ -76,6 +76,7 @@ class ProgramaController extends Controller
             $programa = new Programa();
             $programa->nome = $request->nome;
             $programa->descricao = $request->descricao;
+            $programa->valor_bolsa = $request->valor_bolsa;
             $programa->save();
 
             foreach($request->servidors as $id_servidor){
@@ -139,6 +140,7 @@ class ProgramaController extends Controller
             $programa = Programa::find($id);
             $programa->nome = $request->nome ? $request->nome : $programa->nome;
             $programa->descricao = $request->descricao ? $request->descricao : $programa->descricao;
+            $programa->valor_bolsa = $request->valor_bolsa ? $request->valor_bolsa : $programa->valor_bolsa;
             $programa->update();
 
             Programa_servidor::where("programa_id", $programa->id)->delete();

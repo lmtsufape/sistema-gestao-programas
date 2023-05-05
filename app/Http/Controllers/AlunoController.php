@@ -22,6 +22,7 @@ class AlunoController extends Controller
             $aluno->cpf = $request->cpf;
             $aluno->curso_id = $request->curso;
             $aluno->semestre_entrada = $request->semestre_entrada;
+            $aluno->nome_aluno = $request->nome_aluno;
 
             if ($aluno->save()){
                 if ( 
@@ -51,6 +52,8 @@ class AlunoController extends Controller
         $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
         $aluno->semestre_entrada = $request->semestre_entrada;
         $aluno->curso_id = $request->curso;
+        $aluno->nome_aluno = $request->nome_aluno;
+
 
         $aluno->user->name = $request->nome;
         $aluno->user->email = $request->email;
