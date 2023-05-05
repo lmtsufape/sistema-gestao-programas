@@ -30,18 +30,18 @@ class Edital extends Model
 
     public function alunos()
     {
-        return $this->belongsToMany(Aluno::class, 'edital_alunos')
+        return $this->belongsToMany(Aluno::class, 'edital_aluno_orientadors')
             ->withPivot([
-                'nome_aluno', 
-                'titulo_edital', 
                 'data_inicio', 
                 'data_fim', 
-                'valor_bolsa', 
                 'bolsa', 
                 'info_complementares', 
                 'disciplina_id',
                 'aluno_id',
-                'edital_id'
+                'edital_id',
+                'orientador_id',
+                'termo_compromisso_aluno',
+                'termo_compromisso_orientador'
             ]);
     }
 

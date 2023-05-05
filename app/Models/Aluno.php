@@ -10,7 +10,7 @@ class Aluno extends Model
 {
     protected $fillable = [
         'cpf',
-        'nome',
+        'nome_aluno',
         'curso',
         'semestre_entrada',
     ];
@@ -27,18 +27,18 @@ class Aluno extends Model
 
     public function editais() 
     {
-        return $this->belongsToMany(Edital::class, 'edital_alunos')
+        return $this->belongsToMany(Edital::class, 'edital_aluno_orientadors')
             ->withPivot([
-                'nome_aluno', 
-                'titulo_edital', 
                 'data_inicio', 
                 'data_fim', 
-                'valor_bolsa', 
                 'bolsa', 
                 'info_complementares', 
                 'disciplina_id',
                 'aluno_id',
-                'edital_id'
+                'edital_id',
+                'orientador_id',
+                'termo_compromisso_aluno',
+                'termo_compromisso_orientador'
             ]);
     }
 

@@ -15,6 +15,7 @@ class CreateAlunosTable extends Migration
     {
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
+            $table->string('nome_aluno');
             $table->string('cpf', 14)->unique();
             $table->foreignId('curso_id')->nullable(false)->constrained('cursos');
             $table->string('semestre_entrada', 6);

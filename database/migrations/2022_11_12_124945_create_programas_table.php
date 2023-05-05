@@ -18,6 +18,7 @@ class CreateProgramasTable extends Migration
             $table->string('nome')->nullable(false);
             $table->text('descricao');
             $table->string('tipo');
+            $table->string('valor_bolsa');
             $table->timestamps();
         });
     }

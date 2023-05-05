@@ -56,6 +56,8 @@ class EditalController extends Controller
             $edital->semestre = $request->semestre;
             $edital->data_inicio = $request->data_inicio;
             $edital->data_fim = $request->data_fim;
+            $edital->titulo_edital = $request->titulo_edital;
+            $edital->valor_bolsa = $request->valor_bolsa;
             $edital->curso_id = $request->curso;
             $edital->programa_id = $request->programa;
             //$edital ->disciplina_id = $request ->disciplina;
@@ -98,14 +100,15 @@ class EditalController extends Controller
             } else {
                 //dd($aluno);
                 $data = [
-                    'nome_aluno' => $aluno->user->name,
-                    'titulo_edital' => $edital->nome,
+                    'titulo' => $edital->nome,
                     'data_inicio' => $edital->data_inicio,
                     'data_fim' => $edital->data_fim,
-                    'valor_bolsa' => $request->valor_bolsa,
                     'bolsa' => $request->bolsa,
                     'info_complementares' => $request->info_complementares,
-                    'disciplina_id' => 1
+                    'disciplina_id' => 1,
+                    'orientador_id' => 1,
+                    'edital_id' => $edital->id,
+                    'aluno_id' => $aluno->id,
                 ];
                 $edital->alunos()->syncWithoutDetaching([$aluno->id => $data]);
                 
@@ -149,6 +152,8 @@ class EditalController extends Controller
             $edital->nome = $request->nome ? $request->nome : $edital->nome;
             $edital->descricao = $request->descricao ? $request->descricao : $edital->descricao;
             $edital->semestre = $request->semestre ? $request->semestre : $edital->semestre;
+            $edital->titulo_edital = $request->titulo_edital ? $request->titulo_edital : $edital->titulo_edital;
+            $edital->valor_bolsa = $request->valor_bolsa ? $request->valor_bolsa : $edital->valor_bolsa;
             $edital->data_inicio = $request->data_inicio ? $request->data_inicio : $edital->data_inicio;
             $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
             $edital->programa_id = $request->programa ? $request->programa : $edital->programa_id;
