@@ -82,26 +82,26 @@
         ;margin-bottom: 5px; min-height: 50px">
         <thead>
           <tr>
+            <th scope="col">Nome</th>
             <th scope="col">Data de início</th>
             <th scope="col">Data de fim</th>
-            <th scope="col">Programa</th>
             <th scope="col">Ações</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($editais as $edital)
           <tr>
+            <td style="border-right: 1px solid #d3d3d3;">{{ $edital->nome}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
-            <td style="border-right: 1px solid #d3d3d3;">programa</td>
             <td>
               <a style="padding:2px" href="{{  route('edital.vinculo', ['id' => $edital->id]) }}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
               </a>
-              <a href="{{route('edital.show', ['id' => $edital->id]  )}}">
+              <!-- <a href="{{route('edital.show', ['id' => $edital->id]  )}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="criar edital" style="height: 30px; width: 30px;">
-              </a>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">
+              </a> -->
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$edital->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
               <a type="button" href="{{  route('edital.edit', ['id' => $edital->id] )  }}">
@@ -167,7 +167,7 @@
   }
 
   function exibirModalVisualizar(id) {
-    $('#modal_show_' + id).modal('show');
+    $('#modal_show' + id).modal('show');
   }
 </script>
 

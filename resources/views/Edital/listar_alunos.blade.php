@@ -75,7 +75,7 @@
     <br>
     <br>
   </div>
-
+ 
   <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">
       <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
@@ -89,6 +89,7 @@
           </tr>
         </thead>
         <tbody>
+          
           @foreach($alunos as $aluno)
           
           <tr>
@@ -97,17 +98,17 @@
             <td> {{ $aluno->pivot->valor_bolsa }} </td>
             <td>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$aluno->pivot->aluno_id}}">
-                <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
+                <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->pivot->aluno_id}}">
-                <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
+                <img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
               </a>
             </td>
           </tr>
           <!-- Modal show -->
-          @include('Edital.components_alunos.modal_show', ['aluno' => $aluno], ['edital' => $edital])
+          @include('Edital.components_alunos.modal_show', ['aluno' => $aluno])
           <!-- Modal delete-->
-          @include('Edital.components_alunos.modal_delete', ['aluno' => $aluno], ['edital' => $edital])
+          @include('Edital.components_alunos.modal_delete', ['aluno' => $aluno])
           @endforeach
         </tbody>
       </table>
@@ -151,7 +152,7 @@
 
 <script type="text/javascript">
   function exibirModalDeletar(id) {
-    $('#modal_delete_' + id).modal('show');
+    $('#modal_delete_' + id).modal('delete');
   }
 
   function exibirModalVisualizar(id) {
