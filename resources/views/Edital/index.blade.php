@@ -98,9 +98,9 @@
               <a style="padding:2px" href="{{  route('edital.vinculo', ['id' => $edital->id]) }}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
               </a>
-              <!-- <a href="{{route('edital.show', ['id' => $edital->id]  )}}">
+              <a href="{{route('edital.show', ['id' => $edital->id]  )}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="criar edital" style="height: 30px; width: 30px;">
-              </a> -->
+              </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$edital->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
