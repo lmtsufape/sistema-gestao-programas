@@ -22,7 +22,7 @@ class CreateEditalsTable extends Migration
             $table->date("data_fim");
             $table->string('titulo_edital');
             $table->string('valor_bolsa');
-            $table->foreignId('curso_id')->nullable(false)->constrained('cursos');
+            $table->foreignId('disciplina_id')->nullable(false)->constrained('disciplinas');
             $table->foreignId('programa_id')->nullable(false)->constrained('programas');
             $table->timestamps();
         });
