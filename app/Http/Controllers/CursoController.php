@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Curso_disciplina;
 use App\Models\Curso;
 use App\Models\Disciplina;
 use Illuminate\Support\Facades\DB;
@@ -39,8 +38,8 @@ class CursoController extends Controller
 
     public function create()
     {
-        $disciplinas = Disciplina::all();
-        return view("Curso.cadastrar", compact("disciplinas"));
+        #$disciplinas = Disciplina::all();
+        return view("Curso.cadastrar");
 
     }
 
@@ -51,14 +50,14 @@ class CursoController extends Controller
             $curso = new Curso();
             $curso-> nome = $request->nome;
             $curso->save();
-            if($request->disciplinas){
-                foreach($request->disciplinas as $disciplina_id){
-                    $curso_disciplina = new Curso_disciplina();
-                    $curso_disciplina->curso_id = $curso->id;
-                    $curso_disciplina->disciplina_id = $disciplina_id;
-                    $curso_disciplina->save();
-                }
-            }
+            // if($request->disciplinas){
+            //     foreach($request->disciplinas as $disciplina_id){
+            //         $curso_disciplina = new Curso_disciplina();
+            //         $curso_disciplina->curso_id = $curso->id;
+            //         $curso_disciplina->disciplina_id = $disciplina_id;
+            //         $curso_disciplina->save();
+            //     }
+            // }
             DB::commit();
             return redirect('/cursos')->with('sucesso', 'Curso cadastrado com sucesso.');
         } catch(exception $e){
@@ -81,13 +80,13 @@ class CursoController extends Controller
     public function edit($id)
     {
         $curso = Curso::find($id);
-        $disciplinas = Disciplina::all();
-        $idsDisciplinasDoCurso = [];
+        // $disciplinas = Disciplina::all();
+        // $idsDisciplinasDoCurso = [];
 
-        foreach($curso->curso_disciplinas as $curso_disciplinas){
-            $idsDisciplinasDoCurso[] = $curso_disciplinas->disciplina_id;
-        }
-        return view("Curso.editar", compact("curso", "disciplinas", "idsDisciplinasDoCurso"));
+        // foreach($curso->disciplinas as $disciplinas){
+        //     $idsDisciplinasDoCurso[] = $disciplinas->disciplina_id;
+        // }
+        return view("Curso.editar", compact("curso"));
     }
 
     public function update(CursoUpdateFormRequest $request, $id)
@@ -98,16 +97,16 @@ class CursoController extends Controller
             $curso->nome = $request->nome ? $request->nome : $curso->nome;
             $curso->update();
 
-            Curso_disciplina::where("curso_id", $curso->id)->delete();
+            // Curso_disciplina::where("curso_id", $curso->id)->delete();
 
-            if($request->disciplinas){
-                foreach($request->disciplinas as $disciplina_id){
-                    $curso_disciplina = new Curso_disciplina();
-                    $curso_disciplina->curso_id = $curso->id;
-                    $curso_disciplina->disciplina_id = $disciplina_id;
-                    $curso_disciplina->save();
-                }
-            }
+            // if($request->disciplinas){
+            //     foreach($request->disciplinas as $disciplina_id){
+            //         $curso_disciplina = new Curso_disciplina();
+            //         $curso_disciplina->curso_id = $curso->id;
+            //         $curso_disciplina->disciplina_id = $disciplina_id;
+            //         $curso_disciplina->save();
+            //     }
+            // }
             DB::commit();
             
             return redirect("/cursos")->with('sucesso', 'Curso editado com sucesso');
@@ -127,9 +126,8 @@ class CursoController extends Controller
     {
         DB::beginTransaction();
         try{
-            $curso = Curso::find($id);
-
-            Curso_disciplina::where("curso_id", $id)->delete();
+            
+            Disciplina::where("curso_id", $id)->delete();
 
             Curso::where("id", $id)->delete();
 

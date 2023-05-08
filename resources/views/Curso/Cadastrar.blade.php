@@ -79,14 +79,7 @@
                 <label for="nome" class="titulo">Nome:</label>
                 <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome do curso"><br><br>
                 
-                <label class="titulo" for="disciplinas">Disciplinas:</label>
-                <select aria-label="Default select example" class="boxinfo" name="disciplinas[]" id="disciplinas" multiple>
-                    <option value=""></option>
-                    @foreach ($disciplinas as $disciplina)
-                        <option value="{{$disciplina->id}}">{{$disciplina->nome}}</option>
-                    @endforeach
-                </select><br><br>
-
+            
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                     <input type="button" value="Voltar" href="{{url("/cursos/")}}" onclick="window.location.href='{{url("/cursos/")}}'" style="background: #2D3875;
                                     box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
