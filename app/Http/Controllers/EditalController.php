@@ -83,6 +83,7 @@ class EditalController extends Controller
     public function show($id)
     {
         $edital = Edital::findOrFail($id);
+        
 
         return view('Edital.show', ['edital' => $edital]);
     }
@@ -219,4 +220,10 @@ class EditalController extends Controller
 
         return view("Edital.listar_alunos", compact("alunos"));
         }
+
+    public function listar_disciplinas($id){
+        $disciplinas = Edital::with('disciplinas')->find($id);
+
+        return view("Edital.listar_disciplinas", compact("disciplinas"));
+    }
 }
