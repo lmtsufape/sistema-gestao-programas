@@ -12,6 +12,7 @@ class AlunosSeeder extends Seeder
     public function run()
     {
         $aluno = Aluno::create([
+            'nome_aluno' => "Victor Francisco",
             'cpf' => "348.126.240-02",
             'curso_id' => 1,
             'semestre_entrada' => "2018.2"
@@ -25,6 +26,7 @@ class AlunosSeeder extends Seeder
         ])->givePermissionTo('aluno');
 
         $aluno1 = Aluno::create([
+            'nome_aluno' => "Arlenio",
             'cpf' => "476.051.020-62",
             'curso_id' => 1,
             'semestre_entrada' => "2018.2"

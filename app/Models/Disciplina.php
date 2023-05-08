@@ -13,7 +13,7 @@ class Disciplina extends Model
         'nome'
     ];
 
-    // public function curso() {
-    //     return $this->belongsTo(Curso::class, '')
-    // }
+    public function curso() {
+        return $this->belongsTo(Curso::class, "curso_id");
+    }
 }

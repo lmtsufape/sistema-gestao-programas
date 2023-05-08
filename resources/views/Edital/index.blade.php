@@ -85,6 +85,7 @@
             <th scope="col">Nome</th>
             <th scope="col">Data de início</th>
             <th scope="col">Data de fim</th>
+            <th scope="col">Programa</th>
             <th scope="col">Ações</th>
           </tr>
         </thead>
@@ -94,6 +95,7 @@
             <td style="border-right: 1px solid #d3d3d3;">{{ $edital->nome}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
+            <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
             <td>
               <a style="padding:2px" href="{{  route('edital.vinculo', ['id' => $edital->id]) }}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">

@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Edital_Aluno;
+use App\Models\Edital_Aluno_Orientadors;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
-class Edital_AlunoSeeder extends Seeder
+class Edital_Aluno_OrientadorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,30 +16,32 @@ class Edital_AlunoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('edital_alunos')->insert([
+        DB::table('edital_aluno_orientadors')->insert([
             [
-                'nome_aluno' => 'João',
-                'titulo_edital' => 'Edital 1',
+                'titulo' => 'Edital 1',
                 'data_inicio' => '2023-05-01',
                 'data_fim' => '2023-05-31',
-                'valor_bolsa' => 1000.00,
                 'bolsa' => 'Integral',
                 'info_complementares' => 'Lorem ipsum dolor sit amet',
                 'aluno_id' => 1,
                 'edital_id' => 1,
                 'disciplina_id' => 1,
+                'orientador_id' => 1,
+                'termo_compromisso_aluno' => 'termo_compromisso_aluno.pdf',
+                'termo_compromisso_orientador' => 'termo_compromisso_orientador.pdf',
             ],
             [
-                'nome_aluno' => 'Maria',
-                'titulo_edital' => 'Edital 1',
+                'titulo' => 'Edital 2',
                 'data_inicio' => '2023-05-01',
                 'data_fim' => '2023-05-31',
-                'valor_bolsa' => 1000.00,
                 'bolsa' => 'Integral',
                 'info_complementares' => 'Lorem ipsum dolor sit amet',
                 'aluno_id' => 2,
                 'edital_id' => 1,
                 'disciplina_id' => 1,
+                'orientador_id' => 1,
+                'termo_compromisso_aluno' => 'termo_compromisso_aluno.pdf',
+                'termo_compromisso_orientador' => 'termo_compromisso_orientador.pdf',
             ],
         ]);
     }
