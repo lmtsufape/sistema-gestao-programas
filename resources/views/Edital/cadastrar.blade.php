@@ -89,6 +89,12 @@
                     <label for="data_fim" >Data de fim:</label>
                     <input class="boxinfo"  type="date" name="data_fim" id="data_fim" ><br><br>
 
+                    <label class="titulo_edital" for="titulo_edital">Título Edital:</label>
+                    <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br>
+
+                    <label class="valor_bolsa" for="valor_bolsa">Valor da Bolsa:</label>
+                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value=""><br><br>
+                    
                     <label for="programa">Programa:</label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
                         <option value=""></option>
@@ -97,11 +103,11 @@
                             @endforeach
                     </select><br><br>
 
-                    <label for="programa">Curso:</label>
-                    <select aria-label="Default select example" class="boxinfo" name="curso" id="curso" >
+                    <label for="disciplina">Disciplina:</label>
+                    <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina" >
                         <option value=""></option>
-                            @foreach ($cursos as $curso)
-                                <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                            @foreach ($disciplinas as $disciplina)
+                                <option value="{{$disciplina->id}}">{{$disciplina->nome}}</option>
                             @endforeach
                     </select><br><br>
 
@@ -125,10 +131,10 @@
                 no_results_text: "Não possui programas."
             });
 
-            $("#curso").chosen({
-                placeholder_text_single: "Selecione um curso",
+            $("#disciplina").chosen({
+                placeholder_text_single: "Selecione uma disciplina",
                 // max_shown_results : 5,
-                no_results_text: "Não possui cursos."
+                no_results_text: "Não possui disciplinas."
             });
 
             $("#orientadors").chosen({

@@ -109,7 +109,7 @@
               <!-- <a style="padding:2px" href="{{url("/programas/$programas->id/alunos")}}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
               </a> -->
-              <a style="padding:2px" href="{{url("/programas/$programas->id/editals")}}">
+              <a style="padding:2px" href="{{url("/programas/$programas->id/editais")}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="Listar edital">
               </a>
               <a style="padding:2px" type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$programas->id}}">

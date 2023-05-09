@@ -77,15 +77,22 @@ Route::prefix('orientadors')->group(function() {
 Route::get('/MeusAlunos', [MeusAlunosController::class, "index"]);
 Route::get('/MeusProgramas', [MeusProgramasController::class, "index"]);
 
-//aaaaaa
-// Rotas de programa //Organizar rotas em grupos
+// Rotas de programa 
 Route::resource('/programas', ProgramaController::class);
-Route::get('/programas/{id}/editals', [ProgramaController::class, "listar_editais"]);
-Route::delete("programas/{id}/editals/{edital_id}", [ProgramaController::class, "deletar_edital"]);
-Route::get("/programas/{id}/create/edital", [ProgramaController::class, "criar_edital"]);
-Route::post("/programas/store/edital", [ProgramaController::class, "store_edital"]);
-Route::get("/programas/edit/{id}/edital", [ProgramaController::class, "editar_edital"]);
-Route::put("/programas/update/{id}/edital", [ProgramaController::class, "update_edital"]);
+
+Route::prefix('programas')->group(function(){
+    Route::get('/', [ProgramaController::class, 'index'])->name('programas.index');
+    Route::get('/{id}/editais', [ProgramaController::class, 'listar_editais'])->name('programas.editais');
+    Route::get('/create', [ProgramaController::class, 'create'])->name('programas.create');
+    Route::get('/{id}/edit', [ProgramaController::class, 'edit'])->name('programas.edit');
+    Route::post('/', [ProgramaController::class, 'store'])->name('programas.store');
+    Route::put('/{id}', [ProgramaController::class, 'update'])->name('programas.update');
+    Route::delete('/{id}/delete', [ProgramaController::class, 'destroy'])->name('programas.delete');
+    Route::delete('/{id}', [ProgramaController::class, 'deletar_edital'])->name('programas.edital-delete');
+    Route::get('/{id}/criar-edital', [ProgramaController::class, 'criar_edital'])->name('programas.edital-criar');
+    Route::get('/{id}/editar-edital', [ProgramaController::class, 'editar_edital'])->name('programas.edital-editar');
+    Route::get('/vinculo', [ProgramaController::class, 'listar_alunos'])->name('programas.vinculo');
+});
 
 // Rotas de Edital
 Route::get('/vinculo', [EditalController::class, "listar_alunos"])->name('edital.vinculo');
