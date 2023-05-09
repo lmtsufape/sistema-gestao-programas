@@ -65,17 +65,17 @@
     </form>
   </div>
   
-  <div style="display: contents; align-content: center; align-items: center;">
+ {{-- <div style="display: contents; align-content: center; align-items: center;">
     <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
       font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
       align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;" {{--href="{{route('edital.show')}}"--}}>
+      padding-left: 10px;" href="{{route('edital.show')}}">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Vincular Aluno
     </a>
     <br>
     <br>
   </div>
- 
+ --}}
   <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">
       <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
@@ -84,7 +84,8 @@
           <tr>
             <th scope="col">Nome</th>
             <th scope="col">Bolsa</th>
-            <th scope="col">Valor da bolsa</th>
+            <th scope="col">Data de Início</th>
+            <th scope="col">Data de Fim</th>
             <th class="text-center">Ações</th>
           </tr>
         </thead>
@@ -94,7 +95,8 @@
           <tr>
             <td> {{ $aluno->nome_aluno }} </td>
             <td> {{ $aluno->pivot->bolsa }} </td>
-            <td> {{ $aluno->pivot->valor_bolsa }} </td>
+            <td> {{ $aluno->pivot->data_inicio }} </td>
+            <td> {{ $aluno->pivot->data_fim }} </td>
             <td>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$aluno->pivot->aluno_id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
@@ -147,6 +149,8 @@
       </div>
     </div>
   </div>
+  <br>
+  <br>
 </div>
 
 <script type="text/javascript">

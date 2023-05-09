@@ -73,29 +73,29 @@
 
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
-
+                    
                     <label class="titulo" for="nome">Nome:</label>
-                    <input class="boxinfo" placeholder="Digite o nome" type="text" name="nome" required id="nome" value=""><br><br>
-
+                    <input class="boxinfo" placeholder="Digite o nome" type="text" name="nome" required id="nome" value=""><br><br> 
+                   
+                    <label class="titulo" for="titulo_edital">Título Edital:</label>
+                    <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br>
+    
                     <label class="titulo" for="semestre">Semestre:</label>
                     <input class="boxinfo" placeholder="Digite o semestre" type="text" name="semestre" id="semestre" value=""><br><br>
 
                     <label class="titulo" for="Descrição">Descrição:</label>
                     <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="10"></textarea><br><br>
 
-                    <label for="data_inicio" class="titulo">Data de início:</label>
+                    <label class="titulo" for="data_inicio" class="titulo">Data de início:</label>
                     <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" ><br><br>
 
-                    <label for="data_fim" >Data de fim:</label>
+                    <label class="titulo" for="data_fim" >Data de fim:</label>
                     <input class="boxinfo"  type="date" name="data_fim" id="data_fim" ><br><br>
 
-                    <label class="titulo_edital" for="titulo_edital">Título Edital:</label>
-                    <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br>
-
-                    <label class="valor_bolsa" for="valor_bolsa">Valor da Bolsa:</label>
+                    <label class="titulo" for="valor_bolsa">Valor da Bolsa:</label>
                     <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value=""><br><br>
                     
-                    <label for="programa">Programa:</label>
+                    <label class="titulo" for="programa">Programa:</label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
                         <option value=""></option>
                             @foreach ($programas as $programa)
@@ -103,7 +103,7 @@
                             @endforeach
                     </select><br><br>
 
-                    <label for="disciplina">Disciplina:</label>
+                    <label class="titulo" for="disciplina">Disciplina:</label>
                     <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina" >
                         <option value=""></option>
                             @foreach ($disciplinas as $disciplina)
@@ -122,6 +122,7 @@
                     </div>
                 </form>
             </div>
+            <br><br>
         </div>
 
         <script>

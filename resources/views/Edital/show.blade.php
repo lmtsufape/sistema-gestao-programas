@@ -74,7 +74,7 @@
         <div class="row" style="display: flex; align-items: center;">
             <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; color: #2D3875;">
                 Vincular Aluno a {{$edital->nome}}</h1>
-            <p style="font-weight: 600; font-size: 20px;">{{$edital->descricao}}</p>
+            <p style="font-weight: 400; font-size: 20px; color:gray;">{{$edital->descricao}}</p>
             <hr>
             <br>
             <br>

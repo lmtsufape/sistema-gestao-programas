@@ -154,14 +154,16 @@
           </div>
           <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/listaredital.png")}}" alt="Vincular aluno" style="width: 20px; height: 20px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Criar edital</p>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Vincular aluno</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <br>
+  <br>
 </div>
-</div>
+
 
 <script type="text/javascript">
   function exibirModalDeletar(id) {
