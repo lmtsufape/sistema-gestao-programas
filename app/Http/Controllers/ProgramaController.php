@@ -15,6 +15,7 @@ use App\Models\Frequencia_mensal;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
 use App\Models\Orientador;
+use App\Models\Disciplina;
 
 use App\Http\Controllers\EditalController;
 
@@ -225,12 +226,14 @@ class ProgramaController extends Controller
         // }
     }
 
-    public function deletar_edital($id, $edital_id)
+    public function deletar_edital($id)
     {
+        dd($id);
+        Edital::where("id", $id)->delete();
+        return redirect()->route('programas.index')->with('sucesso', 'Edital deletado com sucesso.');
+        //$programa_id = 1;
 
-        $programa_id = 1;
-
-        $edital_controller = EditalController->destroy($edital_id);
+        //$edital_controller = EditalController->destroy($edital_id);
 
         // return redirect('/programas/editais')->with('Edital deletado com sucesso');
 
@@ -252,8 +255,8 @@ class ProgramaController extends Controller
 
     public function criar_edital($id)
     {
-        $cursos = Curso::all();
-        return view("Edital.cadastrar", compact("programas", "cursos"));
+        $disciplina = Disciplina::all();
+        return view("Edital.cadastrar", compact("programas", "disciplina"));
     }
 
     // public function store_edital(EditalStoreFormRequest $request)

@@ -13,7 +13,7 @@
         <div class="modal-footer d-flex justify-content-between">
           <button stype="button" class="btn btn-secondary" style="border-radius: 45px; " data-bs-dismiss="modal">Cancelar</button>
 
-          <form action="{{url("/editals/$edital->id")}}" method="post">
+          <form action="{{route('programas.delete',$edital->id)}}" method="delete">
             @method("DELETE")
             @csrf
             <button type="submit" class="btn btn-danger" style="border-radius: 45px;">Deletar</button>

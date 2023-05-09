@@ -89,6 +89,20 @@
                         <label class="titulo" for="data_fim">Data de fim:</label>
                         <input class="boxinfo" type="date" name="data_fim" id="data_fim" value="{{$edital->data_fim}}"><br><br>
 
+                        <label class="titulo" for="titulo_edital">Título do Edital:</label>
+                        <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br>
+
+                        <label class="valor_bolsa" for="valor_bolsa">Valor da Bolsa:</label>
+                        <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value=""><br><br>
+
+                        <label class="titulo" for="disciplina">Disciplina:</label>
+                        <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina">
+                            <option value=""></option>
+                            @foreach ($disciplinas as $disciplina)
+                                <option value="{{$disciplina->id}}" {{$edital->disciplina_id == $disciplina->id ? 'selected' : ''}}>{{$disciplina->nome}}</option>
+                            @endforeach
+                        </select><br><br>
+
                         <label class="titulo" for="programa">Programa:</label>
                         <select aria-label="Default select example" class="boxinfo" name="programa" id="programa">
                             <option value=""></option>
@@ -96,6 +110,8 @@
                                 <option value="{{$programa->id}}" {{$edital->programa_id == $programa->id ? 'selected' : ''}}>{{$programa->nome}}</option>
                             @endforeach
                         </select><br><br>
+
+                        
 
                         <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                             <input type="button" value="Voltar" href="{{ route('edital.index') }}" onclick="window.location.href='{{ route("edital.index") }}'" style="background: #2D3875;
