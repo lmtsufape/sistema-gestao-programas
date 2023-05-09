@@ -92,17 +92,17 @@ class EditalController extends Controller
 
     public function inscrever_aluno(Request $request, $id) {
 
-        // DB::beginTransaction();
-        // try {
+        DB::beginTransaction();
+        try {
             //dd($request);
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
             $orientador_id = (int)$request->orientador; 
 
             // dd($edital);
-            // if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
-            //     return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
-            // } else {
+            if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
+                return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
+            } else {
                 //dd($aluno);
                 $data = [
                     'titulo' => $edital->nome,
@@ -123,26 +123,18 @@ class EditalController extends Controller
                 //DB::table('edital_aluno_orientadors')->insert($data);
                 $editalAlunoOrientador = EditalAlunoOrientadors::create($data);
 
-                // Verificar se a operação de inserção foi bem-sucedida
-                // if(DB::statement('SELECT 1 FROM edital_aluno_orientadors LIMIT 1')) {
-                //     dd(DB::getQueryLog());
-
-                // } else {
-                //     // Erro na inserção
-                // }
-
                 //dd($edital->alunos()->syncWithoutDetaching([$aluno->id => $data]));
                 //$edital->alunos()->attach($data);
 
                 //dd($edital);
-        //         DB::commit();
+                DB::commit();
         //         //return redirect()->back()->with('success', 'O aluno foi inscrito com sucesso no edital.');
                  return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
-             //}
-        // } catch(exception $e){
-        //     DB::rollback();
-        //     return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
-        // }
+            }
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
+        }
     }
 
     /**
