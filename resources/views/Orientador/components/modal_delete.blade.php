@@ -11,7 +11,7 @@
         </div>
         <div class="modal-footer d-flex justify-content-between">
           <button stype="button" class="btn btn-secondary" style="border-radius: 45px; " data-bs-dismiss="modal">Cancelar</button>
-          <form action="{{url("/orientadors/1")}}" method="post">
+          <form action="{{route ('programas.delete', ['id'=> $edital->id])}}" method="delete">
             @method("DELETE")
             @csrf
             <input type="hidden" name="id" value="{{$orientador->id}}">

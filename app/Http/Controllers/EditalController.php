@@ -40,8 +40,8 @@ class EditalController extends Controller
     {
         $programas = Programa::all();
         
-        $cursos = Curso::all();
-        return view("Edital.cadastrar", compact("programas", "cursos"));
+        $disciplinas = Disciplina::all();
+        return view("Edital.cadastrar", compact("programas", "disciplinas"));
     }
 
     public function store(editalstoreFormRequest $request)
@@ -49,7 +49,7 @@ class EditalController extends Controller
         DB::beginTransaction();
         try{
             
-            // dd($request);
+            //dd($request);
             $edital = new Edital();
             $edital->nome = $request->nome;
             $edital->descricao = $request->descricao;
@@ -58,7 +58,7 @@ class EditalController extends Controller
             $edital->data_fim = $request->data_fim;
             $edital->titulo_edital = $request->titulo_edital;
             $edital->valor_bolsa = $request->valor_bolsa;
-            $edital->curso_id = $request->curso;
+            $edital->disciplina_id = $request->disciplina;
             $edital->programa_id = $request->programa;
             //$edital ->disciplina_id = $request ->disciplina;
             //dd($edital);
@@ -83,6 +83,7 @@ class EditalController extends Controller
     public function show($id)
     {
         $edital = Edital::findOrFail($id);
+        
 
         return view('Edital.show', ['edital' => $edital]);
     }
@@ -132,8 +133,9 @@ class EditalController extends Controller
     {
         $edital = Edital::Where('id', $id)->first();
         $programas = Programa::all();
+        $disciplinas = Disciplina::all();
         
-        return view("Edital.editar", compact("edital", "programas"));
+        return view("Edital.editar", compact("edital", "programas", "disciplinas"));
     }
 
     /**
@@ -157,6 +159,7 @@ class EditalController extends Controller
             $edital->data_inicio = $request->data_inicio ? $request->data_inicio : $edital->data_inicio;
             $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
             $edital->programa_id = $request->programa ? $request->programa : $edital->programa_id;
+            $edital->disciplina_id = $request->disciplina ? $request->disciplina : $edital->disciplina_id;
             $edital->update();
             //dd($edital);
 
@@ -218,11 +221,11 @@ class EditalController extends Controller
         // }
 
         return view("Edital.listar_alunos", compact("alunos"));
-     }
+    }
 
-    // public function listar_alunos($id){
-    //     $edital = Edital::find($id);
-    //     $alunos = $edital->alunos()->get();
-    //     return view("Edital.listar_alunos", compact("alunos", "edital"));
-    // }
+    public function listar_disciplinas($id){
+        $disciplinas = Edital::with('disciplinas')->find($id);
+
+        return view("Edital.listar_disciplinas", compact("disciplinas"));
+    }
 }

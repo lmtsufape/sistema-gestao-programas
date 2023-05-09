@@ -19,7 +19,7 @@ class EditalSeeder extends Seeder
             'descricao' => 'Morte instantanea',
             'semestre' => '2023.1',
             'programa_id' => 1,
-            'curso_id' => 1,
+            'disciplina_id' => 1,
             'titulo_edital' => 'Edital PAVI',
             'data_inicio' =>"2022-11-17",
             'data_fim' =>"2024-11-18",
