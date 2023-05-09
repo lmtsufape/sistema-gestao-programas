@@ -15,7 +15,7 @@ class CreateRelatorioTable extends Migration
     {
         Schema::create('relatorios', function (Blueprint $table) {
             $table->id();
-            $table->enum('status',['pendente','enviado', 'avaliado','aprovado','reprovado', 'arquivado'])->default('rascunho')->nullable();
+            $table->enum('status',['pendente','enviado', 'avaliado','aprovado','reprovado', 'arquivado'])->default('pendente')->nullable();
             $table->string('observacao');
             $table->string('tipo');
             $table->string('relatorio');
