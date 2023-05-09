@@ -10,9 +10,10 @@ use App\Models\Aluno;
 use App\Models\Disciplina;
 use App\Models\Programa;
 use App\Models\Orientador;
-use App\Models\Edital_Aluno;
+use App\Models\EditalAlunoOrientadors;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
+
 use Exception;
 
 class EditalController extends Controller
@@ -47,7 +48,7 @@ class EditalController extends Controller
     public function store(editalstoreFormRequest $request)
     {
         DB::beginTransaction();
-        try{
+        try {
             
             //dd($request);
             $edital = new Edital();
@@ -60,8 +61,8 @@ class EditalController extends Controller
             $edital->valor_bolsa = $request->valor_bolsa;
             $edital->disciplina_id = $request->disciplina;
             $edital->programa_id = $request->programa;
-            //$edital ->disciplina_id = $request ->disciplina;
-            //dd($edital);
+            $edital ->disciplina_id = $request ->disciplina;
+            //  dd($edital);
             $edital->save();
 
             DB::commit();
@@ -83,22 +84,25 @@ class EditalController extends Controller
     public function show($id)
     {
         $edital = Edital::findOrFail($id);
-        
+        $orientadores = Orientador::with('user')->get();
 
-        return view('Edital.show', ['edital' => $edital]);
+
+        return view('Edital.show', ['edital' => $edital, 'orientadores' => $orientadores]);
     }
 
     public function inscrever_aluno(Request $request, $id) {
 
-        DB::beginTransaction();
-        try {
+        // DB::beginTransaction();
+        // try {
+            //dd($request);
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
+            $orientador_id = (int)$request->orientador; 
 
-            //dd($aluno);
-            if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
-                return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
-            } else {
+            // dd($edital);
+            // if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
+            //     return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
+            // } else {
                 //dd($aluno);
                 $data = [
                     'titulo' => $edital->nome,
@@ -106,21 +110,39 @@ class EditalController extends Controller
                     'data_fim' => $edital->data_fim,
                     'bolsa' => $request->bolsa,
                     'info_complementares' => $request->info_complementares,
-                    'disciplina_id' => 1,
-                    'orientador_id' => 1,
+                    'termo_compromisso_aluno' => "confia no aluno",
+                    'termo_compromisso_orientador' => "confie no orientador",
+                    'disciplina_id' => $edital->disciplina_id,
                     'edital_id' => $edital->id,
                     'aluno_id' => $aluno->id,
+                    'orientador_id' => $orientador_id,
                 ];
-                $edital->alunos()->syncWithoutDetaching([$aluno->id => $data]);
-                
-                DB::commit();
-                //return redirect()->back()->with('success', 'O aluno foi inscrito com sucesso no edital.');
-                return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
-            }
-        } catch(exception $e){
-            DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
-        }
+                //dd($data);
+                // DB::table('edital_aluno_orientadors')->insert($data)->execute();
+                // dd(DB::getQueryLog());
+                //DB::table('edital_aluno_orientadors')->insert($data);
+                $editalAlunoOrientador = EditalAlunoOrientadors::create($data);
+
+                // Verificar se a operação de inserção foi bem-sucedida
+                // if(DB::statement('SELECT 1 FROM edital_aluno_orientadors LIMIT 1')) {
+                //     dd(DB::getQueryLog());
+
+                // } else {
+                //     // Erro na inserção
+                // }
+
+                //dd($edital->alunos()->syncWithoutDetaching([$aluno->id => $data]));
+                //$edital->alunos()->attach($data);
+
+                //dd($edital);
+        //         DB::commit();
+        //         //return redirect()->back()->with('success', 'O aluno foi inscrito com sucesso no edital.');
+                 return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
+             //}
+        // } catch(exception $e){
+        //     DB::rollback();
+        //     return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
+        // }
     }
 
     /**

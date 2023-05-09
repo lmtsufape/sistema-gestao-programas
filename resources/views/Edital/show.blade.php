@@ -13,6 +13,7 @@
                 <p class="event-city"><ion-icon name="location-outline"></ion-icon>
                     {{$edital->descricao}}
                 </p>
+               
                 <form action="{{  route('edital.aluno', ['id' => $edital->id])  }}" method="POST">
                     @csrf
                     <div class="form-group">
@@ -20,8 +21,14 @@
                         <input type="text" id="cpf" class="form-control" name="cpf" placeholder="cpf do aluno" required>
                     </div>
                     <div class="form-group">
-                        <label for="valor_bolsa">valor da bolsa</label>
-                        <input type="number" id="valor_bolsa" class="form-control" name="valor_bolsa" placeholder="valor da bolsa" required>
+                        <label for="orientador">Orientador:</label>
+                        <select aria-label="Default select example" class="boxinfo" id="orientador" name="orientador">
+                            <option>Selecione um orientador</option>
+                            @foreach ($orientadores as $orientador)
+                                <option value="{{$orientador->id}}">{{$orientador->user->name}}</option>
+                            @endforeach
+                        </select>
+
                     </div>
                     <div class="form-group">
                         <label for="bolsa">tipo da bolsa</label>
