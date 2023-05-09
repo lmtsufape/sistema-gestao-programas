@@ -19,6 +19,6 @@ class Disciplina extends Model
 
     public function disciplina()
     {
-        return $this->belongsTo(Disciplina::class, "disciplina_id");
+        return $this->belongsTo(Edital::class, "edital_id");
     }
 }

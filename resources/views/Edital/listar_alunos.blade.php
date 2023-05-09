@@ -90,9 +90,10 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($alunos as $aluno)
+          @foreach($alunos as $aluno) {
+            $aluno->pivot->nome_aluno; 
+          }
           
-          {{  $aluno->pivot->nome_aluno; }}
 
           <tr>
             <td> </td>
