@@ -89,11 +89,10 @@
           </tr>
         </thead>
         <tbody>
-          
-          @foreach($alunos as $aluno)
-          
+        @foreach($alunos as $aluno)
+
           <tr>
-            <td> {{  $aluno->pivot->nome_aluno }} </td>
+            <td> {{ $aluno->nome_aluno }} </td>
             <td> {{ $aluno->pivot->bolsa }} </td>
             <td> {{ $aluno->pivot->valor_bolsa }} </td>
             <td>
@@ -109,7 +108,7 @@
           @include('Edital.components_alunos.modal_show', ['aluno' => $aluno])
           <!-- Modal delete-->
           @include('Edital.components_alunos.modal_delete', ['aluno' => $aluno])
-          @endforeach
+        @endforeach
         </tbody>
       </table>
     </div>
