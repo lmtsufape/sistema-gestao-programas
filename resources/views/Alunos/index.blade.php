@@ -97,10 +97,8 @@
             <tr>
                 <th scope="col">Nome</th>
                 <th scope="col">Nome Social</th>
-                <th scope="col">E-mail</th>
                 <th scope="col">CPF</th>
                 <th scope="col">Curso</th>
-                <th scope="col">Semestre de entrada</th>
                 <th class="text-center">Ações</th>
             </tr>
           </thead>
@@ -109,10 +107,8 @@
                 <tr>
                   <td class="align-middle">{{$aluno->user->name}}</td>
                   <td class="align-middle">{{$aluno->user->name_social}}</td>
-                  <td class="align-middle">{{$aluno->user->email}}</td>
                   <td class="align-middle">{{$aluno->cpf}}</td>
                   <td class="align-middle">{{$aluno->curso->nome}}</td>
-                  <td class="align-middle">{{$aluno->semestre_entrada}}</td>
                   <td class="align-middle">
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
                             <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">

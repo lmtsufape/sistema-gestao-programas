@@ -11,7 +11,7 @@
         <input type="hidden" name="id" value="{{$aluno->id}}">
         <div class="modal-body">
           <div class="mb-3">
-            <label for="nome_edit" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" margin-bottom:8px;">
+            <label for="nome_edit" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;">
             Nome:</label>
             {{--  <input name="name" type="text" placeholder="Digite o nome" value="{{old('name', $aluno->user->name)}}"
             class="@if(!empty($errors->update->first('name'))) is-invalid @endif"
@@ -25,14 +25,14 @@
             @endif
           </div>
 
-            @if ($aluno->nome_social != null)
-                <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">Nome Social:</label>
-                <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> </div>
-            @endif
+          @if ($aluno->nome_social != null)
+            <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">Nome Social:</label>
+            <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> </div>
+          @endif
 
           <div class="mb-3">
             <label for="email_edit" class="form-label"
-            style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;"">E-mail:</label>
+            style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;">E-mail:</label>
             <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
               {{old('name', $aluno->user->email)}}</div>
             {{--  <input name="email" type="text" placeholder="Digite o email" value="{{old('email', $aluno->user->email)}}"
