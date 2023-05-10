@@ -69,7 +69,7 @@
     <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
       font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
       align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;" href="{{route('edital.show')}}">
+      padding-left: 10px;" href="{{route('edital.show, ['id' =>  ]')}}">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Vincular Aluno
     </a>
     <br>
@@ -90,7 +90,7 @@
           </tr>
         </thead>
         <tbody>
-        @foreach($alunos as $aluno)
+        @foreach($alunos as $aluno) 
 
           <tr>
             <td> {{ $aluno->nome_aluno }} </td>
@@ -104,10 +104,14 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->pivot->aluno_id}}">
                 <img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
               </a>
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$aluno->pivot->aluno_id}}">
+                <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
+              </a>
             </td>
           </tr>
           <!-- Modal show -->
           @include('Edital.components_alunos.modal_show', ['aluno' => $aluno])
+          @include('Edital.components_alunos.modal_documents', ['aluno' => $aluno])
           <!-- Modal delete-->
           @include('Edital.components_alunos.modal_delete', ['aluno' => $aluno])
         @endforeach
@@ -160,6 +164,10 @@
 
   function exibirModalVisualizar(id) {
     $('#modal_show_' + id).modal('show');
+  }
+
+  function exibirModalDocumentos(id) {
+    $('#modal_documents' + id).modal('documents');
   }
 </script>
 
