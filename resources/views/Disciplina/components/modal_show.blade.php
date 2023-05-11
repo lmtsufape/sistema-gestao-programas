@@ -14,7 +14,7 @@
 
             <div class="row mb-3">
               <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;">Curso:</label>
-              <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">curso</div>              
+              <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$disciplina->curso->nome}}</div>              
             </div>
 
             <div class="modal-footer">
