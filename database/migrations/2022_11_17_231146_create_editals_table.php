@@ -15,7 +15,6 @@ class CreateEditalsTable extends Migration
     {
         Schema::create('editals', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
             $table->text('descricao');
             $table->string("semestre");
             $table->date("data_inicio");
