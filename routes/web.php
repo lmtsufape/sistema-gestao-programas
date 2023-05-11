@@ -95,7 +95,7 @@ Route::prefix('programas')->group(function(){
 });
 
 // Rotas de Edital
-Route::get('/vinculo', [EditalController::class, "listar_alunos"])->name('edital.vinculo');
+
     // Route::get('/vinculo/create', [EditalController::class, "cadastrar_alunos"]);
 Route::resource('/edital', EditalController::class);
 
