@@ -19,6 +19,8 @@ class CreateEditalAlunoOrientadorsTable extends Migration
             $table->date('data_inicio');
             $table->date('data_fim');
             $table->string('bolsa');
+            $table->string('plano_projeto');
+            $table->boolean('bolsista');
             $table->text('info_complementares');
             $table->string('termo_compromisso_aluno');
             $table->string('termo_compromisso_orientador');
