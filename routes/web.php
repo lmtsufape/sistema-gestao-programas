@@ -122,6 +122,8 @@ Route::prefix('disciplinas')->group(function() {
     Route::put('/{id}', [DisciplinaController::class, 'update'])->name('disciplinas.update');
     Route::delete('/{id}', [DisciplinaController::class, 'destroy'])->name('disciplinas.delete');
     Route::get('{id}', [DisciplinaController::class, 'show'])->name('disciplinas.show');
+    Route::get('/create_diciplina_curso/{id}', [DisciplinaController::class, 'create_disciplina_curso'])->name('disciplinas_curso.create');
+    
 });
 // Rotas de curso
 Route::resource('/cursos', CursoController::class);

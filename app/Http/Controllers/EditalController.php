@@ -236,9 +236,9 @@ class EditalController extends Controller
         return view("Edital.listar_alunos", compact("alunos"));
         }
 
-    public function listar_disciplinas($id){
-        $disciplinas = Edital::with('disciplinas')->find($id);
+    // public function listar_disciplinas($id){
+    //     $disciplinas = Edital::with('disciplinas')->find($id);
 
-        return view("Edital.listar_disciplinas", compact("disciplinas"));
-    }
+    //     return view("Edital.listar_disciplinas", compact("disciplinas"));
+    // }
 }
