@@ -118,8 +118,6 @@ class EditalController extends Controller
                     'orientador_id' => $orientador_id,
                 ];
                 //dd($data);
-                // DB::table('edital_aluno_orientadors')->insert($data)->execute();
-                // dd(DB::getQueryLog());
                 //DB::table('edital_aluno_orientadors')->insert($data);
                 $editalAlunoOrientador = EditalAlunoOrientadors::create($data);
 
