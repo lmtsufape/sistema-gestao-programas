@@ -25,7 +25,7 @@ class AlunoController extends Controller
             $aluno->nome_aluno = $request->nome_aluno;
 
             if ($aluno->save()){
-                if ( 
+                if (
                     $aluno->user()->create([
                         'name' => $request->nome,
                         'name_social' => $request->nome_social == null ? "-": $request->nome_social,
@@ -33,9 +33,9 @@ class AlunoController extends Controller
                         'password' => Hash::make($request->senha)
                     ])->givePermissionTo('aluno')
                 ){
-                    
+
                     return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
-    
+
                 } else {
                     return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
                 }
@@ -138,6 +138,19 @@ class AlunoController extends Controller
     public function create(){
         $cursos = Curso::all();
         return view("Alunos.cadastro-aluno", compact('cursos'));
+    }
+
+    public function profile(Request $request)
+    {
+        $id = $request->user()->typage_id; // Obtém o ID do usuário autenticado
+        // $user = $request->user(); // Obtém o usuário autenticado
+
+        //dd($user);
+
+        $aluno = Aluno::find($id);
+
+
+        return view('Perfil.meu-perfil-aluno', ['aluno' => $aluno]);
     }
 
 }
