@@ -77,7 +77,7 @@ Route::prefix('orientadors')->group(function() {
 Route::get('/MeusAlunos', [MeusAlunosController::class, "index"]);
 Route::get('/MeusProgramas', [MeusProgramasController::class, "index"]);
 
-// Rotas de programa 
+// Rotas de programa
 Route::resource('/programas', ProgramaController::class);
 
 Route::prefix('programas')->group(function(){
@@ -110,7 +110,7 @@ Route::prefix('edital')->group(function() {
     Route::post('/cadastrar-aluno/{id}', [EditalController::class, 'inscrever_aluno'])->name('edital.aluno');
     Route::get('/{id}/alunos', [EditalController::class, 'listar_alunos'])->name('edital.vinculo');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
-});    
+});
 
 // Rotas de Disciplina
 Route::resource('/disciplinas', DisciplinaController::class);
@@ -150,10 +150,10 @@ Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
 
 //Rota de meu perfil
-Route::get('/meu-perfil', [App\Http\Controllers\MeuPerfilController::class, 'index'])->name('meu-perfil');
+Route::get('/meu-perfil-servidor', [App\Http\Controllers\ServidorController::class, 'profile'])->name('meu-perfil-servidor');
 
 //Rota de meu perfil
-Route::get('/meu-perfil', [App\Http\Controllers\MeuPerfilController::class, 'index'])->name('meu-perfil');
+Route::get('/meu-perfil', [App\Http\Controllers\MeuPerfilController::class, 'profile'])->name('meu-perfil');
 
 //Rota para listar os projetos do aluno
 Route::get('/index_aluno', [MeusProgramasController::class, 'index_aluno']);
