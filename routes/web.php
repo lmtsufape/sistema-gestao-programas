@@ -110,7 +110,6 @@ Route::prefix('edital')->group(function() {
     Route::post('/cadastrar-aluno/{id}', [EditalController::class, 'inscrever_aluno'])->name('edital.aluno');
     Route::get('/{id}/alunos', [EditalController::class, 'listar_alunos'])->name('edital.vinculo');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
-});
     Route::get('/{id}/orientadores', [EditalController::class, 'listar_orientadores'])->name('edital.listar_orientadores');
 });
 
