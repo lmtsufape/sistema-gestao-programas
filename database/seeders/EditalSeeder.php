@@ -15,8 +15,7 @@ class EditalSeeder extends Seeder
     public function run()
     {
         $edital = Edital::create([
-            'nome' => 'Edital PAVI',
-            'descricao' => 'Morte instantanea',
+            'descricao' => 'E ai meu vey',
             'semestre' => '2023.1',
             'programa_id' => 1,
             'disciplina_id' => 1,
