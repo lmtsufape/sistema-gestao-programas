@@ -77,7 +77,7 @@ Route::prefix('orientadors')->group(function() {
 Route::get('/MeusAlunos', [MeusAlunosController::class, "index"]);
 Route::get('/MeusProgramas', [MeusProgramasController::class, "index"]);
 
-// Rotas de programa 
+// Rotas de programa //Organizar rotas em grupos
 Route::resource('/programas', ProgramaController::class);
 
 Route::prefix('programas')->group(function(){

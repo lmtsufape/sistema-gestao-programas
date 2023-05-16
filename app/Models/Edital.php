@@ -15,6 +15,10 @@ class Edital extends Model
         'semestre',
         'data_inicio',
         'data_fim',
+        'titulo_edital',
+        'valor_bolsa',
+        'programa_id',
+        'disciplina_id'
     ];
 
 
