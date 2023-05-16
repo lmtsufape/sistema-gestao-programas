@@ -113,9 +113,10 @@
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
                             <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
                         </a>
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$aluno->id}}">
+
+                        {{--<a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$aluno->id}}">
                             <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
-                        </a>
+                        </a>--}}
 
                         <a href=" {{route('alunos.edit', ['id' => $aluno->id] )}}">
                             <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar aluno" style="height: 30px; width: 30px;">
