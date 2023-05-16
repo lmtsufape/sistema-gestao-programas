@@ -162,4 +162,9 @@ class OrientadorController extends Controller
             return redirect(route("orientadors.index"));
         }
     }
+
+    public function profile($id){
+        $orientador = Orientador::find($id);
+        return view("Perfil.meu-perfil", compact('orientador'));
+    }
 }
