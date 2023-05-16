@@ -77,7 +77,7 @@ Route::prefix('orientadors')->group(function() {
 Route::get('/MeusAlunos', [MeusAlunosController::class, "index"]);
 Route::get('/MeusProgramas', [MeusProgramasController::class, "index"]);
 
-// Rotas de programa 
+// Rotas de programa
 Route::resource('/programas', ProgramaController::class);
 
 Route::prefix('programas')->group(function(){
@@ -110,7 +110,8 @@ Route::prefix('edital')->group(function() {
     Route::post('/cadastrar-aluno/{id}', [EditalController::class, 'inscrever_aluno'])->name('edital.aluno');
     Route::get('/{id}/alunos', [EditalController::class, 'listar_alunos'])->name('edital.vinculo');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
-});    
+    Route::get('/{id}/termo', [EditalController::class, 'download_termo_compromisso_aluno'])->name('termo_aluno.download');
+});
 
 // Rotas de Disciplina
 Route::resource('/disciplinas', DisciplinaController::class);

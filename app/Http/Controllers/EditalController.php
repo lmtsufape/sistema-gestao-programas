@@ -15,6 +15,7 @@ use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
 
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class EditalController extends Controller
 {
@@ -28,7 +29,7 @@ class EditalController extends Controller
         $orientadors = Orientador::all();
 
         $editais = Edital::all();
-        
+
         return view("Edital.index", compact("editais", "orientadors"));
     }
 
@@ -40,7 +41,7 @@ class EditalController extends Controller
     public function create()
     {
         $programas = Programa::all();
-        
+
         $disciplinas = Disciplina::all();
         return view("Edital.cadastrar", compact("programas", "disciplinas"));
     }
@@ -49,7 +50,7 @@ class EditalController extends Controller
     {
         DB::beginTransaction();
         try {
-            
+
             //dd($request);
             $edital = new Edital();
             $edital->nome = $request->nome;
@@ -92,31 +93,42 @@ class EditalController extends Controller
 
     public function inscrever_aluno(Request $request, $id) {
 
-        DB::beginTransaction();
-        try {
-            //dd($request);
+        //DB::beginTransaction();
+        //try {
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
-            $orientador_id = (int)$request->orientador; 
+            $orientador_id = (int)$request->orientador;
 
-            // dd($edital);
-            if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
-                return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
-            } else {
-                //dd($aluno);
+            $request->validate([
+                'termo_compromisso_aluno' => 'required|mimes:pdf|max:2048',
+            ]);
+            $fileName = "";
+            //dd($request);
+
+            if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()) {
+                $fileName =  $aluno->id . "_" . now() . '.' . $request->termo_compromisso_aluno->extension();
+                //dd($extensao);
+                $request->termo_compromisso_aluno->storeAs('termo_compromisso_alunos/', $fileName);
+            }
+
+            //dd($fileName);
+
+            // if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
+            //     return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
+            // } else {
                 $data = [
                     'titulo' => $edital->nome,
                     'data_inicio' => $edital->data_inicio,
                     'data_fim' => $edital->data_fim,
                     'bolsa' => $request->bolsa,
                     'info_complementares' => $request->info_complementares,
-                    'termo_compromisso_aluno' => "confia no aluno",
                     'termo_compromisso_orientador' => "confie no orientador",
                     'disciplina_id' => $edital->disciplina_id,
                     'edital_id' => $edital->id,
                     'aluno_id' => $aluno->id,
                     'orientador_id' => $orientador_id,
                 ];
+                $data['termo_compromisso_aluno'] = $fileName;
                 //dd($data);
                 //DB::table('edital_aluno_orientadors')->insert($data);
                 $editalAlunoOrientador = EditalAlunoOrientadors::create($data);
@@ -128,11 +140,11 @@ class EditalController extends Controller
                 DB::commit();
         //         //return redirect()->back()->with('success', 'O aluno foi inscrito com sucesso no edital.');
                  return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
-            }
-        } catch(exception $e){
+           // }
+       // } catch(exception $e){
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
-        }
+        //}
     }
 
     /**
@@ -141,12 +153,14 @@ class EditalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function edit($id)
     {
         $edital = Edital::Where('id', $id)->first();
         $programas = Programa::all();
         $disciplinas = Disciplina::all();
-        
+
         return view("Edital.editar", compact("edital", "programas", "disciplinas"));
     }
 
@@ -158,7 +172,7 @@ class EditalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(EditalUpdateFormRequest $request, $id)
-    {   
+    {
         DB::beginTransaction();
         try{
             $edital = Edital::find($id);
@@ -204,15 +218,15 @@ class EditalController extends Controller
             /*$referer = request()->headers->get('referer');
             //dd($referer);
             //o método strpos para verificar se a string /programas/ está presente no cabeçalho Referer.
-            if(strpos($referer, '/programas/editais') !== false)
-            {
-                return redirect('/programas/editais')->with('Edital deletado com sucesso');
-            }
-            else 
-            {
-                return redirect()->route('edital.index')
-                ->with('sucesso', 'Edital deletado com sucesso.');
-            }*/
+            // if(strpos($referer, '/programas/editais') !== false)
+            // {
+            //     return redirect('/programas/editais')->with('Edital deletado com sucesso');
+            // }
+            // else
+            // {
+            //     return redirect()->route('edital.index')
+            //     ->with('sucesso', 'Edital deletado com sucesso.');
+            // }*/
 
             return redirect()->route('edital.index')->with('sucesso', 'Edital deletado com sucesso.');
 
@@ -239,5 +253,13 @@ class EditalController extends Controller
         $disciplinas = Edital::with('disciplinas')->find($id);
 
         return view("Edital.listar_disciplinas", compact("disciplinas"));
+    }
+
+    public function download_termo_compromisso_aluno($aluno_id) {
+
+        $editalAlunoOrientador = EditalAlunoOrientadors::find($aluno_id);
+        dd($$editalAlunoOrientador->termo_compromisso_aluno);
+
+        return Storage::download('termo_compromisso_aluno/' . $editalAlunoOrientador->termo_compromisso_aluno);
     }
 }

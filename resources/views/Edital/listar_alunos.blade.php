@@ -64,7 +64,6 @@
 
     </form>
   </div>
-  
  {{-- <div style="display: contents; align-content: center; align-items: center;">
     <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
       font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
@@ -76,6 +75,7 @@
     <br>
   </div>
  --}}
+
   <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">
       <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
@@ -90,7 +90,7 @@
           </tr>
         </thead>
         <tbody>
-        @foreach($alunos as $aluno) 
+        @foreach($alunos as $aluno)
 
           <tr>
             <td> {{ $aluno->nome_aluno }} </td>
@@ -107,6 +107,7 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$aluno->pivot->aluno_id}}">
                 <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
               </a>
+              <<a href="{{ route('termo_aluno.download', [$aluno->id]) }}">Baixar PDF</a>
             </td>
           </tr>
           <!-- Modal show -->
@@ -126,7 +127,6 @@
         <br>
         <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
       </div>
-
       <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
           <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
