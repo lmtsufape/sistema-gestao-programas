@@ -82,7 +82,7 @@
         ;margin-bottom: 5px; min-height: 50px">
         <thead>
           <tr>
-            <th scope="col">Nome</th>
+            <th scope="col"><i class="mdi mdi-note-multiple:"></i></th>
             <th scope="col">Data de início</th>
             <th scope="col">Data de fim</th>
             <th scope="col">Programa</th>
@@ -92,7 +92,7 @@
         <tbody>
           @foreach ($editais as $edital)
           <tr>
-            <td style="border-right: 1px solid #d3d3d3;">{{ $edital->nome}}</td>
+            <td style="border-right: 1px solid #d3d3d3;">{{ $edital->titulo_edital}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>

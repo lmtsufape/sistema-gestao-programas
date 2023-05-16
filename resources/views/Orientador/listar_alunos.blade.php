@@ -101,7 +101,7 @@
                   <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
                 </a>
                 <!-- <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_">
-                  <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
+                  <img src="{{asset("images/delete.png")}}" alt="Editais" style="height: 30px; width: 30px;">
                 </a> -->
               </td>
             </tr>
