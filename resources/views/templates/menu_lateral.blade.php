@@ -150,13 +150,13 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
             line-height: 16px; padding-left: 5px; padding-top: 4px">Meu perfil</p>
         </a>
         <hr>
-        <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
+        {{--<a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
             <img src="{{asset("images/iconsbarralateral/certificadobl.png")}}" alt="certificados" style="height:24px; width:24px;">
             <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
             padding-top: 4px">Meus certificados</p>
         </a>
-        <hr>
-        <h6 style="font-style: normal; font-weight: 700; font-size: 16px; line-height: 19px;">Documentos</h6>
+        <hr>--}}
+        <!-- <h6 style="font-style: normal; font-weight: 700; font-size: 16px; line-height: 19px;">Documentos</h6> -->
         <a href="{{route('home')}}" style="display: flex; color: #000; text-decoration: none;">
             <img src="{{asset("images/iconsbarralateral/listardocbl.png")}}" alt="listardoc" style="height:24px; width:24px;">
             <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;

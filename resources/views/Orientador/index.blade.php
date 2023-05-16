@@ -107,10 +107,10 @@
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$orientador->id}}">
                                 <img src="{{asset("images/info.png")}}" alt="Info orientador" style="height: 30px; width: 30px;">
                                 </a>
-                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$orientador->id}}">
+                               {{--  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$orientador->id}}">
                                 <img src="{{asset("images/document.png")}}" alt="Documento orientador"  style="height: 30px; width: 30px;">
-                                {{--  TODO: Fica pra fazer o modal depois  --}}
-                                </a>
+                                   
+                                </a>--}}
                                 <a href=" {{route('orientadors.edit', ['id' => $orientador->id] )}}">
                                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar orientador"  style="height: 30px; width: 30px;">
                                 </a>

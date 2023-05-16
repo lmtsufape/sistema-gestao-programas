@@ -4,19 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Programa;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProgramaStoreFormRequest;
 use App\Http\Requests\ProgramaUpdateFormRequest;
 use App\Models\Servidor;
 use App\Models\Programa_servidor;
 use App\Models\Edital;
-use App\Models\Frequencia_mensal;
-use App\Http\Requests\EditalStoreFormRequest;
-use App\Http\Requests\EditalUpdateFormRequest;
 use App\Models\Orientador;
 use App\Models\Disciplina;
-
 use App\Http\Controllers\EditalController;
 
 
@@ -165,11 +160,12 @@ class ProgramaController extends Controller
         }
     }
 
-    public function delete($id)
-    {
-        $programa = Programa::findOrFail($id);
-        return view('programas.delete');
-    }
+    // public function delete($id)
+    // {
+    //     $programa = Programa::findOrFail($id);
+        
+    //     return view('programas.delete');
+    // }
 
     public function destroy(Request $request)
     {
@@ -228,29 +224,28 @@ class ProgramaController extends Controller
 
     public function deletar_edital($id)
     {
-        dd($id);
-        Edital::where("id", $id)->delete();
-        return redirect()->route('programas.index')->with('sucesso', 'Edital deletado com sucesso.');
-        //$programa_id = 1;
+        // $edital->EditalController->destroy($id);
+        // // return redirect()->route('programas.index')->with('sucesso', 'Edital deletado com sucesso.');
+        // //$programa_id = 1;
 
-        //$edital_controller = EditalController->destroy($edital_id);
+        // $edital = EditalController->destroy($id);
 
-        // return redirect('/programas/editais')->with('Edital deletado com sucesso');
+        // return redirect()->route('programas.index')->with('sucesso', 'Edital deletado com sucesso.');
 
-        // DB::beginTransaction();
-        // try{
-        //     $edital = Edital::find($edital_id);
+        DB::beginTransaction();
+        try{
+            $edital = Edital::find($id);
 
-        //     Edital::where("id", $edital_id)->delete();
+            Edital::where("id", $id)->delete();
 
-        //     DB::commit();
+            DB::commit();
 
-        //     return redirect("programas/$id/editals")->with('sucesso', 'Edital deletado com sucesso.');
+            return redirect("programas.index")->with('sucesso', 'Edital deletado com sucesso.');
 
-        // } catch(exception $e){
-        //     DB::rollback();
-        //     return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
-        // }
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
+        }
     }
 
     public function criar_edital($id)
