@@ -72,10 +72,9 @@
       padding-left: 10px;" href="{{route('edital.show, ['id' =>  ]')}}">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Vincular Aluno
     </a>
-    <br>
-    <br>
   </div>
  --}}
+ <br><br>
   <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">
       <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
@@ -100,6 +99,9 @@
             <td>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$aluno->pivot->aluno_id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
+              </a>
+              <a type="button" href="">
+                <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->pivot->aluno_id}}">
                 <img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
