@@ -53,7 +53,6 @@ class EditalController extends Controller
 
             //dd($request);
             $edital = new Edital();
-            $edital->nome = $request->nome;
             $edital->descricao = $request->descricao;
             $edital->semestre = $request->semestre;
             $edital->data_inicio = $request->data_inicio;
@@ -177,7 +176,7 @@ class EditalController extends Controller
         try{
             $edital = Edital::find($id);
 
-            $edital->nome = $request->nome ? $request->nome : $edital->nome;
+
             $edital->descricao = $request->descricao ? $request->descricao : $edital->descricao;
             $edital->semestre = $request->semestre ? $request->semestre : $edital->semestre;
             $edital->titulo_edital = $request->titulo_edital ? $request->titulo_edital : $edital->titulo_edital;
@@ -228,7 +227,7 @@ class EditalController extends Controller
             //     ->with('sucesso', 'Edital deletado com sucesso.');
             // }*/
 
-            return redirect()->route('edital.index')->with('sucesso', 'Edital deletado com sucesso.');
+            return redirect()->route('programas.index')->with('sucesso', 'Edital deletado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();
@@ -254,7 +253,6 @@ class EditalController extends Controller
 
         return view("Edital.listar_disciplinas", compact("disciplinas"));
     }
-
     public function download_termo_compromisso_aluno($aluno_id) {
 
         $editalAlunoOrientador = EditalAlunoOrientadors::find($aluno_id);
@@ -263,3 +261,4 @@ class EditalController extends Controller
         return Storage::download('termo_compromisso_aluno/' . $editalAlunoOrientador->termo_compromisso_aluno);
     }
 }
+

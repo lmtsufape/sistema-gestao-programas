@@ -102,7 +102,7 @@
                                 <option value="{{$disciplina->id}}" {{$edital->disciplina_id == $disciplina->id ? 'selected' : ''}}>{{$disciplina->nome}}</option>
                             @endforeach
                         </select><br><br>
-
+                        
                         <label class="titulo" for="programa">Programa:</label>
                         <select aria-label="Default select example" class="boxinfo" name="programa" id="programa">
                             <option value=""></option>
@@ -111,7 +111,6 @@
                             @endforeach
                         </select><br><br>
 
-                        
 
                         <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                             <input type="button" value="Voltar" href="{{ route('edital.index') }}" onclick="window.location.href='{{ route("edital.index") }}'" style="background: #2D3875;
