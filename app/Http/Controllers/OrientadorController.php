@@ -163,8 +163,17 @@ class OrientadorController extends Controller
         }
     }
 
-    public function profile($id){
+    public function profile(Request $request)
+    {
+        $id = $request->user()->typage_id; // Obtém o ID do usuário autenticado
+       // $user = $request->user(); // Obtém o usuário autenticado
+
+        //dd($user);
+
         $orientador = Orientador::find($id);
-        return view("Perfil.meu-perfil", compact('orientador'));
+
+        // dd($orientador);
+
+        return view('Perfil.meu-perfil-orientador', ['orientador' => $orientador]);
     }
 }

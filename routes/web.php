@@ -149,14 +149,19 @@ Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
 
+
+//---------------------------------------------PERFIL------------------------------------------------------------
+//
 //Rota de meu perfil servidor
 Route::get('/meu-perfil-servidor', [App\Http\Controllers\ServidorController::class, 'profile'])->name('meu-perfil-servidor');
-
 //Rota de meu perfil aluno
 Route::get('/meu-perfil-aluno', [App\Http\Controllers\AlunoController::class, 'profile'])->name('meu-perfil-aluno');
-
 //Rota de meu perfil orientador
 Route::get('/meu-perfil-orientador', [App\Http\Controllers\OrientadorController::class, 'profile'])->name('meu-perfil-orientador');
+//
+//--------------------------------------------------------------------------------------------------------------
+
+
 
 //Rota para listar os projetos do aluno
 Route::get('/index_aluno', [MeusProgramasController::class, 'index_aluno']);
