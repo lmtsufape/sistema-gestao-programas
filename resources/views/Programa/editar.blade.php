@@ -81,14 +81,13 @@
                 <label for="descricao" class="titulo">Descricao:</label>
                 <input class="boxinfo" type="text" name="descricao" id="descricao" value="{{$programa->descricao}}"><br><br>
 
-                <label for="servidores" class="titulo">Servidores:</label>
-                <select name="servidors[]" id="servidors" multiple>
-                    <option value=""></option>
-                    @foreach ($servidors as $servidor)
-                        <option value="{{$servidor->id}}" {{in_array($servidor->id, $idsservidorsDoPrograma) ? 'selected' : ''}}
-                        style="color: black; border-radius: 5px;"> {{$servidor->user->name}} </option>
-                    @endforeach
-                </select>
+                <label class="titulo" for="servidor">Servidor:</label>
+                    <select aria-label="Default select example" class="boxinfo" name="servidor" id="servidor" >
+                        <option value=""></option>
+                            @foreach ($servidors as $servidor)
+                                <option value="{{$servidor->id}}" style="color: black; border-radius: 5px;">{{$servidor->user->name}}</option>
+                            @endforeach
+                    </select><br><br
 
                 <br><br>
 

@@ -80,13 +80,13 @@
                 <label for="descricao" class="titulo">Descricao:</label>
                 <input type="text" name="descricao" id="descricao" placeholder="Digite a descrição do programa" class="boxinfo"><br><br>
 
-                <label for="servidores" class="titulo">Servidores:</label>
-                <select name="servidores[]" id="servidores" style="width: 100%;" multiple>
-                    <option value=""></option>
-                    @foreach ($servidors as $servidor)
-                        <option value="{{$servidor->id}}" style="color: black; border-radius: 5px;">{{$servidor->user->name}}</option>
-                    @endforeach
-                </select><br><br>
+                <label class="titulo" for="servidor">Servidor:</label>
+                    <select aria-label="Default select example" class="boxinfo" name="servidor" id="servidor" >
+                        <option value=""></option>
+                            @foreach ($servidors as $servidor)
+                                <option value="{{$servidor->id}}" style="color: black; border-radius: 5px;">{{$servidor->user->name}}</option>
+                            @endforeach
+                    </select><br><br
                 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                     <input type="button" value="Voltar" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'" style="background: #2D3875;
