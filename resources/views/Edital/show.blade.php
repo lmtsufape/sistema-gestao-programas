@@ -73,7 +73,7 @@
     <div class="boxchild">
         <div class="row" style="display: flex; align-items: center;">
             <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; color: #2D3875;">
-                Vincular Aluno a {{$edital->nome}}</h1>
+                Vincular Aluno a {{$edital->titulo_edital}}</h1>
             <p style="font-weight: 400; font-size: 20px; color:gray;">{{$edital->descricao}}</p>
             <hr>
             <br>
@@ -85,16 +85,12 @@
             <input type="text" id="cpf" class="boxinfo" name="cpf" placeholder="cpf do aluno" required>
             <br>
             <br>
-            <label class="titulo" for="valor_bolsa">Valor da bolsa</label>
-            <input type="number" id="valor_bolsa" class="boxinfo" name="valor_bolsa" placeholder="valor da bolsa" required>
-            <br>
-            <br>
             <label class="titulo" for="bolsa">Tipo da bolsa</label>
             <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" required>
             <br>
             <br>
             <label class="titulo" for="orientador">Orientador:</label>
-            <select aria-label="Default select example" class="boxinfo" id="orientador" name="orientador">
+            <select aria-label="Default select example" class="boxinfo" id="orientador" name="orientador" required>
                 <option>Selecione um orientador</option>
                 @foreach ($orientadores as $orientador)
                     <option value="{{$orientador->id}}">{{$orientador->user->name}}</option>
@@ -106,11 +102,10 @@
             <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="informações complementares" required>
             <br>
             <br>
-            <br>
             <label class="titulo" for="termo_compromisso_aluno">termo_compromisso_aluno</label>
             <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno" required>
             <br>
-
+            <br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;
