@@ -62,10 +62,10 @@ class ServidorController extends Controller {
                $permission = "adm";
                 break;
             case 1:
-                $permission = "servidor";
+                $permission = "pro_reitor";
                 break;
             case 2:
-                $permission = "pro_reitor";
+                $permission = "servidor";
                 break;
         };
 
@@ -94,15 +94,29 @@ class ServidorController extends Controller {
     public function edit($id)
     {
         $servidor = Servidor::find($id);
-        $tipo_servidors = User::where('typage_id', Auth::user()->typage_id)->get();
-        return view("servidores.editar", compact('servidor', 'tipo_servidors'));
+        $servidores = Servidor::all();
+        
+        #$tipo_servidors = User::where('typage_id', Auth::user()->typage_id)->get();
+        return view("servidores.editar", compact('servidor', 'servidores'));
     }
 
     public function update(ServidorFormUpdateRequest $request, $id)
     {
         $servidor = Servidor::find($id);
 
+        switch($request->input('tipo_servidor')){
+            case 0:
+               $permission = "adm";
+                break;
+            case 1:
+                $permission = "pro_reitor";
+                break;
+            case 2:
+                $permission = "servidor";
+                break;
+        };
         $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
+        $servidor->tipo_servidor = $permission == $servidor->tipo_servidor ? $servidor->tipo_servidor : $permission;
 
         $servidor->user->name = $request->nome;
         $servidor->user->email = $request->email;
