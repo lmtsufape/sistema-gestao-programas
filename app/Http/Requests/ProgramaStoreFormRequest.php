@@ -25,7 +25,7 @@ class ProgramaStoreFormRequest extends FormRequest
         {
             return [
                 "nome"=>"required|max:25",
-                "servidors"=>"required"
+                "servidor"=>"required"
             ];
         }
 

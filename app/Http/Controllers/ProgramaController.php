@@ -13,6 +13,7 @@ use App\Models\Edital;
 use App\Models\Orientador;
 use App\Models\Disciplina;
 use App\Http\Controllers\EditalController;
+use Exception;
 
 
 class ProgramaController extends Controller
@@ -72,13 +73,12 @@ class ProgramaController extends Controller
             $programa = new Programa();
             $programa->nome = $request->nome;
             $programa->descricao = $request->descricao;
-            $programa->valor_bolsa = $request->valor_bolsa;
             $programa->save();
 
-            foreach($request->servidors as $id_servidor){
+            if ($request->servidor){
                 $programa_servidor = new Programa_servidor();
                 $programa_servidor->programa_id = $programa->id;
-                $programa_servidor->id_servidor = $id_servidor;
+                $programa_servidor->servidor_id = $request->servidor;
                 $programa_servidor->save();
             }
 
@@ -130,24 +130,19 @@ class ProgramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProgramaUpdateFormRequest $request, $id)
-    {
+    {   
         DB::beginTransaction();
         try{
             $programa = Programa::find($id);
             $programa->nome = $request->nome ? $request->nome : $programa->nome;
             $programa->descricao = $request->descricao ? $request->descricao : $programa->descricao;
-            $programa->valor_bolsa = $request->valor_bolsa ? $request->valor_bolsa : $programa->valor_bolsa;
             $programa->update();
 
-            Programa_servidor::where("programa_id", $programa->id)->delete();
-
-            if ($request->servidors){
-                foreach($request->servidors as $id_servidor){
-                    $programa_servidor = new Programa_servidor();
+            if ($request->servidor){
+                    $programa_servidor = Programa_servidor::where("programa_id", $programa->id)->first();
                     $programa_servidor->programa_id = $programa->id;
-                    $programa_servidor->id_servidor = $id_servidor;
-                    $programa_servidor->save();
-                }
+                    $programa_servidor->servidor_id = $request->servidor;
+                    $programa_servidor->update();
             }
 
             DB::commit();
@@ -156,7 +151,7 @@ class ProgramaController extends Controller
 
         } catch(exception $e){
             DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao editar Programa. tente novamente mais tarde." );
+            return redirect()->back()->withErrors( "Falha ao editar Programa. Tente novamente mais tarde." );
         }
     }
 
