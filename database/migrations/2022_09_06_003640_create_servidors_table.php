@@ -14,6 +14,7 @@ class CreateservidorsTable extends Migration
     public function up()
     {
         Schema::create('servidors', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string("cpf", 14)->unique()->nullable(false);
             $table->enum("tipo_servidor", ['adm', 'pro_reitor', 'servidor'])->nullable(false);          

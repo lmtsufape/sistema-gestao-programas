@@ -14,6 +14,7 @@ class CreateDisciplinasTable extends Migration
     public function up()
     {
         Schema::create('disciplinas', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('nome')->nullable(false);
             $table->foreignId('curso_id')->nullable(false)->constrained('cursos');

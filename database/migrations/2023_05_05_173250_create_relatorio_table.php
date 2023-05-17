@@ -14,6 +14,7 @@ class CreateRelatorioTable extends Migration
     public function up()
     {
         Schema::create('relatorios', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->enum('status',['pendente','enviado', 'avaliado','aprovado','reprovado', 'arquivado'])->default('pendente')->nullable();
             $table->string('observacao');

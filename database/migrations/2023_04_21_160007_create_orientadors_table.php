@@ -14,6 +14,7 @@ class CreateorientadorsTable extends Migration
     public function up()
     {
         Schema::create('orientadors', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('cpf', 14)->unique()->nullable(false);
             $table->string('matricula')->nullable(false);

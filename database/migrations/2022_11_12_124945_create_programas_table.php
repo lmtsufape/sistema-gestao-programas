@@ -14,6 +14,7 @@ class CreateProgramasTable extends Migration
     public function up()
     {
         Schema::create('programas', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('nome')->nullable(false);
             $table->text('descricao');

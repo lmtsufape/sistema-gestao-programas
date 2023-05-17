@@ -14,6 +14,7 @@ class CreateEditalsTable extends Migration
     public function up()
     {
         Schema::create('editals', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->text('descricao');
             $table->string("semestre");
