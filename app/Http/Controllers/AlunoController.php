@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class AlunoController extends Controller
 {
@@ -47,15 +48,16 @@ class AlunoController extends Controller
 
     public function update(AlunoUpdateFormRequest $request, $id)
     {
+        #dd($request);
         $aluno = Aluno::find($id);
-
+        
         $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
         $aluno->semestre_entrada = $request->semestre_entrada;
         $aluno->curso_id = $request->curso;
         $aluno->nome_aluno = $request->nome_aluno;
 
 
-        $aluno->user->name = $request->nome;
+        $aluno->user->name = $request->nome_aluno;
         $aluno->user->email = $request->email;
         if ($request->senha && $request->senha != null){
             if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
