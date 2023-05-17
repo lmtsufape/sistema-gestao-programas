@@ -22,6 +22,27 @@
             {{$programa->descricao}}
           </div>
 
+          <label for="nome_edit" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">
+            Servidor:</label>
+
+          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
+            @foreach ($programa_servidor as $programa_servidor)
+              @if($programa_servidor->programa_id == $programa->id)
+                @foreach ($servidors as $servidor)
+                  @if($servidor->id == $programa_servidor->servidor_id)
+
+                    {{$servidor->tipo_servidor}}
+                    {{-- @foreach ($users as $user)
+                      @if($user->typeage_id == $servidor->user_id && $user->typeage_type == 'App\Models\Servidor')
+                        {{$user->name}}
+                      @endif
+                    @endforeach --}}
+                  @endif
+                @endforeach
+              @endif
+            @endforeach
+          </div>
+
           @if(!empty($errors->update->first('name')))
           <span class="invalid-feedback d-block">
             <strong> {{$errors->update->first('name')}} </strong>

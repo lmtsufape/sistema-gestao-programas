@@ -12,6 +12,7 @@ use App\Models\Programa_servidor;
 use App\Models\Edital;
 use App\Models\Orientador;
 use App\Models\Disciplina;
+use App\Models\User;
 use App\Http\Controllers\EditalController;
 use Exception;
 
@@ -24,6 +25,10 @@ class ProgramaController extends Controller
      */
     public function index(Request $request)
     {
+        $programa_servidor = Programa_servidor::all();
+        $servidors = Servidor::all();
+        $users = User::all();
+
         if (sizeof($request-> query()) > 0){
             $campo = $request->query('campo');
             $valor = $request->query('valor');
@@ -40,10 +45,10 @@ class ProgramaController extends Controller
             })->orderBy('programas.created_at', 'desc')->select("programas.*")->get();
 
 
-            return view("Programa.index", compact("programas"));
+        return view("Programa.index", compact("programas", "programa_servidor", "servidors", "users"));
         } else {
             $programas = Programa::all();
-            return view("Programa.index", compact("programas"));
+            return view("Programa.index", compact("programas", "programa_servidor", "servidors", "users"));
         }
     }
 
