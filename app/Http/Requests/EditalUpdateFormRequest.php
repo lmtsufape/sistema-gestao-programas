@@ -24,10 +24,14 @@ class EditalUpdateFormRequest extends FormRequest
     public function rules()
         {
             return [
-                "data_inicio"=>"date",
-                "data_fim"=>"date",
-                "programa"=>"numeric",
-                'disciplina'=>'array'
+                "data_inicio"=>"required|date",
+                "data_fim"=>"required|date",
+                "programa"=>"required",
+                "disciplina"=>"required",
+                "titulo_edital"=>"required",
+                "valor_bolsa"=>"required|numeric",
+                "semestre"=>"required",
+                "descricao"=>"required",
             ];
         }
 
@@ -35,7 +39,8 @@ class EditalUpdateFormRequest extends FormRequest
     public function messages(){
         return [
             "date" => "O campo :atribute deve ser um date.",
-            "numeric" => "O campo :atribute deve ser um número."
+            "numeric" => "O campo :atribute deve ser um número.",
+            "required" => "O campo :attribute é obrigatório."
         ];
     }
 }

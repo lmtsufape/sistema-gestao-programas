@@ -11,9 +11,6 @@
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Título:</label>
           <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$edital->titulo_edital}} </div>
-            
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Nome:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$edital->nome}} </div>
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Semestre:</label>
           <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$edital->semestre}} </div>
@@ -35,6 +32,15 @@
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Disciplina:</label>
           <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$edital->disciplina->nome}}</div>
+          
+          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Alunos:</label> 
+          <div style=" display:flex; flex-wrap:wrap; justify-content:center; align-items:center;">
+            <a class="link" alt="Listar alunos" href="{{  route('edital.vinculo', ['id' => $edital->id]) }}" style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3;width: 100%; display:flex; flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:center; padding:5px; margin:2px;">
+              <img src="{{asset("images/bx_user.png")}}" >
+              Listar alunos
+            </a> 
+          </div> 
+           
         </div>
         <div class="modal-footer">
           <button type="button" style="background: #34A853; border: #34A853;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

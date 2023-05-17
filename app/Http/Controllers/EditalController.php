@@ -28,7 +28,7 @@ class EditalController extends Controller
         $orientadors = Orientador::all();
 
         $editais = Edital::all();
-        
+
         return view("Edital.index", compact("editais", "orientadors"));
     }
 
@@ -52,7 +52,6 @@ class EditalController extends Controller
             
             //dd($request);
             $edital = new Edital();
-            $edital->nome = $request->nome;
             $edital->descricao = $request->descricao;
             $edital->semestre = $request->semestre;
             $edital->data_inicio = $request->data_inicio;
@@ -164,7 +163,7 @@ class EditalController extends Controller
         try{
             $edital = Edital::find($id);
 
-            $edital->nome = $request->nome ? $request->nome : $edital->nome;
+            
             $edital->descricao = $request->descricao ? $request->descricao : $edital->descricao;
             $edital->semestre = $request->semestre ? $request->semestre : $edital->semestre;
             $edital->titulo_edital = $request->titulo_edital ? $request->titulo_edital : $edital->titulo_edital;
@@ -215,7 +214,7 @@ class EditalController extends Controller
                 ->with('sucesso', 'Edital deletado com sucesso.');
             }*/
 
-            return redirect()->route('edital.index')->with('sucesso', 'Edital deletado com sucesso.');
+            return redirect()->route('programas.index')->with('sucesso', 'Edital deletado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();

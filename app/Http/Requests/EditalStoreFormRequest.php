@@ -26,8 +26,12 @@ class EditalStoreFormRequest extends FormRequest
             return [
                 "data_inicio"=>"required|date",
                 "data_fim"=>"required|date",
-                "programa"=>"required|numeric",
-                'disciplinas'=>'array'
+                "programa"=>"required",
+                "disciplina"=>"required",
+                "titulo_edital"=>"required",
+                "valor_bolsa"=>"required|numeric",
+                "semestre"=>"required",
+                "descricao"=>"required",
             ];
         }
 

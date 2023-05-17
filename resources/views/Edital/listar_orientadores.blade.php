@@ -38,7 +38,7 @@
   <br>
 
   <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1 style="color:#2D3875;"><strong>Alunos Vinculados</strong></h1>
+    <h1 style="color:#2D3875;"><strong>Orientadores Vinculados</strong></h1>
     <div style="margin: auto"></div>
     <form action="" method="GET">
       <input class="text-center p-3" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
@@ -65,16 +65,6 @@
     </form>
   </div>
   
- {{-- <div style="display: contents; align-content: center; align-items: center;">
-    <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
-      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;" href="{{route('edital.show, ['id' =>  ]')}}">
-      <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Vincular Aluno
-    </a>
-  </div>
- --}}
- <br><br>
   <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">
       <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
@@ -82,20 +72,18 @@
         <thead>
           <tr>
             <th scope="col">Nome</th>
-            <th scope="col">Bolsa</th>
             <th scope="col">Data de Início</th>
             <th scope="col">Data de Fim</th>
             <th class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
-        @foreach($alunos as $aluno) 
+        @foreach($orientadors as $orientador) 
 
           <tr>
-            <td> {{ $aluno->nome_aluno }} </td>
-            <td> {{ $aluno->pivot->bolsa }} </td>
-            <td> {{ $aluno->pivot->data_inicio }} </td>
-            <td> {{ $aluno->pivot->data_fim }} </td>
+            <td> {{ $orientador->nome_orientador}} </td>
+            <td> {{ $orientador->pivot->data_inicio }} </td>
+            <td> {{ $orientador->pivot->data_fim }} </td>
             <td>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$aluno->pivot->aluno_id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
@@ -111,11 +99,7 @@
               </a>
             </td>
           </tr>
-          <!-- Modal show -->
-          @include('Edital.components_alunos.modal_show', ['aluno' => $aluno])
-          @include('Edital.components_alunos.modal_documents', ['aluno' => $aluno])
-          <!-- Modal delete-->
-          @include('Edital.components_alunos.modal_delete', ['aluno' => $aluno])
+          
         @endforeach
         </tbody>
       </table>
