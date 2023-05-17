@@ -50,15 +50,15 @@ class AlunoController extends Controller
     {
         #dd($request);
         $aluno = Aluno::find($id);
-        
+        #dd($request);
         $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
         $aluno->semestre_entrada = $request->semestre_entrada;
         $aluno->curso_id = $request->curso;
-        $aluno->nome_aluno = $request->nome_aluno;
+        $aluno->nome_aluno = $request->nome;
 
-
-        $aluno->user->name = $request->nome_aluno;
+        $aluno->user->name = $request->nome;
         $aluno->user->email = $request->email;
+        $aluno->user->name_social = $request->nome_social;                
         if ($request->senha && $request->senha != null){
             if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
                 $aluno->user->password = Hash::make($request->password);
