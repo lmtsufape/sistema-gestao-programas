@@ -111,6 +111,7 @@ Route::prefix('edital')->group(function() {
     Route::get('/{id}/alunos', [EditalController::class, 'listar_alunos'])->name('edital.vinculo');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
     Route::get('/{id}/termo', [EditalController::class, 'download_termo_compromisso_aluno'])->name('termo_aluno.download');
+    Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
     Route::get('/{id}/orientadores', [EditalController::class, 'listar_orientadores'])->name('edital.listar_orientadores');
 });
 
@@ -125,6 +126,8 @@ Route::prefix('disciplinas')->group(function() {
     Route::put('/{id}', [DisciplinaController::class, 'update'])->name('disciplinas.update');
     Route::delete('/{id}', [DisciplinaController::class, 'destroy'])->name('disciplinas.delete');
     Route::get('{id}', [DisciplinaController::class, 'show'])->name('disciplinas.show');
+    Route::get('/create_diciplina_curso/{id}', [DisciplinaController::class, 'create_disciplina_curso'])->name('disciplinas_curso.create');
+
 });
 // Rotas de curso
 Route::resource('/cursos', CursoController::class);
@@ -151,11 +154,19 @@ Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
 
-//Rota de meu perfil
-Route::get('/meu-perfil', [App\Http\Controllers\MeuPerfilController::class, 'index'])->name('meu-perfil');
 
-//Rota de meu perfil
-Route::get('/meu-perfil', [App\Http\Controllers\MeuPerfilController::class, 'index'])->name('meu-perfil');
+//---------------------------------------------PERFIL------------------------------------------------------------
+//
+//Rota de meu perfil servidor
+Route::get('/meu-perfil-servidor', [App\Http\Controllers\ServidorController::class, 'profile'])->name('meu-perfil-servidor');
+//Rota de meu perfil aluno
+Route::get('/meu-perfil-aluno', [App\Http\Controllers\AlunoController::class, 'profile'])->name('meu-perfil-aluno');
+//Rota de meu perfil orientador
+Route::get('/meu-perfil-orientador', [App\Http\Controllers\OrientadorController::class, 'profile'])->name('meu-perfil-orientador');
+//
+//--------------------------------------------------------------------------------------------------------------
+
+
 
 //Rota para listar os projetos do aluno
 Route::get('/index_aluno', [MeusProgramasController::class, 'index_aluno']);

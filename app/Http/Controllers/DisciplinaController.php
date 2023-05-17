@@ -37,6 +37,7 @@ class DisciplinaController extends Controller
     }
 
     public function store(DisciplinaStoreFormRequest $request){
+        
         try{
 
             $disciplina = new Disciplina();
@@ -62,6 +63,13 @@ class DisciplinaController extends Controller
         return view("Disciplina.cadastrar", compact("cursos"));
     }
 
+    public function create_disciplina_curso($id_curso){
+
+        $curso = Curso::find($id_curso);
+
+        return view("Disciplina.cadastrar_disciplina_curso", compact('curso'));
+
+    }
 
     public function delete($id) {
         $disciplina = Disciplina::findOrFail($id);

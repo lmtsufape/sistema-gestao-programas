@@ -86,7 +86,6 @@ class EditalController extends Controller
         $edital = Edital::findOrFail($id);
         $orientadores = Orientador::with('user')->get();
 
-
         return view('Edital.show', ['edital' => $edital, 'orientadores' => $orientadores]);
     }
 
@@ -231,7 +230,7 @@ class EditalController extends Controller
             //     ->with('sucesso', 'Edital deletado com sucesso.');
             // }*/
 
-            return redirect()->route('programas.index')->with('sucesso', 'Edital deletado com sucesso.');
+            return redirect()->route('edital.index')->with('sucesso', 'Edital deletado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();
@@ -252,9 +251,10 @@ class EditalController extends Controller
         return view("Edital.listar_alunos", compact("alunos"));
     }
 
-    public function listar_disciplinas($id){
-        $disciplinas = Edital::with('disciplinas')->find($id);
+    // public function listar_disciplinas($id){
+    //     $disciplinas = Edital::with('disciplinas')->find($id);
 
+<<<<<<< HEAD
         return view("Edital.listar_disciplinas", compact("disciplinas"));
     }
 
@@ -274,3 +274,8 @@ class EditalController extends Controller
     }
 }
 
+=======
+    //     return view("Edital.listar_disciplinas", compact("disciplinas"));
+    // }
+}
+>>>>>>> 92888c3ba9283cabe3cde8b9928c3070d99ada85

@@ -102,6 +102,9 @@
             <tr>
               <td style="border-right: 1px solid #d3d3d3;">{{$cursos->nome}}</td>
               <td>
+                <a href="{{url("/disciplinas/create_diciplina_curso/$cursos->id")}}">
+                  <img src="{{asset("images/add-disciplina.png")}}" alt="Cadastrar Disciplina no curso">
+                </a>
                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$cursos->id}}">
                   <img src="{{asset("images/info.png")}}" alt="Info curso">
                 </a>

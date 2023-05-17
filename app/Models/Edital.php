@@ -48,9 +48,14 @@ class Edital extends Model
                 'termo_compromisso_orientador'
             ]);
     }
-    public function disciplinas()
+    // public function disciplinas()
+    // {
+    //     return $this->hasMany(Disciplina::class, "disciplina_id");
+    // }
+
+    public function disciplina()
     {
-        return $this->hasMany(Disciplina::class, "disciplina_id");
+        return $this->belongsTo(Disciplina::class, "disciplina_id");
     }
 
 }

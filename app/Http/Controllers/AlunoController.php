@@ -140,4 +140,17 @@ class AlunoController extends Controller
         return view("Alunos.cadastro-aluno", compact('cursos'));
     }
 
+    public function profile(Request $request)
+    {
+        $id = $request->user()->typage_id; // Obtém o ID do usuário autenticado
+        // $user = $request->user(); // Obtém o usuário autenticado
+
+        //dd($user);
+
+        $aluno = Aluno::find($id);
+
+
+        return view('Perfil.meu-perfil-aluno', ['aluno' => $aluno]);
+    }
+
 }
