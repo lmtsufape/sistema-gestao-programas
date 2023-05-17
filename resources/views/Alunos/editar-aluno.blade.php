@@ -68,7 +68,7 @@
         <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
             Editar Aluno</h1>
         <hr style="color: #2D3875;">
-        <form action="{{  route('aluno.update', ['id' => $aluno->id])  }}" method="POST">
+        <form action="{{  route('alunos.update', ['id' => $aluno->id])  }}" method="POST">
             @csrf
             @method("PUT")
             <label for="nome" class="titulo">Nome:</label>
