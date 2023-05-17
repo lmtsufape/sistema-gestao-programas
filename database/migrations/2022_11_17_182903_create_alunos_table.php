@@ -14,6 +14,7 @@ class CreateAlunosTable extends Migration
     public function up()
     {
         Schema::create('alunos', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('nome_aluno');
             $table->string('cpf', 14)->unique();

@@ -14,6 +14,7 @@ class CreateProgramaservidorsTable extends Migration
     public function up()
     {
         Schema::create('programa_servidors', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->foreignId('programa_id')->nullable(false)->constrained('programas');
             $table->foreignId('servidor_id')->nullable(false)->constrained('servidors');

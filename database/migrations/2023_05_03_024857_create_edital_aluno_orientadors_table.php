@@ -14,6 +14,7 @@ class CreateEditalAlunoOrientadorsTable extends Migration
     public function up()
     {
         Schema::create('edital_aluno_orientadors', function (Blueprint $table) {
+            $table->softDeletes();
             $table->bigIncrements('id');
             $table->string('titulo');
             $table->date('data_inicio');

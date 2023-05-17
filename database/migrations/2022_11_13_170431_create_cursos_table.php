@@ -14,6 +14,7 @@ class CreateCursosTable extends Migration
     public function up()
     {
         Schema::create('cursos', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('nome');
             $table->timestamps();
