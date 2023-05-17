@@ -9,7 +9,7 @@
         <div class="mb-3">
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Termo de compromisso:</label>
           <div style="justify-content: flex-start; align-items: flex-start; display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 5px;">
-            <a href="" target="_blank"  style="color: #2D3875; border: #2D3875; margin-top: 5px; margin-bottom: 5px;">
+            <a href="{{ route('termo_aluno.download', ['id' => $aluno->id]) }}" target="_blank"  style="color: #2D3875; border: #2D3875; margin-top: 5px; margin-bottom: 5px;">
             <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
             {{$aluno->pivot->termo_compromisso_aluno}}
             </a>
