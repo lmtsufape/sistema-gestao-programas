@@ -94,10 +94,12 @@ class EditalController extends Controller
 
         //DB::beginTransaction();
         //try {
+            //dd($request);
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
             $orientador_id = (int)$request->orientador;
 
+            //dd($edital);
             $request->validate([
                 'termo_compromisso_aluno' => 'required|mimes:pdf|max:2048',
             ]);
@@ -105,7 +107,7 @@ class EditalController extends Controller
             //dd($request);
 
             if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()) {
-                $fileName =  $aluno->id . "_" . now() . '.' . $request->termo_compromisso_aluno->extension();
+                $fileName = "termo_compromisso_aluno_". $aluno->nome . "_" . $aluno->id . now() . '.' . $request->termo_compromisso_aluno->extension();
                 //dd($extensao);
                 $request->termo_compromisso_aluno->storeAs('termo_compromisso_alunos/', $fileName);
             }
@@ -116,10 +118,12 @@ class EditalController extends Controller
             //     return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
             // } else {
                 $data = [
-                    'titulo' => $edital->nome,
+                    'titulo' => $edital->titulo_edital,
                     'data_inicio' => $edital->data_inicio,
                     'data_fim' => $edital->data_fim,
                     'bolsa' => $request->bolsa,
+                    'bolsista' => true,
+                    'plano_projeto' => "plano de projeto",
                     'info_complementares' => $request->info_complementares,
                     'termo_compromisso_orientador' => "confie no orientador",
                     'disciplina_id' => $edital->disciplina_id,
@@ -130,12 +134,12 @@ class EditalController extends Controller
                 $data['termo_compromisso_aluno'] = $fileName;
                 //dd($data);
                 //DB::table('edital_aluno_orientadors')->insert($data);
+                //dd($data);
                 $editalAlunoOrientador = EditalAlunoOrientadors::create($data);
 
                 //dd($edital->alunos()->syncWithoutDetaching([$aluno->id => $data]));
                 //$edital->alunos()->attach($data);
 
-                //dd($edital);
                 DB::commit();
         //         //return redirect()->back()->with('success', 'O aluno foi inscrito com sucesso no edital.');
                  return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
@@ -253,12 +257,20 @@ class EditalController extends Controller
 
         return view("Edital.listar_disciplinas", compact("disciplinas"));
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     */
     public function download_termo_compromisso_aluno($aluno_id) {
 
-        $editalAlunoOrientador = EditalAlunoOrientadors::find($aluno_id);
-        dd($$editalAlunoOrientador->termo_compromisso_aluno);
 
-        return Storage::download('termo_compromisso_aluno/' . $editalAlunoOrientador->termo_compromisso_aluno);
+        $aluno = EditalAlunoOrientadors::find($aluno_id);
+
+        //dd($aluno);
+
+        return Storage::download('termo_compromisso_alunos/' . $aluno->termo_compromisso_aluno);
     }
 }
 
