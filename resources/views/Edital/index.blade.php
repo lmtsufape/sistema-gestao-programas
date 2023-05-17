@@ -82,7 +82,7 @@
         ;margin-bottom: 5px; min-height: 50px">
         <thead>
           <tr>
-            <th scope="col"><i class="mdi mdi-note-multiple:"></i></th>
+            <th scope="col">Título:</i></th>
             <th scope="col">Data de início</th>
             <th scope="col">Data de fim</th>
             <th scope="col">Programa</th>
