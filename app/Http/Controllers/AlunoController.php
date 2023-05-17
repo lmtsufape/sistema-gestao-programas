@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\DB;
 class AlunoController extends Controller
 {
     public function store(AlunoStoreFormRequest $request)
-    {
+    {    //dd($request);
         try {
             $aluno = new Aluno();
             $aluno->cpf = $request->cpf;
             $aluno->curso_id = $request->curso;
             $aluno->semestre_entrada = $request->semestre_entrada;
-            $aluno->nome_aluno = $request->nome_aluno;
+            $aluno->nome_aluno = $request->nome;
 
             if ($aluno->save()){
                 if (

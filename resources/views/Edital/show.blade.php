@@ -79,7 +79,7 @@
             <br>
             <br>
         </div>
-        <form action="{{  route('edital.aluno', ['id' => $edital->id])  }}" method="POST">
+        <form action="{{  route('edital.aluno', ['id' => $edital->id])  }}" method="POST" enctype="multipart/form-data">
             @csrf
             <label class="titulo" for="descricao">CPF do aluno</label>
             <input type="text" id="cpf" class="boxinfo" name="cpf" placeholder="cpf do aluno" required>
@@ -90,7 +90,7 @@
             <br>
             <br>
             <label class="titulo" for="bolsa">Tipo da bolsa</label>
-            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" required> 
+            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" required>
             <br>
             <br>
             <label class="titulo" for="orientador">Orientador:</label>
@@ -106,7 +106,12 @@
             <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="informações complementares" required>
             <br>
             <br>
-           
+            <br>
+            <label class="titulo" for="termo_compromisso_aluno">termo_compromisso_aluno</label>
+            <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno" required>
+            <br>
+
+
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;
                 box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
