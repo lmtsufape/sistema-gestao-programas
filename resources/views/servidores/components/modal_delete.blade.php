@@ -13,7 +13,7 @@
       <div class="modal-footer d-flex justify-content-between">
         <button stype="button" class="btn btn-secondary" style="border-radius: 45px; " data-bs-dismiss="modal">Cancelar</button>
 
-        <form action="{{url("/servidors/$servidor->id")}}" method="post">
+        <form action="{{url("/servidores/$servidor->id")}}" method="post">
           @method("DELETE")
           @csrf
           <input type="hidden" name="id" value="{{$servidor->id}}">

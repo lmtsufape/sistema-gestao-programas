@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class ServidorController extends Controller {
 
@@ -80,7 +81,7 @@ class ServidorController extends Controller {
                 'password' => Hash::make($request->input('senha'))
             ])->givePermissionTo($permission)
         ){
-            $mensagem_sucesso = "Orientador cadastrado com sucesso.";
+            #$mensagem_sucesso = "Orientador cadastrado com sucesso.";
 
 
             return redirect('/servidores')->with('sucesso', 'Servidor cadastrado com sucesso.');
@@ -159,7 +160,7 @@ class ServidorController extends Controller {
             $servidor->user->givePermissionTo($request->permissao);
 
             DB::commit();
-            return redirect("/servidors")->with('sucesso', 'Permissão adicionada com sucesso.');
+            return redirect("/servidores")->with('sucesso', 'Permissão adicionada com sucesso.');
 
         } catch(exception $e){
             DB::rollback();
