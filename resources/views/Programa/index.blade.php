@@ -126,7 +126,7 @@
           <tr>
             {{-- Não apagar esse tr vazio senão a linha da tabela fica mt preta/grossa  --}}
           </tr>
-          @include("Programa.components.modal_show", ["programa" => $programas])
+          @include("Programa.components.modal_show", ["programa" => $programas, "programa_servidor" => $programa_servidor, "servidors" => $servidors, "users" => $users])
           @include("Programa.components.modal_delete", ["programa" => $programas])
           @endforeach
         </tbody>
