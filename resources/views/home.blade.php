@@ -61,7 +61,7 @@
                     <hr>
                     <br>
                 </div>
-        
+
                 <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
                     <button class="botaoverde" href="{{url("/programas/1/editals")}}" onclick="window.location.href='{{url("/programas/1/editals")}}'">
                         <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
@@ -112,7 +112,7 @@
             </div>
 
             <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
-            
+
                 {{--  <button class="botaoverde">
                     <img src="{{asset('images/DocumentAdd.png')}}" alt="logodoc" style="padding-right: 10px;">
                     <p style="margin: auto; padding-right: 5px"> Listar documentos </p>

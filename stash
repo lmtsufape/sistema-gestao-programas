@@ -1,0 +1,86 @@
+[1mdiff --cc app/Http/Controllers/EditalController.php[m
+[1mindex 6192aa5,000a8f3..0000000[m
+[1m--- a/app/Http/Controllers/EditalController.php[m
+[1m+++ b/app/Http/Controllers/EditalController.php[m
+[36m@@@ -50,10 -49,9 +50,9 @@@[m [mclass EditalController extends Controll[m
+      {[m
+          DB::beginTransaction();[m
+          try {[m
+[31m -            [m
+[32m +[m
+              //dd($request);[m
+              $edital = new Edital();[m
+[31m-             $edital->nome = $request->nome;[m
+              $edital->descricao = $request->descricao;[m
+              $edital->semestre = $request->semestre;[m
+              $edital->data_inicio = $request->data_inicio;[m
+[36m@@@ -177,7 -164,7 +176,7 @@@[m
+          try{[m
+              $edital = Edital::find($id);[m
+  [m
+[31m-             $edital->nome = $request->nome ? $request->nome : $edital->nome;[m
+[31m -            [m
+[32m++[m
+              $edital->descricao = $request->descricao ? $request->descricao : $edital->descricao;[m
+              $edital->semestre = $request->semestre ? $request->semestre : $edital->semestre;[m
+              $edital->titulo_edital = $request->titulo_edital ? $request->titulo_edital : $edital->titulo_edital;[m
+[36m@@@ -218,17 -205,17 +217,17 @@@[m
+              /*$referer = request()->headers->get('referer');[m
+              //dd($referer);[m
+              //o método strpos para verificar se a string /programas/ está presente no cabeçalho Referer.[m
+[31m -            if(strpos($referer, '/programas/editais') !== false)[m
+[31m -            {[m
+[31m -                return redirect('/programas/editais')->with('Edital deletado com sucesso');[m
+[31m -            }[m
+[31m -            else [m
+[31m -            {[m
+[31m -                return redirect()->route('edital.index')[m
+[31m -                ->with('sucesso', 'Edital deletado com sucesso.');[m
+[31m -            }*/[m
+[32m +            // if(strpos($referer, '/programas/editais') !== false)[m
+[32m +            // {[m
+[32m +            //     return redirect('/programas/editais')->with('Edital deletado com sucesso');[m
+[32m +            // }[m
+[32m +            // else[m
+[32m +            // {[m
+[32m +            //     return redirect()->route('edital.index')[m
+[32m +            //     ->with('sucesso', 'Edital deletado com sucesso.');[m
+[32m +            // }*/[m
+  [m
+[31m-             return redirect()->route('edital.index')->with('sucesso', 'Edital deletado com sucesso.');[m
+[32m+             return redirect()->route('programas.index')->with('sucesso', 'Edital deletado com sucesso.');[m
+  [m
+          } catch(exception $e){[m
+              DB::rollback();[m
+[36m@@@ -254,12 -241,4 +253,12 @@@[m
+  [m
+          return view("Edital.listar_disciplinas", compact("disciplinas"));[m
+      }[m
+[31m- [m
+[31m -}[m
+[32m +    public function download_termo_compromisso_aluno($aluno_id) {[m
+[32m +[m
+[32m +        $editalAlunoOrientador = EditalAlunoOrientadors::find($aluno_id);[m
+[32m +        dd($$editalAlunoOrientador->termo_compromisso_aluno);[m
+[32m +[m
+[32m +        return Storage::download('termo_compromisso_aluno/' . $editalAlunoOrientador->termo_compromisso_aluno);[m
+[32m +    }[m
+[32m +}[m
+[32m++[m
+[1mdiff --cc resources/views/Edital/listar_alunos.blade.php[m
+[1mindex daddd0b,75782ad..0000000[m
+[1m--- a/resources/views/Edital/listar_alunos.blade.php[m
+[1m+++ b/resources/views/Edital/listar_alunos.blade.php[m
+[36m@@@ -71,11 -72,9 +71,10 @@@[m
+        padding-left: 10px;" href="{{route('edital.show, ['id' =>  ]')}}">[m
+        <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Vincular Aluno[m
+      </a>[m
+[31m-     <br>[m
+[31m-     <br>[m
+    </div>[m
+   --}}[m
+[32m +[m
+[32m+  <br><br>[m
+    <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">[m
+      <div class="col-md-9 corpo p-2 px-3">[m
+        <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width

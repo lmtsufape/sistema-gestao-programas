@@ -110,6 +110,8 @@ Route::prefix('edital')->group(function() {
     Route::post('/cadastrar-aluno/{id}', [EditalController::class, 'inscrever_aluno'])->name('edital.aluno');
     Route::get('/{id}/alunos', [EditalController::class, 'listar_alunos'])->name('edital.vinculo');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
+    Route::get('/{id}/termo', [EditalController::class, 'download_termo_compromisso_aluno'])->name('termo_aluno.download');
+    Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
     Route::get('/{id}/orientadores', [EditalController::class, 'listar_orientadores'])->name('edital.listar_orientadores');
 });
 
@@ -124,6 +126,8 @@ Route::prefix('disciplinas')->group(function() {
     Route::put('/{id}', [DisciplinaController::class, 'update'])->name('disciplinas.update');
     Route::delete('/{id}', [DisciplinaController::class, 'destroy'])->name('disciplinas.delete');
     Route::get('{id}', [DisciplinaController::class, 'show'])->name('disciplinas.show');
+    Route::get('/create_diciplina_curso/{id}', [DisciplinaController::class, 'create_disciplina_curso'])->name('disciplinas_curso.create');
+
 });
 // Rotas de curso
 Route::resource('/cursos', CursoController::class);
