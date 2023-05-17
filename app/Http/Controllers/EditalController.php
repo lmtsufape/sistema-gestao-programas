@@ -214,7 +214,7 @@ class EditalController extends Controller
                 ->with('sucesso', 'Edital deletado com sucesso.');
             }*/
 
-            return redirect()->route('programas.index')->with('sucesso', 'Edital deletado com sucesso.');
+            return redirect()->route('edital.index')->with('sucesso', 'Edital deletado com sucesso.');
 
         } catch(exception $e){
             DB::rollback();
