@@ -129,7 +129,7 @@ class ProgramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProgramaUpdateFormRequest $request, $id)
-    {
+    {   
         DB::beginTransaction();
         try{
             $programa = Programa::find($id);
@@ -137,13 +137,11 @@ class ProgramaController extends Controller
             $programa->descricao = $request->descricao ? $request->descricao : $programa->descricao;
             $programa->update();
 
-            Programa_servidor::where("programa_id", $programa->id)->delete();
-
             if ($request->servidor){
-                $programa_servidor = new Programa_servidor();
-                $programa_servidor->programa_id = $programa->id;
-                $programa_servidor->servidor_id = $request->servidor;
-                $programa_servidor->save();
+                    $programa_servidor = Programa_servidor::where("programa_id", $programa->id)->first();
+                    $programa_servidor->programa_id = $programa->id;
+                    $programa_servidor->servidor_id = $request->servidor;
+                    $programa_servidor->update();
             }
 
             DB::commit();
@@ -152,7 +150,7 @@ class ProgramaController extends Controller
 
         } catch(exception $e){
             DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao editar Programa. tente novamente mais tarde." );
+            return redirect()->back()->withErrors( "Falha ao editar Programa. Tente novamente mais tarde." );
         }
     }
 
@@ -165,22 +163,30 @@ class ProgramaController extends Controller
 
     public function destroy(Request $request)
     {
-        DB::beginTransaction();
-        try{
-            $id = $request->only(['id']);
-            $programa = Programa::findOrFail($id)->first();
+        $edital = Edital::where("programa_id", $request->id)->first();
+        if ($edital)
+        {
+            return redirect()->back()->withErrors( "Falha ao deletar Programa. Existem editais vinculados a ele." );
+        } else{
+        
+	
+            DB::beginTransaction();
+            try{
+                $id = $request->only(['id']);
+                $programa = Programa::findOrFail($id)->first();
 
-            Programa_servidor::where("programa_id", $programa->id)->delete();
+                Programa_servidor::where("programa_id", $programa->id)->delete();
 
-            $programa->delete();
+                $programa->delete();
 
 
-            DB::commit();
+                DB::commit();
 
-            return redirect('/programas')->with('sucesso', 'Programa deletado com sucesso.');
-        } catch(exception $e){
-            DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao deletarm um Programa. tente novamente mais tarde." );
+                return redirect('/programas')->with('sucesso', 'Programa deletado com sucesso.');
+            } catch(exception $e){
+                DB::rollback();
+                return redirect()->back()->withErrors( "Falha ao deletarm um Programa. tente novamente mais tarde." );
+            }
         }
     }
 

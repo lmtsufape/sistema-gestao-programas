@@ -87,9 +87,7 @@
                             @foreach ($servidors as $servidor)
                                 <option value="{{$servidor->id}}" style="color: black; border-radius: 5px;">{{$servidor->user->name}}</option>
                             @endforeach
-                    </select><br><br
-
-                <br><br>
+                    </select><br><br>
 
 
                 <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);

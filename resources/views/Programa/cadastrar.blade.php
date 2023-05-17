@@ -86,7 +86,8 @@
                             @foreach ($servidors as $servidor)
                                 <option value="{{$servidor->id}}" style="color: black; border-radius: 5px;">{{$servidor->user->name}}</option>
                             @endforeach
-                    </select><br><br
+                    </select><br><br>
+
                 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                     <input type="button" value="Voltar" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'" style="background: #2D3875;
