@@ -109,6 +109,7 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$aluno->pivot->aluno_id}}">
                 <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
               </a>
+              {{--<a href="{{ route('termo_aluno.download', ['id' => $aluno->id]) }}">Baixar PDF</a>--}}
             </td>
           </tr>
           <!-- Modal show -->
