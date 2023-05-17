@@ -39,7 +39,7 @@ class ServidorController extends Controller {
         //             //$query->orWhere("servidors.tipo_servidor_id", "LIKE", "%{$valor}%");
         //         }
         //     })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->get();
-            
+
         //     return view("servidores.index", compact("servidors", "permissoes"));
         // } else {
             $servidores = Servidor::all();
@@ -53,9 +53,9 @@ class ServidorController extends Controller {
     }
 
     public function store(ServidorFormRequest $request)
-    {   
-        
-        
+    {
+
+
         switch($request->input('tipo_servidor')){
             case 0:
                $permission = "adm";
@@ -72,7 +72,7 @@ class ServidorController extends Controller {
             'cpf' => $request->input('cpf'),
             'tipo_servidor' => $permission
         ]);
-       
+
         if(
             $servidor->user()->create([
                 'name' => $request->input('nome'),
@@ -166,4 +166,23 @@ class ServidorController extends Controller {
             return redirect()->back()->withErrors( "Falha ao adicionar permissao. tente novamente mais tarde." );
         }
     }
+
+    public function profile(Request $request)
+    {
+        $id = $request->user()->typage_id; // Obtém o ID do usuário autenticado
+        // $user = $request->user(); // Obtém o usuário autenticado
+
+        // dd($user);
+
+        $servidor = Servidor::find($id);
+
+        // dd($servidor);
+
+        return view('Perfil.meu-perfil-servidor', ['servidor' => $servidor]);
+    }
+
+    // public function profile(){
+    //     $servidor = Auth::id();
+    //     return view('Perfil.meu-perfil-servidor', compact('servidor'));
+    // }
 }
