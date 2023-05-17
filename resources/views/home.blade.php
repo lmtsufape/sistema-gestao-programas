@@ -61,34 +61,14 @@
                     <hr>
                     <br>
                 </div>
-
-                <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
-                    <button class="botaoverde" href="{{url("/programas/1/editals")}}" onclick="window.location.href='{{url("/programas/1/editals")}}'">
-                        <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px">PAVI </p>
-                    </button>
-
-                    <button class="botaoazul" href="{{url("/programas/2/editals")}}" onclick="window.location.href='{{url("/programas/2/editals")}}'">
-                        <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Monitoria </p>
-                    </button>
-
-                    <button class="botaoverde" href="{{url("/programas/3/editals")}}" onclick="window.location.href='{{url("/programas/3/editals")}}'">
-                        <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Tutoria </p>
-                    </button>
-
-                    <button class="botaoazul" ref="{{url("/programas/4/editals")}}" onclick="window.location.href='{{url("/programas/4/editals")}}'">
-                        <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px; padding-left: 10px;">
-                        <p style="margin: auto; padding-right: 5px">Bia </p>
-                    </button>
-
-                    <button class="botaoverde" ref="{{url("/programas/5/editals")}}" onclick="window.location.href='{{url("/programas/5/editals")}}'">
-                        <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px">PETI </p>
-                    </button>
-
-                </div>
+                @foreach ($editais as $edital)
+                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+                        <button class="botaoverde" href="{{url("/programas/".$edital->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$edital->id."/editais")}}'">
+                            <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
+                            <p style="margin: auto; padding-right: 5px">{{ $edital->titulo_edital }}</p>
+                        </button>
+                    </div>
+                @endforeach
             </div>
 
         @endif

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Edital;
-use App\Models\Curso;
 use App\Models\Aluno;
 use App\Models\Disciplina;
 use App\Models\Programa;
@@ -93,7 +92,6 @@ class EditalController extends Controller
 
         DB::beginTransaction();
         try {
-            //dd($request);
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
             $orientador_id = (int)$request->orientador;
@@ -103,13 +101,13 @@ class EditalController extends Controller
                 'termo_compromisso_aluno' => 'required|mimes:pdf|max:2048',
             ]);
             $fileName = "";
-            //dd($request);
 
             if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()) {
-                $fileName = "termo_compromisso_aluno_". $aluno->nome . "_" . $aluno->id . now() . '.' . $request->termo_compromisso_aluno->extension();
+                $fileName = "termo_compromisso_aluno_". $aluno->nome_aluno . "_" . $aluno->id . $edital->id  . now() . '.' . $request->termo_compromisso_aluno->extension();
                 //dd($extensao);
                 $request->termo_compromisso_aluno->storeAs('termo_compromisso_alunos/', $fileName);
             }
+            //dd($fileName);
 
             if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
                 return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
@@ -128,8 +126,9 @@ class EditalController extends Controller
                     'aluno_id' => $aluno->id,
                     'orientador_id' => $orientador_id,
                 ];
+                //if ($)
                 $data['termo_compromisso_aluno'] = $fileName;
-
+                // dd($data);
                 $editalAlunoOrientador = EditalAlunoOrientadors::create($data);
 
                 DB::commit();
@@ -233,14 +232,21 @@ class EditalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      */
-    public function download_termo_compromisso_aluno($aluno_id) {
+    public function download_termo_compromisso_aluno($fileName) {
 
 
-        $aluno = EditalAlunoOrientadors::find($aluno_id);
+        //dd($fileName);
+        //$a = EditalAlunoOrientadors::find($fileName);
+        //dd($a);
 
-        return Storage::download('termo_compromisso_alunos/' . $aluno->termo_compromisso_aluno);
-    }
+        $path = 'termo_compromisso_alunos/' . $fileName;
+        //dd($aluno);
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('fail', 'Arquivo PDF não encontrado.');
+        }
+     }
 }
 
