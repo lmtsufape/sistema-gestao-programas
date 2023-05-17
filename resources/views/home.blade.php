@@ -61,12 +61,20 @@
                     <hr>
                     <br>
                 </div>
+<<<<<<< HEAD
 
                 @foreach ($programas as $programa)
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
                         <button class="botaoverde" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
                             <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
                             <p style="margin: auto; padding-right: 5px">{{ $programa->nome }}</p>
+=======
+                @foreach ($editais as $edital)
+                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+                        <button class="botaoverde" href="{{url("/programas/".$edital->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$edital->id."/editais")}}'">
+                            <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
+                            <p style="margin: auto; padding-right: 5px">{{ $edital->titulo_edital }}</p>
+>>>>>>> refs/remotes/origin/main
                         </button>
                     </div>
                 @endforeach

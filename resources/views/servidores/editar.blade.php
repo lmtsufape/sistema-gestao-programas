@@ -14,7 +14,7 @@
                 <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
                     Editar Servidor</h1>
                     <hr>
-                <form action="{{url("/servidors/$servidor->id")}}" method="POST">
+                <form action="{{url("/servidores/$servidor->id")}}" method="POST">
                     @csrf
                     @method("PUT")
                     <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome:</label>
@@ -48,7 +48,7 @@
                     </select><br><br>
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                        <input type="button" value="Voltar" href="{{url("/servidors/")}}" onclick="window.location.href='{{url("/servidors/")}}'"
+                        <input type="button" value="Voltar" href="{{url("/servidores/")}}" onclick="window.location.href='{{url("/servidores/")}}'"
                         style="background: #2D3875; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                         border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                         line-height: 29px; text-align: center; padding: 5px 15px;">
