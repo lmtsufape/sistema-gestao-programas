@@ -31,7 +31,9 @@ class EditalController extends Controller
 
         return view("Edital.index", compact("editais", "orientadors"));
     }
-
+    public function buscar_aluno($request) {
+        return;
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -79,12 +79,15 @@
             <br>
             <br>
         </div>
-        <form action="{{  route('edital.aluno', ['id' => $edital->id])  }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <label class="titulo" for="descricao">CPF do aluno</label>
+        <form id="update-requerente" method="GET" action="{{ route('edital.buscar_aluno') }}">
             @csrf
-            <label class="titulo" for="descricao">CPF do aluno</label>
-            <input type="text" id="cpf" class="boxinfo" name="cpf" placeholder="cpf do aluno" required>
-            <br>
-            <br>
+            <input type="text" id="cpf" class="boxinfo" name="cpf" placeholder="CPF do aluno" required>
+            <button type="submit">Buscar</button>
+        </form>
+        <form action="{{  route('edital.aluno', ['id' => $edital->id])  }}" method="POST" enctype="multipart/form-data">
+
             <label class="titulo" for="bolsa">Tipo da bolsa</label>
             <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" required>
             <br>
