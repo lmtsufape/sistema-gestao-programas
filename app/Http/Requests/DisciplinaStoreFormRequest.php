@@ -15,6 +15,7 @@ class DisciplinaStoreFormRequest extends FormRequest
         return [
             "nome" => "max:50",
             "nome" => 'required',
+            "curso" => 'required'
         ];
     }
 
