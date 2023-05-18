@@ -61,15 +61,20 @@
                     <hr>
                     <br>
                 </div>
-
-                @foreach ($programas as $programa)
-                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+                
+                <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%;">
+                    @foreach ($programas as $index => $programa)
+                      @if ($index % 2 == 0)
+                        <button class="botaoazul" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
+                      @else
                         <button class="botaoverde" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
-                            <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p style="margin: auto; padding-right: 5px">{{ $programa->nome }}</p>
-                        </button>
-                    </div>
-                @endforeach
+                      @endif
+                      <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
+                      <p style="margin: auto; padding-right: 5px">{{ $programa->nome }}</p>
+                      </button>
+                    @endforeach
+                  </div>
+
             </div>
 
         @endif
