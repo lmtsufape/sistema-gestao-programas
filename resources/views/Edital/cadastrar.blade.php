@@ -75,10 +75,10 @@
                     @csrf
 
                     <label class="titulo" for="titulo_edital">Título do edital:</label>
-                    <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}"><br><br>
+                    <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
 
                     <label class="titulo" for="semestre">Semestre:</label>
-                    <input class="boxinfo" placeholder="Digite o semestre" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}"><br><br>
+                    <input class="boxinfo" placeholder="Digite o semestre" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
 
                     <label class="titulo" for="Descrição">Descrição:</label>
                     <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="10"> {{ old('descricao') }}</textarea><br><br>
@@ -90,7 +90,7 @@
                     <input class="boxinfo"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
 
                     <label class="titulo" for="valor_bolsa">Valor da Bolsa:</label>
-                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
+                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}" required><br><br>
 
                     <label class="titulo" for="programa">Programa:</label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
