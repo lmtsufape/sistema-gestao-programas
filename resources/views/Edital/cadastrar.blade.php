@@ -73,31 +73,31 @@
 
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
-                    
+
                     <label class="titulo" for="nome">Nome:</label>
-                    <input class="boxinfo" placeholder="Digite o nome" type="text" name="nome" required id="nome" value=""><br><br> 
-                   
-                    <label class="titulo" for="titulo_edital">Título Edital:</label>
-                    <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br>
-    
+                    <input class="boxinfo" placeholder="Digite o nome" type="text" name="nome" required id="nome" value="{{ old('nome') }}"><br><br>
+
+                    <label class="titulo" for="titulo_edital">Título do edital:</label>
+                    <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}"><br><br>
+
                     <label class="titulo" for="semestre">Semestre:</label>
-                    <input class="boxinfo" placeholder="Digite o semestre" type="text" name="semestre" id="semestre" value=""><br><br>
+                    <input class="boxinfo" placeholder="Digite o semestre" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}"><br><br>
 
                     <label class="titulo" for="Descrição">Descrição:</label>
-                    <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="10"></textarea><br><br>
+                    <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="10"> {{ old('descricao') }}</textarea><br><br>
 
                     <label class="titulo" for="data_inicio" class="titulo">Data de início:</label>
-                    <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" ><br><br>
+                    <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}"><br><br>
 
                     <label class="titulo" for="data_fim" >Data de fim:</label>
-                    <input class="boxinfo"  type="date" name="data_fim" id="data_fim" ><br><br>
+                    <input class="boxinfo"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
 
                     <label class="titulo" for="valor_bolsa">Valor da Bolsa:</label>
-                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value=""><br><br>
-                    
+                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
+
                     <label class="titulo" for="programa">Programa:</label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
-                        <option value=""></option>
+                        <option></option>
                             @foreach ($programas as $programa)
                                 <option value="{{$programa->id}}">{{$programa->nome}}</option>
                             @endforeach
@@ -105,7 +105,7 @@
 
                     <label class="titulo" for="disciplina">Disciplina:</label>
                     <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina" >
-                        <option value=""></option>
+                        <option></option>
                             @foreach ($disciplinas as $disciplina)
                                 <option value="{{$disciplina->id}}">{{$disciplina->nome}}</option>
                             @endforeach
