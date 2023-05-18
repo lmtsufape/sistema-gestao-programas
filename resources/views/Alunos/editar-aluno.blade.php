@@ -74,12 +74,10 @@
             <label for="nome" class="titulo">Nome:</label>
             <input type="text" id="nome" name="nome" value="{{$aluno->user->name}}"
             class="boxinfo"><br/><br>
-
-
+           
             <label for="nome_social" class="titulo">Nome social:</label>
-            <input type="text" id="nome_social" name="nome_social" value=""
-            class="boxinfo"><br/><br>
-
+            <input type="text" id="nome_social" name="nome_social" value="{{$aluno->user->name_social}}" class="boxinfo"><br/><br>   
+          
             <label for="email" for="nome" class="titulo">E-mail:</label>
             <input type="text" id="email" name="email" value="{{$aluno->user->email}}" class="boxinfo"><br/><br>
 
