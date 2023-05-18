@@ -23,47 +23,50 @@
                                     <label for="nome" class="form-label">Nome:</label>
                                     <input type="text" name="nome" id="nome" placeholder="Digite o nome"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" >
+                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('nome') }}">
                                 </div>
 
-                                
+
                                 <div class="col-12 mb-3">
                                     <label for="nome_social" class="form-label">Nome social:</label>
-                                    <input type="text" name="nome_social" id="nome_social" placeholder="Digite o nome social"
+                                    <input type="text" name="name_social" id="nome_social" placeholder="Digite o nome social"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" >
+                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('name_social') }}">
                                 </div>
 
                                 <div class="col-12 mb-3">
                                     <label for="tipo_servidor" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor: </label>
                                     <select name="tipo_servidor" id="tipo_servidor" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" aria-label="Default select example">
-                                       @foreach ($servidor as $servidores)
-                                        @switch($servidores->tipo_servidor)
-                                        @case('adm')
-                                            <option value="0" selected>Administrador</option>
-                                          @break
-                                        @case('pro_reitor')
-                                            <option value="1" selected>Pró-Reitor</option>
-                                          @break
-                                        @case('servidor')
-                                            <option value="2" selected>Servidor</option>
-                                          @break
-                                      @endswitch
-                                    @endforeach
+                                        @foreach ($servidor as $servidores)
+                                            @switch($servidores->tipo_servidor)
+                                                @case('adm')
+                                                    <option value="0" selected>Administrador</option>
+                                                @break
+                                                @case('pro_reitor')
+                                                    <option value="1" selected>Pró-Reitor</option>
+                                                @break
+                                                @case('servidor')
+                                                    <option value="2" selected>Servidor</option>
+                                                @break
+                                            @endswitch
+                                        @endforeach
                                     </select>
                                 </div>
+
+
                                 <div class="col-12 mb-3">
                                     <label for="cpf" class="form-label">CPF:</label>
                                     <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
+                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('cpf') }}">
                                 </div>
+
                                 <div class="col-12 mb-3">
                                     <label for="email" class="form-label">E-mail:</label>
                                     <input type="text" name="email" id="email" placeholder="Digite o E-mail"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
+                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('email') }}">
                                 </div>
 
                                 <div class="col-12 mb-3">

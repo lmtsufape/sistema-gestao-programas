@@ -76,20 +76,20 @@
         <form action="{{route('alunos.store')}}" method="POST">
             @csrf
             <label for="inputName" class="titulo">Nome:</label>
-            <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+            <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome" value="{{ old('nome') }}">
+            <div class="invalid-feedback">Por favor preencha esse campo</div><br><br>
 
             <label for="inputNomeSocial" class="titulo">Nome Social:</label>
-            <input class="boxinfo" type="text" id="inputNomeSocial" name="nome_social" placeholder="Digite o nome">
+            <input class="boxinfo" type="text" id="inputNomeSocial" name="name_social" placeholder="Digite o nome" value="{{ old('name_social') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputCpf" class="titulo">CPF:</label>
-            <input class="boxinfo" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF">
+            <input class="boxinfo" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF" value="{{ old('cpf') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
             <label for="inputSemestre" class="titulo">Semestre de Entrada:</label>
-            <input class="boxinfo" type="text"  id="inputSemestre" name="semestre_entrada" required placeholder="Digite o semestre">
+            <input class="boxinfo" type="text"  id="inputSemestre" name="semestre_entrada" required placeholder="Digite o semestre" value="{{ old('semestre_entrada') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
@@ -97,13 +97,13 @@
             <select aria-label="Default select example" class="boxinfo" id="inputCurso" name="curso">
                 <option value="">Selecione o curso</option>
                 @foreach ($cursos as $curso)
-                <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                <option value="{{$curso->id}}" {{ old('curso') == $curso->id ? 'selected' : '' }} >{{$curso->nome}}</option>
                 @endforeach
             </select>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputEmail4" class="titulo">Email:</label>
-            <input class="boxinfo" type="email" id="inputEmail4" name="email" required placeholder="Digite o email">
+            <input class="boxinfo" type="email" id="inputEmail4" name="email" required placeholder="Digite o email" value="{{ old('email') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputPassword4" class="titulo">Senha:</label>
