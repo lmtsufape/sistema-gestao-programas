@@ -25,6 +25,10 @@
       border-radius: 20px;
     }
 
+    .botaoverde:hover{
+        transform: scale(1.08);
+    }
+
     .botaoazul {
       border: none;
       color: white;
@@ -47,6 +51,11 @@
       border-radius: 20px;
       padding: 15px;
     }
+
+    .botaoazul:hover{
+        transform: scale(1.08);
+    }
+
   </style>
     @auth
         @if (auth()->user()->typage_type == "App\Models\Servidor")

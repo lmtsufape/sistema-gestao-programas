@@ -54,6 +54,9 @@
                 padding: 34px;
                 width: 65%
             }
+
+            
+            
         </style>
         <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
             @if (session('sucesso'))
@@ -65,7 +68,7 @@
 
             <div class="boxchild">
                 <div class="row">
-                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
+                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875; ">
                     Cadastrar Edital</h1>
                 </div>
 
