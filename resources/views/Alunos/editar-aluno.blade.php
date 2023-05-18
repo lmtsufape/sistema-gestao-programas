@@ -87,7 +87,7 @@
             <input type="password" id="senha" name="senha" class="boxinfo"><br/><br>
 
             <label for="cpf" for="nome" class="titulo">CPF:</label>
-            <input type="text" id="cpf" name="cpf" value="{{$aluno->cpf}}" class="boxinfo"><br/><br>
+            <input type="text" id="cpf" name="cpf" value="{{$aluno->cpf}}" class="boxinfo cpf-autocomplete"><br/><br>
 
             <label for="curso" for="nome" class="titulo">Curso:</label>
             <select name="curso" id="curso" class="boxinfo"> name="curso" id="curso">
@@ -116,4 +116,11 @@
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
     <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/home')}}">Voltar</a>
 @endcan
+
+<script  src="{{ mix('js/app.js') }}">
+
+
+    $('.cpf-autocomplete').inputmask('999.999.999-99');
+
+</script>
 @endsection

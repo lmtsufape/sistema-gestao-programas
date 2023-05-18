@@ -131,9 +131,9 @@
 @endcan
 <script  src="{{ mix('js/app.js') }}">
 
-    $(document).ready(function() {
-        $('.cpf-autocomplete').inputmask('999.999.999-99');
-    });
+
+    $('.cpf-autocomplete').inputmask('999.999.999-99');
+
 
 
     document.addEventListener('DOMContentLoaded', function() {

@@ -69,7 +69,7 @@
                 <label for="nome" class="titulo">Nome:</label>
                 <input class="boxinfo" type="text" id="nome" name="nome" placeholder="Digite o nome" value="{{$orientador->user->name}}"
                 ><br/><br>
-                
+
                 <label for="nome_social" class="titulo">Nome Social:</label>
                 <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social" value="{{$orientador->nome_social}}"
                 ><br/><br>
@@ -81,7 +81,7 @@
                 <input class="boxinfo" type="password" id="senha" name="senha" placeholder="Digite a senha"><br/><br>
 
                 <label for="cpf" for="nome" class="titulo">CPF:</label>
-                <input class="boxinfo" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$orientador->cpf}}" ><br/><br>
+                <input class="boxinfo cpf-autocomplete" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$orientador->cpf}}" ><br/><br>
 
                 <label for="matricula" class="titulo">Matrícula: </label>
                 <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula" value="{{$orientador->matricula}}"><br><br>
@@ -122,4 +122,7 @@
   <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
   <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
 @endcan
+<script  src="{{ mix('js/app.js') }}">
+    $('.cpf-autocomplete').inputmask('999.999.999-99');
+</script>
 @endsection
