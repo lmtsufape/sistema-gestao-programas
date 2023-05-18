@@ -74,13 +74,13 @@
             <form action="{{route('programas.store')}}" method="post">
                 @csrf
 
-                <label for="nome" class="titulo" >Nome:</label>
+                <label for="nome" class="titulo" >Nome:<strong style="color: red">*</strong></label>
                 <input type="text" name="nome" id="nome" placeholder="Digite o nome do programa" class="boxinfo" required><br><br>
 
-                <label for="descricao" class="titulo">Descricao:</label>
+                <label for="descricao" class="titulo">Descricao:<strong style="color: red">*</strong></label>
                 <input type="text" name="descricao" id="descricao" placeholder="Digite a descrição do programa" class="boxinfo" required><br><br>
 
-                <label class="titulo" for="servidor">Servidor:</label>
+                <label class="titulo" for="servidor">Servidor:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="servidor" id="servidor" >
                         <option value=""></option>
                             @foreach ($servidors as $servidor)
