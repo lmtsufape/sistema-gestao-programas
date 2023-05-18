@@ -79,15 +79,14 @@
             <br>
             <br>
         </div>
-        @csrf
-        <label class="titulo" for="descricao">CPF do aluno</label>
-        <form id="update-requerente" method="GET" action="{{ route('edital.buscar_aluno') }}">
-            @csrf
-            <input type="text" id="cpf" class="boxinfo" name="cpf" placeholder="CPF do aluno" required>
-            <button type="submit">Buscar</button>
-        </form>
+
         <form action="{{  route('edital.aluno', ['id' => $edital->id])  }}" method="POST" enctype="multipart/form-data">
 
+            @csrf
+            <label class="titulo" for="">CPF do aluno</label>
+            <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf" placeholder="CPF do aluno" required data-url="{{ url('/cpfs') }}">
+            <br>
+            <br>
             <label class="titulo" for="bolsa">Tipo da bolsa</label>
             <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" required>
             <br>
@@ -131,3 +130,53 @@
 
 @endcan
 @endsection
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var cpfInput = document.querySelector('.cpf-autocomplete');
+        var url = cpfInput.getAttribute('data-url');
+
+        cpfInput.addEventListener('input', function() {
+            var cpfValue = this.value;
+
+            fetch(url)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    var filteredCpfs = data.filter(function(item) {
+                        return item.cpf.includes(cpfValue);
+                    });
+                    filteredCpfs.forEach(function(item) {
+                        console.log(item.cpf + ' - ' + item.nome);
+                    });
+                })
+                .catch(function(error) {
+                    console.log('Ocorreu um erro: ' + error);
+                });
+        });
+    });
+
+    // document.getElementById('update-requerente').addEventListener('submit', function(event) {
+    //     event.preventDefault();
+
+    //     var cpfInput = document.getElementById('cpf');
+    //     var cpf = cpfInput.value;
+
+    //     fetch('/buscar-aluno?cpf=' + cpf)
+    //       .then(function(response) {
+    //         return response.json();
+    //       })
+    //       .then(function(data) {
+    //         if (data.existe) {
+    //             cpfInput.value = data.cpf;
+    //             console.log('Aluno encontrado: ', data.aluno);
+    //         } else {
+    //             console.log('Aluno não encontrado');
+    //         }
+    //       })
+    //       .catch(function(error) {
+    //         console.log("Ocorreu um error: " + error);
+    //       });
+    // });
+</script>
