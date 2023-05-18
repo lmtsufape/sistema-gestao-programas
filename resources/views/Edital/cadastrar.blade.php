@@ -74,9 +74,6 @@
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
 
-                    <label class="titulo" for="nome">Nome:</label>
-                    <input class="boxinfo" placeholder="Digite o nome" type="text" name="nome" required id="nome" value="{{ old('nome') }}"><br><br>
-
                     <label class="titulo" for="titulo_edital">Título do edital:</label>
                     <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}"><br><br>
 
