@@ -57,7 +57,7 @@
 
                                 <div class="col-12 mb-3">
                                     <label for="cpf" class="form-label">CPF:</label>
-                                    <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF"
+                                    <input class="boxinfo cpf-autocomplete" type="text" name="cpf" id="cpf" placeholder="Digite o CPF"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('cpf') }}">
                                 </div>
@@ -155,4 +155,8 @@
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
     <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
     @endcan
+
+<script  src="{{ mix('js/app.js') }}">
+    $('.cpf-autocomplete').inputmask('999.999.999-99');
+</script>
 @endsection

@@ -113,6 +113,7 @@ Route::prefix('edital')->group(function() {
     Route::get('/{fileName}/termo', [EditalController::class, 'download_termo_compromisso_aluno'])->name('termo_aluno.download');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
     Route::get('/{id}/orientadores', [EditalController::class, 'listar_orientadores'])->name('edital.listar_orientadores');
+    Route::get('/cpfs', [SeuControlador::class, 'getCpfs']);
 });
 
 // Rotas de Disciplina

@@ -32,6 +32,19 @@ class EditalController extends Controller
         return view("Edital.index", compact("editais", "orientadors"));
     }
 
+    public function getCpfs() {
+    $cpfs = Aluno::select('cpf', 'nome_aluno')->get();
+
+    $data = $cpfs->map(function ($item) {
+        return [
+            'cpf' => $item->cpf,
+            'nome' => $item->nome_aluno,
+        ];
+    });
+
+    return response()->json($data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

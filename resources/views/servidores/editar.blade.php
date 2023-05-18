@@ -36,7 +36,7 @@
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 
                     <label for="cpf" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">CPF:</label>
-                    <input name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$servidor->cpf}}" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
+                    <input  class="boxinfo cpf-autocomplete" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$servidor->cpf}}" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 
                     <label for="tipo_servidor_editar" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor:</label>
@@ -74,4 +74,7 @@
         <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
         <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
     @endcan
+<script  src="{{ mix('js/app.js') }}">
+        $('.cpf-autocomplete').inputmask('999.999.999-99');
+</script>
 @endsection

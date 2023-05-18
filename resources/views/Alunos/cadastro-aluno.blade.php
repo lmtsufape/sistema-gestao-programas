@@ -84,7 +84,7 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="inputCpf" class="titulo">CPF:</label>
-            <input class="boxinfo" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF" value="{{ old('cpf') }}">
+            <input class="boxinfo cpf-autocomplete" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF" value="{{ old('cpf') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
@@ -129,7 +129,11 @@
     <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/home')}}">Voltar</a>
 @endcan
 
-<script type="text/javascript">
+<script type="text/javascript" src="{{ mix('js/app.js') }}">
+
+    $('.cpf-autocomplete').inputmask('999.999.999-99');
+
+
     (() => {
         'use strict'
         // Fetch all the forms we want to apply custom Bootstrap validation styles to

@@ -79,10 +79,12 @@
             <br>
             <br>
         </div>
+
         <form action="{{  route('edital.aluno', ['id' => $edital->id])  }}" method="POST" enctype="multipart/form-data">
+
             @csrf
-            <label class="titulo" for="descricao">CPF do aluno</label>
-            <input type="text" id="cpf" class="boxinfo" name="cpf" placeholder="cpf do aluno" required>
+            <label class="titulo" for="">CPF do aluno</label>
+            <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf" placeholder="CPF do aluno" required data-url="{{ url('/cpfs') }}">
             <br>
             <br>
             <label class="titulo" for="bolsa">Tipo da bolsa</label>
@@ -127,4 +129,37 @@
 </div>
 
 @endcan
+<script  src="{{ mix('js/app.js') }}">
+
+
+    $('.cpf-autocomplete').inputmask('999.999.999-99');
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var cpfInput = document.querySelector('.cpf-autocomplete');
+    var url = cpfInput.getAttribute('data-url');
+
+    cpfInput.addEventListener('input', function() {
+        var cpfValue = this.value;
+
+        fetch(url)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                var filteredCpfs = data.filter(function(item) {
+                    return item.cpf.includes(cpfValue);
+                });
+                filteredCpfs.forEach(function(item) {
+                    console.log(item.cpf + ' - ' + item.nome);
+                });
+            })
+            .catch(function(error) {
+                console.log('Ocorreu um erro: ' + error);
+            });
+        });
+    });
+</script>
 @endsection
+
