@@ -74,9 +74,6 @@
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
 
-                    <label class="titulo" for="nome">Nome:</label>
-                    <input class="boxinfo" placeholder="Digite o nome" type="text" name="nome" required id="nome" value="{{ old('nome') }}"><br><br>
-
                     <label class="titulo" for="titulo_edital">Título do edital:</label>
                     <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}"><br><br>
 
@@ -93,7 +90,7 @@
                     <input class="boxinfo"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
 
                     <label class="titulo" for="valor_bolsa">Valor da Bolsa:</label>
-                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
+                    <input class="boxinfo" placeholder="Digite o valor da bolsa (apenas números)" type="text" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
 
                     <label class="titulo" for="programa">Programa:</label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
@@ -126,6 +123,9 @@
         </div>
 
         <script>
+
+
+            
             $("#programa").chosen({
                 placeholder_text_single: "Selecione um programa",
                 // max_shown_results : 5,
