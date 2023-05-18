@@ -39,8 +39,8 @@ class EditalStoreFormRequest extends FormRequest
     public function messages(){
         return [
             "required" => "O campo :attribute é obrigatório.",
-            "date" => "O campo :atribute deve ser um date.",
-            "numeric" => "O campo :atribute deve ser um número."
+            "date" => "O campo :attribute deve ser um date.",
+            "numeric" => "O campo :attribute deve ser um número."
         ];
     }
 }
