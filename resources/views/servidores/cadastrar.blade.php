@@ -29,7 +29,7 @@
 
                                 <div class="col-12 mb-3">
                                     <label for="nome_social" class="form-label">Nome social:</label>
-                                    <input type="text" name="name_social" id="nome_social" placeholder="Digite o nome social"
+                                    <input type="text" name="name_social" id="name_social" placeholder="Digite o nome social"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('name_social') }}">
                                 </div>
