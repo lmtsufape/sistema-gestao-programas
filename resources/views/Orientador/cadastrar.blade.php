@@ -75,23 +75,25 @@
 
             <form action="{{route('orientadors.store')}}" method="POST">
                 @csrf
-                <label for="nome" class="titulo">Nome: </label>
-                <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome"><br><br>
+                <label for="inputName" class="titulo">Nome:</label>
+                <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome" value="{{ old('nome') }}">
+                <div class="invalid-feedback">Por favor preencha esse campo</div><br><br>
 
-                <label for="nomesocial" class="titulo">Nome Social: </label>
-                <input class="boxinfo" type="text" name="nomesocial" id="nomesocial" placeholder="Digite o nome social"><br><br>
+                <label for="inputNomeSocial" class="titulo">Nome Social:</label>
+                <input class="boxinfo" type="text" id="inputNomeSocial" name="name_social" placeholder="Digite o nome" value="{{ old('name_social') }}">
+                <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
                 <label for="email" class="titulo">E-mail: </label>
-                <input class="boxinfo" type="text" name="email" id="email" placeholder="Digite o e-mail"><br><br>
+                <input class="boxinfo" type="text" name="email" id="email" placeholder="Digite o e-mail" value="{{ old('email') }}"><br><br>
+
+                <label for="cpf" class="titulo">CPF: </label>
+                <input class="boxinfo" type="text" name="cpf" id="cpf" placeholder="Digite o CPF" value="{{ old('cpf') }}"><br><br>
+
+                <label for="matricula" class="titulo">Matrícula: </label>
+                <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula" value="{{ old('matricula') }}"><br><br>
 
                 <label for="senha" class="titulo">Senha: </label>
                 <input class="boxinfo" type="password" name="senha" id="senha" placeholder="Digite a senha"><br><br>
-
-                <label for="cpf" class="titulo">CPF: </label>
-                <input class="boxinfo" type="text" name="cpf" id="cpf" placeholder="Digite o CPF"><br><br>
-
-                <label for="matricula" class="titulo">Matrícula: </label>
-                <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula"><br><br>
 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                     <input type="button" value="Voltar" href="{{route('orientadors.index')}}" onclick="window.location.href='{{route('orientadors.index')}}'"
