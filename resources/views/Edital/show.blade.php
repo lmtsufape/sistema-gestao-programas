@@ -129,54 +129,37 @@
 </div>
 
 @endcan
-@endsection
+<script  src="{{ mix('js/app.js') }}">
 
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var cpfInput = document.querySelector('.cpf-autocomplete');
-        var url = cpfInput.getAttribute('data-url');
-
-        cpfInput.addEventListener('input', function() {
-            var cpfValue = this.value;
-
-            fetch(url)
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data) {
-                    var filteredCpfs = data.filter(function(item) {
-                        return item.cpf.includes(cpfValue);
-                    });
-                    filteredCpfs.forEach(function(item) {
-                        console.log(item.cpf + ' - ' + item.nome);
-                    });
-                })
-                .catch(function(error) {
-                    console.log('Ocorreu um erro: ' + error);
-                });
-        });
+    $(document).ready(function() {
+        $('.cpf-autocomplete').inputmask('999.999.999-99');
     });
 
-    // document.getElementById('update-requerente').addEventListener('submit', function(event) {
-    //     event.preventDefault();
 
-    //     var cpfInput = document.getElementById('cpf');
-    //     var cpf = cpfInput.value;
+    document.addEventListener('DOMContentLoaded', function() {
+    var cpfInput = document.querySelector('.cpf-autocomplete');
+    var url = cpfInput.getAttribute('data-url');
 
-    //     fetch('/buscar-aluno?cpf=' + cpf)
-    //       .then(function(response) {
-    //         return response.json();
-    //       })
-    //       .then(function(data) {
-    //         if (data.existe) {
-    //             cpfInput.value = data.cpf;
-    //             console.log('Aluno encontrado: ', data.aluno);
-    //         } else {
-    //             console.log('Aluno não encontrado');
-    //         }
-    //       })
-    //       .catch(function(error) {
-    //         console.log("Ocorreu um error: " + error);
-    //       });
-    // });
+    cpfInput.addEventListener('input', function() {
+        var cpfValue = this.value;
+
+        fetch(url)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                var filteredCpfs = data.filter(function(item) {
+                    return item.cpf.includes(cpfValue);
+                });
+                filteredCpfs.forEach(function(item) {
+                    console.log(item.cpf + ' - ' + item.nome);
+                });
+            })
+            .catch(function(error) {
+                console.log('Ocorreu um erro: ' + error);
+            });
+        });
+    });
 </script>
+@endsection
+
