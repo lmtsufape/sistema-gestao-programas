@@ -90,8 +90,10 @@ class EditalController extends Controller
 
     public function inscrever_aluno(Request $request, $id) {
 
-        DB::beginTransaction();
-        try {
+
+        // dd($request);
+        // DB::beginTransaction();
+        // try {
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
             $orientador_id = (int)$request->orientador;
@@ -99,17 +101,25 @@ class EditalController extends Controller
             //dd($edital);
             $request->validate([
                 'termo_compromisso_aluno' => 'required|mimes:pdf|max:2048',
+                'termo_compromisso_orientador' => 'required|mimes:pdf|max:2048',
             ]);
-            $fileName = "";
+            $termo_aluno = "";
+            $termo_orientador = "";
 
-            if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()) {
-                $fileName = "termo_compromisso_aluno_". $aluno->nome_aluno . "_" . $aluno->id . $edital->id  . now() . '.' . $request->termo_compromisso_aluno->extension();
+            if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()
+                && $request->hasFile('termo_compromisso_orientador') && $request->file('termo_compromisso_orientador')->isValid()) {
+                $termo_aluno = "termo_compromisso_aluno_". $aluno->nome_aluno . "_" . $aluno->id . $edital->id  . now() . '.' . $request->termo_compromisso_aluno->extension();
+                $termo_orientador = "termo_compromisso_orientador_" . $orientador_id . $edital->id  . now() . '.' . $request->termo_compromisso_orientador->extension();
                 //dd($extensao);
-                $request->termo_compromisso_aluno->storeAs('termo_compromisso_alunos/', $fileName);
+                $request->termo_compromisso_aluno->storeAs('termo_compromisso_alunos/', $termo_aluno);
+                $request->termo_compromisso_orientador->storeAs('termo_compromisso_orientadores/', $termo_orientador);
+
             }
-            //dd($fileName);
+            //dd($termo_aluno);
 
             if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
+
+                // dd($edital);
                 return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
             } else {
                 $data = [
@@ -120,24 +130,23 @@ class EditalController extends Controller
                     'bolsista' => true,
                     'plano_projeto' => "plano de projeto",
                     'info_complementares' => $request->info_complementares,
-                    'termo_compromisso_orientador' => "confie no orientador",
+                    'termo_compromisso_orientador' => $termo_orientador,
                     'disciplina_id' => $edital->disciplina_id,
                     'edital_id' => $edital->id,
                     'aluno_id' => $aluno->id,
                     'orientador_id' => $orientador_id,
                 ];
-                //if ($)
-                $data['termo_compromisso_aluno'] = $fileName;
-                // dd($data);
+                $data['termo_compromisso_aluno'] = $termo_aluno;
+                //dd($data);
                 $editalAlunoOrientador = EditalAlunoOrientadors::create($data);
 
                 DB::commit();
                  return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
            }
-       } catch(exception $e){
-            DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
-        }
+    //    } catch(exception $e){
+    //         DB::rollback();
+    //         return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
+    //     }
     }
 
     /**
@@ -235,13 +244,19 @@ class EditalController extends Controller
      */
     public function download_termo_compromisso_aluno($fileName) {
 
-
-        //dd($fileName);
-        //$a = EditalAlunoOrientadors::find($fileName);
-        //dd($a);
-
         $path = 'termo_compromisso_alunos/' . $fileName;
-        //dd($aluno);
+
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('fail', 'Arquivo PDF não encontrado.');
+        }
+     }
+
+     public function download_termo_compromisso_orientador($fileName) {
+
+       $path = 'termo_compromisso_orientadores/' . $fileName;
+
         if(Storage::exists($path)) {
             return Storage::download($path);
         } else {
