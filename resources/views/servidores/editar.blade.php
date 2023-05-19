@@ -23,7 +23,7 @@
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 
                     <label for="nome_social" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome Social:</label>
-                    <input type="text" id="name_social" name="name_social" value="{{$servidor->user->name_social}}"
+                    <input type="text" id="nome_social" name="nome_social" value="{{$servidor->user->name_social}}"
                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 
@@ -46,10 +46,16 @@
 
                         @if ($servidor->tipo_servidor == 'adm')
                             <option value="0" selected>Administrador</option>
-                        @elseif ($servidor->tipo_servidor == 'pro_reitor')
                             <option value="1">Pró-Reitor</option>
-                        @else
                             <option value="2">Servidor</option>
+                        @elseif ($servidor->tipo_servidor == 'pro_reitor')
+                            <option value="0">Administrador</option>
+                            <option value="1" selected>Pró-Reitor</option>
+                            <option value="2">Servidor</option>
+                        @else
+                            <option value="0">Administrador</option>
+                            <option value="1">Pró-Reitor</option>
+                            <option value="2" selected>Servidor</option>
                         @endif
 
                     </select>

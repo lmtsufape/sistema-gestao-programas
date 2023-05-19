@@ -2,11 +2,7 @@
 @section("body")
 @canany(['admin', 'pro_reitor'])
   <div class="container" style="font-family: 'Roboto', sans-serif;">
-    @if (session('sucesso'))
-    <div class="alert alert-success">
-      {{session('sucesso')}}
-    </div>
-    @endif
+
     <br>
     <div class="container" style="font-family: 'Roboto', sans-serif;">
   @if (session('sucesso'))
@@ -134,10 +130,6 @@
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
         </div>
       </div>
-          <div style="display: flex; margin: 10px">
-            <a><img src="{{asset("images/user-key.png")}}" alt="Permissão servidor" style="width: 20px; height: 20px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Permissões</p>
-          </div>
         </div>
       </div>
       @endif
