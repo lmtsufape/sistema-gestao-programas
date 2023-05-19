@@ -86,8 +86,11 @@
                         <label class="titulo" for="data_fim">Data de fim:</label>
                         <input class="boxinfo" type="date" name="data_fim" id="data_fim" value="{{$edital->data_fim}}"><br><br>
 
+                        <label class="titulo" for="titulo_edital">Título do Edital:</label>
+                        <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br>
+
                         <label class="titulo" for="valor_bolsa">Valor da Bolsa:</label>
-                        <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value="{{$edital->valor_bolsa}}"><br><br>
+                        <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value=""><br><br>
 
                         <label class="titulo" for="disciplina">Disciplina:</label>
                         <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina" >
@@ -95,7 +98,7 @@
                                 <option value="{{$disciplina->id}}" {{$edital->disciplina_id == $disciplina->id ? 'selected' : ''}}>{{$disciplina->nome}}</option>
                             @endforeach
                         </select><br><br>
-                        
+
                         <label class="titulo" for="programa">Programa:</label>
                         <select aria-label="Default select example" class="boxinfo" name="programa" id="programa">
                             @foreach ($programas as $programa)
@@ -124,6 +127,8 @@
 
                     </form>
             </div>
+            <br>
+            <br>
         </div>
         <script>
             // //cash mask para o valor da bolsa

@@ -42,7 +42,8 @@
     <h1 style="color:#2D3875;"><strong>Editais</strong></h1>
     <div style="margin: auto"></div>
     <form action="{{  route('edital.index')  }}" method="GET">
-      <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
+      <input type="text" onkeyup="" placeholder="   Digite a busca" title="" id="valor" name="valor" 
+                  style="background-color: #D9D9D9;
                   border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                   background-position: 10px 2px;
                   background-repeat: no-repeat;
@@ -50,7 +51,7 @@
                   font-size: 16px;
                   height: 45px;
                   border: 1px solid #ddd;
-                  margin-bottom: 12px; margin-right: 10px">
+                  margin-bottom: 12px; margin-right: 10px";>
 
       <input type="submit" value="" style="background-image: url('/images/searchicon.png');
                   background-color: #D9D9D9;
@@ -75,14 +76,13 @@
     </div>
   </div>
   <br>
-  <br>
   <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">
       <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
         ;margin-bottom: 5px; min-height: 50px">
         <thead>
           <tr>
-            <th scope="col">Título:</i></th>
+            <th scope="col">Título</i></th>
             <th scope="col">Data de início</th>
             <th scope="col">Data de fim</th>
             <th scope="col">Programa</th>
@@ -136,7 +136,7 @@
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
         <div style="display: flex; margin: 10px">
-          <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
+          <a><img src="/images/info.png" alt="Informações" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
         </div>
         <div style="align-self: center; margin-right: auto">

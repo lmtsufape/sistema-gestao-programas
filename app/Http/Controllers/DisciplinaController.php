@@ -77,11 +77,15 @@ class DisciplinaController extends Controller
     }
 
     public function destroy(Request $request) {
-        $id = $request->only(['id']);
-        $disciplina = Disciplina::findOrFail($id)->first();
+        try{
+            $id = $request->only(['id']);
+            $disciplina = Disciplina::findOrFail($id)->first();
 
-        if ($disciplina->delete()) {
-            return redirect(route("disciplinas.index"));
+            if ($disciplina->delete()) {
+                return redirect(route("disciplinas.index"));
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors("Falha ao deletar disciplina. Tente novamente mais tarde.");
         }
     }
 

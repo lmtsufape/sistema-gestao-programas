@@ -74,25 +74,25 @@
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
 
-                    <label class="titulo" for="titulo_edital">Título do edital:</label>
-                    <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}"><br><br>
+                    <label class="titulo" for="titulo_edital">Título do edital:<strong style="color: red">*</strong></label>
+                    <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
 
-                    <label class="titulo" for="semestre">Semestre:</label>
-                    <input class="boxinfo" placeholder="Digite o semestre" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}"><br><br>
+                    <label class="titulo" for="semestre">Semestre:<strong style="color: red">*</strong></label>
+                    <input class="boxinfo" placeholder="Digite o semestre" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
 
-                    <label class="titulo" for="Descrição">Descrição:</label>
+                    <label class="titulo" for="Descrição">Descrição:<strong style="color: red">*</strong></label>
                     <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="10"> {{ old('descricao') }}</textarea><br><br>
 
-                    <label class="titulo" for="data_inicio" class="titulo">Data de início:</label>
+                    <label class="titulo" for="data_inicio" class="titulo">Data de início:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}"><br><br>
 
-                    <label class="titulo" for="data_fim" >Data de fim:</label>
+                    <label class="titulo" for="data_fim" >Data de fim:<strong style="color: red">*</strong></label>
                     <input class="boxinfo"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
 
-                    <label class="titulo" for="valor_bolsa">Valor da Bolsa:</label>
-                    <input class="boxinfo" placeholder="Digite o valor da bolsa (apenas números)" type="text" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
+                    <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
+                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}" required><br><br>
 
-                    <label class="titulo" for="programa">Programa:</label>
+                    <label class="titulo" for="programa">Programa:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
                         <option></option>
                             @foreach ($programas as $programa)
@@ -100,7 +100,7 @@
                             @endforeach
                     </select><br><br>
 
-                    <label class="titulo" for="disciplina">Disciplina:</label>
+                    <label class="titulo" for="disciplina">Disciplina:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina" >
                         <option></option>
                             @foreach ($disciplinas as $disciplina)
@@ -125,7 +125,7 @@
         <script>
 
 
-            
+
             $("#programa").chosen({
                 placeholder_text_single: "Selecione um programa",
                 // max_shown_results : 5,

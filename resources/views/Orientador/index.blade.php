@@ -92,7 +92,7 @@
                         <th scope="col">Nome</th>
                         <th scope="col">E-mail</th>
                         <th scope="col">CPF</th>
-                        <th scope="col">Matricula</th>
+                        <th scope="col">Matrícula</th>
                         <th scope="col">Ações</th>
                     </tr>
                     </thead>
@@ -176,8 +176,10 @@
           <a href="#" style="border-radius: 15px; background: #131833; color: white;">Próximo</a>
         </div>
       </div>  --}}
-
+      
   </div>
+  <br>
+  <br>
   @endif
 </div>
 
