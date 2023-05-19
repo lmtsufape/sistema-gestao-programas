@@ -78,29 +78,31 @@
           </tr>
         </thead>
         <tbody>
-        @foreach($orientadors as $orientador) 
+        {{-- @foreach($orientadors as $orientador) --}}
 
           <tr>
-            <td> {{ $orientador->nome_orientador}} </td>
-            <td> {{ $orientador->pivot->data_inicio }} </td>
-            <td> {{ $orientador->pivot->data_fim }} </td>
+            <td> nome </td>
+            <td> data </td>
+            <td> data </td>
             <td>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$aluno->pivot->aluno_id}}">
-                <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show">
+                <img src="{{asset("images/info.png")}}" alt="Info orientador" style="height: 30px; width: 30px;">
               </a>
               <a type="button" href="">
                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->pivot->aluno_id}}">
-                <img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete">
+                <img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$aluno->pivot->aluno_id}}">
-                <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents">
+                <img src="{{asset('images/document.png')}}" alt="Documento orientador"  style="height: 30px; width: 30px;">
               </a>
             </td>
           </tr>
-          
-        @endforeach
+          @include('Edital.components_orientador.modal_show')
+          @include('Edital.components_orientador.modal_documents')
+          @include('Edital.components_orientador.modal_delete')
+        {{-- @endforeach --}}
         </tbody>
       </table>
     </div>
