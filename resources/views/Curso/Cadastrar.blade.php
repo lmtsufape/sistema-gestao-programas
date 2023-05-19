@@ -56,7 +56,7 @@
         }
         </style>
 
-    <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; ">
+    <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:10px; ">
         @if (session('sucesso'))
             <div class="alert alert-success">
                 {{session('sucesso')}}

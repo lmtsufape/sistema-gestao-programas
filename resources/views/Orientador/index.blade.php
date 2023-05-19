@@ -176,8 +176,10 @@
           <a href="#" style="border-radius: 15px; background: #131833; color: white;">Próximo</a>
         </div>
       </div>  --}}
-
+      
   </div>
+  <br>
+  <br>
   @endif
 </div>
 
