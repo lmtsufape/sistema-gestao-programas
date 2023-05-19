@@ -76,8 +76,8 @@
                 @csrf
                 
 
-                <label for="nome" class="titulo">Nome:</label>
-                <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome do curso"><br><br>
+                <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
+                <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome do curso" required><br><br>
                 
             
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
