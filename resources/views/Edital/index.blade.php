@@ -82,7 +82,7 @@
         ;margin-bottom: 5px; min-height: 50px">
         <thead>
           <tr>
-            <th scope="col">Título:</i></th>
+            <th scope="col">Título</i></th>
             <th scope="col">Data de início</th>
             <th scope="col">Data de fim</th>
             <th scope="col">Programa</th>
@@ -136,7 +136,7 @@
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
         <div style="display: flex; margin: 10px">
-          <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
+          <a><img src="/images/info.png" alt="Informações" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
         </div>
         <div style="align-self: center; margin-right: auto">

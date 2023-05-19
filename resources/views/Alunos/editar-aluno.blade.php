@@ -76,7 +76,7 @@
             class="boxinfo"><br/><br>
 
 
-            <label for="nome_social" class="titulo">Nome social:</label>
+            <label for="nome_social" class="titulo">Nome Social:</label>
             <input type="text" id="nome_social" name="nome_social" value=""
             class="boxinfo"><br/><br>
 

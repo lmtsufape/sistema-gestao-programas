@@ -83,12 +83,12 @@
         <form action="{{  route('edital.aluno', ['id' => $edital->id])  }}" method="POST" enctype="multipart/form-data">
 
             @csrf
-            <label class="titulo" for="">CPF do aluno</label>
+            <label class="titulo" for="">CPF do aluno:</label>
             <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf" placeholder="CPF do aluno" required data-url="{{ url('/cpfs') }}">
             <br>
             <br>
-            <label class="titulo" for="bolsa">Tipo da bolsa</label>
-            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" required>
+            <label class="titulo" for="bolsa">Tipo da bolsa:</label>
+            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="Bolsa" required>
             <br>
             <br>
             <label class="titulo" for="orientador">Orientador:</label>
@@ -100,15 +100,15 @@
             </select>
             <br>
             <br>
-            <label class="titulo" for="info_complementares">Informações complementares</label>
-            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="informações complementares" required>
+            <label class="titulo" for="info_complementares">Informações complementares:</label>
+            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="Informações complementares" required>
             <br>
             <br>
-            <label class="titulo" for="termo_compromisso_aluno">termo_compromisso_aluno</label>
+            <label class="titulo" for="termo_compromisso_aluno">termo_compromisso_aluno:</label>
             <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno" required>
             <br>
             <br>
-            <label class="titulo" for="termo_compromisso_orientador">termo_compromisso_orientador</label>
+            <label class="titulo" for="termo_compromisso_orientador">termo_compromisso_orientador:</label>
             <input type="file" id="termo_compromisso_orientador" class="boxinfo" name="termo_compromisso_orientador" required>
             <br>
             <br>
