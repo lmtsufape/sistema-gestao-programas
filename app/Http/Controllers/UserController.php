@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Curso;
 use App\Models\Servidor;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,6 +13,12 @@ class UserController extends Controller
         $tipo_servidors = Servidor::all();
         $cursos = Curso::all();
         return view('auth.register', compact('tipo_servidors', 'cursos'));
+    }
+
+    public function store(Request $request) {
+        $user = new User;
+        dd($request);
+        $user->cpf = $request->cpf;
     }
 
     // 'name',
