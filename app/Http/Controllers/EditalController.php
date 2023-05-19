@@ -80,7 +80,7 @@ class EditalController extends Controller
 
             return redirect('/edital')->with('sucesso', 'Edital cadastrado com sucesso.');
 
-        } catch(exception $e){
+        } catch(Exception $e){
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
         }
@@ -106,7 +106,7 @@ class EditalController extends Controller
 
         // dd($request);
         // DB::beginTransaction();
-        // try {
+        try {
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
             $orientador_id = (int)$request->orientador;
@@ -156,10 +156,10 @@ class EditalController extends Controller
                 DB::commit();
                  return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
            }
-    //    } catch(exception $e){
-    //         DB::rollback();
-    //         return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
-    //     }
+        } catch(Exception $e){
+             #DB::rollback();
+             return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
+         }
     }
 
     /**

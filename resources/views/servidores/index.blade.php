@@ -66,7 +66,7 @@
          <thead>
         <tr>
           <th scope="col">Nome</th>
-          <th scope="col">Email</th>
+          <th scope="col">E-mail</th>
           <th scope="col">CPF</th>
           <th scope="col">Tipo do servidor</th>
           <th scope="col">Ações</th>
@@ -148,6 +148,8 @@
           </div>
         </div>
       </div>
+      <br>
+      <br>
       @endif
     </div>
   </div>

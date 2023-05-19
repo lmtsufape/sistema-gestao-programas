@@ -168,30 +168,34 @@ class ProgramaController extends Controller
 
     public function destroy(Request $request)
     {
-        $edital = Edital::where("programa_id", $request->id)->first();
-        if ($edital)
-        {
-            return redirect()->back()->withErrors( "Falha ao deletar Programa. Existem editais vinculados a ele." );
-        } else{
+        try{
+            $edital = Edital::where("programa_id", $request->id)->first();
+            if ($edital)
+            {
+                return redirect()->back()->withErrors( "Falha ao deletar Programa. Existem editais vinculados a ele." );
+            } else{
+            
         
-	
-            DB::beginTransaction();
-            try{
-                $id = $request->only(['id']);
-                $programa = Programa::findOrFail($id)->first();
+                DB::beginTransaction();
+                try{
+                    $id = $request->only(['id']);
+                    $programa = Programa::findOrFail($id)->first();
 
-                Programa_servidor::where("programa_id", $programa->id)->delete();
+                    Programa_servidor::where("programa_id", $programa->id)->delete();
 
-                $programa->delete();
+                    $programa->delete();
 
 
-                DB::commit();
+                    DB::commit();
 
-                return redirect('/programas')->with('sucesso', 'Programa deletado com sucesso.');
-            } catch(exception $e){
-                DB::rollback();
-                return redirect()->back()->withErrors( "Falha ao deletarm um Programa. tente novamente mais tarde." );
+                    return redirect('/programas')->with('sucesso', 'Programa deletado com sucesso.');
+                } catch(exception $e){
+                    DB::rollback();
+                    return redirect()->back()->withErrors( "Falha ao deletarm um Programa. tente novamente mais tarde." );
+                }
             }
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors("Falha ao cadastrar aluno. Tente novamente mais tarde.");
         }
     }
 

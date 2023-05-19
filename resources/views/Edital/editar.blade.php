@@ -92,7 +92,7 @@
                         <label class="titulo" for="titulo_edital">Título do Edital:</label>
                         <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br>
 
-                        <label class="valor_bolsa" for="valor_bolsa">Valor da Bolsa:</label>
+                        <label class="titulo" for="valor_bolsa">Valor da Bolsa:</label>
                         <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value=""><br><br>
 
                         <label class="titulo" for="disciplina">Disciplina:</label>
@@ -117,7 +117,7 @@
                                                                 box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                                                                 border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                                                                 line-height: 29px; text-align: center; padding: 5px 15px;">
-                            <input type="submit" value="salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
+                            <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
                                                     display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
                                                     font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
                         </div>
@@ -127,7 +127,9 @@
 
 
                     </form>
-            </div>
+            </div> 
+            <br>
+            <br>
         </div>
         <script>
             $("#programa").chosen({
