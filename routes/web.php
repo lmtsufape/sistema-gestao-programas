@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CursoController;
@@ -8,17 +7,19 @@ use App\Http\Controllers\ServidorController;
 use App\Http\Controllers\OrientadorController;
 use App\Http\Controllers\EditalController;
 use App\Http\Controllers\DisciplinaController;
-use App\Http\Controllers\CadastrarSeController;
 use App\Http\Controllers\FrequenciaController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MeusAlunosController;
 use App\Http\Controllers\MeusProgramasController;
+use App\Http\Controllers\UserController;
 
 // Rotas de autenticacao
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/home', [UserController::class, 'store'])->name('store');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -144,8 +145,8 @@ Route::prefix('cursos')->group(function() {
 });
 
 // Rotas de Cadastrar-se
-Route::get('/cadastrar-se', [CadastrarSeController::class, "cadastrarSe"]);
-Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
+// Route::get('/cadastrar-se', [CadastrarSeController::class, "cadastrarSe"]);
+// Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
