@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aluno;
 use App\Models\Curso;
 use App\Models\Servidor;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -16,10 +18,59 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-        $user = new User;
-        dd($request);
-        $user->cpf = $request->cpf;
+
+        $existingCpf = User::where('cpf', $request->cpf)->first();
+        if($existingCpf) {
+            return response()->json(['error' => 'CPF já cadastrado'], 400);
+        }
+
+        $data = [
+            'name' => $request->nome,
+            'name_social' => $request->nome_social == null ? "-": $request->nome_social,
+            'cpf' => $request->cpf,
+            'email' => $request->email,
+            'password' => Hash::make($request->senha),
+        ];
+        //dd($data);
+    //   "name" => "luann"
+    //   "name_social" => "-"
+    //   "cpf" => "119.864.330-72"
+    //   "email" => "aluno3@gmail.com"
+    //   "password" => "$2y$10$p6hoZ3PMauBs4tW7GAZtEueVSCNdMn/McxYJyxwq4q2KhqNUTgVD6"
+        switch ($request->tipoUser){
+            case('aluno'):
+                $aluno = new Aluno();
+                $aluno->nome_aluno  = $request->nome;
+                $aluno->cpf = $request->cpf;
+                $aluno->curso_id  = $request->curso;
+                $aluno->semestre_entrada = $request->semestre_entrada;
+
+                if($aluno->save()) {
+                    if (
+                        $aluno->user()->insert([$data])
+                    ->givePermissionTo('aluno')
+                    ) {
+                        return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
+                    } else {
+                        return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
+                    }
+                }
+                dd($aluno);
+
+                break;
+            case('servidor'):
+                break;
+            case('orientador'):
+                break;
+        }
     }
+
+    // $aluno->user()->create([
+    //     'name' => $request->nome,
+    //     'name_social' => $request->nome_social == null ? "-": $request->nome_social,
+    //     'email' => $request->email,
+    //     'password' => Hash::make($request->senha)
+    // ])->givePermissionTo('aluno')
 
     // 'name',
     //     'name_social',

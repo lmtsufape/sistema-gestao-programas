@@ -17,6 +17,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->increments('id');
             $table->string('name', 100);
+            $table->string('cpf', 14)->unique();
             $table->string('name_social', 100)->nullable();
             $table->string('email', 100)->unique();
             $table->string('password');

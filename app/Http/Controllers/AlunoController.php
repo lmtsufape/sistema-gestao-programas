@@ -20,10 +20,10 @@ class AlunoController extends Controller
     {    //dd($request);
         try {
             $aluno = new Aluno();
+            $aluno->nome_aluno = $request->nome;
             $aluno->cpf = $request->cpf;
             $aluno->curso_id = $request->curso;
             $aluno->semestre_entrada = $request->semestre_entrada;
-            $aluno->nome_aluno = $request->nome;
 
             if ($aluno->save()){
                 if (
@@ -59,7 +59,7 @@ class AlunoController extends Controller
 
             $aluno->user->name = $request->nome;
             $aluno->user->email = $request->email;
-            $aluno->user->name_social = $request->nome_social;                
+            $aluno->user->name_social = $request->nome_social;
             if ($request->senha && $request->senha != null){
                 if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
                     $aluno->user->password = Hash::make($request->password);
@@ -80,7 +80,7 @@ class AlunoController extends Controller
 
         } catch(exception $e){
             return redirect()->back()->withErrors( "Falha ao editar aluno. tente novamente mais tarde." );
-        
+
         }
     }
 
@@ -99,7 +99,7 @@ class AlunoController extends Controller
             if ($aluno->user->delete() && $aluno->delete()) {
                 return redirect(route("alunos.index"))->with('sucesso', 'Aluno deletado com sucesso.');
             }
-            
+
         } catch(exception $e){
             return redirect()->back()->withErrors( "Falha ao deletar aluno. tente novamente mais tarde." );
         }

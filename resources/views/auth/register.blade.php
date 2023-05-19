@@ -135,8 +135,8 @@
             </div>
 
             <div id="semestre">
-                <label class="titulo" for="semestreEntrada">Semestre de entrada:</label>
-                <input class="boxinfo" type="text"  id="semestreEntrada" name="semestreEntrada" placeholder="Digite o semestre">
+                <label class="titulo" for="semestre_entrada">Semestre de entrada:</label>
+                <input class="boxinfo" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre">
                 <br><br>
             </div>
 
