@@ -57,7 +57,6 @@
 </style>
 
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px">
-
     @if (session('sucesso'))
     <div class="alert alert-sucess">
         {{session('sucesso')}}
@@ -72,30 +71,31 @@
 
         <hr style="color:#2D3875;">
 
-        <form action="{{url("/cadastrar-se/store")}}" method="POST">
+        <form action="{{ route('store') }}" method="POST">
             @csrf
-            <label for="inputName" class="titulo">Nome:</label>
-            <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
+            <label for="nome" class="titulo">Nome:</label>
+            <input class="boxinfo" type="text" id="nome" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputNomeSocial" class="titulo">Nome Social:</label>
-            <input class="boxinfo" type="text" id="inputNomeSocial" name="nome_social" required placeholder="Digite o nome social">
+            <label for="nome-social" class="titulo">Nome Social:</label>
+            <input class="boxinfo" type="text" id="nome-social" name="nome-social" placeholder="Digite o nome social">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputCpf" class="titulo">CPF:</label>
-            <input class="boxinfo" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF">
+            <label for="cpf" class="titulo">CPF:</label>
+            <input class="boxinfo" type="text"  id="cpf" name="cpf" required placeholder="Digite o CPF">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputEmail4" class="titulo">Email:</label>
-            <input class="boxinfo" type="email" id="inputEmail4" name="email" required placeholder="Digite o email">
+            <label for="email" class="titulo">Email:</label>
+            <input class="boxinfo" type="email" id="email" name="email" required placeholder="Digite o email">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputPassword4" class="titulo">Senha:</label>
-            <input type="password"  class="boxinfo" id="inputPassword4" name="senha" required placeholder="Digite a senha">
+            <label for="senha" class="titulo">Senha:</label>
+            <input type="password"  class="boxinfo" id="senha" name="senha" required placeholder="Digite a senha">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="tipoUser" class="titulo">Tipo do usuário:</label>
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
+                <option>Selece o tipo de usuario</option>
                 <option value="servidor" selected>Servidor</option>
                 <option value="orientador">Orientador</option>
                 <option value="aluno">Aluno</option>
@@ -105,38 +105,40 @@
                 <label for="tipo_servidor" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor: </label>
                 <select name="tipo_servidor" id="tipo_servidor" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                 box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" aria-label="Default select example">
-                    <option value=""></option>
-
+                    <option>Selecione o servidor</option>
                     @foreach ($tipo_servidors as $tipo_servidor)
                         <option value="{{$tipo_servidor->id}}">{{$tipo_servidor->tipo_servidor}}</option>
                     @endforeach
                 </select>
             </div>
-
-            <div id="curso" hidden>
-                <label class="titulo" for="cursoAluno">Curso:</label>
+            <br>
+            <div>
+                <label for="instituicaoVinculo" class="titulo">instituicaoVinculo:</label>
+                <input class="boxinfo" type="text" id="instituicaoVinculo" name="instituicaoVinculo"placeholder="instituicaoVinculo">
+            </div>
+            <br>
+            <div id="curso">
+                <label class="titulo" for="curso">Curso:</label>
                 <select aria-label="Default select example" class="boxinfo" id="curso" name="curso">
                     <option value="">Selecione o curso</option>
                     @foreach ($cursos as $curso)
                     <option value="{{$curso->id}}">{{$curso->nome}}</option>
                     @endforeach
                 </select>
+            </div>
+            <br>
+
+            <div id="matricula">
+                <label class="titulo" for="matricula">Matrícula:</label>
+                <input class="boxinfo" type="text"  id="matricula" name="matricula" placeholder="Digite a matrícula">
                 <br><br>
             </div>
 
-            <div id="semestre" hidden>
-
+            <div id="semestre">
                 <label class="titulo" for="sementreEntradaAluno">Semestre de entrada:</label>
                 <input class="boxinfo" type="text"  id="sementreEntradaAluno" name="sementreEntradaAluno" placeholder="Digite o semestre">
                 <br><br>
             </div>
-
-            <div id="matriculaOri" hidden>
-                <label class="titulo" for="matriculaOrientador">Matrícula:</label>
-                <input class="boxinfo" type="text"  id="matriculaOrientador" name="matriculaOrientador" placeholder="Digite a matrícula">
-                <br><br>
-            </div>
-
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" style="background: #2D3875;
@@ -155,26 +157,26 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $("#tipoUser").change(function() {
-            if ($("#tipoUser").val() == "servidor") {
-                $("#curso").attr("hidden", true);
-                $("#semestre").attr("hidden", true);
-                $("#matriculaOri").attr("hidden", true);
-                $("#tipo_servidor").removeAttr("hidden");
-            } else if ($("#tipoUser").val() == "orientador") {
-                $("#curso").attr("hidden", true);
-                $("#tipo_servidor").attr("hidden", true);
-                $("#semestre").attr("hidden", true);
-                $("#matriculaOri").removeAttr("hidden");
-            } else {
-                $("#curso").removeAttr("hidden");
-                $("#tipo_servidor").attr("hidden", true);
-                $("#semestre").removeAttr("hidden");
-                $("#matriculaOri").attr("hidden", true);
-            }
-        });
-    });
+    // $(document).ready(function() {
+    //     $("#tipoUser").change(function() {
+    //         if ($("#tipoUser").val() == "servidor") {
+    //             $("#curso").attr("hidden", true);
+    //             $("#semestre").attr("hidden", true);
+    //             $("#matriculaOri").attr("hidden", true);
+    //             $("#tipo_servidor").removeAttr("hidden");
+    //         } else if ($("#tipoUser").val() == "orientador") {
+    //             $("#curso").attr("hidden", true);
+    //             $("#tipo_servidor").attr("hidden", true);
+    //             $("#semestre").attr("hidden", true);
+    //             $("#matricula").removeAttr("hidden");
+    //         } else {
+    //             $("#curso").removeAttr("hidden");
+    //             $("#tipo_servidor").attr("hidden", true);
+    //             $("#semestre").removeAttr("hidden");
+    //             $("#matriculaOri").attr("hidden", true);
+    //         }
+    //     });
+    // });
 
 </script>
 
