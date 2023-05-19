@@ -1,7 +1,7 @@
 @extends("templates.app")
 
 @section("body")
-<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px">
+<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:3.6em;">
     @canany(['admin', 'pro_reitor'])
         @if (session('sucesso'))
             <div class="alert alert-success">

@@ -42,7 +42,8 @@
     <h1 style="color:#2D3875;"><strong>Editais</strong></h1>
     <div style="margin: auto"></div>
     <form action="{{  route('edital.index')  }}" method="GET">
-      <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
+      <input type="text" onkeyup="" placeholder="   Digite a busca" title="" id="valor" name="valor" 
+                  style="background-color: #D9D9D9;
                   border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                   background-position: 10px 2px;
                   background-repeat: no-repeat;
@@ -50,7 +51,7 @@
                   font-size: 16px;
                   height: 45px;
                   border: 1px solid #ddd;
-                  margin-bottom: 12px; margin-right: 10px">
+                  margin-bottom: 12px; margin-right: 10px";>
 
       <input type="submit" value="" style="background-image: url('/images/searchicon.png');
                   background-color: #D9D9D9;
@@ -74,7 +75,6 @@
       </a>
     </div>
   </div>
-  <br>
   <br>
   <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">

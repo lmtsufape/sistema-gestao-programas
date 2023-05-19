@@ -48,7 +48,7 @@
     </style>
 
 
-    <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; ">
+    <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5rem; margin-bottom:10px; ">
         @if (session('sucesso'))
             <div class="alert alert-success">
                 {{session('sucesso')}}
@@ -76,10 +76,10 @@
                     <input type="button" value="Voltar" href="{{url("/cursos/")}}" onclick="window.location.href='{{url("/cursos/")}}'" style="background: #2D3875;
                                     box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                                     border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                                    line-height: 29px; text-align: center; padding: 5px 15px;">
+                                    line-height: 29px; text-align: center; padding: 5px 15px; margin-top: 1.5rem;">
                     <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
                         display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                        font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
+                        font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px; margin-top: 1.5rem;">
                 </div>
 
 
