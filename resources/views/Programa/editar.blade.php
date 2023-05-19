@@ -78,7 +78,7 @@
                 <label for="nome" class="titulo">Nome:</label>
                 <input class="boxinfo" type="text" name="nome" id="nome" value="{{$programa->nome}}"><br><br>
 
-                <label for="descricao" class="titulo">Descricao:</label>
+                <label for="descricao" class="titulo">Descrição:</label>
                 <input class="boxinfo" type="text" name="descricao" id="descricao" value="{{$programa->descricao}}"><br><br>
 
                 <label class="titulo" for="servidor">Servidor:</label>
