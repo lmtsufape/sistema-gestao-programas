@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Orientador extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'cpf',
-        'matricula'
+        'instituicaoVinculo',
+        'curso',
+        'matricula',
     ];
 
     public function user()
@@ -19,14 +21,14 @@ class Orientador extends Model
         return $this->morphOne(User::class, "typage");
     }
 
-    public function editais() 
+    public function editais()
     {
         return $this->belongsToMany(Edital::class, 'edital_aluno_orientadors')
             ->withPivot([
-                'data_inicio', 
-                'data_fim', 
-                'bolsa', 
-                'info_complementares', 
+                'data_inicio',
+                'data_fim',
+                'bolsa',
+                'info_complementares',
                 'disciplina_id',
                 'aluno_id',
                 'edital_id',

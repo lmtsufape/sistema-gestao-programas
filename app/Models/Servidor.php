@@ -8,10 +8,11 @@ use App\Models\User;
 
 
 class Servidor extends Model
-{   
+{
     protected $fillable = [
         'cpf',
         'tipo_servidor',
+        'instituicaoVinculo',
     ];
 
     public function user(){
