@@ -83,6 +83,7 @@
         <form action="{{  route('edital.aluno', ['id' => $edital->id])  }}" method="POST" enctype="multipart/form-data">
 
             @csrf
+
             <label class="titulo" for="">CPF do aluno: <strong style="color: red">*</strong></label>
             <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf" placeholder="CPF do aluno" required data-url="{{ url('/cpfs') }}">
             <br>

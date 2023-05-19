@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Exception;
 
 class OrientadorController extends Controller
 {
@@ -66,30 +67,34 @@ class OrientadorController extends Controller
      */
     public function store(OrientadorFormRequest $request)
     {
-        $orientador = new Orientador();
-        $orientador->cpf = $request->cpf;
-        $orientador->matricula = $request->matricula;
+        try{
+            $orientador = new Orientador();
+            $orientador->cpf = $request->cpf;
+            $orientador->matricula = $request->matricula;
 
-        if ($orientador->save()){
+            if ($orientador->save()){
 
-            if (
-                $orientador->user()->create([
-                    'name' => $request->nome,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->senha)
+                if (
+                    $orientador->user()->create([
+                        'name' => $request->nome,
+                        'email' => $request->email,
+                        'password' => Hash::make($request->senha)
 
-                ])->givePermissionTo('orientador')
-            ){
-                $confirm = new ConfirmandoEmail($request);
-                $confirm -> enviandoEmail();
-                $mensagem_sucesso = "Orientador cadastrado com sucesso.";
-                return redirect('/orientadors/create')->with('sucesso', 'Orientador cadastrado com sucesso.');
+                    ])->givePermissionTo('orientador')
+                ){
+                    $confirm = new ConfirmandoEmail($request);
+                    $confirm -> enviandoEmail();
+                    $mensagem_sucesso = "Orientador cadastrado com sucesso.";
+                    return redirect('/orientadors/create')->with('sucesso', 'Orientador cadastrado com sucesso.');
 
-            } else {
+                } else {
+                    return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+                }
+            }else{
                 return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
             }
-        }else{
-            return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors("Falha ao cadastrar orientador. Tente novamente mais tarde.");
         }
     }
 
@@ -118,31 +123,35 @@ class OrientadorController extends Controller
 
     public function update(OrientadorFormUpdateRequest $request, $id)
     {
-        $orientador = Orientador::find($id);
+        try{
+            $orientador = Orientador::find($id);
 
-        $orientador->cpf = $request->cpf == $orientador->cpf ? $orientador->cpf : $request->cpf;
-        $orientador->matricula = $request->matricula;
+            $orientador->cpf = $request->cpf == $orientador->cpf ? $orientador->cpf : $request->cpf;
+            $orientador->matricula = $request->matricula;
 
-        $orientador->user->name = $request->nome;
-        $orientador->user->email = $request->email;
-        if ($request->senha && $request->senha != null){
-            if (strlen($request->senha) > 3 && strlen($request->senha) < 9){
-                $orientador->user->password = Hash::make($request->password);
-            } else {
-                return redirect()->back()->withErrors( "Senha deve ter entre 4 e 8 dígitos" );
+            $orientador->user->name = $request->nome;
+            $orientador->user->email = $request->email;
+            if ($request->senha && $request->senha != null){
+                if (strlen($request->senha) > 3 && strlen($request->senha) < 9){
+                    $orientador->user->password = Hash::make($request->password);
+                } else {
+                    return redirect()->back()->withErrors( "Senha deve ter entre 4 e 8 dígitos" );
+                }
             }
-        }
-        if ($orientador->save()){
+            if ($orientador->save()){
 
-            if ($orientador->user->update()){
-                $mensagem_sucesso = "Orientador cadastrado com sucesso.";
-                return redirect('/orientadors/'. $orientador->id .'/edit')->with('sucesso', 'Orientador Atualizado com sucesso.');
+                if ($orientador->user->update()){
+                    $mensagem_sucesso = "Orientador cadastrado com sucesso.";
+                    return redirect('/orientadors/'. $orientador->id .'/edit')->with('sucesso', 'Orientador Atualizado com sucesso.');
+                } else {
+                    return redirect()->back()->withErrors( "Falha ao editar orientador. tente novamente mais tarde." );
+                }
+
             } else {
-                return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+                return redirect()->back()->withErrors( "Falha ao editar orientador. tente novamente mais tarde." );
             }
-
-        } else {
-            return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors("Falha ao editar orientador. Tente novamente mais tarde.");
         }
     }
 
@@ -155,11 +164,15 @@ class OrientadorController extends Controller
 
     public function destroy(Request $request)
     {
-        $id = $request->only(['id']);
-        $orientador = Orientador::findOrFail($id)->first();
+        try{
+            $id = $request->only(['id']);
+            $orientador = Orientador::findOrFail($id)->first();
 
-        if ($orientador->user->delete() && $orientador->delete()) {
-            return redirect(route("orientadors.index"));
+            if ($orientador->user->delete() && $orientador->delete()) {
+                return redirect(route("orientadors.index"));
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors("Falha ao deletar orientador. Tente novamente mais tarde.");
         }
     }
 
