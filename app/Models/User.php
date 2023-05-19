@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'name_social',
         'email',
+        'cpf',
         'password',
         'tipo_usuario',
         'status'
