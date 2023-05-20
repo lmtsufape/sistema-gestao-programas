@@ -20,6 +20,7 @@ class CreateorientadorsTable extends Migration
             $table->string('instituicaoVinculo');
             $table->string('curso');
             $table->string('matricula')->nullable(false);
+            $table->string('siape_matricula')->nullable(false);
             $table->timestamps();
         });
     }
