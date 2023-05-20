@@ -69,7 +69,9 @@
       <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
         font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
         align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-        padding-left: 10px;" href="{{route("orientadors.create")}}">
+        padding-left: 10px;" href="{{route("orientadors.create")}}" 
+        onmouseover="this.style.backgroundColor='#2D3875'"
+        onmouseout="this.style.backgroundColor='#34A853'">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar orientador" style="padding-bottom: 5px"> Cadastrar Orientador
       </a>
     </div>

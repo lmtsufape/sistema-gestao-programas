@@ -53,6 +53,7 @@
                 border-radius: 20px;
                 padding: 34px;
                 width: 65%
+                
             }
 
             
@@ -67,8 +68,8 @@
             <br>
 
             <div class="boxchild">
-                <div class="row">
-                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875; ">
+                <div class="row" >
+                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875; " >
                     Cadastrar Edital</h1>
                 </div>
 
