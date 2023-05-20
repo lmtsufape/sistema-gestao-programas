@@ -73,7 +73,7 @@ class ServidorController extends Controller {
                 'cpf' => $request->input('cpf'),
                 'tipo_servidor' => $permission,
                 'instituicaoVinculo' => $request->input('instituicaoVinculo'),
-                'siape_matricula' => $request->input('siape_matricula')
+                'matricula' => $request->input('matricula')
             ]);
 
             if(
