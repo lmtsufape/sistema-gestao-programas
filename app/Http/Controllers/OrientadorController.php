@@ -71,6 +71,9 @@ class OrientadorController extends Controller
             $orientador = new Orientador();
             $orientador->cpf = $request->cpf;
             $orientador->matricula = $request->matricula;
+            $orientador->instituicaoVinculo = $request->instituicaoVinculo;
+            $orientador->curso = $request->curso;
+            $orientador->siape_matricula = $request->siape_matricula;
 
             if ($orientador->save()){
 

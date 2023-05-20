@@ -71,7 +71,9 @@ class ServidorController extends Controller {
 
             $servidor = Servidor::Create([
                 'cpf' => $request->input('cpf'),
-                'tipo_servidor' => $permission
+                'tipo_servidor' => $permission,
+                'instituicaoVinculo' => $request->input('instituicaoVinculo'),
+                'siape_matricula' => $request->input('siape_matricula')
             ]);
 
             if(
