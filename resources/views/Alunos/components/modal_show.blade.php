@@ -95,7 +95,7 @@
               @endif
             </div>
             <div class="modal-footer">
-              <button type="button" style="background: #34A853; border: #34A853;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" class="btn " data-bs-dismiss="modal">Fechar</button>
             </div>
           </div>
         </div>
@@ -103,7 +103,21 @@
     </div>
   </div>
 </div>
+<style>
+  .btn {
+    color: #fff;
+    background: #34A853;
+    border-color: #34A853;
+    border-radius: 20px;
+    width:120px;
+  }
 
+  .btn:hover {
+    background-color: #40b760;
+    border-color: #40b760;
+    color: #fff;
+  }
+</style>
 <script type="text/javascript">
     $(function () {
       $('#cpf_edit').mask('000.000.000-00');

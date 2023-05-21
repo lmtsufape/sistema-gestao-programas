@@ -42,7 +42,7 @@
           </div> 
         </div>
         <div class="modal-footer">
-          <button type="button" style="background: #34A853; border: #34A853;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button"  class="btn" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
@@ -50,15 +50,18 @@
   </div>
 </div>
 <style>
-  .btn-secondary {
+  .btn {
     color: #fff;
-    background-color: #2d3875;
-    border-color: #2d3875;
+    background: #34A853;
+    border-color: #34A853;
+    border-radius: 20px;
+    width:120px;
   }
 
-  .btn-secondary:hover {
-    background-color: #4353ab;
-    border-color: #4353ab;
+  .btn:hover {
+    background-color: #40b760;
+    border-color: #40b760;
+    color: #fff;
   }
 </style>
 @else
