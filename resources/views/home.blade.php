@@ -25,6 +25,10 @@
       border-radius: 20px;
     }
 
+    .botaoverde:hover{
+        transform: scale(1.08);
+    }
+
     .botaoazul {
       border: none;
       color: white;
@@ -47,6 +51,11 @@
       border-radius: 20px;
       padding: 15px;
     }
+
+    .botaoazul:hover{
+        transform: scale(1.08);
+    }
+
   </style>
     @auth
         @if (auth()->user()->typage_type == "App\Models\Servidor")
@@ -169,28 +178,26 @@
                     <p style="margin: auto; padding-right: 5px"> Meus editais </p>
                 </button>
 
+                <button class="botaoverde">
+                    <img src="{{asset('images/programaicon.png')}}" alt="logodoc" style="padding-right: 20px;">
+                    <p style="margin: auto; padding-right: 5px">   Listar modelos de documentos </p>
+
+                </button>  
 
                 {{--  <button class="botaoverde">
                     <img src="{{asset('images/certificadoicon.png')}}" alt="logodoc" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 5px"> Meus certificados </p>
-                </button>  --}}
-
-
-                {{--  <button class="botaoazul">
-                    <img src="{{asset('images/programaicon.png')}}" alt="logodoc" style="padding-right: 20px;">
-                    <p style="margin: auto; padding-right: 5px">  Visualizar documentos </p>
-
-                </button>  --}}
-
+                </button> 
+            
                 <button class="botaoverde">
                     <img src="{{asset('images/calendar.png')}}" alt="calendario" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 10px"> Visualizar frequência mensal </p>
-                </button>
+                </button>--}}
             </div>
 
             <br>
 
-            {{--  <div style="display: flex; gap: 5%; align-items: center; margin: auto;">
+            {{--<div style="display: flex; gap: 5%; align-items: center; margin: auto;">
                 <button class="botaoverde">
                     <img src="{{asset('images/calendar.png')}}" alt="calendario" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 10px"> Visualizar frequência mensal </p>

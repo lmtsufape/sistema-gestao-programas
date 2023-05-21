@@ -31,8 +31,8 @@ class CursoUpdateFormRequest extends FormRequest
     public function messages()
     {
         return [
-            "string" => "O campo :atribute deve ser uma string.",
-            "array" => "O campo :atribute deve ser um array"
+            "string" => "O campo :attribute deve ser uma string.",
+            "array" => "O campo :attribute deve ser um array"
         ];
     }
 }

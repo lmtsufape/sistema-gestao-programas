@@ -21,28 +21,6 @@ class ServidorController extends Controller {
 
     public function index(Request $request)
     {
-        // $permissoes = DB::select('select * from permissions');
-
-        // if (sizeof($request-> query()) > 0){
-        //     $campo = $request->query('campo');
-        //     $valor = $request->query('valor');
-
-        //     if ($valor == null){
-        //         return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
-        //     }
-
-        //     $servidors = Servidor::join("users", "users.typage_id", "=", "servidors.id");
-        //     $servidors = $servidors->where(function ($query) use ($valor) {
-        //         if ($valor) {
-        //             $query->orWhere("users.name", "LIKE", "%{$valor}%");
-        //             $query->orWhere("users.email", "LIKE", "%{$valor}%");
-        //             $query->orWhere("servidors.cpf", "LIKE", "%{$valor}%");
-        //             //$query->orWhere("servidors.tipo_servidor_id", "LIKE", "%{$valor}%");
-        //         }
-        //     })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->get();
-
-        //     return view("servidores.index", compact("servidors", "permissoes"));
-        // } else {
             $servidores = Servidor::all();
             return view("servidores.index", compact("servidores"));
     }
@@ -56,38 +34,43 @@ class ServidorController extends Controller {
     public function store(ServidorFormRequest $request)
     {
 
+        try{
+            switch($request->input('tipo_servidor')){
+                case 0:
+                $permission = "adm";
+                    break;
+                case 1:
+                    $permission = "pro_reitor";
+                    break;
+                case 2:
+                    $permission = "servidor";
+                    break;
+            };
 
-        switch($request->input('tipo_servidor')){
-            case 0:
-               $permission = "adm";
-                break;
-            case 1:
-                $permission = "pro_reitor";
-                break;
-            case 2:
-                $permission = "servidor";
-                break;
-        };
+            $servidor = Servidor::Create([
+                'cpf' => $request->input('cpf'),
+                'tipo_servidor' => $permission,
+                'instituicaoVinculo' => $request->input('instituicaoVinculo'),
+                'matricula' => $request->input('matricula')
+            ]);
 
-        $servidor = Servidor::Create([
-            'cpf' => $request->input('cpf'),
-            'tipo_servidor' => $permission
-        ]);
-
-        if(
-            $servidor->user()->create([
-                'name' => $request->input('nome'),
-                'email' => $request->input('email'),
-                'password' => Hash::make($request->input('senha'))
-            ])->givePermissionTo($permission)
-        ){
-            #$mensagem_sucesso = "Orientador cadastrado com sucesso.";
+            if(
+                $servidor->user()->create([
+                    'name' => $request->input('nome'),
+                    'email' => $request->input('email'),
+                    'password' => Hash::make($request->input('senha'))
+                ])->givePermissionTo($permission)
+            ){
+                #$mensagem_sucesso = "Orientador cadastrado com sucesso.";
 
 
-            return redirect('/servidores')->with('sucesso', 'Servidor cadastrado com sucesso.');
+                return redirect('/servidores')->with('sucesso', 'Servidor cadastrado com sucesso.');
 
-        } else {
-            return redirect()->back()->withErrors( "Falha ao cadastrar servidor. tente novamente mais tarde." );
+            } else {
+                return redirect()->back()->withErrors( "Falha ao cadastrar servidor. tente novamente mais tarde." );
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors("Falha ao cadastrar servidor. Tente novamente mais tarde.");
         }
     }
 
@@ -95,50 +78,54 @@ class ServidorController extends Controller {
     {
         $servidor = Servidor::find($id);
         $servidores = Servidor::all();
-        
+
         #$tipo_servidors = User::where('typage_id', Auth::user()->typage_id)->get();
         return view("servidores.editar", compact('servidor', 'servidores'));
     }
 
     public function update(ServidorFormUpdateRequest $request, $id)
     {
-        $servidor = Servidor::find($id);
+        try{
+            $servidor = Servidor::find($id);
 
-        switch($request->input('tipo_servidor')){
-            case 0:
-               $permission = "adm";
-                break;
-            case 1:
-                $permission = "pro_reitor";
-                break;
-            case 2:
-                $permission = "servidor";
-                break;
-        };
-        $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
-        $servidor->tipo_servidor = $permission == $servidor->tipo_servidor ? $servidor->tipo_servidor : $permission;
-
-        $servidor->user->name = $request->nome;
-        $servidor->user->email = $request->email;
-        if ($request->senha && $request->senha != null){
-            if (strlen($request->senha) > 3 && strlen($request->senha) < 9){
-                $servidor->user->password = Hash::make($request->password);
-            } else {
-                return redirect()->back()->withErrors( "Senha deve ter entre 4 e 8 dígitos" );
+            switch($request->input('tipo_servidor')){
+                case 0:
+                $permission = "adm";
+                    break;
+                case 1:
+                    $permission = "pro_reitor";
+                    break;
+                case 2:
+                    $permission = "servidor";
+                    break;
+            };
+            $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
+            $servidor->tipo_servidor = $permission == $servidor->tipo_servidor ? $servidor->tipo_servidor : $permission;
+        $servidor->user->name_social = $request->nome_social;
+            $servidor->user->name = $request->nome;
+            $servidor->user->email = $request->email;
+            if ($request->senha && $request->senha != null){
+                if (strlen($request->senha) > 7 && strlen($request->senha) < 31){
+                    $servidor->user->password = Hash::make($request->password);
+                } else {
+                    return redirect()->back()->withErrors( "Senha deve ter entre 8 e 30 dígitos" );
+                }
             }
-        }
 
-        if ($servidor->save()){
+            if ($servidor->save()){
 
-            if ($servidor->user->update()){
-                $mensagem_sucesso = "Servidor editado com sucesso.";
-                return redirect("/servidores")->with('sucesso', 'Servidor editado com sucesso.');
+                if ($servidor->user->update()){
+                    $mensagem_sucesso = "Servidor editado com sucesso.";
+                    return redirect("/servidores")->with('sucesso', 'Servidor editado com sucesso.');
+                } else {
+                    return redirect()->back()->withErrors( "Falha ao editar servidor. tente novamente mais tarde." );
+                }
+
             } else {
                 return redirect()->back()->withErrors( "Falha ao editar servidor. tente novamente mais tarde." );
             }
-
-        } else {
-            return redirect()->back()->withErrors( "Falha ao editar servidor. tente novamente mais tarde." );
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors("Falha ao editar servidor. Tente novamente mais tarde.");
         }
     }
 
@@ -150,11 +137,15 @@ class ServidorController extends Controller {
 
     public function destroy(Request $request)
     {
-        $id = $request->only(['id']);
-        $servidor = Servidor::findOrFail($id)->first();
+        try{
+            $id = $request->only(['id']);
+            $servidor = Servidor::findOrFail($id)->first();
 
-        if ($servidor->delete()) {
-            return redirect(route("servidores.index"));
+            if ($servidor->delete()) {
+                return redirect(route("servidores.index"));
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors("Falha ao deletar servidor. Tente novamente mais tarde.");
         }
     }
 

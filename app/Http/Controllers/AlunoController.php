@@ -20,10 +20,10 @@ class AlunoController extends Controller
     {    //dd($request);
         try {
             $aluno = new Aluno();
+            $aluno->nome_aluno = $request->nome;
             $aluno->cpf = $request->cpf;
             $aluno->curso_id = $request->curso;
             $aluno->semestre_entrada = $request->semestre_entrada;
-            $aluno->nome_aluno = $request->nome;
 
             if ($aluno->save()){
                 if (
@@ -48,35 +48,39 @@ class AlunoController extends Controller
 
     public function update(AlunoUpdateFormRequest $request, $id)
     {
-        #dd($request);
-        $aluno = Aluno::find($id);
-        #dd($request);
-        $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
-        $aluno->semestre_entrada = $request->semestre_entrada;
-        $aluno->curso_id = $request->curso;
-        $aluno->nome_aluno = $request->nome;
+        try{
+            #dd($request);
+            $aluno = Aluno::find($id);
+            #dd($request);
+            $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
+            $aluno->semestre_entrada = $request->semestre_entrada;
+            $aluno->curso_id = $request->curso;
+            $aluno->nome_aluno = $request->nome;
 
-        $aluno->user->name = $request->nome;
-        $aluno->user->email = $request->email;
-        $aluno->user->name_social = $request->nome_social;                
-        if ($request->senha && $request->senha != null){
-            if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
-                $aluno->user->password = Hash::make($request->password);
-            } else {
-                return redirect()->back()->withErrors( "Senha deve ter entre 4 e 30 dígitos" );
-            }
-        }
-
-        if ($aluno->save()){
-
-            if ($aluno->user->update()){
-                return redirect('/alunos')->with('sucesso', 'Aluno atualizado com sucesso.');
-            } else {
-                return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+            $aluno->user->name = $request->nome;
+            $aluno->user->email = $request->email;
+            $aluno->user->name_social = $request->nome_social;
+            if ($request->senha && $request->senha != null){
+                if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
+                    $aluno->user->password = Hash::make($request->password);
+                } else {
+                    return redirect()->back()->withErrors( "Senha deve ter entre 4 e 30 dígitos" );
+                }
             }
 
-        } else {
-            return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
+            if ($aluno->save()){
+
+                if ($aluno->user->update()){
+                    return redirect('/alunos')->with('sucesso', 'Aluno atualizado com sucesso.');
+                } else {
+                    return redirect()->back()->withErrors( "Falha ao editar Aluno. tente novamente mais tarde." );
+                }
+
+            }
+
+        } catch(exception $e){
+            return redirect()->back()->withErrors( "Falha ao editar aluno. tente novamente mais tarde." );
+
         }
     }
 
@@ -88,11 +92,16 @@ class AlunoController extends Controller
 
     public function destroy(Request $request)
     {
-        $id = $request->only(['id']);
-        $aluno = Aluno::findOrFail($id)->first();
+        try{
+            $id = $request->only(['id']);
+            $aluno = Aluno::findOrFail($id)->first();
 
-        if ($aluno->user->delete() && $aluno->delete()) {
-            return redirect(route("alunos.index"));
+            if ($aluno->user->delete() && $aluno->delete()) {
+                return redirect(route("alunos.index"))->with('sucesso', 'Aluno deletado com sucesso.');
+            }
+
+        } catch(exception $e){
+            return redirect()->back()->withErrors( "Falha ao deletar aluno. tente novamente mais tarde." );
         }
     }
 

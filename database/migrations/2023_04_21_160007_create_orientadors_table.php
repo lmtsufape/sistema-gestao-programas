@@ -17,6 +17,8 @@ class CreateorientadorsTable extends Migration
             $table->softDeletes();
             $table->id();
             $table->string('cpf', 14)->unique()->nullable(false);
+            $table->string('instituicaoVinculo');
+            $table->string('curso');
             $table->string('matricula')->nullable(false);
             $table->timestamps();
         });
