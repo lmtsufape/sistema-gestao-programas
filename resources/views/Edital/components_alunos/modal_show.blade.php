@@ -31,7 +31,7 @@
           
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Termo de compromisso do orientador:</label> 
           <div style="justify-content: flex-start; align-items: flex-start; display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 5px;">
-            <a href="{{route('termo_orientador.download', ['fileName' => $aluno->pivot->termo_compromisso_orientador]) }}" target="_blank"  style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3;width: 100%; display:flex; flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:center; padding:5px; margin:2px;">
+            <a href="{{route('termo_orientador.download', ['fileName' => $aluno->pivot->termo_compromisso_orientador]) }}" target="_blank"  class="link">
             <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
             termo de compromisso
             </a>
@@ -58,6 +58,27 @@
     background-color: #40b760;
     border-color: #40b760;
     color: #fff;
+  }
+
+  .link{
+    background: #EEEEEE; 
+    border-radius: 13px; 
+    border: 1px #D3D3D3;
+    width: 100%; 
+    display:flex; 
+    flex-direction:row; 
+    flex-wrap:wrap; 
+    justify-content:center; 
+    align-items:center; 
+    padding:5px; 
+    margin:2px;
+    text-decoration: none;
+    color: #2D3875;
+  }
+
+  .link:hover{
+    text-decoration: none;
+    color:#34A853;
   }
 </style>
 
