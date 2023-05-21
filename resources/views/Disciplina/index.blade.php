@@ -132,19 +132,6 @@
       </div>
     </div>
   </div>
-  {{-- <div style="margin: auto; width: 45%; padding: 10px;">
-        <div class="pagination">
-          <a href="#" style="border-radius: 15px; background: #131833; color: white;">Anterior</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">1</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">2</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">3</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">4</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">...</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">15</a>
-          <a href="#" style="border-radius: 15px; background: #131833; color: white;">Próximo</a>
-        </div>
-      </div>  --}}
-
 </div>
 @endif
 

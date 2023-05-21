@@ -101,14 +101,14 @@ class ServidorController extends Controller {
             };
             $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
             $servidor->tipo_servidor = $permission == $servidor->tipo_servidor ? $servidor->tipo_servidor : $permission;
-
+        $servidor->user->name_social = $request->nome_social;
             $servidor->user->name = $request->nome;
             $servidor->user->email = $request->email;
             if ($request->senha && $request->senha != null){
-                if (strlen($request->senha) > 3 && strlen($request->senha) < 9){
+                if (strlen($request->senha) > 7 && strlen($request->senha) < 31){
                     $servidor->user->password = Hash::make($request->password);
                 } else {
-                    return redirect()->back()->withErrors( "Senha deve ter entre 4 e 8 dígitos" );
+                    return redirect()->back()->withErrors( "Senha deve ter entre 8 e 30 dígitos" );
                 }
             }
 

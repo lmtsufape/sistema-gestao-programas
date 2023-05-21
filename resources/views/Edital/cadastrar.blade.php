@@ -85,7 +85,7 @@
                     <input class="boxinfo" placeholder="Digite o semestre" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
 
                     <label class="titulo" for="Descrição">Descrição:<strong style="color: red">*</strong></label>
-                    <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="10"> {{ old('descricao') }}</textarea><br><br>
+                    <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="5"> {{ old('descricao') }}</textarea><br><br>
 
                     <label class="titulo" for="data_inicio" class="titulo">Data de início:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}"><br><br>
@@ -127,6 +127,9 @@
         </div>
 
         <script>
+
+
+
             $("#programa").chosen({
                 placeholder_text_single: "Selecione um programa",
                 // max_shown_results : 5,

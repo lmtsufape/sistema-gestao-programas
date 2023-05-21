@@ -2,11 +2,7 @@
 @section("body")
 @canany(['admin', 'pro_reitor'])
   <div class="container" style="font-family: 'Roboto', sans-serif;">
-    @if (session('sucesso'))
-    <div class="alert alert-success">
-      {{session('sucesso')}}
-    </div>
-    @endif
+
     <br>
     <div class="container" style="font-family: 'Roboto', sans-serif;">
   @if (session('sucesso'))
@@ -72,7 +68,7 @@
           <th scope="col">CPF</th>
           <th scope="col">Tipo do servidor</th>
           <th scope="col">Ações</th>
-          
+
         </tr>
       </thead>
       @foreach ($servidores as $servidor)
@@ -95,10 +91,6 @@
             <td class="align-middle">
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$servidor->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info servidor">
-              </a>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$servidor->id}}">
-                <img src="{{asset("images/document.png")}}" alt="Documento servidor">
-                {{-- TODO: Fica pra fazer o modal depois  --}}
               </a>
               <a href="{{url("/servidores/".$servidor->id."/edit")}}">
                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar servidor">
@@ -129,10 +121,6 @@
           <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
         </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
-        </div>
       </div>
       <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
@@ -144,10 +132,6 @@
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
         </div>
       </div>
-          <div style="display: flex; margin: 10px">
-            <a><img src="{{asset("images/user-key.png")}}" alt="Permissão servidor" style="width: 20px; height: 20px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Permissões</p>
-          </div>
         </div>
       </div>
       <br>
