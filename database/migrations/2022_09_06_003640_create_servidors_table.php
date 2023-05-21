@@ -18,6 +18,7 @@ class CreateservidorsTable extends Migration
             $table->id();
             $table->string("cpf", 14)->unique()->nullable(false);
             $table->string('instituicaoVinculo');
+            $table->string('matricula')->nullable(false);
             $table->enum("tipo_servidor", ['adm', 'pro_reitor', 'servidor'])->nullable(false);
             $table->timestamps();
         });
