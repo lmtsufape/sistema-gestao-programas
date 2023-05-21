@@ -19,7 +19,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-
+        //dd($request);
         $existingCpf = User::where('cpf', $request->cpf)->first();
         if($existingCpf) {
             return response()->json(['error' => 'CPF já cadastrado'], 400);
@@ -51,9 +51,33 @@ class UserController extends Controller
                         return redirect()->back()->withErrors( "Falha ao se cadastrar." );
                     }
                 }
-
+                break;
 
             case('servidor'):
+
+                $servidor = Servidor::Create([
+                    'cpf' => $request->input('cpf'),
+                    'tipo_servidor' => $request->tipoUser,
+                    'instituicaoVinculo' => $request->input('instituicaoVinculo'),
+                    'matricula' => $request->input('matricula')
+                ]);
+
+                if(
+                    $servidor->user()->create([
+                        'name' => $request->input('nome'),
+                        'email' => $request->input('email'),
+                        'cpf' => $request->input('cpf'),
+                        'password' => Hash::make($request->input('senha'))
+                    ])->givePermissionTo('servidor')
+                ){
+                    $user = $servidor->user;
+                    Auth::login($user);
+                    return redirect('/home')->with('Sucesso', 'Cadastro com sucesso.');
+
+                } else {
+                    return redirect()->back()->withErrors( "Falha ao cadastrá-se." );
+                }
+
                 break;
             case('orientador'):
                 break;
