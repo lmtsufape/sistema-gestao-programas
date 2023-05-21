@@ -1,4 +1,4 @@
-<div class="modal fade " id="modal_show_{{$aluno->pivot->aluno_id}}" tabindex="-1" aria-hidden="true">
+<div class="modal fade " id="modal_show_{{$aluno->pivot->edital_id}}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
     <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header">
@@ -21,6 +21,22 @@
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Informações complementares:</label>
           <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  $aluno->pivot->info_complementares }}</div>
+          
+          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Orientador:</label> 
+          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
+            {{--@foreach ($orientadores as $orientador)
+                {{$orientador->user->name}}
+            @endforeach --}}
+          </div>
+          
+          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Termo de compromisso do orientador:</label> 
+          <div style="justify-content: flex-start; align-items: flex-start; display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 5px;">
+            <a href="{{route('termo_orientador.download', ['fileName' => $aluno->pivot->termo_compromisso_orientador]) }}" target="_blank"  style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3;width: 100%; display:flex; flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:center; padding:5px; margin:2px;">
+            <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
+            termo de compromisso
+            </a>
+            <br>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" style="background: #34A853; border: #34A853;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -41,3 +57,4 @@
     border-color: #4353ab;
   }
 </style>
+

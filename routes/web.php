@@ -111,7 +111,9 @@ Route::prefix('edital')->group(function() {
     Route::get('/{id}/alunos', [EditalController::class, 'listar_alunos'])->name('edital.vinculo');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
     Route::get('/{fileName}/termo', [EditalController::class, 'download_termo_compromisso_aluno'])->name('termo_aluno.download');
+    Route::get('/{fileName}/termo_orientador', [EditalController::class, 'download_termo_compromisso_orientador'])->name('termo_orientador.download');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
+    Route::get('/orientadores/{id}', [EditalController::class, 'listar_orientadores'])->name('edital.listar_orientadores');
     Route::get('/cpfs', [SeuControlador::class, 'getCpfs']);
 });
 

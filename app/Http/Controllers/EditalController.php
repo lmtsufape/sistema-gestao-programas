@@ -12,7 +12,7 @@ use App\Models\Orientador;
 use App\Models\EditalAlunoOrientadors;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
-
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 
@@ -80,7 +80,7 @@ class EditalController extends Controller
 
             return redirect('/edital')->with('sucesso', 'Edital cadastrado com sucesso.');
 
-        } catch(exception $e){
+        } catch(Exception $e){
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
         }
@@ -106,7 +106,7 @@ class EditalController extends Controller
 
         // dd($request);
         // DB::beginTransaction();
-        // try {
+        try {
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
             $orientador_id = (int)$request->orientador;
@@ -156,10 +156,10 @@ class EditalController extends Controller
                 DB::commit();
                  return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
            }
-    //    } catch(exception $e){
-    //         DB::rollback();
-    //         return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
-    //     }
+        } catch(Exception $e){
+             #DB::rollback();
+             return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
+         }
     }
 
     /**
@@ -240,8 +240,8 @@ class EditalController extends Controller
     public function listar_alunos($id){
         $edital = Edital::with('alunos')->find($id);
         $alunos = $edital->alunos('user');
-        $alunos = $edital->alunos;
-
+        $alunos = $edital->alunos; 
+        
         return view("Edital.listar_alunos", compact("alunos"));
     }
 
@@ -249,6 +249,16 @@ class EditalController extends Controller
         $disciplinas = Edital::with('disciplinas')->find($id);
 
         return view("Edital.listar_disciplinas", compact("disciplinas"));
+    }
+
+    public function listar_orientadores($id){
+        $edital = Edital::find($id);
+        $orientadores = $edital->alunos()
+            ->wherePivot('edital_id', $edital->id)
+            ->with('user')
+            ->get();
+
+        return view("Edital.components_alunos.modal_show", compact("orientadores"));
     }
 
     /**

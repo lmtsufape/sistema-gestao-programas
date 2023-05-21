@@ -40,24 +40,6 @@
               Listar alunos
             </a> 
           </div> 
-          
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Orientador:</label> 
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">orientador</div>
-          
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Termo de compromisso do orientador:</label> 
-          <div style="justify-content: flex-start; align-items: flex-start; display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 5px;">
-            <a href="" target="_blank"  style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3;width: 100%; display:flex; flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:center; padding:5px; margin:2px;">
-            <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
-            termo de compromisso
-            </a>
-            <br>
-          </div>
-          <!-- <div style=" display:flex; flex-wrap:wrap; justify-content:center; align-items:center;">
-            <a alt="Listar orientadores" href="  {{route('edital.listar_orientadores', ['id' => $edital->id] )}} " style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3;width: 100%; display:flex; flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:center; padding:5px; margin:2px;">
-              <img src="{{asset("images/bx_user.png")}}" >
-              Listar orientadores
-            </a>  
-            </div> -->
         </div>
         <div class="modal-footer">
           <button type="button" style="background: #34A853; border: #34A853;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
