@@ -21,28 +21,6 @@ class ServidorController extends Controller {
 
     public function index(Request $request)
     {
-        // $permissoes = DB::select('select * from permissions');
-
-        // if (sizeof($request-> query()) > 0){
-        //     $campo = $request->query('campo');
-        //     $valor = $request->query('valor');
-
-        //     if ($valor == null){
-        //         return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
-        //     }
-
-        //     $servidors = Servidor::join("users", "users.typage_id", "=", "servidors.id");
-        //     $servidors = $servidors->where(function ($query) use ($valor) {
-        //         if ($valor) {
-        //             $query->orWhere("users.name", "LIKE", "%{$valor}%");
-        //             $query->orWhere("users.email", "LIKE", "%{$valor}%");
-        //             $query->orWhere("servidors.cpf", "LIKE", "%{$valor}%");
-        //             //$query->orWhere("servidors.tipo_servidor_id", "LIKE", "%{$valor}%");
-        //         }
-        //     })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->get();
-
-        //     return view("servidores.index", compact("servidors", "permissoes"));
-        // } else {
             $servidores = Servidor::all();
             return view("servidores.index", compact("servidores"));
     }
@@ -100,7 +78,7 @@ class ServidorController extends Controller {
     {
         $servidor = Servidor::find($id);
         $servidores = Servidor::all();
-        
+
         #$tipo_servidors = User::where('typage_id', Auth::user()->typage_id)->get();
         return view("servidores.editar", compact('servidor', 'servidores'));
     }
