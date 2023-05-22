@@ -1,4 +1,4 @@
-@extends("templates.app")
+extends("templates.app")
 
 @section("body")
     @canany(['admin', 'servidor'])
@@ -65,7 +65,7 @@
             <br>
             <div class="boxchild">
                 <div class="row">
-                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
+                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
                         Editar Edital</h1>
                 </div>
 
@@ -74,11 +74,14 @@
                         @csrf
                         @method("PUT")
 
-                        <label class="titulo" for="titulo_edital">Título do Edital:</label>
-                        <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital" value="{{$edital->titulo_edital}}"><br><br>
+                        <label class="titulo" for="nome">Nome:</label>
+                        <input class="boxinfo" type="text" name="nome" id="nome" value=""><br><br>
 
                         <label class="titulo" for="semestre">Semestre:</label>
-                        <input class="boxinfo" type="text" name="semestre" id="semestre" value="{{$edital->semestre}}"><br><br>
+                        <input class="boxinfo" type="text" name="semestre" id="semestre" value=""><br><br>
+
+                        <label class="titulo" for="Descrição">Descrição:</label>
+                        <textarea class="boxinfo" name="descricao" id="descricao" cols="30" rows="10"></textarea><br><br>
 
                         <label class="titulo" for="data_inicio">Data de início:</label>
                         <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" value="{{$edital->data_inicio}}"><br><br>
@@ -89,26 +92,24 @@
                         <label class="titulo" for="titulo_edital">Título do Edital:</label>
                         <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br>
 
-                        <label class="titulo" for="valor_bolsa">Valor da Bolsa:</label>
+                        <label class="valor_bolsa" for="valor_bolsa">Valor da Bolsa:</label>
                         <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value=""><br><br>
 
                         <label class="titulo" for="disciplina">Disciplina:</label>
-                        <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina" >
+                        <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina">
+                            <option value=""></option>
                             @foreach ($disciplinas as $disciplina)
                                 <option value="{{$disciplina->id}}" {{$edital->disciplina_id == $disciplina->id ? 'selected' : ''}}>{{$disciplina->nome}}</option>
                             @endforeach
                         </select><br><br>
-
+                        
                         <label class="titulo" for="programa">Programa:</label>
                         <select aria-label="Default select example" class="boxinfo" name="programa" id="programa">
+                            <option value=""></option>
                             @foreach ($programas as $programa)
                                 <option value="{{$programa->id}}" {{$edital->programa_id == $programa->id ? 'selected' : ''}}>{{$programa->nome}}</option>
                             @endforeach
                         </select><br><br>
-
-                        <label class="titulo" for="Descrição">Descrição:</label>
-                        <textarea class="boxinfo" name="descricao" id="descricao" cols="30" rows="5" >{{$edital->descricao}}</textarea><br><br>
-
 
 
                         <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
@@ -116,7 +117,7 @@
                                                                 box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                                                                 border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                                                                 line-height: 29px; text-align: center; padding: 5px 15px;">
-                            <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
+                            <input type="submit" value="salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
                                                     display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
                                                     font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
                         </div>
@@ -127,15 +128,8 @@
 
                     </form>
             </div>
-            <br>
-            <br>
         </div>
         <script>
-            // //cash mask para o valor da bolsa
-            // $(document).ready(function(){
-            //     $('#valor_bolsa').mask( 'R$#.##0,00', {reverse: true} );
-            // });
-
             $("#programa").chosen({
                 placeholder_text_single: "Selecione um programa",
                 // max_shown_results : 5,
