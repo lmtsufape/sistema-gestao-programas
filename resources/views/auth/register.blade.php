@@ -9,6 +9,31 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
+            <label for="nome_social" class="titulo">Nome Social:</label>
+            <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social">
+            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+
+            <label for="cpf" class="titulo">CPF:</label>
+            <input class="boxinfo" type="text"  id="cpf" name="cpf" required placeholder="Digite o CPF">
+            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+
+            <label for="email" class="titulo">Email:</label>
+            <input class="boxinfo" type="email" id="email" name="email" required placeholder="Digite o email">
+            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+
+            <label for="senha" class="titulo">Senha:</label>
+            <input type="password"  class="boxinfo" id="senha" name="senha" required placeholder="Digite a senha">
+            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+
+            <label for="tipoUser" class="titulo">Tipo do usuário:</label>
+            <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
+                <option>Selece o tipo de usuario</option>
+                <option value="servidor" selected>Servidor</option>
+                <option value="orientador">Orientador</option>
+                <option value="aluno">Aluno</option>
+            </select> <br><br>
+
+            <br>
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
