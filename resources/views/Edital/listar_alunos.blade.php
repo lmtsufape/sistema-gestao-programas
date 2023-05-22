@@ -64,15 +64,16 @@
 
     </form>
   </div>
- {{-- <div style="display: contents; align-content: center; align-items: center;">
+ <div style="display: contents; align-content: center; align-items: center;">
     <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
       font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
       align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;" href="{{route('edital.show, ['id' =>  ]')}}">
+      padding-left: 10px;" onmouseover="this.style.backgroundColor='#2D3875'" onmouseout="this.style.backgroundColor='#34A853'" 
+      href="{{route('edital.show', ['id' => $edital->id ])}}">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Vincular Aluno
     </a>
   </div>
- --}}
+
 
  <br><br>
   <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
@@ -82,7 +83,7 @@
         <thead>
           <tr>
             <th scope="col">Nome</th>
-            <th scope="col">Bolsa</th>
+            <th scope="col">Edital</th>
             <th scope="col">Data de Início</th>
             <th scope="col">Data de Fim</th>
             <th class="text-center">Ações</th>
@@ -90,22 +91,23 @@
         </thead>
         <tbody>
         @foreach($alunos as $aluno)
-
+        
           <tr>
             <td> {{ $aluno->nome_aluno }} </td>
-            <td> {{ $aluno->pivot->bolsa }} </td>
+            <td> {{ $edital->titulo_edital }} </td>
             <td> {{ $aluno->pivot->data_inicio }} </td>
             <td> {{ $aluno->pivot->data_fim }} </td>
             <td>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$aluno->pivot->aluno_id}}">
-                <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
-              </a>
+            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$aluno->pivot->edital_id}}" data-bs-id="{{$aluno->id}}">
+              <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
+            </a>
+              {{--
               <a type="button" href="">
                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->pivot->aluno_id}}">
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete{{$aluno->pivot->aluno_id}}">
                 <img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
-              </a>
+              </a>--}}
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$aluno->pivot->aluno_id}}">
                 <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
               </a>

@@ -69,7 +69,7 @@
                          margin-left: 0; margin-top: 30px; width: 30%; border: none;">Entrar</button>
                         <!-- </div> -->
                         <!-- <div style="margin-left: auto; margin-right: 0;"> -->
-                        <a href="{{url("/cadastrar-se/")}}" style="background: #2D3875; height: 40px; color:#F5F5F5;
+                        <a href="{{ route('register')}}" style="background: #2D3875; height: 40px; color:#F5F5F5;
                         width: 200px; border-radius: 15px; margin-left: auto; margin-right: 0; margin-top: 30px;
                         width: 30%; border: none; text-decoration: none; padding-top: 8px"> Cadastre-se</a>
                         <!-- </div> -->

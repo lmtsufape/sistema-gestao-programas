@@ -1,13 +1,81 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends("templates.app")
 
-        <x-jet-validation-errors class="mb-4" />
+@section("body")
+<style>
+    select[multiple] {
+        overflow: hidden;
+        background: #f5f5f5;
+        width:100%;
+        height:auto;
+        padding: 0px 5px;
+        margin:0;
+        border-width: 2px;
+        border-radius: 5px;
+        -moz-appearance: menulist;
+        -webkit-appearance: menulist;
+        appearance: menulist;
+      }
+      /* select single */
+      .required .chosen-single {
+        background: #F5F5F5;
+        border-radius: 5px;
+        border: 1px #D3D3D3;
+        padding: 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+    }
+    /* select multiple */
+    .required .chosen-choices {
+        background: #F5F5F5;
+        border-radius: 5px;
+        border: 1px #D3D3D3;
+        padding: 0px 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+    }
+    .titulo {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        display: flex;
+        color: #131833;
+    }
+    .boxinfo{
+        background: #F5F5F5;
+        border-radius: 6px;
+        border: 1px #D3D3D3;
+        width: 100%;
+        padding: 5px;
+        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+        text-align: start;
+    }
+    .boxchild{
+        background: #FFFFFF;
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        padding: 34px;
+        width: 65%
+    }
+</style>
 
-        <form method="POST" action="{{ route('register') }}">
+<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px">
+    @if (session('sucesso'))
+    <div class="alert alert-sucess">
+        {{session('sucesso')}}
+    </div>
+    @endif
+    <br>
+    <div class="boxchild">
+        <div class="row">
+            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
+                Cadastrar usuário</h1>
+        </div>
+
+        <hr style="color:#2D3875;">
+
+        <form action="{{ route('store') }}" method="POST">
             @csrf
+            <label for="nome" class="titulo">Nome:</label>
+            <input class="boxinfo" type="text" id="nome" name="nome" required placeholder="Digite o nome">
+            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="nome_social" class="titulo">Nome Social:</label>
             <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social">
@@ -35,51 +103,71 @@
 
             <br>
             <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <label for="instituicaoVinculo" class="titulo">instituicaoVinculo:</label>
+                <input class="boxinfo" type="text" id="instituicaoVinculo" name="instituicaoVinculo"placeholder="instituicaoVinculo">
+            </div>
+            <br>
+            <div id="curso">
+                <label class="titulo" for="curso">Curso:</label>
+                <select aria-label="Default select example" class="boxinfo" id="curso" name="curso">
+                    <option value="">Selecione o curso</option>
+                    @foreach ($cursos as $curso)
+                    <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <br>
+
+            <div id="matricula">
+                <label class="titulo" for="matricula">Matrícula:</label>
+                <input class="boxinfo" type="text"  id="matricula" name="matricula" placeholder="Digite a matrícula">
+                <br><br>
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            <div id="semestre">
+                <label class="titulo" for="semestre_entrada">Semestre de entrada:</label>
+                <input class="boxinfo" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre">
+                <br><br>
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
+            <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
+                <input type="button" value="Voltar" style="background: #2D3875;
+                            box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
+                            border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
+                            line-height: 29px; text-align: center; padding: 5px 15px;"/>
 
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
-
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-jet-label>
-                </div>
-            @endif
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
+                <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
+                            display: inline-block;
+                            border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal; font-weight: 400; font-size: 24px;
+                            line-height: 29px; text-align: center; padding: 5px 15px;"/>
             </div>
         </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+    </div>
+</div>
+
+<script>
+    // $(document).ready(function() {
+    //     $("#tipoUser").change(function() {
+    //         if ($("#tipoUser").val() == "servidor") {
+    //             $("#curso").attr("hidden", true);
+    //             $("#semestre").attr("hidden", true);
+    //             $("#matriculaOri").attr("hidden", true);
+    //             $("#tipo_servidor").removeAttr("hidden");
+    //         } else if ($("#tipoUser").val() == "orientador") {
+    //             $("#curso").attr("hidden", true);
+    //             $("#tipo_servidor").attr("hidden", true);
+    //             $("#semestre").attr("hidden", true);
+    //             $("#matricula").removeAttr("hidden");
+    //         } else {
+    //             $("#curso").removeAttr("hidden");
+    //             $("#tipo_servidor").attr("hidden", true);
+    //             $("#semestre").removeAttr("hidden");
+    //             $("#matriculaOri").attr("hidden", true);
+    //         }
+    //     });
+    // });
+
+</script>
+
+@endsection

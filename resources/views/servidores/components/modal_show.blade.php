@@ -22,7 +22,7 @@
                 <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">E-mail:</label>
                 <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$servidor->user->email}}</div>
                 
-                <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Tipo Servidor:</label>
+                <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Tipo do servidor:</label>
                 @switch($servidor->tipo_servidor)
                   @case('adm')
                     <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> Administrador</div>
@@ -36,23 +36,27 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" style="background: #34A853; border: #34A853;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button"  class="btn " data-bs-dismiss="modal">Fechar</button>
             </div>
           </div>
       </div>
     </div>
   </div>
   <style>
-    .btn-secondary{
-      color: #fff;
-      background-color: #2d3875;
-      border-color: #2d3875;
-    }
-    .btn-secondary:hover{
-      background-color: #4353ab;
-      border-color: #4353ab;
-    }
-  </style>
+  .btn {
+    color: #fff;
+    background: #34A853;
+    border-color: #34A853;
+    border-radius: 20px;
+    width:120px;
+  }
+
+  .btn:hover {
+    background-color: #40b760;
+    border-color: #40b760;
+    color: #fff;
+  }
+</style>
 @elsecan
   <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
   <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>

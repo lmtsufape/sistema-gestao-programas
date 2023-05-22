@@ -31,7 +31,7 @@ class CursoStoreFormRequest extends FormRequest
     public function messages()
     {
         return [
-            "required" => "O campo :atribute é obrigatório."
+            "required" => "O campo :attribute é obrigatório."
         ];
     }
 }

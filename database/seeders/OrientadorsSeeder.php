@@ -15,12 +15,17 @@ class orientadorsSeeder extends Seeder
      */
     public function run()
     {
+
+
         $orientador = Orientador::create([
             'cpf' => "827.846.340-94",
-            'matricula' => "123456"
+            'instituicaoVinculo' => 'UPE',
+            'curso' => 'BCC',
+            'matricula' => "123456",
         ]);
 
         $orientador->user()->create([
+            'cpf' => "827.846.340-94",
             'name' => "Orientador 1",
             'email' => "orientador@gmail.com",
             'password' =>  Hash::make('12345678')
@@ -28,10 +33,13 @@ class orientadorsSeeder extends Seeder
 
         $orientador1 = Orientador::create([
             'cpf' => "786.116.540-05",
+            'instituicaoVinculo' => 'UFAPE',
+            'curso' => 'BCC',
             'matricula' => "246810"
         ]);
 
         $orientador1->user()->create([
+            'cpf' => "786.116.540-05",
             'name' => "Orientador 2",
             'email' => "orientador2@gmail.com",
             'password' =>  Hash::make('12345678')
