@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal_delete{{$aluno->pivot->aluno_id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_delete{{$pivo->edital_id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
         <div class="modal-header">
@@ -7,7 +7,7 @@
         </div>
         <div class="modal-body">
           <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">
-            Deseja realmente deletar o aluno?</p>
+            Deseja realmente deletar o orientador {{$orientador->name}}?</p>
         </div>
         <div class="modal-footer d-flex justify-content-between">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

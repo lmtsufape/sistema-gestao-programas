@@ -120,7 +120,7 @@
             {{-- Não apagar esse tr  --}}
           </tr>
         </tbody>
-        @include("Edital.components.modal_show", ["edital" => $edital, "orientadors" => $orientadors])
+        @include("Edital.components.modal_show", ["edital" => $edital])
         @include("Edital.components.modal_delete", ["edital" => $edital])
         @endforeach
       </table>

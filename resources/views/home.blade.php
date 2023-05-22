@@ -65,7 +65,7 @@
                     <h1 style="font-style: normal; padding-top: 38px;
                             font-weight: 700; text-align:start ;
                             font-size: 35px; line-height: 41px; color: #131833;">
-                        Bem-vindo(a)!
+                        Bem-vindo(a) {{auth()->user()->name}}!
                     </h1>
                     <hr>
                     <br>
