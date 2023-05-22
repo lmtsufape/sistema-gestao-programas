@@ -73,43 +73,46 @@
     <div class="boxchild">
         <div class="row" style="display: flex; align-items: center;">
             <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; color: #2D3875;">
-                Vincular Aluno a {{$edital->titulo_edital}}</h1>
+                Editar Vinculo do Aluno a {{$edital->titulo_edital}}</h1>
             <p style="font-weight: 400; font-size: 20px; color:gray;">{{$edital->descricao}}</p>
             <hr>
             <br>
             <br>
         </div>
 
-        <form action="{{  route('edital.aluno', ['id' => $edital->id])  }}" method="POST" enctype="multipart/form-data">
+        <form action="{{  route('edital.update_vinculo', ['id' => $vinculo->id])  }}" method="POST" enctype="multipart/form-data">
 
             @csrf
-            <label class="titulo" for="">CPF do aluno</label>
-            <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf" placeholder="CPF do aluno" required data-url="{{ url('/cpfs') }}">
+            @method("PUT")
+            <label class="titulo" for="nome_aluno">Nome do Aluno</label>
+            <input type="text" id="nome_aluno" class="boxinfo" placeholder="Nome do aluno" value="{{$aluno->nome_aluno}}" disabled>
             <br>
             <br>
             <label class="titulo" for="bolsa">Tipo da bolsa</label>
-            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" required>
+            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" value="{{$vinculo->bolsa}}" required>
             <br>
             <br>
-            <label class="titulo" for="orientador">Orientador:</label>
-            <select aria-label="Default select example" class="boxinfo" id="orientador" name="orientador" required>
-                <option>Selecione um orientador</option>
-                @foreach ($orientadores as $orientador)
-                    <option value="{{$orientador->id}}">{{$orientador->user->name}}</option>
-                @endforeach
-            </select>
+            <label class="titulo" for="bolsista">Tipo de Vínculo</label>
+            <input class="form-check-input" type="radio" name="bolsista" id="bolsista" value="True" required checked>
+            <label class="form-check-label" for="bolsita">
+                Bolsista
+            </label>
+            <input class="form-check-input" type="radio" name="bolsista" id="bolsista" value="False">
+            <label class="form-check-label" for="bolsista">
+                Voluntário
+            </label>
             <br>
             <br>
             <label class="titulo" for="info_complementares">Informações complementares</label>
-            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="informações complementares" required>
+            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="informações complementares" value="{{$vinculo->info_complementares}}" required>
             <br>
             <br>
             <label class="titulo" for="termo_compromisso_aluno">termo_compromisso_aluno</label>
-            <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno" required>
+            <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno">
             <br>
             <br>
             <label class="titulo" for="termo_compromisso_orientador">termo_compromisso_orientador</label>
-            <input type="file" id="termo_compromisso_orientador" class="boxinfo" name="termo_compromisso_orientador" required>
+            <input type="file" id="termo_compromisso_orientador" class="boxinfo" name="termo_compromisso_orientador" >
             <br>
             <br>
 
@@ -130,35 +133,6 @@
 
 @endcan
 <script  src="{{ mix('js/app.js') }}">
-
-
-    $('.cpf-autocomplete').inputmask('999.999.999-99');
-
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-    var cpfInput = document.querySelector('.cpf-autocomplete');
-    var url = cpfInput.getAttribute('data-url');
-
-    cpfInput.addEventListener('input', function() {
-        var cpfValue = this.value;
-
-        fetch(url)
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(data) {
-                var filteredCpfs = data.filter(function(item) {
-                    return item.cpf.includes(cpfValue);
-                });
-                filteredCpfs.forEach(function(item) {
-                    console.log(item.cpf + ' - ' + item.nome);
-                });
-            })
-            .catch(function(error) {
-                console.log('Ocorreu um erro: ' + error);
-            });
-        });
-    });
 </script>
 @endsection
+

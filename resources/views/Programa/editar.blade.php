@@ -86,6 +86,7 @@
                         <option value=""></option>
                             @foreach ($servidors as $servidor)
                                 <option value="{{$servidor->id}}" style="color: black; border-radius: 5px;">{{$servidor->user->name}}</option>
+                                
                             @endforeach
                     </select><br><br>
 

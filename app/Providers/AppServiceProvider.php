@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Relation::enforceMorphMap([
+        //     'aluno' => 'App\Models\Aluno',
+        //     'servidor' => 'App\Models\Servidor',
+        //     'orientador' => 'App\Models\Orientador',
+        // ]);
     }
 }

@@ -92,6 +92,16 @@
                 <label for="matricula" class="titulo">Matrícula:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula" value="{{ old('matricula') }}" required><br><br>
 
+                <label for="matricula" class="titulo">Siape/Matrícula:<strong style="color: red">*</strong></label>
+                <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a Siape/Matrícula" value="{{ old('matricula') }}" required><br><br>
+                
+                <label for="instituicaoVinculo" class="titulo">Instituição de Vínculo:<strong style="color: red">*</strong></label>
+                <input class="boxinfo" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a Instituição de Vínculo" value="{{ old('instituicaoVinculo') }}" required><br><br>
+
+                <label for="curso" class="titulo">Curso:<strong style="color: red">*</strong></label>
+                <input class="boxinfo" type="text" name="curso" id="curso" placeholder="Digite o Curso" value="{{ old('curso') }}" required><br><br>
+
+
                 <label for="senha" class="titulo">Senha:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="password" name="senha" id="senha" placeholder="Digite a senha" required><br><br>
 

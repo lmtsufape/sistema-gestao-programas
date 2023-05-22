@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->softDeletes();
             $table->increments('id');
             $table->string('name', 100);
             $table->string('cpf', 14)->unique();
@@ -23,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('status', ['ativo', 'inativo'])->default('ativo')->nullable(false);
             $table->morphs("typage");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

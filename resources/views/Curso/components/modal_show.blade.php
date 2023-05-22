@@ -22,7 +22,7 @@
                       
           </div>
           <div class="modal-footer">
-                <button type="button" style="background: #34A853; border: #34A853;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button"  class="btn" data-bs-dismiss="modal">Fechar</button>
           </div>
         </div>
       </div>
@@ -30,16 +30,20 @@
     </div>
   </div>
   <style>
-    .btn-secondary{
-      color: #fff;
-      background-color: #2d3875;
-      border-color: #2d3875;
-    }
-    .btn-secondary:hover{
-      background-color: #4353ab;
-      border-color: #4353ab;
-    }
-  </style>
+  .btn {
+    color: #fff;
+    background: #34A853;
+    border-color: #34A853;
+    border-radius: 20px;
+    width:120px;
+  }
+
+  .btn:hover {
+    background-color: #40b760;
+    border-color: #40b760;
+    color: #fff;
+  }
+</style>
 @else
   <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
   <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
