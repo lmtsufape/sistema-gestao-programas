@@ -251,8 +251,8 @@ class EditalController extends Controller
         return view("Edital.listar_disciplinas", compact("disciplinas"));
     }
 
-    public function listar_orientadores($edital_id){
-        $pivot = EditalAlunoOrientadors::where('edital_id', $edital_id)->get();
+    public function listar_orientadores($id){
+        $pivot = EditalAlunoOrientadors::where('edital_id', $id)->get();
         $count = $pivot->count();
         if($pivot->isEmpty()) {
             return redirect()->back()->with('fail', 'Não há orientadores cadastrados no edital.');
