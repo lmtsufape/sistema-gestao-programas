@@ -238,11 +238,11 @@ class EditalController extends Controller
         }
     }
     public function listar_alunos($id){
-        $edital = Edital::with('alunos')->find($id);
+        $edital = Edital::find($id);
         $alunos = $edital->alunos('user');
         $alunos = $edital->alunos; 
         
-        return view("Edital.listar_alunos", compact("alunos"));
+        return view("Edital.listar_alunos", compact("alunos", "edital"));
     }
 
     public function listar_disciplinas($id){
@@ -251,14 +251,26 @@ class EditalController extends Controller
         return view("Edital.listar_disciplinas", compact("disciplinas"));
     }
 
-    public function listar_orientadores($id){
-        $edital = Edital::find($id);
-        $orientadores = $edital->alunos()
-            ->wherePivot('edital_id', $edital->id)
-            ->with('user')
-            ->get();
+    public function listar_orientadores($edital_id){
+        $pivot = EditalAlunoOrientadors::where('edital_id', $edital_id)->get();
+        $count = $pivot->count();
+        if($pivot->isEmpty()) {
+            return redirect()->back()->with('fail', 'Não há orientadores cadastrados no edital.');
+        }
+        elseif($count > 1) {
+            foreach($pivot as $pivo) {
+                $orientador = Orientador::where('id', $pivo->orientador_id)->with('user')->get();
+                $orientadores = User::where('typage_type', 'App\Models\Orientador')->where('typage_id', $orientador[0]->id)->get();
+            }
+            return view("Edital.listar_orientadores", compact("orientadores", "pivot"));
+        }
+        else {
+            $orientador = $pivot->first();
+            $orientador = Orientador::where('id', $orientador->orientador_id)->with('user')->get();
+            $orientadores = User::where('typage_type', 'App\Models\Orientador')->where('typage_id', $orientador[0]->id)->get();
+            return view("Edital.listar_orientadores", compact("orientadores", "pivot"));
+        }
 
-        return view("Edital.components_alunos.modal_show", compact("orientadores"));
     }
 
     /**
