@@ -10,6 +10,7 @@ class Edital extends Model
     use HasFactory;
 
     protected $fillable = [
+        'nome',
         'descricao',
         'semestre',
         'data_inicio',

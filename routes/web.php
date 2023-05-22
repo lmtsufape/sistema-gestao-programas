@@ -110,16 +110,13 @@ Route::prefix('edital')->group(function() {
     Route::get('{id}', [EditalController::class, 'show'])->name('edital.show');
     Route::post('/cadastrar-aluno/{id}', [EditalController::class, 'inscrever_aluno'])->name('edital.aluno');
     Route::get('/{id}/alunos', [EditalController::class, 'listar_alunos'])->name('edital.vinculo');
-    Route::get('/{id}/editar-vinculo', [EditalController::class, 'editar_vinculo'])->name('edital.editar_vinculo');
-    Route::put('/{id}', [EditalController::class, 'update_vinculo'])->name('edital.update_vinculo');
-    Route::delete('/{id}/deletar-vinculo', [EditalController::class, 'deletar_vinculo'])->name('edital.deletar_vinculo');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
     Route::get('/{fileName}/termo', [EditalController::class, 'download_termo_compromisso_aluno'])->name('termo_aluno.download');
+    Route::get('/{fileName}/termo_orientador', [EditalController::class, 'download_termo_compromisso_orientador'])->name('termo_orientador.download');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
-    Route::get('/{id}/orientadores', [EditalController::class, 'listar_orientadores'])->name('edital.listar_orientadores');
+    Route::get('/{edital_id}/orientadores', [EditalController::class, 'listar_orientadores'])->name('edital.listar_orientadores');
     Route::get('/cpfs', [SeuControlador::class, 'getCpfs']);
 });
-    
 
 // Rotas de Disciplina
 Route::resource('/disciplinas', DisciplinaController::class);
