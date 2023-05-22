@@ -77,8 +77,8 @@
             <input class="boxinfo" type="text" id="nome" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="nome-social" class="titulo">Nome Social:</label>
-            <input class="boxinfo" type="text" id="nome-social" name="nome-social" placeholder="Digite o nome social">
+            <label for="nome_social" class="titulo">Nome Social:</label>
+            <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
             <label for="cpf" class="titulo">CPF:</label>

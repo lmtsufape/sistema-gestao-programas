@@ -113,7 +113,7 @@
                     <p style="margin: auto; padding-right: 5px"> Listar documentos </p>
                 </button>  --}}
 
-                <button class="botaoverde" ref="{{url('/listar-modelos')}}" onclick="window.location.href="{{ url('/listar-modelos') }}">
+                <button class="botaoverde" href="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
                     <img src="{{asset('images/DocumentAdd.png')}}" alt="logodoc" style="padding-right: 10px;">
                     <p style="margin: auto; padding-right: 5px"> Listar modelos de documentos </p>
                 </button>
