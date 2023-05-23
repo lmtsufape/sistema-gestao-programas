@@ -90,7 +90,7 @@
                 <input class="boxinfo cpf-autocomplete" type="text" name="cpf" id="cpf" placeholder="Digite o CPF" value="{{ old('cpf') }}" required><br><br>
 
                 <label for="matricula" class="titulo">SIAPE:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a Siape/Matrícula" value="{{ old('matricula') }}" required><br><br>
+                <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite o SIAPE" value="{{ old('matricula') }}" required><br><br>
                 
                 <label for="instituicaoVinculo" class="titulo">Vínculo:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite o Vínculo do orientador" value="{{ old('instituicaoVinculo') }}" required><br><br>
