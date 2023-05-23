@@ -83,8 +83,8 @@
                 <label for="cpf" for="nome" class="titulo">CPF:</label>
                 <input class="boxinfo cpf-autocomplete" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$orientador->cpf}}" ><br/><br>
 
-                <label for="matricula" class="titulo">Matrícula: </label>
-                <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula" value="{{$orientador->matricula}}"><br><br>
+                <label for="matricula" class="titulo">SIAPE: </label>
+                <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite o SIAPE" value="{{$orientador->matricula}}"><br><br>
 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                     <input type="button" class="btn btn-secondary" value="Voltar" href="{{route('orientadors.index')}}" onclick="window.location.href='{{route('orientadors.index')}}'"

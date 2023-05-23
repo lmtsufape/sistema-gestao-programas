@@ -95,8 +95,8 @@
           <tr>
             <td> {{ $aluno->nome_aluno }} </td>
             <td> {{ $edital->titulo_edital }} </td>
-            <td> {{ $aluno->pivot->data_inicio }} </td>
-            <td> {{ $aluno->pivot->data_fim }} </td>
+            <td>{{date_format(date_create($aluno->pivot->data_inicio), "d/m/Y")}}</td>
+            <td>{{date_format(date_create($aluno->pivot->data_fim), "d/m/Y")}}</td>
             <td>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$aluno->id}}" data-bs-id="{{$aluno->id}}">
                 <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
