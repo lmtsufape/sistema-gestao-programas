@@ -16,35 +16,37 @@ use Exception;
 
 class AlunoController extends Controller
 {
-    public function store(AlunoStoreFormRequest $request)
-    {    //dd($request);
+
+        public function store(AlunoStoreFormRequest $request){  
+        DB::beginTransaction();
         try {
             $aluno = new Aluno();
             $aluno->nome_aluno = $request->nome;
             $aluno->cpf = $request->cpf;
             $aluno->curso_id = $request->curso;
             $aluno->semestre_entrada = $request->semestre_entrada;
+            if ($aluno->save()) {
+                $user = $aluno->user()->create([
+                    'name' => $request->nome,
+                    'name_social' => $request->name_social == null ? "-" : $request->name_social,
+                    'email' => $request->email,
+                    'cpf' => $request->cpf,
+                    'password' => Hash::make($request->senha)
+                ]);
+                $user->givePermissionTo('aluno');
+                $user->save();
+                DB::commit();
 
-            if ($aluno->save()){
-                if (
-                    $aluno->user()->create([
-                        'name' => $request->nome,
-                        'name_social' => $request->nome_social == null ? "-": $request->nome_social,
-                        'email' => $request->email,
-                        'password' => Hash::make($request->senha)
-                    ])->givePermissionTo('aluno')
-                ){
-
-                    return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
-
-                } else {
-                    return redirect()->back()->withErrors( "Falha ao cadastrar aluno. tente novamente mais tarde." );
-                }
-            }
-        } catch (Exception $e) {
+                return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
+            } else {
                 return redirect()->back()->withErrors("Falha ao cadastrar aluno. Tente novamente mais tarde.");
             }
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors("Falha ao cadastrar aluno. Tente novamente mais tarde.");
+        }
     }
+
 
     public function update(AlunoUpdateFormRequest $request, $id)
     {

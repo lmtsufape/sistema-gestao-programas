@@ -26,7 +26,7 @@ class ProgramaStoreFormRequest extends FormRequest
             return [
                 "nome"=>"required|max:25",
                 "servidor"=>"required",
-                "descrição"=>"required"
+                "descricao"=>"required"
             ];
         }
 
@@ -34,7 +34,7 @@ class ProgramaStoreFormRequest extends FormRequest
     public function messages(){
         return [
             "required" => "O campo :attribute é obrigatório.",
-            "nome.max" => "O campo nome não pode ter mais que 50 caracteres."
+            "nome.max" => "O campo nome deve ter no máximo 25 caracteres."
         ];
     }
 }

@@ -38,7 +38,7 @@
         display: flex;
         color: #131833;
     }
-    .boxinfo{
+    .boxinfo {
         background: #F5F5F5;
         border-radius: 6px;
         border: 1px #D3D3D3;
@@ -46,6 +46,7 @@
         padding: 5px;
         box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
         text-align: start;
+        margin-bottom: 10px; /* Add margin-bottom to create spacing */
     }
     .boxchild{
         background: #FFFFFF;
@@ -73,7 +74,7 @@
 
         <form action="{{ route('store') }}" method="POST">
             @csrf
-            <label for="nome" class="titulo">Nome:</label>
+            <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="text" id="nome" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
@@ -81,34 +82,34 @@
             <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="cpf" class="titulo">CPF:</label>
+            <label for="cpf" class="titulo">CPF:<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="text"  id="cpf" name="cpf" required placeholder="Digite o CPF">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="email" class="titulo">Email:</label>
+            <label for="email" class="titulo">E-mail:<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="email" id="email" name="email" required placeholder="Digite o email">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="senha" class="titulo">Senha:</label>
+            <label for="senha" class="titulo">Senha:<strong style="color: red">*</strong></label>
             <input type="password"  class="boxinfo" id="senha" name="senha" required placeholder="Digite a senha">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="tipoUser" class="titulo">Tipo do usuário:</label>
+            <label for="tipoUser" class="titulo">Tipo do usuário:<strong style="color: red">*</strong></label>
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
-                <option>Selece o tipo de usuario</option>
+                <option>Selecione o tipo de usuário</option>
                 <option value="servidor" selected>Servidor</option>
                 <option value="orientador">Orientador</option>
                 <option value="aluno">Aluno</option>
             </select> <br><br>
 
-            <br>
-            <div>
-                <label for="instituicaoVinculo" class="titulo">instituicaoVinculo:</label>
-                <input class="boxinfo" type="text" id="instituicaoVinculo" name="instituicaoVinculo"placeholder="instituicaoVinculo">
+            <div id="instituicaoVinculo">
+                <label class="titulo" for="instituicaoVinculo">Vínculo:<strong style="color: red">*</strong></label>
+                <input class="boxinfo" type="text" id="instituicaoVinculo" name="instituicaoVinculo" placeholder="Vínculo do servidor">
             </div>
             <br>
+
             <div id="curso">
-                <label class="titulo" for="curso">Curso:</label>
+                <label class="titulo" for="curso">Curso:<strong style="color: red">*</strong></label>
                 <select aria-label="Default select example" class="boxinfo" id="curso" name="curso">
                     <option value="">Selecione o curso</option>
                     @foreach ($cursos as $curso)
@@ -119,16 +120,16 @@
             <br>
 
             <div id="matricula">
-                <label class="titulo" for="matricula">Matrícula:</label>
-                <input class="boxinfo" type="text"  id="matricula" name="matricula" placeholder="Digite a matrícula">
-                <br><br>
+                <label class="titulo" for="matricula">SIAPE:<strong style="color: red">*</strong></label>
+                <input class="boxinfo" type="text" id="matricula" name="matricula" placeholder="Digite o SIAPE">
             </div>
+            <br>
 
             <div id="semestre">
-                <label class="titulo" for="semestre_entrada">Semestre de entrada:</label>
+                <label class="titulo" for="semestre_entrada">Semestre de entrada:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre">
-                <br><br>
             </div>
+            <br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" style="background: #2D3875;
@@ -147,26 +148,31 @@
 </div>
 
 <script>
-    // $(document).ready(function() {
-    //     $("#tipoUser").change(function() {
-    //         if ($("#tipoUser").val() == "servidor") {
-    //             $("#curso").attr("hidden", true);
-    //             $("#semestre").attr("hidden", true);
-    //             $("#matriculaOri").attr("hidden", true);
-    //             $("#tipo_servidor").removeAttr("hidden");
-    //         } else if ($("#tipoUser").val() == "orientador") {
-    //             $("#curso").attr("hidden", true);
-    //             $("#tipo_servidor").attr("hidden", true);
-    //             $("#semestre").attr("hidden", true);
-    //             $("#matricula").removeAttr("hidden");
-    //         } else {
-    //             $("#curso").removeAttr("hidden");
-    //             $("#tipo_servidor").attr("hidden", true);
-    //             $("#semestre").removeAttr("hidden");
-    //             $("#matriculaOri").attr("hidden", true);
-    //         }
-    //     });
-    // });
+    $(document).ready(function() {
+    $("#tipoUser").change(function() {
+        var selectedOption = $(this).val();
+
+        if (selectedOption == "aluno") {
+            $("#curso").show();
+            $("#semestre").show();
+            $("#matricula").show();
+            $("#tipo_servidor").show();
+        } else if (selectedOption == "orientador") {
+            $("#curso").hide();
+            $("#semestre").hide();
+            $("#matricula").show();
+            $("#tipo_servidor").show()
+            $("#instituicaoVinculo").show();
+        } else if (selectedOption == "servidor") {
+            $("#curso").hide();
+            $("#semestre").hide();
+            $("#matricula").show();
+            $("#tipo_servidor").show();
+            $("#instituicaoVinculo").show();
+        }
+    });
+});
+
 
 </script>
 
