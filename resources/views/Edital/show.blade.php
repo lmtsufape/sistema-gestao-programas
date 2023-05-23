@@ -89,7 +89,7 @@
             <br>
             <br>
             <label class="titulo" for="bolsa">Tipo da bolsa: <strong style="color: red">*</strong></label>
-            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" required>
+            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="Valor da bolsa" required>
             <br>
             <br>
             <label class="titulo" for="orientador">Orientador: <strong style="color: red">*</strong></label>
@@ -102,14 +102,14 @@
             <br>
             <br>
             <label class="titulo" for="info_complementares">Informações complementares: <strong style="color: red">*</strong></label>
-            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="informações complementares" required>
+            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="Informações complementares" required>
             <br>
             <br>
-            <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso aluno: <strong style="color: red">*</strong></label>
+            <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno: <strong style="color: red">*</strong></label>
             <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno" required>
             <br>
             <br>
-            <label class="titulo" for="termo_compromisso_orientador">Termo de compromisso orientador: <strong style="color: red">*</strong></label>
+            <label class="titulo" for="termo_compromisso_orientador">Termo de compromisso do orientador: <strong style="color: red">*</strong></label>
             <input type="file" id="termo_compromisso_orientador" class="boxinfo" name="termo_compromisso_orientador" required>
             <br>
             <br>

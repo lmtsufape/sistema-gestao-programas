@@ -12,6 +12,7 @@ use App\Models\Orientador;
 use App\Models\EditalAlunoOrientadors;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
+use App\Http\Requests\VinculoUpdateFormRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Storage;
@@ -298,5 +299,69 @@ class EditalController extends Controller
             return redirect()->back()->with('fail', 'Arquivo PDF não encontrado.');
         }
      }
+
+
+     public function editar_vinculo($id){
+        $vinculo = EditalAlunoOrientadors::where ('aluno_id', $id)->first();
+        $aluno = Aluno::find($vinculo->aluno_id);
+        $edital = Edital::find($vinculo->edital_id);
+        $orientadores = Orientador::all();
+        //$vinculo = EditalAlunoOrientadors::find($id)
+        return view("Edital.editar_vinculo", compact('aluno','edital','orientadores', 'vinculo'));
+    }
+
+    public function updateVinculo(VinculoUpdateFormRequest $request, $id){
+        //DB::beginTransaction();
+        //try { 
+            $vinculo = EditalAlunoOrientadors::find($id);
+            $vinculo->bolsa = $request->bolsa ? $request->bolsa : $vinculo->bolsa;
+            $vinculo->bolsista = $request->bolsista == "True" ? $request->bolsista == "True" : $vinculo->bolsista;
+            $vinculo->info_complementares = $request->info_complementares ? $request->info_complementares : $vinculo->info_complementares;
+            $vinculo->termo_compromisso_orientador= $request->termo_compromisso_orientador ? $request->termo_compromisso_orientador: $vinculo->termo_compromisso_orientador;
+            $vinculo->termo_compromisso_aluno = $request->termo_compromisso_aluno ? $request->termo_compromisso_aluno: $vinculo->termo_compromisso_aluno;
+
+            // if ($request->validate){[
+            //     'termo_compromisso_aluno' => 'required|mimes:pdf|max:2048',
+            //     'termo_compromisso_orientador' => 'required|mimes:pdf|max:2048',
+            //     ];
+            //     $termo_aluno = "";
+            //     $termo_orientador = "";
+            // }
+            
+            $vinculo->update();
+
+            return redirect()->route('edital.vinculo', ['id' => $vinculo->edital_id])->with('success', 'O vínculo foi alterado com sucesso no edital.');
+
+            // if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()
+            //             && $request->hasFile('termo_compromisso_orientador') && $request->file('termo_compromisso_orientador')->isValid()) {
+            //             $aluno = Aluno::find($vinculo->aluno_id);
+            //             $edital = Edital::find($vinculo->edital_id);
+            //             $orientador_id = Orientador::find($vinculo->orientador_id)->id;
+            //             $termo_aluno = "termo_compromisso_aluno_". $aluno->nome_aluno . "_" . $aluno->id . $edital->id  . now() . '.' . $request->termo_compromisso_aluno->extension();
+            //             $termo_orientador = "termo_compromisso_orientador_" . $orientador_id . $edital->id  . now() . '.' . $request->termo_compromisso_orientador->extension();
+            //             $request->termo_compromisso_aluno->storeAs('termo_compromisso_alunos/', $termo_aluno);
+            //             $request->termo_compromisso_orientador->storeAs('termo_compromisso_orientadores/', $termo_orientador);
+
+            // }
+
+                //DB::commit();
+                // return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
+
+        //} catch(exception $e){
+             //DB::rollback();
+             //return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
+         //}
+
+    }
+
+
+    public function deletarVinculo($id){
+
+            $vinculo = EditalAlunoOrientadors::where("aluno_id", $id)->first();
+            $vinculo->delete();
+
+            return redirect()->back()->with('sucesso', 'O vínculo foi deletado com sucesso do edital.');
+
+    }
 }
 

@@ -104,7 +104,7 @@
               <a type="button" href="{{ route('edital.editar_vinculo', ['id' => $aluno->id]) }}">
                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" href="">
+              <a type="button" href="{{ route('edital.aluno.delete', ['id' => $aluno->id]) }}">
                 <img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$aluno->id}}">
@@ -117,7 +117,7 @@
           @include('Edital.components_alunos.modal_show', ['aluno' => $aluno])
           @include('Edital.components_alunos.modal_documents', ['aluno' => $aluno])
           <!-- Modal delete-->
-          {{-- @include('Edital.components_alunos.modal_delete', ['aluno' => $aluno]) --}}
+          @include('Edital.components_alunos.modal_delete', ['aluno' => $aluno])
         @endforeach
         </tbody>
       </table>
