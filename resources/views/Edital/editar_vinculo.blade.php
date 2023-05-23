@@ -73,7 +73,7 @@
     <div class="boxchild">
         <div class="row" style="display: flex; align-items: center;">
             <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; color: #2D3875;">
-                Editar Vinculo do Aluno a {{$edital->titulo_edital}}</h1>
+                Editar vínculo do aluno em {{$edital->titulo_edital}}</h1>
             <p style="font-weight: 400; font-size: 20px; color:gray;">{{$edital->descricao}}</p>
             <hr>
             <br>
@@ -83,7 +83,7 @@
         <form action="{{  route('edital.update_vinculo', ['id' => $vinculo->id])  }}" method="POST" enctype="multipart/form-data">
 
             @csrf
-            @method("PUT")
+            @method("POST")
             <label class="titulo" for="nome_aluno">Nome do Aluno</label>
             <input type="text" id="nome_aluno" class="boxinfo" placeholder="Nome do aluno" value="{{$aluno->nome_aluno}}" disabled>
             <br>
@@ -104,14 +104,14 @@
             <br>
             <br>
             <label class="titulo" for="info_complementares">Informações complementares</label>
-            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="informações complementares" value="{{$vinculo->info_complementares}}" required>
+            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="Informações complementares" value="{{$vinculo->info_complementares}}" required>
             <br>
             <br>
-            <label class="titulo" for="termo_compromisso_aluno">Termo compromisso aluno</label>
+            <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno</label>
             <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno">
             <br>
             <br>
-            <label class="titulo" for="termo_compromisso_orientador">Termo compromisso orientador</label>
+            <label class="titulo" for="termo_compromisso_orientador">Termo de compromisso do orientador</label>
             <input type="file" id="termo_compromisso_orientador" class="boxinfo" name="termo_compromisso_orientador" >
             <br>
             <br>
