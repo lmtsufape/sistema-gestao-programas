@@ -21,6 +21,10 @@ class UserController extends Controller
         return view('auth.register', compact('tipo_servidors', 'cursos'));
     }
 
+    public function reset_password() {
+        return view('auth.forgot-password');
+    }
+
     public function store(Request $request) {
 
         $existingCpf = User::where('cpf', $request->cpf)->first();
