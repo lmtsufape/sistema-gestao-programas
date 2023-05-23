@@ -1,5 +1,5 @@
 @canany(['admin', 'servidor'])
-  <div class="modal fade" id="modal_delete{{$aluno->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modal_delete{{$aluno->id}}_{{$edital->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal-create" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
         <div class="modal-header">
@@ -13,7 +13,7 @@
         <div class="modal-footer d-flex justify-content-between">
           <button stype="button" class="btn btn-secondary" style="border-radius: 45px; " data-bs-dismiss="modal">Cancelar</button>
 
-          <form action="{{ route('edital.aluno.delete', $aluno->id) }}" method="POST">
+          <form action="{{ route('edital.aluno.delete', ['aluno_id' => $aluno->id, 'edital_id' => $edital->id]) }}" method="POST">
             @method('DELETE')
             @csrf
             <button type="submit" class="btn btn-danger" style="border-radius: 45px;">Deletar</button>

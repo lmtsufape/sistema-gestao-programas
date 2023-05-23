@@ -282,39 +282,58 @@ class EditalController extends Controller
 
 
 
-     public function editar_vinculo($id){
-        $vinculo = EditalAlunoOrientadors::where ('aluno_id', $id)->first();
-        $aluno = Aluno::find($vinculo->aluno_id);
-        $edital = Edital::find($vinculo->edital_id);
-        $orientadores = Orientador::all();
+     public function editar_vinculo($aluno_id, $edital_id){
+        $vinculo = EditalAlunoOrientadors::where('aluno_id', $aluno_id)->where('edital_id', $edital_id)->first();  
+        $aluno = Aluno::find($vinculo->aluno_id);  
+        $edital = Edital::find($vinculo->edital_id);  
+        $orientadores = Orientador::all(); 
         //$vinculo = EditalAlunoOrientadors::find($id)
-        return view("Edital.editar_vinculo", compact('aluno','edital','orientadores', 'vinculo'));
+        return view("Edital.editar_vinculo", compact('aluno','edital','orientadores', 'vinculo'));  
     }
 
     public function updateVinculo(VinculoUpdateFormRequest $request, $id){
-        //DB::beginTransaction();
-        //try { 
-            $vinculo = EditalAlunoOrientadors::find($id);
-            $vinculo->bolsa = $request->bolsa ? $request->bolsa : $vinculo->bolsa;
-            $vinculo->bolsista = $request->bolsista == "True" ? $request->bolsista == "True" : $vinculo->bolsista;
-            $vinculo->info_complementares = $request->info_complementares ? $request->info_complementares : $vinculo->info_complementares;
-            $vinculo->termo_compromisso_aluno = $request->termo_compromisso_aluno ? $request->termo_compromisso_aluno: $vinculo->termo_compromisso_aluno;
+        DB::beginTransaction();
+        try { 
+            $vinculo = EditalAlunoOrientadors::find($id);  
+            $vinculo->bolsa = $request->bolsa ? $request->bolsa : $vinculo->bolsa;  
+            $vinculo->bolsista = $request->bolsista == "True" ? $request->bolsista == "True" : $vinculo->bolsista;  
+            $vinculo->info_complementares = $request->info_complementares ? $request->info_complementares : $vinculo->info_complementares;  
+            $vinculo->termo_compromisso_aluno = $request->termo_compromisso_aluno ? $request->termo_compromisso_aluno: $vinculo->termo_compromisso_aluno; 
 
             
             $vinculo->update();
 
-            return redirect()->route('edital.vinculo', ['id' => $vinculo->edital_id])->with('success', 'O vínculo foi alterado com sucesso no edital.');
+            DB::commit();
+            
+            //return redirect()->back()->with('sucesso', 'O vínculo foi alterado com sucesso no edital.');
+            return redirect()->route('edital.vinculo', ['id' => $vinculo->edital_id])->with('sucesso', "O vínculo foi alterado com sucesso no edital.");
+
+        } catch(exception $e){ 
+             DB::rollback(); 
+             return redirect()->back()->withErrors( "Falha ao atualizar o vínculo do aluno no edital." ); 
+
+            }
+            //return redirect()->route('edital.vinculo', ['id' => $vinculo->edital_id])->with('success', 'O vínculo foi alterado com sucesso no edital.');
 
     }
 
 
-    public function deletarVinculo($id){
+    public function deletarVinculo($aluno_id, $edital_id){
 
-            $vinculo = EditalAlunoOrientadors::where("aluno_id", $id)->first();
-            $vinculo->delete();
+        DB::beginTransaction();
+        try { 
+            $vinculo = EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->first(); 
+            $vinculo->delete(); 
 
-            return redirect()->back()->with('sucesso', 'O vínculo foi deletado com sucesso do edital.');
+            DB::commit();
+            return redirect()->back()->with('sucesso', 'O vínculo foi deletado com sucesso do edital.'); 
 
+        } catch(exception $e){ 
+            DB::rollback(); 
+            return redirect()->back()->withErrors( "Falha ao deletar o vínculo do aluno no edital." ); 
+           }
     }
+
+
 }
 
