@@ -109,10 +109,6 @@
             <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno" required>
             <br>
             <br>
-            <label class="titulo" for="termo_compromisso_orientador">Termo de compromisso do orientador: <strong style="color: red">*</strong></label>
-            <input type="file" id="termo_compromisso_orientador" class="boxinfo" name="termo_compromisso_orientador" required>
-            <br>
-            <br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;

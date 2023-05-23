@@ -17,7 +17,6 @@ class EditalAlunoOrientadors extends Model
         'bolsista',
         'info_complementares',
         'termo_compromisso_aluno',
-        'termo_compromisso_orientador',
         'aluno_id',
         'edital_id',
         'disciplina_id',

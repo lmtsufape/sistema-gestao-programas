@@ -34,7 +34,6 @@ class Orientador extends Model
                 'edital_id',
                 'orientador_id',
                 'termo_compromisso_aluno',
-                'termo_compromisso_orientador'
             ]);
     }
 }
