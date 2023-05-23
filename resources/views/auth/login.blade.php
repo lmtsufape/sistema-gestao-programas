@@ -36,7 +36,7 @@
                 <hr style="margin-right: 60px; margin-left: 60px;" >
                 <form class="form-content" method="POST" action="{{ route('login') }}">
                     @csrf
-
+                    
                     <div class="mb-3" style="text-align: left">
                         <label for="email" style="font-weight: 400; font-size: 20px;
                          line-height: 35px; color: #000000;">Email:</label>
@@ -57,7 +57,7 @@
                         <label for="lembredemim"> Lembre-se de mim </label>
                         </div>
                         <div style="margin-left: auto; margin-right: 0;">
-                        <a href="">Esqueceu sua senha?</a>
+                        <a href="{{ route('password.request')}}">Esqueceu sua senha?</a>
                         </div>
 
                     </div>

@@ -10,6 +10,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -65,4 +67,10 @@ class User extends Authenticatable
         'password.min' => 'Senha deve possuir no mínimo 8 caracteres',
         'password.max' => 'Senha deve possuir no máximo 30 caracteres'
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
 }
