@@ -115,9 +115,9 @@ Route::prefix('edital')->group(function() {
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
     Route::get('/{id}/orientadores', [EditalController::class, 'listar_orientadores'])->name('edital.listar_orientadores');
     Route::get('/cpfs', [SeuControlador::class, 'getCpfs']);
-    Route::get('/{id}/editar_vinculo', [EditalController::class, 'editar_vinculo'])->name('edital.editar_vinculo');
-    Route::post('/vinculo/{id}', [EditalController::class, 'updateVinculo'])->name('edital.update_vinculo');
-    Route::get('/{id}/delete', [EditalController::class, 'deletarVinculo'])->name('edital.aluno.delete');
+    Route::get('/{aluno_id}/{edital_id}/editar_vinculo', [EditalController::class, 'editar_vinculo'])->name('edital.editar_vinculo');
+    Route::put('/vinculo/{id}', [EditalController::class, 'updateVinculo'])->name('edital.update_vinculo');
+    Route::get('/{aluno_id}/{edital_id}/delete', [EditalController::class, 'deletarVinculo'])->name('edital.aluno.delete');
 });
 
 // Rotas de Disciplina

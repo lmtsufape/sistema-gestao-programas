@@ -70,7 +70,7 @@
       align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
       padding-left: 10px;" onmouseover="this.style.backgroundColor='#2D3875'" onmouseout="this.style.backgroundColor='#34A853'" 
       href="{{route('edital.show', ['id' => $edital->id ])}}">
-      <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Vincular Aluno
+      <img src="{{asset('images/plus.png')}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Vincular Aluno
     </a>
   </div>
 
@@ -99,13 +99,13 @@
             <td> {{ $aluno->pivot->data_fim }} </td>
             <td>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$aluno->id}}" data-bs-id="{{$aluno->id}}">
-                <img src="{{asset("images/info.png")}}" alt="Info aluno" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" href="{{ route('edital.editar_vinculo', ['id' => $aluno->id]) }}">
-                <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital" style="height: 30px; width: 30px;">
+              <a type="button" href="{{ route('edital.editar_vinculo', ['aluno_id' => $aluno->id, 'edital_id' => $edital->id]) }}">
+                <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar vinculo" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" href="{{ route('edital.aluno.delete', ['id' => $aluno->id]) }}">
-                <img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
+              <a type="button" href="{{ route('edital.aluno.delete', ['aluno_id' => $aluno->id, 'edital_id' => $edital->id]) }}">
+                <img src="{{asset('images/delete.png')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$aluno->id}}">
                 <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
@@ -117,7 +117,7 @@
           @include('Edital.components_alunos.modal_show', ['aluno' => $aluno])
           @include('Edital.components_alunos.modal_documents', ['aluno' => $aluno])
           <!-- Modal delete-->
-          @include('Edital.components_alunos.modal_delete', ['aluno' => $aluno])
+          @include('Edital.components_alunos.modal_delete', ['aluno' => $aluno, 'edital' => $edital])
         @endforeach
         </tbody>
       </table>
@@ -132,7 +132,7 @@
       </div>
       <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+          <a><img src="{{asset('images/searchicon.png')}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
         <div style="display: flex; margin: 10px">
@@ -150,7 +150,7 @@
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
         </div>
         <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
+          <a><img src="{{asset('images/delete.png')}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
         </div>
       </div>
