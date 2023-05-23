@@ -1,3 +1,7 @@
+@extends("templates.app")
+
+
+@section("body")
 <div class="container content" style="margin-top: 3rem">
     <div class="row justify-content-center">
         <div class="col-md-8" style="margin-bottom:20px">
@@ -32,12 +36,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                        <div style="display:flex" class="d-flex justify-content-center">
+
+                            <button type="submit" class="btn btn-primary submit-button"
+                                    style="background: #34A853; height: 60px; width: 250px; border-radius: 15px;
+                                    margin-left: 0; margin-top: 30px; width: 30%; border: none;">
                                     {{ __('Enviar link para redefinição de senha') }}
-                                </button>
-                            </div>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -45,3 +50,4 @@
         </div>
     </div>
 </div>
+@endsection
