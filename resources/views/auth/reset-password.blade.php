@@ -14,7 +14,7 @@
 
                         <input type="hidden" name="token" value="{{ $request->route('token')  }}">
 
-                        <div class="form-group row">
+                        <div class="form-group row" >
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Endereço de E-mail') }}</label>
 
                             <div class="col-md-6">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row" style="margin-top: .7rem">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Senha') }}</label>
 
                             <div class="col-md-6">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row" style="margin-top: .7rem">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Senha') }}</label>
 
                             <div class="col-md-6">
