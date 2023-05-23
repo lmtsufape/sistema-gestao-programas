@@ -56,6 +56,12 @@
         transform: scale(1.08);
     }
 
+    .container {
+        min-height: calc(85vh - 100px); /* Subtract the footer height from the viewport height */
+        display: flex;
+        flex-direction: column;
+      }
+
   </style>
     @auth
         @if (auth()->user()->typage_type == "App\Models\Servidor")
@@ -70,7 +76,7 @@
                     <hr>
                     <br>
                 </div>
-                
+
                 <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%;">
                     @foreach ($programas as $index => $programa)
                       @if ($index % 2 == 0)
@@ -183,13 +189,13 @@
                     <img src="{{asset('images/programaicon.png')}}" alt="logodoc" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 5px">   Listar modelos de documentos </p>
 
-                </button>  
+                </button>
 
                 {{--  <button class="botaoverde">
                     <img src="{{asset('images/certificadoicon.png')}}" alt="logodoc" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 5px"> Meus certificados </p>
-                </button> 
-            
+                </button>
+
                 <button class="botaoverde">
                     <img src="{{asset('images/calendar.png')}}" alt="calendario" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 10px"> Visualizar frequência mensal </p>
