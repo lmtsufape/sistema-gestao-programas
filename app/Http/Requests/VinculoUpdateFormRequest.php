@@ -20,7 +20,6 @@ class VinculoUpdateFormRequest extends FormRequest
             'bolsista' => 'required|in:True,False',
             'info_complementares' => 'required',
             'termo_compromisso_aluno' => 'nullable|mimes:pdf',
-            'termo_compromisso_orientador' => 'nullable|mimes:pdf',
         ];
     }
     

@@ -88,16 +88,11 @@
             <td> {{ date('d/m/Y', strtotime($pivo->data_inicio)) }} </td>
             <td> {{ date('d/m/Y', strtotime($pivo->data_fim)) }} </td>
             <td>
-
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete{{$pivo->edital_id}}">
                 <img src="{{asset("images/delete.png")}}" alt="Deletar orientadores" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$pivo->edital_id}}">
-                <img src="{{asset('images/document.png')}}" alt="Documento orientadores"  style="height: 30px; width: 30px;">
-              </a>
             </td>
           </tr>
-          @include('Edital.components_orientadores.modal_documents', ['pivo' => $pivo])
           @include('Edital.components_orientadores.modal_delete', ['pivo' => $pivo, 'orientador' => $orientador])
           @endforeach
         @endforeach
