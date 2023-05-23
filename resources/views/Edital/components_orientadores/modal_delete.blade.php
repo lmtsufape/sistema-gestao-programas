@@ -11,7 +11,7 @@
         </div>
         <div class="modal-footer d-flex justify-content-between">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <form action="" method="post">
+          <form action="{{route('edital.aluno.delete',$pivo->id)}}"method="post">
             @method("DELETE")
             @csrf
             <input type="hidden" name="id" value="">

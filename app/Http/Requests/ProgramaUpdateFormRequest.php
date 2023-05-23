@@ -31,7 +31,7 @@ class ProgramaUpdateFormRequest extends FormRequest
 
     public function messages(){
         return [
-            "nome.max" => "O campo nome não pode ter mais que 50 caracteres."
+            "nome.max" => "O campo nome não pode ter mais que 25 caracteres."
         ];
     }
 }

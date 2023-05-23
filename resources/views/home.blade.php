@@ -114,6 +114,7 @@
                 </button>  --}}
 
                 <button class="botaoverde" href="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
+                <button class="botaoverde" ref="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
                     <img src="{{asset('images/DocumentAdd.png')}}" alt="logodoc" style="padding-right: 10px;">
                     <p style="margin: auto; padding-right: 5px"> Listar modelos de documentos </p>
                 </button>
@@ -178,7 +179,7 @@
                     <p style="margin: auto; padding-right: 5px"> Meus editais </p>
                 </button>
 
-                <button class="botaoverde">
+                <button class="botaoverde" href="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
                     <img src="{{asset('images/programaicon.png')}}" alt="logodoc" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 5px">   Listar modelos de documentos </p>
 
