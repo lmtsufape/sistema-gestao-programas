@@ -37,6 +37,7 @@
         line-height: 28px;
         display: flex;
         color: #131833;
+        padding-top: 10px;
     }
     .boxinfo {
         background: #F5F5F5;
@@ -63,7 +64,7 @@
         {{session('sucesso')}}
     </div>
     @endif
-    <br>
+
     <div class="boxchild">
         <div class="row">
             <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
@@ -76,23 +77,23 @@
             @csrf
             <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="text" id="nome" name="nome" required placeholder="Digite o nome">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="nome_social" class="titulo">Nome Social:</label>
             <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="cpf" class="titulo">CPF:<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="text"  id="cpf" name="cpf" required placeholder="Digite o CPF">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="email" class="titulo">E-mail:<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="email" id="email" name="email" required placeholder="Digite o email">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="senha" class="titulo">Senha:<strong style="color: red">*</strong></label>
             <input type="password"  class="boxinfo" id="senha" name="senha" required placeholder="Digite a senha">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="tipoUser" class="titulo">Tipo do usuário:<strong style="color: red">*</strong></label>
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
@@ -100,13 +101,14 @@
                 <option value="servidor" selected>Servidor</option>
                 <option value="orientador">Orientador</option>
                 <option value="aluno">Aluno</option>
-            </select> <br><br>
+            </select>
 
             <div id="instituicaoVinculo">
                 <label class="titulo" for="instituicaoVinculo">Vínculo:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text" id="instituicaoVinculo" name="instituicaoVinculo" placeholder="Vínculo do servidor">
+                <input class="boxinfo" type="text" id="instituicaoVinculo" name="instituicaoVinculo" placeholder="Vínculo">
+
             </div>
-            <br>
+
 
             <div id="curso">
                 <label class="titulo" for="curso">Curso:<strong style="color: red">*</strong></label>
@@ -116,20 +118,21 @@
                     <option value="{{$curso->id}}">{{$curso->nome}}</option>
                     @endforeach
                 </select>
+
             </div>
-            <br>
+
 
             <div id="matricula">
                 <label class="titulo" for="matricula">Matrícula:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" id="matricula" name="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)">
             </div>
-            <br>
+
 
             <div id="semestre">
                 <label class="titulo" for="semestre_entrada">Semestre de entrada:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre">
             </div>
-            <br>
+
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" style="background: #2D3875;
