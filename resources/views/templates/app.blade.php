@@ -20,6 +20,7 @@
         }
         footer {
           margin-top: auto;
+          fixed: bottom;
         }
 
         .col-md-4:nth-child(2) {
@@ -29,8 +30,13 @@
         }
 
         .col-md-4:nth-child(2) a:last-child {
-          margin-top: 10px;
+          margin-top: 5px;
         }
+
+          .container-fluid.pt-1.mt-5 {
+            flex: 1; /* Allow the container to grow and push the footer to the bottom */
+
+          }
 
 
     </style>
@@ -125,7 +131,7 @@
       </div>
     </footer> --}}
 
-    <footer class="container-fluid pt-1 mt-5" style="background-color: #F8FAFC">
+    <footer style="background-color: #F8FAFC">
       <div class="container-fluid px-lg-5">
         <div class="row justify-content-between  my-2">
           <div class="col-md-4 d-flex align-items-center justify-content-center py-1">
