@@ -98,7 +98,7 @@
             <label for="tipoUser" class="titulo">Tipo do usuário:<strong style="color: red">*</strong></label>
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
                 <option>Selecione o tipo de usuário</option>
-                <option value="servidor" selected>Servidor</option>
+                <option value="servidor">Servidor</option>
                 <option value="orientador">Orientador</option>
                 <option value="aluno">Aluno</option>
             </select>
@@ -158,18 +158,18 @@
         if (selectedOption == "aluno") {
             $("#curso").show();
             $("#semestre").show();
-            $("#matricula").show();
-            $("#tipo_servidor").show();
+            $("#matricula").hide();
+            $("#tipo_servidor").hide();
         } else if (selectedOption == "orientador") {
             $("#curso").hide();
             $("#semestre").hide();
             $("#matricula").show();
-            $("#tipo_servidor").show()
+            $("#tipo_servidor").hide()
             $("#instituicaoVinculo").show();
         } else if (selectedOption == "servidor") {
             $("#curso").hide();
             $("#semestre").hide();
-            $("#matricula").show();
+            $("#matricula").hide();
             $("#tipo_servidor").show();
             $("#instituicaoVinculo").show();
         }
