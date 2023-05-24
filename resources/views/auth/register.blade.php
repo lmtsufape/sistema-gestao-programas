@@ -120,8 +120,8 @@
             <br>
 
             <div id="matricula">
-                <label class="titulo" for="matricula">SIAPE:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text" id="matricula" name="matricula" placeholder="Digite o SIAPE">
+                <label class="titulo" for="matricula">Matrícula:<strong style="color: red">*</strong></label>
+                <input class="boxinfo" type="text" id="matricula" name="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)">
             </div>
             <br>
 

@@ -132,8 +132,8 @@
             </div>
 
             <div id="matriculaOri" hidden>
-                <label class="titulo" for="matriculaOrientador">SIAPE:</label>
-                <input class="boxinfo" type="text"  id="matriculaOrientador" name="matriculaOrientador" placeholder="Digite o SIAPE">
+                <label class="titulo" for="matriculaOrientador">Matrícula:</label>
+                <input class="boxinfo" type="text"  id="matriculaOrientador" name="matriculaOrientador" placeholder="Digite a matrícula (Exemplo: SIAPE)">
                 <br><br>
             </div>
 
