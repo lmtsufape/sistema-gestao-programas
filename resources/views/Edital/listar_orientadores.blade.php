@@ -76,7 +76,7 @@
             <th scope="col">Edital</th>
             <th scope="col">Data de Início</th>
             <th scope="col">Data de Fim</th>
-            <th class="text-center">Ações</th>
+            <th scope="col">Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -88,12 +88,12 @@
             <td> {{ date('d/m/Y', strtotime($pivo->data_inicio)) }} </td>
             <td> {{ date('d/m/Y', strtotime($pivo->data_fim)) }} </td>
             <td>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete{{$pivo->edital_id}}">
-                <img src="{{asset("images/delete.png")}}" alt="Deletar orientadores" style="height: 30px; width: 30px;">
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$orientador->id}}" >
+                <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
               </a>
             </td>
           </tr>
-          @include('Edital.components_orientadores.modal_delete', ['pivo' => $pivo, 'orientador' => $orientador])
+          @include('Edital.components_orientadores.modal_show', ['orientador' => $orientador, 'pivo' => $pivo])
           @endforeach
         @endforeach
         </tbody>
@@ -113,14 +113,8 @@
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
         <div style="display: flex; margin: 10px">
-          <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
-        </div>
-      </div>
-      <div style="align-self: center; margin-right: auto">
-        <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
+          <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
+          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
         </div>
       </div>
     </div>
@@ -130,17 +124,11 @@
 </div>
 
 <script type="text/javascript">
-  function exibirModalDeletar(id) {
-    $('#modal_delete_' + id).modal('delete');
-  }
 
   function exibirModalVisualizar(id) {
-    $('#modal_show_' + id).modal('show');
+    $('#modal_show' + id).modal('show');
   }
 
-  function exibirModalDocumentos(id) {
-    $('#modal_documents' + id).modal('documents');
-  }
 </script>
 
 
