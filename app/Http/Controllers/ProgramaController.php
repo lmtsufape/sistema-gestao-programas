@@ -191,7 +191,7 @@ class ProgramaController extends Controller
                     return redirect('/programas')->with('sucesso', 'Programa deletado com sucesso.');
                 } catch(exception $e){
                     DB::rollback();
-                    return redirect()->back()->withErrors( "Falha ao deletarm um Programa. tente novamente mais tarde." );
+                    return redirect()->back()->withErrors( "Falha ao deletar um Programa. tente novamente mais tarde." );
                 }
             }
         } catch (Exception $e) {
