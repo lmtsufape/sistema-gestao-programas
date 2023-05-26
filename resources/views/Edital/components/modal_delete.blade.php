@@ -23,7 +23,6 @@
     </div>
   </div>
   <style>
-
       .btn-secondary{
           color: #fff;
           background-color: #2d3875;

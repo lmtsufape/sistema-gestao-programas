@@ -11,7 +11,7 @@
           <div style="justify-content: flex-start; align-items: flex-start; display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 5px;">
             <a href="{{ route('termo_aluno.download', ['fileName' => $aluno->pivot->termo_compromisso_aluno]) }}" target="_blank"  class="link">
               <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
-              {{$aluno->pivot->termo_compromisso_aluno}}
+             Baixar
             </a>
             <br>
           </div>

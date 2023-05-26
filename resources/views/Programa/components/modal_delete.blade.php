@@ -22,6 +22,17 @@
       </div>
     </div>
   </div>
+  <style>
+    .btn-secondary{
+        color: #fff;
+        background-color: #2d3875;
+        border-color: #2d3875;
+    }
+    .btn-secondary:hover{
+        background-color: #4353ab;
+        border-color: #4353ab;
+    }
+</style>
 @else
   <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
   <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>

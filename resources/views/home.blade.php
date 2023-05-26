@@ -105,7 +105,7 @@
                 style="font-style: normal; padding-top: 38px;
                 font-weight: 700; text-align:start ;
                 font-size: 35px; line-height: 41px; color: #131833;">
-                Bem-vindo(a)!
+                Bem-vindo(a) {{auth()->user()->name}}!
                 </h1>
                 <hr>
                 <br>
@@ -119,21 +119,10 @@
                     <p style="margin: auto; padding-right: 5px"> Listar documentos </p>
                 </button>  --}}
 
-                <button class="botaoverde" href="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
                 <button class="botaoverde" ref="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
                     <img src="{{asset('images/DocumentAdd.png')}}" alt="logodoc" style="padding-right: 10px;">
                     <p style="margin: auto; padding-right: 5px"> Listar modelos de documentos </p>
                 </button>
-
-                {{--  <button class="botaoazul">
-                    <img src="{{asset('images/documentoadicionaricon.png')}}" alt="logodoc" style="padding-right: 10px;">
-                    <p style="margin: auto; padding-right: 5px"> Gerar documentos </p>
-                </button>  --}}
-                {{--
-                <button class="botaoverde">
-                    <img src="{{asset('images/certificadoicon.png')}}" alt="logodoc" style="padding-right: 10px;">
-                    <p style="margin: auto; padding-right: 5px"> Ver meus certificados </p>
-                </button>  --}}
 
                 <button class="botaoazul" ref="{{url("/index_aluno")}}" onclick="window.location.href='{{url("/index_aluno")}}'">
                     <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
@@ -190,30 +179,9 @@
                     <p style="margin: auto; padding-right: 5px">   Listar modelos de documentos </p>
 
                 </button>
-
-                {{--  <button class="botaoverde">
-                    <img src="{{asset('images/certificadoicon.png')}}" alt="logodoc" style="padding-right: 20px;">
-                    <p style="margin: auto; padding-right: 5px"> Meus certificados </p>
-                </button>
-
-                <button class="botaoverde">
-                    <img src="{{asset('images/calendar.png')}}" alt="calendario" style="padding-right: 20px;">
-                    <p style="margin: auto; padding-right: 10px"> Visualizar frequência mensal </p>
-                </button>--}}
             </div>
-
             <br>
-
-            {{--<div style="display: flex; gap: 5%; align-items: center; margin: auto;">
-                <button class="botaoverde">
-                    <img src="{{asset('images/calendar.png')}}" alt="calendario" style="padding-right: 20px;">
-                    <p style="margin: auto; padding-right: 10px"> Visualizar frequência mensal </p>
-                </button>
-
-            </div>  --}}
-
         </div>
-
         @endif
     @endauth
 
