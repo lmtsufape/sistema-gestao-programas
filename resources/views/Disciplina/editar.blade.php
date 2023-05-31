@@ -16,10 +16,10 @@
                 <form action="{{url("disciplinas/$disciplina->id")}}" method="POST">
                     @csrf
                     @method("PUT")
-                    <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome: </label>
+                    <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome:<strong style="color: red">*</strong></label>
                     <input type="text" name="nome" id="nome" value="{{$disciplina->nome}}" class="boxinfo"><br><br>
 
-                    <label for="inputCurso" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" >Curso: </label>
+                    <label for="inputCurso" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" >Curso:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" id="inputCurso" name="curso">
                         @foreach ($cursos as $curso)
                                 <option value="{{$curso->id}}" {{$disciplina->curso_id == $curso->id ? 'selected' : ''}} >{{$curso->nome}}</option>
@@ -27,7 +27,7 @@
                     </select>
                     <br>
                     <br>
-                    
+
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                         <input type="button" value="Voltar" href="{{url("/disciplinas/")}}" onclick="window.location.href='{{url("/disciplinas/")}}'"
                         style="background: #2D3875; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;

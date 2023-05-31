@@ -18,7 +18,7 @@
                 <form action="{{url("/servidores/$servidor->id")}}" method="POST">
                     @csrf
                     @method("PUT")
-                    <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome:</label>
+                    <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome:<strong style="color: red">*</strong></label>
                     <input type="text" id="nome" name="nome" placeholder="Digite o nome" value="{{$servidor->user->name}}"
                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
@@ -28,19 +28,19 @@
                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 
-                    <label for="email" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">E-mail:</label>
+                    <label for="email" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">E-mail:<strong style="color: red">*</strong></label>
                     <input type="text" id="email" name="email" placeholder="Digite o e-mail" value="{{$servidor->user->email}}" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 
-                    <label for="senha" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Senha:</label>
+                    <label for="senha" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Senha:<strong style="color: red">*</strong></label>
                     <input type="password" id="senha" name="senha" placeholder="Digite a senha" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 
-                    <label for="cpf" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">CPF:</label>
+                    <label for="cpf" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">CPF:<strong style="color: red">*</strong></label>
                     <input  class="boxinfo cpf-autocomplete" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$servidor->cpf}}" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 
-                    <label for="tipo_servidor_editar" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor:</label>
+                    <label for="tipo_servidor_editar" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor:<strong style="color: red">*</strong></label>
                     <select name="tipo_servidor" id="tipo_servidor"
                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" aria-label="Default select example">
