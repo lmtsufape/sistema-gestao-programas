@@ -74,39 +74,39 @@
                         @csrf
                         @method("PUT")
 
-                        <label class="titulo" for="titulo_edital">Título do Edital:</label>
+                        <label class="titulo" for="titulo_edital">Título do Edital:<strong style="color: red">*</strong></label>
                         <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital" value="{{$edital->titulo_edital}}"><br><br>
 
-                        <label class="titulo" for="semestre">Semestre:</label>
+                        <label class="titulo" for="semestre">Semestre:<strong style="color: red">*</strong></label>
                         <input class="boxinfo" type="text" name="semestre" id="semestre" value="{{$edital->semestre}}"><br><br>
 
-                        <label class="titulo" for="data_inicio">Data de início:</label>
+                        <label class="titulo" for="data_inicio">Data de início:<strong style="color: red">*</strong></label>
                         <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" value="{{$edital->data_inicio}}"><br><br>
 
-                        <label class="titulo" for="data_fim">Data de fim:</label>
+                        <label class="titulo" for="data_fim">Data de fim:<strong style="color: red">*</strong></label>
                         <input class="boxinfo" type="date" name="data_fim" id="data_fim" value="{{$edital->data_fim}}"><br><br>
 
-                        <label class="titulo" for="titulo_edital">Título do Edital:</label>
-                        <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br>
+                        {{-- <label class="titulo" for="titulo_edital">Título do Edital:</label> --}}
+                        {{-- <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br> --}}
 
-                        <label class="titulo" for="valor_bolsa">Valor da Bolsa:</label>
+                        <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
                         <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value=""><br><br>
 
-                        <label class="titulo" for="disciplina">Disciplina:</label>
+                        <label class="titulo" for="disciplina">Disciplina:<strong style="color: red">*</strong></label>
                         <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina" >
                             @foreach ($disciplinas as $disciplina)
                                 <option value="{{$disciplina->id}}" {{$edital->disciplina_id == $disciplina->id ? 'selected' : ''}}>{{$disciplina->nome}}</option>
                             @endforeach
                         </select><br><br>
 
-                        <label class="titulo" for="programa">Programa:</label>
+                        <label class="titulo" for="programa">Programa:<strong style="color: red">*</strong></label>
                         <select aria-label="Default select example" class="boxinfo" name="programa" id="programa">
                             @foreach ($programas as $programa)
                                 <option value="{{$programa->id}}" {{$edital->programa_id == $programa->id ? 'selected' : ''}}>{{$programa->nome}}</option>
                             @endforeach
                         </select><br><br>
 
-                        <label class="titulo" for="Descrição">Descrição:</label>
+                        <label class="titulo" for="Descrição">Descrição:<strong style="color: red">*</strong></label>
                         <textarea class="boxinfo" name="descricao" id="descricao" cols="30" rows="5" >{{$edital->descricao}}</textarea><br><br>
 
 

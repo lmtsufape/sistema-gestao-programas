@@ -66,7 +66,7 @@
             <form action="{{  route('orientadors.update', ['id'=> $orientador->id])   }}" method="POST">
                 @csrf
                 @method("PUT")
-                <label for="nome" class="titulo">Nome:</label>
+                <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" id="nome" name="nome" placeholder="Digite o nome" value="{{$orientador->user->name}}"
                 ><br/><br>
 
@@ -74,16 +74,16 @@
                 <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social" value="{{$orientador->nome_social}}"
                 ><br/><br>
 
-                <label for="email" for="nome" class="titulo">E-mail:</label>
+                <label for="email" for="nome" class="titulo">E-mail:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" id="email" name="email" placeholder="Digite o e-mail" value="{{$orientador->user->email}}"><br/><br>
 
-                <label for="senha" for="nome" class="titulo">Senha:</label>
+                <label for="senha" for="nome" class="titulo">Senha:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="password" id="senha" name="senha" placeholder="Digite a senha"><br/><br>
 
-                <label for="cpf" for="nome" class="titulo">CPF:</label>
+                <label for="cpf" for="nome" class="titulo">CPF:<strong style="color: red">*</strong></label>
                 <input class="boxinfo cpf-autocomplete" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$orientador->cpf}}" ><br/><br>
 
-                <label for="matricula" class="titulo">Matrícula: </label>
+                <label for="matricula" class="titulo">Matrícula:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)" value="{{$orientador->matricula}}"><br><br>
 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">

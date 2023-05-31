@@ -75,18 +75,18 @@
             <form action="{{url("/programas/$programa->id")}}" method="post">
                 @csrf
                 @method("PUT")
-                <label for="nome" class="titulo">Nome:</label>
+                <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" name="nome" id="nome" value="{{$programa->nome}}"><br><br>
 
-                <label for="descricao" class="titulo">Descrição:</label>
+                <label for="descricao" class="titulo">Descrição:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" name="descricao" id="descricao" value="{{$programa->descricao}}"><br><br>
 
-                <label class="titulo" for="servidor">Servidor:</label>
+                <label class="titulo" for="servidor">Servidor:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="servidor" id="servidor" >
                         <option value=""></option>
                             @foreach ($servidors as $servidor)
                                 <option value="{{$servidor->id}}" style="color: black; border-radius: 5px;">{{$servidor->user->name}}</option>
-                                
+
                             @endforeach
                     </select><br><br>
 
