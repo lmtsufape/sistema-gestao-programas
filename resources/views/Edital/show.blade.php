@@ -61,6 +61,19 @@
         padding: 34px;
         width: 65%;
     }
+
+    .bolsa {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .radios{
+        margin:5px;
+    }
+
+    
 </style>
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
     @if (session('sucesso'))
@@ -89,8 +102,18 @@
             <br>
             <br>
             <label class="titulo" for="bolsa">Tipo da bolsa: <strong style="color: red">*</strong></label>
-            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="Valor da bolsa" required>
-            <br>
+            <div class="bolsa">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="bolsa" value="Voluntário" name="bolsa" required>
+                    <label class="form-check-label" for="bolsa">Voluntário</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="bolsa" value="Bolsista" name="bolsa" required>
+                    <label class="form-check-label" for="bolsa">Bolsista</label>
+                </div>
+            </div>
+        
             <br>
             <label class="titulo" for="orientador">Orientador: <strong style="color: red">*</strong></label>
             <select aria-label="Default select example" class="boxinfo" id="orientador" name="orientador" required>
