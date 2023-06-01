@@ -67,6 +67,10 @@
         flex-wrap: wrap;
     }
 
+    .form-check{
+        margin-right: 35px;
+    }
+
     .radios{
         margin:5px;
     }
@@ -125,7 +129,7 @@
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo" required>
                         <label class="form-check-label" for="instituicaoVinculo">Universidade Federal do Agreste de Pernambuco-UFAPE</label>
                     </div>
-
+                    
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UPE" name="instituicaoVinculo" required>
                         <label class="form-check-label" for="instituicaoVinculo">Universidade de Pernambuco-UPE</label>
