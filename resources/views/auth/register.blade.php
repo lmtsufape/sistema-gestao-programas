@@ -54,7 +54,21 @@
         box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
         padding: 34px;
-        width: 65%
+        width: 65%;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+    }
+
+    .vinculo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .radios{
+        margin:5px;
     }
 </style>
 
@@ -105,8 +119,19 @@
 
             <div id="instituicaoVinculo">
                 <label class="titulo" for="instituicaoVinculo">Vínculo:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text" id="instituicaoVinculo" name="instituicaoVinculo" placeholder="Vínculo">
+                
+                <div class="vinculo">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo" required>
+                        <label class="form-check-label" for="instituicaoVinculo">Universidade Federal do Agreste de Pernambuco-UFAPE</label>
+                    </div>
 
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UPE" name="instituicaoVinculo" required>
+                        <label class="form-check-label" for="instituicaoVinculo">Universidade de Pernambuco-UPE</label>
+                    </div>
+                </div>
+            
             </div>
 
 
@@ -133,6 +158,7 @@
                 <input class="boxinfo" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre">
             </div>
 
+            <br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <a href="/">
