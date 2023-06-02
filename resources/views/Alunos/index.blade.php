@@ -73,7 +73,7 @@
       font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
       align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
       padding-left: 10px;"
-    href="{{route("alunos.create")}}" 
+    href="{{route("alunos.create")}}"
     onmouseover="this.style.backgroundColor='#2D3875'"
     onmouseout="this.style.backgroundColor='#34A853'">
         <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
@@ -156,10 +156,10 @@
               <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
               <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
             </div>
-            <div style="display: flex; margin: 10px">
+            {{--  <div style="display: flex; margin: 10px">
               <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
               <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
-            </div>
+            </div>  --}}
 
           </div>
 

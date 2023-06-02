@@ -39,7 +39,7 @@
     <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
       font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
       align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;" href="{{route("disciplinas.create")}}" 
+      padding-left: 10px;" href="{{route("disciplinas.create")}}"
       onmouseover="this.style.backgroundColor='#2D3875'"
       onmouseout="this.style.backgroundColor='#34A853'">
       <img src="{{asset("images/plus.png")}}" alt="Cadastrar Disciplina" style="padding-bottom: 5px"> Cadastrar Disciplina
@@ -77,10 +77,10 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$disciplinas->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info programa" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$disciplinas->id}}">
+              {{--  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$disciplinas->id}}">
                 <img src="{{asset("images/document.png")}}" alt="Documento programa" style="height: 30px; width: 30px;">
                 {{-- TODO: Fica pra fazer o modal depois  --}}
-              </a>
+              {{--  </a>  --}}
               <a href="{{url("/disciplinas/$disciplinas->id/edit")}}">
                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar programa" style="height: 30px; width: 30px;">
               </a>
@@ -113,10 +113,10 @@
           <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
         </div>
-        <div style="display: flex; margin: 10px">
+        {{--  <div style="display: flex; margin: 10px">
           <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
-        </div>
+        </div>  --}}
 
       </div>
 
