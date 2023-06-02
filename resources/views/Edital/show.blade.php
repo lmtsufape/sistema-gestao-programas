@@ -43,6 +43,7 @@
         line-height: 28px;
         display: flex;
         color: #131833;
+        margin-right: 15px;
     }
 
     .boxinfo {
@@ -73,7 +74,11 @@
         margin:5px;
     }
 
-    
+    .labelTooltip{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
 </style>
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
     @if (session('sucesso'))
@@ -98,10 +103,15 @@
             @csrf
 
             <label class="titulo" for="">CPF do aluno: <strong style="color: red">*</strong></label>
-            <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf" placeholder="CPF do aluno" required data-url="{{ url('/cpfs') }}">
+            <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}">
             <br>
             <br>
-            <label class="titulo" for="bolsa">Tipo da bolsa: <strong style="color: red">*</strong></label>
+            <div class="labelTooltip">
+                <label class="titulo" for="bolsa">Tipo da bolsa: <strong style="color: red">*</strong></label>
+                <a type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Informar se o aluno a ser vinculado receberá bolsa ou não.">
+                    <img src="{{asset("images/info.png")}}" alt="Informação do tipo de bolsa" style="height: 20px; width: 20px;" >
+                </a>
+            </div>
             <div class="bolsa">
                 <div class="form-check">
                     <input type="radio" class="form-check-input" id="bolsa" value="Voluntário" name="bolsa" required>
@@ -125,7 +135,7 @@
             <br>
             <br>
             <label class="titulo" for="info_complementares">Informações complementares: <strong style="color: red">*</strong></label>
-            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="Informações complementares" required>
+            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder=" Digite as informações complementares" required>
             <br>
             <br>
             <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno: <strong style="color: red">*</strong></label>
@@ -180,6 +190,15 @@
             });
         });
     });
+
 </script>
+
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
+
 @endsection
 
