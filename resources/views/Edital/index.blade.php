@@ -118,11 +118,11 @@
               </a>
               
               <a class="link" alt="Listar alunos" href="{{  route('edital.vinculo', ['id' => $edital->id]) }}" >
-                <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos" style="height: 30px; width: 30px;">
+                <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos vinculados" style="height: 30px; width: 30px;">
               </a> 
               
               <a class="link" alt="Listar orientadores" href="{{  route('edital.listar_orientadores', ['id' => $edital->id]) }}" >
-                <img src="{{asset("images/orientadores.png")}}" alt="Listar orientadores" style="height: 40px; width: 40px;">
+                <img src="{{asset("images/orientadores.png")}}" alt="Listar orientadores vinculados" style="height: 40px; width: 40px;">
               </a>
         
             </td>
@@ -143,7 +143,7 @@
         <br>
         <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
       </div>
-      <div style="align-self: flex-start; margin-right: auto">
+      <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
           <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
@@ -172,11 +172,11 @@
 
           <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/bx_user.png")}}" alt="Listar alunos vinculados" style="width: 20px; height: 20px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar alunos</p>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Alunos vinculados</p>
           </div>
           <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/orientadores.png")}}" alt="Listar orientadores vinculados" style="width: 25px; height: 25px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar orientadores</p>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Orientadores vinculados</p>
           </div>
          
         </div>
