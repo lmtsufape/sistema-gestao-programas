@@ -102,7 +102,7 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="cpf" class="titulo">CPF:<strong style="color: red">*</strong></label>
-            <input class="boxinfo" type="text"  id="cpf" name="cpf" required placeholder="Digite o CPF">
+            <input class="boxinfo cpf-autocomplete" type="text"  id="cpf" name="cpf" required placeholder="Digite o CPF">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="email" class="titulo">E-mail:<strong style="color: red">*</strong></label>
@@ -123,19 +123,19 @@
 
             <div id="instituicaoVinculo">
                 <label class="titulo" for="instituicaoVinculo">Vínculo:<strong style="color: red">*</strong></label>
-                
+
                 <div class="vinculo">
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo" required>
                         <label class="form-check-label" for="instituicaoVinculo">Universidade Federal do Agreste de Pernambuco-UFAPE</label>
                     </div>
-                    
+
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UPE" name="instituicaoVinculo" required>
                         <label class="form-check-label" for="instituicaoVinculo">Universidade de Pernambuco-UPE</label>
                     </div>
                 </div>
-            
+
             </div>
 
 
@@ -159,7 +159,7 @@
 
             <div id="semestre">
                 <label class="titulo" for="semestre_entrada">Semestre de entrada:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre">
+                <input class="boxinfo semestre-autocomplete" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre">
             </div>
 
             <br>
@@ -181,7 +181,11 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript" src="{{ mix('js/app.js') }}">
+
+    $('.semestre-autocomplete').inputmask('0000.0');
+    $('.cpf-autocomplete').inputmask('999.999.999-99');
+
     $(document).ready(function() {
     $("#tipoUser").change(function() {
         var selectedOption = $(this).val();

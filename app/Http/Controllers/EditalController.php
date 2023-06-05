@@ -73,8 +73,12 @@ class EditalController extends Controller
             $edital->titulo_edital = $request->titulo_edital;
             $edital->valor_bolsa = $request->valor_bolsa;
             $edital->disciplina_id = $request->disciplina;
+            // 'info_complementares' => $request->info_complementares == null ? "-" : $request->name_social,
+
             $edital->programa_id = $request->programa;
             $edital ->disciplina_id = $request ->disciplina;
+
+            //dd($edital);
             $edital->save();
 
             DB::commit();
