@@ -123,7 +123,7 @@
                     <label class="form-check-label" for="bolsa">Bolsista</label>
                 </div>
             </div>
-        
+
             <br>
             <label class="titulo" for="orientador">Orientador: <strong style="color: red">*</strong></label>
             <select aria-label="Default select example" class="boxinfo" id="orientador" name="orientador" required>
@@ -134,8 +134,8 @@
             </select>
             <br>
             <br>
-            <label class="titulo" for="info_complementares">Informações complementares: <strong style="color: red">*</strong></label>
-            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder=" Digite as informações complementares" required>
+            <label class="titulo" for="info_complementares">Informações complementares:</label>
+            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder=" Digite as informações complementares">
             <br>
             <br>
             <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno: <strong style="color: red">*</strong></label>

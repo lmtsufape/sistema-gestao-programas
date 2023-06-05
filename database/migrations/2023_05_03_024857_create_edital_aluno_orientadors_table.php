@@ -22,7 +22,7 @@ class CreateEditalAlunoOrientadorsTable extends Migration
             $table->string('bolsa');
             $table->string('plano_projeto');
             $table->boolean('bolsista');
-            $table->text('info_complementares');
+            $table->text('info_complementares')->nullable(true);
             $table->string('termo_compromisso_aluno');
             $table->foreignId('aluno_id')->contrained('alunos');
             $table->foreignId('edital_id')->contrained('editals');
