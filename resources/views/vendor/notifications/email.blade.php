@@ -45,6 +45,7 @@
 @else
 <br>@lang('Atenciosamente'),<br>
 {{--{{ config('app.name') }}<br><br>--}}
+Universidade Federal do Agreste de Pernambuco<br>
 Universidade de Pernambuco<br>
 @endif
 
