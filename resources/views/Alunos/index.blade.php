@@ -36,7 +36,7 @@
     <br>
 
     <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1 style="color:#2D3875;"><strong>Alunos</strong></h1>
+    <h1 style="color:#2D3875;"><strong>Estudantes</strong></h1>
     <div style="margin: auto"></div>
     {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
     <form action="{{route('alunos.index')}}" method="GET">
@@ -76,7 +76,7 @@
     href="{{route("alunos.create")}}"
     onmouseover="this.style.backgroundColor='#2D3875'"
     onmouseout="this.style.backgroundColor='#34A853'">
-        <img src="{{asset("images/plus.png")}}" alt="Cadastrar aluno" style="padding-bottom: 5px"> Cadastrar aluno
+        <img src="{{asset("images/plus.png")}}" alt="Cadastrar estudantes" style="padding-bottom: 5px"> Cadastrar estudantes
     </a>
     </div>
     <br>

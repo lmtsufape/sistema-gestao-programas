@@ -91,7 +91,7 @@
     <div class="boxchild">
         <div class="row" style="display: flex; align-items: center;">
             <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; color: #2D3875;">
-                Vincular Aluno a {{$edital->titulo_edital}}</h1>
+                Vincular Estudante a {{$edital->titulo_edital}}</h1>
             <p style="font-weight: 400; font-size: 20px; color:gray;">{{$edital->descricao}}</p>
             <hr>
             <br>
@@ -102,7 +102,7 @@
 
             @csrf
 
-            <label class="titulo" for="">CPF do aluno: <strong style="color: red">*</strong></label>
+            <label class="titulo" for="">CPF do estudante: <strong style="color: red">*</strong></label>
             <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}">
             <br>
             <br>
