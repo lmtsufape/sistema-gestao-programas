@@ -85,7 +85,7 @@ class UserController extends Controller
                         return redirect('/home')->with('Sucesso', 'Cadastro com sucesso.');
 
                     } else {
-                        return redirect()->back()->withErrors( "Falha ao cadastrá-se." );
+                        return redirect()->back()->withErrors( "Falha ao se cadastrar." );
                     }
 
                     break;
@@ -110,100 +110,14 @@ class UserController extends Controller
                         return redirect('/home')->with('Sucesso', 'Cadastro com sucesso.');
 
                     } else {
-                        return redirect()->back()->withErrors( "Falha ao cadastrá-se." );
+                        return redirect()->back()->withErrors( "Falha ao se cadastrar." );
                     }
                     break;
             }
         } catch (Exception $e) {
             DB::rollback();
 
-            return redirect()->back()->withErrors( "Falha ao cadastrá-se." );
+            return redirect()->back()->withErrors( "Falha ao se cadastrar." );
         }
     }
-
-    // $aluno->user()->create([
-    //     'name' => $request->nome,
-    //     'name_social' => $request->nome_social == null ? "-": $request->nome_social,
-    //     'email' => $request->email,
-    //     'password' => Hash::make($request->senha)
-    // ])->givePermissionTo('aluno')
-
-    // 'name',
-    //     'name_social',
-    //     'email',
-    //     'password',
-    //     'tipo_usuario',
-    //     'status'
-    // ];
-
-    // public function store(CadastreSeStoreFormRequest $request)
-    // {
-    //     if ($request->tipoUser == "servidor"){
-    //         $servidor = Servidor::Create([
-    //             'cpf' => $request->input('cpf'),
-
-    //         ]);
-
-    //         if(
-    //             $servidor->user()->create([
-    //                 'name' => $request->input('nome'),
-    //                 'email' => $request->input('email'),
-    //                 'password' => Hash::make($request->input('senha'))
-    //             ])
-    //         ){
-    //             return redirect('/')->with('sucesso', 'Usuário cadastrado com sucesso.');
-
-    //         } else {
-    //             return redirect()->back()->withErrors( "Falha ao cadastrar Usuário. tente novamente mais tarde." );
-    //         }
-
-    //     } else if ($request->tipoUser == "orientador"){
-    //         $orientador = new Orientador();
-    //         $orientador->cpf = $request->cpf;
-    //         $orientador->matricula = $request->matriculaOrientador;
-
-    //         if ($orientador->save()){
-
-    //             if (
-    //                 $orientador->user()->create([
-    //                     'name' => $request->nome,
-    //                     'email' => $request->email,
-    //                     'password' => Hash::make($request->senha)
-    //                 ])->givePermissionTo('orientador')
-    //             ){
-
-    //                 return redirect('/')->with('sucesso', 'Usuário cadastrado com sucesso.');
-
-    //             } else {
-    //                 return redirect()->back()->withErrors( "Falha ao cadastrar usuário. tente novamente mais tarde." );
-    //             }
-    //         }else{
-    //             return redirect()->back()->withErrors( "Falha ao cadastrar usuário. tente novamente mais tarde." );
-    //         }
-
-    //     } else {
-    //         $aluno = new Aluno();
-    //         $aluno->cpf = $request->cpf;
-    //         $aluno->curso_id = $request->curso;
-    //         $aluno->semestre_entrada = $request->sementreEntradaAluno;
-
-    //         if ($aluno->save()){
-
-    //             if (
-    //                 $aluno->user()->create([
-    //                     'name' => $request->nome,
-    //                     'email' => $request->email,
-    //                     'password' => Hash::make($request->senha)
-    //                 ])->givePermissionTo('aluno')
-    //             ){
-    //                 return redirect('/')->with('sucesso', 'Usuário cadastrado com sucesso.');
-
-    //             } else {
-    //                 return redirect()->back()->withErrors( "Falha ao cadastrar usuário. tente novamente mais tarde." );
-    //             }
-    //         }else{
-    //             return redirect()->back()->withErrors( "Falha ao cadastrar usuário. tente novamente mais tarde." );
-    //         }
-    //     }
-    // }
 }

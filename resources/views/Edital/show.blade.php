@@ -164,8 +164,6 @@
 
     $('.cpf-autocomplete').inputmask('999.999.999-99');
 
-
-
     document.addEventListener('DOMContentLoaded', function() {
     var cpfInput = document.querySelector('.cpf-autocomplete');
     var url = cpfInput.getAttribute('data-url');
