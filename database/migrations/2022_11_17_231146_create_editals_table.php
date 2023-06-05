@@ -17,13 +17,18 @@ class CreateEditalsTable extends Migration
             $table->softDeletes();
             $table->id();
             $table->text('descricao');
-            $table->string("semestre");
+            $table->string("semestre", 6);
             $table->date("data_inicio");
             $table->date("data_fim");
             $table->string('titulo_edital');
             $table->string('valor_bolsa');
-            $table->foreignId('disciplina_id')->nullable(false)->constrained('disciplinas');
-            $table->foreignId('programa_id')->nullable(false)->constrained('programas');
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->unsignedBigInteger('disciplina_id');
+            // $table->foreignId('disciplina_id')->nullable(false)->constrained('disciplinas');
+
+            $table->foreign('programa_id')->references('id')->on('programas');
+            $table->unsignedBigInteger('programa_id');
+            // $table->foreignId('programa_id')->nullable(false)->constrained('programas');
             $table->timestamps();
         });
     }

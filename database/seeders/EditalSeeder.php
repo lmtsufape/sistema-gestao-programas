@@ -15,7 +15,7 @@ class EditalSeeder extends Seeder
     public function run()
     {
         $edital = Edital::create([
-            'descricao' => 'E ai meu vey',
+            'descricao' => 'Edital de seleção de bolsistas para o Programa de Apoio à Vivência Interdisciplinar (PAVI), para o semestre 2023.1. Essa é uma descrição teste.',
             'semestre' => '2023.1',
             'programa_id' => 1,
             'disciplina_id' => 1,

@@ -22,12 +22,24 @@ class CreateEditalAlunoOrientadorsTable extends Migration
             $table->string('bolsa');
             $table->string('plano_projeto');
             $table->boolean('bolsista');
-            $table->text('info_complementares');
+            $table->text('info_complementares')->nullable(true);
             $table->string('termo_compromisso_aluno');
-            $table->foreignId('aluno_id')->contrained('alunos');
-            $table->foreignId('edital_id')->contrained('editals');
-            $table->foreignId('disciplina_id')->contrained('disciplinas');
-            $table->foreignId('orientador_id')->contrained('orientadors');
+            
+            $table->foreign('aluno_id')->references('id')->on('alunos');
+            $table->unsignedBigInteger('aluno_id');
+            // $table->foreignId('aluno_id')->contrained('alunos');
+
+            $table->foreign('edital_id')->references('id')->on('editals');
+            $table->unsignedBigInteger('edital_id');
+            // $table->foreignId('edital_id')->contrained('editals');
+
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->unsignedBigInteger('disciplina_id');
+            // $table->foreignId('disciplina_id')->contrained('disciplinas');
+
+            $table->foreign('orientador_id')->references('id')->on('orientadors');
+            $table->unsignedBigInteger('orientador_id');
+            // $table->foreignId('orientador_id')->contrained('orientadors');
             $table->timestamps();
         });
     }

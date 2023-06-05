@@ -16,8 +16,7 @@ use Exception;
 
 class AlunoController extends Controller
 {
-
-        public function store(AlunoStoreFormRequest $request){  
+    public function store(AlunoStoreFormRequest $request){
         DB::beginTransaction();
         try {
             $aluno = new Aluno();
@@ -58,7 +57,6 @@ class AlunoController extends Controller
             $aluno->semestre_entrada = $request->semestre_entrada;
             $aluno->curso_id = $request->curso;
             $aluno->nome_aluno = $request->nome;
-
             $aluno->user->name = $request->nome;
             $aluno->user->email = $request->email;
             $aluno->user->name_social = $request->nome_social;

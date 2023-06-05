@@ -68,7 +68,7 @@
                 @csrf
                 @method("put")
 
-                <label for="nome" class="titulo">Nome:</label>
+                <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome do curso" value="{{$curso->nome}}" >
 
 

@@ -31,19 +31,19 @@ class DisciplinaController extends Controller
             return view("Disciplina.index", compact("disciplinas"));
         } else {
             $disciplinas = Disciplina::all();
-            
+
             return view("Disciplina.index", compact("disciplinas"));
         }
     }
 
     public function store(DisciplinaStoreFormRequest $request){
-        
+
         try{
 
             $disciplina = new Disciplina();
             $disciplina ->nome = $request->nome;
             $disciplina->curso_id = $request->curso;
-            
+
             $disciplina->save();
 
             return redirect('/disciplinas')->with('sucesso', 'Disciplina cadastrada com sucesso.');
@@ -57,7 +57,7 @@ class DisciplinaController extends Controller
 
 
     public function create(){
-        
+
         $cursos = Curso::all();
 
         return view("Disciplina.cadastrar", compact("cursos"));
@@ -94,7 +94,7 @@ class DisciplinaController extends Controller
         $disciplina = Disciplina::find($id);
         $cursos = Curso::all();
 
-        return view("disciplina.editar", compact('disciplina', 'cursos'));
+        return view("Disciplina.editar", compact('disciplina', 'cursos'));
     }
 
     public function update(DisciplinaUpdateFormRequest $request, $id) {

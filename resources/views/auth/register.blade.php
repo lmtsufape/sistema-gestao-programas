@@ -54,7 +54,25 @@
         box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
         padding: 34px;
-        width: 65%
+        width: 65%;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+    }
+
+    .vinculo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .form-check{
+        margin-right: 35px;
+    }
+
+    .radios{
+        margin:5px;
     }
 </style>
 
@@ -84,7 +102,7 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="cpf" class="titulo">CPF:<strong style="color: red">*</strong></label>
-            <input class="boxinfo" type="text"  id="cpf" name="cpf" required placeholder="Digite o CPF">
+            <input class="boxinfo cpf-autocomplete" type="text"  id="cpf" name="cpf" required placeholder="Digite o CPF">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="email" class="titulo">E-mail:<strong style="color: red">*</strong></label>
@@ -105,7 +123,18 @@
 
             <div id="instituicaoVinculo">
                 <label class="titulo" for="instituicaoVinculo">Vínculo:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text" id="instituicaoVinculo" name="instituicaoVinculo" placeholder="Vínculo">
+
+                <div class="vinculo">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo" required>
+                        <label class="form-check-label" for="instituicaoVinculo">Universidade Federal do Agreste de Pernambuco-UFAPE</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UPE" name="instituicaoVinculo" required>
+                        <label class="form-check-label" for="instituicaoVinculo">Universidade de Pernambuco-UPE</label>
+                    </div>
+                </div>
 
             </div>
 
@@ -130,16 +159,18 @@
 
             <div id="semestre">
                 <label class="titulo" for="semestre_entrada">Semestre de entrada:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre">
+                <input class="boxinfo semestre-autocomplete" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre">
             </div>
 
+            <br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
+                <a href="/">
                 <input type="button" value="Voltar" style="background: #2D3875;
                             box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                             border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                             line-height: 29px; text-align: center; padding: 5px 15px;"/>
-
+                </a>
 
                 <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
                             display: inline-block;
@@ -150,7 +181,11 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript" src="{{ mix('js/app.js') }}">
+
+    $('.semestre-autocomplete').inputmask('0000.0');
+    $('.cpf-autocomplete').inputmask('999.999.999-99');
+
     $(document).ready(function() {
     $("#tipoUser").change(function() {
         var selectedOption = $(this).val();

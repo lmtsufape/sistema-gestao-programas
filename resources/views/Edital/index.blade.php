@@ -99,21 +99,32 @@
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
             <td>
-              <!-- <a style="padding:2px" href="{{  route('edital.vinculo', ['id' => $edital->id]) }}">
-                <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
-              </a> -->
-              <a href="{{route('edital.show', ['id' => $edital->id]  )}}">
-                <img src="{{asset("images/vinculo_edital.png")}}" alt="Vincular aluno" style="height: 30px; width: 30px;">
-              </a>
+            
+              
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$edital->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
+
               <a type="button" href="{{  route('edital.edit', ['id' => $edital->id] )  }}">
                 <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
+
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$edital->id}}">
                 <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
+              </a> 
+
+              <a href="{{route('edital.show', ['id' => $edital->id]  )}}">
+                <img src="{{asset("images/vinculo_edital.png")}}" alt="Vincular aluno" style="height: 30px; width: 30px;">
               </a>
+              
+              <a class="link" alt="Listar alunos" href="{{  route('edital.vinculo', ['id' => $edital->id]) }}" >
+                <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos vinculados" style="height: 30px; width: 30px;">
+              </a> 
+              
+              <a class="link" alt="Listar orientadores" href="{{  route('edital.listar_orientadores', ['id' => $edital->id]) }}" >
+                <img src="{{asset("images/orientadores.png")}}" alt="Listar orientadores vinculados" style="height: 40px; width: 40px;">
+              </a>
+        
             </td>
           </tr>
           <tr>
@@ -137,27 +148,37 @@
           <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
+
         <div style="display: flex; margin: 10px">
           <a><img src="/images/info.png" alt="Informações" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
         </div>
+
         <div style="align-self: center; margin-right: auto">
           <div style="display: flex; margin: 10px">
             <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
           </div>
+
           <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
-          </div>
-          <!-- <div style="display: flex; margin: 10px">
-            <a><img src="{{asset("images/bx_user.png")}}" alt="Listar editais" style="width: 20px; height: 20px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Listar alunos</p>
-          </div> -->
+          </div> 
+
           <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/vinculo_edital.png")}}" alt="Vincular aluno" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Vincular aluno</p>
           </div>
+
+          <div style="display: flex; margin: 10px">
+            <a><img src="{{asset("images/bx_user.png")}}" alt="Listar alunos vinculados" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Alunos vinculados</p>
+          </div>
+          <div style="display: flex; margin: 10px">
+            <a><img src="{{asset("images/orientadores.png")}}" alt="Listar orientadores vinculados" style="width: 25px; height: 25px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Orientadores vinculados</p>
+          </div>
+         
         </div>
       </div>
     </div>
