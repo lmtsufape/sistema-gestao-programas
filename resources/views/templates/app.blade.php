@@ -86,9 +86,16 @@
           @endauth
 
           <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
-            <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: #131833; margin-left: 50px">
-              SISTEMA DE GESTÃO DE PROGRAMAS
-            </a>
+            @auth
+              <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: #131833; margin-left: 50px">
+                SISTEMA DE GESTÃO DE PROGRAMAS ACADÊMICOS
+              </a>
+            @else
+              <a href="{{url('/')}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: #131833; margin-left: 50px">
+                SISTEMA DE GESTÃO DE PROGRAMAS ACADÊMICOS
+              </a>
+            @endauth
+
           </ul>
           <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 400; font-size: 20px; line-height: 29px; color: #131833; margin-left: 50px">
               Contato
