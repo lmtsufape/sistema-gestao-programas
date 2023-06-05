@@ -68,7 +68,7 @@
         <div class="boxchild">
             <div class="row">
                 <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
-                    Cadastrar Orientador</h1>
+                    Cadastrar Professor</h1>
             </div>
 
             <hr>
@@ -80,7 +80,7 @@
                 <div class="invalid-feedback">Por favor preencha esse campo</div><br><br>
 
                 <label for="inputNomeSocial" class="titulo">Nome Social:</label>
-                <input class="boxinfo" type="text" id="inputNomeSocial" name="name_social" placeholder="Digite o nome" value="{{ old('name_social') }}">
+                <input class="boxinfo" type="text" id="inputNomeSocial" name="name_social" placeholder="Digite o nome social" value="{{ old('name_social') }}">
                 <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
                 <label for="email" class="titulo">E-mail:<strong style="color: red">*</strong></label>
@@ -92,8 +92,8 @@
                 <label for="matricula" class="titulo">Matrícula:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)" value="{{ old('matricula') }}" required><br><br>
 
-                <label for="instituicaoVinculo" class="titulo">Vínculo:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite o Vínculo do orientador" value="{{ old('instituicaoVinculo') }}" required><br><br>
+                <label for="instituicaoVinculo" class="titulo">Instituição:<strong style="color: red">*</strong></label>
+                <input class="boxinfo" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a instituição vinculada ao professor" value="{{ old('instituicaoVinculo') }}" required><br><br>
 
                 <label for="curso" class="titulo">Curso:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" name="curso" id="curso" placeholder="Digite o Curso" value="{{ old('curso') }}" required><br><br>

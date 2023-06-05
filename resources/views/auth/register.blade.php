@@ -116,23 +116,23 @@
             <label for="tipoUser" class="titulo">Tipo do usuário:<strong style="color: red">*</strong></label>
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
                 <option>Selecione o tipo de usuário</option>
-                <option value="servidor">Servidor</option>
-                <option value="orientador">Orientador</option>
-                <option value="aluno">Aluno</option>
+                <option value="servidor">Técnico administrativo</option>
+                <option value="orientador">Professor</option>
+                <option value="aluno">Estudante</option>
             </select>
 
             <div id="instituicaoVinculo">
-                <label class="titulo" for="instituicaoVinculo">Vínculo:<strong style="color: red">*</strong></label>
-
+                <label class="titulo" for="instituicaoVinculo">Intituição:<strong style="color: red">*</strong></label>
+                
                 <div class="vinculo">
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo" required>
-                        <label class="form-check-label" for="instituicaoVinculo">Universidade Federal do Agreste de Pernambuco-UFAPE</label>
+                        <label class="form-check-label" for="instituicaoVinculo">Universidade Federal do Agreste de Pernambuco</label>
                     </div>
 
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UPE" name="instituicaoVinculo" required>
-                        <label class="form-check-label" for="instituicaoVinculo">Universidade de Pernambuco-UPE</label>
+                        <label class="form-check-label" for="instituicaoVinculo">Universidade de Pernambuco</label>
                     </div>
                 </div>
 
@@ -204,7 +204,7 @@
         } else if (selectedOption == "servidor") {
             $("#curso").hide();
             $("#semestre").hide();
-            $("#matricula").hide();
+            $("#matricula").show();
             $("#tipo_servidor").show();
             $("#instituicaoVinculo").show();
         }

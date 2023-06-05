@@ -108,7 +108,7 @@
             $("#servidors").chosen({
             placeholder_text_multiple: "Selecione um servidor",
             // max_shown_results : 5,
-            no_results_text: "Não possui alunos."
+            no_results_text: "Não possui estudante."
         });
             $('div.chosen-container-single').addClass('required');
             $('div.chosen-container-multi').addClass('required');
