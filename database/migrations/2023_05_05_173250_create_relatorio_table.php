@@ -20,7 +20,10 @@ class CreateRelatorioTable extends Migration
             $table->string('observacao');
             $table->string('tipo');
             $table->string('relatorio');
-            $table->foreignId('edital_aluno_orientadors_id')->contrained('edital_aluno_orientadors');
+            $table->unsignedBigInteger('edital_aluno_orientadors_id');
+            $table->foreign('edital_aluno_orientadors_id')->references('id')->on('edital_aluno_orientadors');
+            // $table->foreignId('edital_aluno_orientadors_id')->contrained('edital_aluno_orientadors');
+
             $table->timestamps();
         });
     }
