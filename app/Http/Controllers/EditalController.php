@@ -61,8 +61,8 @@ class EditalController extends Controller
 
     public function store(editalstoreFormRequest $request)
     {
-        // DB::beginTransaction();
-        // try {
+        DB::beginTransaction();
+        try {
 
             //dd($request);
             $edital = new Edital();
@@ -85,10 +85,10 @@ class EditalController extends Controller
 
             return redirect('/edital')->with('sucesso', 'Edital cadastrado com sucesso.');
 
-        // } catch(Exception $e){
-        //     DB::rollback();
-        //     return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
-        // }
+        } catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
+        }
     }
 
     /**
