@@ -18,7 +18,9 @@ class CreateAlunosTable extends Migration
             $table->id();
             $table->string('nome_aluno');
             $table->string('cpf', 14)->unique();
-            $table->foreignId('curso_id')->nullable(false)->constrained('cursos');
+            $table->foreign('curso_id')->references('id')->on('cursos');
+            $table->unsignedBigInteger('curso_id');
+            // $table->foreignId('curso_id')->nullable(false)->constrained('cursos');
             $table->string('semestre_entrada', 6);
             $table->timestamps();
         });
