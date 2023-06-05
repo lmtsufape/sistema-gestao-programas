@@ -84,30 +84,19 @@
 
             @csrf
             @method("PUT") 
-            <label class="titulo" for="nome_aluno">Nome do Aluno</label> 
+            <label class="titulo" for="nome_aluno">Nome do Aluno:</label> 
             <input type="text" id="nome_aluno" class="boxinfo" placeholder="Nome do aluno" value="{{$aluno->nome_aluno}}" disabled>
             <br>
             <br>
-            <label class="titulo" for="bolsa">Tipo da bolsa</label>   
-            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" value="{{$vinculo->bolsa}}" required>
+            <label class="titulo" for="bolsa">Tipo da bolsa:</label>   
+            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" value="{{$vinculo->bolsa}}" disabled>  
             <br>
             <br>
-            <label class="titulo" for="bolsista">Tipo de Vínculo</label>  
-            <input class="form-check-input" type="radio" name="bolsista" id="bolsista" value="True" required checked>  
-            <label class="form-check-label" for="bolsita">
-                Bolsista
-            </label>
-            <input class="form-check-input" type="radio" name="bolsista" id="bolsista" value="False">  
-            <label class="form-check-label" for="bolsista">  
-                Voluntário
-            </label>
-            <br>
-            <br>
-            <label class="titulo" for="info_complementares">Informações complementares</label>   
+            <label class="titulo" for="info_complementares">Informações complementares: <strong style="color: red">*</strong></label>   
             <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="Informações complementares" value="{{$vinculo->info_complementares}}" required> 
             <br>
             <br>
-            <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno</label>  
+            <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno: <strong style="color: red">*</strong></label>  
             <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno">  
             <br>
             <br>

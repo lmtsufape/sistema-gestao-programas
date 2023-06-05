@@ -33,26 +33,8 @@
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Disciplina:</label>
           <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$edital->disciplina->nome}} </div>
           
-          @canany(['admin', 'servidor'])
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Alunos:</label> 
-          <div style=" display:flex; flex-wrap:wrap; justify-content:center; align-items:center;">
-            <a class="link" alt="Listar alunos" href="{{  route('edital.vinculo', ['id' => $edital->id]) }}" class="link">
-              <img src="{{asset("images/bx_user.png")}}" >
-              Listar alunos
-            </a> 
-          </div> 
-          @endcan
           
         </div>
-
-        <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Orientador:</label>
-        <div style=" display:flex; flex-wrap:wrap; justify-content:center; align-items:center;">
-          <a class="link" alt="Listar orientadores" href="{{  route('edital.listar_orientadores', ['id' => $edital->id]) }}" style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3;width: 100%; display:flex; flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:center; padding:5px; margin:2px;">
-            <img src="{{asset("images/bx_user.png")}}" >
-            Listar orientadores
-          </a> <br>
-        </div> 
-        
 
         <div class="modal-footer">
           <button type="button"  class="btn" data-bs-dismiss="modal">Fechar</button>
@@ -77,26 +59,6 @@
     color: #fff;
   }
 
-  .link{
-    background: #EEEEEE; 
-    border-radius: 13px; 
-    border: 1px #D3D3D3;
-    width: 100%; 
-    display:flex; 
-    flex-direction:row; 
-    flex-wrap:wrap; 
-    justify-content:center; 
-    align-items:center; 
-    padding:5px; 
-    margin:2px;
-    color: #2D3875;
-    text-decoration: none;
-  }
-
-  .link:hover{
-    color: #34A853;
-    text-decoration: none;
-  }
 </style>
 @else
 <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
