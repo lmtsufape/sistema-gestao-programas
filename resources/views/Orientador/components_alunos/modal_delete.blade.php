@@ -7,7 +7,7 @@
         </div>
         <div class="modal-body">
           <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">
-            Deseja realmente deletar o aluno?</p>
+            Deseja realmente deletar o estudante?</p>
         </div>
         <div class="modal-footer d-flex justify-content-between">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

@@ -41,7 +41,7 @@
                                         <option>Selecione um tipo de servidor</option>
                                         <option value="0">Administrador</option>
                                         <option value="1">Pró-Reitor</option>
-                                        <option value="2">Servidor</option>
+                                        <option value="2">Técnico Administrativo</option>
                                     </select>
                                 </div>
 
@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <label for="instituicaoVinculo" class="form-label">Vínculo:<strong style="color: red">*</strong></label>
+                                    <label for="instituicaoVinculo" class="form-label">Instituição:<strong style="color: red">*</strong></label>
                                     <input type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite o vínculo do servidor"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('email') }}">

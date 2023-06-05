@@ -39,7 +39,7 @@
   <br>
 
   <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1 style="color:#2D3875;"><strong>Orientadores</strong></h1>
+    <h1 style="color:#2D3875;"><strong>Professores</strong></h1>
     <div style="margin: auto"></div>
     <form action="{{route("orientadors.index")}}" method="GET">
       <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
@@ -72,7 +72,7 @@
         padding-left: 10px;" href="{{route("orientadors.create")}}"
         onmouseover="this.style.backgroundColor='#2D3875'"
         onmouseout="this.style.backgroundColor='#34A853'">
-        <img src="{{asset("images/plus.png")}}" alt="Cadastrar orientador" style="padding-bottom: 5px"> Cadastrar Orientador
+        <img src="{{asset("images/plus.png")}}" alt="Cadastrar orientador" style="padding-bottom: 5px"> Cadastrar Professor
       </a>
     </div>
     <br>
@@ -81,7 +81,7 @@
     @if (sizeof($orientadors) == 0)
     <div class="empty">
       <p>
-        Não há orientadores cadastrados
+        Não há professores cadastrados
       </p>
     </div>
     @else
@@ -107,17 +107,17 @@
                             <td>{{$orientador->matricula}}</td>
                             <td>
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$orientador->id}}">
-                                <img src="{{asset("images/info.png")}}" alt="Info orientador" style="height: 30px; width: 30px;">
+                                <img src="{{asset("images/info.png")}}" alt="Info professor" style="height: 30px; width: 30px;">
                                 </a>
                                {{--  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$orientador->id}}">
-                                <img src="{{asset("images/document.png")}}" alt="Documento orientador"  style="height: 30px; width: 30px;">
+                                <img src="{{asset("images/document.png")}}" alt="Documento professor"  style="height: 30px; width: 30px;">
 
                                 </a>--}}
                                 <a href=" {{route('orientadors.edit', ['id' => $orientador->id] )}}">
-                                <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar orientador"  style="height: 30px; width: 30px;">
+                                <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar professor"  style="height: 30px; width: 30px;">
                                 </a>
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$orientador->id}}">
-                                <img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="height: 30px; width: 30px;">
+                                <img src="{{asset("images/delete.png")}}" alt="Deletar professor" style="height: 30px; width: 30px;">
                                 </a>
 
 

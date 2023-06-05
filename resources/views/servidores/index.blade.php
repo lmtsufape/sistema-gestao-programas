@@ -85,7 +85,7 @@
               <td class="align-middle">Pró-reitor</td>
                 @break
               @case("servidor")
-              <td class="align-middle">Servidor</td>
+              <td class="align-middle">Técnico Administrativo</td>
                 @break
             @endswitch
             <td class="align-middle">
