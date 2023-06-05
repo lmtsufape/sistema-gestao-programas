@@ -17,7 +17,10 @@ class CreateDisciplinasTable extends Migration
             $table->softDeletes();
             $table->id();
             $table->string('nome')->nullable(false);
-            $table->foreignId('curso_id')->nullable(false)->constrained('cursos');
+            $table->foreign('curso_id')->references('id')->on('cursos');
+            $table->unsignedBigInteger('curso_id');
+            // $table->foreignId('curso_id')->nullable(false)->constrained('cursos');
+
             $table->timestamps();
         });
     }
