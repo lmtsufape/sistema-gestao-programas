@@ -83,24 +83,24 @@
         <form action="{{  route('edital.update_vinculo', ['id' => $vinculo->id])  }}" method="POST" enctype="multipart/form-data">
 
             @csrf
-            @method("PUT") 
-            <label class="titulo" for="nome_aluno">Nome do Aluno:</label> 
+            @method("PUT")
+            <label class="titulo" for="nome_aluno">Nome do Aluno:</label>
             <input type="text" id="nome_aluno" class="boxinfo" placeholder="Nome do aluno" value="{{$aluno->nome_aluno}}" disabled>
             <br>
             <br>
-            <label class="titulo" for="bolsa">Tipo da bolsa:</label>   
-            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" value="{{$vinculo->bolsa}}" disabled>  
+            <label class="titulo" for="bolsa">Tipo da bolsa:</label>
+            <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" value="{{$vinculo->bolsa}}" disabled>
             <br>
             <br>
-            <label class="titulo" for="info_complementares">Informações complementares: <strong style="color: red">*</strong></label>   
-            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="Informações complementares" value="{{$vinculo->info_complementares}}" required> 
+            <label class="titulo" for="info_complementares">Informações complementares:</label>
+            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="Informações complementares" value="{{$vinculo->info_complementares}}">
             <br>
             <br>
-            <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno: <strong style="color: red">*</strong></label>  
-            <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno">  
+            <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno: <strong style="color: red">*</strong></label>
+            <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno">
             <br>
             <br>
-           
+
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;
                 box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
