@@ -89,7 +89,7 @@
 
 
             <label for="inputSemestre" class="titulo">Semestre de Entrada:<strong style="color: red">*</strong></label>
-            <input class="boxinfo" type="text"  id="inputSemestre" name="semestre_entrada" required placeholder="Digite o semestre" value="{{ old('semestre_entrada') }}">
+            <input class="boxinfo semestre-autocomplete" type="text"  id="inputSemestre" name="semestre_entrada" required placeholder="Digite o semestre" value="{{ old('semestre_entrada') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
