@@ -53,11 +53,11 @@
                 border-radius: 20px;
                 padding: 34px;
                 width: 65%
-                
+
             }
 
-            
-            
+
+
         </style>
         <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
             @if (session('sucesso'))
@@ -78,7 +78,7 @@
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
 
-                    <label class="titulo" for="titulo_edital">Título do edital:<strong style="color: red">*</strong></label>
+                    <label class="titulo" for="titulo_edital">Título:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
 
                     <label class="titulo" for="semestre">Semestre:<strong style="color: red">*</strong></label>
@@ -104,11 +104,11 @@
                             @endforeach
                     </select><br><br>
 
-                    <label class="titulo" for="disciplina">Disciplina:<strong style="color: red">*</strong></label>
+                    <label class="titulo" for="disciplina">Disciplina:</label>
                     <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina" >
                         <option></option>
-                            @foreach ($disciplinas as $disciplina)
-                                <option value="{{$disciplina->id}}">{{$disciplina->nome}}</option>
+                            @foreach ($disciplinas as $key => $disciplina)
+                            <option value="{{$disciplina->id}}" {{$key == 0 ? 'selected' : ''}}>{{$disciplina->nome}}</option>
                             @endforeach
                     </select><br><br>
 
@@ -128,8 +128,6 @@
 
         <script>
 
-
-
             $("#programa").chosen({
                 placeholder_text_single: "Selecione um programa",
                 // max_shown_results : 5,
@@ -137,7 +135,7 @@
             });
 
             $("#disciplina").chosen({
-                placeholder_text_single: "Selecione uma disciplina",
+                placeholder_text_single: {{$disciplina->id}},
                 // max_shown_results : 5,
                 no_results_text: "Não possui disciplinas."
             });
