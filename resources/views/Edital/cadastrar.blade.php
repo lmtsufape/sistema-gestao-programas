@@ -63,8 +63,8 @@
             @if (session('sucesso'))
                 <div class="alert alert-success" style="width: 100%;">
                     {{session('sucesso')}}
-                </div>'
-            @endif'
+                </div>
+            @endif
             <br>
 
             <div class="boxchild">
