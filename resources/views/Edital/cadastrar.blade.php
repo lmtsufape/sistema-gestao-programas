@@ -94,7 +94,7 @@
                     <input class="boxinfo"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
 
                     <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}" required><br><br>
+                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}" required><br><br>
 
                     <label class="titulo" for="programa">Programa:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
