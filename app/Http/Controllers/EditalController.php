@@ -304,7 +304,7 @@ class EditalController extends Controller
         DB::beginTransaction();
         try {
             $vinculo = EditalAlunoOrientadors::find($id);
-            $vinculo->bolsa = $request->bolsa ? $request->bolsa : $vinculo->bolsa;
+            // $vinculo->bolsa = $request->bolsa ? $request->bolsa : $vinculo->bolsa;
             $vinculo->bolsista = $request->bolsista == "True" ? $request->bolsista == "True" : $vinculo->bolsista;
             $vinculo->info_complementares = $request->info_complementares ? $request->info_complementares : $vinculo->info_complementares;
             $vinculo->termo_compromisso_aluno = $request->termo_compromisso_aluno ? $request->termo_compromisso_aluno: $vinculo->termo_compromisso_aluno;

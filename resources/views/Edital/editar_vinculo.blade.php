@@ -88,10 +88,10 @@
             <input type="text" id="nome_aluno" class="boxinfo" placeholder="Nome do aluno" value="{{$aluno->nome_aluno}}" disabled>
             <br>
             <br>
-            <label class="titulo" for="bolsa">Tipo da bolsa:</label>
+            <!-- <label class="titulo" for="bolsa">Tipo da bolsa:</label>
             <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" value="{{$vinculo->bolsa}}" disabled>
             <br>
-            <br>
+            <br> -->
             <label class="titulo" for="info_complementares">Informações complementares:</label>
             <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="Informações complementares" value="{{$vinculo->info_complementares}}">
             <br>
