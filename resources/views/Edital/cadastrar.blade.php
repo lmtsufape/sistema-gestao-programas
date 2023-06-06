@@ -63,8 +63,8 @@
             @if (session('sucesso'))
                 <div class="alert alert-success" style="width: 100%;">
                     {{session('sucesso')}}
-                </div>
-            @endif
+                </div>'
+            @endif'
             <br>
 
             <div class="boxchild">
@@ -79,7 +79,7 @@
                     @csrf
 
                     <label class="titulo" for="titulo_edital">Título:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
+                    <input class="boxinfo" placeholder="Digite o título" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
 
                     <label class="titulo" for="semestre">Semestre:<strong style="color: red">*</strong></label>
                     <input class="boxinfo semestre-autocomplete" placeholder="Digite o semestre (Ex: 2023.2)" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
