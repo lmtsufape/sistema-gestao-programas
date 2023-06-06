@@ -16,8 +16,8 @@ class VinculoUpdateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'bolsa' => 'required',
-            'bolsista' => 'required|in:True,False',
+            // 'bolsa' => 'required',
+            // 'bolsista' => 'required|in:True,False',
             'info_complementares' => 'required',
             'termo_compromisso_aluno' => 'nullable|mimes:pdf',
         ];
