@@ -39,7 +39,7 @@ class OrientadorController extends Controller
                     $query->orWhere("orientadors.cpf", "LIKE", "%{$valor}%");
                     $query->orWhere("orientadors.matricula", "LIKE", "%{$valor}%");
                 }
-            })->orderBy('orientadors.created_at', 'desc')->select("orientadors.*")->get();
+            })->orderBy('orientadors.created_at', 'desc')->select("orientadors.*")->distinct()->get();
 
 
             return view("Orientador.index", compact("orientadors"));
