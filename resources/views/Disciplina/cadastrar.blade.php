@@ -46,7 +46,7 @@
                 <form action="{{route("disciplinas.store")}}" method="post">
                     @csrf
                     <label for="inputName" class="titulo" >Disciplina:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
+                    <input class="boxinfo" type="text" id="inputName" name="nome" value="{{ old('nome') }}" required placeholder="Digite o nome">
                     <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
                     <label for="inputCurso" class="titulo" >Curso:<strong style="color: red">*</strong></label>

@@ -64,14 +64,14 @@
                                     <label for="instituicaoVinculo" class="form-label">Instituição:<strong style="color: red">*</strong></label>
                                     <input type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite o vínculo do servidor"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('email') }}">
+                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('instituicaoVinculo') }}">
                                 </div>
 
                                 <div class="col-12 mb-3">
                                     <label for="matricula" class="form-label">Matrícula:<strong style="color: red">*</strong></label>
                                     <input type="text" name="matricula" id="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
-                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('email') }}">
+                                    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('matricula') }}">
                                 </div>
 
                                 <div class="col-12 mb-3">
