@@ -20,7 +20,7 @@ class orientadorsSeeder extends Seeder
         $orientador = Orientador::create([
             'cpf' => "827.846.340-94",
             'instituicaoVinculo' => 'UPE',
-            'curso' => 'BCC',
+            #'curso' => 'BCC',
             'matricula' => "123456",
         ]);
 
@@ -34,7 +34,7 @@ class orientadorsSeeder extends Seeder
         $orientador1 = Orientador::create([
             'cpf' => "786.116.540-05",
             'instituicaoVinculo' => 'UFAPE',
-            'curso' => 'BCC',
+            #'curso' => 'BCC',
             'matricula' => "246810"
         ]);
 
