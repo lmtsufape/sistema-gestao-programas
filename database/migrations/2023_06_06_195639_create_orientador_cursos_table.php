@@ -14,9 +14,13 @@ class CreateOrientadorCursosTable extends Migration
     public function up()
     {
         Schema::create('orientador_cursos', function (Blueprint $table) {
-            #$table->id();
-            $table->foreignId('orientador_id')->constrained();
-            $table->foreignId('curso_id')->constrained();
+            #$table->id();            
+            $table->foreign('orientador_id')->references('id')->on('orientadors');
+            $table->unsignedBigInteger('orientador_id');
+
+            $table->foreign('curso_id')->references('id')->on('cursos');
+            $table->unsignedBigInteger('curso_id');
+
             $table->timestamps();
         });
     }
