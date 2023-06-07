@@ -95,7 +95,7 @@ class OrientadorController extends Controller
                 
                 if (
                     $orientador->user()->create([
-                        'name' => $request->nome,
+                        'name' => $request->name,
                         'name_social' => $request->name_social,
                         'cpf' => $request->cpf,
                         'email' => $request->email,
@@ -142,7 +142,8 @@ class OrientadorController extends Controller
     {
         $orientador = Orientador::find($id);
         $cursos = Curso::all();
-        return view("Orientador.editar-orientador", compact('orientador', 'cursos'));
+        $cursosSelecionados = $orientador->cursos->pluck('id')->toArray();
+        return view("Orientador.editar-orientador", compact('orientador', 'cursos', 'cursosSelecionados'));
     }
 
     public function update(OrientadorFormUpdateRequest $request, $id)
@@ -154,11 +155,11 @@ class OrientadorController extends Controller
             $orientador->matricula = $request->matricula;
             $orientador->instituicaoVinculo = $request->instituicaoVinculo == $orientador->instituicaoVinculo ? $orientador->instituicaoVinculo : $request->instituicaoVinculo;
             
-            $orientador->user->name = $request->nome;
+            $orientador->user->name = $request->name;
             $orientador->user->email = $request->email;
             $orientador->user->name_social = $request->name_social;
             $orientador->user->cpf = $request->cpf;
-
+            
             $cursos_id = $request->cursos;
             if($cursos_id == null){
                 return redirect()->back()->withErrors( "Selecione pelo menos um Curso" );

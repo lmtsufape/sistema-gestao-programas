@@ -76,7 +76,7 @@
             <form action="{{route('orientadors.store')}}" method="POST">
                 @csrf
                 <label for="inputName" class="titulo">Nome:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome" value="{{ old('nome') }}">
+                <input class="boxinfo" type="text" id="inputName" name="name" required placeholder="Digite o nome" value="{{ old('name') }}">
                 <div class="invalid-feedback">Por favor preencha esse campo</div><br><br>
 
                 <label for="inputNomeSocial" class="titulo">Nome Social:</label>

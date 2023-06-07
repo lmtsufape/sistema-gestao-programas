@@ -67,11 +67,11 @@
                 @csrf
                 @method("PUT")
                 <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text" id="nome" name="nome" placeholder="Digite o nome" value="{{$orientador->user->name}}"
+                <input class="boxinfo" type="text" id="name" name="name" placeholder="Digite o nome" value="{{$orientador->user->name}}"
                 ><br/><br>
 
                 <label for="nome_social" class="titulo">Nome Social:</label>
-                <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social" value="{{$orientador->nome_social}}"
+                <input class="boxinfo" type="text" id="name_social" name="name_social" placeholder="Digite o nome social" value="{{$orientador->user->name_social}}"
                 ><br/><br>
 
                 <label for="email" for="nome" class="titulo">E-mail:<strong style="color: red">*</strong></label>
@@ -89,7 +89,7 @@
                 <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s): </label>
                 @foreach ($cursos as $curso)
                     <div>
-                        <input type="checkbox" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}">
+                        <input type="checkbox" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}" @if(in_array($curso->id, $cursosSelecionados)) checked @endif>
                         <label for="curso_{{ $curso->id }}">{{ $curso->nome }}</label>
                     </div>
                 @endforeach
