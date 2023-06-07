@@ -77,15 +77,12 @@ class OrientadorController extends Controller
             $orientador->instituicaoVinculo = $request->instituicaoVinculo;
                         
             #$orientador->curso = 'Teste';
-            $cursos_id = $request->cursos;
-            if($cursos_id == null){
-                return redirect()->back()->withErrors( "Selecione pelo menos um Curso" );
-            }
-
+            
             if ($orientador->save()){
                 
                 #Adicionar os cursos pegando o ID do Orientador gerado no banco
                 #Temos que salvar primeiro, para pegar o ID do Orientador
+                $cursos_id = $request->cursos;
                 foreach ($cursos_id as $id) {
                     $curso = Curso::findorFail($id);
                     #dd($orientador->id);
