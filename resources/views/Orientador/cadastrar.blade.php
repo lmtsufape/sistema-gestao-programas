@@ -95,8 +95,14 @@
                 <label for="instituicaoVinculo" class="titulo">Instituição:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a instituição vinculada ao professor" value="{{ old('instituicaoVinculo') }}" required><br><br>
 
-                <label for="curso" class="titulo">Curso:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text" name="curso" id="curso" placeholder="Digite o Curso" value="{{ old('curso') }}" required><br><br>
+                <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s): </label>
+                @foreach ($cursos as $curso)
+                    <div>
+                        <input type="checkbox" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}" required>
+                        <label for="curso_{{ $curso->id }}">{{ $curso->nome }}</label>
+                    </div>
+                @endforeach
+                <br><br>
 
                 <label for="senha" class="titulo">Senha:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="password" name="senha" id="senha" placeholder="Digite a senha" required><br><br>

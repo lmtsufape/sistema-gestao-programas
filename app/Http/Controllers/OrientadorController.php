@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrientadorFormRequest;
 use App\Http\Requests\OrientadorFormUpdateRequest;
+use App\Models\Curso;
 use App\Models\Orientador;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -56,7 +57,8 @@ class OrientadorController extends Controller
      */
     public function create()
     {
-        return view("Orientador.cadastrar");
+        $cursos = Curso::all();
+        return view("Orientador.cadastrar", compact("cursos"));
     }
 
     /**
@@ -66,19 +68,23 @@ class OrientadorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(OrientadorFormRequest $request)
-    {
+    {   
+        #dd($request);
         try{
             $orientador = new Orientador();
             $orientador->cpf = $request->cpf;
             $orientador->matricula = $request->matricula;
             $orientador->instituicaoVinculo = $request->instituicaoVinculo;
-            $orientador->curso = $request->curso;
-
+                        
+            #$orientador->curso = 'Teste';
+            
             if ($orientador->save()){
 
                 if (
                     $orientador->user()->create([
                         'name' => $request->nome,
+                        'name_social' => $request->name_social,
+                        'cpf' => $request->cpf,
                         'email' => $request->email,
                         'password' => Hash::make($request->senha)
 
@@ -87,7 +93,16 @@ class OrientadorController extends Controller
                     $confirm = new ConfirmandoEmail($request);
                     $confirm -> enviandoEmail();
                     $mensagem_sucesso = "Orientador cadastrado com sucesso.";
-                    return redirect('/orientadors/create')->with('sucesso', 'Orientador cadastrado com sucesso.');
+  
+                    #Adicionar os cursos pegando o ID do Orientador gerado no banco
+                    $cursos_id = $request->cursos;
+                    foreach ($cursos_id as $id) {
+                        $curso = Curso::findorFail($id);
+                        #dd($orientador->id);
+                        $curso->orientadores()->attach($orientador->id); 
+                    }
+    
+                    return redirect('/orientadors')->with('sucesso', 'Orientador cadastrado com sucesso.');
 
                 } else {
                     return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
@@ -120,7 +135,8 @@ class OrientadorController extends Controller
     public function edit($id)
     {
         $orientador = Orientador::find($id);
-        return view("Orientador.editar-orientador", compact('orientador'));
+        $cursos = Curso::all();
+        return view("Orientador.editar-orientador", compact('orientador', 'cursos'));
     }
 
     public function update(OrientadorFormUpdateRequest $request, $id)
@@ -130,9 +146,13 @@ class OrientadorController extends Controller
 
             $orientador->cpf = $request->cpf == $orientador->cpf ? $orientador->cpf : $request->cpf;
             $orientador->matricula = $request->matricula;
-
+            $orientador->instituicaoVinculo = $request->instituicaoVinculo == $orientador->instituicaoVinculo ? $orientador->instituicaoVinculo : $request->instituicaoVinculo;
+            
             $orientador->user->name = $request->nome;
             $orientador->user->email = $request->email;
+            $orientador->user->name_social = $request->name_social;
+            $orientador->user->cpf = $request->cpf;
+            
             if ($request->senha && $request->senha != null){
                 if (strlen($request->senha) > 3 && strlen($request->senha) < 9){
                     $orientador->user->password = Hash::make($request->password);
@@ -140,11 +160,13 @@ class OrientadorController extends Controller
                     return redirect()->back()->withErrors( "Senha deve ter entre 4 e 8 dígitos" );
                 }
             }
+
             if ($orientador->save()){
+                #Atualiza os cursos de Orientador
+                $orientador->cursos()->sync($request->cursos);
 
                 if ($orientador->user->update()){
-                    $mensagem_sucesso = "Orientador cadastrado com sucesso.";
-                    return redirect('/orientadors/'. $orientador->id .'/edit')->with('sucesso', 'Orientador Atualizado com sucesso.');
+                    return redirect('/orientadors')->with('sucesso', 'Orientador Atualizado com sucesso.');
                 } else {
                     return redirect()->back()->withErrors( "Falha ao editar orientador. tente novamente mais tarde." );
                 }
@@ -170,8 +192,9 @@ class OrientadorController extends Controller
             $id = $request->only(['id']);
             $orientador = Orientador::findOrFail($id)->first();
 
+            $orientador->cursos()->detach($request->cursos); 
             if ($orientador->user->delete() && $orientador->delete()) {
-                return redirect(route("orientadors.index"));
+                return redirect(route("orientadors.index"))->with('sucesso', 'Orientador Deletado com sucesso.');;
             }
         } catch (Exception $e) {
             return redirect()->back()->withErrors("Falha ao deletar orientador. Tente novamente mais tarde.");
