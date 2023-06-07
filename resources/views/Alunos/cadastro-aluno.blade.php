@@ -102,7 +102,7 @@
             </select>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputEmail4" class="titulo">Email:<strong style="color: red">*</strong></label>
+            <label for="inputEmail4" class="titulo">E-mail:<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="email" id="inputEmail4" name="email" required placeholder="Digite o email" value="{{ old('email') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
