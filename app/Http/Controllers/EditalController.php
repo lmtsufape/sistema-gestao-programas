@@ -150,7 +150,7 @@ class EditalController extends Controller
            }
         } catch(Exception $e){
              DB::rollback();
-             return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
+             return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." )->withInput();
          }
     }
 
