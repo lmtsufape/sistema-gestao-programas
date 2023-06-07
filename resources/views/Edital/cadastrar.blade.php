@@ -84,7 +84,7 @@
                     <label class="titulo" for="semestre">Semestre:<strong style="color: red">*</strong></label>
                     <input class="boxinfo semestre-autocomplete" placeholder="Digite o semestre (Ex: 2023.2)" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
 
-                    <label class="titulo" for="Descrição">Descrição:<strong style="color: red">*</strong></label>
+                    <label class="titulo" for="Descrição">Descrição:</label>
                     <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="3"> {{ old('descricao') }}</textarea><br><br>
 
                     <label class="titulo" for="data_inicio" class="titulo">Data de início:<strong style="color: red">*</strong></label>

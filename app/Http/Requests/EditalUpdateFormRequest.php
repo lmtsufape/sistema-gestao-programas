@@ -31,7 +31,7 @@ class EditalUpdateFormRequest extends FormRequest
                 "titulo_edital"=>"required",
                 "valor_bolsa"=>"required|numeric",
                 "semestre"=>"required",
-                "descricao"=>"required",
+                //"descricao"=>"required",
             ];
         }
 
