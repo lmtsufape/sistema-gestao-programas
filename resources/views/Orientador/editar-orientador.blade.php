@@ -86,7 +86,7 @@
                 <label for="instituicaoVinculo" class="titulo">Instituição:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a instituição vinculada ao professor" value="{{ $orientador->instituicaoVinculo }}" required><br><br>
 
-                <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s): </label>
+                <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s):<strong style="color: red">*</strong></label>
                 @foreach ($cursos as $curso)
                     <div>
                         <input type="checkbox" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}" @if(in_array($curso->id, $cursosSelecionados)) checked @endif>
