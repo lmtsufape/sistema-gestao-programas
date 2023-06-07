@@ -77,9 +77,22 @@ class OrientadorController extends Controller
             $orientador->instituicaoVinculo = $request->instituicaoVinculo;
                         
             #$orientador->curso = 'Teste';
-            
-            if ($orientador->save()){
+            $cursos_id = $request->cursos;
+            if($cursos_id == null){
+                return redirect()->back()->withErrors( "Selecione pelo menos um Curso" );
+            }
 
+            if ($orientador->save()){
+                
+                #Adicionar os cursos pegando o ID do Orientador gerado no banco
+                #Temos que salvar primeiro, para pegar o ID do Orientador
+                foreach ($cursos_id as $id) {
+                    $curso = Curso::findorFail($id);
+                    #dd($orientador->id);
+                    $curso->orientadores()->attach($orientador->id); 
+                }
+
+                
                 if (
                     $orientador->user()->create([
                         'name' => $request->nome,
@@ -93,15 +106,7 @@ class OrientadorController extends Controller
                     $confirm = new ConfirmandoEmail($request);
                     $confirm -> enviandoEmail();
                     $mensagem_sucesso = "Orientador cadastrado com sucesso.";
-  
-                    #Adicionar os cursos pegando o ID do Orientador gerado no banco
-                    $cursos_id = $request->cursos;
-                    foreach ($cursos_id as $id) {
-                        $curso = Curso::findorFail($id);
-                        #dd($orientador->id);
-                        $curso->orientadores()->attach($orientador->id); 
-                    }
-    
+
                     return redirect('/orientadors')->with('sucesso', 'Orientador cadastrado com sucesso.');
 
                 } else {
@@ -111,6 +116,7 @@ class OrientadorController extends Controller
                 return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
             }
         } catch (Exception $e) {
+            dd($e);
             return redirect()->back()->withErrors("Falha ao cadastrar orientador. Tente novamente mais tarde.");
         }
     }
@@ -152,7 +158,12 @@ class OrientadorController extends Controller
             $orientador->user->email = $request->email;
             $orientador->user->name_social = $request->name_social;
             $orientador->user->cpf = $request->cpf;
-            
+
+            $cursos_id = $request->cursos;
+            if($cursos_id == null){
+                return redirect()->back()->withErrors( "Selecione pelo menos um Curso" );
+            }
+
             if ($request->senha && $request->senha != null){
                 if (strlen($request->senha) > 3 && strlen($request->senha) < 9){
                     $orientador->user->password = Hash::make($request->password);

@@ -98,7 +98,7 @@
                 <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s): </label>
                 @foreach ($cursos as $curso)
                     <div>
-                        <input type="checkbox" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}" required>
+                        <input type="checkbox" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}">
                         <label for="curso_{{ $curso->id }}">{{ $curso->nome }}</label>
                     </div>
                 @endforeach
