@@ -87,7 +87,7 @@
             <input class="boxinfo" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputEmail4" class="titulo">Email:</label>
+            <label for="inputEmail4" class="titulo">E-mail:</label>
             <input class="boxinfo" type="email" id="inputEmail4" name="email" required placeholder="Digite o email">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
