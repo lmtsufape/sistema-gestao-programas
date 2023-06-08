@@ -113,9 +113,9 @@
             <input type="password"  class="boxinfo" id="senha" name="senha" required placeholder="Digite a senha">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="tipoUser" class="titulo">Tipo do usuário:<strong style="color: red">*</strong></label>
+            <label for="tipoUser" class="titulo">Perfil:<strong style="color: red">*</strong></label>
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
-                <option>Selecione o tipo de usuário</option>
+                <option>Selecione o perfil</option>
                 <option value="servidor">Técnico administrativo</option>
                 <option value="orientador">Professor</option>
                 <option value="aluno">Estudante</option>
@@ -159,7 +159,7 @@
 
             <div id="semestre">
                 <label class="titulo" for="semestre_entrada">Semestre de entrada:<strong style="color: red">*</strong></label>
-                <input class="boxinfo semestre-autocomplete" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre">
+                <input class="boxinfo semestre-autocomplete" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre (Exemplo: 2023.2)">
             </div>
 
             <br>
@@ -186,6 +186,9 @@
     $('.semestre-autocomplete').inputmask('0000.0');
     $('.cpf-autocomplete').inputmask('999.999.999-99');
 
+</script>
+
+<script>
     $(document).ready(function() {
     $("#tipoUser").change(function() {
         var selectedOption = $(this).val();
