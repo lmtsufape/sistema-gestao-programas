@@ -123,7 +123,7 @@
 
             <div id="instituicaoVinculo">
                 <label class="titulo" for="instituicaoVinculo">Intituição:<strong style="color: red">*</strong></label>
-                
+
                 <div class="vinculo">
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo" required>
@@ -138,7 +138,6 @@
 
             </div>
 
-
             <div id="curso">
                 <label class="titulo" for="curso">Curso:<strong style="color: red">*</strong></label>
                 <select aria-label="Default select example" class="boxinfo" id="curso" name="curso">
@@ -149,7 +148,6 @@
                 </select>
 
             </div>
-
 
             <div id="matricula">
                 <label class="titulo" for="matricula">Matrícula:<strong style="color: red">*</strong></label>

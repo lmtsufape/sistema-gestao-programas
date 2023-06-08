@@ -31,7 +31,7 @@ class UserController extends Controller
         if($existingCpf) {
             return redirect()->back()->withErrors( "CPF já existe." );
         }
-
+        //dd($request);
         DB::beginTransaction();
         try {
             switch ($request->tipoUser){
@@ -90,30 +90,35 @@ class UserController extends Controller
 
                     break;
                 case('orientador'):
+                    //dd($request);
                     $orientador = new Orientador([
                         'cpf' => $request->cpf,
                         'instituicaoVinculo' => $request->instituicaoVinculo,
                         'curso' => $request->curso,
                         'matricula' => $request->matricula,
                     ]);
-                    if(
-                        $orientador->user()->create([
-                            'name' => $request->input('nome'),
-                            'email' => $request->input('email'),
-                            'cpf' => $request->input('cpf'),
-                            'password' => Hash::make($request->input('senha'))
-                        ])->givePermissionTo('orientador')
-                    ){
-                        $user = $orientador->user;
-                        Auth::login($user);
-                        DB::commit();
-                        return redirect('/home')->with('Sucesso', 'Cadastro com sucesso.');
+                    //dd($orientador);
+                    //dd($orientador);
+                    if($orientador->save()) {
+                        $user = $orientador->user()->create([
+                            'name'=> $request->nome,
+                            'name_social' => $request->name_social == null ? "-" : $request->name_social,
+                            'email' => $request->email,
+                            'cpf' => $request->cpf,
+                            'password' => Hash::make($request->senha),
+                        ]);
 
+                        $user->givePermissionTo('orientador');
+                        $user->save();
+                        Auth::login($user);
+                        //dd($user);
+                        return redirect('/home')->with('Sucesso', 'Cadastro com sucesso.');
                     } else {
                         return redirect()->back()->withErrors( "Falha ao se cadastrar." );
                     }
+
                     break;
-            }
+                }
         } catch (Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao se cadastrar." );
