@@ -136,7 +136,7 @@ class EditalController extends Controller
                     'bolsa' => $request->bolsa,
                     'bolsista' => true,
                     'plano_projeto' => "plano de projeto",
-                    'info_complementares' => $request->info_complementares == null ? "-" : $request->name_social,
+                    'info_complementares' => $request->info_complementares == null ? "-" : $request->info_complementares,
                     'disciplina_id' => $edital->disciplina_id,
                     'edital_id' => $edital->id,
                     'aluno_id' => $aluno->id,
