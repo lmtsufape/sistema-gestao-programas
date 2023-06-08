@@ -103,7 +103,7 @@
             @csrf
 
             <label class="titulo" for="">CPF do estudante: <strong style="color: red">*</strong></label>
-            <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}">
+            <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf" placeholder="Digite o CPF do estudante" required data-url="{{ url('/cpfs') }}">
             <br>
             <br>
             <div class="labelTooltip">
@@ -135,7 +135,7 @@
             <br>
             <br>
             <label class="titulo" for="info_complementares">Informações complementares:</label>
-            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder=" Digite as informações complementares">
+            <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder=" Digite as informações complementares"w>
             <br>
             <br>
             <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno: <strong style="color: red">*</strong></label>
