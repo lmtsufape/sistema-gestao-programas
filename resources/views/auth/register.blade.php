@@ -135,19 +135,15 @@
                         <label class="form-check-label" for="instituicaoVinculo">Universidade de Pernambuco</label>
                     </div>
                 </div>
-
             </div>
 
-            <div id="curso">
-                <label class="titulo" for="curso">Curso:<strong style="color: red">*</strong></label>
-                <select aria-label="Default select example" class="boxinfo" id="curso" name="curso">
-                    <option value="">Selecione o curso</option>
-                    @foreach ($cursos as $curso)
-                    <option value="{{$curso->id}}">{{$curso->nome}}</option>
-                    @endforeach
-                </select>
-
+            <div id="cursos">
+                <label class="titulo">Cursos:</label><br>
+                @foreach ($cursos as $curso)
+                    <input type="checkbox" name="cursos[]" value="{{$curso->id}}"> {{$curso->nome}}<br>
+                @endforeach
             </div>
+
 
             <div id="matricula">
                 <label class="titulo" for="matricula">Matrícula:<strong style="color: red">*</strong></label>
@@ -202,7 +198,7 @@
             $("#matricula").show();
             $("#tipo_servidor").hide()
             $("#instituicaoVinculo").show();
-            $("#curso").show();
+            $("#cursos").show();
         } else if (selectedOption == "servidor") {
             $("#curso").hide();
             $("#semestre").hide();

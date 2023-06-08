@@ -94,7 +94,7 @@ class UserController extends Controller
                     $orientador = new Orientador([
                         'cpf' => $request->cpf,
                         'instituicaoVinculo' => $request->instituicaoVinculo,
-                        'curso' => $request->curso,
+                        //'curso' => $request->curso,
                         'matricula' => $request->matricula,
                     ]);
                     //dd($orientador);
@@ -106,6 +106,7 @@ class UserController extends Controller
                             'cpf' => $request->cpf,
                             'password' => Hash::make($request->senha),
                         ]);
+                        $orientador->cursos()->attach($request->cursos);
                         // dd($user);
                         $user->givePermissionTo('orientador');
                         $user->save();
