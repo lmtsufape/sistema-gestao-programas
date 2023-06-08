@@ -104,7 +104,7 @@
 
                     <label class="titulo" for="">CPF do estudante: <strong style="color: red">*</strong></label>
                     <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf"
-                        value="{{ old('cpf') }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}">
+                        value="{{ old('cpf') }}" placeholder="Digite o CPF do estudante" required data-url="{{ url('/cpfs') }}">
                     <br>
                     <br>
                     <div class="labelTooltip">
