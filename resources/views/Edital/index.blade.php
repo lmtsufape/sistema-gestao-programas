@@ -32,8 +32,13 @@
 
 <div class="container" style="font-family: 'Roboto', sans-serif;">
   @if (session('sucesso'))
-  <div class="alert alert-success">
+  <div class="alert alert-sucess">
     {{session('sucesso')}}
+  </div>
+  @endif
+  @if (session('falha'))
+  <div class="alert alert-danger">
+    {{session('falha')}}
   </div>
   @endif
   <br>

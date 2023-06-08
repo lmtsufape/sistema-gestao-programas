@@ -31,10 +31,11 @@
 
 <div class="container">
   @if (session('sucesso'))
-  <div class="alert alert-success">
+  <div class="alert alert-sucess">
     {{session('sucesso')}}
   </div>
   @endif
+
   <br>
 
   <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">

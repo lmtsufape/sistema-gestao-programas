@@ -238,12 +238,19 @@ class EditalController extends Controller
             return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
         }
     }
-    public function listar_alunos($id){
+    public function listar_alunos($id){  
+        $pivot = EditalAlunoOrientadors::where('edital_id', $id)->get();
+        $count = $pivot->count();
+ 
         $edital = Edital::find($id);
-        $alunos = $edital->alunos('user');
-        $alunos = $edital->alunos;
+        $alunos = $edital->alunos('user'); 
+        $alunos = $edital->alunos; 
 
-        return view("Edital.listar_alunos", compact("alunos", "edital"));
+        if($pivot->isEmpty()){
+            return redirect()->back()->with('falha', 'Não há alunos cadastrados no edital.');
+        }else{
+            return view("Edital.listar_alunos", compact("alunos", "edital"));
+        }   
     }
 
     public function listar_disciplinas($id){
@@ -256,7 +263,7 @@ class EditalController extends Controller
         $pivot = EditalAlunoOrientadors::where('edital_id', $id)->get();
         $count = $pivot->count();
         if($pivot->isEmpty()) {
-            return redirect()->back()->with('fail', 'Não há orientadores cadastrados no edital.');
+            return redirect()->back()->with('falha', 'Não há orientadores cadastrados no edital.');
         }
         elseif($count > 1) {
             foreach($pivot as $pivo) {
@@ -345,4 +352,3 @@ class EditalController extends Controller
 
 
 }
-
