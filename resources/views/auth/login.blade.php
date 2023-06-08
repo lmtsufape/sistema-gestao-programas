@@ -36,10 +36,10 @@
                 <hr style="margin-right: 60px; margin-left: 60px;" >
                 <form class="form-content" method="POST" action="{{ route('login') }}">
                     @csrf
-                    
+
                     <div class="mb-3" style="text-align: left">
                         <label for="email" style="font-weight: 400; font-size: 20px;
-                         line-height: 35px; color: #000000;">Email:</label>
+                         line-height: 35px; color: #000000;">E-mail:</label>
                         <input id="email" name="email" style="background: #F5F5F5; border-radius: 10px;
                          height: 40px;" class="form-control input-modal-create" type="text" placeholder="Digite seu email" >
                     </div>

@@ -12,7 +12,7 @@ class Orientador extends Model
     protected $fillable = [
         'cpf',
         'instituicaoVinculo',
-        'curso',
+        #'curso',
         'matricula',
     ];
 
@@ -35,5 +35,9 @@ class Orientador extends Model
                 'orientador_id',
                 'termo_compromisso_aluno',
             ]);
+    }
+
+    public function cursos(){
+        return $this->belongsToMany(Curso::class, 'orientador_cursos');
     }
 }

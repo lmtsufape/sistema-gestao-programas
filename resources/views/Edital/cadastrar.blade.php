@@ -79,12 +79,12 @@
                     @csrf
 
                     <label class="titulo" for="titulo_edital">Título:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo" placeholder="Digite o título do Edital" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
+                    <input class="boxinfo" placeholder="Digite o título" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
 
                     <label class="titulo" for="semestre">Semestre:<strong style="color: red">*</strong></label>
                     <input class="boxinfo semestre-autocomplete" placeholder="Digite o semestre (Ex: 2023.2)" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
 
-                    <label class="titulo" for="Descrição">Descrição:<strong style="color: red">*</strong></label>
+                    <label class="titulo" for="Descrição">Descrição:</label>
                     <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="3"> {{ old('descricao') }}</textarea><br><br>
 
                     <label class="titulo" for="data_inicio" class="titulo">Data de início:<strong style="color: red">*</strong></label>
@@ -94,7 +94,7 @@
                     <input class="boxinfo"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
 
                     <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}" required><br><br>
+                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}" required><br><br>
 
                     <label class="titulo" for="programa">Programa:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >

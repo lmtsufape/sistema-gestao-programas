@@ -66,7 +66,7 @@ class EditalController extends Controller
 
             //dd($request);
             $edital = new Edital();
-            $edital->descricao = $request->descricao;
+            $edital->descricao  = $request->descricao == null? "" : $request->descricao;
             $edital->semestre = $request->semestre;
             $edital->data_inicio = $request->data_inicio;
             $edital->data_fim = $request->data_fim;
@@ -136,7 +136,7 @@ class EditalController extends Controller
                     'bolsa' => $request->bolsa,
                     'bolsista' => true,
                     'plano_projeto' => "plano de projeto",
-                    'info_complementares' => $request->info_complementares == null ? "-" : $request->name_social,
+                    'info_complementares' => $request->info_complementares == null ? "-" : $request->info_complementares,
                     'disciplina_id' => $edital->disciplina_id,
                     'edital_id' => $edital->id,
                     'aluno_id' => $aluno->id,
@@ -150,7 +150,7 @@ class EditalController extends Controller
            }
         } catch(Exception $e){
              DB::rollback();
-             return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." );
+             return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." )->withInput();
          }
     }
 
@@ -183,7 +183,7 @@ class EditalController extends Controller
         DB::beginTransaction();
         try{
             $edital = Edital::find($id);
-            $edital->descricao = $request->descricao ? $request->descricao : $edital->descricao;
+            $edital->descricao = $request->descricao ?? $edital->descricao; //$edital->descricao  = $request->descricao == null? "" : $request->descricao;
             $edital->semestre = $request->semestre ? $request->semestre : $edital->semestre;
             $edital->titulo_edital = $request->titulo_edital ? $request->titulo_edital : $edital->titulo_edital;
             $edital->valor_bolsa = $request->valor_bolsa ? $request->valor_bolsa : $edital->valor_bolsa;
@@ -238,12 +238,19 @@ class EditalController extends Controller
             return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
         }
     }
-    public function listar_alunos($id){
+    public function listar_alunos($id){  
+        $pivot = EditalAlunoOrientadors::where('edital_id', $id)->get();
+        $count = $pivot->count();
+ 
         $edital = Edital::find($id);
-        $alunos = $edital->alunos('user');
-        $alunos = $edital->alunos;
+        $alunos = $edital->alunos('user'); 
+        $alunos = $edital->alunos; 
 
-        return view("Edital.listar_alunos", compact("alunos", "edital"));
+        if($pivot->isEmpty()){
+            return redirect()->back()->with('falha', 'Não há alunos cadastrados no edital.');
+        }else{
+            return view("Edital.listar_alunos", compact("alunos", "edital"));
+        }   
     }
 
     public function listar_disciplinas($id){
@@ -256,7 +263,7 @@ class EditalController extends Controller
         $pivot = EditalAlunoOrientadors::where('edital_id', $id)->get();
         $count = $pivot->count();
         if($pivot->isEmpty()) {
-            return redirect()->back()->with('fail', 'Não há orientadores cadastrados no edital.');
+            return redirect()->back()->with('falha', 'Não há orientadores cadastrados no edital.');
         }
         elseif($count > 1) {
             foreach($pivot as $pivo) {
@@ -304,8 +311,8 @@ class EditalController extends Controller
         DB::beginTransaction();
         try {
             $vinculo = EditalAlunoOrientadors::find($id);
-            $vinculo->bolsa = $request->bolsa ? $request->bolsa : $vinculo->bolsa;
-            $vinculo->bolsista = $request->bolsista == "True" ? $request->bolsista == "True" : $vinculo->bolsista;
+            // $vinculo->bolsa = $request->bolsa ? $request->bolsa : $vinculo->bolsa;
+            // $vinculo->bolsista = $request->bolsista == "True" ? $request->bolsista == "True" : $vinculo->bolsista;
             $vinculo->info_complementares = $request->info_complementares ? $request->info_complementares : $vinculo->info_complementares;
             $vinculo->termo_compromisso_aluno = $request->termo_compromisso_aluno ? $request->termo_compromisso_aluno: $vinculo->termo_compromisso_aluno;
 
@@ -345,4 +352,3 @@ class EditalController extends Controller
 
 
 }
-

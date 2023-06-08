@@ -21,4 +21,9 @@ class Curso extends Model
     {
         return $this->hasMany(Disciplina::class, "curso_id");
     }
+
+    public function orientadores(){
+        return $this->belongsToMany(Orientador::class, 'orientador_cursos');
+    
+    }
 }

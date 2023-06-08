@@ -75,10 +75,10 @@
                 @csrf
 
                 <label for="nome" class="titulo" >Nome:<strong style="color: red">*</strong></label>
-                <input type="text" name="nome" id="nome" placeholder="Digite o nome do programa" class="boxinfo" required><br><br>
+                <input type="text" name="nome" value="{{ old('nome') }}" id="nome" placeholder="Digite o nome do programa" class="boxinfo" required><br><br>
 
                 <label for="descricao" class="titulo">Descrição:<strong style="color: red">*</strong></label>
-                <input type="text" name="descricao" id="descricao" placeholder="Digite a descrição do programa" class="boxinfo" required><br><br>
+                <input type="text" name="descricao" value="{{ old('descricao') }}" id="descricao" placeholder="Digite a descrição do programa" class="boxinfo" required><br><br>
 
                 <label class="titulo" for="servidor">Servidor:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="servidor" id="servidor" >

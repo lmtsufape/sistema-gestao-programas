@@ -77,6 +77,43 @@
                     <br>
                 </div>
 
+                {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
+
+                @if (auth()->user()->typage->tipo_servidor == 'adm')
+                <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%;">
+                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+                        <button class="botaoazul" ref="{{url("/programas/create")}}" onclick="window.location.href='{{url("/programas/create")}}'">
+                            <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
+                            <p style="margin: auto; padding-right: 5px"> Cadastrar programa </p>
+                        </button>
+                    </div>
+
+                    {{--  Cadastrar edital  --}}
+                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+                        <button class="botaoverde" ref="{{url("/editais/create")}}" onclick="window.location.href='{{route("edital.create")}}'">
+                            <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
+                            <p style="margin: auto; padding-right: 5px"> Cadastrar <br> edital </p>
+                        </button>
+                    </div>
+
+                    {{--  Cadastrar disciplina  --}}
+                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+                        <button class="botaoazul" ref="{{url("/disciplinas/create")}}" onclick="window.location.href='{{url("/disciplinas/create")}}'">
+                            <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
+                            <p style="margin: auto; padding-right: 5px"> Cadastrar disciplina </p>
+                        </button>
+                    </div>
+
+                    {{--  Cadastrar curso  --}}
+                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+                        <button class="botaoverde" ref="{{url("/cursos/create")}}" onclick="window.location.href='{{url("/cursos/create")}}'">
+                            <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
+                            <p style="margin: auto; padding-right: 5px"> Cadastrar <br> curso </p>
+                        </button>
+                    </div>
+                </div>
+                @endif
+
                 <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%;">
                     @foreach ($programas as $index => $programa)
                       @if ($index % 2 == 0)
