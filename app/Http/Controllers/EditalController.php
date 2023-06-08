@@ -256,7 +256,7 @@ class EditalController extends Controller
         $pivot = EditalAlunoOrientadors::where('edital_id', $id)->get();
         $count = $pivot->count();
         if($pivot->isEmpty()) {
-            return redirect()->back()->with('fail', 'Não há orientadores cadastrados no edital.');
+            return redirect()->back()->with('falha', 'Não há orientadores cadastrados no edital.');
         }
         elseif($count > 1) {
             foreach($pivot as $pivo) {
@@ -345,4 +345,3 @@ class EditalController extends Controller
 
 
 }
-
