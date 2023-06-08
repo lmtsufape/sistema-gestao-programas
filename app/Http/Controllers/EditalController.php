@@ -72,14 +72,21 @@ class EditalController extends Controller
             $edital->data_fim = $request->data_fim;
             $edital->titulo_edital = $request->titulo_edital;
             $edital->valor_bolsa = $request->valor_bolsa;
-            $edital->disciplina_id = $request->disciplina;
+            #$edital->disciplina_id = $request->disciplina;
             // 'info_complementares' => $request->info_complementares == null ? "-" : $request->name_social,
 
             $edital->programa_id = $request->programa;
-            $edital ->disciplina_id = $request ->disciplina;
-
+            
             //dd($edital);
             $edital->save();
+
+            $disciplinas_id = $request->disciplinas;
+            if($disciplinas_id != null){
+                foreach ($disciplinas_id as $id) {
+                    $disciplina = Disciplina::Where('id', $id)->first();
+                    $disciplina->editais()->attach($edital->id); 
+                }
+            }
 
             DB::commit();
 
@@ -87,6 +94,7 @@ class EditalController extends Controller
 
         } catch(Exception $e){
             DB::rollback();
+            dd($e);
             return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
         }
     }
@@ -167,8 +175,9 @@ class EditalController extends Controller
         $edital = Edital::Where('id', $id)->first();
         $programas = Programa::all();
         $disciplinas = Disciplina::all();
-
-        return view("Edital.editar", compact("edital", "programas", "disciplinas"));
+        $disciplinasSelecionadas = $edital->disciplinas->pluck('id')->toArray();
+        
+        return view("Edital.editar", compact("edital", "programas", "disciplinas", "disciplinasSelecionadas"));
     }
 
     /**
@@ -190,7 +199,11 @@ class EditalController extends Controller
             $edital->data_inicio = $request->data_inicio ? $request->data_inicio : $edital->data_inicio;
             $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
             $edital->programa_id = $request->programa ? $request->programa : $edital->programa_id;
-            $edital->disciplina_id = $request->disciplina ? $request->disciplina : $edital->disciplina_id;
+            #$edital->disciplina_id = $request->disciplina ? $request->disciplina : $edital->disciplina_id;
+            
+
+            $edital->disciplinas()->sync($request->disciplinas);
+
             $edital->update();
             //dd($edital);
 
@@ -221,20 +234,24 @@ class EditalController extends Controller
             else{
                 DB::beginTransaction();
                 try{
-
-                    Edital::where("id", $id)->delete();
+                    $edital = Edital::Where('id', $id)->first();
+                    if($edital->disciplinas != null){
+                        $edital->disciplinas()->detach($edital->disciplinas); 
+                    }
+                    $edital->delete();    
 
                     DB::commit();
-
-                    return redirect()->route('programas.index')->with('sucesso', 'Edital deletado com sucesso.');
-
+                    return redirect()->route('edital.index')->with('sucesso', 'Edital deletado com sucesso.');
+                    
                 } catch(exception $e){
                     DB::rollback();
+                    dd($e);
                     return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
                 }
             }
         } catch(exception $e){
             DB::rollback();
+            dd($e);
             return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
         }
     }

@@ -105,12 +105,12 @@
                     </select><br><br>
 
                     <label class="titulo" for="disciplina">Disciplina:</label>
-                    <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina" >
-                        <option></option>
-                            @foreach ($disciplinas as $key => $disciplina)
-                            <option value="{{$disciplina->id}}" {{$key == 0 ? 'selected' : ''}}>{{$disciplina->nome}}</option>
-                            @endforeach
-                    </select><br><br>
+                    @foreach ($disciplinas as $disciplina)
+                    <div>
+                        <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}">
+                        <label for="disciplina_{{ $disciplina->id }}">{{ $disciplina->nome . '/' . $disciplina->curso->nome}}</label>
+                    </div>
+                    @endforeach<br><br>
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                         <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;

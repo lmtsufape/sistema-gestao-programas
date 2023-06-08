@@ -18,7 +18,7 @@ class Edital extends Model
         'titulo_edital',
         'valor_bolsa',
         'programa_id',
-        'disciplina_id'
+        #'disciplina_id'
     ];
 
 
@@ -52,9 +52,14 @@ class Edital extends Model
     //     return $this->hasMany(Disciplina::class, "disciplina_id");
     // }
 
-    public function disciplina()
-    {
-        return $this->belongsTo(Disciplina::class, "disciplina_id");
+    // public function disciplina()
+    // {
+    //     return $this->belongsTo(Disciplina::class, "disciplina_id");
+    // }
+
+    public function disciplinas(){
+        return $this->belongsToMany(Disciplina::class, 'edital_disciplinas');
+    
     }
 
 }

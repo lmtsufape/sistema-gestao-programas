@@ -94,18 +94,18 @@
 
                     <label class="titulo" for="data_inicio">Data de início:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" type="date" name="data_inicio" id="data_inicio"
-                        value="{{ $edital->data_inicio }}"><br><br>
+                        value="{{ $edital->data_inicio->format('Y-m-d') }}"><br><br>
 
                     <label class="titulo" for="data_fim">Data de fim:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" type="date" name="data_fim" id="data_fim"
-                        value="{{ $edital->data_fim }}"><br><br>
+                        value="{{ $edital->data_fim->format('Y-m-d') }}"><br><br>
 
                     {{-- <label class="titulo" for="titulo_edital">Título do Edital:</label> --}}
                     {{-- <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br> --}}
 
                     <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa"
-                        id="valor_bolsa" value=""><br><br>
+                        id="valor_bolsa" value="{{ $edital->valor_bolsa }}"><br><br>
 
                     <label class="titulo" for="programa">Programa:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa">
@@ -116,13 +116,12 @@
                     </select><br><br>
 
                     <label class="titulo" for="disciplina">Disciplina:</label>
-                    <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina">
-                        @foreach ($disciplinas as $disciplina)
-                            <option value="{{ $disciplina->id }}"
-                                {{ $edital->disciplina_id == $disciplina->id ? 'selected' : '' }}>{{ $disciplina->nome }}
-                            </option>
-                        @endforeach
-                    </select><br><br>
+                    @foreach ($disciplinas as $disciplina)
+                    <div>
+                        <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}" @if(in_array($disciplina->id, $disciplinasSelecionadas)) checked @endif>
+                        <label for="disciplina_{{ $disciplina->id }}">{{ $disciplina->nome . '/' . $disciplina->curso->nome }}</label>
+                    </div>
+                    @endforeach<br><br>
 
 
 

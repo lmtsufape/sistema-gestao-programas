@@ -27,7 +27,7 @@ class EditalStoreFormRequest extends FormRequest
                 "data_inicio"=>"required|date",
                 "data_fim"=>"required|date",
                 "programa"=>"required",
-                "disciplina"=>"",
+                "disciplinas"=>"",
                 "titulo_edital"=>"required",
                 "valor_bolsa"=>"required|numeric",
                 "semestre"=>"required|regex:/^\d{4}\.\d$/",
