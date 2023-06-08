@@ -97,13 +97,22 @@
             @endauth
 
           </ul>
-          <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 400; font-size: 20px; line-height: 29px; color: #131833; margin-left: 50px">
-              Contato
-          </a>
+          <h2 style="font-style: normal; font-weight: 400; font-size: 18px; line-height: 30px; color: #131833; ">
+            @auth
+              Olá, {{Auth::user()->name}}
+            @endauth
+          </h2>
           <div style="border-right: 1px solid #131833; width: 1px; height: 30px; padding-left: 2%;"></div>
-          <a href="{{route('home')}}" type="button" style="text-decoration: none ; font-weight: 400; font-size: 20px; line-height: 29px; color: #131833; margin-left: 2%; margin-right: 25px">
-              Sobre
-          </a>
+          <div style="padding-left:2%; display:flex; align-items:center; margin-top:10px">
+            <form action="/logout" method="POST">
+              @csrf
+              <a href="/logout"  onclick="event.preventDefault(); this.closest('form').submit()" class="link_navbar">
+                <img src="{{asset("images/logout.png")}}" alt="logout" style="height:30px; width:30px;">
+                <p style="font-style: normal; font-weight: 400; font-size: 18px; line-height: 29px;
+                margin-left: 5px;"> Sair </p>
+              </a>
+            </form>
+          </div>
         </div>
       </nav>
     </header>
