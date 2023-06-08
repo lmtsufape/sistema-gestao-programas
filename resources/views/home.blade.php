@@ -77,38 +77,38 @@
                     <br>
                 </div>
 
-                {{--  condição para se for admin aparacer a opão de criar programa  --}}
+                {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
 
                 @if (auth()->user()->typage->tipo_servidor == 'adm')
                 <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%;">
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
                         <button class="botaoazul" ref="{{url("/programas/create")}}" onclick="window.location.href='{{url("/programas/create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p style="margin: auto; padding-right: 5px"> Criar programa </p>
+                            <p style="margin: auto; padding-right: 5px"> Cadastrar programa </p>
                         </button>
                     </div>
 
-                    {{--  criar edital  --}}
+                    {{--  Cadastrar edital  --}}
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
-                        <button class="botaoverde" ref="{{url("/editais/create")}}" onclick="window.location.href='{{url("/editais/create")}}'">
+                        <button class="botaoverde" ref="{{url("/editais/create")}}" onclick="window.location.href='{{route("edital.create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p style="margin: auto; padding-right: 5px"> Criar edital </p>
+                            <p style="margin: auto; padding-right: 5px"> Cadastrar <br> edital </p>
                         </button>
                     </div>
 
-                    {{--  criar disciplina  --}}
+                    {{--  Cadastrar disciplina  --}}
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
                         <button class="botaoazul" ref="{{url("/disciplinas/create")}}" onclick="window.location.href='{{url("/disciplinas/create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p style="margin: auto; padding-right: 5px"> Criar disciplina </p>
+                            <p style="margin: auto; padding-right: 5px"> Cadastrar disciplina </p>
                         </button>
                     </div>
 
-                    {{--  criar curso  --}}
+                    {{--  Cadastrar curso  --}}
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
                         <button class="botaoverde" ref="{{url("/cursos/create")}}" onclick="window.location.href='{{url("/cursos/create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p style="margin: auto; padding-right: 5px"> Criar curso </p>
+                            <p style="margin: auto; padding-right: 5px"> Cadastrar <br> curso </p>
                         </button>
                     </div>
                 </div>
