@@ -108,7 +108,7 @@
             <br>
             <div class="labelTooltip">
                 <label class="titulo" for="bolsa">Tipo da bolsa: <strong style="color: red">*</strong></label>
-                <a type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Informar se o aluno a ser vinculado receberá bolsa ou não.">
+                <a type="button" data-bs-toggle="tooltip" data-bs-placement="rightgi" title="Informar se o estudante a ser vinculado receberá bolsa ou não.">
                     <img src="{{asset("images/info.png")}}" alt="Informação do tipo de bolsa" style="height: 20px; width: 20px;" >
                 </a>
             </div>
