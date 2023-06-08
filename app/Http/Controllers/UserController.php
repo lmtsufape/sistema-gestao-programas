@@ -32,8 +32,8 @@ class UserController extends Controller
             return redirect()->back()->withErrors( "CPF já existe." );
         }
         //dd($request);
-        DB::beginTransaction();
-        try {
+        // DB::beginTransaction();
+        // try {
             switch ($request->tipoUser){
                 case('aluno'):
                     $aluno = new Aluno();
@@ -90,14 +90,13 @@ class UserController extends Controller
 
                     break;
                 case('orientador'):
-                    //dd($request);
+                    // dd($request);
                     $orientador = new Orientador([
                         'cpf' => $request->cpf,
                         'instituicaoVinculo' => $request->instituicaoVinculo,
                         'curso' => $request->curso,
                         'matricula' => $request->matricula,
                     ]);
-                    //dd($orientador);
                     //dd($orientador);
                     if($orientador->save()) {
                         $user = $orientador->user()->create([
@@ -107,7 +106,7 @@ class UserController extends Controller
                             'cpf' => $request->cpf,
                             'password' => Hash::make($request->senha),
                         ]);
-
+                        // dd($user);
                         $user->givePermissionTo('orientador');
                         $user->save();
                         Auth::login($user);
@@ -119,9 +118,9 @@ class UserController extends Controller
 
                     break;
                 }
-        } catch (Exception $e) {
-            DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao se cadastrar." );
-        }
+        // } catch (Exception $e) {
+        //     DB::rollback();
+        //     return redirect()->back()->withErrors( "Falha ao se cadastrar." );
+        // }
     }
 }

@@ -12,7 +12,7 @@ class Orientador extends Model
     protected $fillable = [
         'cpf',
         'instituicaoVinculo',
-        #'curso',
+        'curso',
         'matricula',
     ];
 
