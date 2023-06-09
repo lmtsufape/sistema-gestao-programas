@@ -55,6 +55,22 @@
         padding: 34px;
         width: 65%
     }
+    .vinculo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .form-check{
+        margin-right: 35px;
+    }
+    .radios{
+        margin:5px;
+            }
+
+
 </style>
 
 @canany(['admin', 'servidor'])
@@ -92,8 +108,20 @@
                 <label for="matricula" class="titulo">Matrícula:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)" value="{{ old('matricula') }}" required><br><br>
 
-                <label for="instituicaoVinculo" class="titulo">Instituição:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a instituição vinculada ao professor" value="{{ old('instituicaoVinculo') }}" required><br><br>
+                <label class="titulo" for="instituicaoVinculo">Intituição:<strong style="color: red">*</strong></label>
+                <div class="vinculo">
+                                        
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo" required>
+                        <label class="form-check-label" for="instituicaoVinculo">Universidade Federal do Agreste de Pernambuco</label>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UPE" name="instituicaoVinculo" required>
+                        <label class="form-check-label" for="instituicaoVinculo">Universidade de Pernambuco</label>
+                    </div>
+                </div> 
+                <br>
 
                 <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s):<strong style="color: red">*</strong></label>
                 @foreach ($cursos as $curso)
