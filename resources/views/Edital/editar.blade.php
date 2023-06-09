@@ -60,6 +60,11 @@
                 padding: 34px;
                 width: 65%
             }
+
+            .radio-spacing {
+                padding-right: 20px; /* Ajuste o valor conforme necessário */
+            }
+
         </style>
         <div class="container"
             style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
@@ -115,16 +120,34 @@
                         @endforeach
                     </select><br><br>
 
-                    <label class="titulo" for="disciplina">Disciplina:</label>
-                    @foreach ($disciplinas as $disciplina)
-                    <div>
-                        <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}" @if(in_array($disciplina->id, $disciplinasSelecionadas)) checked @endif>
-                        <label for="disciplina_{{ $disciplina->id }}">{{ $disciplina->nome . '/' . $disciplina->curso->nome }}</label>
+                    @if(count($edital->disciplinas) == 0)
+                    <div id="checkDisciplina">
+                        <label class="titulo radio-spacing" for="disciplina">Possui disciplina(s)?: <strong style="color: red">*</strong></label>
+                        <input type="radio" name="checkDisciplina" value="sim" required>
+                        <label class="radio-spacing" for="checkDisciplina_sim">Sim</label>
+                        <input type="radio" name="checkDisciplina" value="nao" checked required>
+                        <label class="radio-spacing" for="checkDisciplina_nao">Não</label>
+                    </div><br><br>
+                    
+                    <div id="disciplinas" hidden>
+                        <label class="titulo" for="disciplina">Disciplina(s):</label>
+                        @foreach ($disciplinas as $disciplina)
+                        <div>
+                            <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}" @if(in_array($disciplina->id, $disciplinasSelecionadas)) checked @endif>
+                            <label for="disciplina_{{ $disciplina->id }}">{{ $disciplina->nome . '/' . $disciplina->curso->nome }}</label>
+                        </div>
+                        @endforeach<br><br>
                     </div>
-                    @endforeach<br><br>
 
-
-
+                    @else
+                        <label class="titulo" for="disciplina">Disciplina(s):</label>
+                        @foreach ($disciplinas as $disciplina)
+                        <div>
+                            <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}" @if(in_array($disciplina->id, $disciplinasSelecionadas)) checked @endif>
+                            <label for="disciplina_{{ $disciplina->id }}">{{ $disciplina->nome . '/' . $disciplina->curso->nome }}</label>
+                        </div>
+                        @endforeach<br><br>
+                    @endif
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                         <input type="button" value="Voltar" href="{{ route('edital.index') }}"
@@ -148,6 +171,20 @@
             <br>
             <br>
         </div>
+
+        <script>
+            $(document).ready(function() {
+                $("input[name='checkDisciplina']").change(function() {
+                    if ($("input[name='checkDisciplina']:checked").val() == "sim"){
+                        $("#disciplinas").removeAttr("hidden");
+                        
+                    } else {
+                        $("#disciplinas").attr("hidden", true);
+                    }
+                });
+            });
+        </script>
+
         <script>
             // //cash mask para o valor da bolsa
             // $(document).ready(function(){
@@ -173,7 +210,7 @@
             });
             $('div.chosen-container-single').addClass('required');
             $('div.chosen-container-multi').addClass('required');
-        </script>
+        </>
     @else
         <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
         <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{ url('/login') }}">Voltar</a>
