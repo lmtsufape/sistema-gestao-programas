@@ -200,7 +200,7 @@
             $("#instituicaoVinculo").show();
             $("#cursos").show();
         } else if (selectedOption == "servidor") {
-            $("#curso").hide();
+            $("#cursos").hide();
             $("#semestre").hide();
             $("#matricula").show();
             $("#tipo_servidor").show();

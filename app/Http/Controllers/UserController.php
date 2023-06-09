@@ -32,8 +32,8 @@ class UserController extends Controller
             return redirect()->back()->withErrors( "CPF já existe." );
         }
         //dd($request);
-        // DB::beginTransaction();
-        // try {
+        DB::beginTransaction();
+        try {
             switch ($request->tipoUser){
                 case('aluno'):
                     $aluno = new Aluno();
@@ -64,6 +64,7 @@ class UserController extends Controller
                     break;
 
                 case('servidor'):
+                    //dd($request);
                     $servidor = Servidor::Create([
                         'cpf' => $request->input('cpf'),
                         'tipo_servidor' => $request->tipoUser,
@@ -119,9 +120,9 @@ class UserController extends Controller
 
                     break;
                 }
-        // } catch (Exception $e) {
-        //     DB::rollback();
-        //     return redirect()->back()->withErrors( "Falha ao se cadastrar." );
-        // }
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao se cadastrar." );
+        }
     }
 }

@@ -13,6 +13,7 @@ class Servidor extends Model
         'cpf',
         'tipo_servidor',
         'instituicaoVinculo',
+        'matricula'
     ];
 
     public function user(){
