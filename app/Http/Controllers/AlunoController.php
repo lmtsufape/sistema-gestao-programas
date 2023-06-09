@@ -110,34 +110,6 @@ class AlunoController extends Controller
         $alunos = Aluno::with('user')->get();
         //dd($alunos);
         return view("Alunos.index", compact("alunos"));
-
-        /*if (sizeof($request-> query()) > 0){
-            $campo = $request->query('campo');
-            $valor = $request->query('valor');
-
-            if ($valor == null){
-                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
-            }
-
-            $alunos = Aluno::join("users", "users.typage_id", "=", "alunos.id")->join("cursos", "cursos.id", "=", "alunos.curso_id");
-            $alunos = $alunos->where(function ($query) use ($valor) {
-                if ($valor) {
-                    $query->orWhere("users.name", "LIKE", "%{$valor}%");
-                    $query->orWhere("users.name_social", "LIKE", "%{$valor}%");
-                    $query->orWhere("users.email", "LIKE", "%{$valor}%");
-                    $query->orWhere("alunos.cpf", "LIKE", "%{$valor}%");
-                    $query->orWhere("cursos.nome", "LIKE", "%{$valor}%");
-                }
-            })->orderBy('alunos.created_at', 'desc')->select("alunos.*")->get();
-
-
-            return view("Alunos.index", compact("alunos"));
-        } else {
-            $alunos = Aluno::join("users", "users.typage_id", "=", "alunos.id")->join("cursos", "cursos.id", "=", "alunos.curso_id");
-            $alunos = $alunos->get();
-            return view("Alunos.index", compact("alunos"));
-        }*/
-
     }
 
     public function edit($id){
