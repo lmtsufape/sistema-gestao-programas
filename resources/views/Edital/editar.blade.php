@@ -85,7 +85,7 @@
                     <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital"
                         value="{{ $edital->titulo_edital }}"><br><br>
 
-                    <label class="titulo" for="semestre">Semestre:<strong style="color: red">*</strong></label>
+                    <label class="titulo" for="semestre">Semestre de Início:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" type="text" name="semestre" id="semestre"
                         value="{{ $edital->semestre }}"><br><br>
 

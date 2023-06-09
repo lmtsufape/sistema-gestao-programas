@@ -109,8 +109,7 @@ class EditalController extends Controller
     {
         $edital = Edital::findOrFail($id);
         $orientadores = Orientador::with('user')->get();
-
-
+        
         return view('Edital.show', ['edital' => $edital, 'orientadores' => $orientadores]);
     }
 

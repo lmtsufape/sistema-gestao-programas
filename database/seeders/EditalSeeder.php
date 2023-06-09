@@ -22,7 +22,7 @@ class EditalSeeder extends Seeder
             'titulo_edital' => 'Edital PAVI',
             'data_inicio' =>"2022-11-17",
             'data_fim' =>"2024-11-18",
-            'valor_bolsa' => 'R$ 400,00',
+            'valor_bolsa' => '400',
         ]);
     }
 }
