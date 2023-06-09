@@ -18,7 +18,7 @@
       display: flex;
       align-items: center;
       padding-left: 20px;
-      min-width: 270px;
+      min-width: 250px;
       background: #34A853;
       box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
       margin-bottom: 30px;
@@ -45,7 +45,7 @@
       display: flex;
       align-items: center;
       padding-left: 20px;
-      min-width: 270px;
+      min-width: 250px;
       background: #2D3875;
       box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
       border-radius: 20px;
@@ -80,7 +80,8 @@
                 {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
 
                 @if (auth()->user()->typage->tipo_servidor == 'adm')
-                <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%;">
+                    
+                <div style="display:flex; flex-wrap:nowrap; align-items:center; gap:5%;">
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
                         <button class="botaoazul" ref="{{url("/programas/create")}}" onclick="window.location.href='{{url("/programas/create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
@@ -113,8 +114,13 @@
                     </div>
                 </div>
                 @endif
-
-                <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%;">
+                <h2 style="font-style: normal; padding-top: 38px;font-weight: 700; text-align:start;
+                    font-size: 35px; line-height: 41px; color: #131833;">
+                    Programas 
+                </h2>
+                <hr>
+                <br>
+                <div style="display:flex;flex-wrap: wrap;align-items:center;gap: 5%;justify-content: flex-start;">
                     @foreach ($programas as $index => $programa)
                       @if ($index % 2 == 0)
                         <button class="botaoazul" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
@@ -125,8 +131,8 @@
                       <p style="margin: auto; padding-right: 5px">{{ $programa->nome }}</p>
                       </button>
                     @endforeach
-                  </div>
-
+                </div>
+                <br>
             </div>
 
         @endif
