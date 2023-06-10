@@ -27,7 +27,9 @@ class OrientadorFormUpdateRequest extends FormRequest
             "nome" => "max:50",
             "email" => "email",
             "senha" => "min:4|max:8",
-            "cpf" => "formato_cpf|cpf|unique:servidors|unique:alunos"
+            "cpf" => "required|formato_cpf|cpf|unique:servidors|unique:alunos|unique:orientadors",
+            "matricula" => "required",
+            "cursos" => 'required|array|min:1'
         ];
     }
     public function messages(){
