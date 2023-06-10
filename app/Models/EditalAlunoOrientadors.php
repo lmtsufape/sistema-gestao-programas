@@ -19,7 +19,7 @@ class EditalAlunoOrientadors extends Model
         'termo_compromisso_aluno',
         'aluno_id',
         'edital_id',
-        'disciplina_id',
+        #'disciplina_id',
         'orientador_id',
     ];
 

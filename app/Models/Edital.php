@@ -40,7 +40,7 @@ class Edital extends Model
                 'data_fim', 
                 'bolsa', 
                 'info_complementares', 
-                'disciplina_id',
+                #'disciplina_id',
                 'aluno_id',
                 'edital_id',
                 'orientador_id',

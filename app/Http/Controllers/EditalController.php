@@ -15,6 +15,7 @@ use App\Http\Requests\EditalUpdateFormRequest;
 use App\Http\Requests\VinculoUpdateFormRequest;
 use App\Models\User;
 use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
 
 class EditalController extends Controller
@@ -94,7 +95,7 @@ class EditalController extends Controller
 
         } catch(Exception $e){
             DB::rollback();
-            dd($e);
+            #dd($e);
             return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
         }
     }
@@ -134,7 +135,7 @@ class EditalController extends Controller
             }
 
             if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
-                return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('fail', 'O aluno já está cadastrado no edital.');
+                return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('falha', 'O aluno já está cadastrado no edital.');
             } else {
                 $data = [
                     'titulo' => $edital->titulo_edital,
@@ -144,7 +145,7 @@ class EditalController extends Controller
                     'bolsista' => true,
                     'plano_projeto' => "plano de projeto",
                     'info_complementares' => $request->info_complementares == null ? "-" : $request->info_complementares,
-                    'disciplina_id' => $edital->disciplina_id,
+                    #'disciplina_id' => $edital->disciplina_id,
                     'edital_id' => $edital->id,
                     'aluno_id' => $aluno->id,
                     'orientador_id' => $orientador_id,
@@ -153,10 +154,11 @@ class EditalController extends Controller
                 $editalAlunoOrientador = EditalAlunoOrientadors::create($data);
 
                 DB::commit();
-                 return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('success', 'O aluno foi inscrito com sucesso no edital.');
+                 return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('successo', 'O aluno foi inscrito com sucesso no edital.');
            }
         } catch(Exception $e){
              DB::rollback();
+             dd($e);
              return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." )->withInput();
          }
     }
@@ -244,13 +246,13 @@ class EditalController extends Controller
                     
                 } catch(exception $e){
                     DB::rollback();
-                    dd($e);
+                    #dd($e);
                     return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
                 }
             }
         } catch(exception $e){
             DB::rollback();
-            dd($e);
+            #dd($e);
             return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
         }
     }
@@ -308,7 +310,7 @@ class EditalController extends Controller
         if(Storage::exists($path)) {
             return Storage::download($path);
         } else {
-            return redirect()->back()->with('fail', 'Arquivo PDF não encontrado.');
+            return redirect()->back()->with('falha', 'Arquivo PDF não encontrado.');
         }
      }
 
@@ -354,16 +356,23 @@ class EditalController extends Controller
 
         DB::beginTransaction();
         try {
-            $vinculo = EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->first();
+            $vinculo = EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id);
+            #dd($vinculo);
+         
             $vinculo->delete();
 
             DB::commit();
-            return redirect()->back()->with('sucesso', 'O vínculo foi deletado com sucesso do edital.');
+            return redirect()->route('edital.index')->with('sucesso', 'O vínculo foi deletado com sucesso do edital.');
 
+        } catch(QueryException $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao deletar. Este vínculo está sendo usado em um Relatorio." );
+        
         } catch(exception $e){
             DB::rollback();
+            dd(get_class($e));
             return redirect()->back()->withErrors( "Falha ao deletar o vínculo do aluno no edital." );
-           }
+        }
     }
 
 
