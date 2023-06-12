@@ -65,7 +65,6 @@ class EditalController extends Controller
         DB::beginTransaction();
         try {
 
-            //dd($request);
             $edital = new Edital();
             $edital->descricao  = $request->descricao == null? "" : $request->descricao;
             $edital->semestre = $request->semestre;
@@ -78,7 +77,6 @@ class EditalController extends Controller
 
             $edital->programa_id = $request->programa;
             
-            //dd($edital);
             $edital->save();
 
             $disciplinas_id = $request->disciplinas;
@@ -95,7 +93,7 @@ class EditalController extends Controller
 
         } catch(Exception $e){
             DB::rollback();
-            #dd($e);
+            
             return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
         }
     }
@@ -158,7 +156,7 @@ class EditalController extends Controller
            }
         } catch(Exception $e){
              DB::rollback();
-             dd($e);
+             
              return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." )->withInput();
          }
     }
@@ -206,8 +204,7 @@ class EditalController extends Controller
             $edital->disciplinas()->sync($request->disciplinas);
 
             $edital->update();
-            //dd($edital);
-
+            
             DB::commit();
 
             return redirect()->route('edital.index')
@@ -246,13 +243,13 @@ class EditalController extends Controller
                     
                 } catch(exception $e){
                     DB::rollback();
-                    #dd($e);
+                    
                     return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
                 }
             }
         } catch(exception $e){
             DB::rollback();
-            #dd($e);
+            
             return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
         }
     }
@@ -357,8 +354,7 @@ class EditalController extends Controller
         DB::beginTransaction();
         try {
             $vinculo = EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id);
-            #dd($vinculo);
-         
+            
             $vinculo->delete();
 
             DB::commit();
@@ -370,7 +366,7 @@ class EditalController extends Controller
         
         } catch(exception $e){
             DB::rollback();
-            dd(get_class($e));
+            
             return redirect()->back()->withErrors( "Falha ao deletar o vínculo do aluno no edital." );
         }
     }
