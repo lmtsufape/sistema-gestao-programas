@@ -121,36 +121,43 @@
                 <option value="aluno">Estudante</option>
             </select>
 
-            <div id="instituicaoVinculo">
+            <div id="instituicaoVinculo" style="display:none">
                 <label class="titulo" for="instituicaoVinculo">Intituição:<strong style="color: red">*</strong></label>
-
                 <div class="vinculo">
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo" required>
+                        <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo">
                         <label class="form-check-label" for="instituicaoVinculo">Universidade Federal do Agreste de Pernambuco</label>
                     </div>
 
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UPE" name="instituicaoVinculo" required>
+                        <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UPE" name="instituicaoVinculo">
                         <label class="form-check-label" for="instituicaoVinculo">Universidade de Pernambuco</label>
                     </div>
                 </div>
             </div>
 
-            <div id="cursos">
+            <div id="curso" style="display:none">
+                <label class="titulo">Curso:</label><br>
+                @foreach ($cursos as $curso)
+                    <input type="radio" name="curso" value="{{$curso->id}}"> {{$curso->nome}}<br>
+                @endforeach
+            </div>
+
+            <div id="cursos" style="display:none">
                 <label class="titulo">Cursos:</label><br>
                 @foreach ($cursos as $curso)
                     <input type="checkbox" name="cursos[]" value="{{$curso->id}}"> {{$curso->nome}}<br>
                 @endforeach
             </div>
 
-            <div id="matricula">
+
+            <div id="matricula" style="display:none">
                 <label class="titulo" for="matricula">Matrícula:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" id="matricula" name="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)">
             </div>
 
 
-            <div id="semestre">
+            <div id="semestre" style="display:none">
                 <label class="titulo" for="semestre_entrada">Semestre de entrada:<strong style="color: red">*</strong></label>
                 <input class="boxinfo semestre-autocomplete" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre (Exemplo: 2023.2)">
             </div>
@@ -165,10 +172,7 @@
                             line-height: 29px; text-align: center; padding: 5px 15px;"/>
                 </a>
 
-                <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                            display: inline-block;
-                            border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal; font-weight: 400; font-size: 24px;
-                            line-height: 29px; text-align: center; padding: 5px 15px;"/>
+                <input type="submit" value="Salvar"/>
             </div>
         </form>
     </div>
@@ -179,34 +183,47 @@
     $('.semestre-autocomplete').inputmask('0000.0');
     $('.cpf-autocomplete').inputmask('999.999.999-99');
 
+
 </script>
 
 <script>
     $(document).ready(function() {
-    $("#tipoUser").change(function() {
-        var selectedOption = $(this).val();
-
-        if (selectedOption == "aluno") {
-            $("#curso").show();
-            $("#semestre").show();
-            $("#matricula").hide();
-            $("#tipo_servidor").hide();
-        } else if (selectedOption == "orientador") {
-            $("#curso").hide();
-            $("#semestre").hide();
-            $("#matricula").show();
-            $("#tipo_servidor").hide()
-            $("#instituicaoVinculo").show();
-            $("#cursos").show();
-        } else if (selectedOption == "servidor") {
-            $("#cursos").hide();
-            $("#semestre").hide();
-            $("#matricula").show();
-            $("#tipo_servidor").show();
-            $("#instituicaoVinculo").show();
-        }
+        $("#tipoUser").change(function() {
+            var selectedOption = $(this).val();
+            console.log(selectedOption);
+            if (selectedOption == "aluno") {
+                $("#curso").show();
+                $("#semestre").show();
+                $("#cursos").hide();
+                $("#matricula").hide();
+                $("#tipo_servidor").hide();
+                $("#instituicaoVinculo").hide();
+            } else if (selectedOption == "orientador") {
+                $("#cursos").show();
+                $("#curso").hide();
+                $("#semestre").hide();
+                $("#matricula").show();
+                $("#tipo_servidor").hide();
+                $("#instituicaoVinculo").show();
+            } else if (selectedOption == "servidor") {
+                $("#cursos").hide();
+                $("#curso").hide();
+                $("#semestre").hide();
+                $("#matricula").show();
+                $("#tipo_servidor").show();
+                $("#instituicaoVinculo").show();
+            } else {
+                $("#cursos").hide();
+                $("#curso").hide();
+                $("#semestre").hide();
+                $("#matricula").hide();
+                $("#tipo_servidor").hide();
+                $("#instituicaoVinculo").hide();
+            }
+        });
     });
-});
+</script>
+
 
 
 </script>

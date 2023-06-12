@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\Aluno;
 use App\Models\Curso;
 use App\Models\Orientador;
@@ -12,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
 
 class UserController extends Controller
 {
@@ -25,15 +28,16 @@ class UserController extends Controller
         return view('auth.forgot-password');
     }
 
-    public function store(Request $request) {
+    public function store(UserRequest $request) {
 
-        $existingCpf = User::where('cpf', $request->cpf)->first();
-        if($existingCpf) {
-            return redirect()->back()->withErrors( "CPF já existe." );
-        }
         //dd($request);
-        DB::beginTransaction();
-        try {
+        // $existingCpf = User::where('cpf', $request->cpf)->first();
+        // if($existingCpf) {
+        //     return redirect()->back()->withErrors( "CPF já existe." );
+        // }
+        // //dd($request);
+        // DB::beginTransaction();
+        //try {
             switch ($request->tipoUser){
                 case('aluno'):
                     $aluno = new Aluno();
@@ -120,9 +124,9 @@ class UserController extends Controller
 
                     break;
                 }
-        } catch (Exception $e) {
-            DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao se cadastrar." );
-        }
+        // } catch (Exception $e) {
+        //     DB::rollback();
+        //     return redirect()->back()->withErrors( "Falha ao se cadastrar." );
+        // }
     }
 }

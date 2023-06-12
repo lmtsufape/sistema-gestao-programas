@@ -22,7 +22,7 @@ class UserRequest extends FormRequest
             "tipoUser" => 'required',
             "senha" => "required|min:4|max:8",
             "cpf" => "required|formato_cpf|unique:servidors|unique:alunos|unique:orientadors",
-            "matricula" => "required|unique:orientadors,matricula|unique:servidors,matricula"
+            "matricula" => "unique:orientadors,matricula|unique:servidors,matricula"
         ];
     }
 
