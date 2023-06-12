@@ -114,10 +114,6 @@
                 </div>
       <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
-        </div>
-        <div style="display: flex; margin: 10px">
           <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
         </div>
@@ -130,6 +126,10 @@
         <div style="display: flex; margin: 10px">
           <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
+        </div>
+        <div style="display: flex; margin: 10px">
+          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
       </div>
         </div>

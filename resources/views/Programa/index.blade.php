@@ -152,10 +152,6 @@
 
       <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-          <p class="textolegenda">Pesquisar</p>
-        </div>
-        <div style="display: flex; margin: 10px">
           <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
           <p class="textolegenda">Informações</p>
         </div>
@@ -168,6 +164,10 @@
             <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
             <p class="textolegenda">Deletar</p>
           </div>
+          <div style="display: flex; margin: 10px">
+          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+          <p class="textolegenda">Pesquisar</p>
+        </div>
         </div>
         <div style="align-self: center; margin-right: auto">
           <div style="display: flex; margin: 10px">
