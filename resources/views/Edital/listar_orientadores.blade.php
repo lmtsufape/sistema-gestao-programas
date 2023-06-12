@@ -65,12 +65,12 @@
 
     </form>
   </div>
- 
- <br><br>
-  <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+
+ <br>
+ <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">
       <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-          ;margin-bottom: 5px; min-height: 350px">
+        ;margin-bottom: 5px; min-height: 50px">
         <thead>
           <tr>
             <th scope="col">Nome</th>
@@ -81,7 +81,7 @@
           </tr>
         </thead>
         <tbody>
-        @foreach($orientadores as $orientador) 
+        @foreach($orientadores as $orientador)
           @foreach ($pivot as $pivo)
           <tr>
             <td> {{ $orientador->name}} </td>
@@ -110,12 +110,12 @@
       </div>
       <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
-        </div>
-        <div style="display: flex; margin: 10px">
           <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
+        </div>
+        <div style="display: flex; margin: 10px">
+          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
       </div>
     </div>

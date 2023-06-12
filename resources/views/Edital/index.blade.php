@@ -149,10 +149,7 @@
         <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
       </div>
       <div style="align-self: center; margin-right: auto">
-        <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
-        </div>
+        
 
         <div style="display: flex; margin: 10px">
           <a><img src="/images/info.png" alt="Informações" style="width: 20px; height: 20px;"></a>
@@ -168,7 +165,12 @@
           <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
-          </div> 
+          </div>
+          
+          <div style="display: flex; margin: 10px">
+          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
+        </div>
 
           <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/vinculo_edital.png")}}" alt="Vincular aluno" style="width: 20px; height: 20px;"></a>
