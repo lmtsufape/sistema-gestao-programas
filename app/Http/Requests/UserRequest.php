@@ -20,7 +20,7 @@ class UserRequest extends FormRequest
             "nome_social" => "max:50",
             "email" => "required|email|unique:users,email",
             "tipoUser" => 'required',
-            "senha" => "required|min:4|max:8",
+            "senha" => "required|min:8|max:48",
             "cpf" => "required|formato_cpf|unique:servidors|unique:alunos|unique:orientadors",
             "matricula" => "unique:orientadors,matricula|unique:servidors,matricula"
         ];
