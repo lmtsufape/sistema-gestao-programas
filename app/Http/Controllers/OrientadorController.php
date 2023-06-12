@@ -69,7 +69,6 @@ class OrientadorController extends Controller
      */
     public function store(OrientadorFormRequest $request)
     {   
-        #dd($request);
         try{
             $orientador = new Orientador();
             $orientador->cpf = $request->cpf;
@@ -85,7 +84,6 @@ class OrientadorController extends Controller
                 $cursos_id = $request->cursos;
                 foreach ($cursos_id as $id) {
                     $curso = Curso::findorFail($id);
-                    #dd($orientador->id);
                     $curso->orientadores()->attach($orientador->id); 
                 }
 
@@ -113,7 +111,7 @@ class OrientadorController extends Controller
                 return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
             }
         } catch (Exception $e) {
-            dd($e);
+            
             return redirect()->back()->withErrors("Falha ao cadastrar orientador. Tente novamente mais tarde.");
         }
     }
@@ -215,11 +213,7 @@ class OrientadorController extends Controller
         $id = $request->user()->typage_id; // Obtém o ID do usuário autenticado
        // $user = $request->user(); // Obtém o usuário autenticado
 
-        //dd($user);
-
         $orientador = Orientador::find($id);
-
-        // dd($orientador);
 
         return view('Perfil.meu-perfil-orientador', ['orientador' => $orientador]);
     }

@@ -33,8 +33,8 @@ class CreateEditalAlunoOrientadorsTable extends Migration
             $table->unsignedBigInteger('edital_id');
             // $table->foreignId('edital_id')->contrained('editals');
 
-            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
-            $table->unsignedBigInteger('disciplina_id');
+            #$table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            #$table->unsignedBigInteger('disciplina_id');
             // $table->foreignId('disciplina_id')->contrained('disciplinas');
 
             $table->foreign('orientador_id')->references('id')->on('orientadors');

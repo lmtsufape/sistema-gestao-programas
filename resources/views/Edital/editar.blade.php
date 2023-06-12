@@ -60,6 +60,11 @@
                 padding: 34px;
                 width: 65%
             }
+
+            .radio-spacing {
+                padding-right: 20px; /* Ajuste o valor conforme necessário */
+            }
+
         </style>
         <div class="container"
             style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
@@ -85,7 +90,7 @@
                     <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital"
                         value="{{ $edital->titulo_edital }}"><br><br>
 
-                    <label class="titulo" for="semestre">Semestre:<strong style="color: red">*</strong></label>
+                    <label class="titulo" for="semestre">Semestre de Início:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" type="text" name="semestre" id="semestre"
                         value="{{ $edital->semestre }}"><br><br>
 
@@ -94,18 +99,18 @@
 
                     <label class="titulo" for="data_inicio">Data de início:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" type="date" name="data_inicio" id="data_inicio"
-                        value="{{ $edital->data_inicio }}"><br><br>
+                        value="{{ $edital->data_inicio->format('Y-m-d') }}"><br><br>
 
                     <label class="titulo" for="data_fim">Data de fim:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" type="date" name="data_fim" id="data_fim"
-                        value="{{ $edital->data_fim }}"><br><br>
+                        value="{{ $edital->data_fim->format('Y-m-d') }}"><br><br>
 
                     {{-- <label class="titulo" for="titulo_edital">Título do Edital:</label> --}}
                     {{-- <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br> --}}
 
                     <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa"
-                        id="valor_bolsa" value=""><br><br>
+                        id="valor_bolsa" value="{{ $edital->valor_bolsa }}"><br><br>
 
                     <label class="titulo" for="programa">Programa:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa">
@@ -115,17 +120,34 @@
                         @endforeach
                     </select><br><br>
 
-                    <label class="titulo" for="disciplina">Disciplina:</label>
-                    <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina">
+                    @if(count($edital->disciplinas) == 0)
+                    <div id="checkDisciplina">
+                        <label class="titulo radio-spacing" for="disciplina">Possui disciplina(s)?: <strong style="color: red">*</strong></label>
+                        <input type="radio" name="checkDisciplina" value="sim" required>
+                        <label class="radio-spacing" for="checkDisciplina_sim">Sim</label>
+                        <input type="radio" name="checkDisciplina" value="nao" checked required>
+                        <label class="radio-spacing" for="checkDisciplina_nao">Não</label>
+                    </div><br><br>
+                    
+                    <div id="disciplinas" hidden>
+                        <label class="titulo" for="disciplina">Disciplina(s):</label>
                         @foreach ($disciplinas as $disciplina)
-                            <option value="{{ $disciplina->id }}"
-                                {{ $edital->disciplina_id == $disciplina->id ? 'selected' : '' }}>{{ $disciplina->nome }}
-                            </option>
-                        @endforeach
-                    </select><br><br>
+                        <div>
+                            <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}" @if(in_array($disciplina->id, $disciplinasSelecionadas)) checked @endif>
+                            <label for="disciplina_{{ $disciplina->id }}">{{ $disciplina->nome . '/' . $disciplina->curso->nome }}</label>
+                        </div>
+                        @endforeach<br><br>
+                    </div>
 
-
-
+                    @else
+                        <label class="titulo" for="disciplina">Disciplina(s):</label>
+                        @foreach ($disciplinas as $disciplina)
+                        <div>
+                            <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}" @if(in_array($disciplina->id, $disciplinasSelecionadas)) checked @endif>
+                            <label for="disciplina_{{ $disciplina->id }}">{{ $disciplina->nome . '/' . $disciplina->curso->nome }}</label>
+                        </div>
+                        @endforeach<br><br>
+                    @endif
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                         <input type="button" value="Voltar" href="{{ route('edital.index') }}"
@@ -149,6 +171,20 @@
             <br>
             <br>
         </div>
+
+        <script>
+            $(document).ready(function() {
+                $("input[name='checkDisciplina']").change(function() {
+                    if ($("input[name='checkDisciplina']:checked").val() == "sim"){
+                        $("#disciplinas").removeAttr("hidden");
+                        
+                    } else {
+                        $("#disciplinas").attr("hidden", true);
+                    }
+                });
+            });
+        </script>
+
         <script>
             // //cash mask para o valor da bolsa
             // $(document).ready(function(){
@@ -174,7 +210,7 @@
             });
             $('div.chosen-container-single').addClass('required');
             $('div.chosen-container-multi').addClass('required');
-        </script>
+        </>
     @else
         <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
         <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{ url('/login') }}">Voltar</a>

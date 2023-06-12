@@ -14,11 +14,11 @@ class DisciplinaSeeder extends Seeder
      */
     public function run()
     {
-        $disciplina0 = Disciplina::create([
-            'nome' => "Não tem disciplina",
-            'curso_id' => 1,
+        // $disciplina0 = Disciplina::create([
+        //     'nome' => "Não tem disciplina",
+        //     'curso_id' => 1,
 
-        ]);
+        // ]);
         $disciplina = Disciplina::create([
             'nome' => "Programação orientada a objetos",
             'curso_id' => 1,
@@ -43,6 +43,11 @@ class DisciplinaSeeder extends Seeder
         $disciplina5 = Disciplina::create([
             'nome' => "Paradigmas de linguagem de programação",
             'curso_id' => 1,
+        ]);
+
+        $disciplina6 = Disciplina::create([
+            'nome' => "Calculo 1",
+            'curso_id' => 2,
         ]);
     }
 }
