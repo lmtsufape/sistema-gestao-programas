@@ -102,8 +102,12 @@
               Olá, {{Auth::user()->name}}
             @endauth
           </h2>
+          @auth
           <div style="border-right: 1px solid #131833; width: 1px; height: 30px; padding-left: 2%;"></div>
+          @endauth
+
           <div style="padding-left:2%; display:flex; align-items:center; margin-top:10px">
+            @auth
             <form action="/logout" method="POST">
               @csrf
               <a href="/logout"  onclick="event.preventDefault(); this.closest('form').submit()" class="link_navbar">
@@ -112,6 +116,7 @@
                 margin-left: 5px;"> Sair </p>
               </a>
             </form>
+            @endauth
           </div>
         </div>
       </nav>
@@ -152,7 +157,7 @@
         <div class="row justify-content-between  my-2">
           <div class="col-md-4 d-flex align-items-center justify-content-center py-1">
             <a class="navbar-brand mx-3" href="">
-              <img width="250px" src="{{asset('images/sgpa-azul_2.svg')}}"> 
+              <img width="250px" src="{{asset('images/sgpa-azul_2.svg')}}">
             </a>
           </div>
 
