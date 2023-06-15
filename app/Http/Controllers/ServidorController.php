@@ -88,6 +88,11 @@ class ServidorController extends Controller {
         $servidor = Servidor::find($id);
         $servidores = Servidor::all();
 
+        // Verifique se o ID do servidor corresponde ao ID do usuário autenticado
+        if ($servidor->user->id !== auth()->user()->id) {
+            return redirect()->route('home')->with('erro', 'Você não tem permissão para editar este perfil.');
+        }
+
         #$tipo_servidors = User::where('typage_id', Auth::user()->typage_id)->get();
         return view("servidores.editarmeuperfil", compact('servidor', 'servidores'));
     }
