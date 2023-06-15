@@ -83,6 +83,15 @@ class ServidorController extends Controller {
         return view("servidores.editar", compact('servidor', 'servidores'));
     }
 
+    public function editarmeuperfil($id)
+    {
+        $servidor = Servidor::find($id);
+        $servidores = Servidor::all();
+
+        #$tipo_servidors = User::where('typage_id', Auth::user()->typage_id)->get();
+        return view("servidores.editarmeuperfil", compact('servidor', 'servidores'));
+    }
+
     public function update(ServidorFormUpdateRequest $request, $id)
     {
         try{

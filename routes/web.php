@@ -55,6 +55,7 @@ Route::prefix('servidores')->group(function() {
     Route::get('/create', [ServidorController::class, 'create'])->name('servidores.create');
     Route::post('/', [ServidorController::class, 'store'])->name('servidores.store');
     Route::get('/{id}/edit', [ServidorController::class, 'edit'])->where('id', '[0-9]+')->name('servidores.edit');
+    Route::get('/{id}/editarmeuperfil', [ServidorController::class, 'editarmeuperfil'])->where('id', '[0-9]+')->name('servidores.editarmeuperfil');
     Route::put('/{id}', [ServidorController::class, 'update'])->name('servidores.update');
     Route::delete('/{id}', [ServidorController::class, 'destroy'])->name('servidores.delete');
 });
