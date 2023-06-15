@@ -35,6 +35,8 @@ class ServidorController extends Controller {
     {
 
         try{
+            DB::beginTransaction();
+            #dd($request->input('cpf'));
             switch($request->input('tipo_servidor')){
                 case 0:
                 $permission = "adm";
@@ -63,13 +65,17 @@ class ServidorController extends Controller {
             ){
                 #$mensagem_sucesso = "Orientador cadastrado com sucesso.";
 
-
+                DB::commit();
+                
                 return redirect('/servidores')->with('sucesso', 'Servidor cadastrado com sucesso.');
 
             } else {
+                DB::rollback();
                 return redirect()->back()->withErrors( "Falha ao cadastrar servidor. tente novamente mais tarde." );
             }
         } catch (Exception $e) {
+            dd($e);
+            DB::rollback();
             return redirect()->back()->withErrors("Falha ao cadastrar servidor. Tente novamente mais tarde.");
         }
     }
@@ -86,6 +92,8 @@ class ServidorController extends Controller {
     public function update(ServidorFormUpdateRequest $request, $id)
     {
         try{
+            DB::beginTransaction();
+
             $servidor = Servidor::find($id);
 
             switch($request->input('tipo_servidor')){
@@ -101,7 +109,7 @@ class ServidorController extends Controller {
             };
             $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
             $servidor->tipo_servidor = $permission == $servidor->tipo_servidor ? $servidor->tipo_servidor : $permission;
-        $servidor->user->name_social = $request->nome_social;
+            $servidor->user->name_social = $request->nome_social;
             $servidor->user->name = $request->nome;
             $servidor->user->email = $request->email;
             if ($request->senha && $request->senha != null){
@@ -116,15 +124,20 @@ class ServidorController extends Controller {
 
                 if ($servidor->user->update()){
                     $mensagem_sucesso = "Servidor editado com sucesso.";
+                    DB::commit();                
+        
                     return redirect("/servidores")->with('sucesso', 'Servidor editado com sucesso.');
                 } else {
+                    DB::rollback();
                     return redirect()->back()->withErrors( "Falha ao editar servidor. tente novamente mais tarde." );
                 }
 
             } else {
+                DB::rollback();
                 return redirect()->back()->withErrors( "Falha ao editar servidor. tente novamente mais tarde." );
             }
         } catch (Exception $e) {
+            DB::rollback();
             return redirect()->back()->withErrors("Falha ao editar servidor. Tente novamente mais tarde.");
         }
     }
@@ -138,13 +151,17 @@ class ServidorController extends Controller {
     public function destroy(Request $request)
     {
         try{
+            DB::beginTransaction();
+
             $id = $request->only(['id']);
             $servidor = Servidor::findOrFail($id)->first();
 
             if ($servidor->delete()) {
-                return redirect(route("servidores.index"));
+                DB::commit();                
+                return redirect(route("servidores.index"))->with('sucesso', 'Servidor Deletado com Sucesso!');
             }
         } catch (Exception $e) {
+            DB::rollback();
             return redirect()->back()->withErrors("Falha ao deletar servidor. Tente novamente mais tarde.");
         }
     }
@@ -172,6 +189,7 @@ class ServidorController extends Controller {
             return redirect()->back()->withErrors( "Falha ao adicionar permissao. tente novamente mais tarde." );
         }
     }
+
 
     public function profile(Request $request)
     {
