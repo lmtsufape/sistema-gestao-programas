@@ -59,6 +59,7 @@ class ServidorController extends Controller {
             if(
                 $servidor->user()->create([
                     'name' => $request->input('nome'),
+                    'cpf' => $request->input('cpf'),
                     'email' => $request->input('email'),
                     'password' => Hash::make($request->input('senha'))
                 ])->givePermissionTo($permission)
@@ -74,7 +75,6 @@ class ServidorController extends Controller {
                 return redirect()->back()->withErrors( "Falha ao cadastrar servidor. tente novamente mais tarde." );
             }
         } catch (Exception $e) {
-            dd($e);
             DB::rollback();
             return redirect()->back()->withErrors("Falha ao cadastrar servidor. Tente novamente mais tarde.");
         }
@@ -111,6 +111,7 @@ class ServidorController extends Controller {
             $servidor->tipo_servidor = $permission == $servidor->tipo_servidor ? $servidor->tipo_servidor : $permission;
             $servidor->user->name_social = $request->nome_social;
             $servidor->user->name = $request->nome;
+            $servidor->user->cpf = $request->cpf;
             $servidor->user->email = $request->email;
             if ($request->senha && $request->senha != null){
                 if (strlen($request->senha) > 7 && strlen($request->senha) < 31){
