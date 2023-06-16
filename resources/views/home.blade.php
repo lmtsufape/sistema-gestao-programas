@@ -81,8 +81,8 @@
 
                 @if (auth()->user()->typage->tipo_servidor == 'adm')
                     
-                <div style="display:flex; flex-wrap:nowrap; align-items:center; gap:5%;">
-                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+                <div style="display:flex; flex-wrap:nowrap; align-items:center; gap:4%;">
+                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
                         <button class="botaoazul" ref="{{url("/programas/create")}}" onclick="window.location.href='{{url("/programas/create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
                             <p style="margin: auto; padding-right: 5px"> Cadastrar programa </p>
@@ -90,7 +90,7 @@
                     </div>
 
                     {{--  Cadastrar edital  --}}
-                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
                         <button class="botaoverde" ref="{{url("/editais/create")}}" onclick="window.location.href='{{route("edital.create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
                             <p style="margin: auto; padding-right: 5px"> Cadastrar <br> edital </p>
@@ -98,7 +98,7 @@
                     </div>
 
                     {{--  Cadastrar disciplina  --}}
-                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
                         <button class="botaoazul" ref="{{url("/disciplinas/create")}}" onclick="window.location.href='{{url("/disciplinas/create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
                             <p style="margin: auto; padding-right: 5px"> Cadastrar disciplina </p>
@@ -106,7 +106,7 @@
                     </div>
 
                     {{--  Cadastrar curso  --}}
-                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
                         <button class="botaoverde" ref="{{url("/cursos/create")}}" onclick="window.location.href='{{url("/cursos/create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
                             <p style="margin: auto; padding-right: 5px"> Cadastrar <br> curso </p>
@@ -120,7 +120,7 @@
                 </h2>
                 <hr>
                 <br>
-                <div style="display:flex;flex-wrap: wrap;align-items:center;gap: 5%;justify-content: flex-start;">
+                <div style="display:flex;flex-wrap: wrap;align-items:center;gap: 4%;justify-content: flex-start;">
                     @foreach ($programas as $index => $programa)
                       @if ($index % 2 == 0)
                         <button class="botaoazul" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
