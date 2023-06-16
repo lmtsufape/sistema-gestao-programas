@@ -25,7 +25,7 @@ class ProgramaController extends Controller
      */
     public function index(Request $request)
     {
-        $programa_servidor = Programa_servidor::all();
+        // $programa_servidor = Programa_servidor::all();
         $servidors = Servidor::all();
         $users = User::all();
 
@@ -45,10 +45,10 @@ class ProgramaController extends Controller
             })->orderBy('programas.created_at', 'desc')->select("programas.*")->get();
 
 
-        return view("Programa.index", compact("programas", "programa_servidor", "servidors", "users"));
+        return view("Programa.index", compact("programas", "servidors", "users"));
         } else {
             $programas = Programa::all();
-            return view("Programa.index", compact("programas", "programa_servidor", "servidors", "users"));
+            return view("Programa.index", compact("programas", "servidors", "users"));
         }
     }
 
@@ -60,6 +60,7 @@ class ProgramaController extends Controller
     public function create()
     {
         $servidors = Servidor::all();
+        #dd($servidors);
         return view("Programa.cadastrar", compact('servidors'));
     }
 
@@ -79,12 +80,17 @@ class ProgramaController extends Controller
             $programa->descricao = $request->descricao;
             $programa->save();
 
-            if ($request->servidor){
-                $programa_servidor = new Programa_servidor();
-                $programa_servidor->programa_id = $programa->id;
-                $programa_servidor->servidor_id = $request->servidor;
-                $programa_servidor->save();
+            $servidors_id = $request->servidors;
+            foreach ($servidors_id as $servidor_id) {
+                $programa->servidores()->attach($servidor_id);
             }
+
+            // if ($request->servidor){
+            //     $programa_servidor = new Programa_servidor();
+            //     $programa_servidor->programa_id = $programa->id;
+            //     $programa_servidor->servidor_id = $request->servidor;
+            //     $programa_servidor->save();
+            // }
 
             DB::commit();
 
@@ -118,12 +124,13 @@ class ProgramaController extends Controller
         $programa = Programa::find($id);
         $servidors = Servidor::all();
         $idsservidorsDoPrograma = [];
+        $servidoresSelecionados = $programa->servidores->pluck('id')->toArray();
 
-        foreach ($programa->programa_servidors as $programa_servidor){
-            $idsservidorsDoPrograma[] = $programa_servidor->servidor_id;
-        }
+        // foreach ($programa->programa_servidors as $programa_servidor){
+        //     $idsservidorsDoPrograma[] = $programa_servidor->servidor_id;
+        // }
 
-        return view("Programa.editar", compact('programa', 'servidors', 'idsservidorsDoPrograma'));
+        return view("Programa.editar", compact('programa', 'servidors', 'servidoresSelecionados'));
     }
 
     /**
@@ -142,12 +149,15 @@ class ProgramaController extends Controller
             $programa->descricao = $request->descricao ? $request->descricao : $programa->descricao;
             $programa->update();
 
-            if ($request->servidor){
-                    $programa_servidor = Programa_servidor::where("programa_id", $programa->id)->first();
-                    $programa_servidor->programa_id = $programa->id;
-                    $programa_servidor->servidor_id = $request->servidor;
-                    $programa_servidor->update();
-            }
+            // if ($request->servidor){
+            //         $programa_servidor = Programa_servidor::where("programa_id", $programa->id)->first();
+            //         $programa_servidor->programa_id = $programa->id;
+            //         $programa_servidor->servidor_id = $request->servidor;
+            //         $programa_servidor->update();
+            // }
+
+            $programa->servidores()->sync($request->servidors);
+
 
             DB::commit();
 
@@ -180,8 +190,10 @@ class ProgramaController extends Controller
                 try{
                     $id = $request->only(['id']);
                     $programa = Programa::findOrFail($id)->first();
+                    
+                    $programa->servidores()->detach($request->servidors); 
 
-                    Programa_servidor::where("programa_id", $programa->id)->delete();
+                    // Programa_servidor::where("programa_id", $programa->id)->delete();
 
                     $programa->delete();
 
