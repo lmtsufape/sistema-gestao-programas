@@ -68,18 +68,18 @@
     <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
       font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
       align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;" onmouseover="this.style.backgroundColor='#2D3875'" onmouseout="this.style.backgroundColor='#34A853'" 
+      padding-left: 10px;" onmouseover="this.style.backgroundColor='#2D3875'" onmouseout="this.style.backgroundColor='#34A853'"
       href="{{route('edital.show', ['id' => $edital->id ])}}">
       <img src="{{asset('images/plus.png')}}" alt="Cadastrar estudantes" style="padding-bottom: 5px"> Vincular Estudantes
     </a>
   </div>
 
 
- <br><br>
-  <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+ <br>
+ <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">
       <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-          ;margin-bottom: 5px; min-height: 350px">
+        ;margin-bottom: 5px; min-height: 50px">
         <thead>
           <tr>
             <th scope="col">Nome</th>
@@ -91,7 +91,7 @@
         </thead>
         <tbody>
         @foreach($alunos as $aluno)
-        
+
           <tr>
             <td> {{ $aluno->nome_aluno }} </td>
             <td> {{ $edital->titulo_edital }} </td>
@@ -132,10 +132,6 @@
       </div>
       <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
-          <a><img src="{{asset('images/searchicon.png')}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
-        </div>
-        <div style="display: flex; margin: 10px">
           <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
         </div>
@@ -152,6 +148,10 @@
         <div style="display: flex; margin: 10px">
           <a><img src="{{asset('images/delete.png')}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
+        </div>
+        <div style="display: flex; margin: 10px">
+          <a><img src="{{asset('images/searchicon.png')}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
       </div>
     </div>

@@ -27,10 +27,11 @@ class EditalStoreFormRequest extends FormRequest
                 "data_inicio"=>"required|date",
                 "data_fim"=>"required|date",
                 "programa"=>"required",
-                "disciplina"=>"",
+                "disciplinas"=>"",
                 "titulo_edital"=>"required",
-                "valor_bolsa"=>"required|numeric",
+                "valor_bolsa"=>"nullable|numeric",
                 "semestre"=>"required|regex:/^\d{4}\.\d$/",
+                "checkDisciplina" => "required"
                 //"descricao"=>"required",
             ];
         }
@@ -41,7 +42,7 @@ class EditalStoreFormRequest extends FormRequest
             "required" => "O campo :attribute é obrigatório.",
             "date" => "O campo :attribute deve ser um date.",
             "numeric" => "O campo :attribute deve ser um número.",
-            "regex" => "O campo :attribute deve seguir o exemplo: 2023.3"
+            "regex" => "O campo :attribute deve seguir o exemplo: 2023.3"             
         ];
     }
 }

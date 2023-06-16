@@ -164,7 +164,6 @@
                 $("input[name='checkDisciplina']").change(function() {
                     if ($("input[name='checkDisciplina']:checked").val() == "sim"){
                         $("#disciplinas").removeAttr("hidden");
-
                     } else {
                         $("#disciplinas").attr("hidden", true);
                     }
@@ -181,11 +180,6 @@
                 no_results_text: "Não possui programas."
             });
 
-            // $("#disciplina").chosen({
-            //     placeholder_text_single: {{$disciplina->id}},
-            //     // max_shown_results : 5,
-            //     no_results_text: "Não possui disciplinas."
-            // });
 
             $("#orientadors").chosen({
                 placeholder_text_multiple: "Selecione um orientador",

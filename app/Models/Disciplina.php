@@ -17,8 +17,13 @@ class Disciplina extends Model
         return $this->belongsTo(Curso::class, "curso_id");
     }
 
-    public function disciplina()
-    {
-        return $this->belongsTo(Edital::class, "edital_id");
+    // public function disciplina()
+    // {
+    //     return $this->belongsTo(Edital::class, "edital_id");
+    // }
+
+    public function editais(){
+        return $this->belongsToMany(Edital::class, 'edital_disciplinas');
+    
     }
 }

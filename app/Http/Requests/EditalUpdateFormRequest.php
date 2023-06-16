@@ -27,9 +27,9 @@ class EditalUpdateFormRequest extends FormRequest
                 "data_inicio"=>"required|date",
                 "data_fim"=>"required|date",
                 "programa"=>"required",
-                "disciplina"=>"required",
+                "disciplinas"=>"",
                 "titulo_edital"=>"required",
-                "valor_bolsa"=>"required|numeric",
+                "valor_bolsa"=>"nullable|numeric",
                 "semestre"=>"required",
                 //"descricao"=>"required",
             ];
