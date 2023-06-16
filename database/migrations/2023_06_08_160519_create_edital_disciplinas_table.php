@@ -15,7 +15,7 @@ class CreateEditalDisciplinasTable extends Migration
     {
         Schema::create('edital_disciplinas', function (Blueprint $table) {
             #$table->id();
-            
+            $table->softDeletes();
             $table->foreign('edital_id')->references('id')->on('editals');
             $table->unsignedBigInteger('edital_id');
 

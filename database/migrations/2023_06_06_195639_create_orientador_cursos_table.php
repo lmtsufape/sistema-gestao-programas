@@ -15,6 +15,7 @@ class CreateOrientadorCursosTable extends Migration
     {
         Schema::create('orientador_cursos', function (Blueprint $table) {
             #$table->id();            
+            $table->softDeletes();
             $table->foreign('orientador_id')->references('id')->on('orientadors');
             $table->unsignedBigInteger('orientador_id');
 
