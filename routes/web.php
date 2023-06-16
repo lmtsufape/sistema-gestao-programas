@@ -71,6 +71,7 @@ Route::prefix('orientadors')->group(function() {
     Route::get('/create', [OrientadorController::class, 'create'])->name('orientadors.create');
     Route::post('/', [OrientadorController::class, 'store'])->name('orientadors.store');
     Route::get('/{id}/edit', [OrientadorController::class, 'edit'])->where('id', '[0-9]+')->name('orientadors.edit');
+    Route::get('/{id}/editarmeuperfil', [OrientadorController::class, 'editarmeuperfil'])->where('id', '[0-9]+')->name('orientadors.editarmeuperfil');
     Route::put('/{id}', [OrientadorController::class, 'update'])->name('orientadors.update');
     Route::delete('/{id}', [OrientadorController::class, 'destroy'])->name('orientadors.delete');
 });

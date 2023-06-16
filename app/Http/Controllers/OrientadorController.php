@@ -68,26 +68,26 @@ class OrientadorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(OrientadorFormRequest $request)
-    {   
+    {
         try{
             $orientador = new Orientador();
             $orientador->cpf = $request->cpf;
             $orientador->matricula = $request->matricula;
             $orientador->instituicaoVinculo = $request->instituicaoVinculo;
-                        
+
             #$orientador->curso = 'Teste';
-            
+
             if ($orientador->save()){
-                
+
                 #Adicionar os cursos pegando o ID do Orientador gerado no banco
                 #Temos que salvar primeiro, para pegar o ID do Orientador
                 $cursos_id = $request->cursos;
                 foreach ($cursos_id as $id) {
                     $curso = Curso::findorFail($id);
-                    $curso->orientadores()->attach($orientador->id); 
+                    $curso->orientadores()->attach($orientador->id);
                 }
 
-                
+
                 if (
                     $orientador->user()->create([
                         'name' => $request->name,
@@ -111,7 +111,7 @@ class OrientadorController extends Controller
                 return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
             }
         } catch (Exception $e) {
-            
+
             return redirect()->back()->withErrors("Falha ao cadastrar orientador. Tente novamente mais tarde.");
         }
     }
@@ -141,6 +141,21 @@ class OrientadorController extends Controller
         return view("Orientador.editar-orientador", compact('orientador', 'cursos', 'cursosSelecionados'));
     }
 
+    public function editarmeuperfil($id)
+    {
+        $orientador = Orientador::find($id);
+        $cursos = Curso::all();
+        $cursosSelecionados = $orientador->cursos->pluck('id')->toArray();
+
+        // Verifique se o ID do orientador corresponde ao ID do usuário autenticado
+        if ($orientador->user->id !== auth()->user()->id) {
+            return redirect()->route('home')->with('erro', 'Você não tem permissão para editar este perfil.');
+        }
+
+
+        return view("Orientador.editarmeuperfil", compact('orientador', 'cursos', 'cursosSelecionados'));
+    }
+
     public function update(OrientadorFormUpdateRequest $request, $id)
     {
         try{
@@ -149,12 +164,12 @@ class OrientadorController extends Controller
             $orientador->cpf = $request->cpf == $orientador->cpf ? $orientador->cpf : $request->cpf;
             $orientador->matricula = $request->matricula;
             $orientador->instituicaoVinculo = $request->instituicaoVinculo == $orientador->instituicaoVinculo ? $orientador->instituicaoVinculo : $request->instituicaoVinculo;
-            
+
             $orientador->user->name = $request->name;
             $orientador->user->email = $request->email;
             $orientador->user->name_social = $request->name_social;
             $orientador->user->cpf = $request->cpf;
-            
+
             $cursos_id = $request->cursos;
             if($cursos_id == null){
                 return redirect()->back()->withErrors( "Selecione pelo menos um Curso" );
@@ -199,7 +214,7 @@ class OrientadorController extends Controller
             $id = $request->only(['id']);
             $orientador = Orientador::findOrFail($id)->first();
 
-            $orientador->cursos()->detach($request->cursos); 
+            $orientador->cursos()->detach($request->cursos);
             if ($orientador->user->delete() && $orientador->delete()) {
                 return redirect(route("orientadors.index"))->with('sucesso', 'Orientador Deletado com sucesso.');;
             }
