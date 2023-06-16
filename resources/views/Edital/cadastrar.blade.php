@@ -56,7 +56,9 @@
 
             }
 
-
+            .radio-spacing {
+                padding-right: 20px; /* Ajuste o valor conforme necessário */
+            }
 
         </style>
         <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
@@ -81,7 +83,7 @@
                     <label class="titulo" for="titulo_edital">Título:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" placeholder="Digite o título" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
 
-                    <label class="titulo" for="semestre">Semestre:<strong style="color: red">*</strong></label>
+                    <label class="titulo" for="semestre">Semestre de Início:<strong style="color: red">*</strong></label>
                     <input class="boxinfo semestre-autocomplete" placeholder="Digite o semestre (Ex: 2023.2)" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
 
                     <label class="titulo" for="Descrição">Descrição:</label>
@@ -93,24 +95,43 @@
                     <label class="titulo" for="data_fim" >Data de fim:<strong style="color: red">*</strong></label>
                     <input class="boxinfo"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
 
-                    <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}" required><br><br>
+                    <label class="titulo" for="tem_bolsa">Tem bolsa:</label>
+                    <select aria-label="Defacult select example" class="boxinfo" name="tem_bolsa" id="tem_bolsa">
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
+                    </select>
+
+                    <div id="valor_bolsa" style="display: none">
+                        <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
+                        <input class="boxinfo" placeholder="Digite o valor da bolsa"
+                        type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
+                    </div>
 
                     <label class="titulo" for="programa">Programa:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
                         <option></option>
                             @foreach ($programas as $programa)
-                                <option value="{{$programa->id}}">{{$programa->nome}}</option>
+                                <option value="{{$programa->id}}" {{ old('programa') == $programa->id ? 'selected' : '' }}>{{$programa->nome}}</option>
                             @endforeach
                     </select><br><br>
 
-                    <label class="titulo" for="disciplina">Disciplina:</label>
-                    <select aria-label="Default select example" class="boxinfo" name="disciplina" id="disciplina" >
-                        <option></option>
-                            @foreach ($disciplinas as $key => $disciplina)
-                            <option value="{{$disciplina->id}}" {{$key == 0 ? 'selected' : ''}}>{{$disciplina->nome}}</option>
-                            @endforeach
-                    </select><br><br>
+                    <div id="checkDisciplina">
+                        <label class="titulo radio-spacing" for="disciplina">Possui disciplina(s)?: <strong style="color: red">*</strong></label>
+                        <input type="radio" name="checkDisciplina" value="sim" required>
+                        <label class="radio-spacing" for="checkDisciplina_sim">Sim</label>
+                        <input type="radio" name="checkDisciplina" value="nao" required>
+                        <label class="radio-spacing" for="checkDisciplina_nao">Não</label>
+                    </div><br><br>
+
+                    <div id="disciplinas" hidden>
+                        <label class="titulo" for="disciplina">Disciplina(s):</label>
+                        @foreach ($disciplinas as $disciplina)
+                        <div>
+                            <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}">
+                            <label for="disciplina_{{ $disciplina->id }}">{{ $disciplina->nome . '/' . $disciplina->curso->nome}}</label>
+                        </div>
+                        @endforeach<br><br>
+                    </div>
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                         <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;
@@ -126,6 +147,30 @@
             <br><br>
         </div>
 
+        <script>
+            $(document).ready(function() {
+                $("#tem_bolsa").change(function() {
+                    var selectedOption = $(this).val();
+                    if(selectedOption == 0){
+                        $("#valor_bolsa").hide();
+                    }else{
+                        $("#valor_bolsa").show();
+                    }
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $("input[name='checkDisciplina']").change(function() {
+                    if ($("input[name='checkDisciplina']:checked").val() == "sim"){
+                        $("#disciplinas").removeAttr("hidden");
+
+                    } else {
+                        $("#disciplinas").attr("hidden", true);
+                    }
+                });
+            });
+        </script>
         <script  src="{{ mix('js/app.js') }}">
 
             $('.semestre-autocomplete').inputmask('0000.0');
@@ -136,11 +181,11 @@
                 no_results_text: "Não possui programas."
             });
 
-            $("#disciplina").chosen({
-                placeholder_text_single: {{$disciplina->id}},
-                // max_shown_results : 5,
-                no_results_text: "Não possui disciplinas."
-            });
+            // $("#disciplina").chosen({
+            //     placeholder_text_single: {{$disciplina->id}},
+            //     // max_shown_results : 5,
+            //     no_results_text: "Não possui disciplinas."
+            // });
 
             $("#orientadors").chosen({
                 placeholder_text_multiple: "Selecione um orientador",
