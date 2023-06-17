@@ -137,17 +137,26 @@
             </div>
 
             <div id="curso" style="display:none">
-                <label class="titulo">Curso:</label><br>
+                <label class="titulo">Curso:</label>
                 @foreach ($cursos as $curso)
-                    <input type="radio" name="curso" value="{{$curso->id}}"> {{$curso->nome}}<br>
+                <div class="row">
+                    <div class="col-md-6" style="display: flex; justify-items:flex-start; gap:4%">
+                        <input type="radio" name="curso" value="{{$curso->id}}"> {{$curso->nome}}<br>
+                    </div>
+                </div>
                 @endforeach
             </div>
 
             <div id="cursos" style="display:none">
-                <label class="titulo">Cursos:</label><br>
-                @foreach ($cursos as $curso)
-                    <input type="checkbox" name="cursos[]" value="{{$curso->id}}"> {{$curso->nome}}<br>
-                @endforeach
+                <label class="titulo">Cursos:</label>
+                <div class="row">
+                    @foreach ($cursos as $curso)
+                    <div class="col-md-6" style="display: flex; justify-items:flex-start; gap:4%">
+                        <input type="checkbox" name="cursos[]" value="{{$curso->id}}"> {{$curso->nome}}<br>
+                    </div>
+                    @endforeach
+                </div>
+                
             </div>
 
 
