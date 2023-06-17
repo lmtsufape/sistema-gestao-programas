@@ -29,7 +29,7 @@ class EditalUpdateFormRequest extends FormRequest
                 "programa"=>"required",
                 "disciplinas"=>"",
                 "titulo_edital"=>"required",
-                "valor_bolsa"=>"required|numeric",
+                "valor_bolsa"=>"nullable|numeric",
                 "semestre"=>"required",
                 //"descricao"=>"required",
             ];

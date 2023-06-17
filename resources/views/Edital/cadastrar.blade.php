@@ -95,8 +95,17 @@
                     <label class="titulo" for="data_fim" >Data de fim:<strong style="color: red">*</strong></label>
                     <input class="boxinfo"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
 
-                    <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}" required><br><br>
+                    <label class="titulo" for="tem_bolsa">Tem bolsa:</label>
+                    <select aria-label="Defacult select example" class="boxinfo" name="tem_bolsa" id="tem_bolsa">
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
+                    </select>
+
+                    <div id="valor_bolsa" style="display: none">
+                        <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
+                        <input class="boxinfo" placeholder="Digite o valor da bolsa" 
+                        type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
+                    </div>
 
                     <label class="titulo" for="programa">Programa:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
@@ -138,6 +147,18 @@
             <br><br>
         </div>
         
+        <script>
+            $(document).ready(function() {
+                $("#tem_bolsa").change(function() {
+                    var selectedOption = $(this).val(); 
+                    if(selectedOption == 0){
+                        $("#valor_bolsa").hide();
+                    }else{
+                        $("#valor_bolsa").show();
+                    }
+                });
+            });
+        </script>
         <script>
             $(document).ready(function() {
                 $("input[name='checkDisciplina']").change(function() {

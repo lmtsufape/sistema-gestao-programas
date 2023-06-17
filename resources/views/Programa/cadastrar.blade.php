@@ -81,13 +81,13 @@
                 <input type="text" name="descricao" value="{{ old('descricao') }}" id="descricao" placeholder="Digite a descrição do programa" class="boxinfo" required><br><br>
 
                 <label class="titulo" for="servidor">Servidor:<strong style="color: red">*</strong></label>
-                    <select aria-label="Default select example" class="boxinfo" name="servidor" id="servidor" >
-                        <option value=""></option>
-                            @foreach ($servidors as $servidor)
-                                <option value="{{$servidor->id}}" style="color: black; border-radius: 5px;">{{$servidor->user->name}}</option>
-                            @endforeach
-                    </select><br><br>
-
+                @foreach ($servidors as $servidor)
+                    <div>
+                        <input type="checkbox" id="servidor_{{ $servidor->id }}" name="servidors[]" value="{{ $servidor->id }}">
+                        <label for="servidor_{{ $servidor->id }}">{{ $servidor->user->name }}</label>
+                    </div>
+                @endforeach
+                <br><br>
                 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                     <input type="button" value="Voltar" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'" style="background: #2D3875;

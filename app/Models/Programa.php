@@ -14,13 +14,17 @@ class Programa extends Model
         'descricao'
     ];
 
-    public function programa_servidors()
-    {
-        return $this->hasMany(Programa_servidor::class, "programa_id");
-    }
+    // public function programa_servidors()
+    // {
+    //     return $this->hasMany(Programa_servidor::class, "programa_id");
+    // }
 
     public function editais()
     {
         return $this->hasMany(Edital::class, "programa_id");
+    }
+
+    public function servidores(){
+        return $this->belongsToMany(Servidor::class, 'programa_servidors');    
     }
 }
