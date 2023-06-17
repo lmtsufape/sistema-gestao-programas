@@ -97,9 +97,10 @@
 
                     <label class="titulo" for="tem_bolsa">Tem bolsa:</label>
                     <select aria-label="Defacult select example" class="boxinfo" name="tem_bolsa" id="tem_bolsa">
+                        <option value disabled selected hidden>Selecione uma Opção</option>
                         <option value="0">Não</option>
                         <option value="1">Sim</option>
-                    </select>
+                    </select><br><br>
 
                     <div id="valor_bolsa" style="display: none">
                         <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
@@ -109,7 +110,7 @@
 
                     <label class="titulo" for="programa">Programa:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa" >
-                        <option></option>
+                        <option  value disabled selected hidden> Selecione o Programa</option>
                             @foreach ($programas as $programa)
                                 <option value="{{$programa->id}}" {{ old('programa') == $programa->id ? 'selected' : '' }}>{{$programa->nome}}</option>
                             @endforeach
@@ -120,18 +121,19 @@
                         <input type="radio" name="checkDisciplina" value="sim" required>
                         <label class="radio-spacing" for="checkDisciplina_sim">Sim</label>
                         <input type="radio" name="checkDisciplina" value="nao" required>
-                        <label class="radio-spacing" for="checkDisciplina_nao">Não</label>
-                    </div><br><br>
+                        <label class="radio-spacing" for="checkDisciplina_nao">Não</label><br><br>
+                    </div>
 
                     <div id="disciplinas" hidden>
                         <label class="titulo" for="disciplina">Disciplina(s):</label>
-                        @foreach ($disciplinas as $disciplina)
-                        <div>
-                            <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}">
-                            <label for="disciplina_{{ $disciplina->id }}">{{ $disciplina->nome . '/' . $disciplina->curso->nome}}</label>
+                        <div class="colunm">
+                            @foreach ($disciplinas as $disciplina)
+                            <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
+                                <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}"> {{ $disciplina->nome . '/' . $disciplina->curso->nome}}<br>
+                            </div>
+                            @endforeach</div><br><br>
                         </div>
-                        @endforeach<br><br>
-                    </div>
+                    
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                         <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;

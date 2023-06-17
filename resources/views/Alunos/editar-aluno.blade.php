@@ -88,7 +88,7 @@
             <input type="text" id="cpf" name="cpf" value="{{$aluno->cpf}}" class="boxinfo cpf-autocomplete"><br/><br>
 
             <label for="curso" for="nome" class="titulo">Curso:<strong style="color: red">*</strong></label>
-            <select name="curso" id="curso" class="boxinfo"> name="curso" id="curso">
+            <select name="curso" id="curso" class="boxinfo">
                 @foreach ($cursos as $curso)
                     <option value="{{$curso->id}}" {{$aluno->curso_id == $curso->id ? "selected" : ""}}>{{$curso->nome}}</option>
                 @endforeach

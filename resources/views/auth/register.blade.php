@@ -115,14 +115,14 @@
 
             <label for="tipoUser" class="titulo">Perfil:<strong style="color: red">*</strong></label>
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
-                <option>Selecione o perfil</option>
+                <option value disabled selected hidden>Selecione o perfil</option>
                 <option value="servidor">Técnico administrativo</option>
                 <option value="orientador">Professor</option>
                 <option value="aluno">Estudante</option>
             </select>
 
             <div id="instituicaoVinculo" style="display:none">
-                <label class="titulo" for="instituicaoVinculo">Intituição:<strong style="color: red">*</strong></label>
+                <label class="titulo" for="instituicaoVinculo">Intituição de Vínculo:<strong style="color: red">*</strong></label>
                 <div class="vinculo">
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo">
@@ -138,20 +138,19 @@
 
             <div id="curso" style="display:none">
                 <label class="titulo">Curso:</label>
-                @foreach ($cursos as $curso)
-                <div class="row">
-                    <div class="col-md-6" style="display: flex; justify-items:flex-start; gap:4%">
-                        <input type="radio" name="curso" value="{{$curso->id}}"> {{$curso->nome}}<br>
-                    </div>
-                </div>
-                @endforeach
+                <select aria-label="Default select example" class="boxinfo" name="curso" id="curso">
+                    <option value disabled selected hidden>Selecione o curso</option>
+                    @foreach ($cursos as $curso)
+                        <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div id="cursos" style="display:none">
-                <label class="titulo">Cursos:</label>
+                <label class="titulo">Curso(s) que Leciona:</label>
                 <div class="row">
                     @foreach ($cursos as $curso)
-                    <div class="col-md-6" style="display: flex; justify-items:flex-start; gap:4%">
+                    <div class="col-md-6" style="display: flex; justify-items:flex-start; gap:3%">
                         <input type="checkbox" name="cursos[]" value="{{$curso->id}}"> {{$curso->nome}}<br>
                     </div>
                     @endforeach

@@ -123,13 +123,14 @@
                 </div> 
                 <br>
 
-                <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s):<strong style="color: red">*</strong></label>
-                @foreach ($cursos as $curso)
-                    <div>
-                        <input type="checkbox" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}">
-                        <label for="curso_{{ $curso->id }}">{{ $curso->nome }}</label>
+                <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s) que Leciona:<strong style="color: red">*</strong></label>
+                <div class="row">
+                    @foreach ($cursos as $curso)
+                    <div class="col-md-6" style="display: flex; justify-items:flex-start; gap:3%">
+                        <input type="checkbox" name="cursos[]" value="{{$curso->id}}"> {{$curso->nome}}<br>
                     </div>
-                @endforeach
+                    @endforeach
+                </div>
                 <br><br>
 
                 <label for="senha" class="titulo">Senha:<strong style="color: red">*</strong></label>
