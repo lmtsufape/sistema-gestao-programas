@@ -35,9 +35,7 @@
     margin: 5px
   }
 
-  .botao-secundario {
-    
-  }
+
   .botao-secundario a:hover{
     transform: scale(1.08);
   }

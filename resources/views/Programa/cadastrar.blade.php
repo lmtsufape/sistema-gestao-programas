@@ -82,10 +82,12 @@
 
                 <label class="titulo" for="servidor">Servidor:<strong style="color: red">*</strong></label>
                 @foreach ($servidors as $servidor)
-                    <div>
-                        <input type="checkbox" id="servidor_{{ $servidor->id }}" name="servidors[]" value="{{ $servidor->id }}">
-                        <label for="servidor_{{ $servidor->id }}">{{ $servidor->user->name }}</label>
+                <div class="colunm">
+                    <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
+                        <input type="checkbox" id="servidor_{{ $servidor->id }}" name="servidors[]" value="{{ $servidor->id }}">{{ $servidor->user->name }}
                     </div>
+                </div>
+                
                 @endforeach
                 <br><br>
                 
