@@ -94,7 +94,7 @@ Route::prefix('programas')->group(function(){
     Route::get('/{id}/editar-edital', [ProgramaController::class, 'editar_edital'])->name('programas.edital-editar');
     Route::get('/vinculo', [ProgramaController::class, 'listar_alunos'])->name('programas.vinculo');
     Route::get('/{id}/atribuir-servidor', [ProgramaController::class, 'atribuir_servidor'])->name('programas.atribuir-servidor');
-    Route::post('/vincular_servidor', [ProgramaController::class, 'vincular_servidor'])->name('programas.vincular-servidor');
+    Route::post('/vincular_servidor', [ProgramaController::class, 'store_servidor'])->name('programas.vincular-servidor');
     
     
     //Route::post('/events/join/{id}', [EventController::class, 'joinEvent'])->middleware('auth');    

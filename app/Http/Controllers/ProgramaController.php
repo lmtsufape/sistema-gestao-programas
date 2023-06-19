@@ -336,7 +336,7 @@ class ProgramaController extends Controller
         return view("Programa.atribuir_servidor", compact('programa', 'servidors'));
     }
 
-    public function vincular_servidor(AdicionarServidorProgramaFormRequest $request)
+    public function store_servidor(AdicionarServidorProgramaFormRequest $request)
     {
         
         DB::beginTransaction();
@@ -346,7 +346,9 @@ class ProgramaController extends Controller
             
             $servidors_id = $request->servidors;
             foreach ($servidors_id as $servidor_id) {
-                $programa->servidores()->attach($servidor_id);
+                if(! $programa->servidores->contains($servidor_id)){
+                    $programa->servidores()->attach($servidor_id);
+                }
             }
 
             DB::commit();
