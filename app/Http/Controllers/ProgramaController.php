@@ -14,6 +14,7 @@ use App\Models\Orientador;
 use App\Models\Disciplina;
 use App\Models\User;
 use App\Http\Controllers\EditalController;
+use App\Http\Requests\AdicionarServidorProgramaFormRequest;
 use Exception;
 
 class ProgramaController extends Controller
@@ -79,11 +80,6 @@ class ProgramaController extends Controller
             $programa->nome = $request->nome;
             $programa->descricao = $request->descricao;
             $programa->save();
-
-            $servidors_id = $request->servidors;
-            foreach ($servidors_id as $servidor_id) {
-                $programa->servidores()->attach($servidor_id);
-            }
 
             // if ($request->servidor){
             //     $programa_servidor = new Programa_servidor();
@@ -331,4 +327,38 @@ class ProgramaController extends Controller
 
         return view("Programa.listar_alunos", compact("programa"));
     }
+
+    public function atribuir_servidor($id)
+    {
+        $programa = Programa::Where('id', $id)->first();
+        $servidors = Servidor::all();
+
+        return view("Programa.atribuir_servidor", compact('programa', 'servidors'));
+    }
+
+    public function store_servidor(AdicionarServidorProgramaFormRequest $request)
+    {
+        
+        DB::beginTransaction();
+        try{
+
+            $programa = Programa::Where('id', $request->id)->first();
+            
+            $servidors_id = $request->servidors;
+            foreach ($servidors_id as $servidor_id) {
+                if(! $programa->servidores->contains($servidor_id)){
+                    $programa->servidores()->attach($servidor_id);
+                }
+            }
+
+            DB::commit();
+
+            return redirect('/programas')->with('sucesso', 'Servidor adicionado ao Programa com sucesso.');
+
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao vincular servidor ao Programa. tente novamente mais tarde." );
+        }
+    }
+
 }
