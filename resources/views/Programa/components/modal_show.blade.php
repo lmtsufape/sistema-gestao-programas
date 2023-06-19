@@ -26,9 +26,14 @@
             Servidores:</label>
 
           <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
-            @foreach($programa->servidores as $servidor)
-              {{$servidor->user->name}}<br>
-            @endforeach
+            @if(count($programa->servidores))
+              @foreach($programa->servidores as $servidor)
+                {{$servidor->user->name}}<br>
+              @endforeach
+            @else
+              Ainda não há servidores atribuidos ao programa 
+            @endif
+
             </div>
 
           @if(!empty($errors->update->first('name')))
