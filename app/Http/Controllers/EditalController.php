@@ -127,10 +127,10 @@ class EditalController extends Controller
 
             $request->validate([
                 'termo_compromisso_aluno' => 'required|mimes:pdf|max:2048',
-                'termo_compromisso_orientador' => 'required|mimes:pdf|max:2048',
+                'plano_projeto' => 'required|mimes:pdf|max:2048',
             ]);
             $termo_aluno = "";
-            $termo_orientador = "";
+            $plano_projeto = "";
 
 
             if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()) {
@@ -140,11 +140,11 @@ class EditalController extends Controller
                 $request->termo_compromisso_aluno->storeAs('termo_compromisso_alunos', $termo_aluno);
             }
 
-            if($request->hasFile('termo_compromisso_orientador') && $request->file('termo_compromisso_orientador')->isValid()) {
+            if($request->hasFile('plano_projeto') && $request->file('plano_projeto')->isValid()) {
                 $orientador_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $orientador->user->name);
-                $termo_orientador = "termo_compromisso_orientador_" . $orientador_nome . "_" . $edital->id . now()->format('YmdHis') . '.' . $request->termo_compromisso_orientador->extension();
+                $plano_projeto = "plano_projeto_" . $orientador_nome . "_" . $edital->id . now()->format('YmdHis') . '.' . $request->plano_projeto->extension();
                 // Armazenar o arquivo na pasta "termo_compromisso_alunos"
-                $request->termo_compromisso_orientador->storeAs('termo_compromisso_orientadores', $termo_orientador);
+                $request->plano_projeto->storeAs('plano_projeto', $plano_projeto);
             }
             //dd($termo_orientador);
             if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
