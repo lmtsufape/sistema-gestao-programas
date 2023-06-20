@@ -118,6 +118,21 @@ class AlunoController extends Controller
         return view("Alunos.editar-aluno", compact('aluno', 'cursos'));
     }
 
+    public function editarmeuperfil($id)
+    {
+        $orientador = Aluno::find($id);
+        $cursos = Curso::all();
+        $cursosSelecionados = $orientador->cursos->pluck('id')->toArray();
+
+        // Verifique se o ID do orientador corresponde ao ID do usuário autenticado
+        if ($orientador->user->id !== auth()->user()->id) {
+            return redirect()->route('home')->with('erro', 'Você não tem permissão para editar este perfil.');
+        }
+
+
+        return view("Aluno.editarmeuperfil", compact('aluno', 'cursos'));
+    }
+
     public function create(){
         $cursos = Curso::all();
         return view("Alunos.cadastro-aluno", compact('cursos'));
