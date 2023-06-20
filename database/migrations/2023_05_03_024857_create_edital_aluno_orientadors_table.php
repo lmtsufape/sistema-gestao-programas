@@ -24,7 +24,7 @@ class CreateEditalAlunoOrientadorsTable extends Migration
             $table->boolean('bolsista');
             $table->text('info_complementares')->nullable(true);
             $table->string('termo_compromisso_aluno');
-            
+
             $table->foreign('aluno_id')->references('id')->on('alunos');
             $table->unsignedBigInteger('aluno_id');
             // $table->foreignId('aluno_id')->contrained('alunos');

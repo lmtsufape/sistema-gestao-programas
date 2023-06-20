@@ -149,6 +149,10 @@
                     <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno" value="{{ old('termo_compromisso_aluno') }}" required>
                     <br>
                     <br>
+                    <label class="titulo" for="plano_projeto">Plano de projeto: </label>
+                    <input type="file" id="plano_projeto" class="boxinfo" name="plano_projeto" value="{{ old('plano_projeto') }}">
+                    <br>
+                    <br>
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                         <input type="button" value="Voltar" href="{{ route('edital.index') }}"
