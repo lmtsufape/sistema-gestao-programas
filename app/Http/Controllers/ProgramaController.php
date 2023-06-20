@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Http\Controllers\EditalController;
 use App\Http\Requests\AdicionarServidorProgramaFormRequest;
 use Exception;
+use App\Http\Requests\EditalStoreFormRequest;
 
 class ProgramaController extends Controller
 {
@@ -269,28 +270,46 @@ class ProgramaController extends Controller
 
     public function criar_edital($id)
     {
-        $disciplina = Disciplina::all();
-        return view("Edital.cadastrar", compact("programas", "disciplina"));
+        $programa = Programa::Where('id', $id)->first();
+        $disciplinas = Disciplina::all();
+        return view("Programa.criar_edital", compact("programa", "disciplinas"));
     }
 
     // public function store_edital(EditalStoreFormRequest $request)
     // {
     //     DB::beginTransaction();
-    //     try{
+    //     try {
 
     //         $edital = new Edital();
+    //         $edital->descricao  = $request->descricao == null? "" : $request->descricao;
+    //         $edital->semestre = $request->semestre;
     //         $edital->data_inicio = $request->data_inicio;
     //         $edital->data_fim = $request->data_fim;
+    //         $edital->titulo_edital = $request->titulo_edital;
+    //         $edital->valor_bolsa = $request->tem_bolsa == 1 ? $request->valor_bolsa : ($request->valor_bolsa == 0 ? "Voluntário" : null);
+         
     //         $edital->programa_id = $request->programa;
+            
     //         $edital->save();
+
+    //         $disciplinas_id = $request->disciplinas;
+    //         if($disciplinas_id != null){
+    //             foreach ($disciplinas_id as $id) {
+    //                 $disciplina = Disciplina::Where('id', $id)->first();
+    //                 $disciplina->editais()->attach($edital->id); 
+    //             }
+    //         }
+
+    //         $programa = Programa::where('id', $request->programa)->first();
 
     //         DB::commit();
 
-    //         return redirect("/programas/$edital->programa_id/editals")->with('sucesso', 'Edital cadastrado com sucesso.');
+    //         return redirect('/programas')->with('sucesso', 'Edital cadastrado com sucesso no programa' . $programa->nome );
 
-    //     } catch(exception $e){
+    //     } catch(Exception $e){
     //         DB::rollback();
-    //         return redirect()->back()->withErrors( "Falha ao cadastrar Edital. tente novamente mais tarde." );
+            
+    //         return redirect()->back()->withErrors( "Falha ao cadastrar Edital no Programa" . $programa->nome . ". tente novamente mais tarde." );
     //     }
     // }
 
