@@ -56,7 +56,7 @@
     }
 </style>
 
-@canany(['admin', 'servidor'])
+
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
     @if (session('sucesso'))
         <div class="alert alert-success" style="width: 100%;">
@@ -81,9 +81,6 @@
             <label for="email" for="nome" class="titulo">E-mail:<strong style="color: red">*</strong></label>
             <input type="text" id="email" name="email" value="{{$aluno->user->email}}" class="boxinfo"><br/><br>
 
-            <label for="senha" for="nome" class="titulo">Senha:<strong style="color: red">*</strong></label>
-            <input type="password" id="senha" name="senha" class="boxinfo"><br/><br>
-
             <label for="cpf" for="nome" class="titulo">CPF:<strong style="color: red">*</strong></label>
             <input type="text" id="cpf" name="cpf" value="{{$aluno->cpf}}" class="boxinfo cpf-autocomplete"><br/><br>
 
@@ -96,6 +93,9 @@
 
             <label for="semestre_entrada" for="nome" class="titulo">Semestre de entrada:<strong style="color: red">*</strong></label>
             <input type="text" id="semestre_entrada" name="semestre_entrada" value="{{$aluno->semestre_entrada}}" class="boxinfo"><br/><br>
+
+            <label for="senha" for="nome" class="titulo">Senha:<strong style="color: red">*</strong></label>
+            <input type="password" id="senha" name="senha" class="boxinfo"><br/><br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                 <input type="button" value="Voltar" href="{{url('/alunos/')}}" onclick="window.location.href='{{url('/alunos/')}}'"
@@ -112,10 +112,6 @@
     <br>
     <br>
 </div>
-@elsecan
-    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/home')}}">Voltar</a>
-@endcan
 
 <script  src="{{ mix('js/app.js') }}">
 

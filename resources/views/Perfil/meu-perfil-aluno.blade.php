@@ -7,8 +7,14 @@
         <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
             <h1 style="color:#2D3875;"><strong>Meu Perfil</strong></h1>
         </div>
+        {{--  editar perfil - botão  --}}
+        <div style="display:flex; justify-content:center; margin-bottom: 10px;  gap: 20px; margin-top: 20px">
+            <a href="{{url("/alunos/".$aluno->id."/editarmeuperfil")}}" class="btn btn-primary"
+                style="background: #34A853; border-radius: 10px; border: none; width: auto; height: 40px; font-weight: 700; font-size: 18px;
+                line-height: 22px;"> <img src="{{asset("images/edit-outline.png")}}" style="width: 25px; margin-bottom: 5px" alt="Editar aluno"> Editar Perfil</a>
+        </div>
         <div>
-            
+
     </div>
 
     @auth

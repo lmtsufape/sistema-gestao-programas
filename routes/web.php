@@ -42,6 +42,7 @@ Route::prefix('alunos')->group(function() {
     Route::get('/create', [AlunoController::class, 'create'])->name('alunos.create');
     Route::post('/', [AlunoController::class, 'store'])->name('alunos.store');
     Route::get('/{id}/edit', [AlunoController::class, 'edit'])->where('id', '[0-9]+')->name('alunos.edit');
+    Route::get('/{id}/editarmeuperfil', [AlunoController::class, 'editarmeuperfil'])->where('id', '[0-9]+')->name('alunos.editarmeuperfil');
     Route::put('/{id}', [AlunoController::class, 'update'])->name('alunos.update');
     Route::delete('/{id}', [AlunoController::class, 'destroy'])->name('alunos.delete');
 });
