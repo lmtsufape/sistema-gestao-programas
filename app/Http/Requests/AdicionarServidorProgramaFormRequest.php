@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProgramaUpdateFormRequest extends FormRequest
+class AdicionarServidorProgramaFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class ProgramaUpdateFormRequest extends FormRequest
     public function rules()
         {
             return [
-                "nome"=>"required|max:25",
                 "servidors" => 'required|array|min:1',
-                "descricao"=>"required"
             ];
         }
 
@@ -34,7 +32,6 @@ class ProgramaUpdateFormRequest extends FormRequest
     public function messages(){
         return [
             "required" => "O campo :attribute é obrigatório.",
-            "nome.max" => "O campo nome não pode ter mais que 25 caracteres."
         ];
     }
 }

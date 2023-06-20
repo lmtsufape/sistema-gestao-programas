@@ -68,17 +68,24 @@
         <br>
         <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
             <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
-            Cadastrar Programa</h1>
+            Cadastrar Servidor no Programa {{$programa->nome}}</h1>
             <hr>
 
-            <form action="{{route('programas.store')}}" method="post">
+            <form action="{{route('programas.vincular-servidor')}}" method="post">
                 @csrf
 
-                <label for="nome" class="titulo" >Nome:<strong style="color: red">*</strong></label>
-                <input type="text" name="nome" value="{{ old('nome') }}" id="nome" placeholder="Digite o nome do programa" class="boxinfo" required><br><br>
+                <input type="hidden" name="id" value="{{$programa->id}}">
 
-                <label for="descricao" class="titulo">Descrição:<strong style="color: red">*</strong></label>
-                <input type="text" name="descricao" value="{{ old('descricao') }}" id="descricao" placeholder="Digite a descrição do programa" class="boxinfo" required><br><br>
+                <label class="titulo" for="servidor">Servidor:<strong style="color: red">*</strong></label>
+                @foreach ($servidors as $servidor)
+                <div class="colunm">
+                    <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
+                        <input type="checkbox" id="servidor_{{ $servidor->id }}" name="servidors[]" value="{{ $servidor->id }}">{{ $servidor->user->name }}
+                    </div>
+                </div>
+                
+                @endforeach
+                <br><br>
                 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                     <input type="button" value="Voltar" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'" style="background: #2D3875;

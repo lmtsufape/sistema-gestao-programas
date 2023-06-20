@@ -132,7 +132,7 @@
                     <br>
                     <label class="titulo" for="orientador">Orientador: <strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" id="orientador" name="orientador" required>
-                        <option>Selecione um orientador</option>
+                        <option value disabled selected hidden>Selecione um orientador</option>
                         @foreach ($orientadores as $orientador)
                             <option value="{{ $orientador->id }}">{{ $orientador->user->name }}</option>
                         @endforeach
@@ -158,13 +158,13 @@
                         <input type="button" value="Voltar" href="{{ route('edital.index') }}"
                             onclick="window.location.href='{{ route('edital.index') }}'"
                             style="background: #2D3875;
-                box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                line-height: 29px; text-align: center; padding: 5px 15px;">
+                            box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
+                            border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
+                            line-height: 29px; text-align: center; padding: 5px 15px;">
                         <input type="submit" value="Salvar"
                             style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
+                            display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
+                            font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
                     </div>
                 </form>
             </div>

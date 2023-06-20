@@ -35,9 +35,7 @@
     margin: 5px
   }
 
-  .botao-secundario {
-    
-  }
+
   .botao-secundario a:hover{
     transform: scale(1.08);
   }
@@ -117,6 +115,10 @@
               <!-- <a style="padding:2px" href="{{url("/programas/$programas->id/alunos")}}">
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar alunos">
               </a> -->
+              <a style="padding:2px" href="{{url("/programas/$programas->id/atribuir-servidor")}}">
+                <img src="{{asset("images/adicionar-servidor.png")}}" alt="Add Servidor">
+              </a>
+              
               <a style="padding:2px" href="{{url("/programas/$programas->id/editais")}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="Listar edital">
               </a>
@@ -134,7 +136,7 @@
           <tr>
             {{-- Não apagar esse tr vazio senão a linha da tabela fica mt preta/grossa  --}}
           </tr>
-          @include("Programa.components.modal_show", ["programa" => $programas, "programa_servidor" => $programa_servidor, "servidors" => $servidors, "users" => $users])
+          @include("Programa.components.modal_show", ["programa" => $programas, "servidors" => $servidors, "users" => $users])
           @include("Programa.components.modal_delete", ["programa" => $programas])
           @endforeach
         </tbody>

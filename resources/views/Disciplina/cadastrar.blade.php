@@ -51,7 +51,7 @@
 
                     <label for="inputCurso" class="titulo" >Curso:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" id="inputCurso" name="curso">
-                        <option disabled selected>Selecione o curso</option>
+                        <option value disabled selected hidden>Selecione o curso</option>
                             @foreach ($cursos as $curso)
                                 <option value="{{$curso->id}}">{{$curso->nome}}</option>
                             @endforeach
