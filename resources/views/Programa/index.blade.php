@@ -118,7 +118,9 @@
               <a style="padding:2px" href="{{url("/programas/$programas->id/atribuir-servidor")}}">
                 <img src="{{asset("images/adicionar-servidor.png")}}" alt="Add Servidor">
               </a>
-              
+              <a style="padding:2px" href="{{url("/programas/$programas->id/criar-edital")}}">
+                <img src="{{asset("images/add-edital.png")}}" alt="Add Edital">
+              </a>
               <a style="padding:2px" href="{{url("/programas/$programas->id/editais")}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="Listar edital">
               </a>
