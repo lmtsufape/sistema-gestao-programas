@@ -154,6 +154,10 @@
 
       <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
+          <a><img src="/images/adicionar-servidor.png" alt="Add Servidor" style="width: 20px; height: 20px;"></a>
+          <p class="textolegenda">Add Servidor</p>
+        </div>
+        <div style="display: flex; margin: 10px">
           <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
           <p class="textolegenda">Informações</p>
         </div>
