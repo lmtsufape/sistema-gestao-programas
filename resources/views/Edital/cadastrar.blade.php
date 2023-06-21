@@ -104,7 +104,7 @@
 
                     <div id="valor_bolsa" style="display: none">
                         <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                        <input class="boxinfo" placeholder="Digite o valor da bolsa" 
+                        <input class="boxinfo" placeholder="Digite o valor da bolsa"
                         type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
                     </div>
 
@@ -148,11 +148,11 @@
             </div>
             <br><br>
         </div>
-        
+
         <script>
             $(document).ready(function() {
                 $("#tem_bolsa").change(function() {
-                    var selectedOption = $(this).val(); 
+                    var selectedOption = $(this).val();
                     if(selectedOption == 0){
                         $("#valor_bolsa").hide();
                     }else{
@@ -166,7 +166,7 @@
                 $("input[name='checkDisciplina']").change(function() {
                     if ($("input[name='checkDisciplina']:checked").val() == "sim"){
                         $("#disciplinas").removeAttr("hidden");
-                        
+
                     } else {
                         $("#disciplinas").attr("hidden", true);
                     }
@@ -174,7 +174,7 @@
             });
         </script>
         <script  src="{{ mix('js/app.js') }}">
-            
+
             $('.semestre-autocomplete').inputmask('0000.0');
 
             $("#programa").chosen({

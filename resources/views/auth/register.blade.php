@@ -201,7 +201,7 @@
     $(document).ready(function() {
         $("#tipoUser").change(function() {
             var selectedOption = $(this).val();
-            console.log(selectedOption);
+
             if (selectedOption == "aluno") {
                 $("#curso").show();
                 $("#semestre").show();
