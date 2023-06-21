@@ -118,7 +118,9 @@
               <a style="padding:2px" href="{{url("/programas/$programas->id/atribuir-servidor")}}">
                 <img src="{{asset("images/adicionar-servidor.png")}}" alt="Add Servidor">
               </a>
-              
+              <a style="padding:2px" href="{{url("/programas/$programas->id/criar-edital")}}">
+                <img src="{{asset("images/add-edital.png")}}" alt="Add Edital">
+              </a>
               <a style="padding:2px" href="{{url("/programas/$programas->id/editais")}}">
                 <img src="{{asset("images/listaredital.png")}}" alt="Listar edital">
               </a>
@@ -153,6 +155,10 @@
       </div>
 
       <div style="align-self: center; margin-right: auto">
+        <div style="display: flex; margin: 10px">
+          <a><img src="/images/adicionar-servidor.png" alt="Add Servidor" style="width: 20px; height: 20px;"></a>
+          <p class="textolegenda">Add Servidor</p>
+        </div>
         <div style="display: flex; margin: 10px">
           <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
           <p class="textolegenda">Informações</p>
