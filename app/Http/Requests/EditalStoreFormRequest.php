@@ -31,7 +31,8 @@ class EditalStoreFormRequest extends FormRequest
                 "titulo_edital"=>"required",
                 "valor_bolsa"=>"nullable|numeric",
                 "semestre"=>"required|regex:/^\d{4}\.\d$/",
-                "checkDisciplina" => "required"
+                "checkDisciplina" => "required",
+                "checkBolsa" => "required"
                 //"descricao"=>"required",
             ];
         }
