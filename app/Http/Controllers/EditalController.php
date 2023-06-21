@@ -190,12 +190,11 @@ class EditalController extends Controller
     {
         DB::beginTransaction();
         try{
-            dd($request);
             $edital = Edital::find($id);
             $edital->descricao = $request->descricao ?? $edital->descricao; //$edital->descricao  = $request->descricao == null? "" : $request->descricao;
             $edital->semestre = $request->semestre ? $request->semestre : $edital->semestre;
             $edital->titulo_edital = $request->titulo_edital ? $request->titulo_edital : $edital->titulo_edital;
-            $edital->valor_bolsa = $request->tem_bolsa == 1 ? $request->valor_bolsa : ($request->valor_bolsa == 0 ? "Voluntário" : null);
+            $edital->valor_bolsa = $request->checkBolsa == "sim" ? $request->valor_bolsa : null;
             $edital->data_inicio = $request->data_inicio ? $request->data_inicio : $edital->data_inicio;
             $edital->data_fim = $request->data_fim ? $request->data_fim : $edital->data_fim;
             $edital->programa_id = $request->programa ? $request->programa : $edital->programa_id;
@@ -213,7 +212,6 @@ class EditalController extends Controller
 
         } catch(exception $e){
             DB::rollback();
-            dd($e->getMessage());
             return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
         }
     }
