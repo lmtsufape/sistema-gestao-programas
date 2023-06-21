@@ -95,14 +95,15 @@
                     <label class="titulo" for="data_fim" >Data de fim:<strong style="color: red">*</strong></label>
                     <input class="boxinfo"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
 
-                    <label class="titulo" for="tem_bolsa">Tem bolsa:</label>
-                    <select aria-label="Defacult select example" class="boxinfo" name="tem_bolsa" id="tem_bolsa">
-                        <option value disabled selected hidden>Selecione uma Opção</option>
-                        <option value="0">Não</option>
-                        <option value="1">Sim</option>
-                    </select><br><br>
+                    <div id="checkBolsa">
+                        <label class="titulo radio-spacing" for="bolsa">Possui bolsa?: <strong style="color: red">*</strong></label>
+                        <input type="radio" name="checkBolsa" value="sim" required>
+                        <label class="radio-spacing" for="checkBolsa_sim">Sim</label>
+                        <input type="radio" name="checkBolsa" value="nao" required>
+                        <label class="radio-spacing" for="checkBolsa_nao">Não</label><br><br>
+                    </div>
 
-                    <div id="valor_bolsa" style="display: none">
+                    <div id="valor_bolsa" hidden>
                         <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
                         <input class="boxinfo" placeholder="Digite o valor da bolsa" 
                         type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
@@ -156,6 +157,17 @@
                         $("#valor_bolsa").hide();
                     }else{
                         $("#valor_bolsa").show();
+                    }
+                });
+            });
+            
+            $(document).ready(function() {
+                $("input[name='checkBolsa']").change(function() {
+                    if ($("input[name='checkBolsa']:checked").val() == "sim"){
+                        $("#valor_bolsa").removeAttr("hidden");
+                        
+                    } else {
+                        $("#valor_bolsa").attr("hidden", true);
                     }
                 });
             });
