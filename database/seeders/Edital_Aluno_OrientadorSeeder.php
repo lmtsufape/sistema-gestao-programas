@@ -29,6 +29,7 @@ class Edital_Aluno_OrientadorSeeder extends Seeder
                 'orientador_id' => 1,
                 'termo_compromisso_aluno' => 'termo_compromisso_aluno.pdf',
                 'plano_projeto' => 'plano_projeto.pdf',
+                'outros_documentos' => 'outros_documentos',
                 'bolsista' => true,
 
             ],
@@ -44,6 +45,7 @@ class Edital_Aluno_OrientadorSeeder extends Seeder
                 'orientador_id' => 1,
                 'termo_compromisso_aluno' => 'termo_compromisso_aluno.pdf',
                 'plano_projeto' => 'plano_projeto.pdf',
+                'outros_documentos' => 'outros_documentos',
                 'bolsista' => false,
             ],
         ]);
