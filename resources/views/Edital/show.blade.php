@@ -149,8 +149,13 @@
                     <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno" value="{{ old('termo_compromisso_aluno') }}" required>
                     <br>
                     <br>
-                    <label class="titulo" for="plano_projeto">Plano de projeto: </label>
+                    <label class="titulo" for="plano_projeto">Plano de projeto:<strong
+                        style="color: red">*</strong> </label>
                     <input type="file" id="plano_projeto" class="boxinfo" name="plano_projeto" value="{{ old('plano_projeto') }}">
+                    <br>
+                    <br>
+                    <label class="titulo" for="outros_documentos">Outros documentos: </label>
+                    <input type="file" id="outros_documentos" class="boxinfo" name="outros_documentos" value="{{ old('outros_documentos') }}">
                     <br>
                     <br>
 

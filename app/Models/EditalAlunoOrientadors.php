@@ -14,6 +14,7 @@ class EditalAlunoOrientadors extends Model
         'data_fim',
         'bolsa',
         'plano_projeto',
+        'outros_documentos',
         'bolsista',
         'info_complementares',
         'termo_compromisso_aluno',

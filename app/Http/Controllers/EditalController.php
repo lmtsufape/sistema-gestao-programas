@@ -128,9 +128,11 @@ class EditalController extends Controller
             $request->validate([
                 'termo_compromisso_aluno' => 'required|mimes:pdf|max:2048',
                 'plano_projeto' => 'required|mimes:pdf|max:2048',
+                'outros_documentos' => 'mimes:pdf|max:2048'
             ]);
             $termo_aluno = "";
             $plano_projeto = "";
+            $outros_documentos = "";
 
 
             if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()) {
@@ -146,7 +148,13 @@ class EditalController extends Controller
                 // Armazenar o arquivo na pasta "termo_compromisso_alunos"
                 $request->plano_projeto->storeAs('plano_projeto', $plano_projeto);
             }
-            //dd($termo_orientador);
+
+            if($request->hasFile('outros_documentos') && $request->file('outros_documentos')->isValid()) {
+                $outros_documentos = "outros_documentos_" . $edital->id . now()->format('YmdHis') . '.' . $request->outros_documentos->extension();
+                // Armazenar o arquivo na pasta "termo_compromisso_alunos"
+                $request->outros_documentos->storeAs('outros_documentos', $outros_documentos);
+            }
+            //dd($outros_documentos);
             if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
                 return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('falha', 'O aluno já está cadastrado no edital.');
             } else {
@@ -155,7 +163,6 @@ class EditalController extends Controller
                     'data_inicio' => $edital->data_inicio,
                     'data_fim' => $edital->data_fim,
                     'bolsa' => $request->bolsa,
-                    'bolsista' => true,
                     #'plano_projeto' => "plano de projeto",
                     'info_complementares' => $request->info_complementares == null ? "-" : $request->info_complementares,
                     #'disciplina_id' => $edital->disciplina_id,
@@ -165,7 +172,12 @@ class EditalController extends Controller
                 ];
                 $data['plano_projeto'] = $plano_projeto;
                 $data['termo_compromisso_aluno'] = $termo_aluno;
-                //$data['termo_compromisso_orientador'] = $termo_orientador;
+                $data['outros_documentos'] = $outros_documentos;
+                if($request->bolsa == 'Voluntário') {
+                    $data['bolsista'] = false;
+                } else {
+                    $data['bolsista'] = true;
+                }
                 //dd($data);
                 $editalAlunoOrientador = EditalAlunoOrientadors::create($data);
 
