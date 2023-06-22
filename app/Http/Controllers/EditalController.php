@@ -115,8 +115,8 @@ class EditalController extends Controller
     }
 
     public function inscrever_aluno(Request $request, $id) {
-        // DB::beginTransaction();
-        // try {
+        DB::beginTransaction();
+        try {
             //dd($request);
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
@@ -184,11 +184,11 @@ class EditalController extends Controller
                 DB::commit();
                  return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('successo', 'O aluno foi inscrito com sucesso no edital.');
            }
-        // } catch(Exception $e){
-        //      DB::rollback();
+        } catch(Exception $e){
+             DB::rollback();
 
-        //      return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." )->withInput();
-        //  }
+             return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." )->withInput();
+         }
     }
 
     /**
@@ -337,10 +337,29 @@ class EditalController extends Controller
         if(Storage::exists($path)) {
             return Storage::download($path);
         } else {
-            return redirect()->back()->with('falha', 'Arquivo PDF não encontrado.');
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
         }
      }
 
+     public function download_plano_trabalho($fileName) {
+        $path = "plano_projeto".$fileName;
+
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+     }
+
+     public function download_outros_documentos($fileName) {
+        $path = "outros_documentos".$fileName;
+
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+     }
 
 
      public function editar_vinculo($aluno_id, $edital_id){
