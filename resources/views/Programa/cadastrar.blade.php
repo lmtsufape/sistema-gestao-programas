@@ -79,6 +79,12 @@
 
                 <label for="descricao" class="titulo">Descrição:<strong style="color: red">*</strong></label>
                 <input type="text" name="descricao" value="{{ old('descricao') }}" id="descricao" placeholder="Digite a descrição do programa" class="boxinfo" required><br><br>
+
+                <label class="titulo" for="data_inicio" class="titulo">Data de início:<strong style="color: red">*</strong></label>
+                <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}"><br><br>
+
+                <label class="titulo" for="data_fim" class="titulo">Data de fim:<strong style="color: red">*</strong></label>
+                <input class="boxinfo" type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
                 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                     <input type="button" value="Voltar" href="{{url('/home/')}}" onclick="window.location.href='{{url('/home/')}}'" style="background: #2D3875;

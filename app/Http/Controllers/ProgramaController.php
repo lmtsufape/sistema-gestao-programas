@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Programa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 use App\Http\Requests\ProgramaStoreFormRequest;
 use App\Http\Requests\ProgramaUpdateFormRequest;
 use App\Models\Servidor;
@@ -74,12 +76,23 @@ class ProgramaController extends Controller
      */
     public function store(ProgramaStoreFormRequest $request)
     {
+        $validador = Validator::make($request->all(), [
+            'data_inicio' => 'required|date_format:Y-m-d|before:data_fim',
+            'data_fim' => 'required|date_format:Y-m-d|after:data_inicio'
+            ]);
+    
+        if ($validador->fails()) {
+             return redirect()->back()->withErrors($validador)->withInput();
+        }
+
         DB::beginTransaction();
         try{
 
             $programa = new Programa();
             $programa->nome = $request->nome;
             $programa->descricao = $request->descricao;
+            $programa->data_inicio = Carbon::createFromFormat('Y-m-d', $request->data_inicio, 'America/Sao_Paulo')->toDateTimeString();
+            $programa->data_fim = Carbon::createFromFormat('Y-m-d', $request->data_fim, 'America/Sao_Paulo')->toDateTimeString();
             $programa->save();
 
             // if ($request->servidor){

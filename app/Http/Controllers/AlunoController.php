@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Aluno;
 use App\Models\Curso;
+use App\Models\Edital;
+use App\Models\EditalAlunoOrientadors;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -134,6 +136,15 @@ class AlunoController extends Controller
 
 
         return view('Perfil.meu-perfil-aluno', ['aluno' => $aluno]);
+    }
+
+    public function editais_profile(Request $request) {
+        $pivos = EditalAlunoOrientadors::where('aluno_id', $request->user()->typage_id)->get();
+        $editais = array();
+        foreach ($pivos as $pivo){
+            array_push($editais, $pivo->edital);
+        }
+        return view('Alunos.editais-aluno',compact("editais"));
     }
 
 }

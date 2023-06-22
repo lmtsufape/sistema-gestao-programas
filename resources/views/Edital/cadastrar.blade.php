@@ -105,7 +105,7 @@
 
                     <div id="valor_bolsa" hidden>
                         <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                        <input class="boxinfo" placeholder="Digite o valor da bolsa" 
+                        <input class="boxinfo" placeholder="Digite o valor da bolsa"
                         type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
                     </div>
 
@@ -137,7 +137,7 @@
                     
 
                     <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                        <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;
+                        <input type="button" value="Voltar" href="{{url('/home/')}}" onclick="window.location.href='{{url('/home/')}}'" style="background: #2D3875;
                         box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                         border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                         line-height: 29px; text-align: center; padding: 5px 15px;">
@@ -149,7 +149,7 @@
             </div>
             <br><br>
         </div>
-        
+
         <script>
             $(document).ready(function() {
                 $("input[name='checkBolsa']").change(function() {
@@ -167,7 +167,7 @@
                 $("input[name='checkDisciplina']").change(function() {
                     if ($("input[name='checkDisciplina']:checked").val() == "sim"){
                         $("#disciplinas").removeAttr("hidden");
-                        
+
                     } else {
                         $("#disciplinas").attr("hidden", true);
                     }
@@ -177,7 +177,7 @@
             });
         </script>
         <script  src="{{ mix('js/app.js') }}">
-            
+
             $('.semestre-autocomplete').inputmask('0000.0');
 
             $("#programa").chosen({

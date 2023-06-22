@@ -95,9 +95,9 @@ Route::prefix('programas')->group(function(){
     Route::get('/vinculo', [ProgramaController::class, 'listar_alunos'])->name('programas.vinculo');
     Route::get('/{id}/atribuir-servidor', [ProgramaController::class, 'atribuir_servidor'])->name('programas.atribuir-servidor');
     Route::post('/vincular_servidor', [ProgramaController::class, 'store_servidor'])->name('programas.vincular-servidor');
-    
-    
-    //Route::post('/events/join/{id}', [EventController::class, 'joinEvent'])->middleware('auth');    
+
+
+    //Route::post('/events/join/{id}', [EventController::class, 'joinEvent'])->middleware('auth');
 });
 
 // Rotas de Edital
@@ -180,3 +180,15 @@ Route::get('/meu-perfil-orientador', [App\Http\Controllers\OrientadorController:
 
 //Rota para listar os projetos do aluno
 Route::get('/index_aluno', [MeusProgramasController::class, 'index_aluno']);
+
+Route::get('/editais-aluno', [AlunoController::class, 'editais_profile']);
+
+Route::get('/editais-orientador', [OrientadorController::class, 'editais_profile_orientador']);
+
+
+/*Route::resource('/vinculo', MeusProgramasController::class);
+
+Route::prefix('vinculo')->group(function() {
+    Route::get('/alunos/{alunoId}/editais', [MeusProgramasController::class, 'listar'])->name('listarEditais');
+
+});*/

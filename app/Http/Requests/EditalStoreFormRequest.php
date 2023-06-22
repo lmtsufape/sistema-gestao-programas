@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Carbon\Carbon;
 
 class EditalStoreFormRequest extends FormRequest
 {
@@ -24,8 +25,8 @@ class EditalStoreFormRequest extends FormRequest
     public function rules()
         {
             return [
-                "data_inicio"=>"required|date",
-                "data_fim"=>"required|date",
+                "data_inicio"=>"required|date|after:" . Carbon::createFromDate(2001, 1, 1)->format('Y-m-d'),
+                "data_fim"=>"required|date|after:data_inicio",
                 "programa"=>"required",
                 "disciplinas"=>"",
                 "titulo_edital"=>"required",
@@ -41,7 +42,9 @@ class EditalStoreFormRequest extends FormRequest
     public function messages(){
         return [
             "required" => "O campo :attribute é obrigatório.",
-            "date" => "O campo :attribute deve ser um date.",
+            "date" => "O campo :attribute deve ser uma data válida: DD/MM/AAAA.",
+            "data_inicio.after" => "O campo :attribute deve ser uma data válida: DD/MM/AAAA.",
+            "data_fim.after" => 'A data final deve ser posterior à data de início.',
             "numeric" => "O campo :attribute deve ser um número.",
             "regex" => "O campo :attribute deve seguir o exemplo: 2023.3"             
         ];
