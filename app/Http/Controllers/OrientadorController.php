@@ -189,6 +189,8 @@ class OrientadorController extends Controller
 
                 if ($orientador->user->update()){
                     return redirect('/orientadors')->with('sucesso', 'Orientador Atualizado com sucesso.');
+                    // return redirect('/meu-perfil-orientador')->with('sucesso', 'Orientador Atualizado com sucesso.');
+
                 } else {
                     return redirect()->back()->withErrors( "Falha ao editar orientador. tente novamente mais tarde." );
                 }
@@ -200,7 +202,6 @@ class OrientadorController extends Controller
             return redirect()->back()->withErrors("Falha ao editar orientador. Tente novamente mais tarde.");
         }
     }
-
 
     public function delete($id)
     {
