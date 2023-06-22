@@ -69,27 +69,37 @@
     <div class="col-md-9 corpo p-2 px-3">
         <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
         min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
-            <thead>
-                <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Descrição</th>
-                    <th class="text-center">Ações</th>
-                </tr>
-            </thead>
-            <!-- foreach de programas -->
-            <tbody>
-                <tr>
-                        <td class="align-middle"> {{$teste}}</td>
-                        <td class="align-middle">teste </td>
-                        <td class="align-middle">
-                            <a type="button" data-bs-toggle="modal"
-                            {{--  data-bs-target="#modal_show_{{$programas->id}}"  --}}
-                            >
-                            <img src="{{asset("images/info.png")}}" alt="Info programa">
-                            </a>
-                        </td>
-                    </tr>
-
+           <thead>
+          <tr>
+            <th scope="col">Título</i></th>
+            <th scope="col">Data de início</th>
+            <th scope="col">Data de fim</th>
+            <th scope="col">Programa</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($editais as $edital)
+          <tr>
+            <td style="border-right: 1px solid #d3d3d3;">{{ $edital->titulo_edital}}</td>
+            <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
+            <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
+            <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
+            <td>
+            
+              
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$edital->id}}">
+                <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
+              </a>
+        
+            </td>
+          </tr>
+          <tr>
+            {{-- Não apagar esse tr  --}}
+          </tr>
+        </tbody>
+        @include("Edital.components.modal_show", ["edital" => $edital])
+        @endforeach
                 </tbody>
             </table>
         </div>
@@ -107,7 +117,7 @@
                     <p class="textolegenda">Informações</p>
                 </div>
                 <div style="display: flex; margin: 10px">
-                    <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+                    <a><img src="{{asset('images/searchicon.png')}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
                     <p class="textolegenda">Pesquisar</p>
                 </div>
             </div>
