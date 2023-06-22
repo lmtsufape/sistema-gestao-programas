@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\OrientadorFormRequest;
 use App\Http\Requests\OrientadorFormUpdateRequest;
-
+use App\Http\Requests\AlunoUpdateFormRequest;
 
 class UserController extends Controller
 {
@@ -130,6 +130,43 @@ class UserController extends Controller
         } catch (Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao se cadastrar." );
+        }
+    }
+
+    public function updateAluno(AlunoUpdateFormRequest $request, $id)
+    {
+        try{
+            #dd($request);
+            $aluno = Aluno::find($id);
+            #dd($request);
+            $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
+            $aluno->semestre_entrada = $request->semestre_entrada;
+            $aluno->curso_id = $request->curso;
+            $aluno->nome_aluno = $request->nome;
+            $aluno->user->name = $request->nome;
+            $aluno->user->email = $request->email;
+            $aluno->user->name_social = $request->nome_social;
+            if ($request->senha && $request->senha != null){
+                if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
+                    $aluno->user->password = Hash::make($request->password);
+                } else {
+                    return redirect()->back()->withErrors( "Senha deve ter entre 4 e 30 dígitos" );
+                }
+            }
+
+            if ($aluno->save()){
+
+                if ($aluno->user->update()){
+                    return redirect('/meu-perfil-aluno')->with('sucesso', 'Aluno atualizado com sucesso.');
+                } else {
+                    return redirect()->back()->withErrors( "Falha ao editar Aluno. tente novamente mais tarde." );
+                }
+
+            }
+
+        } catch(exception $e){
+            return redirect()->back()->withErrors( "Falha ao editar aluno. tente novamente mais tarde." );
+
         }
     }
 

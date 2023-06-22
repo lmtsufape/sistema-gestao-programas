@@ -169,6 +169,8 @@ Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::cla
 Route::get('/meu-perfil-servidor', [App\Http\Controllers\ServidorController::class, 'profile'])->name('meu-perfil-servidor');
 //Rota de meu perfil aluno
 Route::get('/meu-perfil-aluno', [App\Http\Controllers\AlunoController::class, 'profile'])->name('meu-perfil-aluno');
+//Editar perfil aluno
+Route::get('/meu-perfil-aluno/editar', [App\Http\Controllers\UserController::class, 'updateAluno'])->name('meu-perfil-aluno.editar');
 //Rota de meu perfil orientador
 Route::get('/meu-perfil-orientador', [App\Http\Controllers\OrientadorController::class, 'profile'])->name('meu-perfil-orientador');
 //
