@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrientadorFormRequest;
 use App\Http\Requests\OrientadorFormUpdateRequest;
 use App\Models\Curso;
+use App\Models\EditalAlunoOrientadors;
 use App\Models\Orientador;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -216,5 +217,14 @@ class OrientadorController extends Controller
         $orientador = Orientador::find($id);
 
         return view('Perfil.meu-perfil-orientador', ['orientador' => $orientador]);
+    }   
+
+    public function editais_profile_orientador(Request $request) {
+        $pivos = EditalAlunoOrientadors::where('orientador_id', $request->user()->typage_id)->get();
+        $editais = array();
+        foreach ($pivos as $pivo){
+            array_push($editais, $pivo->edital);
+        }
+        return view('Orientador.editais-orientador',compact("editais"));
     }
 }

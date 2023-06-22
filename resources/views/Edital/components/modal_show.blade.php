@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor', 'aluno'])
+@canany(['admin', 'servidor', 'aluno', 'orientador'])
 <div class="modal fade " id="modal_show{{$edital->id}}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
     <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
