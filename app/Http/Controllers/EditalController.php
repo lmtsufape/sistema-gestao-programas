@@ -337,10 +337,29 @@ class EditalController extends Controller
         if(Storage::exists($path)) {
             return Storage::download($path);
         } else {
-            return redirect()->back()->with('falha', 'Arquivo PDF não encontrado.');
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
         }
      }
 
+     public function download_plano_trabalho($fileName) {
+        $path = "plano_projeto".$fileName;
+
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+     }
+
+     public function download_outros_documentos($fileName) {
+        $path = "outros_documentos".$fileName;
+
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+     }
 
 
      public function editar_vinculo($aluno_id, $edital_id){
