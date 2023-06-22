@@ -167,7 +167,7 @@
                     <p style="margin: auto; padding-right: 5px"> Listar modelos de documentos </p>
                 </button>
 
-                <button class="botaoazul" ref="{{url("/index_aluno")}}" onclick="window.location.href='{{url("/index_aluno")}}'">
+                <button class="botaoazul" ref="{{url('/editais-aluno')}}" onclick="window.location.href='{{url('/editais-aluno')}}'">
                     <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
                     <p style="margin: auto; padding-right: 5px"> Ver meus editais </p>
                 </button>
@@ -212,7 +212,7 @@
                     <p style="margin: auto; padding-right: 5px">Listar alunos </p>
                 </button>
 
-                <button class="botaoazul" href="{{url("/MeusProgramas/")}}" onclick="window.location.href='{{url("/MeusProgramas/")}}'">
+                <button class="botaoazul" href="{{url('/editais-orientador')}}" onclick="window.location.href='{{url('/editais-orientador')}}'">
                     <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 5px"> Meus editais </p>
                 </button>
