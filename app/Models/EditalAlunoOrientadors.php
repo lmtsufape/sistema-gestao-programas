@@ -28,4 +28,9 @@ class EditalAlunoOrientadors extends Model
     {
         return $this->belongsTo(Edital::class, "edital_id");
     }
+
+    public function aluno()
+    {
+        return $this->belongsTo(Aluno::class, "aluno_id");
+    }
 }

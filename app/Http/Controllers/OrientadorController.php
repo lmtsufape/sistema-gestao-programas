@@ -227,4 +227,11 @@ class OrientadorController extends Controller
         }
         return view('Orientador.editais-orientador',compact("editais"));
     }
+
+    public function lista_alunos_profile_orientador(Request $request) {
+        $pivos = EditalAlunoOrientadors::where('orientador_id', $request->user()->typage_id)->get();
+        $alunos = array();
+        
+        return view('Orientador.listar_alunos-orientador',compact("pivos"));
+    }
 }
