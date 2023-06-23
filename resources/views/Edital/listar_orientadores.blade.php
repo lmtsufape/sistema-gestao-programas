@@ -90,11 +90,16 @@
             <td> {{ date('d/m/Y', strtotime($pivo->data_fim)) }} </td>
             <td>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$orientador->id}}" >
-                <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/info.png')}}" alt="Informações do aluno" style="height: 30px; width: 30px;">
+              </a>
+
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$orientador->id}}">
+                <img src="{{asset('images/document.png')}}" alt="Documentos do orientador" style="height: 30px; width: 30px;">
               </a>
             </td>
           </tr>
           @include('Edital.components_orientadores.modal_show', ['orientador' => $orientador, 'pivo' => $pivo])
+          @include('Edital.components_orientadores.modal_documents', ['orientador' => $orientador, 'pivo' => $pivo])
           @endforeach
         @endforeach
         </tbody>
@@ -114,6 +119,10 @@
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
         </div>
         <div style="display: flex; margin: 10px">
+          <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
+          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
+        </div>
+        <div style="display: flex; margin: 10px">
           <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
@@ -128,6 +137,10 @@
 
   function exibirModalVisualizar(id) {
     $('#modal_show' + id).modal('show');
+  }
+
+  function exibirModalDocumentos(id) {
+    $('#modal_documents' + id).modal('show');
   }
 
 </script>
