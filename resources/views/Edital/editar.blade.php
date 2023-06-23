@@ -108,9 +108,36 @@
                     {{-- <label class="titulo" for="titulo_edital">Título do Edital:</label> --}}
                     {{-- <input class="boxinfo" type="text" name="titulo_edital" id="titulo_edital" value=""><br><br> --}}
 
-                    <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo" placeholder="Digite o valor da bolsa" type="text" name="valor_bolsa"
-                        id="valor_bolsa" value="{{ $edital->valor_bolsa }}"><br><br>
+                    @if($edital->valor_bolsa == null)
+                    <div id="checkBolsa">
+                        <label class="titulo radio-spacing" for="bolsa">Possui bolsa?: <strong style="color: red">*</strong></label>
+                        <input type="radio" name="checkBolsa" value="sim" required>
+                        <label class="radio-spacing" for="checkBolsa_sim">Sim</label>
+                        <input type="radio" name="checkBolsa" value="nao" required checked>
+                        <label class="radio-spacing" for="checkBolsa_nao">Não</label><br><br>
+                    </div>
+
+                    <div id="valor_bolsa" hidden>
+                        <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
+                        <input class="boxinfo" placeholder="Digite o valor da bolsa" 
+                        type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
+                    </div>
+
+                    @else
+                    <div id="checkBolsa">
+                        <label class="titulo radio-spacing" for="bolsa">Possui bolsa?: <strong style="color: red">*</strong></label>
+                        <input type="radio" name="checkBolsa" value="sim" required checked>
+                        <label class="radio-spacing" for="checkBolsa_sim">Sim</label>
+                        <input type="radio" name="checkBolsa" value="nao" required>
+                        <label class="radio-spacing" for="checkBolsa_nao">Não</label><br><br>
+                    </div>
+
+                    <div id="valor_bolsa">
+                        <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
+                        <input class="boxinfo" placeholder="Digite o valor da bolsa" 
+                        type="number" name="valor_bolsa" id="valor_bolsa" value="{{ $edital->valor_bolsa }}"><br><br>
+                    </div>
+                    @endif
 
                     <label class="titulo" for="programa">Programa:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" name="programa" id="programa">
@@ -183,6 +210,18 @@
                     }
                 });
             });
+
+            $(document).ready(function() {
+                $("input[name='checkBolsa']").change(function() {
+                    if ($("input[name='checkBolsa']:checked").val() == "sim"){
+                        $("#valor_bolsa").removeAttr("hidden");
+                        
+                    } else {
+                        $("#valor_bolsa").attr("hidden", true);
+                    }
+                });
+            });
+
         </script>
 
         <script>

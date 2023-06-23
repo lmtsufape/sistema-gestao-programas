@@ -21,7 +21,7 @@ class CreateEditalsTable extends Migration
             $table->date("data_inicio");
             $table->date("data_fim");
             $table->string('titulo_edital');
-            $table->string('valor_bolsa');
+            $table->string('valor_bolsa')->nullable(true);
             #$table->foreign('disciplina_id')->references('id')->on('disciplinas');
             #$table->unsignedBigInteger('disciplina_id');
             // $table->foreignId('disciplina_id')->nullable(false)->constrained('disciplinas');
