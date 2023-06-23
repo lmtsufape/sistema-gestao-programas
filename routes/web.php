@@ -180,17 +180,14 @@ Route::get('/meu-perfil-orientador', [App\Http\Controllers\OrientadorController:
 
 
 
-//Rota para listar os projetos do aluno
+//Rota para listar os projetos do aluno 
 Route::get('/index_aluno', [MeusProgramasController::class, 'index_aluno']);
 
+//Rota para listar os editais do aluno em seu perfil
 Route::get('/editais-aluno', [AlunoController::class, 'editais_profile']);
 
+//Rota para listar os editais do orientador em seu perfil
 Route::get('/editais-orientador', [OrientadorController::class, 'editais_profile_orientador']);
 
-
-/*Route::resource('/vinculo', MeusProgramasController::class);
-
-Route::prefix('vinculo')->group(function() {
-    Route::get('/alunos/{alunoId}/editais', [MeusProgramasController::class, 'listar'])->name('listarEditais');
-
-});*/
+//Rota para listar os alunos vinculado a um orientador especifico
+Route::get('/listar_alunos-orientador', [OrientadorController::class, 'lista_alunos_profile_orientador']);

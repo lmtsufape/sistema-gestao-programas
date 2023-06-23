@@ -207,7 +207,7 @@
             </div>
 
             <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
-                <button class="botaoverde" href="{{url("/MeusAlunos")}}" onclick="window.location.href='{{url("/MeusAlunos")}}'">
+                <button class="botaoverde" href="{{url('/listar_alunos-orientador')}}" onclick="window.location.href='{{url('/listar_alunos-orientador')}}'">
                     <img src="{{asset("images/user.png")}}" alt="user" style="padding-right: 20px;">
                     <p style="margin: auto; padding-right: 5px">Listar alunos </p>
                 </button>

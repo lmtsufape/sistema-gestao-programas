@@ -80,39 +80,44 @@
       <div class="col-md-9 corpo p-2 px-3">
         <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
         min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
-          <thead>
-            <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">Edital</th>
-              <th scope="col">Bolsa</th>
-              <th scope="col">Valor da bolsa</th>
-              <th class="text-center">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Foreach para listar os alunos -->
-            <tr>
-              <td>Teste </td>
-              <td>Teste </td>
-              <td>Teste </td>
-              <td>Teste </td>
-              <td>
-                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_">
-                  <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
-                </a>
-                <!-- <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_">
-                  <img src="{{asset("images/delete.png")}}" alt="Editais" style="height: 30px; width: 30px;">
-                </a> -->
-              </td>
-            </tr>
-
+                <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Edital</th>
+            <th scope="col">Data de Início</th>
+            <th scope="col">Data de Fim</th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        @foreach($pivos as $pivo)
+        
+          <tr>
+            <td> {{ $pivo->aluno->nome_aluno }} </td>
+            <td> {{ $pivo->edital->titulo_edital }} </td>
+            <td>{{date_format(date_create($pivo->data_inicio), "d/m/Y")}}</td>
+            <td>{{date_format(date_create($pivo->data_fim), "d/m/Y")}}</td>
+            <td>
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$pivo->aluno->id}}" data-bs-id="{{$pivo->aluno->id}}">
+                <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
+              </a>
+              {{-- <a type="button" href="{{ route('edital.editar_vinculo', ['aluno_id' => $pivo->aluno_id, 'edital_id' => $pivo->edital_id]) }}">
+                <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar vinculo" style="height: 30px; width: 30px;">
+              </a>--}}
+              {{--<a type="button" href="{{ route('edital.aluno.delete', ['aluno_id' => $pivo->aluno_id, 'edital_id' => $pivo->edital_id]) }}">
+                <img src="{{asset('images/delete.png')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
+              </a>--}}
+              {{--<a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$pivo->aluno->id}}">
+                <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
+              </a>--}}
+              {{-- <a href="{{ route('termo_aluno.download', ['fileName' => $pivo->aluno->termo_compromisso_aluno]) }}">Baixar PDF</a> --}}
+            </td>
+          </tr>
             <!-- Modal show -->
             @include('Orientador.components_alunos.modal_show')
             <!-- Modal delete-->
             @include('Orientador.components_alunos.modal_delete')
-
-
-            <!-- endforeach -->
+        @endforeach
           </tbody>
         </table>
       </div>
