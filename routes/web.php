@@ -167,6 +167,9 @@ Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::cla
 //
 //Rota de meu perfil servidor
 Route::get('/meu-perfil-servidor', [App\Http\Controllers\ServidorController::class, 'profile'])->name('meu-perfil-servidor');
+//Editar perfil servidor
+Route::get('/meu-perfil-servidor/editar', [App\Http\Controllers\ServidorController::class, 'editarmeuperfil'])->name('meu-perfil-servidor.editar');
+Route::put('/meu-perfil-servidor/{id}', [App\Http\Controllers\ServidorController::class, 'atualizarPerfilServidor'])->name('meu-perfil-servidor.atualizar');
 //Rota de meu perfil aluno
 Route::get('/meu-perfil-aluno', [App\Http\Controllers\AlunoController::class, 'profile'])->name('meu-perfil-aluno');
 //Editar perfil aluno

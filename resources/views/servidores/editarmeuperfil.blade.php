@@ -14,7 +14,7 @@
                 <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
                     Editar Servidor</h1>
                     <hr>
-                <form action="{{url("/servidores/$servidor->id")}}" method="POST">
+                    <form action="{{ route('meu-perfil-servidor.atualizar', ['id' => $servidor->id]) }}" method="POST">
                     @csrf
                     @method("PUT")
                     <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome:<strong style="color: red">*</strong></label>
