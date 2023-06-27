@@ -38,7 +38,7 @@
   <br>
 
   <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1 style="color:#2D3875;"><strong>Estudantes Vinculados</strong></h1>
+    <h1 style="color:#2D3875;"><strong>Estudantes Vinculados - Inativos</strong></h1>
     <div style="margin: auto"></div>
     <form action="" method="GET">
       <input class="text-center p-3" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
@@ -101,11 +101,8 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$vinculo->aluno->id}}" data-bs-id="{{$vinculo->aluno->id}}">
                 <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" href="{{ route('edital.editar_vinculo', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
-                <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar vinculo" style="height: 30px; width: 30px;">
-              </a>
-              <a type="button" href="{{ route('edital.aluno.delete', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
-                <img src="{{asset('images/desvinculo_edital.png')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
+              <a href="{{route('edital.ativarVinculo', ['id' => $vinculo->id]  )}}">
+                <img src="{{asset("images/vinculo_edital.png")}}" alt="Ativar Vinculo aluno" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$vinculo->aluno->id}}">
                 <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
@@ -142,13 +139,10 @@
       </div>
       <div style="align-self: center; margin-right: auto">
         <div style="display: flex; margin: 10px">
-          <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
+          <a><img src="/images/vinculo_edital.png" alt="Ativar Vinculo Aluno" style="width: 20px; height: 20px;"></a>
+          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Ativar Vínculo</p>
         </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="{{asset('images/desvinculo_edital.png')}}" alt="Desvincular aluno" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Desvincular aluno</p>
-        </div>
+
         <div style="display: flex; margin: 10px">
           <a><img src="{{asset('images/searchicon.png')}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>

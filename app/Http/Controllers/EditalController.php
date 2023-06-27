@@ -13,10 +13,13 @@ use App\Models\EditalAlunoOrientadors;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
 use App\Http\Requests\VinculoUpdateFormRequest;
+use App\Models\HistoricoVinculoAlunos;
 use App\Models\User;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
+
+use function PHPSTORM_META\type;
 
 class EditalController extends Controller
 {
@@ -117,12 +120,11 @@ class EditalController extends Controller
     public function inscrever_aluno(Request $request, $id) {
         DB::beginTransaction();
         try {
-            //dd($request);
+
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
             $orientador = Orientador::with('user')->find($request->orientador);
-            //dd($orientador);
-            //dd($orientador->user->name);
+          
             $orientador_id = (int)$request->orientador;
 
             $request->validate([
@@ -154,7 +156,6 @@ class EditalController extends Controller
                 // Armazenar o arquivo na pasta "termo_compromisso_alunos"
                 $request->outros_documentos->storeAs('outros_documentos', $outros_documentos);
             }
-            //dd($outros_documentos);
             if($edital->alunos()->wherePivot('aluno_id', $aluno->id)->exists()) {
                 return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('falha', 'O aluno já está cadastrado no edital.');
             } else {
@@ -178,15 +179,19 @@ class EditalController extends Controller
                 } else {
                     $data['bolsista'] = true;
                 }
-                //dd($data);
                 $editalAlunoOrientador = EditalAlunoOrientadors::create($data);
 
+                $historico = new HistoricoVinculoAlunos();
+                $historico->vinculo_id = $editalAlunoOrientador->id;
+                $historico->data_inicio = date('Y-m-d');
+                $historico->save();
+ 
                 DB::commit();
                  return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('successo', 'O aluno foi inscrito com sucesso no edital.');
            }
         } catch(Exception $e){
              DB::rollback();
-             dd($e); 
+             #dd($e); 
              return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." )->withInput();
          }
     }
@@ -284,18 +289,50 @@ class EditalController extends Controller
         }
     }
     public function listar_alunos($id){
-        $pivot = EditalAlunoOrientadors::where('edital_id', $id)->get();
-        $count = $pivot->count();
+        
+        $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', true)->get();
+        $count = $vinculos->count();
+        $edital = Edital::where('id', $id)->first();
 
-        $edital = Edital::find($id);
-        $alunos = $edital->alunos('user');
-        $alunos = $edital->alunos;
-
-        if($pivot->isEmpty()){
+        if ($vinculos->isEmpty()) {
             return redirect()->back()->with('falha', 'Não há alunos cadastrados no edital.');
-        }else{
-            return view("Edital.listar_alunos", compact("alunos", "edital"));
+        } else {
+            return view("Edital.listar_alunos", compact("vinculos", "edital"));
         }
+
+    }
+
+    public function listar_alunos_inativos($id){
+        
+        $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', false)->get();
+        $count = $vinculos->count();
+        $edital = Edital::where('id', $id)->first();
+
+        if ($vinculos->isEmpty()) {
+            return redirect()->back()->with('falha', 'Não há alunos inativos no edital.');
+        } else {
+            return view("Edital.listar_alunos_inativos", compact("vinculos", "edital"));
+        }
+
+    }
+
+    public function ativarVinculo($id){
+        try{
+            EditalAlunoOrientadors::where("id", $id)->update(['status' => true]);
+
+            $historico = new HistoricoVinculoAlunos();
+            $historico->vinculo_id = $id;
+            $historico->data_inicio = date('Y-m-d');
+
+            $historico->save();
+            
+            return redirect()->route('edital.index')->with('sucesso', "O vínculo foi ativado com sucesso no edital.");
+
+        } catch(exception $e){
+             DB::rollback();
+             return redirect()->back()->withErrors( "Falha ao ativar o vínculo. Tente novamente mais tarde" );
+        }
+
     }
 
     public function listar_disciplinas($id){
@@ -402,21 +439,27 @@ class EditalController extends Controller
 
         DB::beginTransaction();
         try {
-            $vinculo = EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id);
+            EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->update(['status' => false]);
 
-            $vinculo->delete();
+            $vinculo = EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->first();
+            #dd($vinculo['id']);
+            HistoricoVinculoAlunos::where("vinculo_id", $vinculo->id)->update(['data_fim' => date('Y-m-d')]);
+            #$vinculo->delete();
 
+            // $vinculo->status = false;
+
+            // $vinculo->update();
             DB::commit();
-            return redirect()->route('edital.index')->with('sucesso', 'O vínculo foi deletado com sucesso do edital.');
+            return redirect()->route('edital.index')->with('sucesso', 'O vínculo foi desativado com sucesso do edital.');
 
         } catch(QueryException $e){
             DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao deletar. Este vínculo está sendo usado em um Relatorio." );
+            return redirect()->back()->withErrors( "Falha ao Arquivar. Este vínculo está sendo usado em um Relatorio." );
 
         } catch(exception $e){
             DB::rollback();
-
-            return redirect()->back()->withErrors( "Falha ao deletar o vínculo do aluno no edital." );
+            dd($e);
+            return redirect()->back()->withErrors( "Falha ao Arquivar o vínculo do aluno no edital." );
         }
     }
 
