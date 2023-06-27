@@ -28,6 +28,7 @@ class Orientador extends Model
                 'data_inicio',
                 'data_fim',
                 'bolsa',
+                'status',
                 'info_complementares',
                 #'disciplina_id',
                 'aluno_id',

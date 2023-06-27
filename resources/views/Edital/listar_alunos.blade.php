@@ -90,34 +90,34 @@
           </tr>
         </thead>
         <tbody>
-        @foreach($alunos as $aluno)
+        @foreach($vinculos as $vinculo)
 
           <tr>
-            <td> {{ $aluno->nome_aluno }} </td>
-            <td> {{ $edital->titulo_edital }} </td>
-            <td>{{date_format(date_create($aluno->pivot->data_inicio), "d/m/Y")}}</td>
-            <td>{{date_format(date_create($aluno->pivot->data_fim), "d/m/Y")}}</td>
+            <td> {{ $vinculo->aluno->nome_aluno }} </td>
+            <td> {{ $vinculo->edital->titulo_edital }} </td>
+            <td>{{date_format(date_create($vinculo->data_inicio), "d/m/Y")}}</td>
+            <td>{{date_format(date_create($vinculo->data_fim), "d/m/Y")}}</td>
             <td>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$aluno->id}}" data-bs-id="{{$aluno->id}}">
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$vinculo->aluno->id}}" data-bs-id="{{$vinculo->aluno->id}}">
                 <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" href="{{ route('edital.editar_vinculo', ['aluno_id' => $aluno->id, 'edital_id' => $edital->id]) }}">
+              <a type="button" href="{{ route('edital.editar_vinculo', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
                 <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar vinculo" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" href="{{ route('edital.aluno.delete', ['aluno_id' => $aluno->id, 'edital_id' => $edital->id]) }}">
+              <a type="button" href="{{ route('edital.aluno.delete', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
                 <img src="{{asset('images/delete.png')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$aluno->id}}">
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$vinculo->aluno->id}}">
                 <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
               </a>
-              {{-- <a href="{{ route('termo_aluno.download', ['fileName' => $aluno->pivot->termo_compromisso_aluno]) }}">Baixar PDF</a> --}}
+              {{-- <a href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}">Baixar PDF</a> --}}
             </td>
           </tr>
           <!-- Modal show -->
-          @include('Edital.components_alunos.modal_show', ['aluno' => $aluno])
-          @include('Edital.components_alunos.modal_documents', ['aluno' => $aluno])
+          @include('Edital.components_alunos.modal_show', ['aluno' => $vinculo->aluno, 'vinculo' => $vinculo])
+          @include('Edital.components_alunos.modal_documents', ['aluno' => $vinculo->aluno, 'vinculo' => $vinculo])
           <!-- Modal delete-->
-          @include('Edital.components_alunos.modal_delete', ['aluno' => $aluno, 'edital' => $edital])
+          @include('Edital.components_alunos.modal_delete', ['aluno' => $vinculo->aluno, 'edital' => $vinculo->edital])
         @endforeach
         </tbody>
       </table>

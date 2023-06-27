@@ -1,4 +1,4 @@
-<div class="modal fade " id="modal_show_{{$aluno->pivot->aluno_id}}" tabindex="-1" aria-hidden="true">
+<div class="modal fade " id="modal_show_{{$aluno->id}}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
     <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header">
@@ -14,16 +14,16 @@
           <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  $edital->titulo_edital }}</div>
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Início do edital:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{ date_format(date_create($aluno->pivot->data_inicio), "d/m/Y") }} </div>
+          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{ date_format(date_create($vinculo->data_inicio), "d/m/Y") }} </div>
           
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Fim do edital:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  date_format(date_create($aluno->pivot->data_fim), "d/m/Y") }}</div>
+          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  date_format(date_create($vinculo->data_fim), "d/m/Y") }}</div>
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Bolsa:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{  $aluno->pivot->bolsa }}</div>
+          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{  $vinculo->bolsa }}</div>
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Informações complementares:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  $aluno->pivot->info_complementares }}</div>
+          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  $vinculo->info_complementares }}</div>
           
         </div>
         <div class="modal-footer">

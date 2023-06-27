@@ -1,4 +1,4 @@
-<div class="modal fade " id="modal_documents{{$aluno->pivot->aluno_id}}" tabindex="-1" aria-hidden="true">
+<div class="modal fade " id="modal_documents{{$aluno->id}}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
     <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header">
@@ -9,7 +9,7 @@
         <div class="mb-3">
           <label for="termo_compromisso_aluno" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Termo de compromisso:</label>
           <div style="justify-content: flex-start; align-items: flex-start; display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 5px;">
-            <a href="{{ route('termo_aluno.download', ['fileName' => $aluno->pivot->termo_compromisso_aluno]) }}" target="_blank"  class="link">
+            <a href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}" target="_blank"  class="link">
               <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
              Baixar
             </a>
