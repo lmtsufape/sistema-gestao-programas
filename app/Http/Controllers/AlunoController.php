@@ -134,7 +134,6 @@ class AlunoController extends Controller
     {
         try {
             $aluno = Aluno::find($id);
-            #dd($request);
             $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
             $aluno->semestre_entrada = $request->semestre_entrada;
             $aluno->curso_id = $request->curso;
