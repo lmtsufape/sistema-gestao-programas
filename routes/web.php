@@ -175,6 +175,9 @@ Route::put('/meu-perfil-aluno/{id}', [App\Http\Controllers\AlunoController::clas
 // Route::put('/meu-perfil-aluno/editar', [App\Http\Controllers\UserController::class, 'updateAluno'])->name('meu-perfil-aluno.editar');
 //Rota de meu perfil orientador
 Route::get('/meu-perfil-orientador', [App\Http\Controllers\OrientadorController::class, 'profile'])->name('meu-perfil-orientador');
+//Editar perfil orientador
+Route::get('/meu-perfil-orientador/editar', [App\Http\Controllers\OrientadorController::class, 'editarmeuperfil'])->name('meu-perfil-orientador.editar');
+Route::put('/meu-perfil-orientador/{id}', [App\Http\Controllers\OrientadorController::class, 'atualizerPerfilOrientador'])->name('meu-perfil-orientador.atualizar');
 //
 //--------------------------------------------------------------------------------------------------------------
 

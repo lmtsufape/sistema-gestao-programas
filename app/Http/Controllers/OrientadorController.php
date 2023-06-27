@@ -203,6 +203,53 @@ class OrientadorController extends Controller
         }
     }
 
+    public function atualizerPerfilOrientador(OrientadorFormUpdateRequest $request, $id)
+    {
+        try{
+            $orientador = Orientador::find($id);
+
+            $orientador->cpf = $request->cpf == $orientador->cpf ? $orientador->cpf : $request->cpf;
+            $orientador->matricula = $request->matricula;
+            $orientador->instituicaoVinculo = $request->instituicaoVinculo == $orientador->instituicaoVinculo ? $orientador->instituicaoVinculo : $request->instituicaoVinculo;
+
+            $orientador->user->name = $request->name;
+            $orientador->user->email = $request->email;
+            $orientador->user->name_social = $request->name_social;
+            $orientador->user->cpf = $request->cpf;
+
+            $cursos_id = $request->cursos;
+            if($cursos_id == null){
+                return redirect()->back()->withErrors( "Selecione pelo menos um Curso" );
+            }
+
+            if ($request->senha && $request->senha != null){
+                if (strlen($request->senha) > 3 && strlen($request->senha) < 9){
+                    $orientador->user->password = Hash::make($request->password);
+                } else {
+                    return redirect()->back()->withErrors( "Senha deve ter entre 4 e 8 dígitos" );
+                }
+            }
+
+            if ($orientador->save()){
+                #Atualiza os cursos de Orientador
+                $orientador->cursos()->sync($request->cursos);
+
+                if ($orientador->user->update()){
+                    return redirect('/meu-perfil-orientador')->with('sucesso', 'Orientador Atualizado com sucesso.');
+                    // return redirect('/meu-perfil-orientador')->with('sucesso', 'Orientador Atualizado com sucesso.');
+
+                } else {
+                    return redirect()->back()->withErrors( "Falha ao editar orientador. tente novamente mais tarde." );
+                }
+
+            } else {
+                return redirect()->back()->withErrors( "Falha ao editar orientador. tente novamente mais tarde." );
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors("Falha ao editar orientador. Tente novamente mais tarde.");
+        }
+    }
+
     public function delete($id)
     {
         $orientador = Orientador::findOrFail($id);
