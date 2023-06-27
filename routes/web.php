@@ -115,6 +115,7 @@ Route::prefix('edital')->group(function() {
     Route::get('{id}', [EditalController::class, 'show'])->name('edital.show');
     Route::post('/cadastrar-aluno/{id}', [EditalController::class, 'inscrever_aluno'])->name('edital.aluno');
     Route::get('/{id}/alunos', [EditalController::class, 'listar_alunos'])->name('edital.vinculo');
+    Route::get('/{id}/alunos/desvinculados', [EditalController::class, 'listar_alunos_inativos'])->name('edital.vinculoInativo');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
     Route::get('/{fileName}/termo', [EditalController::class, 'download_termo_compromisso_aluno'])->name('termo_aluno.download');
     Route::get('/{fileName}/plano', [EditalController::class, 'download_plano_trabalho'])->name('plano_trabalho.download');
@@ -125,6 +126,7 @@ Route::prefix('edital')->group(function() {
     Route::get('/{aluno_id}/{edital_id}/editar_vinculo', [EditalController::class, 'editar_vinculo'])->name('edital.editar_vinculo');
     Route::put('/vinculo/{id}', [EditalController::class, 'updateVinculo'])->name('edital.update_vinculo');
     Route::get('/{aluno_id}/{edital_id}/delete', [EditalController::class, 'deletarVinculo'])->name('edital.aluno.delete');
+    Route::get('/{id}/ativar_vinculo', [EditalController::class, 'ativarVinculo'])->name('edital.ativarVinculo');
 });
 
 // Rotas de Disciplina

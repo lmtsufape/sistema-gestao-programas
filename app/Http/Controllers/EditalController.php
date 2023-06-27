@@ -302,6 +302,39 @@ class EditalController extends Controller
 
     }
 
+    public function listar_alunos_inativos($id){
+        
+        $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', false)->get();
+        $count = $vinculos->count();
+        $edital = Edital::where('id', $id)->first();
+
+        if ($vinculos->isEmpty()) {
+            return redirect()->back()->with('falha', 'Não há alunos inativos no edital.');
+        } else {
+            return view("Edital.listar_alunos_inativos", compact("vinculos", "edital"));
+        }
+
+    }
+
+    public function ativarVinculo($id){
+        try{
+            EditalAlunoOrientadors::where("id", $id)->update(['status' => true]);
+
+            $historico = new HistoricoVinculoAlunos();
+            $historico->vinculo_id = $id;
+            $historico->data_inicio = date('Y-m-d');
+
+            $historico->save();
+            
+            return redirect()->route('edital.index')->with('sucesso', "O vínculo foi ativado com sucesso no edital.");
+
+        } catch(exception $e){
+             DB::rollback();
+             return redirect()->back()->withErrors( "Falha ao ativar o vínculo. Tente novamente mais tarde" );
+        }
+
+    }
+
     public function listar_disciplinas($id){
         $disciplinas = Edital::with('disciplinas')->find($id);
 
@@ -417,7 +450,7 @@ class EditalController extends Controller
 
             // $vinculo->update();
             DB::commit();
-            return redirect()->route('edital.index')->with('sucesso', 'O vínculo foi Arquivado com sucesso do edital.');
+            return redirect()->route('edital.index')->with('sucesso', 'O vínculo foi desativado com sucesso do edital.');
 
         } catch(QueryException $e){
             DB::rollback();

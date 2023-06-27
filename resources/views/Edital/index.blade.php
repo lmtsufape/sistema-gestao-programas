@@ -126,6 +126,10 @@
                 <img src="{{asset("images/bx_user.png")}}" alt="Listar estudantes vinculados" style="height: 30px; width: 30px;">
               </a>
 
+              <a class="link" alt="Listar alunos inativos" href="{{  route('edital.vinculoInativo', ['id' => $edital->id]) }}" >
+                <img src="{{asset("images/delete-user.png")}}" alt="Listar estudantes vinculados inativos" style="height: 30px; width: 30px;">
+              </a>
+
               <a class="link" alt="Listar orientadores" href="{{  route('edital.listar_orientadores', ['id' => $edital->id]) }}" >
                 <img src="{{asset("images/orientadores.png")}}" alt="Listar orientadores" style="height: 40px; width: 40px;">
               </a>
@@ -181,6 +185,12 @@
             <a><img src="{{asset("images/bx_user.png")}}" alt="Listar alunos vinculados" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Estudantes vinculados</p>
           </div>
+
+          <div style="display: flex; margin: 10px">
+            <a><img src="{{asset("images/delete-user.png")}}" alt="Listar alunos vinculados inativos" style="width: 20px; height: 20px;"></a>
+            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Estudantes vinculados inativos</p>
+          </div>
+
           <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/orientadores.png")}}" alt="Listar orientadores vinculados" style="width: 25px; height: 25px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Orientadores </p>
