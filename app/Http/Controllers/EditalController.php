@@ -13,6 +13,7 @@ use App\Models\EditalAlunoOrientadors;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
 use App\Http\Requests\VinculoUpdateFormRequest;
+use App\Models\HistoricoVinculoAlunos;
 use App\Models\User;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -119,6 +120,7 @@ class EditalController extends Controller
     public function inscrever_aluno(Request $request, $id) {
         DB::beginTransaction();
         try {
+
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
             $orientador = Orientador::with('user')->find($request->orientador);
@@ -179,6 +181,11 @@ class EditalController extends Controller
                 }
                 $editalAlunoOrientador = EditalAlunoOrientadors::create($data);
 
+                $historico = new HistoricoVinculoAlunos();
+                $historico->vinculo_id = $editalAlunoOrientador->id;
+                $historico->data_inicio = date('Y-m-d');
+                $historico->save();
+ 
                 DB::commit();
                  return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('successo', 'O aluno foi inscrito com sucesso no edital.');
            }
@@ -401,6 +408,9 @@ class EditalController extends Controller
         try {
             EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->update(['status' => false]);
 
+            $vinculo = EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->first();
+            #dd($vinculo['id']);
+            HistoricoVinculoAlunos::where("vinculo_id", $vinculo->id)->update(['data_fim' => date('Y-m-d')]);
             #$vinculo->delete();
 
             // $vinculo->status = false;
@@ -415,6 +425,7 @@ class EditalController extends Controller
 
         } catch(exception $e){
             DB::rollback();
+            dd($e);
             return redirect()->back()->withErrors( "Falha ao Arquivar o vínculo do aluno no edital." );
         }
     }
