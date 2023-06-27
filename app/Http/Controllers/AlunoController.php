@@ -118,18 +118,51 @@ class AlunoController extends Controller
         return view("Alunos.editar-aluno", compact('aluno', 'cursos'));
     }
 
-    public function editarmeuperfil($id)
-    {
+    public function editarmeuperfil($id){
         $aluno = Aluno::find($id);
         $cursos = Curso::all();
 
-        // Verifique se o ID do orientador corresponde ao ID do usuário autenticado
+        // Verifique se o ID do aluno corresponde ao ID do usuário autenticado
         if ($aluno->user->id !== auth()->user()->id) {
             return redirect()->route('home')->with('erro', 'Você não tem permissão para editar este perfil.');
         }
 
-
         return view("Alunos.editarmeuperfil", compact('aluno', 'cursos'));
+    }
+
+    public function atualizarPerfilAluno(AlunoUpdateFormRequest $request, $id)
+    {
+        try {
+            $aluno = Aluno::find($id);
+            #dd($request);
+            $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
+            $aluno->semestre_entrada = $request->semestre_entrada;
+            $aluno->curso_id = $request->curso;
+            $aluno->nome_aluno = $request->nome;
+            $aluno->user->name = $request->nome;
+            $aluno->user->email = $request->email;
+            $aluno->user->name_social = $request->nome_social;
+            if ($request->senha && $request->senha != null){
+                if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
+                    $aluno->user->password = Hash::make($request->password);
+                } else {
+                    return redirect()->back()->withErrors( "Senha deve ter entre 4 e 30 dígitos" );
+                }
+            }
+
+            if ($aluno->save()){
+
+                if ($aluno->user->update()){
+                    return redirect('/meu-perfil-aluno')->with('sucesso', 'Perfil atualizado com sucesso.');
+                } else {
+                    return redirect()->back()->withErrors( "Falha ao editar o seu perfil, tente novamente mais tarde." );
+                }
+
+            }
+
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors("Falha ao editar o seu perfil, tente novamente mais tarde.");
+        }
     }
 
     public function create(){
