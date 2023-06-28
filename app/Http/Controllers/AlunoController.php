@@ -60,9 +60,9 @@ class AlunoController extends Controller
             $aluno->user->name = $request->nome;
             $aluno->user->email = $request->email;
             $aluno->user->name_social = $request->nome_social;
-            if ($request->senha && $request->senha != null){
+            if ($request->senha != null){
                 if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
-                    $aluno->user->password = Hash::make($request->password);
+                    $aluno->user->senha = Hash::make($request->senha);
                 } else {
                     return redirect()->back()->withErrors( "Senha deve ter entre 4 e 30 dígitos" );
                 }
@@ -141,9 +141,9 @@ class AlunoController extends Controller
             $aluno->user->name = $request->nome;
             $aluno->user->email = $request->email;
             $aluno->user->name_social = $request->nome_social;
-            if ($request->senha && $request->senha != null){
+            if ($request->senha != null){
                 if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
-                    $aluno->user->password = Hash::make($request->password);
+                    $aluno->user->password = Hash::make($request->senha);
                 } else {
                     return redirect()->back()->withErrors( "Senha deve ter entre 4 e 30 dígitos" );
                 }

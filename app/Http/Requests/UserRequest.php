@@ -20,7 +20,7 @@ class UserRequest extends FormRequest
             "nome_social" => "max:50",
             "email" => "required|email|unique:users,email",
             "tipoUser" => 'required',
-            "senha" => "required|min:8|max:48",
+            "senha" => "required|min:8|max:30",
             "cpf" => "required|formato_cpf|unique:servidors|unique:alunos|unique:orientadors",
             "matricula" => "unique:orientadors,matricula|unique:servidors,matricula"
         ];
@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
             "required" => "O campo :attribute é obrigatório.",
             "email" => "O email está no formato incorreto.",
             "nome.max" => "O campo nome não pode ter mais que 50 caracteres.",
-            "senha.max" => "A senha não pode ter mais que 8 dígitos.",
+            "senha.max" => "A senha não pode ter mais que 30 dígitos.",
             "senha.min" => "A senha não pode ter menos que 4 dígitos.",
             "unique" => "O valor do campo :attribute já está em uso.",
             "formato_cpf" => "O campo :attribute está no formato incorreto.",

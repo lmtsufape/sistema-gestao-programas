@@ -120,7 +120,7 @@ class ServidorController extends Controller {
             $servidor->user->email = $request->email;
             if ($request->senha && $request->senha != null){
                 if (strlen($request->senha) > 7 && strlen($request->senha) < 31){
-                    $servidor->user->password = Hash::make($request->password);
+                    $servidor->user->password = Hash::make($request->senha);
                 } else {
                     return redirect()->back()->withErrors( "Senha deve ter entre 8 e 30 dígitos" );
                 }
@@ -166,7 +166,7 @@ class ServidorController extends Controller {
             $servidor->user->email = $request->email;
             if ($request->senha && $request->senha != null){
                 if (strlen($request->senha) > 7 && strlen($request->senha) < 31){
-                    $servidor->user->password = Hash::make($request->password);
+                    $servidor->user->password = Hash::make($request->senha);
                 } else {
                     return redirect()->back()->withErrors( "Senha deve ter entre 8 e 30 dígitos" );
                 }
