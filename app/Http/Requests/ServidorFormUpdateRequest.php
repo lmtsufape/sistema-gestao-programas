@@ -27,7 +27,7 @@ class ServidorFormUpdateRequest extends FormRequest
         return [
             "nome" => "max:50",
             "email" => "email",
-            "senha" => "min:4|max:8",
+            "senha" => "min:4|max:30",
             "cpf" => "formato_cpf|cpf|unique:alunos|unique:orientadors",
             "tipo_servidor" => "numeric"
         ];
@@ -37,7 +37,7 @@ class ServidorFormUpdateRequest extends FormRequest
         return [
             "email" => "O email está no formato incorreto.",
             "nome.max" => "O campo nome não pode ter mais que 50 caracteres.",
-            "senha.max" => "A senha não pode ter mais que 8 dígitos.",
+            "senha.max" => "A senha não pode ter mais que 30 dígitos.",
             "senha.min" => "A senha não pode ter menos que 4 dígitos.",
             "unique" => "CPF já está em uso."
         ];

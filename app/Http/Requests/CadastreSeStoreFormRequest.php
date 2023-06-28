@@ -28,7 +28,7 @@ class CadastreSeStoreFormRequest extends FormRequest
             "nome" => "required|string|max:50",
             "email" => "required|email",
             "cpf" => "required|formato_cpf|cpf|unique:servidors|unique:orientadors",
-            "senha" => "required|min:4|max:8",
+            "senha" => "required|min:4|max:30",
             'tipoUser' => ['required', Rule::in(['servidor', 'orientador', 'aluno'])],
         ];
     }
@@ -38,7 +38,7 @@ class CadastreSeStoreFormRequest extends FormRequest
             "required" => "O campo :attribute é obrigatório.",
             "email" => "O email está no formato incorreto.",
             "nome.max" => "O campo nome não pode ter mais que 50 caracteres.",
-            "senha.max" => "A senha não pode ter mais que 8 dígitos.",
+            "senha.max" => "A senha não pode ter mais que 30 dígitos.",
             "senha.min" => "A senha não pode ter menos que 4 dígitos.",
             "unique" => "CPF já está em uso."
         ];

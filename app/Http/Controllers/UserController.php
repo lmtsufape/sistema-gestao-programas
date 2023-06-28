@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use App\Http\Requests\OrientadorFormRequest;
+use App\Http\Requests\OrientadorFormUpdateRequest;
+use App\Http\Requests\AlunoUpdateFormRequest;
 
 class UserController extends Controller
 {

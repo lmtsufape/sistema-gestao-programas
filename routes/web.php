@@ -42,6 +42,7 @@ Route::prefix('alunos')->group(function() {
     Route::get('/create', [AlunoController::class, 'create'])->name('alunos.create');
     Route::post('/', [AlunoController::class, 'store'])->name('alunos.store');
     Route::get('/{id}/edit', [AlunoController::class, 'edit'])->where('id', '[0-9]+')->name('alunos.edit');
+    Route::get('/{id}/editarmeuperfil', [AlunoController::class, 'editarmeuperfil'])->where('id', '[0-9]+')->name('alunos.editarmeuperfil');
     Route::put('/{id}', [AlunoController::class, 'update'])->name('alunos.update');
     Route::delete('/{id}', [AlunoController::class, 'destroy'])->name('alunos.delete');
 });
@@ -55,6 +56,7 @@ Route::prefix('servidores')->group(function() {
     Route::get('/create', [ServidorController::class, 'create'])->name('servidores.create');
     Route::post('/', [ServidorController::class, 'store'])->name('servidores.store');
     Route::get('/{id}/edit', [ServidorController::class, 'edit'])->where('id', '[0-9]+')->name('servidores.edit');
+    Route::get('/{id}/editarmeuperfil', [ServidorController::class, 'editarmeuperfil'])->where('id', '[0-9]+')->name('servidores.editarmeuperfil');
     Route::put('/{id}', [ServidorController::class, 'update'])->name('servidores.update');
     Route::delete('/{id}', [ServidorController::class, 'destroy'])->name('servidores.delete');
 });
@@ -70,6 +72,7 @@ Route::prefix('orientadors')->group(function() {
     Route::get('/create', [OrientadorController::class, 'create'])->name('orientadors.create');
     Route::post('/', [OrientadorController::class, 'store'])->name('orientadors.store');
     Route::get('/{id}/edit', [OrientadorController::class, 'edit'])->where('id', '[0-9]+')->name('orientadors.edit');
+    Route::get('/{id}/editarmeuperfil', [OrientadorController::class, 'editarmeuperfil'])->where('id', '[0-9]+')->name('orientadors.editarmeuperfil');
     Route::put('/{id}', [OrientadorController::class, 'update'])->name('orientadors.update');
     Route::delete('/{id}', [OrientadorController::class, 'destroy'])->name('orientadors.delete');
 });
@@ -173,10 +176,20 @@ Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::cla
 //
 //Rota de meu perfil servidor
 Route::get('/meu-perfil-servidor', [App\Http\Controllers\ServidorController::class, 'profile'])->name('meu-perfil-servidor');
+//Editar perfil servidor
+Route::get('/meu-perfil-servidor/editar', [App\Http\Controllers\ServidorController::class, 'editarmeuperfil'])->name('meu-perfil-servidor.editar');
+Route::put('/meu-perfil-servidor/{id}', [App\Http\Controllers\ServidorController::class, 'atualizarPerfilServidor'])->name('meu-perfil-servidor.atualizar');
 //Rota de meu perfil aluno
 Route::get('/meu-perfil-aluno', [App\Http\Controllers\AlunoController::class, 'profile'])->name('meu-perfil-aluno');
+//Editar perfil aluno
+Route::get('/meu-perfil-aluno/editar', [App\Http\Controllers\AlunoController::class, 'editarmeuperfil'])->name('meu-perfil-aluno.editar');
+Route::put('/meu-perfil-aluno/{id}', [App\Http\Controllers\AlunoController::class, 'atualizarPerfilAluno'])->name('meu-perfil-aluno.atualizar');
+// Route::put('/meu-perfil-aluno/editar', [App\Http\Controllers\UserController::class, 'updateAluno'])->name('meu-perfil-aluno.editar');
 //Rota de meu perfil orientador
 Route::get('/meu-perfil-orientador', [App\Http\Controllers\OrientadorController::class, 'profile'])->name('meu-perfil-orientador');
+//Editar perfil orientador
+Route::get('/meu-perfil-orientador/editar', [App\Http\Controllers\OrientadorController::class, 'editarmeuperfil'])->name('meu-perfil-orientador.editar');
+Route::put('/meu-perfil-orientador/{id}', [App\Http\Controllers\OrientadorController::class, 'atualizerPerfilOrientador'])->name('meu-perfil-orientador.atualizar');
 //
 //--------------------------------------------------------------------------------------------------------------
 

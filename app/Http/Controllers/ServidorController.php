@@ -89,6 +89,20 @@ class ServidorController extends Controller {
         return view("servidores.editar", compact('servidor', 'servidores'));
     }
 
+    public function editarmeuperfil($id)
+    {
+        $servidor = Servidor::find($id);
+        $servidores = Servidor::all();
+
+        // Verifique se o ID do servidor corresponde ao ID do usuário autenticado
+        if ($servidor->user->id !== auth()->user()->id) {
+            return redirect()->route('home')->with('erro', 'Você não tem permissão para editar este perfil.');
+        }
+
+        #$tipo_servidors = User::where('typage_id', Auth::user()->typage_id)->get();
+        return view("servidores.editarmeuperfil", compact('servidor', 'servidores'));
+    }
+
     public function update(ServidorFormUpdateRequest $request, $id)
     {
         try{
@@ -115,7 +129,7 @@ class ServidorController extends Controller {
             $servidor->user->email = $request->email;
             if ($request->senha && $request->senha != null){
                 if (strlen($request->senha) > 7 && strlen($request->senha) < 31){
-                    $servidor->user->password = Hash::make($request->password);
+                    $servidor->user->password = Hash::make($request->senha);
                 } else {
                     return redirect()->back()->withErrors( "Senha deve ter entre 8 e 30 dígitos" );
                 }
@@ -139,6 +153,52 @@ class ServidorController extends Controller {
             }
         } catch (Exception $e) {
             DB::rollback();
+            return redirect()->back()->withErrors("Falha ao editar servidor. Tente novamente mais tarde.");
+        }
+    }
+
+    public function atualizarPerfilServidor(ServidorFormUpdateRequest $request, $id)
+    {
+        try{
+            $servidor = Servidor::find($id);
+
+            switch($request->input('tipo_servidor')){
+                case 0:
+                $permission = "adm";
+                    break;
+                case 1:
+                    $permission = "pro_reitor";
+                    break;
+                case 2:
+                    $permission = "servidor";
+                    break;
+            };
+            $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
+            $servidor->tipo_servidor = $permission == $servidor->tipo_servidor ? $servidor->tipo_servidor : $permission;
+        $servidor->user->name_social = $request->nome_social;
+            $servidor->user->name = $request->nome;
+            $servidor->user->email = $request->email;
+            if ($request->senha && $request->senha != null){
+                if (strlen($request->senha) > 7 && strlen($request->senha) < 31){
+                    $servidor->user->password = Hash::make($request->senha);
+                } else {
+                    return redirect()->back()->withErrors( "Senha deve ter entre 8 e 30 dígitos" );
+                }
+            }
+
+            if ($servidor->save()){
+
+                if ($servidor->user->update()){
+                    $mensagem_sucesso = "Servidor editado com sucesso.";
+                    return redirect("/meu-perfil-servidor")->with('sucesso', 'Servidor editado com sucesso.');
+                } else {
+                    return redirect()->back()->withErrors( "Falha ao editar servidor. tente novamente mais tarde." );
+                }
+
+            } else {
+                return redirect()->back()->withErrors( "Falha ao editar servidor. tente novamente mais tarde." );
+            }
+        } catch (Exception $e) {
             return redirect()->back()->withErrors("Falha ao editar servidor. Tente novamente mais tarde.");
         }
     }
