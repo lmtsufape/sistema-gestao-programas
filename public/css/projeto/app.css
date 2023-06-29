@@ -245,3 +245,24 @@ div.modal-ver{
   padding-right: 12px;
   font-family: 'Roboto', sans-serif;
 }
+
+/*Header Pagina Inicial*/
+.header-aplicacao {
+  display: flex;
+}
+
+.header-aplicacao a {
+  margin-right: auto;
+  
+}
+
+.lista-inline {
+  list-style: none;
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+.lista-inline li {
+  margin-left: 40px;
+}

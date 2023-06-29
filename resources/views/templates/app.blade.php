@@ -91,9 +91,27 @@
                 SISTEMA DE GESTÃO DE PROGRAMAS ACADÊMICOS
               </a>
             @else
-              <a href="{{url('/')}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: #131833; margin-left: 50px">
-                SISTEMA DE GESTÃO DE PROGRAMAS ACADÊMICOS
-              </a>
+              <div class="header-aplicacao">
+                <a href="{{url('/')}}" type="button" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">
+                  SISTEMA DE GESTÃO DE PROGRAMAS ACADÊMICOS
+                </a>
+                <ul class="lista-inline">
+                  <li>
+                      <a href="/" style="text-decoration: none ; font-weight: 700; font-size: 10px; line-height: 29px; color: #131833">Início</a>
+                  </li>
+                  <li>
+                      <a href="/sistema" style="text-decoration: none ; font-weight: 700; font-size: 10px; line-height: 29px; color: #131833">O Sistema</a>
+                  </li>
+                  <li>
+                    <a href="/parceria" style="text-decoration: none ; font-weight: 700; font-size: 10px; line-height: 29px; color: #131833">A Parceria</a>
+                  </li>
+                  <li>
+                    <a href="/contato" style="text-decoration: none ; font-weight: 700; font-size: 10px; line-height: 29px; color: #131833">Contato</a>
+                  </li>
+
+                </ul>
+              </div>  
+          
             @endauth
 
           </ul>
