@@ -28,60 +28,70 @@
 <ul style="padding-left: 5%">
     <li>Administrador</li>
     <ul>
-        <li>Cadastrar e editar:</li>
+        <li>Cadastrar, editar, consultar e excluir:</li>
         <ul>
             <li>Usuários</li>
-            <li>Materiais</li>
-            <li>Depósitos</li>
+            <li>Programas</li>
+            <li>Editais</li>
+            <li>Disciplinas</li>
+            <li>Cursos</li>
         </ul>
-    </ul>
-
-    <ul>
-        <li>Consultar:</li>
+        <li>Vincular em Editais:</li>
         <ul>
-            <li>Estoque total de materiais</li>
-            <li>Materiais por depósito</li>
-            <li>Histórico de solicitações</li>
-        </ul>
-    </ul>
-    <ul>
-        <li>Gerenciar estoque:</li>
-        <ul>
-            <li>Entrada de material</li>
-            <li>Saída de material</li>
-            <li>Transferência de material entre depósitos</li>
-        </ul>
-    </ul>
-    <ul>
-        <li>Gerenciar solicitações:</li>
-        <ul>
-            <li>Analisar solicitação:</li>
-            <ul>
-                <li>Aprovar solicitação totalmente</li>
-                <li>Aprovar solicitação parcialmente</li>
-                <li>Negar solicitação</li>
-                <li>Retirar pedido</li>
-                <li>Entregar materiais</li>
-                <li>Cancelar solicitação</li>
-                
-            </ul>
+            <li>Alunos</li>
+            <li>Professores</li>
         </ul>
     </ul>
 </ul>
 <ul style="padding-left: 5%">
-    <li>Requerente</li>
+    <li>Técnico Administrativo</li>
     <ul>
-        <li>Editar:</li>
+        <li>Cadastrar, editar, consultar e excluir:</li>
         <ul>
-            <li>Dados do próprio perfil</li>
-            <li>Senha</li>
+            <li>Programas</li>
+            <li>Editais</li>
+            <li>Disciplinas</li>
+            <li>Cursos</li>
+            <li>Alunos</li>
+            <li>Professores</li>
         </ul>
-    <li>Fazer solicitação:</li>
-    <ul>
-        <li>De um ou mais materiais</li>
-        <li>Para o próprio requerente buscar ou outra pessoa especificada</li>
-        <li>Consultar histórico de solicitações:</li>
     </ul>
+</ul>
+
+<ul style="padding-left: 5%">
+    <li>Pró-Reitor e Gestor Institucional</li>
+    <ul>
+        <li>Consultar:</li>
+        <ul>
+            <li>Usuários</li>
+            <li>Programas</li>
+            <li>Editais</li>
+            <li>Disciplinas</li>
+            <li>Cursos</li>
+        </ul>
+    </ul>
+</ul>
+
+<ul style="padding-left: 5%">
+    <li>Professor</li>
+    <ul>
+        <li>Consultar:</li>
+        <ul>
+            <li>Alunos que orienta ou já orientou</li>
+            <li>Quanto tempo durou a orientação</li>
+            <li>Tipo de bolsa associada ao programa</li>
+        </ul>
+    </ul>
+</ul>
+
+<ul style="padding-left: 5%">
+    <li>Aluno</li>
+    <ul>
+        <li>Consultar:</li>
+        <ul>
+            <li>Programas que está inscrito</li>
+            <li>Tipo de bolsa associada ao(s) programa(s) que está inscrito</li>
+        </ul>
     </ul>
 </ul>
 
