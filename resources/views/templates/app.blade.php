@@ -84,34 +84,17 @@
 
             @include('templates.menu_lateral')
           @endauth
-
+          
           <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
             @auth
               <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: #131833; margin-left: 50px">
                 SISTEMA DE GESTÃO DE PROGRAMAS ACADÊMICOS
               </a>
             @else
-              <div class="header-aplicacao">
                 <a href="{{url('/')}}" type="button" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">
                   SISTEMA DE GESTÃO DE PROGRAMAS ACADÊMICOS
                 </a>
-                <ul class="lista-inline">
-                  <li>
-                      <a href="/" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">Início</a>
-                  </li>
-                  <li>
-                      <a href="/sistema" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">O Sistema</a>
-                  </li>
-                  <li>
-                    <a href="/parceria" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">A Parceria</a>
-                  </li>
-                  <li>
-                    <a href="/contato" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">Contato</a>
-                  </li>
 
-                </ul>
-              </div>  
-          
             @endauth
 
           </ul>
@@ -134,6 +117,23 @@
                 margin-left: 5px;"> Sair </p>
               </a>
             </form>
+            @else
+            <ul class="lista-inline" style="text-align: right;">
+              <li>
+                  <a href="/" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">Início</a>
+              </li>
+              <li>
+                  <a href="/sistema" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">O Sistema</a>
+              </li>
+              <li>
+                <a href="/parceria" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">A Parceria</a>
+              </li>
+              <li>
+                <a href="/contato" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833; margin-right: 15px;">Contato</a>
+              </li>
+
+            </ul>
+
             @endauth
           </div>
         </div>

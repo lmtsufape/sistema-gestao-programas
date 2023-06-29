@@ -21,8 +21,8 @@
 
         <div class="row" style="text-align: left;">
             <h1>A Parceria</h1>
-            <h3>Projeto Cooperação Técnica: Construindo pontes no campo das tecnologias da comunicação e informação na educação e na gestão universitária: uma parceria entre a UFAPE e a UPE</h3>
-            <h3>Apresentação</h3>
+            <h3 style="padding-top: 10px;">Projeto Cooperação Técnica: Construindo pontes no campo das tecnologias da comunicação e informação na educação e na gestão universitária: uma parceria entre a UFAPE e a UPE</h3>
+            <h3 style="padding-top: 10px;">Apresentação</h3>
             <p>O projeto de cooperação técnica, entre as instituições UFAPE e UPE nasce da necessidade de aperfeiçoamento das questões tecnológicas que ambas instituições apresentam e de sua comunidade acadêmica. De modo geral, as ações de tais instituições visarão o desenvolvimento e qualificação de sistemas voltados para o ensino; desenvolvimento de jogos educacionais voltados à educação básica; viabilização do Laboratório Multidisciplinar de Tecnologias Sociais (LMTS) como um ambiente de formação inicial aos alunos da UPE. Desse modo, o projeto deverá suprir as demandas acadêmicas que os alunos terão, além do aprimoramento pedagógico e tecnológico dos indivíduos, a partir de um ambiente amplo e confortável para que essa ação ocorra.</p>
 
             <h3>Objetivos</h3>
@@ -50,18 +50,20 @@
             </ul>
             <h6>Discentes UFAPE</h6>
             <ul style="padding-left: 5%;">            
-                <li>Aluno 1</li>
-                <li>Aluno 1</li>
-                <li>Aluno 1</li>
+                <li>Inês Alessandra Alves de Melo</li>
+                <li>Itamar Bernardo da Silva Júnior</li>
+                <li>José Daniel Florêncio Duarte Filho</li>
+                <li>Luann Bento Ferreira</li>
             </ul>
             <h6>Discentes UPE</h6>
             <ul style="padding-left: 5%;">            
-                <li>Aluno 1</li>
-                <li>Aluno 1</li>
-                <li>Aluno 1</li>
-                <li>Aluno 1</li>     
+                <li>Anna Victoria Feliciana da Silva</li>
+                <li>Camila Claudino da Silva</li>
+                <li>Guilherme Rivaldy de Sá Pereira</li>
+                <li>João Samuel Leal de Oliveira</li>
+                <li>Jonas Henrique da Silva Santos</li>
+                <li>Matheus Interaminense Guerra Brito de Albuquerque</li>         
             </ul>
-
 
     </div>
         

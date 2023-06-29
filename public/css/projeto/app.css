@@ -246,16 +246,7 @@ div.modal-ver{
   font-family: 'Roboto', sans-serif;
 }
 
-/*Header Pagina Inicial*/
-.header-aplicacao {
-  display: flex;
-}
-
-.header-aplicacao a {
-  margin-right: auto;
-  
-}
-
+/*Inicio/O Sistema/A Parceria na Pagina Inicial*/
 .lista-inline {
   list-style: none;
   display: flex;
@@ -263,6 +254,7 @@ div.modal-ver{
   justify-content: flex-end;
 }
 
+
 .lista-inline li {
-  margin-left: 40px;
+  margin-left: 15px;
 }
