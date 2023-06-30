@@ -245,3 +245,16 @@ div.modal-ver{
   padding-right: 12px;
   font-family: 'Roboto', sans-serif;
 }
+
+/*Inicio/O Sistema/A Parceria na Pagina Inicial*/
+.lista-inline {
+  list-style: none;
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+
+.lista-inline li {
+  margin-left: 15px;
+}

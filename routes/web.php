@@ -23,6 +23,17 @@ Route::post('/home', [UserController::class, 'store'])->name('store');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/sistema', function(){
+    return view('sistema');
+});
+
+Route::get('/parceria', function(){
+    return view('parceria');
+});
+
+Route::get('/contato', function(){
+    return view('contato');
+});
 
 Route::middleware([
     'auth:sanctum',
