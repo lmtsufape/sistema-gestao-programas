@@ -8,6 +8,7 @@ use App\Http\Requests\AdicionarPermissaoFormRequest;
 use App\Models\Servidor;
 use App\Models\Tipo_servidor;
 use App\Models\User;
+use App\Services\ManipulacaoImagens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -175,9 +176,16 @@ class ServidorController extends Controller {
             };
             $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
             $servidor->tipo_servidor = $permission == $servidor->tipo_servidor ? $servidor->tipo_servidor : $permission;
-        $servidor->user->name_social = $request->nome_social;
+            $servidor->user->name_social = $request->nome_social;
             $servidor->user->name = $request->nome;
             $servidor->user->email = $request->email;
+
+            $imageName = "sem-foto-perfil.png";
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+            }
+            $servidor->user->image = $request->image == null ? $servidor->user->image : $imageName;
+
             if ($request->senha && $request->senha != null){
                 if (strlen($request->senha) > 7 && strlen($request->senha) < 31){
                     $servidor->user->password = Hash::make($request->senha);
