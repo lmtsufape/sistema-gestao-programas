@@ -11,6 +11,7 @@ use App\Models\Curso;
 use App\Models\Edital;
 use App\Models\EditalAlunoOrientadors;
 use App\Models\User;
+use App\Services\ManipulacaoImagens;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -143,6 +144,13 @@ class AlunoController extends Controller
             $aluno->user->name = $request->nome;
             $aluno->user->email = $request->email;
             $aluno->user->name_social = $request->nome_social;
+
+            $imageName = "sem-foto-perfil.png";
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+            }
+            $aluno->user->image = $request->image == null ? $aluno->user->image : $imageName;
+
             if ($request->senha != null){
                 if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
                     $aluno->user->password = Hash::make($request->senha);

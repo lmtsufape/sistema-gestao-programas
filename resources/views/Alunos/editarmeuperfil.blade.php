@@ -68,9 +68,13 @@
         <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
             Editar Estudantes</h1>
         <hr style="color: #2D3875;">
-        <form action="{{ route('meu-perfil-aluno.atualizar', ['id' => $aluno->id]) }}" method="POST">
+        <form action="{{ route('meu-perfil-aluno.atualizar', ['id' => $aluno->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method("PUT")
+            <img src="/images/fotos-perfil/{{ $aluno->user->image }}" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
+            <input type="file" id="image" name="image" class="form-control-file">
+
+
             <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
             <input type="text" id="nome" name="nome" value="{{$aluno->user->name}}"
             class="boxinfo"><br/><br>

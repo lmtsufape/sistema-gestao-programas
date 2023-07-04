@@ -91,8 +91,12 @@
 
         <hr style="color:#2D3875;">
 
-        <form action="{{ route('store') }}" method="POST">
+        <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+
+            <label for="image" class="titulo">Imagem do Perfil:</label>
+            <input type="file" id="image" name="image" class="form-control-file">
+
             <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="text" id="nome" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>

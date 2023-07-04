@@ -14,9 +14,12 @@
                 <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
                     Editar Servidor</h1>
                     <hr>
-                    <form action="{{ route('meu-perfil-servidor.atualizar', ['id' => $servidor->id]) }}" method="POST">
+                    <form action="{{ route('meu-perfil-servidor.atualizar', ['id' => $servidor->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
+                    <img src="/images/fotos-perfil/{{ $servidor->user->image }}" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
+                    <input type="file" id="image" name="image" class="form-control-file">
+
                     <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome:<strong style="color: red">*</strong></label>
                     <input type="text" id="nome" name="nome" placeholder="Digite o nome" value="{{$servidor->user->name}}"
                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;

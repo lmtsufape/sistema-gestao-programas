@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\OrientadorFormRequest;
 use App\Http\Requests\OrientadorFormUpdateRequest;
 use App\Http\Requests\AlunoUpdateFormRequest;
+use App\Services\ManipulacaoImagens;
 
 class UserController extends Controller
 {
@@ -40,6 +41,14 @@ class UserController extends Controller
         //dd($request);
         DB::beginTransaction();
         try {
+
+            //Image Upload -> Se não colocar, vai ficar a imagem padrão
+            $imageName = "sem-foto-perfil.png";
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);
+                
+            }
+
             switch ($request->tipoUser){
                 case('aluno'):
                     $aluno = new Aluno();
@@ -48,6 +57,7 @@ class UserController extends Controller
                     $aluno->curso_id = $request->curso;
                     $aluno->semestre_entrada = $request->semestre_entrada;
 
+
                     if ($aluno->save()){
                         if (
                             $aluno->user()->create([
@@ -55,7 +65,8 @@ class UserController extends Controller
                                 'cpf' => $request->cpf,
                                 'name_social' => $request->nome_social == null ? "-": $request->nome_social,
                                 'email' => $request->email,
-                                'password' => Hash::make($request->senha)
+                                'password' => Hash::make($request->senha),
+                                'image' => $imageName
                             ])->givePermissionTo('aluno')
                         ){
                             $user = $aluno->user;
@@ -83,7 +94,8 @@ class UserController extends Controller
                             'name' => $request->input('nome'),
                             'email' => $request->input('email'),
                             'cpf' => $request->input('cpf'),
-                            'password' => Hash::make($request->input('senha'))
+                            'password' => Hash::make($request->input('senha')),
+                            'image' => $imageName
                         ])->givePermissionTo('servidor')
                     ){
                         $user = $servidor->user;
@@ -112,6 +124,7 @@ class UserController extends Controller
                             'email' => $request->email,
                             'cpf' => $request->cpf,
                             'password' => Hash::make($request->senha),
+                            'image' => $imageName
                         ]);
                         // dd($user);
                         $user->givePermissionTo('orientador');
@@ -132,4 +145,5 @@ class UserController extends Controller
             return redirect()->back()->withErrors( "Falha ao se cadastrar." );
         }
     }
+
 }

@@ -8,6 +8,7 @@ use App\Models\Curso;
 use App\Models\EditalAlunoOrientadors;
 use App\Models\Orientador;
 use App\Models\User;
+use App\Services\ManipulacaoImagens;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -218,6 +219,12 @@ class OrientadorController extends Controller
             $orientador->user->name_social = $request->name_social;
             $orientador->user->cpf = $request->cpf;
 
+            $imageName = "sem-foto-perfil.png";
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+            }
+            $orientador->user->image = $request->image == null ? $orientador->user->image : $imageName;
+
             $cursos_id = $request->cursos;
             if($cursos_id == null){
                 return redirect()->back()->withErrors( "Selecione pelo menos um Curso" );
@@ -247,6 +254,7 @@ class OrientadorController extends Controller
                 return redirect()->back()->withErrors( "Falha ao editar orientador. tente novamente mais tarde." );
             }
         } catch (Exception $e) {
+            dd($e->getMessage());
             return redirect()->back()->withErrors("Falha ao editar orientador. Tente novamente mais tarde.");
         }
     }
