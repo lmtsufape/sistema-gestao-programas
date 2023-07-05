@@ -27,13 +27,20 @@ class AlunoController extends Controller
             $aluno->cpf = $request->cpf;
             $aluno->curso_id = $request->curso;
             $aluno->semestre_entrada = $request->semestre_entrada;
+
+            $imageName = null;
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+            }
+
             if ($aluno->save()) {
                 $user = $aluno->user()->create([
                     'name' => $request->nome,
                     'name_social' => $request->name_social == null ? "-" : $request->name_social,
                     'email' => $request->email,
                     'cpf' => $request->cpf,
-                    'password' => Hash::make($request->senha)
+                    'password' => Hash::make($request->senha),
+                    'image' => $imageName
                 ]);
                 $user->givePermissionTo('aluno');
                 $user->save();
@@ -63,6 +70,13 @@ class AlunoController extends Controller
             $aluno->user->name = $request->nome;
             $aluno->user->email = $request->email;
             $aluno->user->name_social = $request->nome_social;
+
+            $imageName = null;
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+            }
+            $aluno->user->image = $request->image == null ? $aluno->user->image : $imageName;
+
             if ($request->senha != null){
                 if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
                     $aluno->user->password = Hash::make($request->senha);
@@ -145,7 +159,7 @@ class AlunoController extends Controller
             $aluno->user->email = $request->email;
             $aluno->user->name_social = $request->nome_social;
 
-            $imageName = "sem-foto-perfil.png";
+            $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
                 $imageName = ManipulacaoImagens::salvarImagem($request->image);                
             }

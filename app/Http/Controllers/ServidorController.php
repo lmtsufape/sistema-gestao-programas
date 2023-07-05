@@ -57,12 +57,18 @@ class ServidorController extends Controller {
                 'matricula' => $request->input('matricula')
             ]);
 
+            $imageName = null;
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+            }
+
             if(
                 $servidor->user()->create([
                     'name' => $request->input('nome'),
                     'cpf' => $request->input('cpf'),
                     'email' => $request->input('email'),
-                    'password' => Hash::make($request->input('senha'))
+                    'password' => Hash::make($request->input('senha')),
+                    'image' => $imageName
                 ])->givePermissionTo($permission)
             ){
                 #$mensagem_sucesso = "Orientador cadastrado com sucesso.";
@@ -77,6 +83,7 @@ class ServidorController extends Controller {
             }
         } catch (Exception $e) {
             DB::rollback();
+            dd($e->getMessage());
             return redirect()->back()->withErrors("Falha ao cadastrar servidor. Tente novamente mais tarde.");
         }
     }
@@ -128,6 +135,13 @@ class ServidorController extends Controller {
             $servidor->user->name = $request->nome;
             $servidor->user->cpf = $request->cpf;
             $servidor->user->email = $request->email;
+
+            $imageName = null;
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+            }
+            $servidor->user->image = $request->image == null ? $servidor->user->image : $imageName;
+
             if ($request->senha && $request->senha != null){
                 if (strlen($request->senha) > 7 && strlen($request->senha) < 31){
                     $servidor->user->password = Hash::make($request->senha);
@@ -180,7 +194,7 @@ class ServidorController extends Controller {
             $servidor->user->name = $request->nome;
             $servidor->user->email = $request->email;
 
-            $imageName = "sem-foto-perfil.png";
+            $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
                 $imageName = ManipulacaoImagens::salvarImagem($request->image);                
             }

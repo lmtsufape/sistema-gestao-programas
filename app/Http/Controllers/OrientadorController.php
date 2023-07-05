@@ -78,6 +78,10 @@ class OrientadorController extends Controller
             $orientador->instituicaoVinculo = $request->instituicaoVinculo;
 
             #$orientador->curso = 'Teste';
+            $imageName = null;
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+            }
 
             if ($orientador->save()){
 
@@ -96,8 +100,8 @@ class OrientadorController extends Controller
                         'name_social' => $request->name_social,
                         'cpf' => $request->cpf,
                         'email' => $request->email,
-                        'password' => Hash::make($request->senha)
-
+                        'password' => Hash::make($request->senha),
+                        'image' => $imageName
                     ])->givePermissionTo('orientador')
                 ){
                     $confirm = new ConfirmandoEmail($request);
@@ -172,6 +176,13 @@ class OrientadorController extends Controller
             $orientador->user->name_social = $request->name_social;
             $orientador->user->cpf = $request->cpf;
 
+            $imageName = null;
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+            }
+            $orientador->user->image = $request->image == null ? $orientador->user->image : $imageName;
+
+
             $cursos_id = $request->cursos;
             if($cursos_id == null){
                 return redirect()->back()->withErrors( "Selecione pelo menos um Curso" );
@@ -219,7 +230,7 @@ class OrientadorController extends Controller
             $orientador->user->name_social = $request->name_social;
             $orientador->user->cpf = $request->cpf;
 
-            $imageName = "sem-foto-perfil.png";
+            $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
                 $imageName = ManipulacaoImagens::salvarImagem($request->image);                
             }

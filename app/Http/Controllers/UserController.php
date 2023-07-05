@@ -43,7 +43,7 @@ class UserController extends Controller
         try {
 
             //Image Upload -> Se não colocar, vai ficar a imagem padrão
-            $imageName = "sem-foto-perfil.png";
+            $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
                 $imageName = ManipulacaoImagens::salvarImagem($request->image);
                 

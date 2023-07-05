@@ -63,9 +63,17 @@
         <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
             <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">Editar Professor</h1>
             <hr>
-            <form action="{{  route('orientadors.update', ['id'=> $orientador->id])   }}" method="POST">
+            <form action="{{  route('orientadors.update', ['id'=> $orientador->id])   }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method("PUT")
+
+                @if($orientador->user->image)
+                <img src="/images/fotos-perfil/{{ $orientador->user->image }}" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
+                @else
+                <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
+                @endif                
+                <input type="file" id="image" name="image" class="form-control-file">
+
                 <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" id="name" name="name" placeholder="Digite o nome" value="{{$orientador->user->name}}"
                 ><br/><br>
