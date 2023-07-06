@@ -48,7 +48,9 @@
                                         <option value disabled selected hidden>Selecione um tipo de servidor</option>
                                         <option value="0">Administrador</option>
                                         <option value="1">Pró-Reitor</option>
-                                        <option value="2">Técnico Administrativo</option>
+                                        <option value="3">Gestor Institucional</option>
+                                        <option value="2">Técnico Administrativo</option>                                        
+                                        
                                     </select>
                                 </div>
 

@@ -41,6 +41,11 @@
                     @break
                   @case('servidor')
                     <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> Servidor</div>                   
+                    @break
+                  @case('gestor')
+                    <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> Gestor Institucional</div>                   
+                    @break
+                  
                 @endswitch
               </div>
             </div>

@@ -39,7 +39,12 @@ class PermissionsSeeder extends Seeder
             'name' => 'pro_reitor',
             'guard_name' => 'web',
             'created_at' => date('Y-m-d h:i:s')
-            ]
+            ],
+            [
+                'name' => 'gestor',
+                'guard_name' => 'web',
+                'created_at' => date('Y-m-d h:i:s')
+                ]
         ]);
     }
 }

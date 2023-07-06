@@ -87,6 +87,10 @@
               @case("servidor")
               <td class="align-middle">Técnico Administrativo</td>
                 @break
+              @case("gestor")
+              <td class="align-middle">Gestor Institucional</td>
+                @break
+        
             @endswitch
             <td class="align-middle">
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$servidor->id}}">
