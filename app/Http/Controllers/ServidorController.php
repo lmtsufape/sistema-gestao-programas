@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Database\QueryException;
+
 
 class ServidorController extends Controller {
 
@@ -57,12 +59,18 @@ class ServidorController extends Controller {
                 'matricula' => $request->input('matricula')
             ]);
 
+            $imageName = null;
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+            }
+
             if(
                 $servidor->user()->create([
                     'name' => $request->input('nome'),
                     'cpf' => $request->input('cpf'),
                     'email' => $request->input('email'),
-                    'password' => Hash::make($request->input('senha'))
+                    'password' => Hash::make($request->input('senha')),
+                    'image' => $imageName
                 ])->givePermissionTo($permission)
             ){
                 #$mensagem_sucesso = "Orientador cadastrado com sucesso.";
@@ -77,6 +85,7 @@ class ServidorController extends Controller {
             }
         } catch (Exception $e) {
             DB::rollback();
+            dd($e->getMessage());
             return redirect()->back()->withErrors("Falha ao cadastrar servidor. Tente novamente mais tarde.");
         }
     }
@@ -128,6 +137,16 @@ class ServidorController extends Controller {
             $servidor->user->name = $request->nome;
             $servidor->user->cpf = $request->cpf;
             $servidor->user->email = $request->email;
+
+            $imageName = null;
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);
+                if($servidor->user->image){
+                    ManipulacaoImagens::deletarImagem($servidor->user->image); //Se houver uma nova imagem, remove a anterior do servidor                                
+                }                    
+            }
+            $servidor->user->image = $request->image == null ? $servidor->user->image : $imageName;
+
             if ($request->senha && $request->senha != null){
                 if (strlen($request->senha) > 7 && strlen($request->senha) < 31){
                     $servidor->user->password = Hash::make($request->senha);
@@ -180,9 +199,12 @@ class ServidorController extends Controller {
             $servidor->user->name = $request->nome;
             $servidor->user->email = $request->email;
 
-            $imageName = "sem-foto-perfil.png";
+            $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
-                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);
+                if($servidor->user->image){
+                    ManipulacaoImagens::deletarImagem($servidor->user->image); //Se houver uma nova imagem, remove a anterior do servidor                                
+                }                    
             }
             $servidor->user->image = $request->image == null ? $servidor->user->image : $imageName;
 
@@ -224,13 +246,21 @@ class ServidorController extends Controller {
 
             $id = $request->only(['id']);
             $servidor = Servidor::findOrFail($id)->first();
+            $imageName = $servidor->user->image;     
 
-            if ($servidor->delete()) {
-                DB::commit();                
-                return redirect(route("servidores.index"))->with('sucesso', 'Servidor Deletado com Sucesso!');
-            }
-        } catch (Exception $e) {
+            $servidor->user->delete();            
+            $servidor->delete();
+            ManipulacaoImagens::deletarImagem($imageName); 
+            DB::commit();                
+            return redirect(route("servidores.index"))->with('sucesso', 'Servidor Deletado com Sucesso!');
+            
+
+        } catch(QueryException $e){
             DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao deletar Servidor. O Servidor possui vínculo com algum Programa." );
+        }catch (Exception $e) {
+            DB::rollback();
+            dd($e);
             return redirect()->back()->withErrors("Falha ao deletar servidor. Tente novamente mais tarde.");
         }
     }

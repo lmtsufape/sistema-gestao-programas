@@ -14,12 +14,19 @@
                     <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
                         Cadastrar Servidor</h2>
                     <hr>
-                        <form action="{{route('servidores.store')}}" method="POST" class="row needs-validation" novalidate style="text-align:start;">
+                        <form action="{{route('servidores.store')}}" method="POST" class="row needs-validation" novalidate style="text-align:start;" enctype="multipart/form-data">
                             @csrf
                             @method("POST")
 
                             <div class="row">
+
                                 <div class="col-12 mb-3" style="padding-top: 12px;">
+                                    <label for="image" class="form-label">Imagem do Perfil:</label>
+                                    <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
+                                    <input type="file" id="image" name="image" class="form-control-file">
+                                </div>
+
+                                <div class="col-12 mb-3">
                                     <label for="nome" class="form-label">Nome:<strong style="color: red">*</strong></label>
                                     <input type="text" name="nome" id="nome" placeholder="Digite o nome"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;

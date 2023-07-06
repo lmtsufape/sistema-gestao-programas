@@ -10,6 +10,12 @@
         @csrf
         <input type="hidden" name="id" value="{{$aluno->id}}">
         <div class="modal-body">
+          @if ($aluno->user->image)
+          <img src="/images/fotos-perfil/{{ $aluno->user->image }}"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">
+          @else
+          <img src="/images/fotos-perfil/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">            
+          @endif
+
           <div class="mb-3">
             <label for="nome_edit" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;">
             Nome:</label>

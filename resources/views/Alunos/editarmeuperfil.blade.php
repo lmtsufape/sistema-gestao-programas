@@ -71,9 +71,13 @@
         <form action="{{ route('meu-perfil-aluno.atualizar', ['id' => $aluno->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method("PUT")
-            <img src="/images/fotos-perfil/{{ $aluno->user->image }}" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
-            <input type="file" id="image" name="image" class="form-control-file">
 
+            @if($aluno->user->image)
+            <img src="/images/fotos-perfil/{{ $aluno->user->image }}" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
+            @else
+            <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
+            @endif                
+            <input type="file" id="image" name="image" class="form-control-file">
 
             <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
             <input type="text" id="nome" name="nome" value="{{$aluno->user->name}}"
