@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Exception;
+use Illuminate\Database\QueryException;
 
 class OrientadorController extends Controller
 {
@@ -178,7 +179,10 @@ class OrientadorController extends Controller
 
             $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
-                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);
+                if($orientador->user->image){
+                    ManipulacaoImagens::deletarImagem($orientador->user->image); //Se houver uma nova imagem, remove a anterior do servidor                                
+                }                
             }
             $orientador->user->image = $request->image == null ? $orientador->user->image : $imageName;
 
@@ -232,7 +236,10 @@ class OrientadorController extends Controller
 
             $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
-                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);
+                if($orientador->user->image){
+                    ManipulacaoImagens::deletarImagem($orientador->user->image); //Se houver uma nova imagem, remove a anterior do servidor                                
+                }                
             }
             $orientador->user->image = $request->image == null ? $orientador->user->image : $imageName;
 
@@ -265,7 +272,6 @@ class OrientadorController extends Controller
                 return redirect()->back()->withErrors( "Falha ao editar orientador. tente novamente mais tarde." );
             }
         } catch (Exception $e) {
-            dd($e->getMessage());
             return redirect()->back()->withErrors("Falha ao editar orientador. Tente novamente mais tarde.");
         }
     }
@@ -279,14 +285,27 @@ class OrientadorController extends Controller
     public function destroy(Request $request)
     {
         try{
+            DB::beginTransaction();
+
             $id = $request->only(['id']);
             $orientador = Orientador::findOrFail($id)->first();
 
             $orientador->cursos()->detach($request->cursos);
-            if ($orientador->user->delete() && $orientador->delete()) {
-                return redirect(route("orientadors.index"))->with('sucesso', 'Orientador Deletado com sucesso.');;
-            }
-        } catch (Exception $e) {
+            
+            $imageName = $orientador->user->image;            
+            
+            $orientador->user->delete();
+            $orientador->delete();            
+            ManipulacaoImagens::deletarImagem($imageName); 
+            DB::commit();
+
+            return redirect(route("orientadors.index"))->with('sucesso', 'Orientador Deletado com sucesso.');;
+            
+        } catch(QueryException $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao deletar Orientador. O Orientador possui vínculo com algum Edital." );
+        }catch (Exception $e) {
+            DB::rollback();
             return redirect()->back()->withErrors("Falha ao deletar orientador. Tente novamente mais tarde.");
         }
     }

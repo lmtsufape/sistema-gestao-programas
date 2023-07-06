@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Exception;
+
 class ManipulacaoImagens {    
     
     public static function salvarImagem($image){
@@ -20,6 +22,20 @@ class ManipulacaoImagens {
         return $imageName;
     }
 
-
+    public static function deletarImagem($imageName){
+        try{
+            if($imageName != null){
+                
+                $imagePath = public_path('images/fotos-perfil/' . $imageName);
+        
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+        }
+        catch(Exception $e){
+            
+        }
+    }
 }
 
