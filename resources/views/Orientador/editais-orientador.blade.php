@@ -39,7 +39,7 @@
 
 
 <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1 style="color:#2D3875;"><strong>Meus Programas</strong></h1>
+    <h1 style="color:#2D3875;"><strong>Meus Editais</strong></h1>
     <div style="margin: auto"></div>
     <form action="" method="GET">
         <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
@@ -91,6 +91,10 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$edital->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
+              <a href="{{route('orientador.add-documentos-edital', ['id' => $edital->id]  )}}">
+                <img src="{{asset("images/adicionar-documento.png")}}" alt="Adicionar Documentos" style="height: 30px; width: 30px;">
+              </a>
+
         
             </td>
           </tr>
@@ -115,6 +119,10 @@
                 <div style="display: flex; margin: 10px">
                     <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
                     <p class="textolegenda">Informações</p>
+                </div>
+                <div style="display: flex; margin: 10px">
+                    <a><img src="/images/adicionar-documento.png" alt="Adicionar Documentos" style="width: 20px; height: 20px;"></a>
+                    <p class="textolegenda">Add Documentos</p>
                 </div>
                 <div style="display: flex; margin: 10px">
                     <a><img src="{{asset('images/searchicon.png')}}" alt="Procurar" style="width: 20px; height: 20px;"></a>

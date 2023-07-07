@@ -215,5 +215,8 @@ Route::get('/editais-aluno', [AlunoController::class, 'editais_profile']);
 //Rota para listar os editais do orientador em seu perfil
 Route::get('/editais-orientador', [OrientadorController::class, 'editais_profile_orientador']);
 
+//Rota para adicionar documento a um edital editais pelo do orientador em seu perfil
+Route::get('/{id}/editais-orientador/documentos', [OrientadorController::class, 'adicionar_documentos'])->where('id', '[0-9]+')->name('orientador.add-documentos-edital');;
+
 //Rota para listar os alunos vinculado a um orientador especifico
 Route::get('/listar_alunos-orientador', [OrientadorController::class, 'lista_alunos_profile_orientador']);

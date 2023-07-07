@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrientadorFormRequest;
 use App\Http\Requests\OrientadorFormUpdateRequest;
 use App\Models\Curso;
+use App\Models\Edital;
 use App\Models\EditalAlunoOrientadors;
 use App\Models\Orientador;
 use App\Models\User;
@@ -327,6 +328,12 @@ class OrientadorController extends Controller
             array_push($editais, $pivo->edital);
         }
         return view('Orientador.editais-orientador',compact("editais"));
+    }
+
+    public function adicionar_documentos($id){
+        $edital = Edital::findOrFail($id);
+
+        return view('Orientador.adicionar-documentos', compact('edital'));
     }
 
     public function lista_alunos_profile_orientador(Request $request) {

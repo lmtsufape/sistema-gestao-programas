@@ -42,7 +42,7 @@ class Edital_Aluno_OrientadorSeeder extends Seeder
                 'aluno_id' => 2,
                 'edital_id' => 1,
                 #'disciplina_id' => 1,
-                'orientador_id' => 1,
+                'orientador_id' => 2,
                 'termo_compromisso_aluno' => 'termo_compromisso_aluno.pdf',
                 'plano_projeto' => 'plano_projeto.pdf',
                 'outros_documentos' => 'outros_documentos',
