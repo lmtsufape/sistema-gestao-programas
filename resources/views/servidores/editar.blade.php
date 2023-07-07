@@ -56,14 +56,22 @@
                         @if ($servidor->tipo_servidor == 'adm')
                             <option value="0" selected>Administrador</option>
                             <option value="1">Pró-Reitor</option>
-                            <option value="2">Servidor</option>
+                            <option value="3">Gestor Institucional</option>
+                            <option value="2">Servidor</option>                            
                         @elseif ($servidor->tipo_servidor == 'pro_reitor')
                             <option value="0">Administrador</option>
                             <option value="1" selected>Pró-Reitor</option>
+                            <option value="3">Gestor Institucional</option>
+                            <option value="2">Servidor</option>
+                        @elseif ($servidor->tipo_servidor == 'gestor')
+                            <option value="0">Administrador</option>
+                            <option value="1">Pró-Reitor</option>
+                            <option value="3" selected>Gestor Institucional</option>
                             <option value="2">Servidor</option>
                         @else
                             <option value="0">Administrador</option>
                             <option value="1">Pró-Reitor</option>
+                            <option value="3">Gestor Institucional</option>
                             <option value="2" selected>Servidor</option>
                         @endif
 

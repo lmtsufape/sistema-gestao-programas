@@ -42,7 +42,7 @@ class ServidorController extends Controller {
             #dd($request->input('cpf'));
             switch($request->input('tipo_servidor')){
                 case 0:
-                $permission = "adm";
+                    $permission = "adm";
                     break;
                 case 1:
                     $permission = "pro_reitor";
@@ -50,8 +50,11 @@ class ServidorController extends Controller {
                 case 2:
                     $permission = "servidor";
                     break;
+                case 3:
+                    $permission = "gestor";
+                    break;
             };
-
+            
             $servidor = Servidor::Create([
                 'cpf' => $request->input('cpf'),
                 'tipo_servidor' => $permission,
@@ -67,6 +70,7 @@ class ServidorController extends Controller {
             if(
                 $servidor->user()->create([
                     'name' => $request->input('nome'),
+                    'name_social' => $request->input('nome_social'),
                     'cpf' => $request->input('cpf'),
                     'email' => $request->input('email'),
                     'password' => Hash::make($request->input('senha')),
@@ -85,7 +89,7 @@ class ServidorController extends Controller {
             }
         } catch (Exception $e) {
             DB::rollback();
-            dd($e->getMessage());
+            dd($e);
             return redirect()->back()->withErrors("Falha ao cadastrar servidor. Tente novamente mais tarde.");
         }
     }
@@ -129,6 +133,9 @@ class ServidorController extends Controller {
                     break;
                 case 2:
                     $permission = "servidor";
+                    break;
+                case 3:
+                    $permission = "gestor";
                     break;
             };
             $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
@@ -191,6 +198,9 @@ class ServidorController extends Controller {
                     break;
                 case 2:
                     $permission = "servidor";
+                    break;
+                case 3:
+                    $permission = "gestor";
                     break;
             };
             $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;

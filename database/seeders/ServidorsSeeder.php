@@ -66,5 +66,19 @@ class ServidorsSeeder extends Seeder
             'email' => "servidor2@gmail.com",
             'password' => Hash::make('12345678')
         ])->givePermissionTo('servidor');
+
+        $servidor4 = Servidor::create([
+            'cpf' => "961.091.750-05",
+            'instituicaoVinculo' => 'UPE',
+            'matricula' => 372456,
+            'tipo_servidor' => 'gestor'
+        ]);
+
+        $servidor4->user()->create([
+            'name' => "Gestor 1",
+            'cpf' => "961.091.750-05",
+            'email' => "gestor@gmail.com",
+            'password' => Hash::make('12345678')
+        ])->givePermissionTo('gestor');
     }
 }
