@@ -29,7 +29,7 @@
 </style>
 
 
-@canany(['admin', 'servidor'])
+@canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
 <div class="container" style="font-family: 'Roboto', sans-serif;">
   @if (session('sucesso'))
   <div class="alert alert-success">

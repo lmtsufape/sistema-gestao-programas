@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor'])
+@canany(['admin', 'servidor', 'gestor'])
   <div class="modal fade" id="modal_show_{{$disciplina->id}}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
     <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
@@ -9,12 +9,12 @@
           <div class="modal-body">
             <div class="row mb-3">
               <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;">Disciplina:</label>
-              <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$disciplina->nome}}</div>              
+              <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$disciplina->nome}}</div>
             </div>
 
             <div class="row mb-3">
               <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;">Curso:</label>
-              <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$disciplina->curso->nome}}</div>              
+              <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$disciplina->curso->nome}}</div>
             </div>
 
             <div class="modal-footer">

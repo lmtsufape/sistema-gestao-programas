@@ -41,7 +41,7 @@
   }
 </style>
 
-@canany(['admin', 'pro_reitor'])
+@canany(['admin', 'pro_reitor', 'gestor'])
 <div class="container">
   @if (session('sucesso'))
   <div class="alert alert-success">
@@ -63,7 +63,7 @@
               height: 45px;
               border: 1px solid #ddd;
               margin-bottom: 12px;  margin-right: 10px">
-          
+
           <input type="submit" value="" style="background-image: url('/images/searchicon.png');
               background-color: #D9D9D9;
               border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -184,9 +184,9 @@
             <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
             <p class="textolegenda">Deletar</p>
           </div>
-          
+
         </div>
-        
+
         <!-- <div style="align-self: center; margin-right: auto">
           <div style="display: flex; margin: 10px">
             <a><img src="/images/bx_user.png" alt="Listar alunos" style="width: 20px; height: 20px;"></a>

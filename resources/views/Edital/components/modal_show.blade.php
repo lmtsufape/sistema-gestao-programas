@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor', 'aluno', 'orientador'])
+@canany(['admin', 'servidor', 'aluno', 'orientador', 'pro_reitor', 'gestor'])
 <div class="modal fade " id="modal_show{{$edital->id}}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
     <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
@@ -17,11 +17,11 @@
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Descrição:</label>
           <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$edital->descricao}} </div>
-          
+
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Valor da Bolsa:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> 
+          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
           @if($edital->valor_bolsa)
-          {{$edital->valor_bolsa}} 
+          {{$edital->valor_bolsa}}
           @else
           {{"Não possui"}}
           @endif
@@ -37,18 +37,18 @@
           <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$edital->programa->nome}} </div>
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Disciplina(s):</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> 
+          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
           @if(count($edital->disciplinas) != 0)
             @foreach($edital->disciplinas as $disciplina)
               {{$disciplina->nome}}<br>
             @endforeach
           @else
-            {{"Não há disciplinas"}} 
+            {{"Não há disciplinas"}}
           @endif
           </div>
 
-          
-          
+
+
         </div>
 
         <div class="modal-footer">
