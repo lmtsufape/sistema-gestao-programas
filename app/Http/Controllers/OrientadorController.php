@@ -322,19 +322,15 @@ class OrientadorController extends Controller
     }   
 
     public function editais_profile_orientador(Request $request) {
-        $pivos = EditalAlunoOrientadors::where('orientador_id', $request->user()->typage_id)->get();
-        $editais = array();
-        foreach ($pivos as $pivo){
-            array_push($editais, $pivo->edital);
-        }
-        return view('Orientador.editais-orientador',compact("editais"));
+        $vinculos = EditalAlunoOrientadors::where('orientador_id', $request->user()->typage_id)->get();
+        // $editais = array();
+        // foreach ($pivos as $pivo){
+        //     array_push($editais, $pivo->edital);
+        // }
+
+        return view('Orientador.editais-orientador',compact("vinculos"));
     }
 
-    public function adicionar_documentos($id){
-        $edital = Edital::findOrFail($id);
-
-        return view('Orientador.adicionar-documentos', compact('edital'));
-    }
 
     public function lista_alunos_profile_orientador(Request $request) {
         $pivos = EditalAlunoOrientadors::where('orientador_id', $request->user()->typage_id)->get();
