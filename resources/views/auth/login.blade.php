@@ -25,7 +25,7 @@
 
     .form-card{
         display: flex;
-        width: 505px;
+        width: 40% !important; 
         padding: 40px 30px;
         flex-direction: column;
         justify-content: center;
@@ -46,7 +46,7 @@
 
     .field{
         display: flex;
-        width: 480px;
+        width: 100%;
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
@@ -65,12 +65,9 @@
         border: 2px solid rgba(230, 230, 230, 1);
         
     }
-    .form-control{
-        box-shadow: none;
-    }
 
-    .input-modal-create{
-        box-shadow: none;
+    .form-control{
+        box-shadow:none !important;
     }
     .form-header{
         display: flex;
@@ -136,12 +133,13 @@
         padding: 10px;
         text-align: center;
         text-decoration: none;
-        width:100%
+        width:100%;
+        box-shadow: none !important;
     }
 
     .register-button:hover{
-        background-color: gray;
-        color: #fff;
+        background-color: #bbbdbf;
+        color: #2B2B2B;
         transition: 0.3s;
     }
 
@@ -206,8 +204,7 @@
 
                         <div class="form-buttons">
                             <!-- :<div> -->
-                            <button type="submit" class="red-button"
-                            >Entrar</button>
+                            <button type="submit" class="red-button">Entrar</button>
                             <!-- </div> -->
                             <!-- <div style="margin-left: auto; margin-right: 0;"> -->
                             <a href="{{ route('register')}}" class="register-button"> Cadastre-se</a>
@@ -215,10 +212,13 @@
 
                         <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#modal_create" style="text-decoration: none; cursor: point;">Cadastre-se</a> -->
                         </div>
+                        
                     </div>
                 </form>
             </div>
         </div>
+        <br>
+        <br>
         <br>
         <br>
     </div>
