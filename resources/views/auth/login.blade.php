@@ -17,9 +17,9 @@
     @endif
     <br>
 
-    <div class="container" style="padding-top: 5%">
+    <div class="container">
 
-        <div class="row" style="justify-content: center; align-items: center">
+        <div class="login row">
 
             <div class="col div-paragraph">
                 <h2 class="title-login">O que é?</h2>
@@ -87,7 +87,13 @@
         font-style: normal;
         margin-right: 5%;
     }
-
+    .container{
+        padding-top: 5%;
+    }
+    .login{
+        justify-content: center; 
+        align-items: center
+    }
     .paragraph{
         font-size: 20px;
         font-weight: 400;
