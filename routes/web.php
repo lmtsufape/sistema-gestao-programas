@@ -141,6 +141,9 @@ Route::prefix('edital')->group(function() {
     Route::put('/vinculo/{id}', [EditalController::class, 'updateVinculo'])->name('edital.update_vinculo');
     Route::get('/{aluno_id}/{edital_id}/delete', [EditalController::class, 'deletarVinculo'])->name('edital.aluno.delete');
     Route::get('/{id}/ativar_vinculo', [EditalController::class, 'ativarVinculo'])->name('edital.ativarVinculo');
+    Route::get('/vinculos-orientador/{id}/documentos', [EditalController::class, 'adicionar_documentos'])->where('id', '[0-9]+')->name('edital.add-documentos-vinculo');;
+    Route::put('/vinculo/{id}/adicionar-documentos', [EditalController::class, 'store_adicionar_documentos'])->name('edital.salvar-documentos-vinculo');
+    
 });
 
 // Rotas de Disciplina
@@ -213,7 +216,7 @@ Route::get('/index_aluno', [MeusProgramasController::class, 'index_aluno']);
 Route::get('/editais-aluno', [AlunoController::class, 'editais_profile']);
 
 //Rota para listar os editais do orientador em seu perfil
-Route::get('/editais-orientador', [OrientadorController::class, 'editais_profile_orientador']);
+Route::get('/editais-orientador', [OrientadorController::class, 'editais_profile_orientador'])->name('orientadors.editais-orientador');
 
 //Rota para listar os alunos vinculado a um orientador especifico
 Route::get('/listar_alunos-orientador', [OrientadorController::class, 'lista_alunos_profile_orientador']);

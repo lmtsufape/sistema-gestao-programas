@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrientadorFormRequest;
 use App\Http\Requests\OrientadorFormUpdateRequest;
 use App\Models\Curso;
+use App\Models\Edital;
 use App\Models\EditalAlunoOrientadors;
 use App\Models\Orientador;
 use App\Models\User;
@@ -321,13 +322,15 @@ class OrientadorController extends Controller
     }   
 
     public function editais_profile_orientador(Request $request) {
-        $pivos = EditalAlunoOrientadors::where('orientador_id', $request->user()->typage_id)->get();
-        $editais = array();
-        foreach ($pivos as $pivo){
-            array_push($editais, $pivo->edital);
-        }
-        return view('Orientador.editais-orientador',compact("editais"));
+        $vinculos = EditalAlunoOrientadors::where('orientador_id', $request->user()->typage_id)->get();
+        // $editais = array();
+        // foreach ($pivos as $pivo){
+        //     array_push($editais, $pivo->edital);
+        // }
+
+        return view('Orientador.editais-orientador',compact("vinculos"));
     }
+
 
     public function lista_alunos_profile_orientador(Request $request) {
         $pivos = EditalAlunoOrientadors::where('orientador_id', $request->user()->typage_id)->get();

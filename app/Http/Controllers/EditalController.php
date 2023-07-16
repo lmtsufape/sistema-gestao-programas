@@ -16,6 +16,7 @@ use App\Http\Requests\VinculoUpdateFormRequest;
 use App\Models\HistoricoVinculoAlunos;
 use App\Models\User;
 use Exception;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
 
@@ -460,6 +461,79 @@ class EditalController extends Controller
             DB::rollback();
             dd($e);
             return redirect()->back()->withErrors( "Falha ao Arquivar o vínculo do aluno no edital." );
+        }
+    }
+
+    public function adicionar_documentos($id){
+        $vinculo = EditalAlunoOrientadors::findOrFail($id);
+
+        return view('Edital.adicionar-documentos', compact('vinculo'));
+    }
+
+    public function store_adicionar_documentos(Request $request){
+        try{
+            DB::beginTransaction();
+
+            $vinculo = EditalAlunoOrientadors::Where('id', $request->vinculo_id)->first();
+
+            $request->validate([
+                'termo_aluno' => 'required|mimes:pdf|max:2048',
+                'termo_orientador' => 'required|mimes:pdf|max:2048',
+                'historico_escolar' => 'required|mimes:pdf|max:2048',
+                'comprovante_bancario' => 'mimes:pdf|max:2048'
+            ]);
+            $termo_aluno = "";
+            $termo_orientador = "";
+            $historico_escolar = "";
+            $comprovante_bancario = "";
+
+            $aluno_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $vinculo->aluno->nome_aluno);
+
+            if($request->hasFile('termo_aluno') && $request->file('termo_aluno')->isValid()) {
+                $termo_aluno = "termo_aluno_" . $aluno_nome . "_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->termo_aluno->extension();
+                // Armazenar o arquivo na pasta "termo_alunos"
+                $request->termo_aluno->storeAs('termo_alunos', $termo_aluno);
+            }
+
+            if($request->hasFile('termo_orientador') && $request->file('termo_orientador')->isValid()) {
+                $orientador_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $vinculo->orientador->user->name);
+                $termo_orientador = "termo_orientador_" . $orientador_nome . "_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->termo_orientador->extension();
+                // Armazenar o arquivo na pasta "termo_orientadors"
+                $request->termo_orientador->storeAs('termo_orientadors', $termo_orientador);
+            }
+
+            if($request->hasFile('historico_escolar') && $request->file('historico_escolar')->isValid()) {
+                $historico_escolar = "historico_escolar_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->historico_escolar->extension();
+                // Armazenar o arquivo na pasta "historicos_escolares_alunos"
+                $request->historico_escolar->storeAs('historicos_escolares_alunos', $historico_escolar);
+            }
+
+            if($request->hasFile('comprovante_bancario') && $request->file('comprovante_bancario')->isValid()) {
+                $comprovante_bancario = "comprovante_bancario_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->comprovante_bancario->extension();
+                // Armazenar o arquivo na pasta "comprovantes_bancarios"
+                $request->comprovante_bancario->storeAs('comprovantes_bancarios', $comprovante_bancario);
+            }
+
+            #dd($termo_aluno);
+            $vinculo->termo_aluno = $termo_aluno;
+            $vinculo->termo_orientador = $termo_orientador;
+            $vinculo->historico_escolar = $historico_escolar;
+            $vinculo->comprovante_bancario = $comprovante_bancario != "" ? $comprovante_bancario : null;
+
+            $vinculo->update();
+
+            DB::commit();
+            return redirect()->route('orientadors.editais-orientador')->with('sucesso', 'Documentos inseridos no vínculo com sucesso.');
+          
+        } catch(ValidationException $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Arquivo muito grande. Diminua os arquivos e tente novamente." );
+
+        } catch(Exception $e){
+            dd($e);
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao Inserir os Documentos. Tente novamente mais tarde." );
+
         }
     }
 
