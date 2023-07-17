@@ -192,7 +192,7 @@ class EditalController extends Controller
            }
         } catch(Exception $e){
              DB::rollback();
-             #dd($e); 
+             
              return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." )->withInput();
          }
     }
@@ -371,7 +371,7 @@ class EditalController extends Controller
     public function download_termo_compromisso_aluno($fileName) {
 
         $path = 'termo_compromisso_alunos/' . $fileName;
-
+        
         if(Storage::exists($path)) {
             return Storage::download($path);
         } else {
@@ -380,7 +380,7 @@ class EditalController extends Controller
      }
 
      public function download_plano_trabalho($fileName) {
-        $path = "plano_projeto".$fileName;
+        $path = "plano_projeto/".$fileName;
 
         if(Storage::exists($path)) {
             return Storage::download($path);
@@ -390,7 +390,7 @@ class EditalController extends Controller
      }
 
      public function download_outros_documentos($fileName) {
-        $path = "outros_documentos".$fileName;
+        $path = "outros_documentos/".$fileName;
 
         if(Storage::exists($path)) {
             return Storage::download($path);
@@ -459,7 +459,7 @@ class EditalController extends Controller
 
         } catch(exception $e){
             DB::rollback();
-            dd($e);
+            
             return redirect()->back()->withErrors( "Falha ao Arquivar o vínculo do aluno no edital." );
         }
     }
@@ -530,12 +530,50 @@ class EditalController extends Controller
             return redirect()->back()->withErrors( "Arquivo muito grande. Diminua os arquivos e tente novamente." );
 
         } catch(Exception $e){
-            dd($e);
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao Inserir os Documentos. Tente novamente mais tarde." );
 
         }
     }
 
+    public function download_termo_aluno($fileName) {
+        $path = "termo_alunos/".$fileName;
+
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+    }
+
+    public function download_termo_orientador($fileName) {
+        $path = "termo_orientadors/".$fileName;
+
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+    }
+
+    public function download_historico_escolares_alunos($fileName) {
+        $path = "historicos_escolares_alunos/".$fileName;
+        
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+    }
+
+    public function download_comprovante_bancario($fileName) {
+        $path = "comprovante_bancarios/".$fileName;
+
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+    }
 
 }

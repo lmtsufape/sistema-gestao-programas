@@ -96,8 +96,11 @@
               <a href="{{route('edital.add-documentos-vinculo', ['id' => $vinculo->id]  )}}">
                 <img src="{{asset("images/adicionar-documento.png")}}" alt="Adicionar Documentos" style="height: 30px; width: 30px;">
               </a>
-
-        
+              @if($vinculo->termo_aluno)  
+              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$vinculo->id}}">
+                <img src="{{asset('images/document.png')}}" alt="Termo do Aluno"  style="height: 30px; width: 30px;">
+              </a>
+              @endif
             </td>
           </tr>
           <tr>
@@ -105,6 +108,8 @@
           </tr>
         </tbody>
         @include("Edital.components_vinculos.modal_show", ["vinculo" => $vinculo])
+        @include('Edital.components_vinculos.modal_documents', ['vinculo' => $vinculo])
+          
         @endforeach
                 </tbody>
             </table>
