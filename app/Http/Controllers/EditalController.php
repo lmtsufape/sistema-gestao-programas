@@ -567,7 +567,7 @@ class EditalController extends Controller
     }
 
     public function download_comprovante_bancario($fileName) {
-        $path = "comprovante_bancarios/".$fileName;
+        $path = "comprovantes_bancarios/".$fileName;
 
         if(Storage::exists($path)) {
             return Storage::download($path);
