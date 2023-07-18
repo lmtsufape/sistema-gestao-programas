@@ -1,11 +1,11 @@
 .base{
-    background-color: #F5F5F5;
+    background-color: #fff;
     justify-content: center;
     align-items: center;
 }
 
 .titulos {
-    font-family: 'Roboto';
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
     font-size: 50px;

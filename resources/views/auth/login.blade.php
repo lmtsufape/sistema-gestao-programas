@@ -17,13 +17,13 @@
     @endif
     <br>
 
-    <div class="container" style="padding-top: 5%">
+    <div class="container">
 
-        <div class="row" style="justify-content: center; align-items: center">
+        <div class="login row">
 
-            <div class="col">
-                <p style="font-weight: 700; font-size:30px; text-align: start">O que é?</p>
-                <p style="font-weight: 400; font-size:20px; text-align: justify; padding-right: 5%; padding-top: 3%">
+            <div class="col div-paragraph">
+                <h2 class="title-login">O que é?</h2>
+                <p class="paragraph">
                 O sistema permite o gerenciamento de programas acadêmicos (bolsas, monitorias, estágios, etc..),
                 de forma a facilitar e automatizar o processo. Com esse sistema todos os envolvidos no processo
                 poderão ter mais controle da sua função, tornando o processo mais eficaz.
@@ -31,55 +31,203 @@
             </div>
 
             <div class="col form-card">
-                <h2 style="font-style: normal; font-weight: 700; font-size: 30px; line-height: 59px;
-                 color: #131833; text-align: center">Entrar</h2>
-                <hr style="margin-right: 60px; margin-left: 60px;" >
+                <div class="form-content">
+                    <h2 class="title-form">Entrar</h2>
+                    <hr class="divisor">
+                </div>
+                <br>
                 <form class="form-content" method="POST" action="{{ route('login') }}">
                     @csrf
-
-                    <div class="mb-3" style="text-align: left">
-                        <label for="email" style="font-weight: 400; font-size: 20px;
-                         line-height: 35px; color: #000000;">E-mail:</label>
-                        <input id="email" name="email" style="background: #F5F5F5; border-radius: 10px;
-                         height: 40px;" class="form-control input-modal-create" type="text" placeholder="Digite seu email" >
-                    </div>
-
-                    <div class="mb-3" style="text-align: left">
-                        <label for="password" style="font-weight: 400; font-size: 20px;
-                         line-height: 35px; color: #000000;">Senha:</label>
-                        <input id="password" name="password" style="background: #F5F5F5; border-radius: 10px;
-                         height: 40px;" class="form-control input-modal-create" type="password" placeholder="Digite sua senha" >
-                    </div>
-
-                    <div style="display: flex;">
-                        <div>
-                        <input type="checkbox" id="lembredemim" name="lembredemim" value="Lembredemim">
-                        <label for="lembredemim"> Lembre-se de mim </label>
-                        </div>
-                        <div style="margin-left: auto; margin-right: 0;">
-                        <a href="{{ route('password.request')}}">Esqueceu sua senha?</a>
+                    <div class="form-body">
+                        <div class="field" >
+                            <label for="email" class="label-login">E-mail:</label>
+                            <input id="email" name="email" class="input-login form-control input-modal-create" type="text"  >
                         </div>
 
-                    </div>
+                        <div class="field" >
+                            <label for="password" class="label-login">Senha:</label>
+                            <input id="password" name="password" class="input-login form-control input-modal-create" type="password"  >
+                        </div>
 
-                    <div style="display:flex">
-                        <!-- :<div> -->
-                        <button type="submit" class="btn btn-primary submit-button"
-                        style="background: #34A853; height: 40px; width: 200px; border-radius: 15px;
-                         margin-left: 0; margin-top: 30px; width: 30%; border: none;">Entrar</button>
-                        <!-- </div> -->
-                        <!-- <div style="margin-left: auto; margin-right: 0;"> -->
-                        <a href="{{ route('register')}}" style="background: #2D3875; height: 40px; color:#F5F5F5;
-                        width: 200px; border-radius: 15px; margin-left: auto; margin-right: 0; margin-top: 30px;
-                        width: 30%; border: none; text-decoration: none; padding-top: 8px"> Cadastre-se</a>
-                        <!-- </div> -->
+                        <div class="forgot">
+                            <a class="forgot-link" href="{{ route('password.request')}}">Esqueceu sua senha?</a>
+                        </div>
+                        
+                        <br>
 
-                    <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#modal_create" style="text-decoration: none; cursor: point;">Cadastre-se</a> -->
+                        <div class="form-buttons">
+                            <!-- :<div> -->
+                            <button type="submit" class="red-button">Entrar</button>
+                            <!-- </div> -->
+                            <!-- <div style="margin-left: auto; margin-right: 0;"> -->
+                            <a href="{{ route('register')}}" class="register-button"> Cadastre-se</a>
+                            <!-- </div> -->
+
+                        <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#modal_create" style="text-decoration: none; cursor: point;">Cadastre-se</a> -->
+                        </div>
+                        
                     </div>
                 </form>
             </div>
         </div>
         <br>
         <br>
+        <br>
+        <br>
     </div>
 @endsection
+
+<style>
+    .div-paragraph{
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        color: #590B10;
+        font-style: normal;
+        margin-right: 5%;
+    }
+    .container{
+        padding-top: 5%;
+    }
+    .login{
+        justify-content: center; 
+        align-items: center
+    }
+    .paragraph{
+        font-size: 20px;
+        font-weight: 400;
+        text-align: justify;
+    }
+
+    .title-login{
+        font-weight: 700;
+        font-size: 24px;
+        text-align: start;
+    }
+
+    .form-card{
+        display: flex;
+        width: 40% !important; 
+        padding: 40px 30px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        border-radius: 10px;
+        border: 1px solid rgba(245, 234, 236, 1);
+        box-shadow: 5px 3px 11px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .title-form{
+        color:#972E3F;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-align: start;
+    }
+
+    .field{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .label-login{
+        color: #972E3F;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .input-login{
+        border-radius: 5px;
+        border: 2px solid rgba(230, 230, 230, 1);
+        
+    }
+
+    .form-control{
+        box-shadow:none !important;
+    }
+    .form-header{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-left: 20px;
+    }
+    .form-body{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .form-buttons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .forgot{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
+        color: #972E3F;
+    }
+
+    .forgot-link{
+        color: #972E3F;
+    }
+    .divisor{
+        background: #bbbdbf;
+    }
+
+    .red-button{
+        background-color: #972E3F;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+        transition: 0.3s;
+    }
+
+    .register-button{
+        border-radius: 5px;
+        border: 1px solid rgba(240, 240, 240, 1);
+        background-color: #F9F9F9;
+        color: #2B2B2B;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        width:100%;
+        box-shadow: none !important;
+    }
+
+    .register-button:hover{
+        background-color: #bbbdbf;
+        color: #2B2B2B;
+        transition: 0.3s;
+    }
+
+    .red-button:hover{
+        background-color: #590B10;
+        transition: 0.3s;
+    }
+</style>
