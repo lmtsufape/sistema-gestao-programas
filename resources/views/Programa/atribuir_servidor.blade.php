@@ -57,7 +57,7 @@
     }
 </style>
 
-@canany(['admin', 'pro_reitor', 'gestor'])
+@canany(['admin', 'pro_reitor'])
     <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
 
         @if (session('sucesso'))
