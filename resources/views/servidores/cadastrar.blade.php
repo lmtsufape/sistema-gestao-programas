@@ -22,7 +22,7 @@
 
                                 <div class="col-12 mb-3" style="padding-top: 12px;">
                                     <label for="image" class="form-label">Imagem do Perfil:</label>
-                                    <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
+                                    <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
                                     <input type="file" id="image" name="image" class="form-control-file">
                                 </div>
 

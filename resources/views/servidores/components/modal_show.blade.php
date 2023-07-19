@@ -13,7 +13,7 @@
                 @if ($servidor->user->image)
                 <img src="/images/fotos-perfil/{{ $servidor->user->image }}"  class="img-fluid mt-3" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">
                 @else
-                <img src="/images/fotos-perfil/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">            
+                <img src="/images/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">            
                 @endif
               </div>
 

@@ -76,7 +76,7 @@
         <form action="{{route('alunos.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="image" class="titulo">Imagem do Perfil:</label>
-            <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
+            <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
             <input type="file" id="image" name="image" class="form-control-file">
 
             <label for="inputName" class="titulo">Nome:<strong style="color: red">*</strong></label>

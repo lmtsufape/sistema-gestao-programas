@@ -21,7 +21,7 @@
             @if ($orientador->user->image)
             <img src="/images/fotos-perfil/{{ $orientador->user->image }}"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">
             @else
-            <img src="/images/fotos-perfil/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">            
+            <img src="/images/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">            
             @endif
 
             <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">Nome:</label>
