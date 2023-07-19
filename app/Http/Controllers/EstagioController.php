@@ -10,4 +10,9 @@ class EstagioController extends Controller
     {
         return view('Estagio.index');
     }
+
+    public function create()
+    {
+        return view('Estagio.cadastrar');
+    }
 }
