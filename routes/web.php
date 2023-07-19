@@ -217,10 +217,13 @@ Route::put('/meu-perfil-orientador/{id}', [App\Http\Controllers\OrientadorContro
 Route::get('/index_aluno', [MeusProgramasController::class, 'index_aluno']);
 
 //Rota para listar os editais do aluno em seu perfil
-Route::get('/editais-aluno', [AlunoController::class, 'editais_profile']);
+Route::get('/editais-aluno', [AlunoController::class, 'editais_profile'])->name('Aluno.editais-aluno');
 
 //Rota para listar os editais do orientador em seu perfil
 Route::get('/editais-orientador', [OrientadorController::class, 'editais_profile_orientador'])->name('orientadors.editais-orientador');
 
 //Rota para listar os alunos vinculado a um orientador especifico
 Route::get('/listar_alunos-orientador', [OrientadorController::class, 'lista_alunos_profile_orientador']);
+
+//Rota para frequencia mensal
+Route::post('/frequencia-aluno', [EditalController::class, 'enviarFrequencia'])->name('frequencia.enviar');
