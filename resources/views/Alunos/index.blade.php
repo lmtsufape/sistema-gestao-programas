@@ -26,7 +26,7 @@
 </style>
 
 
-@canany(['admin', 'servidor'])
+@canany(['admin', 'servidor', 'gestor'])
   <div class="container">
     @if (session('sucesso'))
     <div class="alert alert-success">

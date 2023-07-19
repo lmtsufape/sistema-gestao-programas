@@ -75,8 +75,10 @@
             @if($aluno->user->image)
             <img src="/images/fotos-perfil/{{ $aluno->user->image }}" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
             @else
+
             <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
             @endif                
+
             <input type="file" id="image" name="image" class="form-control-file">
 
 
@@ -121,7 +123,7 @@
     <br>
     <br>
 </div>
-@elsecan
+@else
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
     <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/home')}}">Voltar</a>
 @endcan

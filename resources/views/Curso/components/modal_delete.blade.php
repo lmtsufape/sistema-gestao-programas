@@ -35,6 +35,15 @@
       }
   </style>
 @else
-  <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-  <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
+<div class="modal fade" id="modal_delete_{{$curso->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
+            <div class="modal-header">
+                <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+                <a class="btn btn-primary submit" data-bs-dismiss="modal" style="margin-top: 1rem" >Fechar</a>
+
+            </div>
+        </div>
+    </div>
+</div>
 @endcan
