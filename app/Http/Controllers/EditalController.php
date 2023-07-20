@@ -488,9 +488,16 @@ class EditalController extends Controller
             $comprovante_bancario = "";
 
             $aluno_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $vinculo->aluno->nome_aluno);
-
+            
             if($request->hasFile('termo_aluno') && $request->file('termo_aluno')->isValid()) {
                 $termo_aluno = "termo_aluno_" . $aluno_nome . "_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->termo_aluno->extension();
+
+                //Deleta o termo antigo do banco, caso haja algum 
+                $termo_aluno_antigo = "termo_alunos/".$vinculo->termo_aluno;
+                if (Storage::exists($termo_aluno_antigo)) {
+                    Storage::delete($termo_aluno_antigo);
+
+                }
                 // Armazenar o arquivo na pasta "termo_alunos"
                 $request->termo_aluno->storeAs('termo_alunos', $termo_aluno);
             }
@@ -498,18 +505,40 @@ class EditalController extends Controller
             if($request->hasFile('termo_orientador') && $request->file('termo_orientador')->isValid()) {
                 $orientador_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $vinculo->orientador->user->name);
                 $termo_orientador = "termo_orientador_" . $orientador_nome . "_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->termo_orientador->extension();
+                
+                //Deleta o termo antigo do banco, caso haja algum 
+                $termo_orientador_antigo = "termo_orientadors/".$vinculo->termo_orientador;
+                if (Storage::exists($termo_orientador_antigo)) {
+                    Storage::delete($termo_orientador_antigo);
+
+                }
                 // Armazenar o arquivo na pasta "termo_orientadors"
                 $request->termo_orientador->storeAs('termo_orientadors', $termo_orientador);
             }
 
             if($request->hasFile('historico_escolar') && $request->file('historico_escolar')->isValid()) {
                 $historico_escolar = "historico_escolar_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->historico_escolar->extension();
+
+                //Deleta o termo antigo do banco, caso haja algum 
+                $historico_escolar_antigo = "historicos_escolares_alunos/".$vinculo->historico_escolar;
+                if (Storage::exists($historico_escolar_antigo)) {
+                    Storage::delete($historico_escolar_antigo);
+
+                }
                 // Armazenar o arquivo na pasta "historicos_escolares_alunos"
                 $request->historico_escolar->storeAs('historicos_escolares_alunos', $historico_escolar);
             }
 
             if($request->hasFile('comprovante_bancario') && $request->file('comprovante_bancario')->isValid()) {
                 $comprovante_bancario = "comprovante_bancario_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->comprovante_bancario->extension();
+                
+                //Deleta o termo antigo do banco, caso haja algum 
+                $comprovante_bancario_antigo = "comprovantes_bancarios/".$vinculo->comprovante_bancario;
+                if (Storage::exists($comprovante_bancario_antigo)) {
+                    Storage::delete($comprovante_bancario_antigo);
+
+                }
+
                 // Armazenar o arquivo na pasta "comprovantes_bancarios"
                 $request->comprovante_bancario->storeAs('comprovantes_bancarios', $comprovante_bancario);
             }
