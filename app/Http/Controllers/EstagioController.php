@@ -15,4 +15,25 @@ class EstagioController extends Controller
     {
         return view('Estagio.cadastrar');
     }
+
+    public function store()
+    {
+
+    }
+
+    public function edit()
+    {
+    
+    }
+
+    public function update()
+    {
+    
+    }
+
+    public function destroy()
+    {
+    
+    }
+    
 }

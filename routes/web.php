@@ -234,6 +234,6 @@ Route::prefix('estagio')->group(function() {
     Route::post('/', [EstagioController::class, 'store'])->name('estagio.store');
     Route::get('/{id}/edit', [EstagioController::class, 'edit'])->where('id', '[0-9]+')->name('estagios.edit');
     Route::put('/{id}', [EstagioController::class, 'update'])->name('estagio.update');
-    Route::delete('/{id}', [EstagioController::class, 'delete'])->name('estagio.delete');
+    Route::delete('/{id}', [EstagioController::class, 'destroy'])->name('estagio.delete');
     Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
 });

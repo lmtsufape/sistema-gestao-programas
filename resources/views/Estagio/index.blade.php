@@ -1,1 +1,6 @@
-<h1>index</h1>
+@extends("templates.app")
+
+@section('body')
+
+
+@endsection

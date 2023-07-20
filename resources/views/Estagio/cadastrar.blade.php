@@ -1,1 +1,6 @@
-<h1>cadastrar</h1>
+@extends("templates.app")
+
+@section('body')
+
+
+@endsection
