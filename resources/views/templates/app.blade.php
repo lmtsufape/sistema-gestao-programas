@@ -39,16 +39,59 @@
           }
 
 
+        .fundoheader {
+            border-bottom: 2px solid var(--preto-p-50, #E6E6E6);
+            background: #FFF;
+            box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.10);
+            height: auto;
+            width: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 17% 7%;
+            justify-content: space-between;
+            align-items: center;
+            align-content: center;
+        }
+
+        .fonteheader {
+            color: #590B10;
+            font-family: Inter;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            text-decoration:none;
+
+        }
+
+        .fonteheader:hover {
+            color: #A1141D;
+            font-family: Inter;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            text-decoration:none;
+        }
+
+
+
     </style>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- Scripts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="css/projeto/app.css" rel="stylesheet" type="text/css" />
+    <link href="css/projeto/header.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
@@ -69,75 +112,81 @@
           <li>
              <a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
           </li>
-        </ul>                                                                                                                                                                                                                                                   
+        </ul>
       </div>
     <header>
       <!-- Isso aqui é a barra de cima -->
-      <nav class="navbar navbar-dark d-flex" style="background: #F4F5FB; box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);">
-        <div class="container-fluid">
-          @auth
-          <!-- Isso aqui é o botão da barra lateral -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-            aria-controls="offcanvasWithBothOptions">
-              <span><img src="{{asset("images/sanduiche.png")}}" alt="sanduiche" style="width: 20px; height: 20px;"></span>
-            </button>
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg fundoheader">
+            <div class="container-fluid">
+              @auth
+              <!-- Isso aqui é o botão da barra lateral -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                aria-controls="offcanvasWithBothOptions">
+                  <span><img src="{{asset("images/sanduiche.png")}}" alt="sanduiche" style="width: 20px; height: 20px;"></span>
+                </button>
 
-            @include('templates.menu_lateral')
-          @endauth
-          
-          <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
-            @auth
-              <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: #131833; margin-left: 50px">
-                SISTEMA DE GESTÃO DE PROGRAMAS ACADÊMICOS
-              </a>
-            @else
-                <a href="{{url('/')}}" type="button" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">
-                  SISTEMA DE GESTÃO DE PROGRAMAS ACADÊMICOS
-                </a>
+                @include('templates.menu_lateral')
+              @endauth
 
-            @endauth
+              <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
+                @auth
+                  <a href="{{route('home')}}" type="button" >
+                    <img src="{{asset("images/Logo-SGPA.svg")}}" alt="Logo da SGPA">
+                  </a>
+                @else
+                    <a href="{{url('/')}}" type="button">
+                        <img src="{{asset("images/Logo-SGPA.svg")}}" alt="Logo da SGPA">
+                    </a>
 
-          </ul>
-          <h2 style="font-style: normal; font-weight: 400; font-size: 18px; line-height: 30px; color: #131833; ">
-            @auth
-              Olá, {{Auth::user()->name}}
-            @endauth
-          </h2>
-          @auth
-          <div style="border-right: 1px solid #131833; width: 1px; height: 30px; padding-left: 2%;"></div>
-          @endauth
 
-          <div style="padding-left:2%; display:flex; align-items:center; margin-top:10px">
-            @auth
-            <form action="/logout" method="POST">
-              @csrf
-              <a href="/logout"  onclick="event.preventDefault(); this.closest('form').submit()" class="link_navbar">
-                <img src="{{asset("images/logout.png")}}" alt="logout" style="height:30px; width:30px;">
-                <p style="font-style: normal; font-weight: 400; font-size: 18px; line-height: 29px;
-                margin-left: 5px;"> Sair </p>
-              </a>
-            </form>
-            @else
-            <ul class="lista-inline" style="text-align: right;">
-              <li>
-                  <a href="/" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">Início</a>
-              </li>
-              <li>
-                  <a href="/sistema" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">O Sistema</a>
-              </li>
-              <li>
-                <a href="/parceria" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">A Parceria</a>
-              </li>
-              <li>
-                <a href="/contato" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833; margin-right: 15px;">Contato</a>
-              </li>
+                @endauth
 
-            </ul>
+              </ul>
 
-            @endauth
-          </div>
-        </div>
-      </nav>
+              <div style="display: flex; gap: 10px; padding-top: 1em;">
+                <h2 class="fonteheader">
+                    @auth
+                      Olá, {{Auth::user()->name}}
+                    @endauth
+                </h2>
+
+                @auth
+                <form action="/logout" method="POST">
+                  @csrf
+                  <a href="/logout"  onclick="event.preventDefault(); this.closest('form').submit()" class="link_navbar">
+                    <p class="fonteheader"> Sair </p>
+                  </a>
+                </form>
+                @else
+                <ul class="lista-inline" style="text-align: right;">
+                  <li>
+                      <a href="/" class="fonteheader">Início</a>
+                  </li>
+                  <li>
+                      <a href="/sistema" class="fonteheader">O Sistema</a>
+                  </li>
+                  <li>
+                    <a href="/parceria" class="fonteheader">A Parceria</a>
+                  </li>
+                  <li>
+                    <a href="/contato" class="fonteheader">Contato</a>
+                  </li>
+
+                </ul>
+
+                @endauth
+              </div>
+
+
+
+
+              <div style="padding-left:2%; display:flex; align-items:center;">
+
+              </div>
+            </div>
+          </nav>
+      </div>
     </header>
 
     <div>
