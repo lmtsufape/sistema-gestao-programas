@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Edital;
 use App\Models\Aluno;
 use App\Models\Disciplina;
@@ -13,6 +14,7 @@ use App\Models\EditalAlunoOrientadors;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
 use App\Http\Requests\VinculoUpdateFormRequest;
+use App\Models\FrequenciaMensalAlunos;
 use App\Models\HistoricoVinculoAlunos;
 use App\Models\User;
 use Exception;
@@ -574,6 +576,34 @@ class EditalController extends Controller
         } else {
             return redirect()->back()->with('falha', 'Arquivo não encontrado.');
         }
+    }
+
+    public function enviarFrequencia(Request $request)
+    {
+        $vinculo = EditalAlunoOrientadors::where('edital_id', $request->edital_id)
+            ->where('aluno_id', Auth::user()->id)->first();
+        
+        $request->validate([
+            'frequencia_mensal' => 'required|mimes:pdf|max:2048',
+    
+        ]);
+        $frequencia_aluno = "";
+
+        if($request->hasFile('frequencia_mensal') && $request->file('frequencia_mensal')->isValid()) {
+            $aluno_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', Auth::user()->name);
+            $frequencia_aluno = "frequencia_mensal_" . $vinculo->id . "_" . $aluno_nome . "_" .now()->format('m') . "_" .now()->format('Y') . '.' . $request->frequencia_mensal->extension();
+            // Armazenar o arquivo na pasta "frequencia_mensal"
+            $request->frequencia_mensal->storeAs('frequencia_mensal', $frequencia_aluno);
+        }
+        
+        $frequencia = new FrequenciaMensalAlunos();
+        $frequencia->edital_aluno_orientador_id = $vinculo->id;
+        $frequencia->frequencia_mensal = $frequencia_aluno;
+        $frequencia->data = now();
+        $frequencia->save();
+
+       
+        return redirect(route('Aluno.editais-aluno'))->with('sucesso', 'A frequencia foi enviada com sucesso.');
     }
 
 }
