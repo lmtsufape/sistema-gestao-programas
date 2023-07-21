@@ -413,11 +413,40 @@ class EditalController extends Controller
         DB::beginTransaction();
         try {
             $vinculo = EditalAlunoOrientadors::find($id);
-            // $vinculo->bolsa = $request->bolsa ? $request->bolsa : $vinculo->bolsa;
-            // $vinculo->bolsista = $request->bolsista == "True" ? $request->bolsista == "True" : $vinculo->bolsista;
-            $vinculo->info_complementares = $request->info_complementares ? $request->info_complementares : $vinculo->info_complementares;
-            $vinculo->termo_compromisso_aluno = $request->termo_compromisso_aluno ? $request->termo_compromisso_aluno: $vinculo->termo_compromisso_aluno;
 
+            $edital = Edital::find($vinculo->edital_id);
+            $aluno = Aluno::where('id', $vinculo->aluno_id)->first();
+            $orientador = Orientador::with('user')->find($vinculo->orientador_id);
+
+            $vinculo->info_complementares = $request->info_complementares ? $request->info_complementares : $vinculo->info_complementares;
+            
+            $plano_projeto = null;
+            $termo_aluno = null;
+            $outros_documentos = null;
+
+            if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()) {
+                $aluno_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $aluno->nome_aluno);
+                $termo_aluno = "termo_compromisso_aluno_" . $aluno_nome . "_" . $edital->id . now()->format('YmdHis') . '.' . $request->termo_compromisso_aluno->extension();
+                // Armazenar o arquivo na pasta "termo_compromisso_alunos"
+                $request->termo_compromisso_aluno->storeAs('termo_compromisso_alunos', $termo_aluno);
+            }
+
+            if($request->hasFile('plano_projeto') && $request->file('plano_projeto')->isValid()) {
+                $orientador_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $orientador->user->name);
+                $plano_projeto = "plano_projeto_" . $orientador_nome . "_" . $edital->id . now()->format('YmdHis') . '.' . $request->plano_projeto->extension();
+                // Armazenar o arquivo na pasta "termo_compromisso_alunos"
+                $request->plano_projeto->storeAs('plano_projeto', $plano_projeto);
+            }
+
+            if($request->hasFile('outros_documentos') && $request->file('outros_documentos')->isValid()) {
+                $outros_documentos = "outros_documentos_" . $edital->id . now()->format('YmdHis') . '.' . $request->outros_documentos->extension();
+                // Armazenar o arquivo na pasta "termo_compromisso_alunos"
+                $request->outros_documentos->storeAs('outros_documentos', $outros_documentos);
+            }
+
+            $vinculo->termo_compromisso_aluno = $request->termo_compromisso_aluno ? $termo_aluno : $vinculo->termo_compromisso_aluno;
+            $vinculo->plano_projeto = $request->plano_projeto ? $plano_projeto : $vinculo->plano_projeto;
+            $vinculo->outros_documentos = $request->outros_documentos ? $outros_documentos : $vinculo->outros_documentos;
 
             $vinculo->update();
 
@@ -428,6 +457,7 @@ class EditalController extends Controller
 
         } catch(exception $e){
              DB::rollback();
+             dd($e);
              return redirect()->back()->withErrors( "Falha ao atualizar o vínculo do aluno no edital." );
 
             }
