@@ -427,6 +427,13 @@ class EditalController extends Controller
             if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()) {
                 $aluno_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $aluno->nome_aluno);
                 $termo_aluno = "termo_compromisso_aluno_" . $aluno_nome . "_" . $edital->id . now()->format('YmdHis') . '.' . $request->termo_compromisso_aluno->extension();
+                
+                //Deleta o termo antigo do banco, caso haja algum 
+                $termo_aluno_antigo = "termo_compromisso_alunos/".$vinculo->termo_compromisso_aluno;
+                if (Storage::exists($termo_aluno_antigo)) {
+                    Storage::delete($termo_aluno_antigo);
+
+                }
                 // Armazenar o arquivo na pasta "termo_compromisso_alunos"
                 $request->termo_compromisso_aluno->storeAs('termo_compromisso_alunos', $termo_aluno);
             }
@@ -434,12 +441,26 @@ class EditalController extends Controller
             if($request->hasFile('plano_projeto') && $request->file('plano_projeto')->isValid()) {
                 $orientador_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $orientador->user->name);
                 $plano_projeto = "plano_projeto_" . $orientador_nome . "_" . $edital->id . now()->format('YmdHis') . '.' . $request->plano_projeto->extension();
+                
+                //Deleta o termo antigo do banco, caso haja algum 
+                $plano_projeto_antigo = "plano_projeto/".$vinculo->plano_projeto;
+                if (Storage::exists($plano_projeto_antigo)) {
+                    Storage::delete($plano_projeto_antigo);
+
+                }
                 // Armazenar o arquivo na pasta "termo_compromisso_alunos"
                 $request->plano_projeto->storeAs('plano_projeto', $plano_projeto);
             }
 
             if($request->hasFile('outros_documentos') && $request->file('outros_documentos')->isValid()) {
                 $outros_documentos = "outros_documentos_" . $edital->id . now()->format('YmdHis') . '.' . $request->outros_documentos->extension();
+                
+                //Deleta o termo antigo do banco, caso haja algum 
+                $outros_documentos_antigo = "outros_documentos/".$vinculo->outros_documentos;
+                if (Storage::exists($outros_documentos_antigo)) {
+                    Storage::delete($outros_documentos_antigo);
+
+                }
                 // Armazenar o arquivo na pasta "termo_compromisso_alunos"
                 $request->outros_documentos->storeAs('outros_documentos', $outros_documentos);
             }
@@ -475,11 +496,12 @@ class EditalController extends Controller
             $vinculo = EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->first();
             #dd($vinculo['id']);
             HistoricoVinculoAlunos::where("vinculo_id", $vinculo->id)->update(['data_fim' => date('Y-m-d')]);
-            #$vinculo->delete();
 
-            // $vinculo->status = false;
-
-            // $vinculo->update();
+            /* 
+                Como um vínculo não será apagado, apenas o status dele muda para "false"
+                então não vamos remover os documentos do banco, pois o vinculo pode ser
+                ativado novamente no futuro.
+            */
             DB::commit();
             return redirect()->route('edital.index')->with('sucesso', 'O vínculo foi desativado com sucesso do edital.');
 
