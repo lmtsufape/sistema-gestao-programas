@@ -1,4 +1,4 @@
-@canany(['admin', 'pro_reitor'])
+@canany(['admin', 'pro_reitor', 'gestor'])
   <div class="modal fade " id="modal_show_{{$servidor->id}}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
@@ -13,7 +13,9 @@
                 @if ($servidor->user->image)
                 <img src="/images/fotos-perfil/{{ $servidor->user->image }}"  class="img-fluid mt-3" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">
                 @else
-                <img src="/images/fotos-perfil/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">            
+
+                <img src="/images/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">            
+
                 @endif
               </div>
 
@@ -30,7 +32,7 @@
 
                 <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">E-mail:</label>
                 <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$servidor->user->email}}</div>
-                
+
                 <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Tipo do servidor:</label>
                 @switch($servidor->tipo_servidor)
                   @case('adm')
@@ -40,12 +42,12 @@
                     <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> Pró-Reitor</div>
                     @break
                   @case('servidor')
-                    <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> Servidor</div>                   
+                    <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> Servidor</div>
                     @break
                   @case('gestor')
-                    <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> Gestor Institucional</div>                   
+                    <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> Gestor Institucional</div>
                     @break
-                  
+
                 @endswitch
               </div>
             </div>

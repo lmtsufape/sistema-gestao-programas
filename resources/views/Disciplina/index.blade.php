@@ -2,7 +2,7 @@
 
 @section("body")
 
-@canany(['admin', 'servidor'])
+@canany(['admin', 'servidor', 'gestor'])
 <div class="container" style="font-family: 'Roboto', sans-serif;">
   @if (session('sucesso'))
   <div class="alert alert-success">

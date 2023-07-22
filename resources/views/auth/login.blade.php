@@ -24,9 +24,10 @@
             <div class="col div-paragraph">
                 <h2 class="title-login">O que é?</h2>
                 <p class="paragraph">
-                O sistema permite o gerenciamento de programas acadêmicos (bolsas, monitorias, estágios, etc..),
-                de forma a facilitar e automatizar o processo. Com esse sistema todos os envolvidos no processo
-                poderão ter mais controle da sua função, tornando o processo mais eficaz.
+                O sistema tem como intuito auxiliar no gerenciamento dos programas acadêmicos, como bolsas, monitorias e estágios. 
+                Desenvolvido para simplificar e automatizar, a plataforma proporciona controle e eficiência nas 
+                funções acadêmicas e garante que cada parte envolvida tenha visibilidade e participação ativa em todo o processo. 
+                Promove, desse modo, uma comunicação clara e otimizada.
                 </p>
             </div>
 

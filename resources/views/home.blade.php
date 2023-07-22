@@ -79,8 +79,8 @@
 
                 {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
 
-                @if (auth()->user()->typage->tipo_servidor == 'adm')
-                    
+                @if (auth()->user()->typage->tipo_servidor == 'admin')
+
                 <div style="display:flex; flex-wrap:nowrap; align-items:center; gap:4%;">
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
                         <button class="botaoazul" ref="{{url("/programas/create")}}" onclick="window.location.href='{{url("/programas/create")}}'">
@@ -114,9 +114,12 @@
                     </div>
                 </div>
                 @endif
+                @if (auth()->user()->typage->tipo_servidor == 'gestor')
+
+                @endif
                 <h2 style="font-style: normal; padding-top: 38px;font-weight: 700; text-align:start;
                     font-size: 35px; line-height: 41px; color: #131833;">
-                    Programas 
+                    Programas
                 </h2>
                 <hr>
                 <br>
@@ -136,6 +139,9 @@
             </div>
 
         @endif
+
+
+
     @endauth
 
     @auth
