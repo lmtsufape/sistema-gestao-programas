@@ -41,12 +41,12 @@
                     <div class="form-body">
                         <div class="field" >
                             <label for="email" class="label-login">E-mail:</label>
-                            <input id="email" name="email" class="input-login form-control input-modal-create" type="text"  >
+                            <input id="email" placeholder="Digite seu e-mail" name="email" class="input-login form-control input-modal-create" type="text"  >
                         </div>
 
                         <div class="field" >
                             <label for="password" class="label-login">Senha:</label>
-                            <input id="password" name="password" class="input-login form-control input-modal-create" type="password"  >
+                            <input id="password" placeholder="Digite sua senha" name="password" class="input-login form-control input-modal-create" type="password"  >
                         </div>
 
                         <div class="forgot">
@@ -119,7 +119,7 @@
     }
 
     .title-form{
-        color:#972E3F;
+        color:#590B10;
         font-size: 24px;
         font-style: normal;
         font-weight: 700;
@@ -227,7 +227,7 @@
     }
 
     .red-button:hover{
-        background-color: #590B10;
+        background-color: #A1141D;
         transition: 0.3s;
     }
 </style>
