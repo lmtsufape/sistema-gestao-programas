@@ -39,46 +39,6 @@
           }
 
 
-        .fundoheader {
-            border-bottom: 2px solid var(--preto-p-50, #E6E6E6);
-            background: #FFF;
-            box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.10);
-            height: auto;
-            width: 100%;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 17% 7%;
-            justify-content: space-between;
-            align-items: center;
-            align-content: center;
-        }
-
-        .fonteheader {
-            color: #590B10;
-            font-family: Inter;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: normal;
-            text-decoration:none;
-
-        }
-
-        .fonteheader:hover {
-            color: #A1141D;
-            font-family: Inter;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: normal;
-            text-decoration:none;
-        }
-
-
-
     </style>
   <head>
     <meta charset="UTF-8">
@@ -90,15 +50,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- Scripts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="css/projeto/app.css" rel="stylesheet" type="text/css" />
-    <link href="css/projeto/header.css" rel="stylesheet" type="text/css" />
+    <link href="css/projeto/app.css" rel="stylesheet" type="text/css"/>
+    <link href="css/projeto/header.css" rel="stylesheet" type="text/css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
-
+    <script defer="defer" src="//barra.brasil.gov.br/barra_2.0.js" type="text/javascript"></script>
     <title>Sistema de Gestão de Programas Academicos</title>
 
   </head>
@@ -106,17 +66,17 @@
   <body class="d-flex flex-column min-vh-100">
     <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
         <ul id="menu-barra-temp" style="list-style:none;">
-          <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
-              <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a>
-          </li>
-          <li>
-             <a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
-          </li>
+            <li
+                style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
+                <a href="http://brasil.gov.br"
+                    style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal
+                    do Governo Brasileiro</a>
+            </li>
         </ul>
-      </div>
+    </div>
     <header>
       <!-- Isso aqui é a barra de cima -->
-      <div class="container-fluid">
+      <div >
         <nav class="navbar navbar-expand-lg fundoheader">
             <div class="container-fluid">
               @auth
@@ -205,20 +165,6 @@
       </div>
     </div>
 
-    {{-- <footer style="background: #FFFFFF; box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25); margin-top: auto;
-     display: flex; align-items: center; padding-top: 10px; padding-bottom: 10px;">
-      <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 700;
-          font-size: 24px; line-height: 29px; color: rgba(0, 0, 0, 0.46); margin-left: 60px;">
-                PROGRAMA
-          </a>
-      <div style="margin-top: 5px; margin-bottom: 5px; margin-left:27% ; margin-right: auto; display: flex; align-items: center;">
-
-        <img src="{{asset("images/logoUfape.jpg")}}" alt="Logo da UFAPE" style="height: 50px;">
-        <img src="{{asset("images/logoupe.png")}}" alt="Logo da UPE" style="height: 40px; margin-left: 10px;">
-
-      </div>
-    </footer> --}}
-
     <footer style="background-color: #F8FAFC">
       <div class="container-fluid px-lg-5">
         <div class="row justify-content-between  my-2">
@@ -275,7 +221,7 @@
       </div>
     </footer>
 
-    <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
   </body>
 </html>
