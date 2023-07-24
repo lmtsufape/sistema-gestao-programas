@@ -185,7 +185,7 @@
                     </div>
                 </div>
 
-                <!-- Logos no centro -->
+                <!-- Logos do centro -->
                 <div class="col-6 d-flex justify-content-center" style="margin-top: 14px">
                     <div class="d-flex justify-content-around">
                         <a href="http://ufape.edu.br/" target="_blank" style="padding-right:20px">
