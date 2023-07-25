@@ -44,22 +44,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Sistema de Gestão de Programas Academicos</title>
+
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
     <!-- Scripts -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="css/projeto/app.css" rel="stylesheet" type="text/css"/>
-    <link href="css/projeto/header.css" rel="stylesheet" type="text/css"/>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    {{--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="css/projeto/app.css" rel="stylesheet" type="text/css"/>  --}}
+    <link href="css/header.css" rel="stylesheet" type="text/css"/>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+    </script>
+    {{--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>  --}}
+    {{--  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>  --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
+        integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
     <script defer="defer" src="//barra.brasil.gov.br/barra_2.0.js" type="text/javascript"></script>
-    <title>Sistema de Gestão de Programas Academicos</title>
+
 
   </head>
 
@@ -74,80 +89,8 @@
             </li>
         </ul>
     </div>
-    <header>
-      <!-- Isso aqui é a barra de cima -->
-      <div >
-        <nav class="navbar navbar-expand-lg fundoheader">
-            <div class="container-fluid">
-              @auth
-              <!-- Isso aqui é o botão da barra lateral -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-                aria-controls="offcanvasWithBothOptions">
-                  <span><img src="{{asset("images/sanduiche.png")}}" alt="sanduiche" style="width: 20px; height: 20px;"></span>
-                </button>
 
-                @include('templates.menu_lateral')
-              @endauth
-
-              <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
-                @auth
-                  <a href="{{route('home')}}" type="button" >
-                    <img src="{{asset("images/Logo-SGPA.svg")}}" alt="Logo da SGPA">
-                  </a>
-                @else
-                    <a href="{{url('/')}}" type="button">
-                        <img src="{{asset("images/Logo-SGPA.svg")}}" alt="Logo da SGPA">
-                    </a>
-
-
-                @endauth
-
-              </ul>
-
-              <div style="display: flex; gap: 10px; padding-top: 1em;">
-                <h2 class="fonteheader">
-                    @auth
-                      Olá, {{Auth::user()->name}}
-                    @endauth
-                </h2>
-
-                @auth
-                <form action="/logout" method="POST">
-                  @csrf
-                  <a href="/logout"  onclick="event.preventDefault(); this.closest('form').submit()" class="link_navbar">
-                    <p class="fonteheader"> Sair </p>
-                  </a>
-                </form>
-                @else
-                <ul class="lista-inline" style="text-align: right;">
-                  <li>
-                      <a href="/" class="fonteheader">Início</a>
-                  </li>
-                  <li>
-                      <a href="/sistema" class="fonteheader">O Sistema</a>
-                  </li>
-                  <li>
-                    <a href="/parceria" class="fonteheader">A Parceria</a>
-                  </li>
-                  <li>
-                    <a href="/contato" class="fonteheader">Contato</a>
-                  </li>
-
-                </ul>
-
-                @endauth
-              </div>
-
-
-
-
-              <div style="padding-left:2%; display:flex; align-items:center;">
-
-              </div>
-            </div>
-          </nav>
-      </div>
-    </header>
+    @include('layouts.header')
 
     <div>
       <div style="text-align: center">
