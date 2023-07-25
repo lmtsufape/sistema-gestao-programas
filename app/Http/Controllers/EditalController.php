@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Edital;
 use App\Models\Aluno;
 use App\Models\Disciplina;
@@ -13,6 +14,7 @@ use App\Models\EditalAlunoOrientadors;
 use App\Http\Requests\EditalStoreFormRequest;
 use App\Http\Requests\EditalUpdateFormRequest;
 use App\Http\Requests\VinculoUpdateFormRequest;
+use App\Models\FrequenciaMensalAlunos;
 use App\Models\HistoricoVinculoAlunos;
 use App\Models\User;
 use Exception;
@@ -413,11 +415,61 @@ class EditalController extends Controller
         DB::beginTransaction();
         try {
             $vinculo = EditalAlunoOrientadors::find($id);
-            // $vinculo->bolsa = $request->bolsa ? $request->bolsa : $vinculo->bolsa;
-            // $vinculo->bolsista = $request->bolsista == "True" ? $request->bolsista == "True" : $vinculo->bolsista;
-            $vinculo->info_complementares = $request->info_complementares ? $request->info_complementares : $vinculo->info_complementares;
-            $vinculo->termo_compromisso_aluno = $request->termo_compromisso_aluno ? $request->termo_compromisso_aluno: $vinculo->termo_compromisso_aluno;
 
+            $edital = Edital::find($vinculo->edital_id);
+            $aluno = Aluno::where('id', $vinculo->aluno_id)->first();
+            $orientador = Orientador::with('user')->find($vinculo->orientador_id);
+
+            $vinculo->info_complementares = $request->info_complementares ? $request->info_complementares : $vinculo->info_complementares;
+            
+            $plano_projeto = null;
+            $termo_aluno = null;
+            $outros_documentos = null;
+
+            if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()) {
+                $aluno_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $aluno->nome_aluno);
+                $termo_aluno = "termo_compromisso_aluno_" . $aluno_nome . "_" . $edital->id . now()->format('YmdHis') . '.' . $request->termo_compromisso_aluno->extension();
+                
+                //Deleta o termo antigo do banco, caso haja algum 
+                $termo_aluno_antigo = "termo_compromisso_alunos/".$vinculo->termo_compromisso_aluno;
+                if (Storage::exists($termo_aluno_antigo)) {
+                    Storage::delete($termo_aluno_antigo);
+
+                }
+                // Armazenar o arquivo na pasta "termo_compromisso_alunos"
+                $request->termo_compromisso_aluno->storeAs('termo_compromisso_alunos', $termo_aluno);
+            }
+
+            if($request->hasFile('plano_projeto') && $request->file('plano_projeto')->isValid()) {
+                $orientador_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $orientador->user->name);
+                $plano_projeto = "plano_projeto_" . $orientador_nome . "_" . $edital->id . now()->format('YmdHis') . '.' . $request->plano_projeto->extension();
+                
+                //Deleta o termo antigo do banco, caso haja algum 
+                $plano_projeto_antigo = "plano_projeto/".$vinculo->plano_projeto;
+                if (Storage::exists($plano_projeto_antigo)) {
+                    Storage::delete($plano_projeto_antigo);
+
+                }
+                // Armazenar o arquivo na pasta "termo_compromisso_alunos"
+                $request->plano_projeto->storeAs('plano_projeto', $plano_projeto);
+            }
+
+            if($request->hasFile('outros_documentos') && $request->file('outros_documentos')->isValid()) {
+                $outros_documentos = "outros_documentos_" . $edital->id . now()->format('YmdHis') . '.' . $request->outros_documentos->extension();
+                
+                //Deleta o termo antigo do banco, caso haja algum 
+                $outros_documentos_antigo = "outros_documentos/".$vinculo->outros_documentos;
+                if (Storage::exists($outros_documentos_antigo)) {
+                    Storage::delete($outros_documentos_antigo);
+
+                }
+                // Armazenar o arquivo na pasta "termo_compromisso_alunos"
+                $request->outros_documentos->storeAs('outros_documentos', $outros_documentos);
+            }
+
+            $vinculo->termo_compromisso_aluno = $request->termo_compromisso_aluno ? $termo_aluno : $vinculo->termo_compromisso_aluno;
+            $vinculo->plano_projeto = $request->plano_projeto ? $plano_projeto : $vinculo->plano_projeto;
+            $vinculo->outros_documentos = $request->outros_documentos ? $outros_documentos : $vinculo->outros_documentos;
 
             $vinculo->update();
 
@@ -428,6 +480,7 @@ class EditalController extends Controller
 
         } catch(exception $e){
              DB::rollback();
+             dd($e);
              return redirect()->back()->withErrors( "Falha ao atualizar o vínculo do aluno no edital." );
 
             }
@@ -445,11 +498,12 @@ class EditalController extends Controller
             $vinculo = EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->first();
             #dd($vinculo['id']);
             HistoricoVinculoAlunos::where("vinculo_id", $vinculo->id)->update(['data_fim' => date('Y-m-d')]);
-            #$vinculo->delete();
 
-            // $vinculo->status = false;
-
-            // $vinculo->update();
+            /* 
+                Como um vínculo não será apagado, apenas o status dele muda para "false"
+                então não vamos remover os documentos do banco, pois o vinculo pode ser
+                ativado novamente no futuro.
+            */
             DB::commit();
             return redirect()->route('edital.index')->with('sucesso', 'O vínculo foi desativado com sucesso do edital.');
 
@@ -488,9 +542,16 @@ class EditalController extends Controller
             $comprovante_bancario = "";
 
             $aluno_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $vinculo->aluno->nome_aluno);
-
+            
             if($request->hasFile('termo_aluno') && $request->file('termo_aluno')->isValid()) {
                 $termo_aluno = "termo_aluno_" . $aluno_nome . "_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->termo_aluno->extension();
+
+                //Deleta o termo antigo do banco, caso haja algum 
+                $termo_aluno_antigo = "termo_alunos/".$vinculo->termo_aluno;
+                if (Storage::exists($termo_aluno_antigo)) {
+                    Storage::delete($termo_aluno_antigo);
+
+                }
                 // Armazenar o arquivo na pasta "termo_alunos"
                 $request->termo_aluno->storeAs('termo_alunos', $termo_aluno);
             }
@@ -498,18 +559,40 @@ class EditalController extends Controller
             if($request->hasFile('termo_orientador') && $request->file('termo_orientador')->isValid()) {
                 $orientador_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $vinculo->orientador->user->name);
                 $termo_orientador = "termo_orientador_" . $orientador_nome . "_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->termo_orientador->extension();
+                
+                //Deleta o termo antigo do banco, caso haja algum 
+                $termo_orientador_antigo = "termo_orientadors/".$vinculo->termo_orientador;
+                if (Storage::exists($termo_orientador_antigo)) {
+                    Storage::delete($termo_orientador_antigo);
+
+                }
                 // Armazenar o arquivo na pasta "termo_orientadors"
                 $request->termo_orientador->storeAs('termo_orientadors', $termo_orientador);
             }
 
             if($request->hasFile('historico_escolar') && $request->file('historico_escolar')->isValid()) {
                 $historico_escolar = "historico_escolar_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->historico_escolar->extension();
+
+                //Deleta o termo antigo do banco, caso haja algum 
+                $historico_escolar_antigo = "historicos_escolares_alunos/".$vinculo->historico_escolar;
+                if (Storage::exists($historico_escolar_antigo)) {
+                    Storage::delete($historico_escolar_antigo);
+
+                }
                 // Armazenar o arquivo na pasta "historicos_escolares_alunos"
                 $request->historico_escolar->storeAs('historicos_escolares_alunos', $historico_escolar);
             }
 
             if($request->hasFile('comprovante_bancario') && $request->file('comprovante_bancario')->isValid()) {
                 $comprovante_bancario = "comprovante_bancario_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->comprovante_bancario->extension();
+                
+                //Deleta o termo antigo do banco, caso haja algum 
+                $comprovante_bancario_antigo = "comprovantes_bancarios/".$vinculo->comprovante_bancario;
+                if (Storage::exists($comprovante_bancario_antigo)) {
+                    Storage::delete($comprovante_bancario_antigo);
+
+                }
+
                 // Armazenar o arquivo na pasta "comprovantes_bancarios"
                 $request->comprovante_bancario->storeAs('comprovantes_bancarios', $comprovante_bancario);
             }
@@ -574,6 +657,34 @@ class EditalController extends Controller
         } else {
             return redirect()->back()->with('falha', 'Arquivo não encontrado.');
         }
+    }
+
+    public function enviarFrequencia(Request $request)
+    {
+        $vinculo = EditalAlunoOrientadors::where('edital_id', $request->edital_id)
+            ->where('aluno_id', Auth::user()->id)->first();
+        
+        $request->validate([
+            'frequencia_mensal' => 'required|mimes:pdf|max:2048',
+    
+        ]);
+        $frequencia_aluno = "";
+
+        if($request->hasFile('frequencia_mensal') && $request->file('frequencia_mensal')->isValid()) {
+            $aluno_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', Auth::user()->name);
+            $frequencia_aluno = "frequencia_mensal_" . $vinculo->id . "_" . $aluno_nome . "_" .now()->format('m') . "_" .now()->format('Y') . '.' . $request->frequencia_mensal->extension();
+            // Armazenar o arquivo na pasta "frequencia_mensal"
+            $request->frequencia_mensal->storeAs('frequencia_mensal', $frequencia_aluno);
+        }
+        
+        $frequencia = new FrequenciaMensalAlunos();
+        $frequencia->edital_aluno_orientador_id = $vinculo->id;
+        $frequencia->frequencia_mensal = $frequencia_aluno;
+        $frequencia->data = now();
+        $frequencia->save();
+
+       
+        return redirect(route('Aluno.editais-aluno'))->with('sucesso', 'A frequencia foi enviada com sucesso.');
     }
 
 }

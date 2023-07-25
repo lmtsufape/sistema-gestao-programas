@@ -69,7 +69,7 @@
                 @if($orientador->user->image)
                 <img src="/images/fotos-perfil/{{ $orientador->user->image }}" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
                 @else
-                <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
+                <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
                 @endif
                 <input type="file" id="image" name="image" class="form-control-file">
 

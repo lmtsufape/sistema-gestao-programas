@@ -24,9 +24,10 @@
             <div class="col div-paragraph">
                 <h2 class="title-login">O que é?</h2>
                 <p class="paragraph">
-                O sistema permite o gerenciamento de programas acadêmicos (bolsas, monitorias, estágios, etc..),
-                de forma a facilitar e automatizar o processo. Com esse sistema todos os envolvidos no processo
-                poderão ter mais controle da sua função, tornando o processo mais eficaz.
+                O sistema tem como intuito auxiliar no gerenciamento dos programas acadêmicos, como bolsas, monitorias e estágios. 
+                Desenvolvido para simplificar e automatizar, a plataforma proporciona controle e eficiência nas 
+                funções acadêmicas e garante que cada parte envolvida tenha visibilidade e participação ativa em todo o processo. 
+                Promove, desse modo, uma comunicação clara e otimizada.
                 </p>
             </div>
 
@@ -41,12 +42,12 @@
                     <div class="form-body">
                         <div class="field" >
                             <label for="email" class="label-login">E-mail:</label>
-                            <input id="email" name="email" class="input-login form-control input-modal-create" type="text"  >
+                            <input id="email" placeholder="Digite seu e-mail" name="email" class="input-login form-control input-modal-create" type="text"  >
                         </div>
 
                         <div class="field" >
                             <label for="password" class="label-login">Senha:</label>
-                            <input id="password" name="password" class="input-login form-control input-modal-create" type="password"  >
+                            <input id="password" placeholder="Digite sua senha" name="password" class="input-login form-control input-modal-create" type="password"  >
                         </div>
 
                         <div class="forgot">
@@ -119,7 +120,7 @@
     }
 
     .title-form{
-        color:#972E3F;
+        color:#590B10;
         font-size: 24px;
         font-style: normal;
         font-weight: 700;
@@ -227,7 +228,7 @@
     }
 
     .red-button:hover{
-        background-color: #590B10;
+        background-color: #A1141D;
         transition: 0.3s;
     }
 </style>

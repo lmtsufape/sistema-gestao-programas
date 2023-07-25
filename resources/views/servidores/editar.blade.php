@@ -22,7 +22,7 @@
                     @if($servidor->user->image)
                     <img src="/images/fotos-perfil/{{ $servidor->user->image }}" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
                     @else
-                    <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
+                    <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
                     @endif                
                     <input type="file" id="image" name="image" class="form-control-file">
 
@@ -90,11 +90,11 @@
                 </form>
             </div>
         </div>
-    @elsecan
+        <script  src="{{ mix('js/app.js') }}">
+            $('.cpf-autocomplete').inputmask('999.999.999-99');
+        </script>
+    @else
         <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
         <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
     @endcan
-<script  src="{{ mix('js/app.js') }}">
-        $('.cpf-autocomplete').inputmask('999.999.999-99');
-</script>
 @endsection

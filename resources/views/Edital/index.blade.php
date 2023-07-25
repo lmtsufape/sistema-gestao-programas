@@ -2,7 +2,7 @@
 
 @section("body")
 
-@canany(['admin', 'servidor'])
+@canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
 
 <style>
   pagination {

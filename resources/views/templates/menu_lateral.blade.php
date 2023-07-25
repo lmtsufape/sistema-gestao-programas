@@ -37,46 +37,39 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
             </a>
             <hr>
 
-            @if (auth()->user()->typage->tipo_servidor == 'adm')
+            @if (auth()->user()->typage->tipo_servidor !== 'servidor')
             <a href="{{route("programas.index")}}" class="link_navbar">
               <img src="{{asset("images/iconsbarralateral/listarbl.png")}}" alt="listarprog" style="height:17px; width:24px;">
               <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
               padding-top: 1px">Listar programas</p>
+
+              <a href="{{route("servidores.index")}}" class="link_navbar">
+                <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarServ" style="height:24px; width:24px;">
+                <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+                padding-top: 4px">Listagem de servidores</p>
+              </a>
             </a>
             @endif
-            @if (auth()->user()->typage->tipo_servidor == 'pro_reitor')
+            <!-- @if (auth()->user()->typage->tipo_servidor == 'pro_reitor')
             <a href="{{route("programas.index")}}" style="display: flex; color: #000; text-decoration: none;">
               <img src="{{asset("images/iconsbarralateral/listarbl.png")}}" alt="listarprog" style="height:17px; width:24px;">
               <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
               padding-top: 1px">Listar programas</p>
             </a>
-            @endif
-
+            @endif -->
+            
             <a href="{{route("alunos.index")}}" class="link_navbar">
               <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarAlunos" style="height:24px; width:24px;">
               <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
               padding-top: 4px">Listagem de estudantes </p>
             </a>
+            
             <a href="{{route("orientadors.index")}}" class="link_navbar">
               <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarOri" style="height:24px; width:24px;">
               <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
               padding-top: 4px">Listagem de professores </p>
             </a>
 
-            @if (auth()->user()->typage->tipo_servidor == 'adm')
-               <a href="{{route("servidores.index")}}" class="link_navbar">
-                <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarServ" style="height:24px; width:24px;">
-                <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
-                padding-top: 4px">Listagem de servidores</p>
-              </a>
-            @endif
-            @if (auth()->user()->typage->tipo_servidor == 'pro_reitor')
-              <a href="{{route("servidores.index")}}" style="display: flex; color: #000; text-decoration: none;">
-                <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarServ" style="height:24px; width:24px;">
-                <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
-                padding-top: 4px">Listagem de servidores</p>
-              </a>
-            @endif
             <hr>
             <a href="{{ route('edital.index') }}" class="link_navbar">
               <img src="{{ asset('images/iconsbarralateral/gearbl.png') }}" alt="gerenciar" style="height:24px; width:24px;">

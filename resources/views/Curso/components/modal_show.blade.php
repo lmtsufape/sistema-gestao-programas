@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor'])
+@canany(['admin', 'servidor', 'gestor'])
   <div class="modal fade " id="modal_show_{{$curso->id}}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
       <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
@@ -17,9 +17,9 @@
                 @foreach ($curso->disciplinas as $disciplina)
                     <label>{{$disciplina->nome}}</label><br>
                 @endforeach
-                    
+
             </div>
-                      
+
           </div>
           <div class="modal-footer">
                 <button type="button"  class="btn" data-bs-dismiss="modal">Fechar</button>

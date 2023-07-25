@@ -83,10 +83,10 @@
                         <input type="checkbox" id="servidor_{{ $servidor->id }}" name="servidors[]" value="{{ $servidor->id }}">{{ $servidor->user->name }}
                     </div>
                 </div>
-                
+
                 @endforeach
                 <br><br>
-                
+
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
                     <input type="button" value="Voltar" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'" style="background: #2D3875;
                                 box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;

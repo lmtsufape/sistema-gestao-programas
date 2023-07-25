@@ -36,22 +36,21 @@
         font-size: 20px;
         line-height: 28px;
         display: flex;
-        color: #131833;
+        color: #590B10;
         padding-top: 10px;
     }
     .boxinfo {
-        background: #F5F5F5;
-        border-radius: 6px;
-        border: 1px #D3D3D3;
+        background: #FFFF;
         width: 100%;
         padding: 5px;
-        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
         text-align: start;
         margin-bottom: 10px; /* Add margin-bottom to create spacing */
+        border-radius: 5px;
+        border: 2px solid rgba(230, 230, 230, 1);
     }
     .boxchild{
         background: #FFFFFF;
-        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+        box-shadow: 5px 3px 11px 0px rgba(106, 32, 44, 0.34);
         border-radius: 20px;
         padding: 34px;
         width: 65%;
@@ -74,9 +73,64 @@
     .radios{
         margin:5px;
     }
+
+    .main_title{
+        font-weight: 600; 
+        font-size: 30px; 
+        line-height: 47px; 
+        display: flex; 
+        align-items: center; 
+        color: #590B10;
+    }
+    .container{
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        margin-top: 1em; 
+        margin-bottom:10px
+    }
+
+    .form-control{
+        box-shadow: none;
+    }
+
+    .images{
+        width: 150px; 
+        height: 150px; 
+        border-radius: 50%;
+        margin: 5%;
+    }
+
+    .botoes{
+        background: #590B10; 
+        width: 10rem;
+        box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); 
+        display: inline-block;
+        border-radius: 5px; 
+        color: #FFFFFF; 
+        border: #2D3875; 
+        font-style: normal; 
+        font-weight: 400; 
+        font-size: 14px;
+        line-height: 29px; 
+        text-align: center; 
+        padding: 5px 15px;
+    }
+
+    .botoes:hover{
+        background-color: #A1141D;
+    }
+
+    .container-botoes{
+        display: flex; 
+        align-content: center;
+        align-items: center; 
+        justify-content: center; 
+        gap:5%
+    }
 </style>
 
-<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px">
+<div class="container">
     @if (session('sucesso'))
     <div class="alert alert-sucess">
         {{session('sucesso')}}
@@ -85,19 +139,22 @@
 
     <div class="boxchild">
         <div class="row">
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
+            <h1 class="main_title">
                 Cadastrar usuário</h1>
         </div>
 
-        <hr style="color:#2D3875;">
+        <hr style="color:#590B10;">
 
         <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-
             <label for="image" class="titulo">Imagem do Perfil:</label>
-            <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
-            <input type="file" id="image" name="image" class="form-control-file">
-
+            <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" class="images" /><br>
+            <div class="row d-flex justify-content-center">
+                <div class="col-6 ">
+                    <input type="file" id="image" name="image" class="form-control boxinfo">
+                </div>
+            </div>
+            
             <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="text" id="nome" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
@@ -176,19 +233,14 @@
             </div>
 
             <br>
+            <br>
 
-            <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
+            <div class="container-botoes">
                 <a href="/">
-                <input type="button" value="Voltar" style="background: #2D3875;
-                            box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                            border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                            line-height: 29px; text-align: center; padding: 5px 15px;"/>
+                <input type="button" value="Voltar" class="botoes"/>
                 </a>
 
-                <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                display: inline-block;
-                border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal; font-weight: 400; font-size: 24px;
-                line-height: 29px; text-align: center; padding: 5px 15px;"/>
+                <input type="submit" value="Cadastrar" class="botoes"/>
             </div>
         </form>
     </div>

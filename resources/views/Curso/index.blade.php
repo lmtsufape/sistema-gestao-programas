@@ -2,7 +2,7 @@
 
 @section("body")
 
-@canany(['admin', 'servidor'])
+@canany(['admin', 'servidor', 'gestor'])
   <style>
     pagination {
       display: inline-block;

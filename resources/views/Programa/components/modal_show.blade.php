@@ -1,4 +1,4 @@
-@canany(['admin', 'pro_reitor'])
+@canany(['admin', 'pro_reitor', 'gestor'])
 <div class="modal fade" id="modal_show_{{$programa->id}}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
@@ -45,7 +45,7 @@
                 {{$servidor->user->name}}<br>
               @endforeach
             @else
-              Ainda não há servidores atribuidos ao programa 
+              Ainda não há servidores atribuidos ao programa
             @endif
 
             </div>
