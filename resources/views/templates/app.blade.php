@@ -18,9 +18,11 @@
             padding: 5px;
             box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
         }
-        footer {
+        .footer {
           margin-top: auto;
           fixed: bottom;
+          background-color: #972E3F;
+          height: 105px;
         }
 
         .col-md-4:nth-child(2) {
@@ -37,7 +39,22 @@
             flex: 1; /* Allow the container to grow and push the footer to the bottom */
 
           }
-
+          .logo {
+            width: 80px;
+            height: 80px;
+            margin: 5px;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .logo-box{
+            width: 80px;
+            height: 40px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 12px;
+          background-color: #fff;
+        }
 
     </style>
   <head>
@@ -108,63 +125,54 @@
       </div>
     </div>
 
-    <footer style="background-color: #F8FAFC">
-      <div class="container-fluid px-lg-5">
-        <div class="row justify-content-between  my-2">
-          <div class="col-md-4 d-flex align-items-center justify-content-center py-1">
-            <a class="navbar-brand mx-3" href="">
-              <img width="250px" src="{{asset('images/sgpa-azul_2.svg')}}">
-            </a>
-          </div>
-
-          <div class="col-md-4 text-center py-1">
-            <div class="form-row">
-              <div class="col-md-12">
-                <h6 class="textoRodape">Desenvolvido por:</h6>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-12" style="margin-bottom: 1rem;">
-                <div class="row justify-content-center">
-                  <div class="col-4">
-                    <a href="http://ufape.edu.br/" target="_blank">
-                      <img src="{{ asset('images/_BRASÃO_COLORIDO_SIGLA_PNG.png') }}" alt="Logo" width="65px;" style="float: right">
-                    </a>
-                  </div>
-                  <div class="col-4">
-                    <a href="http://lmts.uag.ufrpe.br/" target="_blank">
-                      <img src="{{ asset('images/logo_ufape_color.png') }}" alt="Logo" width="120px" style="border-left: 1px rgba(0, 0, 255, 0.274) solid; padding-left: 15px; margin-top: 3%">
-                    </a>
-                  </div>
-                  <div class="col-4">
-                    <a href="https://upe.br/" target="_blank">
-                      <img src="{{ asset('images/logoupe.png') }}" alt="Logo" width="70px" style="margin-top: 10px; margin-right: 80px;">
-                    </a>
-                  </div>
+    <footer class="footer" >
+            <div class="container-fluid">
+              <div class="row">
+                <!-- Logos à esquerda -->
+                <div class="col-3" style="margin-top: 20px; padding-left: 100px">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <a href="http://ufape.edu.br/" target="_blank" style= >
+                            <img src="{{asset('images/sgpa-branco 1.svg')}}" alt="Logo SGPA" style="margin-left: 20px">
+                        </a>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-md-4 text-center mt-1">
-            <span class="textoRodape">Redes do LMTS:</span>
-            <div class="row justify-content-center text-center mt-4">
-              <a href="https://www.facebook.com/LMTSUFAPE/" target="_blank" class="col-md-1 p-0">
-                <img height="40" src="{{asset('images/facebook_logo.png')}}">
-              </a>
-              <a href="https://www.instagram.com/lmts_ufape/" target="_blank" class="col-md-1 p-0 mx-2">
-                <img height="40" src="{{asset('images/instagram_logo.png')}}">
-              </a>
-              <a href="mailto:lmts@ufrpe.br" class="col-md-1 p-0">
-                <img height="40" src="{{asset('images/google_logo.png')}}">
-              </a>
+                <!-- Logos do centro -->
+                <div class="col-6 d-flex justify-content-center" style="margin-top: 14px">
+                    <div class="d-flex justify-content-around">
+                        <a href="http://ufape.edu.br/" target="_blank" style="padding-right:20px">
+                            <img src="{{ asset('images/logo_ufape_vertical.png') }}" alt="Logo UFAPE" class="logo-box" style ="height:70px; width: 95px">
+                        </a>
+                        <a href="http://lmts.uag.ufrpe.br/" target="_blank" style="padding-right:20px">
+                            <img src="{{ asset('images/logo_ufape_color.png') }}" alt="Logo LMTS" class="logo-box" style ="height:70px; width: 95px">
+                        </a>
+                        <a href="https://upe.br/" target="_blank">
+                            <img src="{{ asset('images/logoupe.png') }}" alt="Logo UPE" class="logo-box" style ="height:70px; width: 95px">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Logos à direita -->
+                <div class="col-3">
+                    <div class="d-flex align-items-center justify-content-end" style="margin-top: 30px; padding-right: 100px">
+                        <a href="https://www.facebook.com/LMTSUFAPE/" target="_blank">
+                            <img src="{{asset('images/logo_facebook_branco.svg')}}" alt="Logo Facebook" style ="height: 40px; padding-right:20px">
+                        </a>
+                        <a href="https://www.instagram.com/lmts_ufape/" target="_blank">
+                            <img src="{{asset('images/logo_instagram_branco.svg')}}" alt="Logo Instagram" style ="height: 40px; padding-right: 20px">
+                        </a>
+                        <a href="mailto:lmts@ufrpe.br" target="_blank">
+                            <img src="{{asset('images/logo_google_branco.svg')}}" alt="Logo Google" style ="height: 40px; padding-right: 20px">
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </footer>
+    </div>
+      </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-  </body>
+</body>
 </html>
+
