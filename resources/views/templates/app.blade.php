@@ -61,101 +61,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Scripts -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="css/projeto/app.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
 
     <title>Sistema de Gestão de Programas Academicos</title>
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- Scripts -->
+    {{--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="css/projeto/app.css" rel="stylesheet" type="text/css"/>  --}}
+    <link href="css/header.css" rel="stylesheet" type="text/css"/>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+    </script>
+    {{--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>  --}}
+    {{--  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>  --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
+        integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+    <script defer="defer" src="//barra.brasil.gov.br/barra_2.0.js" type="text/javascript"></script>
+
 
   </head>
 
   <body class="d-flex flex-column min-vh-100">
     <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
         <ul id="menu-barra-temp" style="list-style:none;">
-          <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
-              <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a>
-          </li>
-          <li>
-             <a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
-          </li>
-        </ul>                                                                                                                                                                                                                                                   
-      </div>
-    <header>
-      <!-- Isso aqui é a barra de cima -->
-      <nav class="navbar navbar-dark d-flex" style="background: #F4F5FB; box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);">
-        <div class="container-fluid">
-          @auth
-          <!-- Isso aqui é o botão da barra lateral -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-            aria-controls="offcanvasWithBothOptions">
-              <span><img src="{{asset("images/sanduiche.png")}}" alt="sanduiche" style="width: 20px; height: 20px;"></span>
-            </button>
+            <li
+                style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
+                <a href="http://brasil.gov.br"
+                    style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal
+                    do Governo Brasileiro</a>
+            </li>
+        </ul>
+    </div>
 
-            @include('templates.menu_lateral')
-          @endauth
-          
-          <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
-            @auth
-              <a href="{{route('home')}}" type="button" style=" text-decoration: none ; font-weight: 700; font-size: 24px; line-height: 29px; color: #131833; margin-left: 50px">
-                SISTEMA DE GESTÃO DE PROGRAMAS ACADÊMICOS
-              </a>
-            @else
-                <a href="{{url('/')}}" type="button" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">
-                  SISTEMA DE GESTÃO DE PROGRAMAS ACADÊMICOS
-                </a>
-
-            @endauth
-
-          </ul>
-          <h2 style="font-style: normal; font-weight: 400; font-size: 18px; line-height: 30px; color: #131833; ">
-            @auth
-              Olá, {{Auth::user()->name}}
-            @endauth
-          </h2>
-          @auth
-          <div style="border-right: 1px solid #131833; width: 1px; height: 30px; padding-left: 2%;"></div>
-          @endauth
-
-          <div style="padding-left:2%; display:flex; align-items:center; margin-top:10px">
-            @auth
-            <form action="/logout" method="POST">
-              @csrf
-              <a href="/logout"  onclick="event.preventDefault(); this.closest('form').submit()" class="link_navbar">
-                <img src="{{asset("images/logout.png")}}" alt="logout" style="height:30px; width:30px;">
-                <p style="font-style: normal; font-weight: 400; font-size: 18px; line-height: 29px;
-                margin-left: 5px;"> Sair </p>
-              </a>
-            </form>
-            @else
-            <ul class="lista-inline" style="text-align: right;">
-              <li>
-                  <a href="/" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">Início</a>
-              </li>
-              <li>
-                  <a href="/sistema" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">O Sistema</a>
-              </li>
-              <li>
-                <a href="/parceria" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833">A Parceria</a>
-              </li>
-              <li>
-                <a href="/contato" style="text-decoration: none ; font-weight: 700; font-size: 15px; line-height: 29px; color: #131833; margin-right: 15px;">Contato</a>
-              </li>
-
-            </ul>
-
-            @endauth
-          </div>
-        </div>
-      </nav>
-    </header>
+    @include('layouts.header')
 
     <div>
       <div style="text-align: center">
@@ -220,9 +172,7 @@
       </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>
-    
-    <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
-  </body>
-</html>
+
