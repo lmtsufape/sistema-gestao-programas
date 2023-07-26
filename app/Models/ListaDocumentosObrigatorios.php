@@ -16,4 +16,9 @@ class ListaDocumentosObrigatorios extends Model
         'tipo_entrega',
         'tipo_estagio'
     ];
+
+    public function estagio()
+    {
+        return $this->belongsTo(Estagio::class, "estagio_id");
+    }
 }
