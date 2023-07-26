@@ -7,6 +7,7 @@ use App\Http\Controllers\ServidorController;
 use App\Http\Controllers\OrientadorController;
 use App\Http\Controllers\EditalController;
 use App\Http\Controllers\DisciplinaController;
+use App\Http\Controllers\EstagioController;
 use App\Http\Controllers\FrequenciaController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -227,3 +228,16 @@ Route::get('/listar_alunos-orientador', [OrientadorController::class, 'lista_alu
 
 //Rota para frequencia mensal
 Route::post('/frequencia-aluno', [EditalController::class, 'enviarFrequencia'])->name('frequencia.enviar');
+
+//Rotas do Estágio
+
+Route::prefix('estagio')->group(function() {
+    Route::get('/', [EstagioController::class, 'index'])->name('estagio.index');
+    Route::get('/cadastrar', [EstagioController::class, 'create'])->name('estagio.create');
+    Route::post('/', [EstagioController::class, 'store'])->name('estagio.store');
+    Route::get('/{id}/edit', [EstagioController::class, 'edit'])->where('id', '[0-9]+')->name('estagios.edit');
+    Route::put('/{id}', [EstagioController::class, 'update'])->name('estagio.update');
+    Route::delete('/{id}', [EstagioController::class, 'destroy'])->name('estagio.delete');
+    Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
+});
+  
