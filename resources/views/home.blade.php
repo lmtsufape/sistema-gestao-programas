@@ -62,15 +62,58 @@
         flex-direction: column;
       }
 
+    .title {
+        font-style: normal; 
+        padding-top: 38px;
+        font-weight: 700; 
+        text-align:start ;
+        font-size: 35px; 
+        line-height: 41px; 
+        color: #131833;
+        
+    }
+
+    .second-title {
+        font-style: normal; 
+        padding-top: 38px;
+        font-weight: 700;
+        text-align:start;
+        font-size: 35px; 
+        line-height: 41px; 
+        color: #131833;
+    }
+
+    .third-title {
+        margin: auto; 
+        padding-right: 5px
+    }
+
+    .buttons-organization {
+        display:flex; 
+        flex-wrap:wrap; 
+        align-items:center; 
+
+    }
+
+    .buttons-organization.-orientador {
+        gap:5%;
+    }
+
+    .buttons-organization.-aluno {
+        gap:5%;
+    }
+
+    .buttons-organization.-gestor{
+        gap: 4%;
+        justify-content: flex-start;
+    }
   </style>
     @auth
         @if (auth()->user()->typage_type == "App\Models\Servidor")
 
             <div class="container">
                 <div>
-                    <h1 style="font-style: normal; padding-top: 38px;
-                            font-weight: 700; text-align:start ;
-                            font-size: 35px; line-height: 41px; color: #131833;">
+                    <h1 class="title">
                         Bem-vindo(a) {{auth()->user()->name}}!
                     </h1>
                     <hr>
@@ -85,7 +128,7 @@
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
                         <button class="botaoazul" ref="{{url("/programas/create")}}" onclick="window.location.href='{{url("/programas/create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p style="margin: auto; padding-right: 5px"> Cadastrar programa </p>
+                            <p class="third-title"> Cadastrar programa </p>
                         </button>
                     </div>
 
@@ -93,7 +136,7 @@
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
                         <button class="botaoverde" ref="{{url("/editais/create")}}" onclick="window.location.href='{{route("edital.create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p style="margin: auto; padding-right: 5px"> Cadastrar <br> edital </p>
+                            <p class="third-title"> Cadastrar <br> edital </p>
                         </button>
                     </div>
 
@@ -101,7 +144,7 @@
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
                         <button class="botaoazul" ref="{{url("/disciplinas/create")}}" onclick="window.location.href='{{url("/disciplinas/create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p style="margin: auto; padding-right: 5px"> Cadastrar disciplina </p>
+                            <p class="third-title"> Cadastrar disciplina </p>
                         </button>
                     </div>
 
@@ -109,7 +152,7 @@
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
                         <button class="botaoverde" ref="{{url("/cursos/create")}}" onclick="window.location.href='{{url("/cursos/create")}}'">
                             <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p style="margin: auto; padding-right: 5px"> Cadastrar <br> curso </p>
+                            <p class="third-title"> Cadastrar <br> curso </p>
                         </button>
                     </div>
                 </div>
@@ -117,13 +160,12 @@
                 @if (auth()->user()->typage->tipo_servidor == 'gestor')
 
                 @endif
-                <h2 style="font-style: normal; padding-top: 38px;font-weight: 700; text-align:start;
-                    font-size: 35px; line-height: 41px; color: #131833;">
+                <h2 class="second-title">
                     Programas
                 </h2>
                 <hr>
                 <br>
-                <div style="display:flex;flex-wrap: wrap;align-items:center;gap: 4%;justify-content: flex-start;">
+                <div class= "buttons-organization -gestor">
                     @foreach ($programas as $index => $programa)
                       @if ($index % 2 == 0)
                         <button class="botaoazul" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
@@ -131,7 +173,7 @@
                         <button class="botaoverde" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
                       @endif
                       <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
-                      <p style="margin: auto; padding-right: 5px">{{ $programa->nome }}</p>
+                      <p class="third-title">{{ $programa->nome }}</p>
                       </button>
                     @endforeach
                 </div>
@@ -150,10 +192,7 @@
         <div class="container">
             <div>
 
-                <h1
-                style="font-style: normal; padding-top: 38px;
-                font-weight: 700; text-align:start ;
-                font-size: 35px; line-height: 41px; color: #131833;">
+                <h1 class="title">
                 Bem-vindo(a) {{auth()->user()->name}}!
                 </h1>
                 <hr>
@@ -161,35 +200,18 @@
 
             </div>
 
-            <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
-
-                {{--  <button class="botaoverde">
-                    <img src="{{asset('images/DocumentAdd.png')}}" alt="logodoc" style="padding-right: 10px;">
-                    <p style="margin: auto; padding-right: 5px"> Listar documentos </p>
-                </button>  --}}
-
+            <div class="buttons-organization -aluno">
                 <button class="botaoverde" ref="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
                     <img src="{{asset('images/DocumentAdd.png')}}" alt="logodoc" style="padding-right: 10px;">
-                    <p style="margin: auto; padding-right: 5px"> Listar modelos de documentos </p>
+                    <p class="third-title"> Listar modelos de documentos </p>
                 </button>
 
                 <button class="botaoazul" ref="{{url('/editais-aluno')}}" onclick="window.location.href='{{url('/editais-aluno')}}'">
                     <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
-                    <p style="margin: auto; padding-right: 5px"> Ver meus editais </p>
+                    <p class="third-title"> Ver meus editais </p>
                 </button>
 
             </div>
-
-            {{--
-                <div style="display: flex; gap: 5%; align-items: center; margin-top: 1% ; margin-bottom: 1% ; margin-left: 2%">
-                    <button class="botaoverde" ref="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
-                        <img src="{{asset("images/DocumentAdd.png")}}" alt="logodoc" style="padding-right: 10px;">
-                        <p style="margin: auto; padding-right: 5px"> Listar modelos de documentos </p>
-                    </button>
-
-                </div>
-             --}}
-
         </div>
 
         @endif
@@ -200,32 +222,27 @@
 
         <div class="container">
             <div>
-
-            <h1
-            style="font-style: normal; padding-top: 38px;
-            font-weight: 700; text-align:start ;
-            font-size: 35px; line-height: 41px; color: #131833;">
-            Bem vindo(a)!
-            </h1>
-            <hr>
-            <br>
-
+                <h1 class="title">
+                Bem vindo(a)!
+                </h1>
+                <hr>
+                <br>
             </div>
 
-            <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+            <div class="buttons-organization -orientador">
                 <button class="botaoverde" href="{{url('/listar_alunos-orientador')}}" onclick="window.location.href='{{url('/listar_alunos-orientador')}}'">
                     <img src="{{asset("images/user.png")}}" alt="user" style="padding-right: 20px;">
-                    <p style="margin: auto; padding-right: 5px">Listar alunos </p>
+                    <p class="third-title">Listar alunos </p>
                 </button>
 
                 <button class="botaoazul" href="{{url('/editais-orientador')}}" onclick="window.location.href='{{url('/editais-orientador')}}'">
                     <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 20px;">
-                    <p style="margin: auto; padding-right: 5px"> Meus editais </p>
+                    <p class="third-title"> Meus editais </p>
                 </button>
 
                 <button class="botaoverde" href="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
                     <img src="{{asset('images/programaicon.png')}}" alt="logodoc" style="padding-right: 20px;">
-                    <p style="margin: auto; padding-right: 5px">   Listar modelos de documentos </p>
+                    <p class="third-title">   Listar modelos de documentos </p>
 
                 </button>
             </div>
