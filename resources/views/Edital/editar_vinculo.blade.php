@@ -54,6 +54,15 @@
         box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
     }
 
+    .boxlink {
+        background: #F5F5F5;
+        color: #000;
+        border-radius: 6px;
+        border: 1px #D3D3D3;
+        width: 100%;
+        padding: 5px;
+    }
+
     .boxchild {
         background: #FFFFFF;
         box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
@@ -117,12 +126,10 @@
                 </div>
                 <div class="col-3"> 
                     <label class="titulo" for="termo_compromisso_aluno"> Atual:</label>
-                    <button class="boxinfo">
-                        <a href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}" target="_blank" class="link">
+                        <a class="boxlink" href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}" target="_blank" class="link">
                             <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
                             Baixar termo
                         </a>
-                    </button>
                     <br>
                     <br>
                 </div>
@@ -136,12 +143,10 @@
                 </div>
                 <div class="col-3">
                     <label class="titulo" for="plano_projeto"> Atual:</label>           
-                    <button class="boxinfo">
-                        <a href="{{ route('plano_trabalho.download', ['fileName' => $vinculo->plano_projeto]) }}" target="_blank" class="link">
+                        <a class="boxlink" href="{{ route('plano_trabalho.download', ['fileName' => $vinculo->plano_projeto]) }}" target="_blank" class="link">
                             <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
                             Baixar plano
                         </a>
-                    </button>
                     <br>
                     <br>
                 </div>
@@ -155,12 +160,10 @@
                 <div class="col-3">
                     <label class="titulo" for="outros_documentos">Atual:</label>
                     @if($vinculo->outros_documentos != null)
-                    <button class="boxinfo">
-                        <a href="{{ route('outros_documentos.download', ['fileName' => $vinculo->outros_documentos]) }}" target="_blank" class="link">
+                        <a class="boxlink" href="{{ route('outros_documentos.download', ['fileName' => $vinculo->outros_documentos]) }}" target="_blank" class="link">
                             <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
                             Baixar Documentos
                         </a>
-                    </button>
                     <br>
                     <br>
                     @else
@@ -189,4 +192,5 @@
 @endcan
 <script src="{{ mix('js/app.js') }}">
 </script>
+
 @endsection
