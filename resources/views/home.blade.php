@@ -88,8 +88,24 @@
         padding-right: 5px
     }
 
-    .organizacao-botoes {
+    .buttons-organization {
+        display:flex; 
+        flex-wrap:wrap; 
+        align-items:center; 
 
+    }
+
+    .buttons-organization.-orientador {
+        gap:5%;
+    }
+
+    .buttons-organization.-aluno {
+        gap:5%;
+    }
+
+    .buttons-organization.-gestor{
+        gap: 4%;
+        justify-content: flex-start;
     }
   </style>
     @auth
@@ -149,7 +165,7 @@
                 </h2>
                 <hr>
                 <br>
-                <div style="display:flex;flex-wrap: wrap;align-items:center;gap: 4%;justify-content: flex-start;">
+                <div class= "buttons-organization -gestor">
                     @foreach ($programas as $index => $programa)
                       @if ($index % 2 == 0)
                         <button class="botaoazul" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
@@ -184,7 +200,7 @@
 
             </div>
 
-            <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+            <div class="buttons-organization -aluno">
                 <button class="botaoverde" ref="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
                     <img src="{{asset('images/DocumentAdd.png')}}" alt="logodoc" style="padding-right: 10px;">
                     <p class="third-title"> Listar modelos de documentos </p>
@@ -213,7 +229,7 @@
                 <br>
             </div>
 
-            <div style="display:flex; flex-wrap:wrap; align-items:center; gap:5%; ">
+            <div class="buttons-organization -orientador">
                 <button class="botaoverde" href="{{url('/listar_alunos-orientador')}}" onclick="window.location.href='{{url('/listar_alunos-orientador')}}'">
                     <img src="{{asset("images/user.png")}}" alt="user" style="padding-right: 20px;">
                     <p class="third-title">Listar alunos </p>
