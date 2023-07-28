@@ -30,11 +30,11 @@
             <div>
                 <div style="text-align: right; display:flex">
                     @auth
-                    <button class="btn" type="button" >
-                        <img src="images\sininho.svg" alt="Notificações" style="height: auto; width: auto">
+                    <button class="botaoinvisivel" type="button" >
+                        <img src="../../images/sininho.svg" alt="Notificações" style="height: auto; width: auto">
                     </button>
 
-                    <img src="/images/sem-foto-perfil.svg"  class="img-fluid fotouser" alt="Foto de perfil">
+                    <img src="../../images/sem-foto-perfil.svg"  class="img-fluid fotouser" alt="Foto de perfil">
                     @endauth
 
                     <h2 class="fonteheader">
@@ -45,8 +45,8 @@
 
                     @auth
                     <div class="dropdown"  style="margin-top: 10px">
-                        <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <img src="images\arrowdown.svg" alt="Seta para baixo" style="height: auto; width: auto">
+                        <button class="botaoinvisivel" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="../../images/arrowdown.svg" alt="Seta para baixo" style="height: auto; width: auto">
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             @if (auth()->user()->typage_type == "App\Models\Servidor")
