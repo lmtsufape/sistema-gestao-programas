@@ -17,7 +17,7 @@
           <div class="container-fluid">
             <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
               @auth
-                <a href="{{route('home')}}" type="button" >
+                <a href="{{route('home')}}" type="button" style="margin-left: 5em" >
                   <img src="{{asset("images/Logo-SGPA.svg")}}" alt="Logo da SGPA" style="height: auto; width: auto">
                 </a>
               @else
@@ -28,7 +28,7 @@
             </ul>
 
             <div>
-                <div style="text-align: right; display:flex">
+                <div class="d-lg-flex">
                     @auth
                     <button class="botaoinvisivel" type="button" >
                         <img src="../../images/sininho.svg" alt="Notificações" style="height: auto; width: auto">
@@ -44,7 +44,7 @@
                     </h2>
 
                     @auth
-                    <div class="dropdown"  style="margin-top: 10px">
+                    <div class="dropdown"  style="margin-top: 10px; margin-right: 5em">
                         <button class="botaoinvisivel" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <img src="../../images/arrowdown.svg" alt="Seta para baixo" style="height: auto; width: auto">
                         </button>
