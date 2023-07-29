@@ -25,6 +25,7 @@
                 <label for="nome" class="titulopequeno">Nome:<strong style="color: red">*</strong></label>
                 <br>
                 <input class="boxcadastrar" type="text" name="nome" id="nome" placeholder="Digite o nome do curso" required><br><br>
+                <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
                 <div style="display: flex; gap:5%">
@@ -32,7 +33,7 @@
                                     box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
                                     border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
                                     line-height: 29px; text-align: center; padding: 5px 15px;">  --}}
-                    <input class="botaosalvar" type="submit" value="Salvar" style="">
+                    <input class="botaosalvar" type="submit" value="Salvar">
                 </div>
 
 
