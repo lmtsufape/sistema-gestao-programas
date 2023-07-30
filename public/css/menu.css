@@ -2,31 +2,15 @@
   background: #972E3F;
   display: flex;
   flex-wrap:nowrap;
-  gap: 20%;
   box-shadow: none;
   border: none;
   color: #ffff;
   flex-direction: row;
   align-items: center;
-  width: 15%;
   border-radius: 5px;
 }
 
-.btn-menu:focus{
-  background: #972E3F;
-  display: flex;
-  flex-wrap:nowrap;
-  gap: 20px;
-  box-shadow: none;
-  border: none;
-  color: #ffff;
-  flex-direction: row;
-  align-items: center;
-  width: 15%;
-  border-radius: 5px;
-}
-
-.botoesdd:hover {
+.btn-menu:hover {
   background: #a9636a;
   border-radius: 5px;
 }
@@ -38,8 +22,12 @@
   color: #fff;
   display: flex !important;
 }
-
-
+.dropdown{
+  display: flex;
+  flex-wrap:nowrap;
+  margin-right: 10px;
+  flex-direction: row;
+}
 
 .container-fluid {
   justify-content: flex-start !important;
@@ -49,6 +37,7 @@
 .image-size{
   width: 28px; 
   height: 28px;
+  margin-right: 20px;
 }
 
 .arrow-dd{

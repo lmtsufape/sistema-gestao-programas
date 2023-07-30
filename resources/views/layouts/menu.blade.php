@@ -18,10 +18,10 @@
       <div class="container-fluid d-flex fonteheader">
         <div class="botoesdd">
           <div class="dropdown">
-            <button class="btn-menu  d-flex" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" >
+            <button class="btn-menu" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" >
               <img src="{{asset("images/list-box-outline.png")}}" alt="listar" class="image-size">
               Listar
-              <span class="dropdown-toggle"></span>
+              <span><img src="{{asset("images/arrow-3.png")}}" alt="mostrar" class="arrow-dd"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-dark"  role="menu" aria-labelledby="dropdownMenuButton">
               <li><a class="dropdown-item" href="{{route("programas.index")}}">Programas</a></li>
@@ -33,10 +33,10 @@
         </div>
         <div class="botoesdd">
           <div class="dropdown">
-            <button class="btn-menu" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" >
+            <button class="btn-menu " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" >
               <img src="{{asset("images/folder-outline.png")}}" alt="gerenciar" class="image-size">
               Gerenciar
-              <span class=" dropdown-toggle"></span>
+              <span><img src="{{asset("images/arrow-3.png")}}" alt="mostrar" class="arrow-dd"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-dark"role="menu"  aria-labelledby="dropdownMenuButton">
               <li><a class="dropdown-item" href="{{route("edital.index")}}">Editais</a></li>
