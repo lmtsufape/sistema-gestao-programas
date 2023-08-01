@@ -83,7 +83,7 @@
 
                     <div id="checkStatus">
                         <label class="titulo radio-spacing" for="status">Status: <strong style="color: red">*</strong></label>
-                        <input type="radio" name="checkStatus" value="true" required>
+                        <input type="radio" name="checkStatus" value="true" required checked>
                         <label class="radio-spacing" for="checkStatus_ativo">Ativo</label>
                         <input type="radio" name="checkStatus" value="false" required>
                         <label class="radio-spacing" for="checkStatus_inativo">Inativo</label><br><br>
