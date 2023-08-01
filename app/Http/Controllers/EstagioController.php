@@ -68,12 +68,23 @@ class EstagioController extends Controller
         
             return redirect()->back()->withErrors(['error' => $errorMessage]);
         }
-
-
     }
 
 
-    public function destroy()
+    public function destroy($id)
     {
+        DB::beginTransaction();
+        try{
+            $estagio = Estagio::Where('id',$id)->first();
+
+            $estagio->delete();
+
+            DB:commit();
+            return redirect()->route('estagio.index')->with('sucesso', 'Estágio deletado com sucesso.');
+
+        }catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao deletar Estágio. tente novamente mais tarde." );
+        }
     }
 }
