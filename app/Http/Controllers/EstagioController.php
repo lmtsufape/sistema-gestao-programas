@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EstagioStoreFormRequest;
+use App\Http\Requests\EstagioUpdateFormRequest;
 use App\Models\Estagio;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +12,7 @@ class EstagioController extends Controller
 {
     public function index()
     {
-        $estagios = Estagio::all(); // Recupera todos os estágios do banco de dados
+        $estagios = Estagio::all();
 
         return view('Estagio.index', compact('estagios'));
     }
@@ -36,13 +37,41 @@ class EstagioController extends Controller
         return redirect('/estagio')->with('sucesso', 'Estagio cadastrado com sucesso.');
     }
 
-    public function edit()
+    public function edit($id)
     {
+        $estagio = Estagio::Where('id', $id)->first();
+        return view("Estagio.editar", compact('estagio'));
     }
 
-    public function update()
-    {
+    public function update(EstagioUpdateFormRequest $request, $id)
+    {               
+        DB::beginTransaction();
+        try{    
+            $estagio = Estagio::find($id);
+            $estagio->descricao = $request->descricao ? $request->descricao : $estagio->descricao;
+            $estagio->data_inicio = $request->data_inicio ? $request->data_inicio : $estagio->data_inicio;
+            $estagio->data_fim = $request->data_fim ? $request->data_fim : $estagio->data_fim;
+            $estagio->data_solicitacao = $request->data_solicitacao ? $request->data_solicitacao : $estagio->data_soliticao;
+            
+            $estagio->update();
+    
+            DB::commit();
+
+            return redirect()->route('estagio.index')
+            ->with('sucesso', 'Estágio editado com sucesso.');
+
+        }catch (Exception $e) {
+            DB::rollback();
+            $errorMessage = "Falha ao editar Estágio. Tente novamente mais tarde.";
+        
+            // $errorMessage .= " " . $e->getMessage();
+        
+            return redirect()->back()->withErrors(['error' => $errorMessage]);
+        }
+
+
     }
+
 
     public function destroy()
     {

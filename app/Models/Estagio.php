@@ -18,6 +18,13 @@ class Estagio extends Model
         'status'
     ];
 
+    protected $dates = [
+        'data_inicio',
+        'data_fim',
+        'data_solicitacao'
+    ];
+    
+
     public function aluno()
     {
         return $this->hasMany(Aluno::class, "aluno_id");
