@@ -17,11 +17,11 @@ class CreateEstagiosTable extends Migration
             $table->id();
             $table->timestamps();
             $table->boolean('status');
-            $table->string('descricao');
+            $table->text('descricao');
             $table->date('data_inicio');
             $table->date('data_fim');
             $table->date('data_solicitacao');
-            $table->enum('tipo', ['Obrigatório', 'Não obrigatório']);
+            $table->enum('tipo', ['eo', 'eno']);
 
             $table->foreign('aluno_id')->references('id')->on('alunos');
             $table->unsignedBigInteger('aluno_id');

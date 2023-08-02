@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Orientador;
 class EstagioController extends Controller
 {
     public function index()
@@ -13,7 +13,9 @@ class EstagioController extends Controller
 
     public function create()
     {
-        return view('Estagio.cadastrar');
+        $orientadors = Orientador::all();
+
+        return view('Estagio.cadastrar', compact('orientadors'));
     }
 
     public function store()
