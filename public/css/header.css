@@ -38,6 +38,10 @@
     margin-top: 5px
 }
 
+.navbar{
+    margin-bottom: 0% !important;
+}
+
 .botaoinvisivel {
     background-color: Transparent;
     background-repeat:no-repeat;
@@ -47,3 +51,4 @@
     outline:none;
     margin: 10px;
 }
+
