@@ -14,6 +14,7 @@ class CreateEstagiosTable extends Migration
     public function up()
     {
         Schema::create('estagios', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->timestamps();
             $table->boolean('status')->default(false);
