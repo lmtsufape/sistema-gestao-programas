@@ -52,3 +52,21 @@
     padding: 3px;
 }
 
+.boxcadastrar2{
+    border-radius: 5px;
+    border: 1px solid var(#E6E6E6);
+    width: auto;
+    padding: 3px;
+}
+
+.textinho{
+    color: #590B10;
+
+    /* Pequeno/Pequeno */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
