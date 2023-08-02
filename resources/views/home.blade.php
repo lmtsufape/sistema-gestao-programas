@@ -3,7 +3,7 @@
 @section("body")
 
 <style>
-    .botaoverde {
+    .botao {
       border: none;
       color: white;
       font-style: normal;
@@ -19,42 +19,16 @@
       align-items: center;
       padding-left: 20px;
       min-width: 250px;
-      background: #34A853;
+      background: #FFF3F4;
       box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
       margin-bottom: 30px;
       border-radius: 20px;
     }
 
-    .botaoverde:hover{
+    .botao:hover{
         transform: scale(1.08);
     }
 
-    .botaoazul {
-      border: none;
-      color: white;
-      font-style: normal;
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 23px;
-      text-align: center;
-      margin-bottom: 30px;
-      width: 250px;
-      height: 123px;
-      left: 193px;
-      top: 249px;
-      display: flex;
-      align-items: center;
-      padding-left: 20px;
-      min-width: 250px;
-      background: #2D3875;
-      box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
-      border-radius: 20px;
-      padding: 15px;
-    }
-
-    .botaoazul:hover{
-        transform: scale(1.08);
-    }
 
     .container {
         min-height: calc(85vh - 100px); /* Subtract the footer height from the viewport height */
@@ -70,22 +44,22 @@
         font-size: 35px; 
         line-height: 41px; 
         color: #131833;
-        
     }
 
     .second-title {
         font-style: normal; 
         padding-top: 38px;
         font-weight: 700;
-        text-align:start;
+        text-align:center;
         font-size: 35px; 
         line-height: 41px; 
-        color: #131833;
+        color: #590B10;
     }
 
     .third-title {
         margin: auto; 
-        padding-right: 5px
+        padding-right: 5px;
+        color: #972E3F;
     }
 
     .buttons-organization {
@@ -112,46 +86,39 @@
         @if (auth()->user()->typage_type == "App\Models\Servidor")
 
             <div class="container">
-                <div>
-                    <h1 class="title">
-                        Bem-vindo(a) {{auth()->user()->name}}!
-                    </h1>
-                    <hr>
-                    <br>
-                </div>
-
+                
                 {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
 
                 @if (auth()->user()->typage->tipo_servidor == 'admin')
 
                 <div style="display:flex; flex-wrap:nowrap; align-items:center; gap:4%;">
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
-                        <button class="botaoazul" ref="{{url("/programas/create")}}" onclick="window.location.href='{{url("/programas/create")}}'">
-                            <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
+                        <button class="botao" ref="{{url("/programas/create")}}" onclick="window.location.href='{{url("/programas/create")}}'">
+                            <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
                             <p class="third-title"> Cadastrar programa </p>
                         </button>
                     </div>
 
                     {{--  Cadastrar edital  --}}
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
-                        <button class="botaoverde" ref="{{url("/editais/create")}}" onclick="window.location.href='{{route("edital.create")}}'">
-                            <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
+                        <button class="botao" ref="{{url("/editais/create")}}" onclick="window.location.href='{{route("edital.create")}}'">
+                            <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
                             <p class="third-title"> Cadastrar <br> edital </p>
                         </button>
                     </div>
 
                     {{--  Cadastrar disciplina  --}}
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
-                        <button class="botaoazul" ref="{{url("/disciplinas/create")}}" onclick="window.location.href='{{url("/disciplinas/create")}}'">
-                            <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
+                        <button class="botao" ref="{{url("/disciplinas/create")}}" onclick="window.location.href='{{url("/disciplinas/create")}}'">
+                            <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
                             <p class="third-title"> Cadastrar disciplina </p>
                         </button>
                     </div>
 
                     {{--  Cadastrar curso  --}}
                     <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
-                        <button class="botaoverde" ref="{{url("/cursos/create")}}" onclick="window.location.href='{{url("/cursos/create")}}'">
-                            <img src="{{asset("images/biggerplus.png")}}" alt="logodoc" style="padding-right: 10px;">
+                        <button class="botao" ref="{{url("/cursos/create")}}" onclick="window.location.href='{{url("/cursos/create")}}'">
+                            <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
                             <p class="third-title"> Cadastrar <br> curso </p>
                         </button>
                     </div>
@@ -168,11 +135,11 @@
                 <div class= "buttons-organization -gestor">
                     @foreach ($programas as $index => $programa)
                       @if ($index % 2 == 0)
-                        <button class="botaoazul" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
+                        <button class="botao" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
                       @else
-                        <button class="botaoverde" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
+                        <button class="botao" href="{{url("/programas/".$programa->id."/editais")}}" onclick="window.location.href='{{url("/programas/".$programa->id."/editais")}}'">
                       @endif
-                      <img src="{{asset("images/vertical_split.png")}}" alt="logodoc" style="padding-right: 10px;">
+                      <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
                       <p class="third-title">{{ $programa->nome }}</p>
                       </button>
                     @endforeach
@@ -190,24 +157,20 @@
         @if (auth()->user()->typage_type == "App\Models\Aluno")
 
         <div class="container">
-            <div>
-
-                <h1 class="title">
-                Bem-vindo(a) {{auth()->user()->name}}!
-                </h1>
+            <h2 class="second-title">
+                    Programas
+                </h2>
                 <hr>
                 <br>
 
-            </div>
-
             <div class="buttons-organization -aluno">
-                <button class="botaoverde" ref="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
-                    <img src="{{asset('images/DocumentAdd.png')}}" alt="logodoc" style="padding-right: 10px;">
+                <button class="botao" ref="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
+                    <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
                     <p class="third-title"> Listar modelos de documentos </p>
                 </button>
 
-                <button class="botaoazul" ref="{{url('/editais-aluno')}}" onclick="window.location.href='{{url('/editais-aluno')}}'">
-                    <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 10px;">
+                <button class="botao" ref="{{url('/editais-aluno')}}" onclick="window.location.href='{{url('/editais-aluno')}}'">
+                    <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
                     <p class="third-title"> Ver meus editais </p>
                 </button>
 
@@ -221,27 +184,25 @@
         @if (auth()->user()->typage_type == "App\Models\Orientador")
 
         <div class="container">
-            <div>
-                <h1 class="title">
-                Bem vindo(a)!
-                </h1>
-                <hr>
-                <br>
-            </div>
+            <h2 class="second-title">
+                Programas
+            </h2>
+            <hr>
+            <br>
 
             <div class="buttons-organization -orientador">
-                <button class="botaoverde" href="{{url('/listar_alunos-orientador')}}" onclick="window.location.href='{{url('/listar_alunos-orientador')}}'">
-                    <img src="{{asset("images/user.png")}}" alt="user" style="padding-right: 20px;">
+                <button class="botao" href="{{url('/listar_alunos-orientador')}}" onclick="window.location.href='{{url('/listar_alunos-orientador')}}'">
+                    <img src="{{asset("images/list-box.svg")}}" alt="user" style="padding-right: 20px;">
                     <p class="third-title">Listar alunos </p>
                 </button>
 
-                <button class="botaoazul" href="{{url('/editais-orientador')}}" onclick="window.location.href='{{url('/editais-orientador')}}'">
-                    <img src="{{asset("images/programaicon.png")}}" alt="logodoc" style="padding-right: 20px;">
+                <button class="botao" href="{{url('/editais-orientador')}}" onclick="window.location.href='{{url('/editais-orientador')}}'">
+                    <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 20px;">
                     <p class="third-title"> Meus editais </p>
                 </button>
 
-                <button class="botaoverde" href="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
-                    <img src="{{asset('images/programaicon.png')}}" alt="logodoc" style="padding-right: 20px;">
+                <button class="botao" href="{{url("/listar-modelos")}}" onclick="window.location.href='{{url("/listar-modelos")}}'">
+                    <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 20px;">
                     <p class="third-title">   Listar modelos de documentos </p>
 
                 </button>
