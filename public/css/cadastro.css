@@ -1,0 +1,54 @@
+.titulogrande{
+    color: #590B10;
+    /* h1/Bold */
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.titulopequeno {
+    color: #590B10;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.botaosalvar{
+    border-radius: 5px;
+    background: #8C111A;
+    height: 45px;
+    padding: 10px 5rem;
+    justify-content: center;
+    align-items: center;
+    border: #8C111A;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+}
+
+.fundocadastrar{
+    border-radius: 10px;
+    border: 1px solid var(#E6E6E6);
+    box-shadow: 5px 3px 11px 0px rgba(106, 32, 44, 0.05);
+    padding: 30px;
+    width: 65%;
+    margin: 0 auto;
+    text-align: left
+}
+
+.boxcadastrar{
+    border-radius: 5px;
+    border: 1px solid var(#E6E6E6);
+    width: 100%;
+    padding: 3px;
+}
+

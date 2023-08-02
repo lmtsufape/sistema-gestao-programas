@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             Edital_Aluno_OrientadorSeeder::class,
             RelatorioSeeder::class,
             HistoricoVinculoAlunosSeeder::class,
+            EstagioSeeder::class,
         ]);
     }
 }

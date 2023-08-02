@@ -7,6 +7,8 @@ use App\Http\Requests\EstagioUpdateFormRequest;
 use App\Models\Estagio;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Models\Orientador;
 
 class EstagioController extends Controller
 {
@@ -19,7 +21,9 @@ class EstagioController extends Controller
 
     public function create()
     {
-        return view('Estagio.cadastrar');
+        $orientadors = Orientador::all();
+
+        return view('Estagio.cadastrar', compact('orientadors'));
     }
 
     public function store(EstagioStoreFormRequest $request)

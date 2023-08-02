@@ -17,12 +17,12 @@ class CreateEstagiosTable extends Migration
             $table->softDeletes();
             $table->id();
             $table->timestamps();
-            $table->boolean('status')->default(false);
-            $table->string('descricao');
+            $table->boolean('status');
+            $table->text('descricao');
             $table->date('data_inicio');
             $table->date('data_fim');
             $table->date('data_solicitacao');
-            $table->enum('tipo', ['eo', 'eno'])->default('eo');
+            $table->enum('tipo', ['eo', 'eno']);
 
             /*$table->foreign('aluno_id')->references('id')->on('alunos');
             $table->unsignedBigInteger('aluno_id');
