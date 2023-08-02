@@ -36,7 +36,6 @@
                     </select><br><br>
 
 
-                    {{--  make the div up itens side by side and occupie the full space --}}
                     <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
                         <div style="width: 50%">
                         <label class="titulopequeno" for="data_inicio">Data de início:<strong style="color: red">*</strong></label>
