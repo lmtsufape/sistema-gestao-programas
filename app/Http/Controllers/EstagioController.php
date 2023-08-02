@@ -74,12 +74,13 @@ class EstagioController extends Controller
     public function destroy($id)
     {
         DB::beginTransaction();
+        
         try{
-            $estagio = Estagio::Where('id',$id)->first();
+            $estagio = Estagio::Where('id', $id)->first();
 
             $estagio->delete();
 
-            DB:commit();
+            DB::commit();
             return redirect()->route('estagio.index')->with('sucesso', 'Estágio deletado com sucesso.');
 
         }catch(exception $e){
