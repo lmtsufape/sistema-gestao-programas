@@ -55,6 +55,10 @@
             padding: 12px;
           background-color: #fff;
         }
+        
+        .center-buttom{
+
+        }
 
     </style>
   <head>
@@ -130,7 +134,7 @@
                 <!-- Logos à esquerda -->
                 <div class="col-3" style="margin-top: 20px; padding-left: 100px">
                     <div class="d-flex align-items-center justify-content-start">
-                        <a href="http://ufape.edu.br/" target="_blank" style= >
+                        <a href="http://ufape.edu.br/" target="_blank">
                             <img src="{{asset('images/sgpa-branco 1.svg')}}" alt="Logo SGPA" style="margin-left: 20px">
                         </a>
                     </div>
@@ -152,8 +156,8 @@
                 </div>
 
                 <!-- Logos à direita -->
-                <div class="col-3">
-                    <div class="d-flex align-items-center justify-content-end" style="margin-top: 30px; padding-right: 100px">
+                <div class="col-3 d-flex justify-content-center">
+                    <div class="d-flex justify-content-around" style="align-self: center; gap: 5%">
                         <a href="https://www.facebook.com/LMTSUFAPE/" target="_blank">
                             <img src="{{asset('images/logo_facebook_branco.svg')}}" alt="Logo Facebook" style ="height: 40px; padding-right:20px">
                         </a>
