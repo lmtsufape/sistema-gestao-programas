@@ -30,8 +30,10 @@ class EstagioStoreFormRequest extends FormRequest
             "data_inicio" => "required|date|after:" . Carbon::createFromDate(2001, 1, 1)->format('Y-m-d'),
             "data_fim" => "required|date|after:data_inicio",
             "data_solicitacao" => "required|date|before:data_inicio",
+            "cpf" => "required|formato_cpf|cpf|unique:servidors|unique:alunos|unique:orientadors",
             "checkTipo" => "required",
-            "orientador" => "required"
+            "orientador" => "required",
+            "disciplina" => "required"
         ];
     }
 

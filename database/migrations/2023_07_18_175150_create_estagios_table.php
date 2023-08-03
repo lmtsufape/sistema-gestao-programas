@@ -19,6 +19,7 @@ class CreateEstagiosTable extends Migration
             $table->timestamps();
             $table->boolean('status');
             $table->text('descricao');
+            $table->string('cpf');
             $table->date('data_inicio');
             $table->date('data_fim');
             $table->date('data_solicitacao');
@@ -29,6 +30,9 @@ class CreateEstagiosTable extends Migration
 
             $table->foreign('orientador_id')->references('id')->on('orientadors');
             $table->unsignedBigInteger('orientador_id');
+
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->unsignedBigInteger('disciplina_id');
         });
     }
 
