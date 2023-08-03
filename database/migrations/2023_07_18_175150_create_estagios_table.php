@@ -24,8 +24,8 @@ class CreateEstagiosTable extends Migration
             $table->date('data_solicitacao');
             $table->enum('tipo', ['eo', 'eno']);
 
-            $table->foreign('aluno_id')->references('id')->on('alunos');
-            $table->unsignedBigInteger('aluno_id');
+            /*$table->foreign('aluno_id')->references('id')->on('alunos');
+            $table->unsignedBigInteger('aluno_id');*/
 
             $table->foreign('orientador_id')->references('id')->on('orientadors');
             $table->unsignedBigInteger('orientador_id');

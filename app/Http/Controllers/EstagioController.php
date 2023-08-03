@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EstagioStoreFormRequest;
 use App\Http\Requests\EstagioUpdateFormRequest;
+use App\Models\Aluno;
 use App\Models\Estagio;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -32,10 +33,12 @@ class EstagioController extends Controller
 
         //dd($request);
         $estagio = new Estagio();
+        $estagio->status = $request->checkStatus;
         $estagio->descricao = $request->descricao;
         $estagio->data_inicio = $request->data_inicio;
         $estagio->data_fim = $request->data_fim;
         $estagio->data_solicitacao = $request->data_solicitacao;
+        $estagio->orientador_id = $request->orientador;
         $estagio->save();
         DB::commit();
         return redirect('/estagio')->with('sucesso', 'Estagio cadastrado com sucesso.');

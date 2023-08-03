@@ -21,7 +21,7 @@ class EstagioSeeder extends Seeder
             'data_solicitacao' => "2023-05-21",
             'tipo' => "eo",
             'status' => true,
-            'aluno_id' => 1,
+            //'aluno_id' => 1,
             'orientador_id' => 1
             //'disciplina_id' => 1 //ainda falta fazer a relação com disciplina.
         ]);
@@ -33,7 +33,7 @@ class EstagioSeeder extends Seeder
             'data_solicitacao' => "2023-06-10",
             'tipo' => "eno",
             'status' => true,
-            'aluno_id' => 2,
+            //'aluno_id' => 2,
             'orientador_id' => 2
         ]);
 
@@ -44,7 +44,7 @@ class EstagioSeeder extends Seeder
             'data_solicitacao' => "2023-07-15",
             'tipo' => "eo",
             'status' => true,
-            'aluno_id' => 1,
+            //'aluno_id' => 1,
             'orientador_id' => 1
         ]);
 
@@ -55,7 +55,7 @@ class EstagioSeeder extends Seeder
             'data_solicitacao' => "2023-08-01",
             'tipo' => "eno",
             'status' => true,
-            'aluno_id' => 2,
+            //'aluno_id' => 2,
             'orientador_id' => 2
         ]);
     }

@@ -83,9 +83,9 @@
 
                     <div id="checkStatus">
                         <label class="titulo radio-spacing" for="status">Status: <strong style="color: red">*</strong></label>
-                        <input type="radio" name="checkStatus" value="true" required checked>
+                        <input type="radio" name="checkStatus" value=1 required checked>
                         <label class="radio-spacing" for="checkStatus_ativo">Ativo</label>
-                        <input type="radio" name="checkStatus" value="false" required>
+                        <input type="radio" name="checkStatus" value=0 required>
                         <label class="radio-spacing" for="checkStatus_inativo">Inativo</label><br><br>
                     </div>
 
@@ -104,9 +104,9 @@
 
                     <div id="checkTipo">
                         <label class="titulo radio-spacing" for="tipo">Tipo: <strong style="color: red">*</strong></label>
-                        <input type="radio" name="checkTipo" value="sim" required>
+                        <input type="radio" name="checkTipo" value="eo" required>
                         <label class="radio-spacing" for="checkTipo_obrigatorio">Obrigatório</label>
-                        <input type="radio" name="checkTipo" value="nao" required>
+                        <input type="radio" name="checkTipo" value="eno" required>
                         <label class="radio-spacing" for="checkTipo_nao_obrigatorio">Não Obrigatório</label><br><br>
                     </div>
 
