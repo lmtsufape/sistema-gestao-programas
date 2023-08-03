@@ -139,14 +139,14 @@
                 <!-- Logos do centro -->
                 <div class="col-6 d-flex justify-content-center" style="margin-top: 14px">
                     <div class="d-flex justify-content-around">
-                        <a href="http://ufape.edu.br/" target="_blank" style="padding-right:20px">
-                            <img src="{{ asset('images/logo_ufape_vertical.png') }}" alt="Logo UFAPE" class="logo-box" style ="height:70px; width: 95px">
+                    <a href="http://ufape.edu.br/" target="_blank" style="padding-right:20px">
+                            <img src="{{ asset('images/logo_ufape_vertical.png') }}" alt="Logo UFAPE" class="logo-box" style ="height: 49.813px; width: 200.545px,flex-shrink 0; border-radius: 10px;">
                         </a>
                         <a href="http://lmts.uag.ufrpe.br/" target="_blank" style="padding-right:20px">
-                            <img src="{{ asset('images/logo_ufape_color.png') }}" alt="Logo LMTS" class="logo-box" style ="height:70px; width: 95px">
+                            <img src="{{ asset('images/logo_ufape_color.png') }}" alt="Logo LMTS" class="logo-box" style ="height: 49.813px; width: 200.545px,flex-shrink 0; border-radius: 10px;">
                         </a>
                         <a href="https://upe.br/" target="_blank">
-                            <img src="{{ asset('images/logoupe.png') }}" alt="Logo UPE" class="logo-box" style ="height:70px; width: 95px">
+                            <img src="{{ asset('images/logoupe.png') }}" alt="Logo UPE" class="logo-box" style ="height: 49.813px; width: 200.545px,flex-shrink 0 ; border-radius: 10px">
                         </a>
                     </div>
                 </div>
