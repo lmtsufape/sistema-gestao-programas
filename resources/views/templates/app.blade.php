@@ -54,6 +54,7 @@
     </div>
 
     @include('layouts.header')
+    @include('layouts.menu')
 
     <div>
       <div style="text-align: center">
