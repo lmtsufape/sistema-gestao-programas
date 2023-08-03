@@ -14,6 +14,7 @@ class CreateEstagiosTable extends Migration
     public function up()
     {
         Schema::create('estagios', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->timestamps();
             $table->boolean('status');
@@ -28,9 +29,6 @@ class CreateEstagiosTable extends Migration
 
             $table->foreign('orientador_id')->references('id')->on('orientadors');
             $table->unsignedBigInteger('orientador_id');
-
-
-
         });
     }
 
