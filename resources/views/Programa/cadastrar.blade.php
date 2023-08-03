@@ -41,14 +41,10 @@
                     </div>
                 </div>
 
-                <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                    <input type="button" value="Voltar" href="{{url('/home/')}}" onclick="window.location.href='{{url('/home/')}}'" style="background: #2D3875;
-                                box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                                border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                                line-height: 29px; text-align: center; padding: 5px 15px;">
-                    <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                        display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                        font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
+                <br><br>
+                <div class="botoessalvarvoltar">
+                    <input type="button" value="Voltar" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'" class="botaovoltar">
+                    <input class="botaosalvar" type="submit" value="Salvar">
                 </div>
             </form>
         </div>

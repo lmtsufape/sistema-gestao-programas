@@ -94,16 +94,8 @@
                     </div>
 
                    <br><br>
-
-
-
-
-
-                   <div style="display: flex; gap:5%">
-                        {{--  <input type="button" value="Voltar" href="{{url('/home/')}}" onclick="window.location.href='{{url('/home/')}}'" style="background: #2D3875;
-                        box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                        border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                        line-height: 29px; text-align: center; padding: 5px 15px;">  --}}
+                   <div class="botoessalvarvoltar">
+                        <input type="button" value="Voltar" href="{{url('/edital/')}}" onclick="window.location.href='{{url('/edital/')}}'" class="botaovoltar">
                         <input class="botaosalvar" type="submit" value="Salvar">
                     </div>
                 </form>
