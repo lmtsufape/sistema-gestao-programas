@@ -138,11 +138,11 @@
 
                 <!-- Logos do centro -->
                 <div class="col-6 d-flex justify-content-center" style="margin-top: 14px">
-                    <div class="d-flex justify-content-around">
-                    <a href="http://ufape.edu.br/" target="_blank" style="padding-right:20px">
+                    <div class="d-flex justify-content-around" style="align-self: center; gap: 5%">
+                    <a href="http://ufape.edu.br/" target="_blank">
                             <img src="{{ asset('images/logo_ufape_vertical.png') }}" alt="Logo UFAPE" class="logo-box" style ="height: 49.813px; width: 200.545px,flex-shrink 0; border-radius: 10px;">
                         </a>
-                        <a href="http://lmts.uag.ufrpe.br/" target="_blank" style="padding-right:20px">
+                        <a href="http://lmts.uag.ufrpe.br/" target="_blank">
                             <img src="{{ asset('images/logo_ufape_color.png') }}" alt="Logo LMTS" class="logo-box" style ="height: 49.813px; width: 200.545px,flex-shrink 0; border-radius: 10px;">
                         </a>
                         <a href="https://upe.br/" target="_blank">
