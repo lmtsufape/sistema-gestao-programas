@@ -1,134 +1,6 @@
 @extends("templates.app")
 
 @section("body")
-<style>
-    select[multiple] {
-        overflow: hidden;
-        background: #f5f5f5;
-        width:100%;
-        height:auto;
-        padding: 0px 5px;
-        margin:0;
-        border-width: 2px;
-        border-radius: 5px;
-        -moz-appearance: menulist;
-        -webkit-appearance: menulist;
-        appearance: menulist;
-      }
-      /* select single */
-      .required .chosen-single {
-        background: #F5F5F5;
-        border-radius: 5px;
-        border: 1px #D3D3D3;
-        padding: 5px;
-        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
-    }
-    /* select multiple */
-    .required .chosen-choices {
-        background: #F5F5F5;
-        border-radius: 5px;
-        border: 1px #D3D3D3;
-        padding: 0px 5px;
-        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
-    }
-    .titulo {
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 28px;
-        display: flex;
-        color: #590B10;
-        padding-top: 10px;
-    }
-    .boxinfo {
-        background: #FFFF;
-        width: 100%;
-        padding: 5px;
-        text-align: start;
-        margin-bottom: 10px; /* Add margin-bottom to create spacing */
-        border-radius: 5px;
-        border: 2px solid rgba(230, 230, 230, 1);
-    }
-    .boxchild{
-        background: #FFFFFF;
-        box-shadow: 5px 3px 11px 0px rgba(106, 32, 44, 0.34);
-        border-radius: 20px;
-        padding: 34px;
-        width: 65%;
-        margin-bottom: 2rem;
-        margin-top: 2rem;
-    }
-
-    .vinculo {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-    }
-
-    .form-check{
-        margin-right: 35px;
-    }
-
-    .radios{
-        margin:5px;
-    }
-
-    .main_title{
-        font-weight: 600; 
-        font-size: 30px; 
-        line-height: 47px; 
-        display: flex; 
-        align-items: center; 
-        color: #590B10;
-    }
-    .container{
-        display: flex; 
-        justify-content: center; 
-        align-items: center; 
-        margin-top: 1em; 
-        margin-bottom:10px
-    }
-
-    .form-control{
-        box-shadow: none;
-    }
-
-    .images{
-        width: 150px; 
-        height: 150px; 
-        border-radius: 50%;
-        margin: 5%;
-    }
-
-    .botoes{
-        background: #590B10; 
-        width: 10rem;
-        box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); 
-        display: inline-block;
-        border-radius: 5px; 
-        color: #FFFFFF; 
-        border: #2D3875; 
-        font-style: normal; 
-        font-weight: 400; 
-        font-size: 14px;
-        line-height: 29px; 
-        text-align: center; 
-        padding: 5px 15px;
-    }
-
-    .botoes:hover{
-        background-color: #A1141D;
-    }
-
-    .container-botoes{
-        display: flex; 
-        align-content: center;
-        align-items: center; 
-        justify-content: center; 
-        gap:5%
-    }
-</style>
 
 <div class="container">
     @if (session('sucesso'))
@@ -140,42 +12,44 @@
     <div class="boxchild">
         <div class="row">
             <h1 class="main_title">
-                Cadastrar usuário</h1>
+            Cadastrar usuário</h1>
         </div>
-
-        <hr style="color:#590B10;">
+        
+        <hr class="divisor">
 
         <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <!-- imagem de perfil
+
             <label for="image" class="titulo">Imagem do Perfil:</label>
             <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" class="images" /><br>
             <div class="row d-flex justify-content-center">
                 <div class="col-6 ">
                     <input type="file" id="image" name="image" class="form-control boxinfo">
                 </div>
-            </div>
+            </div> -->
             
-            <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
+            <label for="nome" class="titulo">Nome<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="text" id="nome" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="nome_social" class="titulo">Nome Social:</label>
+            <label for="nome_social" class="titulo">Nome Social</label>
             <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="cpf" class="titulo">CPF:<strong style="color: red">*</strong></label>
+            <label for="cpf" class="titulo">CPF<strong style="color: red">*</strong></label>
             <input class="boxinfo cpf-autocomplete" type="text"  id="cpf" name="cpf" required placeholder="Digite o CPF">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="email" class="titulo">E-mail:<strong style="color: red">*</strong></label>
+            <label for="email" class="titulo">E-mail<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="email" id="email" name="email" required placeholder="Digite o email">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="senha" class="titulo">Senha:<strong style="color: red">*</strong></label>
+            <label for="senha" class="titulo">Senha<strong style="color: red">*</strong></label>
             <input type="password"  class="boxinfo" id="senha" name="senha" required placeholder="Digite a senha">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="tipoUser" class="titulo">Perfil:<strong style="color: red">*</strong></label>
+            <label for="tipoUser" class="titulo">Perfil<strong style="color: red">*</strong></label>
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
                 <option value disabled selected hidden>Selecione o perfil</option>
                 <option value="servidor">Técnico administrativo</option>
@@ -184,7 +58,7 @@
             </select>
 
             <div id="instituicaoVinculo" style="display:none">
-                <label class="titulo" for="instituicaoVinculo">Intituição de Vínculo:<strong style="color: red">*</strong></label>
+                <label class="titulo" for="instituicaoVinculo">Intituição de Vínculo<strong style="color: red">*</strong></label>
                 <div class="vinculo">
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo">
@@ -199,7 +73,7 @@
             </div>
 
             <div id="curso" style="display:none">
-                <label class="titulo">Curso:</label>
+                <label class="titulo">Curso</label>
                 <select aria-label="Default select example" class="boxinfo" name="curso" id="curso">
                     <option value disabled selected hidden>Selecione o curso</option>
                     @foreach ($cursos as $curso)
@@ -209,7 +83,7 @@
             </div>
 
             <div id="cursos" style="display:none">
-                <label class="titulo">Curso(s) que Leciona:</label>
+                <label class="titulo">Curso(s) que Leciona</label>
                 <div class="row">
                     @foreach ($cursos as $curso)
                     <div class="col-md-6" style="display: flex; justify-items:flex-start; gap:3%">
@@ -222,13 +96,13 @@
 
 
             <div id="matricula" style="display:none">
-                <label class="titulo" for="matricula">Matrícula:<strong style="color: red">*</strong></label>
+                <label class="titulo" for="matricula">Matrícula<strong style="color: red">*</strong></label>
                 <input class="boxinfo" type="text" id="matricula" name="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)">
             </div>
 
 
             <div id="semestre" style="display:none">
-                <label class="titulo" for="semestre_entrada">Semestre de entrada:<strong style="color: red">*</strong></label>
+                <label class="titulo" for="semestre_entrada">Semestre de entrada<strong style="color: red">*</strong></label>
                 <input class="boxinfo semestre-autocomplete" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre (Exemplo: 2023.2)">
             </div>
 
@@ -237,10 +111,10 @@
 
             <div class="container-botoes">
                 <a href="/">
-                <input type="button" value="Voltar" class="botoes"/>
+                <input type="button" value="Voltar" class="botao-voltar"/>
                 </a>
 
-                <input type="submit" value="Cadastrar" class="botoes"/>
+                <input type="submit" value="Cadastrar" class="botao-cadastrar"/>
             </div>
         </form>
     </div>
