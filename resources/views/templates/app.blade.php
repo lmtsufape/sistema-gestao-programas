@@ -16,6 +16,8 @@
     <!-- Style -->
     <link rel="stylesheet" href="../../../css/style.css">
     <link href="../../../css/header.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/login.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/register.css" rel="stylesheet" type="text/css"/>
     <link href="../../../css/footer.css" rel="stylesheet" type="text/css"/>
     <link href="../../../css/menu.css" rel="stylesheet" type="text/css"/>
     <link href="../../../css/home.css" rel="stylesheet" type="text/css"/>
