@@ -55,6 +55,10 @@
             padding: 12px;
           background-color: #fff;
         }
+        
+        .center-buttom{
+
+        }
 
     </style>
   <head>
@@ -72,6 +76,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="../../../css/style.css">
     <link href="../../../css/header.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/menu.css" rel="stylesheet" type="text/css"/>
     <link href="../../../css/app.css" rel="stylesheet" type="text/css"/>
     <link href="../../../css/cadastro.css" rel="stylesheet" type="text/css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -107,6 +112,7 @@
     </div>
 
     @include('layouts.header')
+    @include('layouts.menu')
 
     <div>
       <div style="text-align: center">
@@ -130,7 +136,7 @@
                 <!-- Logos à esquerda -->
                 <div class="col-3" style="margin-top: 20px; padding-left: 100px">
                     <div class="d-flex align-items-center justify-content-start">
-                        <a href="http://ufape.edu.br/" target="_blank" style= >
+                        <a href="http://ufape.edu.br/" target="_blank">
                             <img src="{{asset('images/sgpa-branco 1.svg')}}" alt="Logo SGPA" style="margin-left: 20px">
                         </a>
                     </div>
@@ -138,22 +144,22 @@
 
                 <!-- Logos do centro -->
                 <div class="col-6 d-flex justify-content-center" style="margin-top: 14px">
-                    <div class="d-flex justify-content-around">
-                        <a href="http://ufape.edu.br/" target="_blank" style="padding-right:20px">
-                            <img src="{{ asset('images/logo_ufape_vertical.png') }}" alt="Logo UFAPE" class="logo-box" style ="height:70px; width: 95px">
+                    <div class="d-flex justify-content-around" style="align-self: center; gap: 5%">
+                    <a href="http://ufape.edu.br/" target="_blank">
+                            <img src="{{ asset('images/logo_ufape_vertical.png') }}" alt="Logo UFAPE" class="logo-box" style ="height: 49.813px; width: 200.545px,flex-shrink 0; border-radius: 10px;">
                         </a>
-                        <a href="http://lmts.uag.ufrpe.br/" target="_blank" style="padding-right:20px">
-                            <img src="{{ asset('images/logo_ufape_color.png') }}" alt="Logo LMTS" class="logo-box" style ="height:70px; width: 95px">
+                        <a href="http://lmts.uag.ufrpe.br/" target="_blank">
+                            <img src="{{ asset('images/logo_ufape_color.png') }}" alt="Logo LMTS" class="logo-box" style ="height: 49.813px; width: 200.545px,flex-shrink 0; border-radius: 10px;">
                         </a>
                         <a href="https://upe.br/" target="_blank">
-                            <img src="{{ asset('images/logoupe.png') }}" alt="Logo UPE" class="logo-box" style ="height:70px; width: 95px">
+                            <img src="{{ asset('images/logoupe.png') }}" alt="Logo UPE" class="logo-box" style ="height: 49.813px; width: 200.545px,flex-shrink 0 ; border-radius: 10px">
                         </a>
                     </div>
                 </div>
 
                 <!-- Logos à direita -->
-                <div class="col-3">
-                    <div class="d-flex align-items-center justify-content-end" style="margin-top: 30px; padding-right: 100px">
+                <div class="col-3 d-flex justify-content-center">
+                    <div class="d-flex justify-content-around" style="align-self: center; gap: 5%">
                         <a href="https://www.facebook.com/LMTSUFAPE/" target="_blank">
                             <img src="{{asset('images/logo_facebook_branco.svg')}}" alt="Logo Facebook" style ="height: 40px; padding-right:20px">
                         </a>

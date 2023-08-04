@@ -1,4 +1,4 @@
-@extends("templates.app")
+@extends('templates.app')
 
 @section('body')
 @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
@@ -194,4 +194,3 @@
 <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
 @endcan
 
-@endsection
