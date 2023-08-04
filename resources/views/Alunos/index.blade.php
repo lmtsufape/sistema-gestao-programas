@@ -75,27 +75,19 @@
     text-decoration: none;
     color: white;
   }
-  table{
-    border-radius: 10px; 
-    background-color: #F2F2F2;
-    min-height: 50px;
-    width: 73%;
+  .table{
+    border-radius: 10px;
   }
-  th {
-      background-color: #000;
-      color: #FFFFFF;
-      padding: 10px;
-    }
-    th, td {
-      border: 0px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
 
-    tr:nth-child(even) {
-      background-color: #fff;
-    }
-
+  .table-head{
+    background-color: #972E3F;
+    color: #fff;
+  }
+  .icones-tabela{
+    width: 2%;
+    height:3.33vh;
+    gap: 5%;
+  }
 </style>
 
 
@@ -136,14 +128,13 @@
 
     <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
         <div class="col-md-9 corpo p-2 px-3">
-         <table class="table" style=" ">
+         <table class="table">
           <thead>
-
-            <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Nome Social</th>
-                <th scope="col">CPF</th>
-                <th scope="col">Curso</th>
+            <tr class= table-head>
+                <th scope="col" class="text-center" >Nome</th>
+                <th scope="col" class="text-center">Nome Social</th>
+                <th scope="col" class="text-center">CPF</th>
+                <th scope="col" class="text-center">Curso</th>
                 <th class="text-center">Ações</th>
             </tr>
           </thead>
@@ -156,7 +147,7 @@
                   <td class="align-middle">{{$aluno->curso->nome}}</td>
                   <td class="align-middle">
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
-                            <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
+                            <img src="{{asset('images/information.svg')}}" alt="Info aluno" style="height: 30px; width: 30px;">
                         </a>
 
                         {{--<a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$aluno->id}}">
@@ -164,11 +155,11 @@
                         </a>--}}
 
                         <a href=" {{route('alunos.edit', ['id' => $aluno->id] )}}">
-                            <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar aluno" style="height: 30px; width: 30px;">
+                            <img src="{{asset('images/pencil.svg')}}" alt="Editar aluno" style="height: 30px; width: 30px;">
                         </a>
 
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->id}}">
-                            <img src="{{asset('images/delete.png')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
+                            <img src="{{asset('images/delete.svg')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
                         </a>
 
 
