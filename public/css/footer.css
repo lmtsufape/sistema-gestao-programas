@@ -1,0 +1,22 @@
+.footer {
+    margin-top: auto;
+    background-color: #972E3F;
+    height: 105px;
+  }
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
+.logo-box{
+    width: 80px;
+    height: 40px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 12px;
+  background-color: #fff;
+}
