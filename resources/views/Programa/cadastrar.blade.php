@@ -2,60 +2,6 @@
 
 @section("body")
 
-<style>
-    select[multiple] {
-        overflow: hidden;
-        background: #f5f5f5;
-        width:100%;
-        height:auto;
-        padding: 0px 5px;
-        margin:0;
-        border-width: 2px;
-        border-radius: 5px;
-        -moz-appearance: menulist;
-        -webkit-appearance: menulist;
-        appearance: menulist;
-      }
-      /* select single */
-      .required .chosen-single {
-        background: #F5F5F5;
-        border-radius: 5px;
-        border: 1px #D3D3D3;
-        padding: 5px;
-        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
-    }
-    /* select multiple */
-    .required .chosen-choices {
-        background: #F5F5F5;
-        border-radius: 5px;
-        border: 1px #D3D3D3;
-        padding: 0px 5px;
-        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
-    }
-    .titulo {
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 28px;
-        display: flex;
-        color: #131833;
-    }
-    .boxinfo{
-        background: #F5F5F5;
-        border-radius: 6px;
-        border: 1px #D3D3D3;
-        width: 100%;
-        padding: 5px;
-        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
-
-    }
-    .boxchild{
-        background: #FFFFFF;
-        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-        padding: 34px;
-        width: 65%
-    }
-</style>
 
 @canany(['admin', 'pro_reitor', 'gestor'])
     <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
@@ -66,34 +12,39 @@
             </div>
         @endif
         <br>
-        <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
-            Cadastrar Programa</h1>
-            <hr>
+        <div class="fundocadastrar">
+            <div class="row" style="align-content: left;">
+                <h1 class="titulogrande">Cadastrar Programa</h1>
+            </div>
+
+            <hr style="color:#5C1C26; background-color: #5C1C26">
 
             <form action="{{route('programas.store')}}" method="post">
                 @csrf
 
-                <label for="nome" class="titulo" >Nome:<strong style="color: red">*</strong></label>
-                <input type="text" name="nome" value="{{ old('nome') }}" id="nome" placeholder="Digite o nome do programa" class="boxinfo" required><br><br>
+                <label for="nome" class="titulopequeno" >Nome:<strong style="color: red">*</strong></label>
+                <input type="text" name="nome" value="{{ old('nome') }}" id="nome" placeholder="Digite o nome do programa" class="boxcadastrar" required><br><br>
 
-                <label for="descricao" class="titulo">Descrição:<strong style="color: red">*</strong></label>
-                <input type="text" name="descricao" value="{{ old('descricao') }}" id="descricao" placeholder="Digite a descrição do programa" class="boxinfo" required><br><br>
+                <label for="descricao" class="titulopequeno">Descrição:<strong style="color: red">*</strong></label>
+                <input type="text" name="descricao" value="{{ old('descricao') }}" id="descricao" placeholder="Digite a descrição do programa" class="boxcadastrar" required><br><br>
 
-                <label class="titulo" for="data_inicio" class="titulo">Data de início:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}"><br><br>
+                <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
+                    <div style="width: 50%">
+                    <label class="titulopequeno" for="data_inicio">Data de início:<strong style="color: red">*</strong></label>
+                    <br>
+                    <input class="boxcadastrar" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}"><br><br>
+                    </div>
+                    <div style="width: 50%">
+                    <label class="titulopequeno"  for="data_fim" >Data de fim:<strong style="color: red">*</strong></label>
+                    <br>
+                    <input class="boxcadastrar"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
+                    </div>
+                </div>
 
-                <label class="titulo" for="data_fim" class="titulo">Data de fim:<strong style="color: red">*</strong></label>
-                <input class="boxinfo" type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
-                
-                <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                    <input type="button" value="Voltar" href="{{url('/home/')}}" onclick="window.location.href='{{url('/home/')}}'" style="background: #2D3875;
-                                box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                                border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                                line-height: 29px; text-align: center; padding: 5px 15px;">
-                    <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                        display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                        font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
+                <br><br>
+                <div class="botoessalvarvoltar">
+                    <input type="button" value="Voltar" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'" class="botaovoltar">
+                    <input class="botaosalvar" type="submit" value="Salvar">
                 </div>
             </form>
         </div>
