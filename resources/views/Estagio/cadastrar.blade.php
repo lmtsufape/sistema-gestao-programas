@@ -104,9 +104,9 @@
 
                     <div id="checkTipo">
                         <label class="titulo radio-spacing" for="tipo">Tipo: <strong style="color: red">*</strong></label>
-                        <input type="radio" name="checkTipo" value="sim" required>
+                        <input type="radio" name="checkTipo" value="eo" required>
                         <label class="radio-spacing" for="checkTipo_obrigatorio">Obrigatório</label>
-                        <input type="radio" name="checkTipo" value="nao" required>
+                        <input type="radio" name="checkTipo" value="eno" required>
                         <label class="radio-spacing" for="checkTipo_nao_obrigatorio">Não Obrigatório</label><br><br>
                     </div>
 
