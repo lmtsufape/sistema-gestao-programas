@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EstagioStoreFormRequest;
 use App\Http\Requests\EstagioUpdateFormRequest;
 use App\Models\Estagio;
+use App\Models\Orientador;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class EstagioController extends Controller
 
     public function create()
     {
+        #dd(auth()->user()->typage_type);
         $orientadors = Orientador::all();
 
         return view('Estagio.cadastrar', compact('orientadors'));

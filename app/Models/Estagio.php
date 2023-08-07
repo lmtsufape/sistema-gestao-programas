@@ -28,7 +28,9 @@ class Estagio extends Model
 
     public function aluno()
     {
-        return $this->hasMany(Aluno::class, "aluno_id");
+        #return $this->hasMany(Aluno::class, "aluno_id");
+        return $this->belongsTo(Aluno::class, "aluno_id");
+
     }
 
     public function orientador()
