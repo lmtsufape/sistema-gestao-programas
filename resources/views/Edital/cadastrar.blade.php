@@ -9,7 +9,6 @@
                     {{session('sucesso')}}
                 </div>
             @endif
-            <br>
 
             <div class="fundocadastrar">
                 <div class="row" style="align-content: left;">
