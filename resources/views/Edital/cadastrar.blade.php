@@ -20,13 +20,13 @@
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
 
-                    <label class="titulopequeno" for="titulo_edital">Título:<strong style="color: red">*</strong></label>
+                    <label class="titulopequeno" for="titulo_edital">Título<strong style="color: red">*</strong></label>
                     <input class="boxcadastrar" placeholder="Digite o título" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
 
-                    <label class="titulopequeno" for="semestre">Semestre de Início:<strong style="color: red">*</strong></label>
+                    <label class="titulopequeno" for="semestre">Semestre de Início<strong style="color: red">*</strong></label>
                     <input class="boxcadastrar" placeholder="Digite o semestre (Ex: 2023.2)" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
 
-                    <label class="titulopequeno" for="programa">Programa:<strong style="color: red">*</strong></label>
+                    <label class="titulopequeno" for="programa">Programa<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxcadastrar" name="programa" id="programa" >
                         <option  value disabled selected hidden> Selecione o Programa</option>
                             @foreach ($programas as $programa)
@@ -37,25 +37,25 @@
 
                     <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
                         <div style="width: 50%">
-                        <label class="titulopequeno" for="data_inicio">Data de início:<strong style="color: red">*</strong></label>
+                        <label class="titulopequeno" for="data_inicio">Data de início<strong style="color: red">*</strong></label>
                         <br>
                         <input class="boxcadastrar" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}"><br><br>
                         </div>
                         <div style="width: 50%">
-                        <label class="titulopequeno"  for="data_fim" >Data de fim:<strong style="color: red">*</strong></label>
+                        <label class="titulopequeno"  for="data_fim" >Data de fim<strong style="color: red">*</strong></label>
                         <br>
                         <input class="boxcadastrar"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
                         </div>
                     </div>
 
 
-                    <label class="titulopequeno" for="Descrição">Descrição:</label>
+                    <label class="titulopequeno" for="Descrição">Descrição</label>
                     <textarea class="boxcadastrar" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="3"> {{ old('descricao') }}</textarea><br><br>
 
 
                     <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
                         <div style="width: 50%">
-                            <label class="titulopequeno" for="bolsa">Possui bolsa?: <strong style="color: red">*</strong></label>
+                            <label class="titulopequeno" for="bolsa">Possui bolsa? <strong style="color: red">*</strong></label>
                             <br>
                             <input type="radio" name="checkBolsa" value="sim" required>
                             <label class="textinho" for="checkBolsa_sim">Sim</label>
@@ -64,14 +64,14 @@
                             <label class="textinho" for="checkBolsa_nao">Não</label><br><br>
 
                             <div id="valor_bolsa" hidden>
-                                <label class="titulopequeno" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
+                                <label class="titulopequeno" for="valor_bolsa">Valor da Bolsa<strong style="color: red">*</strong></label>
                                 <input class="boxcadastrar" placeholder="Digite o valor da bolsa"
                                 type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
                             </div>
 
                         </div>
                         <div style="width: 50%">
-                            <label class="titulopequeno" for="disciplina">Possui disciplina(s)?: <strong style="color: red">*</strong></label>
+                            <label class="titulopequeno" for="disciplina">Possui disciplina(s)? <strong style="color: red">*</strong></label>
                             <br>
                             <input type="radio" name="checkDisciplina" value="sim" required>
                             <label class="textinho" for="checkDisciplina_sim">Sim</label>
@@ -81,7 +81,7 @@
 
 
                             <div id="disciplinas" hidden>
-                                <label class="titulo" for="disciplina">Disciplina(s):</label>
+                                <label class="titulo" for="disciplina">Disciplina(s)</label>
                                 <div class="colunm">
                                     @foreach ($disciplinas as $disciplina)
                                     <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
