@@ -9,9 +9,10 @@
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
     </script> 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> 
-  </head>
+</head>
 
 @auth
+@if (auth()->user()->typage_type == "App\Models\Servidor")
   <header>
     <!-- Isso aqui é a barra de cima -->
     <nav class="navbar navbar-menu d-flex">
@@ -45,8 +46,26 @@
             </ul>
           </div>
         </div>
+        @if (auth()->user()->typage->tipo_servidor == 'adm')
+        <div class="botoesdd">
+          <div class="dropdown">
+            <button class="btn-menu " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" >
+              <img src="{{asset("images/plus.png")}}" alt="cadastrar" class="image-size">
+              Cadastrar
+              <span><img src="{{asset("images/arrow-3.png")}}" alt="mostrar" class="arrow-dd"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark"role="menu"  aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="{{url("/edital/create")}}">Editais</a></li>
+              <li><a class="dropdown-item" href="{{url("/cursos/create")}}">Cursos</a></li>
+              <li><a class="dropdown-item" href="{{url("/disciplinas/create")}}">Disciplinas</a></li>
+              <li><a class="dropdown-item" href="{{url("/programas/create")}}">Programas</a></li>
+            </ul>
+          </div>
+        </div>
+        @endif
       </div>
     </nav>
   </header>
-  
-  @endauth
+
+@endif
+@endauth
