@@ -1,7 +1,7 @@
 @extends("templates.app")
 
 @section("body")
-<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:3.6em;">
+<div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:3.6em;">
     @canany(['admin', 'pro_reitor'])
         @if (session('sucesso'))
             <div class="alert alert-success">
@@ -49,8 +49,8 @@
                                         <option value="0">Administrador</option>
                                         <option value="1">Pró-Reitor</option>
                                         <option value="3">Gestor Institucional</option>
-                                        <option value="2">Técnico Administrativo</option>                                        
-                                        
+                                        <option value="2">Técnico Administrativo</option>
+
                                     </select>
                                 </div>
 
@@ -72,7 +72,7 @@
                                 <div class="col-12 mb-3">
                                     <label class="form-label" for="instituicaoVinculo">Intituição:<strong style="color: red">*</strong></label>
                                     <div class="vinculo">
-                                        
+
                                         <div class="form-check">
                                             <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo" required>
                                             <label class="form-check-label" for="instituicaoVinculo">Universidade Federal do Agreste de Pernambuco</label>
@@ -82,7 +82,7 @@
                                             <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UPE" name="instituicaoVinculo" required>
                                             <label class="form-check-label" for="instituicaoVinculo">Universidade de Pernambuco</label>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
 
                                 <div class="col-12 mb-3">

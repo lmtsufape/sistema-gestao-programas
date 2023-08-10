@@ -30,7 +30,7 @@
     }
 </style>
 
-<div class="container">
+<div class="container-fluid">
   @if (session('sucesso'))
   <div class="alert alert-success">
     {{session('sucesso')}}
@@ -38,7 +38,7 @@
   @endif
   <br>
 
-  <div class="container">
+  <div class="container-fluid">
     @if (session('sucesso'))
     @endif
     <br>

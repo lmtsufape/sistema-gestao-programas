@@ -8,51 +8,10 @@
     @auth
         @if (auth()->user()->typage_type == "App\Models\Servidor")
 
-            <div class="container">
-                
+            <div class="container-fluid">
+
                 {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
 
-                @if (auth()->user()->typage->tipo_servidor == 'adm')
-
-                <h2 class="second-title">
-                    Ações
-                </h2>
-                <hr>
-                <br>
-
-                <div class="buttons-organization -adm">
-                    <div class="buttons-organization -adm">
-                        <button class="botao" ref="{{url("/programas/create")}}" onclick="window.location.href='{{url("/programas/create")}}'">
-                            <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p class="third-title"> Cadastrar programa </p>
-                        </button>
-                    </div>
-
-                    {{--  Cadastrar edital  --}}
-                    <div class="buttons-organization -adm">
-                        <button class="botao" ref="{{url("/editais/create")}}" onclick="window.location.href='{{route("edital.create")}}'">
-                            <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p class="third-title"> Cadastrar <br> edital </p>
-                        </button>
-                    </div>
-
-                    {{--  Cadastrar disciplina  --}}
-                    <div class="buttons-organization -adm">
-                        <button class="botao" ref="{{url("/disciplinas/create")}}" onclick="window.location.href='{{url("/disciplinas/create")}}'">
-                            <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p class="third-title"> Cadastrar disciplina </p>
-                        </button>
-                    </div>
-
-                    {{--  Cadastrar curso  --}}
-                    <div class="buttons-organization -adm">
-                        <button class="botao" ref="{{url("/cursos/create")}}" onclick="window.location.href='{{url("/cursos/create")}}'">
-                            <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
-                            <p class="third-title"> Cadastrar <br> curso </p>
-                        </button>
-                    </div>
-                </div>
-                @endif
                 @if (auth()->user()->typage->tipo_servidor == 'gestor')
 
                 @endif
@@ -85,7 +44,7 @@
     @auth
         @if (auth()->user()->typage_type == "App\Models\Aluno")
 
-        <div class="container">
+        <div class="container-fluid">
             <h2 class="second-title">
                     Programas
                 </h2>
@@ -112,7 +71,7 @@
     @auth
         @if (auth()->user()->typage_type == "App\Models\Orientador")
 
-        <div class="container">
+        <div class="container-fluid">
             <h2 class="second-title">
                 Programas
             </h2>

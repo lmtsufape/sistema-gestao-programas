@@ -72,9 +72,9 @@
     }
 
     .link{
-        color: #2D3875; 
-        border: #2D3875; 
-        margin-top: 5px; 
+        color: #2D3875;
+        border: #2D3875;
+        margin-top: 5px;
         margin-bottom: 5px;
         text-decoration: none;
     }
@@ -82,9 +82,9 @@
     .link:hover{
         color: #34A853;
     }
-    
+
 </style>
-<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
+<div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
     @if (session('sucesso'))
     <div class="alert alert-success" style="width: 100%;">
         {{session('sucesso')}}
@@ -124,7 +124,7 @@
                     <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno: <strong style="color: red">*</strong></label>
                     <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno">
                 </div>
-                <div class="col-3"> 
+                <div class="col-3">
                     <label class="titulo" for="termo_compromisso_aluno"> Atual:</label>
                         <a class="boxlink" href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}" target="_blank" class="link">
                             <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
@@ -134,15 +134,15 @@
                     <br>
                 </div>
             </div>
-            
-                
+
+
             <div class="row">
                 <div class="col-9">
                     <label class="titulo" for="plano_projeto">Plano de trabalho:<strong style="color: red">*</strong> </label>
                     <input type="file" id="plano_projeto" class="boxinfo" name="plano_projeto" value="{{ old('plano_projeto') }}">
                 </div>
                 <div class="col-3">
-                    <label class="titulo" for="plano_projeto"> Atual:</label>           
+                    <label class="titulo" for="plano_projeto"> Atual:</label>
                         <a class="boxlink" href="{{ route('plano_trabalho.download', ['fileName' => $vinculo->plano_projeto]) }}" target="_blank" class="link">
                             <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
                             Baixar plano
@@ -151,7 +151,7 @@
                     <br>
                 </div>
             </div>
-                
+
             <div class="row">
                 <div class="col-9">
                     <label class="titulo" for="outros_documentos">Outros documentos: </label>
@@ -171,7 +171,7 @@
                     @endif
                 </div>
             </div>
-        
+
 
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">

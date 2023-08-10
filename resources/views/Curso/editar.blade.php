@@ -40,7 +40,7 @@
             gap: 10px;
             align-self: stretch;
             border-radius: 7px;
-            border: 1px solid 
+            border: 1px solid
             var(--preto-p-50, #E6E6E6);
         }
         .boxchild{
@@ -54,11 +54,11 @@
             border: 1px solid var(--preto-p-50, #E6E6E6);
             box-shadow: none;
         }
-        
+
     </style>
 
 
-    <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5rem; margin-bottom:10px; ">
+    <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5rem; margin-bottom:10px; ">
         @if (session('sucesso'))
             <div class="alert alert-success">
                 {{session('sucesso')}}
@@ -85,9 +85,9 @@
 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%; padding-top: 15px;">
 
-                    <input type="button" value="Voltar" href="{{url("/cursos/")}}" onclick="window.location.href='{{url("/cursos/")}}'" style="display: flex; width: 170px; padding: 10px; justify-content: center; align-items: center; 
+                    <input type="button" value="Voltar" href="{{url("/cursos/")}}" onclick="window.location.href='{{url("/cursos/")}}'" style="display: flex; width: 170px; padding: 10px; justify-content: center; align-items: center;
                                                                                                                                                 gap: 10px; flex-shrink: 0; align-self: stretch; border-radius: 10px; border: 1px solid #DACFCF; color: #6B6B6B; font-family: Inter; background-color: white">
-                   <input type="submit" value="Salvar" style="display: flex; width: 170px; height: 45px; padding: 10px; justify-content: center; align-items: center;   
+                   <input type="submit" value="Salvar" style="display: flex; width: 170px; height: 45px; padding: 10px; justify-content: center; align-items: center;
                                                                 gap: 10px; flex-shrink: 0; border-radius: 10px; background: var(--green-g-200, #2B8C64); outline: none; border: #2B8C64; color: white; font-family: Inter;">
 
                 </div>

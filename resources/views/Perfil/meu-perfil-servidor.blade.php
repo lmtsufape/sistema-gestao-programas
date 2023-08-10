@@ -2,8 +2,8 @@
 
 @section("body")
 
-<div class="container" style="width: 70%; background: #FBFBFB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 10px 40px 30px 40px; margin-top:2rem;">
-    <div class="container">
+<div class="container-fluid" style="width: 70%; background: #FBFBFB; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 10px 40px 30px 40px; margin-top:2rem;">
+    <div class="container-fluid">
         <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
             <h1 style="color:#2D3875;"><strong>Meu Perfil</strong></h1>
         </div>
@@ -16,12 +16,12 @@
     </div>
 
     @auth
-    <div class="container" style="padding-top: 10px;">
-                
+    <div class="container-fluid" style="padding-top: 10px;">
+
             @if ($servidor->user->image)
             <img src="/images/fotos-perfil/{{ $servidor->user->image }}"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">
             @else
-            <img src="/images/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">            
+            <img src="/images/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">
             @endif
 
             <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">Nome:</label>

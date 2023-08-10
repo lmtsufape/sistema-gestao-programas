@@ -33,51 +33,56 @@
       }
 
     .title {
-        font-style: normal; 
+        font-style: normal;
         padding-top: 38px;
-        font-weight: 700; 
+        font-weight: 700;
         text-align:start ;
-        font-size: 35px; 
-        line-height: 41px; 
+        font-size: 35px;
+        line-height: 41px;
         color: #131833;
     }
 
     .second-title {
-        font-style: normal; 
+        font-style: normal;
         padding-top: 38px;
         font-weight: 700;
         text-align:center;
-        font-size: 35px; 
-        line-height: 41px; 
+        font-size: 35px;
+        line-height: 41px;
         color: #590B10;
     }
 
     .third-title {
-        margin: auto; 
+        margin: auto;
         padding-right: 5px;
         color: #972E3F;
     }
 
     .buttons-organization {
-        display:flex; 
-        flex-wrap:wrap; 
-        align-items:center; 
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
 
     }
 
     .buttons-organization.-orientador {
-        gap:5%;
+        padding: 0 10% 0 12%;
+        justify-content: flex-start;
+        gap: 5%;
     }
 
     .buttons-organization.-aluno {
-        gap:5%;
+        padding: 0 10% 0 12%;
+        justify-content: flex-start;
+        gap: 5%;
     }
 
     .buttons-organization.-gestor{
-        gap: 4%;
+        padding: 0 10% 0 12%;
         justify-content: flex-start;
+        gap: 5%;
     }
 
     .buttons-organization.-adm{
-        gap:4%;
+        justify-content: space-evenly;
     }

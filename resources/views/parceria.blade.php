@@ -17,7 +17,7 @@
     @endif
     <br>
 
-    <div class="container" style="padding-top: 5%; padding-bottom: 5%;"">
+    <div class="container-fluid" style="padding-top: 5%; padding-bottom: 5%;"">
 
         <div class="row" style="text-align: left;">
             <h1>A Parceria</h1>
@@ -40,32 +40,32 @@
                 <li>Prof. Dr. Jean Carlos Teixeira de Araújo</li>
                 <li>Prof. Dr. Mariel José Pimentel de Andrade</li>
                 <li>Prof. Dr. Rodrigo Gusmão de Carvalho Rocha</li>
-            </ul>        
+            </ul>
             <h6>Docentes UPE</h6>
-            <ul style="padding-left: 5%;">            
+            <ul style="padding-left: 5%;">
                 <li>Prof. Dr. Cleyton Mário de Oliveira</li>
                 <li>Prof. Dr. Emanoel Francisco Sposito Barreiros</li>
                 <li>Prof. Dr. Ernani Martins dos Santos</li>
                 <li>Profa. Dra. Tarcia Regina da Silva</li>
             </ul>
             <h6>Discentes UFAPE</h6>
-            <ul style="padding-left: 5%;">            
+            <ul style="padding-left: 5%;">
                 <li>Inês Alessandra Alves de Melo</li>
                 <li>Itamar Bernardo da Silva Júnior</li>
                 <li>José Daniel Florêncio Duarte Filho</li>
                 <li>Luann Bento Ferreira</li>
             </ul>
             <h6>Discentes UPE</h6>
-            <ul style="padding-left: 5%;">            
+            <ul style="padding-left: 5%;">
                 <li>Anna Victoria Feliciana da Silva</li>
                 <li>Camila Claudino da Silva</li>
                 <li>Guilherme Rivaldy de Sá Pereira</li>
                 <li>João Samuel Leal de Oliveira</li>
                 <li>Jonas Henrique da Silva Santos</li>
-                <li>Matheus Interaminense Guerra Brito de Albuquerque</li>         
+                <li>Matheus Interaminense Guerra Brito de Albuquerque</li>
             </ul>
 
     </div>
-        
+
 </div>
 @endsection
