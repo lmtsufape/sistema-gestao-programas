@@ -2,97 +2,10 @@
 
 @section("body")
 
-<style>
-  pagination {
-    display: inline-block;
-  }
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 10px 4px;
-  }
-  .pagination a.active {
-    background-color: #3B864F;
-    color: white;
-    border: 1px solid #3B864F;
-  }
-  .pagination a:hover:not(.active) {
-    background-color: #34A853;
-  }
-  .titulo{  
-    color: #2D3875;
-    font-size: 24px;
-  }
-  .busca{
-    border-radius: 10px 0px 0px 10px;
-    background-color: #FFF;
-    background-position: 10px 2px;
-    background-repeat: no-repeat;
-    width: 57%;
-    font-size: 16px;
-    height: 4.8vh;
-    border: 1px solid var(--preto-p-50, #E6E6E6);
-    margin-bottom: 12px; 
-    margin-right: 10px;
-  }
-  .lupa{
-    background-image: url('/images/searchicon.png');
-    border-radius: 0px 10px 10px 0px;
-    background-color: #fff;
-    width: 2.4%;
-    font-size: 16px;
-    height: 4.8vh;
-    border: 1px solid var(--preto-p-50, #E6E6E6);
-    position: absolute;
-    margin: auto;
-  }
-  .cadastrar-buttom{
-    display: flex;
-    background: var(--green-g-200, #2B8C64); 
-    border-radius: 9px; 
-    border: 1px solid var(--green-g-200, #2B8C64); 
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    padding: 10px;
-    width: 15.4%;
-    height: 4.8vh;
-
-  }
-  .cadastrar{
-    color: var(--tons-claros-t-50, #FEFEFE);
-    font-style: normal;
-    font-weight: 400; 
-    font-size: 14px;
-    line-height: normal;
-    text-decoration: none;
-  }
-  .cadastrar-buttom :hover{
-    text-decoration: none;
-    color: white;
-  }
-  .table{
-    border-radius: 10px;
-  }
-
-  .table-head{
-    background-color: #972E3F;
-    color: #fff;
-  }
-  .icones-tabela{
-    width: 2%;
-    height:3.33vh;
-    gap: 5%;
-  }
-</style>
 
 
 @canany(['admin', 'servidor', 'gestor'])
-  <div class="container">
+  <div class="container-fluid">
     @if (session('sucesso'))
     <div class="alert alert-success">
         {{session('sucesso')}}
@@ -100,22 +13,21 @@
     @endif
     <br>
 
-    
-    <div>
+
+    <div style="display: flex; justify-content: space-evenly; align-items: center;">
       <h1 class = "titulo"><strong>Estudantes</strong></h1>
     </div>
-    {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
-    <form action="{{route('alunos.index')}}" method="GET">  
-    <input class = "busca" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor">
-    <input class = "lupa" type="submit" value="">
-    </form>
+    {{-- <div style="display: flex; justify-content: space-evenly; align-items: center; margin-bottom: 20px;"> --}}
+        <form action="{{route('alunos.index')}}" method="GET">
+            <input class="busca" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor">
+            <input class="lupa" type="submit" value="">
+        </form>
 
-  <div class="cadastrar-buttom">
-    <a class="cadastrar"
-    href="{{route("alunos.create")}}">
-        Cadastrar estudantes
-    </a>
-    </div>
+        <a class="cadastrar-botao btn btn-primary" href="{{route("alunos.create")}}">
+            Cadastrar estudantes
+        </a>
+
+    {{-- </div> --}}
     <br>
     <br>
 
