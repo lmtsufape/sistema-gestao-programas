@@ -11,3 +11,36 @@
     font-size: 50px;
 }
 
+/* select single */
+.required .chosen-single {
+    background: #F5F5F5;
+    border-radius: 13px;
+    border: 1px #D3D3D3;
+    padding: 5px;
+    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+}
+/* select multiple */
+.required .chosen-choices {
+    background: #F5F5F5;
+    border-radius: 13px;
+    border: 1px #D3D3D3;
+    padding: 5px;
+    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.col-md-4:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.col-md-4:nth-child(2) a:last-child {
+  margin-top: 5px;
+}
+
+.container-fluid.pt-1.mt-5 {
+  flex: 1; /* Allow the container to grow and push the footer to the bottom */
+
+}
+
+

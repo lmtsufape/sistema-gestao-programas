@@ -1,87 +1,10 @@
 @extends("templates.app")
-
+@section('css')
+    <!-- <link rel="stylesheet" href="/css/app.css"> -->
+    <link rel="stylesheet" href="../../../css/home.css">
+@endsection
 @section("body")
 
-<style>
-    .botao {
-      border: none;
-      color: white;
-      font-style: normal;
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 23px;
-      text-align: center;
-      width: 250px;
-      height: 123px;
-      left: 193px;
-      top: 249px;
-      display: flex;
-      align-items: center;
-      padding-left: 20px;
-      min-width: 250px;
-      background: #FFF3F4;
-      box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
-      margin-bottom: 30px;
-      border-radius: 20px;
-    }
-
-    .botao:hover{
-        transform: scale(1.08);
-    }
-
-
-    .container {
-        min-height: calc(85vh - 100px); /* Subtract the footer height from the viewport height */
-        display: flex;
-        flex-direction: column;
-      }
-
-    .title {
-        font-style: normal; 
-        padding-top: 38px;
-        font-weight: 700; 
-        text-align:start ;
-        font-size: 35px; 
-        line-height: 41px; 
-        color: #131833;
-    }
-
-    .second-title {
-        font-style: normal; 
-        padding-top: 38px;
-        font-weight: 700;
-        text-align:center;
-        font-size: 35px; 
-        line-height: 41px; 
-        color: #590B10;
-    }
-
-    .third-title {
-        margin: auto; 
-        padding-right: 5px;
-        color: #972E3F;
-    }
-
-    .buttons-organization {
-        display:flex; 
-        flex-wrap:wrap; 
-        align-items:center; 
-
-    }
-
-    .buttons-organization.-orientador {
-        gap:5%;
-    }
-
-    .buttons-organization.-aluno {
-        gap:5%;
-    }
-
-    .buttons-organization.-gestor{
-        gap: 4%;
-        justify-content: flex-start;
-    }
-  </style>
     @auth
         @if (auth()->user()->typage_type == "App\Models\Servidor")
 
@@ -89,10 +12,16 @@
                 
                 {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
 
-                @if (auth()->user()->typage->tipo_servidor == 'admin')
+                @if (auth()->user()->typage->tipo_servidor == 'adm')
 
-                <div style="display:flex; flex-wrap:nowrap; align-items:center; gap:4%;">
-                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
+                <h2 class="second-title">
+                    Ações
+                </h2>
+                <hr>
+                <br>
+
+                <div class="buttons-organization -adm">
+                    <div class="buttons-organization -adm">
                         <button class="botao" ref="{{url("/programas/create")}}" onclick="window.location.href='{{url("/programas/create")}}'">
                             <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
                             <p class="third-title"> Cadastrar programa </p>
@@ -100,7 +29,7 @@
                     </div>
 
                     {{--  Cadastrar edital  --}}
-                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
+                    <div class="buttons-organization -adm">
                         <button class="botao" ref="{{url("/editais/create")}}" onclick="window.location.href='{{route("edital.create")}}'">
                             <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
                             <p class="third-title"> Cadastrar <br> edital </p>
@@ -108,7 +37,7 @@
                     </div>
 
                     {{--  Cadastrar disciplina  --}}
-                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
+                    <div class="buttons-organization -adm">
                         <button class="botao" ref="{{url("/disciplinas/create")}}" onclick="window.location.href='{{url("/disciplinas/create")}}'">
                             <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
                             <p class="third-title"> Cadastrar disciplina </p>
@@ -116,7 +45,7 @@
                     </div>
 
                     {{--  Cadastrar curso  --}}
-                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:4%; ">
+                    <div class="buttons-organization -adm">
                         <button class="botao" ref="{{url("/cursos/create")}}" onclick="window.location.href='{{url("/cursos/create")}}'">
                             <img src="{{asset("images/list-box.svg")}}" alt="logodoc" style="padding-right: 10px;">
                             <p class="third-title"> Cadastrar <br> curso </p>

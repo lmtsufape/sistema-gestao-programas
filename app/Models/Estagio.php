@@ -28,7 +28,9 @@ class Estagio extends Model
 
     public function aluno()
     {
-        return $this->hasMany(Aluno::class, "aluno_id");
+        #return $this->hasMany(Aluno::class, "aluno_id");
+        return $this->belongsTo(Aluno::class, "aluno_id");
+
     }
 
     public function orientador()
@@ -41,10 +43,10 @@ class Estagio extends Model
         return $this->belongsTo(Disciplina::class, "disciplina_id");
     }
 
-    public function servidor()
+    /*public function servidor()
     {
-        return $this->belongsTo(Servidor::class, "supervisor_id");
-    }
+        return $this->belongsTo(Servidor::class, "servidor_id");
+    }*/
 
     /*public function supervisor()
     {

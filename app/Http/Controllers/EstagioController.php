@@ -4,26 +4,58 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EstagioStoreFormRequest;
 use App\Http\Requests\EstagioUpdateFormRequest;
+use App\Models\Aluno;
+use App\Models\Disciplina;
 use App\Models\Estagio;
+use App\Models\Orientador;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\Orientador;
 
 class EstagioController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $estagios = Estagio::all();
+        if (sizeof($request-> query()) > 0){
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
 
-        return view('Estagio.index', compact('estagios'));
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $estagios = Estagio::join('alunos', 'estagios.aluno_id', '=', 'alunos.id')
+            ->leftJoin('orientadors', 'estagios.orientador_id', '=', 'orientadors.id')
+            ->leftJoin('users', 'users.typage_id', '=', 'orientadors.id');
+            
+            $estagios = $estagios->where(function ($query) use ($valor) {
+                if ($valor) {
+                    $query->orWhere("users.cpf", "LIKE", "%{$valor}%");
+                    $query->orWhere("users.name", "LIKE", "%{$valor}%");
+                    $query->orWhere("users.email", "LIKE", "%{$valor}%");
+                    $query->orWhere("orientadors.matricula", "LIKE", "%{$valor}%");
+                    $query->orWhere("estagios.descricao", "LIKE", "%{$valor}%");
+                }
+            })
+            ->orderBy('estagios.created_at', 'desc')
+            ->select("estagios.*")
+            ->distinct()
+            ->get();
+
+            return view('Estagio.index', compact('estagios'));
+        } else {
+            $estagios = Estagio::all();
+            return view('Estagio.index', compact('estagios'));
+        }
     }
 
     public function create()
     {
+        #dd(auth()->user()->typage_type);
         $orientadors = Orientador::all();
+        $disciplinas = Disciplina::all();
 
-        return view('Estagio.cadastrar', compact('orientadors'));
+        return view('Estagio.cadastrar', compact('orientadors', 'disciplinas'));
     }
 
     public function store(EstagioStoreFormRequest $request)
@@ -32,10 +64,14 @@ class EstagioController extends Controller
 
         //dd($request);
         $estagio = new Estagio();
+        $estagio->status = $request->checkStatus;
         $estagio->descricao = $request->descricao;
         $estagio->data_inicio = $request->data_inicio;
         $estagio->data_fim = $request->data_fim;
         $estagio->data_solicitacao = $request->data_solicitacao;
+        $estagio->cpf = $request->cpf;
+        $estagio->orientador_id = $request->orientador;
+        $estagio->disciplina_id = $request->disciplina;
         $estagio->save();
         DB::commit();
         return redirect('/estagio')->with('sucesso', 'Estagio cadastrado com sucesso.');
