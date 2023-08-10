@@ -100,6 +100,7 @@
     @endif
     <br>
 
+    
     <div>
       <h1 class = "titulo"><strong>Estudantes</strong></h1>
     </div>
