@@ -66,7 +66,7 @@
             }
 
         </style>
-        <div class="container"
+        <div class="container-fluid"
             style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
             @if (session('sucesso'))
                 <div class="alert alert-success" style="width: 100%;">
@@ -119,7 +119,7 @@
 
                     <div id="valor_bolsa" hidden>
                         <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                        <input class="boxinfo" placeholder="Digite o valor da bolsa" 
+                        <input class="boxinfo" placeholder="Digite o valor da bolsa"
                         type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
                     </div>
 
@@ -134,7 +134,7 @@
 
                     <div id="valor_bolsa">
                         <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                        <input class="boxinfo" placeholder="Digite o valor da bolsa" 
+                        <input class="boxinfo" placeholder="Digite o valor da bolsa"
                         type="number" name="valor_bolsa" id="valor_bolsa" value="{{ $edital->valor_bolsa }}"><br><br>
                     </div>
                     @endif
@@ -155,7 +155,7 @@
                         <input type="radio" name="checkDisciplina" value="nao" checked required>
                         <label class="radio-spacing" for="checkDisciplina_nao">Não</label>
                     </div><br><br>
-                    
+
                     <div id="disciplinas" hidden>
                         <label class="titulo" for="disciplina">Disciplina(s):</label>
                         @foreach ($disciplinas as $disciplina)
@@ -204,7 +204,7 @@
                 $("input[name='checkDisciplina']").change(function() {
                     if ($("input[name='checkDisciplina']:checked").val() == "sim"){
                         $("#disciplinas").removeAttr("hidden");
-                        
+
                     } else {
                         $("#disciplinas").attr("hidden", true);
                     }
@@ -215,7 +215,7 @@
                 $("input[name='checkBolsa']").change(function() {
                     if ($("input[name='checkBolsa']:checked").val() == "sim"){
                         $("#valor_bolsa").removeAttr("hidden");
-                        
+
                     } else {
                         $("#valor_bolsa").attr("hidden", true);
                     }

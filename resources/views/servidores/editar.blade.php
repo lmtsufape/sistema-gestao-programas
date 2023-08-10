@@ -1,7 +1,7 @@
 @extends("templates.app")
 @section("body")
     @canany(['admin', 'pro_reitor'])
-        <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:3.6em; ">
+        <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:3.6em; ">
 
             @if (session('sucesso'))
                 <div class="alert alert-success">
@@ -18,12 +18,12 @@
                 <form action="{{url("/servidores/$servidor->id")}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
-                    
+
                     @if($servidor->user->image)
                     <img src="/images/fotos-perfil/{{ $servidor->user->image }}" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
                     @else
                     <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
-                    @endif                
+                    @endif
                     <input type="file" id="image" name="image" class="form-control-file">
 
                     <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome:<strong style="color: red">*</strong></label>
@@ -57,7 +57,7 @@
                             <option value="0" selected>Administrador</option>
                             <option value="1">Pró-Reitor</option>
                             <option value="3">Gestor Institucional</option>
-                            <option value="2">Servidor</option>                            
+                            <option value="2">Servidor</option>
                         @elseif ($servidor->tipo_servidor == 'pro_reitor')
                             <option value="0">Administrador</option>
                             <option value="1" selected>Pró-Reitor</option>

@@ -1,6 +1,6 @@
 @extends("templates.app")
 @section("body")
-        <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:3.6em; ">
+        <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:3.6em; ">
 
             @if (session('sucesso'))
                 <div class="alert alert-success">
@@ -22,7 +22,7 @@
                     <img src="/images/fotos-perfil/{{ $servidor->user->image }}" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
                     @else
                     <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
-                    @endif                
+                    @endif
                     <input type="file" id="image" name="image" class="form-control-file">
 
                     <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome:<strong style="color: red">*</strong></label>

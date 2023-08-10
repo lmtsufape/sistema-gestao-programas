@@ -74,7 +74,7 @@
 </style>
 
 @canany(['admin', 'servidor'])
-    <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
+    <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
         @if (session('sucesso'))
             <div class="alert alert-success" style="width: 100%;">
                 {{session('sucesso')}}
@@ -114,17 +114,17 @@
 
                 <label class="titulo" for="instituicaoVinculo">Intituição:<strong style="color: red">*</strong></label>
                 <div class="vinculo">
-                                        
+
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo" required>
                         <label class="form-check-label" for="instituicaoVinculo">Universidade Federal do Agreste de Pernambuco</label>
                     </div>
-                    
+
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UPE" name="instituicaoVinculo" required>
                         <label class="form-check-label" for="instituicaoVinculo">Universidade de Pernambuco</label>
                     </div>
-                </div> 
+                </div>
                 <br>
 
                 <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s) que Leciona:<strong style="color: red">*</strong></label>

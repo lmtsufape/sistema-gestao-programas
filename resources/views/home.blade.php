@@ -8,8 +8,8 @@
     @auth
         @if (auth()->user()->typage_type == "App\Models\Servidor")
 
-            <div class="container">
-                
+            <div class="container-fluid">
+
                 {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
 
                 @if (auth()->user()->typage->tipo_servidor == 'adm')
@@ -85,7 +85,7 @@
     @auth
         @if (auth()->user()->typage_type == "App\Models\Aluno")
 
-        <div class="container">
+        <div class="container-fluid">
             <h2 class="second-title">
                     Programas
                 </h2>
@@ -112,7 +112,7 @@
     @auth
         @if (auth()->user()->typage_type == "App\Models\Orientador")
 
-        <div class="container">
+        <div class="container-fluid">
             <h2 class="second-title">
                 Programas
             </h2>

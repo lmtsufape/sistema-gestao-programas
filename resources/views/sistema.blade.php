@@ -17,7 +17,7 @@
     @endif
     <br>
 
-    <div class="container" style="padding-top: 5%">
+    <div class="container-fluid" style="padding-top: 5%">
 
         <div class="row" style="text-align: left;">
         <h1>Sobre o sistema</h1>
@@ -96,6 +96,6 @@
 </ul>
 
         </div>
-            
+
     </div>
 @endsection

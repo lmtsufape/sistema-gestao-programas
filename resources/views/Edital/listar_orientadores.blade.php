@@ -29,7 +29,7 @@
   }
 </style>
 
-<div class="container">
+<div class="container-fluid">
   @if (session('sucesso'))
   <div class="alert alert-sucess">
     {{session('sucesso')}}

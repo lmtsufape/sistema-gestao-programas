@@ -2,7 +2,7 @@
 
 @section("body")
 
-<div class="container">
+<div class="container-fluid">
     @if (session('sucesso'))
     <div class="alert alert-sucess">
         {{session('sucesso')}}
@@ -14,7 +14,7 @@
             <h1 class="main_title">
             Cadastrar usuário</h1>
         </div>
-        
+
         <hr class="divisor">
 
         <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
@@ -28,7 +28,7 @@
                     <input type="file" id="image" name="image" class="form-control boxinfo">
                 </div>
             </div> -->
-            
+
             <label for="nome" class="titulo">Nome<strong style="color: red">*</strong></label>
             <input class="boxinfo" type="text" id="nome" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
@@ -91,7 +91,7 @@
                     </div>
                     @endforeach
                 </div>
-                
+
             </div>
 
 

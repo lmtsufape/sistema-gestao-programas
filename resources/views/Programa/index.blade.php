@@ -42,7 +42,7 @@
 </style>
 
 @canany(['admin', 'pro_reitor', 'gestor'])
-<div class="container">
+<div class="container-fluid">
   @if (session('sucesso'))
   <div class="alert alert-success">
     {{session('sucesso')}}

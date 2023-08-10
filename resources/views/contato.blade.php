@@ -17,7 +17,7 @@
     @endif
     <br>
 
-    <div class="container" style="padding-top: 5%">
+    <div class="container-fluid" style="padding-top: 5%">
 
         <div class="row" style="text-align: left;">
             <h1>Contato</h1>
@@ -32,10 +32,10 @@
                 Universidade Federal do Agreste de Pernambuco<br>
                 Avenida Bom Pastor, s/n.º, Bairro Boa Vista - CEP: 55292-270 - Garanhuns - PE<br>
                 Laboratório 23<br>
-                <strong>Email:</strong> lmts@ufape.edu.br                
+                <strong>Email:</strong> lmts@ufape.edu.br
             </p>
 
         </div>
-        
+
 </div>
 @endsection

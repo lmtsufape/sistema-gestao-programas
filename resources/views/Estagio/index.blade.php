@@ -29,7 +29,7 @@
   }
 </style>
 
-<div class="container" style="font-family: 'Roboto', sans-serif;">
+<div class="container-fluid" style="font-family: 'Roboto', sans-serif;">
   @if (session('sucesso'))
   <div class="alert alert-sucess" style="width: 100%;">
     {{session('sucesso')}}
@@ -126,7 +126,7 @@
                 <img src="{{asset("images/delete.png")}}" alt="Deletar edital" style="height: 30px; width: 30px;">
               </a>
 
-      
+
             </td>
           </tr>
           <tr>
@@ -169,7 +169,7 @@
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
         </div>
 
-      
+
         </div>
       </div>
     </div>
