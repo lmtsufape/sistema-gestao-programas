@@ -31,20 +31,30 @@
             color: #131833;
         }
         .boxinfo{
-            background: #F5F5F5;
-            border-radius: 6px;
-            border: 1px #D3D3D3;
-            width: 100%;
-            padding: 5px;
-            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+            display: flex;
+            height: 43px;
+            padding: 13px 10px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 10px;
+            align-self: stretch;
+            border-radius: 7px;
+            border: 1px solid 
+            var(--preto-p-50, #E6E6E6);
         }
         .boxchild{
-            background: #FFFFFF;
-            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
-            border-radius: 20px;
-            padding: 34px;
-            width: 65%
+            display: flex;
+            width: 796px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            gap: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--preto-p-50, #E6E6E6);
+            box-shadow: none;
         }
+        
     </style>
 
 
@@ -58,7 +68,7 @@
 
         <div class="boxchild">
             <div class="row">
-                <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
+                <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #3D3434;">
                     Editar Curso</h1>
             </div>
 
@@ -68,20 +78,18 @@
                 @csrf
                 @method("put")
 
-                <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
+                <label for="nome" style="color:#3D3434" class="titulo">Nome:<strong style="color: #8B5558 ">*</strong></label>
                 <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome do curso" value="{{$curso->nome}}" >
 
 
 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%; padding-top: 15px;">
 
-                    <input type="button" value="Voltar" href="{{url("/cursos/")}}" onclick="window.location.href='{{url("/cursos/")}}'" style="background: #2D3875;
-                                    box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                                    border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                                    line-height: 29px; text-align: center; padding: 5px 15px; margin-top: 1.5rem;">
-                    <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                        display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                        font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px; margin-top: 1.5rem;">
+                    <input type="button" value="Voltar" href="{{url("/cursos/")}}" onclick="window.location.href='{{url("/cursos/")}}'" style="display: flex; width: 170px; padding: 10px; justify-content: center; align-items: center; 
+                                                                                                                                                gap: 10px; flex-shrink: 0; align-self: stretch; border-radius: 10px; border: 1px solid #DACFCF; color: #6B6B6B; font-family: Inter; background-color: white">
+                   <input type="submit" value="Salvar" style="display: flex; width: 170px; height: 45px; padding: 10px; justify-content: center; align-items: center;   
+                                                                gap: 10px; flex-shrink: 0; border-radius: 10px; background: var(--green-g-200, #2B8C64); outline: none; border: #2B8C64; color: white; font-family: Inter;">
+
                 </div>
 
 
