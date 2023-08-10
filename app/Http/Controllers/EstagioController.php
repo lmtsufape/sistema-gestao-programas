@@ -9,6 +9,7 @@ use App\Models\Orientador;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class EstagioController extends Controller
 {
@@ -53,12 +54,15 @@ class EstagioController extends Controller
     {
         DB::beginTransaction();
 
+        $alunoId = auth()->user()->id;
         //dd($request);
         $estagio = new Estagio();
+        $estagio->aluno_id = $alunoId;
         $estagio->descricao = $request->descricao;
         $estagio->data_inicio = $request->data_inicio;
         $estagio->data_fim = $request->data_fim;
-        $estagio->data_solicitacao = $request->data_solicitacao;
+        $estagio->data_solicitacao = Carbon::now();
+        $estagio->orientador_id = $request->input('orientador_id');
         $estagio->save();
         DB::commit();
         return redirect('/estagio')->with('sucesso', 'Estagio cadastrado com sucesso.');

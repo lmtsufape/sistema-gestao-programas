@@ -52,10 +52,10 @@
                     <div id="checkTipo">
                         <label class="titulopequeno" for="tipo">Tipo: <strong style="color: red">*</strong></label>
                         <br>
-                        <input type="radio" name="checkTipo" value="eo" required>
+                        <input type="radio" name="tipo_estagio" value="eo" required>
                         <label class="textinho" for="checkTipo_obrigatorio">Obrigatório</label>
                         <br>
-                        <input type="radio" name="checkTipo" value="eno" required>
+                        <input type="radio" name="tipo_estagio" value="eno" required>
                         <label class="textinho" for="checkTipo_nao_obrigatorio">Não Obrigatório</label><br><br>
                     </div>
 
@@ -72,7 +72,7 @@
                     <br>
     
                     <label class="titulopequeno" for="orientador">Orientador:<strong style="color: red">*</strong></label>
-                    <select aria-label="Default select example" class="boxcadastrar" name="orientador" id="orientador" >
+                    <select aria-label="Default select example" class="boxcadastrar" name="orientador_id" id="orientador" >
                         <option  value disabled selected hidden> Selecione o Orientador</option>
                             @foreach ($orientadors as $orientador)
                                 <option value="{{$orientador->id}}" {{ old('orientador') == $orientador->id ? 'selected' : '' }}>{{$orientador->user->name}}</option>
@@ -81,7 +81,7 @@
                      
 
                     <div class="botoessalvarvoltar">
-                        <input type="button" value="Voltar" href="{{url('/edital/')}}" onclick="window.location.href='{{url('/edital/')}}'" class="botaovoltar">
+                        <input type="button" value="Voltar" href="{{url('/home/')}}" onclick="window.location.href='{{url('/home/')}}'" class="botaovoltar">
                         <input class="botaosalvar" type="submit" value="Salvar">
                     </div>
                 </form>
