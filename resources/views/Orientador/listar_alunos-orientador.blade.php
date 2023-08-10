@@ -29,7 +29,7 @@
   }
 </style>
 
-<div class="container">
+<div class="container-fluid">
   @if (session('sucesso'))
   <div class="alert alert-success">
     {{session('sucesso')}}
@@ -75,7 +75,7 @@
     <br>
   </div> -->
     <br>
-    
+
     <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
       <div class="col-md-9 corpo p-2 px-3">
         <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
@@ -91,7 +91,7 @@
         </thead>
         <tbody>
         @foreach($pivos as $pivo)
-        
+
           <tr>
             <td> {{ $pivo->aluno->nome_aluno }} </td>
             <td> {{ $pivo->edital->titulo_edital }} </td>
@@ -148,7 +148,7 @@
           <!-- <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/delete.png")}}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
             <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
-          </div> 
+          </div>
         </div>-->
         <div style="display: flex; margin: 10px">
             <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>

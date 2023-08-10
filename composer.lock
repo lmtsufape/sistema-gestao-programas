@@ -3270,7 +3270,7 @@
             "homepage": "https://github.com/php-fig/container",
             "keywords": [
                 "PSR-11",
-                "container",
+                "container-fluid",
                 "container-interface",
                 "container-interop",
                 "psr"

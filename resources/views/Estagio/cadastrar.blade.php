@@ -4,7 +4,7 @@
 
 @canany(['admin', 'servidor', 'gestor', 'aluno'])
 
-        <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
+        <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
             @if (session('sucesso'))
                 <div class="alert alert-success" style="width: 100%;">
                     {{session('sucesso')}}
@@ -66,11 +66,11 @@
                     @else
                         <label class="titulopequeno" for="">CPF do estudante: <strong style="color: red">*</strong></label>
                         <input type="text" id="cpf_aluno" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"
-                            value="{{ old('cpf_aluno') }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}">                    
+                            value="{{ old('cpf_aluno') }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}">
                     @endif
                     <br>
                     <br>
-    
+
                     <label class="titulopequeno" for="orientador">Orientador:<strong style="color: red">*</strong></label>
                     <select aria-label="Default select example" class="boxcadastrar" name="orientador" id="orientador" >
                         <option  value disabled selected hidden> Selecione o Orientador</option>
@@ -78,7 +78,7 @@
                                 <option value="{{$orientador->id}}" {{ old('orientador') == $orientador->id ? 'selected' : '' }}>{{$orientador->user->name}}</option>
                             @endforeach
                     </select><br><br>
-                     
+
 
                     <div class="botoessalvarvoltar">
                         <input type="button" value="Voltar" href="{{url('/edital/')}}" onclick="window.location.href='{{url('/edital/')}}'" class="botaovoltar">

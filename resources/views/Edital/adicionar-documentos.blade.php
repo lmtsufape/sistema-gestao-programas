@@ -79,7 +79,7 @@
                 justify-content: flex-start;
             }
         </style>
-        <div class="container"
+        <div class="container-fluid"
             style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
             @if (session('sucesso'))
                 <div class="alert alert-success" style="width: 100%;">
@@ -99,7 +99,7 @@
                     @csrf
                     @method('PUT')
                     <input type="hidden" id="vinculo_id" name="vinculo_id" value="{{$vinculo->id}}">
-                    
+
                     <label class="titulo" for="termo_orientador">Termo do Professor: <strong
                             style="color: red">*</strong></label>
                     <input type="file" id="termo_orientador" class="boxinfo" name="termo_orientador" value="{{ old('termo_orientador') }}" required>

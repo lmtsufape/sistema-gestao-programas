@@ -17,16 +17,16 @@
     @endif
     <br>
 
-    <div class="container">
+    <div class="container-fluid">
 
         <div class="login row">
 
             <div class="col div-paragraph">
                 <h2 class="title-login">O que é?</h2>
                 <p class="paragraph">
-                O sistema tem como intuito auxiliar no gerenciamento dos programas acadêmicos, como bolsas, monitorias e estágios. 
-                Desenvolvido para simplificar e automatizar, a plataforma proporciona controle e eficiência nas 
-                funções acadêmicas e garante que cada parte envolvida tenha visibilidade e participação ativa em todo o processo. 
+                O sistema tem como intuito auxiliar no gerenciamento dos programas acadêmicos, como bolsas, monitorias e estágios.
+                Desenvolvido para simplificar e automatizar, a plataforma proporciona controle e eficiência nas
+                funções acadêmicas e garante que cada parte envolvida tenha visibilidade e participação ativa em todo o processo.
                 Promove, desse modo, uma comunicação clara e otimizada.
                 </p>
             </div>
@@ -53,7 +53,7 @@
                         <div class="forgot ">
                             <a class="forgot-link" href="{{ route('password.request')}}">Esqueceu sua senha?</a>
                         </div>
-                        
+
 
                         <div class="form-buttons">
                             <!-- :<div> -->
@@ -65,7 +65,7 @@
 
                         <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#modal_create" style="text-decoration: none; cursor: point;">Cadastre-se</a> -->
                         </div>
-                        
+
                     </div>
                 </form>
             </div>

@@ -1,10 +1,10 @@
 @extends("templates.app")
 @section("body")
 @canany(['admin', 'pro_reitor', 'gestor'])
-  <div class="container" style="font-family: 'Roboto', sans-serif;">
+  <div class="container-fluid" style="font-family: 'Roboto', sans-serif;">
 
     <br>
-    <div class="container" style="font-family: 'Roboto', sans-serif;">
+    <div class="container-fluid" style="font-family: 'Roboto', sans-serif;">
   @if (session('sucesso'))
   <div class="alert alert-success">
     {{session('sucesso')}}

@@ -57,7 +57,7 @@
 </style>
 
 @canany(['admin', 'servidor'])
-    <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
+    <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
 
         @if (session('sucesso'))
             <div class="alert alert-success" style="width: 100%;">
@@ -78,7 +78,7 @@
 
                     <label class="titulo" for="Descrição">Descrição:</label>
                     <textarea class="boxinfo" name="descricao" id="descricao" cols="30" rows="5">{{ $estagio->descricao }}</textarea><br><br>
-                    
+
                     <label class="titulo" for="data_inicio">Data de início:<strong style="color: red">*</strong></label>
                     <input class="boxinfo" type="date" name="data_inicio" id="data_inicio"
                         value="{{ $estagio->data_inicio->format('Y-m-d')}}"><br><br>
