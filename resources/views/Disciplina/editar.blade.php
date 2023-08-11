@@ -16,7 +16,6 @@
             </div>
 
                 <hr>
-                
                 <form action="{{url("disciplinas/$disciplina->id")}}" method="POST">
                     @csrf
                     @method("PUT")
