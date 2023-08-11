@@ -57,19 +57,21 @@ class EstagioController extends Controller
         $alunoId = auth()->user()->id;
         //dd($request);
         $estagio = new Estagio();
-        $estagio->aluno_id = $alunoId;
+        $estagio->status = $request->checkStatus;
         $estagio->descricao = $request->descricao;
         $estagio->data_inicio = $request->data_inicio;
         $estagio->data_fim = $request->data_fim;
-        $estagio->data_solicitacao = Carbon::now();
-        $estagio->orientador_id = $request->input('orientador_id');
+        $estagio->data_solicitacao = $request->data_solicitacao;
+        $estagio->cpf = $request->cpf;
+        $estagio->orientador_id = $request->orientador;
+        $estagio->disciplina_id = $request->disciplina;
         $estagio->save();
         DB::commit();
 
         if ($alunoId != 0){
             return redirect('/estagios-aluno')->with('sucesso', 'Estagio cadastrado com sucesso.');
         }
-        
+
         return redirect('/estagio')->with('sucesso', 'Estagio cadastrado com sucesso.');
     }
 
