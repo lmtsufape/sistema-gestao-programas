@@ -61,10 +61,10 @@ class EstagioController extends Controller
         $estagio->descricao = $request->descricao;
         $estagio->data_inicio = $request->data_inicio;
         $estagio->data_fim = $request->data_fim;
-        $estagio->data_solicitacao = $request->data_solicitacao;
-        $estagio->cpf = $request->cpf;
+        //$estagio->data_solicitacao = $request->data_solicitacao;
+        $estagio->cpf_aluno = $request->cpf_aluno;
         $estagio->orientador_id = $request->orientador;
-        $estagio->disciplina_id = $request->disciplina;
+        $estagio->curso_id = $request->curso;
         $estagio->save();
         DB::commit();
 
