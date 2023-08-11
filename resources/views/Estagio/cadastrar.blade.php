@@ -25,10 +25,10 @@
                     <div id="checkStatus">
                         <label class="titulopequeno" for="status">Status: <strong style="color: red">*</strong></label>
                         <br>
-                        <input type="radio" name="checkStatus" value="true" required checked>
+                        <input type="radio" name="checkStatus" value=1 required checked>
                         <label class="textinho" for="checkStatus_ativo">Ativo</label>
                         <br>
-                        <input type="radio" name="checkStatus" value="false" required>
+                        <input type="radio" name="checkStatus" value=0 required>
                         <label class="textinho" for="checkStatus_inativo">Inativo</label><br><br>
                     </div>
 
@@ -77,6 +77,14 @@
                             @foreach ($orientadors as $orientador)
                                 <option value="{{$orientador->id}}" {{ old('orientador') == $orientador->id ? 'selected' : '' }}>{{$orientador->user->name}}</option>
                             @endforeach
+                    </select><br><br>
+
+                    <label class="titulopequeno" for="curso">Curso:<strong style="color: red">*</strong></label>
+                    <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso">
+                        <option value disabled selected hidden> Selecione o Curso</option>
+                        @foreach ($cursos as $curso)
+                        <option value="{{$curso->id}}" {{ old('curso') == $curso->id ? 'selected' : '' }} >{{$curso->nome}}</option>
+                        @endforeach
                     </select><br><br>
 
 

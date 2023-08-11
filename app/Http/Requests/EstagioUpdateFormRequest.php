@@ -27,7 +27,7 @@ class EstagioUpdateFormRequest extends FormRequest
                 "descricao" => "required",
                 "data_inicio" => "required|date",
                 "data_fim" => "required|date",
-                "data_solicitacao" => "required|date",
+                //"data_solicitacao" => "required|date",
             ];
         }
 
