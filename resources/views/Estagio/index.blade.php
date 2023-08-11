@@ -90,6 +90,7 @@
           <tr>
             <th scope="col">Status</i></th>
             <th scope="col">Descrição</th>
+            <th scope="col">Data de solicitação</th>
             <th scope="col">Data de início</th>
             <th scope="col">Data de fim</th>
             <th scope="col">Professor</th>
@@ -107,6 +108,7 @@
                 @endif
             </td>
             <td style="border-right: 1px solid #d3d3d3;">{{$estagio->descricao}}</td>
+            <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($estagio->created_at), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($estagio->data_inicio), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($estagio->data_fim), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{$estagio->orientador->user->name}}</td>
