@@ -17,7 +17,7 @@ class CreateEstagiosTable extends Migration
             $table->softDeletes();
             $table->id();
             $table->timestamps();
-            $table->boolean('status');
+            $table->boolean('status')->default(True);
             $table->text('descricao');
             $table->string('cpf_aluno');
             $table->date('data_inicio');
