@@ -28,51 +28,52 @@ pagination {
     font-size: 16px;
     height: 4.8vh;
     border: 1px solid var(--preto-p-50, #E6E6E6);
-    margin-bottom: 12px;
-    margin-right: 10px;
+    margin-right: 5px;
   }
   .lupa{
     /* background-image: url('/images/lupa.svg'); */
     background: url(/images/lupa.svg) no-repeat center;
     border-radius: 0px 10px 10px 0px;
     background-color: #fff;
-    width: 2.4%;
+    width: 40px;
     font-size: 16px;
     height: 4.8vh;
     border: 1px solid var(--preto-p-50, #E6E6E6);
     position: absolute;
     margin: auto;
   }
-  .cadastrar-buttom{
+
+  .barra-pesquisa-add{
     display: flex;
-    background: var(--green-g-200, #2B8C64);
-    border-radius: 9px;
-    border: 1px solid var(--green-g-200, #2B8C64);
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    padding: 10px;
-    height: 4.8vh;
-
-
+    flex-direction: row;
+    justify-content: space-between; /* Aligns items at the start and end of the container */
+    align-items: center; /* Aligns items vertically in the center */
+    margin-bottom: 20px;
+    margin: 0 13% 0 13%;
   }
+
 
   .cadastrar-botao{
     border-radius: 9px;
+    height: 4.8vh;
     border: 1px solid var(--green-g-200, #2B8C64);
     background: var(--green-g-200, #2B8C64);
-  }
-  .cadastrar{
+    justify-content: center;
+    align-items: center;
     color: var(--tons-claros-t-50, #FEFEFE);
-    font-style: normal;
-    font-weight: 400;
+    font-family: Inter;
     font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
     line-height: normal;
     text-decoration: none;
   }
-  .cadastrar-buttom :hover{
+
+  .cadastrar-botao:hover{
     text-decoration: none;
     color: white;
+    border: 1px solid var(--green-g-400, #005130);
+    background: var(--green-g-400, #005130);
   }
   .table{
     border-radius: 10px;
