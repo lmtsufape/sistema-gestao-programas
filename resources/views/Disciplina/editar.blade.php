@@ -10,46 +10,39 @@
                 </div>
             @endif
             <br>
-            <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">Editar Disciplina</h1>
+            <div class="fundocadastrar">
+            <div class="row" style="align-content: left;">
+                <h1 class="titulogrande">Editar Disciplina</h1>
+            </div>
+
                 <hr>
                 <form action="{{url("disciplinas/$disciplina->id")}}" method="POST">
                     @csrf
                     @method("PUT")
-                    <label for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome:<strong style="color: red">*</strong></label>
-                    <input type="text" name="nome" id="nome" value="{{$disciplina->nome}}" class="boxinfo"><br><br>
+                    <label for="nome" class="titulopequeno">Título:<strong style="color: red">*</strong></label>
+                    <br>
+                    <input class="boxcadastrar" type="text" id="nome" name="nome"  value="{{$disciplina->nome}}"  required placeholder="Digite o nome">
+                    <div class="invalid-feedback">Por favor preencha esse campo</div>
+                    <br><br>
 
-                    <label for="inputCurso" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;" >Curso:<strong style="color: red">*</strong></label>
-                    <select aria-label="Default select example" class="boxinfo" id="inputCurso" name="curso">
+                    <label for="inputCurso" class="titulopequeno" >Curso:<strong style="color: red">*</strong></label>
+                    <br>
+                    <select aria-label="Default select example" class="boxcadastrar" id="inputCurso" name="curso">
                         @foreach ($cursos as $curso)
                                 <option value="{{$curso->id}}" {{$disciplina->curso_id == $curso->id ? 'selected' : ''}} >{{$curso->nome}}</option>
                         @endforeach
                     </select>
-                    <br>
-                    <br>
+                    <br><br>
 
-                    <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
+                    <div class="botoessalvarvoltar">
                         <input type="button" value="Voltar" href="{{url("/disciplinas/")}}" onclick="window.location.href='{{url("/disciplinas/")}}'"
-                        style="background: #2D3875; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                        border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                        line-height: 29px; text-align: center; padding: 5px 15px;">
-                        <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                        display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                        font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
+                        class="botaovoltar">
+                        <input type="submit" value="Salvar" class="botaosalvar">
                     </div>
                 </form>
             </div>
         </div>
-        <style>
-            .boxinfo{
-                background: #F5F5F5;
-                border-radius: 6px;
-                border: 1px #D3D3D3;
-                width: 100%;
-                padding: 5px;
-                box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
-            }
-        </style>
+        
     @elsecan
         <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
         <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
