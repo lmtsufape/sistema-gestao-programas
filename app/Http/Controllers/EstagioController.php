@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EstagioStoreFormRequest;
 use App\Http\Requests\EstagioUpdateFormRequest;
 use App\Models\Aluno;
-use App\Models\Disciplina;
+use App\Models\Curso;
 use App\Models\Estagio;
 use App\Models\Orientador;
 use Exception;
@@ -24,7 +24,7 @@ class EstagioController extends Controller
                 return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
             }
 
-            $estagios = Estagio::join('alunos', 'estagios.aluno_id', '=', 'alunos.id')
+            $estagios = Estagio::join('alunos', 'estagios.cpf_aluno', '=', 'alunos.cpf')
             ->leftJoin('orientadors', 'estagios.orientador_id', '=', 'orientadors.id')
             ->leftJoin('users', 'users.typage_id', '=', 'orientadors.id');
             
@@ -53,9 +53,9 @@ class EstagioController extends Controller
     {
         #dd(auth()->user()->typage_type);
         $orientadors = Orientador::all();
-        $disciplinas = Disciplina::all();
+        $cursos = Curso::all();
 
-        return view('Estagio.cadastrar', compact('orientadors', 'disciplinas'));
+        return view('Estagio.cadastrar', compact('orientadors', 'cursos'));
     }
 
     public function store(EstagioStoreFormRequest $request)
@@ -68,10 +68,10 @@ class EstagioController extends Controller
         $estagio->descricao = $request->descricao;
         $estagio->data_inicio = $request->data_inicio;
         $estagio->data_fim = $request->data_fim;
-        $estagio->data_solicitacao = $request->data_solicitacao;
-        $estagio->cpf = $request->cpf;
+        //$estagio->data_solicitacao = $request->data_solicitacao;
+        $estagio->cpf_aluno = $request->cpf;
         $estagio->orientador_id = $request->orientador;
-        $estagio->disciplina_id = $request->disciplina;
+        $estagio->curso_id = $request->curso;
         $estagio->save();
         DB::commit();
         return redirect('/estagio')->with('sucesso', 'Estagio cadastrado com sucesso.');
