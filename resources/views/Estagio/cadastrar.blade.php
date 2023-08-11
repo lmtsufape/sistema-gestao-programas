@@ -61,8 +61,8 @@
 
                     @if(auth()->user()->typage_type == "App\Models\Aluno")
                         <label class="titulopequeno" for="">CPF do estudante: <strong style="color: red">*</strong></label>
-                        <input type="text" id="cpf" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"
-                            value="{{ auth()->user()->cpf_aluno }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}" readonly>
+                        <input type="text" id="cpf_aluno" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"
+                            value="{{ auth()->user()->cpf }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}" readonly>
                     @else
                         <label class="titulopequeno" for="">CPF do estudante: <strong style="color: red">*</strong></label>
                         <input type="text" id="cpf_aluno" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"

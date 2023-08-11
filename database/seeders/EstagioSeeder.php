@@ -27,7 +27,7 @@ class EstagioSeeder extends Seeder
             'curso_id' => 1
         ]);
 
-        $estagio2 = Estagio::create([
+        /*$estagio2 = Estagio::create([
             'descricao' => "Estágio2",
             'data_inicio' => "2023-07-10",
             'data_fim' => "2024-07-10",
@@ -38,6 +38,6 @@ class EstagioSeeder extends Seeder
             //'aluno_id' => 2,
             'orientador_id' => 2,
             'curso_id' => 2
-        ]);
+        ]);*/
     }
 }
