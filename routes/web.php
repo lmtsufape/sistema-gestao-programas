@@ -240,4 +240,6 @@ Route::prefix('estagio')->group(function() {
     Route::delete('/{id}', [EstagioController::class, 'destroy'])->name('estagio.delete');
     Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
 });
+
+Route::get('/estagios-aluno', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
   

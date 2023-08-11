@@ -65,6 +65,11 @@ class EstagioController extends Controller
         $estagio->orientador_id = $request->input('orientador_id');
         $estagio->save();
         DB::commit();
+
+        if ($alunoId != 0){
+            return redirect('/estagios-aluno')->with('sucesso', 'Estagio cadastrado com sucesso.');
+        }
+        
         return redirect('/estagio')->with('sucesso', 'Estagio cadastrado com sucesso.');
     }
 
@@ -118,5 +123,15 @@ class EstagioController extends Controller
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao deletar Estágio. tente novamente mais tarde." );
         }
+    }
+
+    public function estagios_profile(Request $request)
+     {
+        $pivos = Estagio::where('aluno_id', $request->user()->typage_id)->get();
+        $estagios = array();
+        foreach ($pivos as $pivo){
+            array_push($estagios, $pivo);
+        }
+        return view('Estagio.estagios-aluno', compact("estagios"));
     }
 }
