@@ -60,6 +60,8 @@
                 padding-right: 20px; /* Ajuste o valor conforme necessário */
             }
 
+            
+
         </style>
         <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
             @if (session('sucesso'))
@@ -69,10 +71,9 @@
             @endif
             <br>
 
-            <div class="boxchild">
-                <div class="row" >
-                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875; " >
-                    Cadastrar Edital no Programa {{$programa->nome}}</h1>
+            <div class="fundocadastrar">
+                <div class="row" style="align-content: left;">
+                    <h1 class="titulogrande"> Cadastrar Edital {{$programa->nome}}</h1>
                 </div>
 
                 <hr>
@@ -80,52 +81,68 @@
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
 
-                    <label class="titulo" for="titulo_edital">Título:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo" placeholder="Digite o título" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
+                    <label class="titulopequeno" for="titulo_edital">Título:<strong style="color: red">*</strong></label>
+                    <input class="boxcadastrar" placeholder="Digite o título" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
 
-                    <label class="titulo" for="semestre">Semestre de Início:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo semestre-autocomplete" placeholder="Digite o semestre (Ex: 2023.2)" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
+                    <label class="titulopequeno" for="semestre">Semestre de Início:<strong style="color: red">*</strong></label>
+                    <input class="boxcadastrar" placeholder="Digite o semestre (Ex: 2023.2)" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
 
-                    <label class="titulo" for="Descrição">Descrição:</label>
-                    <textarea class="boxinfo" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="3"> {{ old('descricao') }}</textarea><br><br>
+                    <div class="container-divisao">
+                    <div class="box-dividido">
+                        <label class="titulopequeno" for="data_inicio" >Data de início:<strong style="color: red">*</strong></label>
+                        <input class="boxcadastrar" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}">
+                    </div>
 
-                    <label class="titulo" for="data_inicio" class="titulo">Data de início:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}"><br><br>
+                    <div class="box-dividido">
+                        <label class="titulopequeno" for="data_fim" >Data de fim:<strong style="color: red">*</strong></label>
+                        <input class="boxcadastrar" type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}">
+                    </div>
+                    </div>
 
-                    <label class="titulo" for="data_fim" >Data de fim:<strong style="color: red">*</strong></label>
-                    <input class="boxinfo"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
-
+                    <label class="titulopequeno" for="Descrição">Descrição:</label>
+                    <textarea class="boxcadastrar" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="3"> {{ old('descricao') }}</textarea><br><br>
+                    
+                    <div class="container-divisao">
+                    <div class="box-dividido">
                     <div id="checkBolsa">
-                        <label class="titulo radio-spacing" for="bolsa">Possui bolsa?: <strong style="color: red">*</strong></label>
+                        <label class="titulopequeno radio-spacing" for="bolsa">Possui bolsa: <strong style="color: red">*</strong></label>
+                        <br>                     
                         <input type="radio" name="checkBolsa" value="sim" required>
-                        <label class="radio-spacing" for="checkBolsa_sim">Sim</label>
+                        <label class="radio-spacing" for="checkBolsa_sim">Sim</label> 
+                        <br>
+                                               
                         <input type="radio" name="checkBolsa" value="nao" required>
-                        <label class="radio-spacing" for="checkBolsa_nao">Não</label><br><br>
+                        <label class="radio-spacing" for="checkBolsa_nao">Não</label>
+                        <br><br>
                     </div>
 
                     <div id="valor_bolsa" hidden>
-                        <label class="titulo" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                        <input class="boxinfo" placeholder="Digite o valor da bolsa"
+                        <label class="titulopequeno" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
+                        <input class="boxcadastrar" placeholder="Digite o valor da bolsa"
                         type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
                     </div>
 
-                    <!-- <label class="titulo" for="programa">Programa:<strong style="color: red">*</strong></label>
-                    <select aria-label="Default select example" class="boxinfo" name="programa" id="programa">
+                    <!-- <label class="titulopequeno" for="programa">Programa:<strong style="color: red">*</strong></label>
+                    <select aria-label="Default select example" class="boxcadastrar" name="programa" id="programa">
                         <option value="{{$programa->id}}" selected>{{$programa->nome}}</option>
                     </select><br><br> -->
 
                     <input type="hidden" name="programa" value="{{$programa->id}}">
-
+                    </div>
+                    <div class="box-dividido">
                     <div id="checkDisciplina">
-                        <label class="titulo radio-spacing" for="disciplina">Possui disciplina(s)?: <strong style="color: red">*</strong></label>
+                        <label class="titulopequeno radio-spacing" for="disciplina">Possui disciplina(s): <strong style="color: red">*</strong></label>                        
+                        <br>
                         <input type="radio" name="checkDisciplina" value="sim" required>
                         <label class="radio-spacing" for="checkDisciplina_sim">Sim</label>
+                        <br>
                         <input type="radio" name="checkDisciplina" value="nao" required>
-                        <label class="radio-spacing" for="checkDisciplina_nao">Não</label><br><br>
+                        <label class="radio-spacing" for="checkDisciplina_nao">Não</label>
+                        <br><br>
                     </div>
 
                     <div id="disciplinas" hidden>
-                        <label class="titulo" for="disciplina">Disciplina(s):</label>
+                        <label class="titulopequeno" for="disciplina">Disciplina(s):</label>
                         <div class="colunm">
                             @foreach ($disciplinas as $disciplina)
                             <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
@@ -133,16 +150,13 @@
                             </div>
                             @endforeach</div><br><br>
                         </div>
+                    </div>
+                    </div>
+                    <br><br>
 
-
-                    <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                        <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" style="background: #2D3875;
-                        box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                        border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                        line-height: 29px; text-align: center; padding: 5px 15px;">
-                        <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                        display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                        font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
+                    <div class="botoessalvarvoltar">
+                        <input type="button" value="Voltar" href="{{ route('edital.index')}}" onclick="window.location.href='{{ route("edital.index")}}'" class="botaovoltar">
+                    <input type="submit" value="Salvar" class="botaosalvar">
                     </div>
                 </form>
             </div>
