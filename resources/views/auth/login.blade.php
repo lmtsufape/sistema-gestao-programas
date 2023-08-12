@@ -41,12 +41,13 @@
                     @csrf
                     <div class="form-body">
                         <div class="field" >
-                            <label for="email" class="titulo">E-mail</label>
+                            <label for="email" class="titulo-login">E-mail</label>
                             <input id="email" placeholder="Digite seu e-mail" name="email" class="input-login form-control input-modal-create" type="text"  >
                         </div>
+                        <br>
 
                         <div class="field" >
-                            <label for="password" class="titulo">Senha</label>
+                            <label for="password" class="titulo-login">Senha</label>
                             <input id="password" placeholder="Digite sua senha" name="password" class="input-login form-control input-modal-create" type="password"  >
                         </div>
 

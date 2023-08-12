@@ -24,6 +24,7 @@ pagination {
   }
   .busca{
     border-radius: 10px 0px 0px 10px;
+    flex-grow: 1; /* Fill the remaining space in the flex container */
     background-color: #FFF;
     font-size: 16px;
     height: 4.8vh;
@@ -49,7 +50,6 @@ pagination {
     justify-content: space-between; /* Aligns items at the start and end of the container */
     align-items: center; /* Aligns items vertically in the center */
     margin-bottom: 20px;
-    margin: 0 13% 0 13%;
   }
 
 
@@ -88,3 +88,44 @@ pagination {
     height:3.33vh;
     gap: 5%;
   }
+
+  .titulo-login {
+    color: var(--preto-p-200, #2B2B2B);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    width: 74%;
+    margin: 0 auto;
+
+  }
+
+  .search-input {
+    flex-grow: 1;
+    border-radius: 10px 0px 0px 10px;
+    background-color: #FFF;
+    font-size: 16px;
+    height: 4.8vh;
+    border: 1px solid #E6E6E6;
+    padding: 10px;
+  }
+
+  .search-button {
+    background: url(/images/lupa.svg) no-repeat center;
+    border-radius: 0px 10px 10px 0px;
+    background-color: #fff;
+    border: 1px solid var(--preto-p-50, #E6E6E6);
+    margin-left: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+    height: 4.8vh;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+

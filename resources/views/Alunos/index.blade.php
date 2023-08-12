@@ -18,16 +18,22 @@
       <h1 class = "titulo"><strong>Estudantes</strong></h1>
     </div>
 
-    <div class=" barra-pesquisa-add p-2 px-3">
+    {{--  <div class="barra-pesquisa-add p-2 px-3">
         <form action="{{route('alunos.index')}}" method="GET">
-          <input class="busca" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="width: 250px">
+          <input class="busca" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor">
           <input class="lupa" type="submit" value="">
         </form>
-
         <button class="cadastrar-botao" href="{{route("alunos.create")}}">
           Cadastrar estudantes
         </button>
-    </div>
+    </div>  --}}
+
+    <div class="search-container">
+        <input class="search-input" type="text" placeholder="Digite a busca" title="" id="valor" name="valor">
+        <button class="search-button" type="submit"></button>
+        <button class="cadastrar-botao" type="button" href="{{route("alunos.create")}}">Cadastrar estudantes</button>
+      </div>
+
     <br>
     <br>
 
