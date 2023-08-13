@@ -1,0 +1,131 @@
+pagination {
+    display: inline-block;
+  }
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 10px 4px;
+  }
+  .pagination a.active {
+    background-color: #3B864F;
+    color: white;
+    border: 1px solid #3B864F;
+  }
+  .pagination a:hover:not(.active) {
+    background-color: #34A853;
+  }
+  .titulo{
+    color: #2D3875;
+    font-size: 24px;
+  }
+  .busca{
+    border-radius: 10px 0px 0px 10px;
+    flex-grow: 1; /* Fill the remaining space in the flex container */
+    background-color: #FFF;
+    font-size: 16px;
+    height: 4.8vh;
+    border: 1px solid var(--preto-p-50, #E6E6E6);
+    margin-right: 5px;
+  }
+  .lupa{
+    /* background-image: url('/images/lupa.svg'); */
+    background: url(/images/lupa.svg) no-repeat center;
+    border-radius: 0px 10px 10px 0px;
+    background-color: #fff;
+    width: 40px;
+    font-size: 16px;
+    height: 4.8vh;
+    border: 1px solid var(--preto-p-50, #E6E6E6);
+    position: absolute;
+    margin: auto;
+  }
+
+  .barra-pesquisa-add{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Aligns items at the start and end of the container */
+    align-items: center; /* Aligns items vertically in the center */
+    margin-bottom: 20px;
+  }
+
+
+  .cadastrar-botao{
+    border-radius: 9px;
+    height: 4.8vh;
+    border: 1px solid var(--green-g-200, #2B8C64);
+    background: var(--green-g-200, #2B8C64);
+    justify-content: center;
+    align-items: center;
+    color: var(--tons-claros-t-50, #FEFEFE);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration: none;
+  }
+
+  .cadastrar-botao:hover{
+    text-decoration: none;
+    color: white;
+    border: 1px solid var(--green-g-400, #005130);
+    background: var(--green-g-400, #005130);
+  }
+  .table{
+    border-radius: 10px;
+  }
+
+  .table-head{
+    background-color: #972E3F;
+    color: #fff;
+  }
+  .icones-tabela{
+    width: 2%;
+    height:3.33vh;
+    gap: 5%;
+  }
+
+  .titulo-login {
+    color: var(--preto-p-200, #2B2B2B);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    width: 74%;
+    margin: 0 auto;
+
+  }
+
+  .search-input {
+    flex-grow: 1;
+    border-radius: 10px 0px 0px 10px;
+    background-color: #FFF;
+    font-size: 16px;
+    height: 4.8vh;
+    border: 1px solid #E6E6E6;
+    padding: 10px;
+  }
+
+  .search-button {
+    background: url(/images/lupa.svg) no-repeat center;
+    border-radius: 0px 10px 10px 0px;
+    background-color: #fff;
+    border: 1px solid var(--preto-p-50, #E6E6E6);
+    margin-left: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+    height: 4.8vh;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+

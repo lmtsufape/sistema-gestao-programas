@@ -2,28 +2,6 @@
 
 @section("body")
 
-<style>
-  pagination {
-    display: inline-block;
-  }
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 10px 4px;
-  }
-  .pagination a.active {
-    background-color: #3B864F;
-    color: white;
-    border: 1px solid #3B864F;
-  }
-  .pagination a:hover:not(.active) {
-    background-color: #34A853;
-  }
-</style>
 
 
 @canany(['admin', 'servidor', 'gestor'])
@@ -35,50 +13,27 @@
     @endif
     <br>
 
-    <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1 style="color:#2D3875;"><strong>Estudantes</strong></h1>
-    <div style="margin: auto"></div>
-    {{--  TODO: Falta adicionar um modal com os possiveis filtros  --}}
-    <form action="{{route('alunos.index')}}" method="GET">
-      <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor"
-      style="background-color: #D9D9D9;
-            border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            background-position: 10px 2px;
-            background-repeat: no-repeat;
-            width: 35%;
-            font-size: 16px;
-            height: 45px;
-            border: 1px solid #ddd;
-            margin-bottom: 12px; margin-right: 10px">
 
-      <input type="submit" value=""
-      style="background-image: url('/images/searchicon.png');
-            background-color: #D9D9D9;
-            border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            width: 40px;
-            font-size: 16px;
-            height: 45px;
-            border: 1px solid #ddd;
-            position: absolute;
-            margin: auto;"
-      />
-
-    </form>
-
-  </div>
-
-
-  <div style="display: contents; align-content: center; align-items: center;">
-    <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
-      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;"
-    href="{{route("alunos.create")}}"
-    onmouseover="this.style.backgroundColor='#2D3875'"
-    onmouseout="this.style.backgroundColor='#34A853'">
-        <img src="{{asset("images/plus.png")}}" alt="Cadastrar estudantes" style="padding-bottom: 5px"> Cadastrar estudantes
-    </a>
+    <div style="display: flex; justify-content: space-evenly; align-items: center;">
+      <h1 class = "titulo"><strong>Estudantes</strong></h1>
     </div>
+
+    {{--  <div class="barra-pesquisa-add p-2 px-3">
+        <form action="{{route('alunos.index')}}" method="GET">
+          <input class="busca" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor">
+          <input class="lupa" type="submit" value="">
+        </form>
+        <button class="cadastrar-botao" href="{{route("alunos.create")}}">
+          Cadastrar estudantes
+        </button>
+    </div>  --}}
+
+    <div class="search-container">
+        <input class="search-input" type="text" placeholder="Digite a busca" title="" id="valor" name="valor">
+        <button class="search-button" type="submit"></button>
+        <button class="cadastrar-botao" type="button" href="{{route("alunos.create")}}">Cadastrar estudantes</button>
+      </div>
+
     <br>
     <br>
 
@@ -92,15 +47,13 @@
 
     <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
         <div class="col-md-9 corpo p-2 px-3">
-         <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
-         min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
+         <table class="table">
           <thead>
-
-            <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Nome Social</th>
-                <th scope="col">CPF</th>
-                <th scope="col">Curso</th>
+            <tr class= table-head>
+                <th scope="col" class="text-center" >Nome</th>
+                <th scope="col" class="text-center">Nome Social</th>
+                <th scope="col" class="text-center">CPF</th>
+                <th scope="col" class="text-center">Curso</th>
                 <th class="text-center">Ações</th>
             </tr>
           </thead>
@@ -113,7 +66,7 @@
                   <td class="align-middle">{{$aluno->curso->nome}}</td>
                   <td class="align-middle">
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$aluno->id}}">
-                            <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
+                            <img src="{{asset('images/information.svg')}}" alt="Info aluno" style="height: 30px; width: 30px;">
                         </a>
 
                         {{--<a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$aluno->id}}">
@@ -121,11 +74,11 @@
                         </a>--}}
 
                         <a href=" {{route('alunos.edit', ['id' => $aluno->id] )}}">
-                            <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar aluno" style="height: 30px; width: 30px;">
+                            <img src="{{asset('images/pencil.svg')}}" alt="Editar aluno" style="height: 30px; width: 30px;">
                         </a>
 
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$aluno->id}}">
-                            <img src="{{asset('images/delete.png')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
+                            <img src="{{asset('images/delete.svg')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
                         </a>
 
 
@@ -139,7 +92,7 @@
         </table>
 
         </div>
-
+<!--
         <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
         width: 150px; height: 50%;">
                 <div style="align-self: center; margin-right: auto">
@@ -173,6 +126,7 @@
               <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
             </div>
           </div>
+            -->
         </div>
       </div>
 
