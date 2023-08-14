@@ -52,17 +52,17 @@
                     <div id="checkTipo">
                         <label class="titulopequeno" for="tipo">Tipo: <strong style="color: red">*</strong></label>
                         <br>
-                        <input type="radio" name="tipo_estagio" value="eo" required>
+                        <input type="radio" name="checkTipo" value="eo" required>
                         <label class="textinho" for="checkTipo_obrigatorio">Obrigatório</label>
                         <br>
-                        <input type="radio" name="tipo_estagio" value="eno" required>
+                        <input type="radio" name="checkTipo" value="eno" required>
                         <label class="textinho" for="checkTipo_nao_obrigatorio">Não Obrigatório</label><br><br>
                     </div>
 
-                    @if(auth()->user()->typage_type == "App\Models\Aluno")
+                    @if($aluno)
                         <label class="titulopequeno" for="">CPF do estudante: <strong style="color: red">*</strong></label>
                         <input type="text" id="cpf" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"
-                            value="{{ auth()->user()->cpf_aluno }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}" readonly>
+                            value="{{ $aluno->cpf }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}" readonly style="background: #eee; ">
                     @else
                         <label class="titulopequeno" for="">CPF do estudante: <strong style="color: red">*</strong></label>
                         <input type="text" id="cpf_aluno" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"
@@ -72,21 +72,31 @@
                     <br>
 
                     <label class="titulopequeno" for="orientador">Orientador:<strong style="color: red">*</strong></label>
-                    <select aria-label="Default select example" class="boxcadastrar" name="orientador_id" id="orientador" >
+                    <select aria-label="Default select example" class="boxcadastrar" name="orientador" id="orientador" >
                         <option  value disabled selected hidden> Selecione o Orientador</option>
                             @foreach ($orientadors as $orientador)
                                 <option value="{{$orientador->id}}" {{ old('orientador') == $orientador->id ? 'selected' : '' }}>{{$orientador->user->name}}</option>
                             @endforeach
                     </select><br><br>
 
-                    <label class="titulopequeno" for="curso">Curso:<strong style="color: red">*</strong></label>
-                    <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso">
-                        <option value disabled selected hidden> Selecione o Curso</option>
-                        @foreach ($cursos as $curso)
-                        <option value="{{$curso->id}}" {{ old('curso') == $curso->id ? 'selected' : '' }} >{{$curso->nome}}</option>
-                        @endforeach
-                    </select><br><br>
-
+                    @if($aluno)
+                        <label class="titulopequeno" for="curso">Curso:<strong style="color: red">*</strong></label>
+                        <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso" style="background: #eee; pointer-events: none; touch-action: none;">
+                            <option value disabled selected hidden> Selecione o Curso</option>
+                            @foreach ($cursos as $curso)
+                            <option value="{{$curso->id}}" {{ $aluno->curso_id == $curso->id ? 'selected' : '' }} >{{$curso->nome}}</option>
+                            @endforeach
+                        </select><br><br>
+                    @else
+                        <label class="titulopequeno" for="curso">Curso:<strong style="color: red">*</strong></label>
+                        <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso">
+                            <option value disabled selected hidden> Selecione o Curso</option>
+                            @foreach ($cursos as $curso)
+                            <option value="{{$curso->id}}" {{ old('curso') == $curso->id ? 'selected' : '' }} >{{$curso->nome}}</option>
+                            @endforeach
+                        </select><br><br>
+                        
+                    @endif
 
                     <div class="botoessalvarvoltar">
                         <input type="button" value="Voltar" href="{{url('/home/')}}" onclick="window.location.href='{{url('/home/')}}'" class="botaovoltar">

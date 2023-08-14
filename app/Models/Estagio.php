@@ -28,8 +28,8 @@ class Estagio extends Model
 
     public function aluno()
     {
-        //return $this->belongsTo(Aluno::class, "aluno_id");
-        return $this->belongsTo(Aluno::class, "cpf_aluno", "cpf");
+        return $this->belongsTo(Aluno::class, "aluno_id");
+        //return $this->belongsTo(Aluno::class, "cpf_aluno");
     }
 
     public function orientador()

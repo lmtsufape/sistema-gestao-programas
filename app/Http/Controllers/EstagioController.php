@@ -25,7 +25,7 @@ class EstagioController extends Controller
                 return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
             }
 
-            $estagios = Estagio::join('alunos', 'estagios.cpf_aluno', '=', 'alunos.cpf')
+            $estagios = Estagio::join('alunos', 'estagios.aluno_id', '=', 'alunos.id')
             ->leftJoin('orientadors', 'estagios.orientador_id', '=', 'orientadors.id')
             ->leftJoin('users', 'users.typage_id', '=', 'orientadors.id');
             
@@ -52,11 +52,19 @@ class EstagioController extends Controller
 
     public function create()
     {
-        #dd(auth()->user()->typage_type);
+        $aluno = null;
+
+        if(auth()->user()->typage_type == "App\Models\Aluno"){
+            //Se for aluno, vamos obter o aluno pelo typage_id
+            $aluno_id = auth()->user()->typage_id;
+            $aluno = Aluno::Where('id', $aluno_id)->first();
+
+            //dd($aluno);
+        }
         $orientadors = Orientador::all();
         $cursos = Curso::all();
 
-        return view('Estagio.cadastrar', compact('orientadors', 'cursos'));
+        return view('Estagio.cadastrar', compact('orientadors', 'cursos', 'aluno'));
     }
 
     public function store(EstagioStoreFormRequest $request)
@@ -71,7 +79,9 @@ class EstagioController extends Controller
         $estagio->data_inicio = $request->data_inicio;
         $estagio->data_fim = $request->data_fim;
         //$estagio->data_solicitacao = $request->data_solicitacao;
-        $estagio->cpf_aluno = $request->cpf_aluno;
+        $aluno = Aluno::Where('cpf', $request->cpf_aluno)->first();
+
+        $estagio->aluno_id = $aluno->id;
         $estagio->orientador_id = $request->orientador;
         $estagio->curso_id = $request->curso;
         $estagio->save();

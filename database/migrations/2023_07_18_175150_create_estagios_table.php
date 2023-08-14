@@ -19,15 +19,18 @@ class CreateEstagiosTable extends Migration
             $table->timestamps();
             $table->boolean('status')->default(True);
             $table->text('descricao');
-            $table->string('cpf_aluno');
+            //$table->string('cpf_aluno');
             $table->date('data_inicio');
             $table->date('data_fim');
             //$table->date('data_solicitacao');
             $table->enum('tipo', ['eo', 'eno']);
 
-            $table->foreign('cpf_aluno')->references('cpf')->on('alunos');
+            //$table->foreign('cpf_aluno')->references('cpf')->on('alunos');
             //$table->unsignedBigInteger('cpf');
-            
+
+            $table->unsignedBigInteger('aluno_id');
+            $table->foreign('aluno_id')->references('id')->on('alunos');
+
             $table->unsignedBigInteger('orientador_id');
             $table->foreign('orientador_id')->references('id')->on('orientadors');
             
