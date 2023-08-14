@@ -19,10 +19,10 @@ class EstagioSeeder extends Seeder
             'data_inicio' => "2023-06-21",
             'data_fim' => "2024-06-21",
             //'data_solicitacao' => "2023-05-21",
-            'cpf_aluno' => "348.126.240-02",
+            //'cpf_aluno' => "348.126.240-02",
             'tipo' => "eo",
             'status' => true,
-            //'aluno_id' => 1,
+            'aluno_id' => 1,
             'orientador_id' => 1,
             'curso_id' => 1
         ]);
