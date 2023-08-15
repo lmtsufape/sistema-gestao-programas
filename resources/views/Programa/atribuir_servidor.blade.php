@@ -58,7 +58,7 @@
 </style>
 
 @canany(['admin', 'pro_reitor'])
-    <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
+<div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
 
         @if (session('sucesso'))
             <div class="alert alert-success" style="width: 100%;">
@@ -66,41 +66,39 @@
             </div>
         @endif
         <br>
-        <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
-            <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
-            Cadastrar Servidor no Programa {{$programa->nome}}</h1>
-            <hr>
 
-            <form action="{{route('programas.vincular-servidor')}}" method="post">
-                @csrf
+        <div class="fundocadastrar">
 
-                <input type="hidden" name="id" value="{{$programa->id}}">
+            <div class="row" style="align-content: left;">
+                <h1 class="titulogrande">
+                Cadastrar Servidor no Programa {{$programa->nome}}</h1>
+            </div>
 
-                <label class="titulo" for="servidor">Servidor:<strong style="color: red">*</strong></label>
-                @foreach ($servidors as $servidor)
-                <div class="colunm">
-                    <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
-                        <input type="checkbox" id="servidor_{{ $servidor->id }}" name="servidors[]" value="{{ $servidor->id }}">{{ $servidor->user->name }}
+                <form action="{{route('programas.vincular-servidor')}}" method="post">
+                    @csrf
+
+                    <input type="hidden" name="id" value="{{$programa->id}}">
+
+                    <label class="titulopequeno" for="servidor">Servidor:<strong style="color: red">*</strong></label>
+                    @foreach ($servidors as $servidor)
+                    <div class="colunm">
+                        <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
+                            <input type="checkbox" id="servidor_{{ $servidor->id }}" name="servidors[]" value="{{ $servidor->id }}">{{ $servidor->user->name }}
+                        </div>
                     </div>
-                </div>
 
-                @endforeach
-                <br><br>
+                    @endforeach
+                    <br><br>
 
-                <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                    <input type="button" value="Voltar" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'" style="background: #2D3875;
-                                box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                                border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                                line-height: 29px; text-align: center; padding: 5px 15px;">
-                    <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                        display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                        font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
-                </div>
-            </form>
+                   
+                </form>
+                <div class="botoessalvarvoltar">
+                        <input type="button" value="Voltar" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'" class="botaovoltar">
+                        <input type="submit" value="Salvar" class="botaosalvar">
+                    </div>
         </div>
-        <br>
-        <br>
-    </div>
+        <br><br>
+</div>
 
         <script>
             $("#servidors").chosen({
