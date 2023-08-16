@@ -3,50 +3,26 @@
 @section("body")
 
 @canany(['admin', 'servidor', 'gestor'])
-<div class="container-fluid" style="font-family: 'Roboto', sans-serif;">
+<div class="container-fluid">
   @if (session('sucesso'))
   <div class="alert alert-success">
     {{session('sucesso')}}
   </div>
   @endif
   <br>
-  <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1 style="color:#2D3875;"><strong>Disciplinas</strong></h1>
-    <form action="{{route("disciplinas.index")}}" method="GET">
-      <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
-              border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-              background-position: 10px 2px;
-              background-repeat: no-repeat;
-              width: 35%;
-              font-size: 16px;
-              height: 45px;
-              border: 1px solid #ddd;
-              margin-bottom: 12px;
-              margin-right: 12px;" />
-      <input type="submit" value="" style="background-image: url('/images/searchicon.png');
-              background-color: #D9D9D9;
-              border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-              width: 50px;
-              font-size: 16px;
-              height: 45px;
-              border: 1px solid #ddd;
-              position: absolute;
-              margin: auto;" />
-    </form>
-  </div>
 
-  <div style="display: contents; align-content: center; align-items: center;">
-    <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
-      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;" href="{{route("disciplinas.create")}}"
-      onmouseover="this.style.backgroundColor='#2D3875'"
-      onmouseout="this.style.backgroundColor='#34A853'">
-      <img src="{{asset("images/plus.png")}}" alt="Cadastrar Disciplina" style="padding-bottom: 5px"> Cadastrar Disciplina
-    </a>
-  </div>
-  <br>
-  <br>
+  <div style="display: flex; justify-content: space-evenly; align-items: center;">
+      <h1 class = "titulo"><strong>Disciplinas</strong></h1>
+    </div>
+
+    <form class="search-container" action="{{route("disciplinas.index")}}" method="GET">
+        <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
+        <input class="search-button" type="submit" value=""></input>
+        <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("disciplinas.create") }}'">Cadastrar disciplina</button>
+    </form>
+
+    <br>
+    <br>
 
   @if (sizeof($disciplinas) == 0)
   <div class="empty">
@@ -56,40 +32,32 @@
   </div>
   @else
 
-
   <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">
-      <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
-         min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
+      <table class="table">
         <thead>
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Curso</th>
-            <th scope="col">Ações</th>
+          <tr class="table-head">
+            <th scope="col" class="text-center">Nome</th>
+            <th scope="col" class="text-center">Curso</th>
+            <th scope="col" class="text-center">Ações</th>
           </tr>
         </thead>
         @foreach ($disciplinas as $disciplinas)
         <tbody>
           <tr>
-            <td>{{$disciplinas->nome}}</td>
-            <td>{{$disciplinas->curso->nome}}</td>
-            <td>
+            <td class="align-middle">{{$disciplinas->nome}}</td>
+            <td class="align-middle">{{$disciplinas->curso->nome}}</td>
+            <td class="align-middle">
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$disciplinas->id}}">
-                <img src="{{asset("images/info.png")}}" alt="Info programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/information.svg')}}" alt="Info programa" style="height: 30px; width: 30px;">
               </a>
-              {{--  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$disciplinas->id}}">
-                <img src="{{asset("images/document.png")}}" alt="Documento programa" style="height: 30px; width: 30px;">
-                {{-- TODO: Fica pra fazer o modal depois  --}}
-              {{--  </a>  --}}
               <a href="{{url("/disciplinas/$disciplinas->id/edit")}}">
-                <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/pencil.svg')}}" alt="Editar programa" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$disciplinas->id}}">
-                <img src="{{asset("images/delete.png")}}" alt="Deletar programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/delete.svg')}}" alt="Deletar programa" style="height: 30px; width: 30px;">
               </a>
             </td>
-          </tr>
-          <tr> {{-- Não apagar esse tr vazio senão a linha da tabela fica mt preta/grossa  --}}
           </tr>
         </tbody>
         @include("Disciplina.components.modal_show", ["disciplina" => $disciplinas])
@@ -97,6 +65,7 @@
         @endforeach
       </table>
     </div>
+    <!--
     <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
         width: 150px; height: 50%;">
       <div style="align-self: center; margin-right: auto">
@@ -131,6 +100,7 @@
         </div>
       </div>
     </div>
+        -->
   </div>
 </div>
 @endif
