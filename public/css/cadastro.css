@@ -8,16 +8,6 @@
     line-height: normal;
 }
 
-.title-cad{
-    color: #3D3434;
-    font-family: Inter;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-align: left;
-}
-
 .titulopequeno {
     color: #2B2B2B;
     font-family: Inter;
@@ -25,13 +15,6 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-}
-
-.images{
-    width: 150px; 
-    height: 150px; 
-    border-radius: 50%;
-    margin: 5%;
 }
 
 .botaosalvar{
@@ -85,8 +68,6 @@
     border: 0.5px solid #E6E6E6;
     width: 100%;
     padding: 3px;
-    margin-bottom: 25px;
-    height: 43px;
 }
 
 .boxcadastrar2{
@@ -105,12 +86,6 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-}
-
-.divisor{
-    color:#5C1C26; 
-    background-color: #5C1C26;
-    align-self: center;
 }
 
 .botoessalvarvoltar{
