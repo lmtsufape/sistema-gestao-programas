@@ -88,10 +88,10 @@ class EstagioController extends Controller
         DB::commit();
 
         if ($alunoId != 0){
-            return redirect('/estagios-aluno')->with('sucesso', 'Estagio cadastrado com sucesso.');
+            return redirect('/estagios-aluno')->with('sucesso', 'Estágio cadastrado com sucesso.');
         }
 
-        return redirect('/estagio')->with('sucesso', 'Estagio cadastrado com sucesso.');
+        return redirect('/estagio')->with('sucesso', 'Estágio cadastrado com sucesso.');
     }
 
     public function edit($id)
