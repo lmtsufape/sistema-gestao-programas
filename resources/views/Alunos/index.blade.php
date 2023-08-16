@@ -31,7 +31,7 @@
     <div class="search-container">
         <input class="search-input" type="text" placeholder="Digite a busca" title="" id="valor" name="valor">
         <button class="search-button" type="submit"></button>
-        <button class="cadastrar-botao" type="button" href="{{route("alunos.create")}}">Cadastrar estudantes</button>
+        <button class="cadastrar-botao" type="button"  onclick="window.location.href = '{{route("alunos.create")}}'">Cadastrar estudantes</button>
       </div>
 
     <br>
