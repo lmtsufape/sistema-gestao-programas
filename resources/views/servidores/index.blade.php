@@ -1,53 +1,30 @@
 @extends("templates.app")
-@section("body")
-@canany(['admin', 'pro_reitor', 'gestor'])
-  <div class="container-fluid" style="font-family: 'Roboto', sans-serif;">
 
+@section("body")
+
+@canany(['admin', 'pro_reitor', 'gestor'])
+  
+  <div class="container-fluid" >
+    @if (session('sucesso'))
+    <div class="alert alert-success">
+        {{session('sucesso')}}
+    </div>
+    @endif
     <br>
-    <div class="container-fluid" style="font-family: 'Roboto', sans-serif;">
-  @if (session('sucesso'))
-  <div class="alert alert-success">
-    {{session('sucesso')}}
-  </div>
-  @endif
-  <br>
-  <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1 style="color:#2D3875;"><strong>Servidores</strong></h1>
-    <div style="margin: auto"></div>
+
+    <div style="display: flex; justify-content: space-evenly; align-items: center;">
+      <h1 class = "titulo"><strong>Servidores</strong></h1>
+    </div>
+    
     {{-- TODO: Falta adicionar um modal com os possiveis filtros  --}}
-    <form action="{{route("servidores.index")}}" method="GET" id="myForm">
-      <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
-              border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-              background-position: 10px 2px;
-              background-repeat: no-repeat;
-              width: 35%;
-              font-size: 16px;
-              height: 45px;
-              border: 1px solid #ddd;
-              margin-bottom: 12px;
-              margin-right: 12px;">
-      <input type="submit" value="" style="background-image: url('/images/searchicon.png');
-              background-color: #D9D9D9;
-              border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-              width: 50px;
-              font-size: 16px;
-              height: 45px;
-              border: 1px solid #ddd;
-              position: absolute;
-              margin: auto;" />
+    <form class="search-container" action="{{route("servidores.index")}}" method="GET">
+        <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
+        <button class="search-button" type="submit" value=""></button>
+        <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("servidores.create") }}'"">Cadastrar servidor</button>
     </form>
-  </div>
-  <di<div style="display: contents; align-content: center; align-items: center;">
-    <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
-      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;" href="{{route('servidores.create')}}"
-      onmouseover="this.style.backgroundColor='#2D3875'"
-      onmouseout="this.style.backgroundColor='#34A853'">
-      <img src="{{asset("images/plus.png")}}" alt="Cadastrar servidor" style="padding-bottom: 5px;"> Cadastrar servidor
-    </a>
+    
     <br>
-  </div>
+    <br>
 
   @if(empty($servidores))
   <div class="empty">
@@ -56,21 +33,19 @@
     </p>
   </div>
   @else
-  <br>
-  <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
-    <div class="col-md-9 corpo p-2 px-3">
-     <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
-     min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
-         <thead>
-        <tr>
-          <th scope="col">Nome</th>
-          <th scope="col">E-mail</th>
-          <th scope="col">CPF</th>
-          <th scope="col">Tipo do servidor</th>
-          <th scope="col">Ações</th>
-
-        </tr>
-      </thead>
+    
+      <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+        <div class="col-md-9 corpo p-2 px-3">
+         <table class="table">
+          <thead>
+            <tr class= table-head>
+                <th scope="col" class="text-center" >Nome</th>
+                <th scope="col" class="text-center">E-mail</th>
+                <th scope="col" class="text-center">CPF</th>
+                <th scope="col" class="text-center">Tipo de Servidor</th>
+                <th class="text-center">Ações</th>
+            </tr>
+          </thead>
       @foreach ($servidores as $servidor)
       <tbody>
         <tr>
@@ -92,16 +67,19 @@
                 @break
 
             @endswitch
+
             <td class="align-middle">
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$servidor->id}}">
-                <img src="{{asset("images/info.png")}}" alt="Info servidor">
+                <img src="{{asset('images/information.svg')}}" alt="Info servidor" style="height: 30px; width: 30px;">
               </a>
               <a href="{{url("/servidores/".$servidor->id."/edit")}}">
-                <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar servidor">
+                <img src="{{asset('images/pencil.svg')}}" alt="Editar servidor" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$servidor->id}}">
-                <img src="{{asset("images/delete.png")}}" alt="Deletar servidor">
+                <img src="{{asset('images/delete.svg')}}" alt="Deletar servidor" style="height: 30px; width: 30px;">
               </a>
+
+
             </td>
         </tr>
         @include("servidores.components.modal_show", ["servidor" => $servidor])
@@ -110,6 +88,7 @@
       </tbody>
     </table>
     </div>
+<!--
     <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
         width: 150px; height: 50%;">
                 <div style="align-self: center; margin-right: auto">
@@ -131,6 +110,7 @@
           <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
         </div>
+
         <div style="display: flex; margin: 10px">
           <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
           <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
@@ -141,7 +121,9 @@
       <br>
       <br>
       @endif
+      -->
     </div>
+
   </div>
 
   <script type="text/javascript">

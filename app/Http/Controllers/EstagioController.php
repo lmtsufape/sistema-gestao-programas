@@ -71,14 +71,12 @@ class EstagioController extends Controller
     {
         DB::beginTransaction();
 
-        $alunoId = auth()->user()->id;
-        //dd($request);
         $estagio = new Estagio();
         $estagio->status = $request->checkStatus;
         $estagio->descricao = $request->descricao;
         $estagio->data_inicio = $request->data_inicio;
         $estagio->data_fim = $request->data_fim;
-        //$estagio->data_solicitacao = $request->data_solicitacao;
+
         $aluno = Aluno::Where('cpf', $request->cpf_aluno)->first();
 
         $estagio->aluno_id = $aluno->id;
@@ -87,11 +85,11 @@ class EstagioController extends Controller
         $estagio->save();
         DB::commit();
 
-        if ($alunoId != 0){
-            return redirect('/estagios-aluno')->with('sucesso', 'Estagio cadastrado com sucesso.');
+        if (auth()->user()->typage_type == "App\Models\Aluno"){
+            return redirect('/estagios-aluno')->with('sucesso', 'Estágio cadastrado com sucesso.');
         }
 
-        return redirect('/estagio')->with('sucesso', 'Estagio cadastrado com sucesso.');
+        return redirect('/estagio')->with('sucesso', 'Estágio cadastrado com sucesso.');
     }
 
     public function edit($id)

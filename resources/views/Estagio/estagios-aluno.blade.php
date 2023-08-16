@@ -76,19 +76,17 @@
         min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
            <thead>
           <tr>
+            <th scope="col">Status</th>
             <th scope="col">Descrição</i></th>
+            <th scope="col">Data de solicitação</i></th>
             <th scope="col">Data de início</th>
             <th scope="col">Data de fim</th>
-            <th scope="col">Status</th>
             <th scope="col">Ações</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($estagios as $estagio)
           <tr>
-            <td style="border-right: 1px solid #d3d3d3;">{{$estagio->descricao}}</td>
-            <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($estagio->data_inicio), "d/m/Y")}}</td>
-            <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($estagio->data_fim), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">
                 @if($estagio->status == 0)
                 Inativo
@@ -96,6 +94,10 @@
                 Ativo
                 @endif
             </td>
+            <td style="border-right: 1px solid #d3d3d3;">{{$estagio->descricao}}</td>
+            <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($estagio->data_solicitacao), "d/m/Y")}}</td>
+            <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($estagio->data_inicio), "d/m/Y")}}</td>
+            <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($estagio->data_fim), "d/m/Y")}}</td>
             <td>
             @endforeach
                 </tbody>
