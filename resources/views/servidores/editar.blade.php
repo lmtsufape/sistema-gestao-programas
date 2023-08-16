@@ -12,41 +12,43 @@
             <br>
             <br>
 
-            <div class="boxchild">
-                <h1 class="title-cad">
+            <div class="fundocadastrar">
+                <h1 class="titulogrande">
                     Editar Servidor</h1>
                     <hr class="divisor">
                 <form action="{{url("/servidores/$servidor->id")}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
 
-                    @if($servidor->user->image)
-                    <img src="/images/fotos-perfil/{{ $servidor->user->image }}" alt="Foto Perfil" class="images"/>
-                    @else
-                    <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" class="images"/>
-                    @endif
-                    <input type="file" id="image" name="image" class="form-control boxinfo">
-
-                    <label for="nome" class="titulo-cad">Nome:<strong style="color: #8B5558">*</strong></label>
+                    <div style="display:flex; flex-direction: column;">
+                        <label for="perfil" class="titulopequeno">Foto do Perfil:</label>
+                        @if($servidor->user->image)
+                        <img src="/images/fotos-perfil/{{ $servidor->user->image }}" alt="Foto Perfil" class="images"/>
+                        @else
+                        <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" class="images"/>
+                        @endif
+                        <input type="file" id="image" name="image" class="form-control boxcadastrar">
+                    </div>
+                    <label for="nome" class="titulopequeno">Nome:<strong style="color: #8B5558">*</strong></label>
                     <input type="text" id="nome" name="nome" placeholder="Digite o nome" value="{{$servidor->user->name}}"
-                    class="boxinfo"><br/>
+                    class="boxcadastrar"><br/>
 
-                    <label for="nome_social" for="nome" class="titulo-cad">Nome Social:</label>
+                    <label for="nome_social" for="nome" class="titulopequeno">Nome Social:</label>
                     <input type="text" id="nome_social" placeholder="Digite o nome social" name="nome_social" value="{{$servidor->user->name_social}}"
-                    class="boxinfo"><br/>
+                    class="boxcadastrar"><br/>
 
-                    <label for="email" for="nome" class="titulo-cad">E-mail:<strong style="color: #8B5558">*</strong></label>
-                    <input type="text" id="email" name="email" placeholder="Digite o e-mail" value="{{$servidor->user->email}}" class="boxinfo"><br/>
+                    <label for="email" for="nome" class="titulopequeno">E-mail:<strong style="color: #8B5558">*</strong></label>
+                    <input type="text" id="email" name="email" placeholder="Digite o e-mail" value="{{$servidor->user->email}}" class="boxcadastrar"><br/>
 
-                    <label for="senha" for="nome" class="titulo-cad">Senha:<strong style="color: #8B5558">*</strong></label>
-                    <input type="password" id="senha" name="senha" placeholder="Digite a senha" class="boxinfo"><br/>
+                    <label for="senha" for="nome" class="titulopequeno">Senha:<strong style="color: #8B5558">*</strong></label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite a senha" class="boxcadastrar"><br/>
 
-                    <label for="cpf" for="nome" class="titulo-cad">CPF:<strong style="color: #8B5558">*</strong></label>
-                    <input  class="boxinfo cpf-autocomplete" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$servidor->cpf}}" ><br/>
+                    <label for="cpf" for="nome" class="titulopequeno">CPF:<strong style="color: #8B5558">*</strong></label>
+                    <input  class="boxcadastrar cpf-autocomplete" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$servidor->cpf}}" ><br/>
 
-                    <label for="tipo_servidor_editar" class="titulo-cad">Tipo do servidor:<strong style="color: #8B5558">*</strong></label>
+                    <label for="tipo_servidor_editar" class="titulopequeno">Tipo do servidor:<strong style="color: #8B5558">*</strong></label>
                     <select name="tipo_servidor" id="tipo_servidor"
-                    class="boxinfo" aria-label="Default select example">
+                    class="boxcadastrar" aria-label="Default select example">
 
                         @if ($servidor->tipo_servidor == 'adm')
                             <option value="0" selected>Administrador</option>
@@ -74,9 +76,9 @@
 
                     <div class="container-botoes">
                         <input type="button" value="Voltar" href="{{url("/servidores/")}}" onclick="window.location.href='{{url("/servidores/")}}'"
-                        class="botao-voltar">
+                        class="botaovoltar">
 
-                        <input type="submit" value="Editar" class="botao-cadastrar">
+                        <input type="submit" value="Editar" class="botaosalvar">
                     </div>
                 </form>
             </div>

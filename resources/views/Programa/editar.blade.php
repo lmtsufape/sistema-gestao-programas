@@ -15,32 +15,32 @@
             <div class="row" style="align-content: left;">
                 <h1 class="titulogrande">Editar Programa</h1>
             </div>
-            <hr style="color:#5C1C26; background-color: #5C1C26">
+            <hr class="divisor">
 
             <form action="{{url("/programas/$programa->id")}}" method="post">
                 @csrf
                 @method("PUT")
                 <label for="nome" class="titulopequeno" >Nome<strong style="color: #8B5558">*</strong></label>
-                <input class="boxcadastrar" type="text" name="nome" id="nome" value="{{$programa->nome}}"><br><br>
+                <input class="boxcadastrar" type="text" name="nome" id="nome" value="{{$programa->nome}}">
 
                 <label for="descricao" class="titulopequeno">Descrição<strong style="color: #8B5558">*</strong></label>
-                <input class="boxcadastrar" type="text" name="descricao" id="descricao" value="{{$programa->descricao}}"><br><br>
+                <input class="boxcadastrar" type="text" name="descricao" id="descricao" value="{{$programa->descricao}}">
 
                 <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
                     <div style="width: 50%">
                     <label class="titulopequeno" for="data_inicio">Data de início<strong style="color: #8B5558">*</strong></label>
                     <br>
-                    <input class="boxcadastrar" type="date" name="data_inicio" id="data_inicio" value="{{$programa->data_inicio}}"><br><br>
+                    <input class="boxcadastrar" type="date" name="data_inicio" id="data_inicio" value="{{$programa->data_inicio}}">
                     </div>
                     <div style="width: 50%">
                     <label class="titulopequeno"  for="data_fim" >Data de fim<strong style="color: #8B5558">*</strong></label>
                     <br>
-                    <input class="boxcadastrar"  type="date" name="data_fim" id="data_fim" value="{{$programa->data_fim}}"><br><br>
+                    <input class="boxcadastrar"  type="date" name="data_fim" id="data_fim" value="{{$programa->data_fim}}">
                     </div>
                 </div>
 
 
-                <label class="titulo" for="servidor">Servidor<strong style="color: #8B5558">*</strong></label>
+                <label class="titulopequeno" for="servidor">Servidor<strong style="color: #8B5558">*</strong></label>
                 @foreach ($servidors as $servidor)
                     <div>
                         <input type="radio" id="servidor_{{ $servidor->id }}" name="servidors[]" value="{{ $servidor->id }}" @if(in_array($servidor->id, $servidoresSelecionados)) checked @endif>

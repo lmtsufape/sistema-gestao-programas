@@ -111,10 +111,10 @@
 
             <div class="container-botoes">
                 <a href="/">
-                <input type="button" value="Voltar" class="botao-voltar"/>
+                <input type="button" value="Voltar" class="botaovoltar"/>
                 </a>
 
-                <input type="submit" value="Cadastrar" class="botao-cadastrar"/>
+                <input type="submit" value="Cadastrar" class="botaosalvar"/>
             </div>
         </form>
     </div>
