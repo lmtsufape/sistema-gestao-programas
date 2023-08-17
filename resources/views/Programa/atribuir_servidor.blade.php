@@ -76,7 +76,7 @@
 
                 <input type="hidden" name="id" value="{{$programa->id}}">
 
-                <label class="titulo" for="servidor">Servidor:<strong style="color: red">*</strong></label>
+                <label class="titulo" for="servidor">Servidor<strong style="color: #8B5558">*</strong></label>
                 @foreach ($servidors as $servidor)
                 <div class="colunm">
                     <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
