@@ -76,7 +76,7 @@
                     <h1 class="titulogrande"> Cadastrar Edital {{$programa->nome}}</h1>
                 </div>
 
-                <hr>
+                <hr style="color:#5C1C26; background-color: #5C1C26">
 
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
@@ -101,57 +101,44 @@
 
                     <label class="titulopequeno" for="Descrição">Descrição:</label>
                     <textarea class="boxcadastrar" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="3"> {{ old('descricao') }}</textarea><br><br>
-                    
-                    <div class="container-divisao">
-                    <div class="box-dividido">
-                    <div id="checkBolsa">
-                        <label class="titulopequeno radio-spacing" for="bolsa">Possui bolsa: <strong style="color: red">*</strong></label>
-                        <br>                     
-                        <input type="radio" name="checkBolsa" value="sim" required>
-                        <label class="radio-spacing" for="checkBolsa_sim">Sim</label> 
-                        <br>
-                                               
-                        <input type="radio" name="checkBolsa" value="nao" required>
-                        <label class="radio-spacing" for="checkBolsa_nao">Não</label>
-                        <br><br>
-                    </div>
+                    <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
+                        <div style="width: 50%">
+                            <label class="titulopequeno" for="bolsa">Possui bolsa? <strong style="color: red">*</strong></label>
+                            <br>
+                            <input type="radio" name="checkBolsa" value="sim" required>
+                            <label class="textinho" for="checkBolsa_sim">Sim</label>
+                            <br>
+                            <input type="radio" name="checkBolsa" value="nao" required>
+                            <label class="textinho" for="checkBolsa_nao">Não</label><br><br>
 
-                    <div id="valor_bolsa" hidden>
-                        <label class="titulopequeno" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                        <input class="boxcadastrar" placeholder="Digite o valor da bolsa"
-                        type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
-                    </div>
-
-                    <!-- <label class="titulopequeno" for="programa">Programa:<strong style="color: red">*</strong></label>
-                    <select aria-label="Default select example" class="boxcadastrar" name="programa" id="programa">
-                        <option value="{{$programa->id}}" selected>{{$programa->nome}}</option>
-                    </select><br><br> -->
-
-                    <input type="hidden" name="programa" value="{{$programa->id}}">
-                    </div>
-                    <div class="box-dividido">
-                    <div id="checkDisciplina">
-                        <label class="titulopequeno radio-spacing" for="disciplina">Possui disciplina(s): <strong style="color: red">*</strong></label>                        
-                        <br>
-                        <input type="radio" name="checkDisciplina" value="sim" required>
-                        <label class="radio-spacing" for="checkDisciplina_sim">Sim</label>
-                        <br>
-                        <input type="radio" name="checkDisciplina" value="nao" required>
-                        <label class="radio-spacing" for="checkDisciplina_nao">Não</label>
-                        <br><br>
-                    </div>
-
-                    <div id="disciplinas" hidden>
-                        <label class="titulopequeno" for="disciplina">Disciplina(s):</label>
-                        <div class="colunm">
-                            @foreach ($disciplinas as $disciplina)
-                            <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
-                                <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}"> {{ $disciplina->nome . '/' . $disciplina->curso->nome}}<br>
+                            <div id="valor_bolsa" hidden>
+                                <label class="titulopequeno" for="valor_bolsa">Valor da Bolsa<strong style="color: red">*</strong></label>
+                                <input class="boxcadastrar" placeholder="Digite o valor da bolsa"
+                                type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
                             </div>
-                            @endforeach</div><br><br>
+
                         </div>
-                    </div>
-                    </div>
+                        <div style="width: 50%">
+                            <label class="titulopequeno" for="disciplina">Possui disciplina(s)? <strong style="color: red">*</strong></label>
+                            <br>
+                            <input type="radio" name="checkDisciplina" value="sim" required>
+                            <label class="textinho" for="checkDisciplina_sim">Sim</label>
+                            <br>
+                            <input type="radio" name="checkDisciplina" value="nao" required>
+                            <label class="textinho" for="checkDisciplina_nao">Não</label><br><br>
+
+
+                            <div id="disciplinas" hidden>
+                                <label class="titulo" for="disciplina">Disciplina(s)</label>
+                                <div class="colunm">
+                                    @foreach ($disciplinas as $disciplina)
+                                    <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
+                                        <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}"> {{ $disciplina->nome . '/' . $disciplina->curso->nome}}<br>
+                                    </div>
+                                    @endforeach</div><br><br>
+                            </div>
+                        </div>
+                        </div>
                     <br><br>
 
                     <div class="botoessalvarvoltar">

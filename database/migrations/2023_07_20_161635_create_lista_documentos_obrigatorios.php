@@ -19,7 +19,7 @@ class CreateListaDocumentosObrigatorios extends Migration
             $table->string('descricao_documento');
             $table->date('prazo');
             $table->enum('tipo_entrega', ['inicial','final']);
-            $table->enum('tipo_estagio', ['obrigatorio', 'nao_obrigatorio']);
+            $table->enum('tipo_estagio', ['eo', 'eno']);
 
             $table->foreign('estagio_id')->references('id')->on('estagios');
             $table->unsignedBigInteger('estagio_id');

@@ -241,8 +241,13 @@ Route::prefix('estagio')->group(function () {
     Route::delete('/{id}', [EstagioController::class, 'destroy'])->name('estagio.delete');
     Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
 
+
     Route::get('/documentos/termo_encaminhamento', [DocumentosController::class, 'termo_encaminhamento_form'])->name('estagio.formularios.termo_encaminhamento'); 
     Route::post('/documentos/termo_encaminhamento', [DocumentosController::class, 'termo_encaminhamento'])->name('estagio.formularios.termo_encaminhamento.store');
+    // comentado temporariamente 
+    //Route::get('/documentos/{id}',[EstagioController::class, 'showDocuments'])->name('estagio.documentos');
+    //Route::get('/documentos/{id}/termo-de-encaminhamento', [EstagioController::class, 'storeTermoDeEncaminhamento'])->name('estagio.documentos.termo-de-encaminhamento');
+
 });
 
 Route::get('/estagios-aluno', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
