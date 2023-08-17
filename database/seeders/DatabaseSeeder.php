@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\HistoricoVinculoAlunos;
+use App\Models\Supervisor;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
             Edital_Aluno_OrientadorSeeder::class,
             RelatorioSeeder::class,
             HistoricoVinculoAlunosSeeder::class,
+            SupervisorSeeder::class,
             EstagioSeeder::class,
         ]);
     }
