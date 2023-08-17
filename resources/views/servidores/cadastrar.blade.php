@@ -1,7 +1,7 @@
 @extends("templates.app")
 
 @section("body")
-<div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:3.6em;">
+<div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:3.6em;">
     @canany(['admin', 'pro_reitor'])
         @if (session('sucesso'))
             <div class="alert alert-success">
@@ -9,25 +9,24 @@
             </div>
         @endif
         <br>
-            <div class="d-flex justify-content-center align-items-center">
-                <div style="background: #FFFFFF; box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25); border-radius: 20px; padding: 34px; width: 65%";>
-                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #2D3875;">
-                        Cadastrar Servidor</h2>
-                    <hr>
+                <div class="fundocadastrar">
+                    <h1 class="titulogrande">
+                        Cadastrar Servidor</h1>
+                    <hr class="divisor">
                         <form action="{{route('servidores.store')}}" method="POST" class="row needs-validation" novalidate style="text-align:start;" enctype="multipart/form-data">
                             @csrf
                             @method("POST")
 
-                            <div class="row">
+                            <div style="display:flex; flex-direction: column;">
 
                                 <div class="col-12 mb-3" style="padding-top: 12px;">
-                                    <label for="image" class="form-label">Imagem do Perfil:</label>
+                                    <label for="image" class="form-label">Imagem do Perfil</label>
                                     <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
                                     <input type="file" id="image" name="image" class="form-control-file">
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <label for="nome" class="form-label">Nome:<strong style="color: red">*</strong></label>
+                                    <label for="nome" class="form-label">Nome<strong style="color: #8B5558">*</strong></label>
                                     <input type="text" name="nome" id="nome" placeholder="Digite o nome"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('nome') }}">
@@ -35,14 +34,14 @@
 
 
                                 <div class="col-12 mb-3">
-                                    <label for="nome_social" class="form-label">Nome social:</label>
+                                    <label for="nome_social" class="form-label">Nome social</label>
                                     <input type="text" name="nome_social" id="nome_social" placeholder="Digite o nome social"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('name_social') }}">
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <label for="tipo_servidor" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor:<strong style="color: red">*</strong></label>
+                                    <label for="tipo_servidor" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Tipo do servidor<strong style="color: #8B5558">*</strong></label>
                                     <select name="tipo_servidor" id="tipo_servidor" style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" aria-label="Default select example">
                                         <option value disabled selected hidden>Selecione um tipo de servidor</option>
@@ -56,21 +55,21 @@
 
 
                                 <div class="col-12 mb-3">
-                                    <label for="cpf" class="form-label" required >CPF:<strong style="color: red">*</strong></label>
+                                    <label for="cpf" class="form-label" required >CPF<strong style="color: #8B5558">*</strong></label>
                                     <input class="boxinfo cpf-autocomplete" type="text" name="cpf" id="cpf" placeholder="Digite o CPF"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('cpf') }}">
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <label for="email" class="form-label">E-mail:<strong style="color: red">*</strong></label>
+                                    <label for="email" class="form-label">E-mail<strong style="color: #8B5558">*</strong></label>
                                     <input type="text" name="email" id="email" placeholder="Digite o E-mail"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('email') }}">
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <label class="form-label" for="instituicaoVinculo">Intituição:<strong style="color: red">*</strong></label>
+                                    <label class="form-label" for="instituicaoVinculo">Intituição<strong style="color: #8B5558">*</strong></label>
                                     <div class="vinculo">
 
                                         <div class="form-check">
@@ -86,14 +85,14 @@
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <label for="matricula" class="form-label">Matrícula:<strong style="color: red">*</strong></label>
+                                    <label for="matricula" class="form-label">Matrícula<strong style="color: #8B5558">*</strong></label>
                                     <input type="text" name="matricula" id="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);" value="{{ old('matricula') }}">
                                 </div>
 
                                 <div class="col-12 mb-3">
-                                    <label for="senha" class="form-label">Senha:<strong style="color: red">*</strong></label>
+                                    <label for="senha" class="form-label">Senha<strong style="color: #8B5558">*</strong></label>
                                     <input type="password" name="senha" id="senha" placeholder="Digite a senha"
                                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);">
@@ -101,20 +100,16 @@
                                 <br>
                             </div>
 
-                            <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
+                            <div class="container-botoes">
                                 <input type="button" value="Voltar" href="{{url("/servidores/")}}" onclick="window.location.href='{{url("/servidores/")}}'"
-                                style="background: #2D3875; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                                border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                                line-height: 29px; text-align: center; padding: 5px 15px;">
-                                <input type="submit" name="salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                                display: inline-block;
-                                border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal; font-weight: 400; font-size: 24px;
-                                line-height: 29px; text-align: center; padding: 5px 15px;" value="Salvar">
+                                class="botaovoltar">
+
+                                <input type="submit" value="Editar" class="botaosalvar">
                             </div>
                         </form>
 
                 </div>
-            </div>
+
 
 
         <script type="text/javascript">

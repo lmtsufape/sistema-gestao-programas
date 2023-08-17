@@ -23,7 +23,7 @@
                     @csrf
 
                     <div id="checkStatus">
-                        <label class="titulopequeno" for="status">Status: <strong style="color: red">*</strong></label>
+                        <label class="titulopequeno" for="status">Status: <strong style="color: #8B5558">*</strong></label>
                         <br>
                         <input type="radio" name="checkStatus" value=1 required checked>
                         <label class="textinho" for="checkStatus_ativo">Ativo</label>
@@ -33,24 +33,24 @@
                     </div>
 
 
-                    <label class="titulopequeno" for="Descrição">Descrição:<strong style="color: red">*</strong></label>
+                    <label class="titulopequeno" for="Descrição">Descrição<strong style="color: #8B5558">*</strong></label>
                     <textarea class="boxcadastrar" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="3"> {{ old('descricao') }}</textarea><br><br>
 
                     <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
                         <div style="width: 50%">
-                        <label class="titulopequeno" for="data_inicio">Data de início:<strong style="color: red">*</strong></label>
+                        <label class="titulopequeno" for="data_inicio">Data de início<strong style="color: #8B5558">*</strong></label>
                         <br>
                         <input class="boxcadastrar" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}"><br><br>
                         </div>
                         <div style="width: 50%">
-                        <label class="titulopequeno"  for="data_fim" >Data de fim:<strong style="color: red">*</strong></label>
+                        <label class="titulopequeno"  for="data_fim" >Data de fim<strong style="color: #8B5558">*</strong></label>
                         <br>
                         <input class="boxcadastrar"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
                         </div>
                     </div>
 
                     <div id="checkTipo">
-                        <label class="titulopequeno" for="tipo">Tipo: <strong style="color: red">*</strong></label>
+                        <label class="titulopequeno" for="tipo">Tipo: <strong style="color: #8B5558">*</strong></label>
                         <br>
                         <input type="radio" name="checkTipo" value="eo" required>
                         <label class="textinho" for="checkTipo_obrigatorio">Obrigatório</label>
@@ -60,18 +60,18 @@
                     </div>
 
                     @if($aluno)
-                        <label class="titulopequeno" for="">CPF do estudante: <strong style="color: red">*</strong></label>
+                        <label class="titulopequeno" for="">CPF do estudante: <strong style="color: #8B5558">*</strong></label>
                         <input type="text" id="cpf" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"
                             value="{{ $aluno->cpf }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}" readonly style="background: #eee; ">
                     @else
-                        <label class="titulopequeno" for="">CPF do estudante: <strong style="color: red">*</strong></label>
+                        <label class="titulopequeno" for="">CPF do estudante: <strong style="color: #8B5558">*</strong></label>
                         <input type="text" id="cpf_aluno" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"
                             value="{{ old('cpf_aluno') }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}">
                     @endif
                     <br>
                     <br>
 
-                    <label class="titulopequeno" for="orientador">Orientador:<strong style="color: red">*</strong></label>
+                    <label class="titulopequeno" for="orientador">Orientador<strong style="color: #8B5558">*</strong></label>
                     <select aria-label="Default select example" class="boxcadastrar" name="orientador" id="orientador" >
                         <option  value disabled selected hidden> Selecione o Orientador</option>
                             @foreach ($orientadors as $orientador)
@@ -80,7 +80,7 @@
                     </select><br><br>
 
                     @if($aluno)
-                        <label class="titulopequeno" for="curso">Curso:<strong style="color: red">*</strong></label>
+                        <label class="titulopequeno" for="curso">Curso<strong style="color: #8B5558">*</strong></label>
                         <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso" style="background: #eee; pointer-events: none; touch-action: none;">
                             <option value disabled selected hidden> Selecione o Curso</option>
                             @foreach ($cursos as $curso)
@@ -88,14 +88,14 @@
                             @endforeach
                         </select><br><br>
                     @else
-                        <label class="titulopequeno" for="curso">Curso:<strong style="color: red">*</strong></label>
+                        <label class="titulopequeno" for="curso">Curso<strong style="color: #8B5558">*</strong></label>
                         <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso">
                             <option value disabled selected hidden> Selecione o Curso</option>
                             @foreach ($cursos as $curso)
                             <option value="{{$curso->id}}" {{ old('curso') == $curso->id ? 'selected' : '' }} >{{$curso->nome}}</option>
                             @endforeach
                         </select><br><br>
-                        
+
                     @endif
 
                     <div class="botoessalvarvoltar">

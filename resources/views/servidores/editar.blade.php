@@ -1,7 +1,7 @@
 @extends("templates.app")
 @section("body")
     @canany(['admin', 'pro_reitor'])
-      
+
         <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1rem; margin-bottom: 3.6rem; ">
 
             @if (session('sucesso'))
@@ -29,7 +29,7 @@
                         @endif
                         <input type="file" id="image" name="image" class="form-control boxcadastrar">
                     </div>
-                    <label for="nome" class="titulopequeno">Nome:<strong style="color: #8B5558">*</strong></label>
+                    <label for="nome" class="titulopequeno">Nome<strong style="color: #8B5558">*</strong></label>
                     <input type="text" id="nome" name="nome" placeholder="Digite o nome" value="{{$servidor->user->name}}"
                     class="boxcadastrar"><br/>
 
@@ -37,16 +37,16 @@
                     <input type="text" id="nome_social" placeholder="Digite o nome social" name="nome_social" value="{{$servidor->user->name_social}}"
                     class="boxcadastrar"><br/>
 
-                    <label for="email" for="nome" class="titulopequeno">E-mail:<strong style="color: #8B5558">*</strong></label>
+                    <label for="email" for="nome" class="titulopequeno">E-mail<strong style="color: #8B5558">*</strong></label>
                     <input type="text" id="email" name="email" placeholder="Digite o e-mail" value="{{$servidor->user->email}}" class="boxcadastrar"><br/>
 
-                    <label for="senha" for="nome" class="titulopequeno">Senha:<strong style="color: #8B5558">*</strong></label>
+                    <label for="senha" for="nome" class="titulopequeno">Senha<strong style="color: #8B5558">*</strong></label>
                     <input type="password" id="senha" name="senha" placeholder="Digite a senha" class="boxcadastrar"><br/>
 
-                    <label for="cpf" for="nome" class="titulopequeno">CPF:<strong style="color: #8B5558">*</strong></label>
+                    <label for="cpf" for="nome" class="titulopequeno">CPF<strong style="color: #8B5558">*</strong></label>
                     <input  class="boxcadastrar cpf-autocomplete" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$servidor->cpf}}" ><br/>
 
-                    <label for="tipo_servidor_editar" class="titulopequeno">Tipo do servidor:<strong style="color: #8B5558">*</strong></label>
+                    <label for="tipo_servidor_editar" class="titulopequeno">Tipo do servidor<strong style="color: #8B5558">*</strong></label>
                     <select name="tipo_servidor" id="tipo_servidor"
                     class="boxcadastrar" aria-label="Default select example">
 

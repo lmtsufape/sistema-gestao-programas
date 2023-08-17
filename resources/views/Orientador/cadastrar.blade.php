@@ -95,7 +95,7 @@
                 <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
                 <input type="file" id="image" name="image" class="form-control-file">
 
-                <label for="inputName" class="titulo">Nome:<strong style="color: red">*</strong></label>
+                <label for="inputName" class="titulo">Nome<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo" type="text" id="inputName" name="name" required placeholder="Digite o nome" value="{{ old('name') }}">
                 <div class="invalid-feedback">Por favor preencha esse campo</div><br><br>
 
@@ -103,16 +103,16 @@
                 <input class="boxinfo" type="text" id="inputNomeSocial" name="name_social" placeholder="Digite o nome social" value="{{ old('name_social') }}">
                 <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-                <label for="email" class="titulo">E-mail:<strong style="color: red">*</strong></label>
+                <label for="email" class="titulo">E-mail<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo" type="text" name="email" id="email" placeholder="Digite o e-mail" value="{{ old('email') }}" required><br><br>
 
-                <label for="cpf" class="titulo">CPF:<strong style="color: red">*</strong></label>
+                <label for="cpf" class="titulo">CPF<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo cpf-autocomplete" type="text" name="cpf" id="cpf" placeholder="Digite o CPF" value="{{ old('cpf') }}" required><br><br>
 
-                <label for="matricula" class="titulo">Matrícula:<strong style="color: red">*</strong></label>
+                <label for="matricula" class="titulo">Matrícula<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)" value="{{ old('matricula') }}" required><br><br>
 
-                <label class="titulo" for="instituicaoVinculo">Intituição:<strong style="color: red">*</strong></label>
+                <label class="titulo" for="instituicaoVinculo">Intituição<strong style="color: #8B5558">*</strong></label>
                 <div class="vinculo">
 
                     <div class="form-check">
@@ -127,7 +127,7 @@
                 </div>
                 <br>
 
-                <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s) que Leciona:<strong style="color: red">*</strong></label>
+                <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s) que Leciona<strong style="color: #8B5558">*</strong></label>
                 <div class="row">
                     @foreach ($cursos as $curso)
                     <div class="col-md-6" style="display: flex; justify-items:flex-start; gap:3%">
@@ -137,7 +137,7 @@
                 </div>
                 <br><br>
 
-                <label for="senha" class="titulo">Senha:<strong style="color: red">*</strong></label>
+                <label for="senha" class="titulo">Senha<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo" type="password" name="senha" id="senha" placeholder="Digite a senha" required><br><br>
 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">

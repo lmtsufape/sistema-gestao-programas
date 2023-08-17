@@ -82,30 +82,30 @@
             <input type="file" id="image" name="image" class="form-control-file">
 
 
-            <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
+            <label for="nome" class="titulo">Nome<strong style="color: #8B5558">*</strong></label>
             <input type="text" id="nome" name="nome" value="{{$aluno->user->name}}"
             class="boxinfo"><br/><br>
 
             <label for="nome_social" class="titulo">Nome Social:</label>
             <input type="text" id="nome_social" name="nome_social" value="{{$aluno->user->name_social}}" class="boxinfo"><br/><br>
 
-            <label for="email" for="nome" class="titulo">E-mail:<strong style="color: red">*</strong></label>
+            <label for="email" for="nome" class="titulo">E-mail<strong style="color: #8B5558">*</strong></label>
             <input type="text" id="email" name="email" value="{{$aluno->user->email}}" class="boxinfo"><br/><br>
 
-            <label for="senha" for="nome" class="titulo">Senha:<strong style="color: red">*</strong></label>
+            <label for="senha" for="nome" class="titulo">Senha<strong style="color: #8B5558">*</strong></label>
             <input type="password" id="senha" name="senha" class="boxinfo"><br/><br>
 
-            <label for="cpf" for="nome" class="titulo">CPF:<strong style="color: red">*</strong></label>
+            <label for="cpf" for="nome" class="titulo">CPF<strong style="color: #8B5558">*</strong></label>
             <input type="text" id="cpf" name="cpf" value="{{$aluno->cpf}}" class="boxinfo cpf-autocomplete"><br/><br>
 
-            <label for="curso" for="nome" class="titulo">Curso:<strong style="color: red">*</strong></label>
+            <label for="curso" for="nome" class="titulo">Curso<strong style="color: #8B5558">*</strong></label>
             <select name="curso" id="curso" class="boxinfo">
                 @foreach ($cursos as $curso)
                     <option value="{{$curso->id}}" {{$aluno->curso_id == $curso->id ? "selected" : ""}}>{{$curso->nome}}</option>
                 @endforeach
             </select><br><br>
 
-            <label for="semestre_entrada" for="nome" class="titulo">Semestre de entrada:<strong style="color: red">*</strong></label>
+            <label for="semestre_entrada" for="nome" class="titulo">Semestre de entrada<strong style="color: #8B5558">*</strong></label>
             <input type="text" id="semestre_entrada" name="semestre_entrada" value="{{$aluno->semestre_entrada}}" class="boxinfo"><br/><br>
 
             <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">

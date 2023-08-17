@@ -79,7 +79,7 @@
             <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
             <input type="file" id="image" name="image" class="form-control-file">
 
-            <label for="inputName" class="titulo">Nome:<strong style="color: red">*</strong></label>
+            <label for="inputName" class="titulo">Nome<strong style="color: #8B5558">*</strong></label>
             <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome" value="{{ old('nome') }}">
             <div class="invalid-feedback">Por favor preencha esse campo</div><br><br>
 
@@ -87,17 +87,17 @@
             <input class="boxinfo" type="text" id="inputNomeSocial" name="name_social" placeholder="Digite o nome" value="{{ old('name_social') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputCpf" class="titulo">CPF:<strong style="color: red">*</strong></label>
+            <label for="inputCpf" class="titulo">CPF<strong style="color: #8B5558">*</strong></label>
             <input class="boxinfo cpf-autocomplete" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF" value="{{ old('cpf') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
-            <label for="inputSemestre" class="titulo">Semestre de Entrada:<strong style="color: red">*</strong></label>
+            <label for="inputSemestre" class="titulo">Semestre de Entrada<strong style="color: #8B5558">*</strong></label>
             <input class="boxinfo semestre-autocomplete" type="text"  id="inputSemestre" name="semestre_entrada" required placeholder="Digite o semestre" value="{{ old('semestre_entrada') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
-            <label for="inputCurso" class="titulo">Curso:<strong style="color: red">*</strong></label>
+            <label for="inputCurso" class="titulo">Curso<strong style="color: #8B5558">*</strong></label>
             <select aria-label="Default select example" class="boxinfo" id="inputCurso" name="curso">
                 <option value disabled selected hidden>Selecione o curso</option>
                 @foreach ($cursos as $curso)
@@ -106,11 +106,11 @@
             </select>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputEmail4" class="titulo">E-mail:<strong style="color: red">*</strong></label>
+            <label for="inputEmail4" class="titulo">E-mail<strong style="color: #8B5558">*</strong></label>
             <input class="boxinfo" type="email" id="inputEmail4" name="email" required placeholder="Digite o email" value="{{ old('email') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputPassword4" class="titulo">Senha:<strong style="color: red">*</strong></label>
+            <label for="inputPassword4" class="titulo">Senha<strong style="color: #8B5558">*</strong></label>
             <input type="password"  class="boxinfo" id="inputPassword4" name="senha" required placeholder="Digite a senha">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
