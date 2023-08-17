@@ -62,7 +62,7 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <div class="botoessalvarvoltar">
-                <input type="button" value="Voltar" href="{{url('/edital/')}}" onclick="window.location.href='{{url('/edital/')}}'" class="botaovoltar">
+                <input type="button" value="Voltar" href="{{url('/alunos/')}}" onclick="window.location.href='{{url('/alunos/')}}'" class="botaovoltar">
                 <input class="botaosalvar" type="submit" value="Salvar">
             </div>
         </form>
