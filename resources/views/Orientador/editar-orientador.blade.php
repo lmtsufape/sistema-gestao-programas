@@ -34,33 +34,32 @@
                 
 
                 <label for="nome" class="titulopequeno">Nome:<strong style="color: red">*</strong></label>
-                <input class="boxcadastrar" type="text" id="name" name="name" placeholder="Digite o nome" value="{{$orientador->user->name}}"
-                ><br/><br>
+                <input class="boxcadastrar" type="text" id="name" name="name" placeholder="Digite o nome" value="{{$orientador->user->name}}">
 
                 <label for="nome_social" class="titulopequeno">Nome Social:</label>
-                <input class="boxcadastrar" type="text" id="name_social" name="name_social" placeholder="Digite o nome social" value="{{$orientador->user->name_social}}"
-                ><br/><br>
+                <input class="boxcadastrar" type="text" id="name_social" name="name_social" placeholder="Digite o nome social" value="{{$orientador->user->name_social}}">
 
                 <label for="email" for="nome" class="titulopequeno">E-mail:<strong style="color: red">*</strong></label>
-                <input class="boxcadastrar" type="text" id="email" name="email" placeholder="Digite o e-mail" value="{{$orientador->user->email}}"><br/><br>
+                <input class="boxcadastrar" type="text" id="email" name="email" placeholder="Digite o e-mail" value="{{$orientador->user->email}}">
 
                 <label for="cpf" for="nome" class="titulopequeno">CPF:<strong style="color: red">*</strong></label>
-                <input class="boxinfo cpf-autocomplete" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$orientador->cpf}}" ><br/><br>
+                <input class="boxcadastrar cpf-autocomplete" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$orientador->cpf}}" >
 
                 <label for="matricula" class="titulopequeno">Matrícula:<strong style="color: red">*</strong></label>
-                <input class="boxcadastrar" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)" value="{{$orientador->matricula}}"><br><br>
+                <input class="boxcadastrar" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)" value="{{$orientador->matricula}}">
 
                 <label for="instituicaoVinculo" class="titulopequeno">Instituição:<strong style="color: red">*</strong></label>
-                <input class="boxcadastrar" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a instituição vinculada ao professor" value="{{ $orientador->instituicaoVinculo }}" required><br><br>
+                <input class="boxcadastrar" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a instituição vinculada ao professor" value="{{ $orientador->instituicaoVinculo }}" required>
 
                 <label for="curso" class="titulopequeno">Curso(s):<strong style="color: red">*</strong></label>
-                <div class="row mb-3">
+                <div class="row">
                     @foreach ($cursos as $curso)
                         <div class="col-md-6" style="display: flex; justify-items:flex-start; gap:3%">
-                            <input type="checkbox" class="titulopequeno" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}" @if(in_array($curso->id, $cursosSelecionados)) checked @endif> <span class="checkbox-text">{{ $curso->nome }}</span>
+                            <input type="checkbox" class="titulopequeno" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}" @if(in_array($curso->id, $cursosSelecionados)) checked @endif> 
+                            <span class="checkbox-text">{{ $curso->nome }}</span>
                         </div>
                     @endforeach
-                </div>
+                </div><br>
                 <label for="senha" for="nome" class="titulopequeno">Senha:<strong style="color: red">*</strong></label>
                 <input class="boxcadastrar" type="password" id="senha" name="senha" placeholder="Digite a senha"><br/><br>
 
