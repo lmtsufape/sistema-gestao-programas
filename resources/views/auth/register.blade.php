@@ -2,7 +2,7 @@
 
 @section("body")
 
-<div class="container-fluid">
+<div class="container">
     @if (session('sucesso'))
     <div class="alert alert-sucess">
         {{session('sucesso')}}
@@ -21,7 +21,7 @@
             @csrf
             <!-- imagem de perfil
 
-            <label for="image" class="titulo">Imagem do Perfil:</label>
+            <label for="image" class="titulo-cad">Imagem do Perfil:</label>
             <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" class="images" /><br>
             <div class="row d-flex justify-content-center">
                 <div class="col-6 ">
@@ -29,27 +29,27 @@
                 </div>
             </div> -->
 
-            <label for="nome" class="titulo">Nome<strong style="color: red">*</strong></label>
+            <label for="nome" class="titulo-cad">Nome<strong style="color: #8B5558">*</strong></label>
             <input class="boxinfo" type="text" id="nome" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="nome_social" class="titulo">Nome Social</label>
+            <label for="nome_social" class="titulo-cad">Nome Social</label>
             <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="cpf" class="titulo">CPF<strong style="color: red">*</strong></label>
+            <label for="cpf" class="titulo-cad">CPF<strong style="color: #8B5558">*</strong></label>
             <input class="boxinfo cpf-autocomplete" type="text"  id="cpf" name="cpf" required placeholder="Digite o CPF">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="email" class="titulo">E-mail<strong style="color: red">*</strong></label>
+            <label for="email" class="titulo-cad">E-mail<strong style="color: #8B5558">*</strong></label>
             <input class="boxinfo" type="email" id="email" name="email" required placeholder="Digite o email">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="senha" class="titulo">Senha<strong style="color: red">*</strong></label>
+            <label for="senha" class="titulo-cad">Senha<strong style="color: #8B5558">*</strong></label>
             <input type="password"  class="boxinfo" id="senha" name="senha" required placeholder="Digite a senha">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="tipoUser" class="titulo">Perfil<strong style="color: red">*</strong></label>
+            <label for="tipoUser" class="titulo-cad">Perfil<strong style="color: #8B5558">*</strong></label>
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
                 <option value disabled selected hidden>Selecione o perfil</option>
                 <option value="servidor">Técnico administrativo</option>
@@ -58,7 +58,7 @@
             </select>
 
             <div id="instituicaoVinculo" style="display:none">
-                <label class="titulo" for="instituicaoVinculo">Intituição de Vínculo<strong style="color: red">*</strong></label>
+                <label class="titulo-cad" for="instituicaoVinculo">Intituição de Vínculo<strong style="color: #8B5558">*</strong></label>
                 <div class="vinculo">
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="instituicaoVinculo" value="UFAPE" name="instituicaoVinculo">
@@ -73,7 +73,7 @@
             </div>
 
             <div id="curso" style="display:none">
-                <label class="titulo">Curso</label>
+                <label class="titulo-cad">Curso</label>
                 <select aria-label="Default select example" class="boxinfo" name="curso" id="curso">
                     <option value disabled selected hidden>Selecione o curso</option>
                     @foreach ($cursos as $curso)
@@ -83,7 +83,7 @@
             </div>
 
             <div id="cursos" style="display:none">
-                <label class="titulo">Curso(s) que Leciona</label>
+                <label class="titulo-cad">Curso(s) que Leciona</label>
                 <div class="row">
                     @foreach ($cursos as $curso)
                     <div class="col-md-6" style="display: flex; justify-items:flex-start; gap:3%">
@@ -96,13 +96,13 @@
 
 
             <div id="matricula" style="display:none">
-                <label class="titulo" for="matricula">Matrícula<strong style="color: red">*</strong></label>
+                <label class="titulo-cad" for="matricula">Matrícula<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo" type="text" id="matricula" name="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)">
             </div>
 
 
             <div id="semestre" style="display:none">
-                <label class="titulo" for="semestre_entrada">Semestre de entrada<strong style="color: red">*</strong></label>
+                <label class="titulo-cad" for="semestre_entrada">Semestre de entrada<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo semestre-autocomplete" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre (Exemplo: 2023.2)">
             </div>
 
@@ -111,10 +111,10 @@
 
             <div class="container-botoes">
                 <a href="/">
-                <input type="button" value="Voltar" class="botao-voltar"/>
+                <input type="button" value="Voltar" class="botaovoltar"/>
                 </a>
 
-                <input type="submit" value="Cadastrar" class="botao-cadastrar"/>
+                <input type="submit" value="Cadastrar" class="botaosalvar"/>
             </div>
         </form>
     </div>

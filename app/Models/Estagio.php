@@ -47,9 +47,9 @@ class Estagio extends Model
         return $this->belongsTo(Servidor::class, "servidor_id");
     }*/
 
-    /*public function supervisor()
+    public function supervisor()
     {
-        return 0;
+        return $this->belongsTo(Supervisor::class, "supervisor_id");;
     }
-    */
+    
 }
