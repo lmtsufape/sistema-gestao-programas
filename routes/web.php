@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MeusAlunosController;
 use App\Http\Controllers\MeusProgramasController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PDFController;
+
 
 // Rotas de autenticacao
 Route::get('/', function () {
@@ -243,3 +245,4 @@ Route::prefix('estagio')->group(function() {
 
 Route::get('/estagios-aluno', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
   
+Route::get('/edit-pdf', [PDFController::class, 'editImage']);

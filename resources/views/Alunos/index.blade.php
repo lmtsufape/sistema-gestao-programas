@@ -27,10 +27,12 @@
           Cadastrar estudantes
         </button>
     </div>  --}}
-
+    
     <div class="search-container">
-        <input class="search-input" type="text" placeholder="Digite a busca" title="" id="valor" name="valor">
-        <button class="search-button" type="submit"></button>
+      <form action="{{route('alunos.index')}}" method="GET">
+        <input class="search-input" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor">
+        <button class="search-button" type="submit" value=""></button>
+      </form>
         <button class="cadastrar-botao" type="button" href="{{route("alunos.create")}}">Cadastrar estudantes</button>
       </div>
 
