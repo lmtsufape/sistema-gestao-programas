@@ -6,11 +6,8 @@
 <h1>Documentos</h1>
 
 
-<a href="{{ route('Estagio.estagios-aluno') }}">Termo de Encaminhamento</a>
+<a href="{{ route('estagio.documentos.termo-de-encaminhamento',['id' => $estagio->id])}}">Termo de Encaminhamento</a>
 <br>
-<a href="{{ route('Estagio.estagios-aluno') }}">Termo de Compromisso</a>
-
-
 
 @endcan
 

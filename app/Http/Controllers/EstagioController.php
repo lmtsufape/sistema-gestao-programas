@@ -158,6 +158,13 @@ class EstagioController extends Controller
     {
         $estagio = Estagio::findOrFail($id);
 
-        return view('Estagio.documentos.documentos_show');
+        return view('Estagio.documentos.documentos_show',compact("estagio"));
+    }
+
+    public function storeTermoDeEncaminhamento($id)
+    {
+        $estagio = Estagio::findOrFail($id);
+
+        return view('Estagio.documentos.termo_de_encaminhamento');
     }
 }
