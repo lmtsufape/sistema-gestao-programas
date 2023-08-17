@@ -27,7 +27,7 @@ select[multiple] {
     padding: 0px 5px;
     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
 }
-.titulo {
+.titulo-cad {
     font-weight: 500;
     font-size: 16px;
     line-height: 28px;
@@ -98,39 +98,45 @@ select[multiple] {
     margin: 5%;
 }
 
-.botao-voltar{
-    color: #6B6B6B; 
-    width: 10rem;
-    display: inline-block;
-    border-radius: 5px; 
-    background: #FFFFFF; 
-    border: 1px solid #DACFCF;
-    font-style: normal; 
-    font-weight: 700; 
+.botaosalvar{
+    border-radius: 10px;
+    background: #2B8C64;
+    height: 45px;
+    padding: 10px 5rem;
+    justify-content: center;
+    align-items: center;
+    border: #2B8C64;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
     font-size: 14px;
-    line-height: 29px; 
-    text-align: center; 
-    padding: 5px 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
 }
 
-.botao-cadastrar{
-    background: #2B8C64; 
-    width: 10rem;
-    display: inline-block;
-    border-radius: 5px; 
-    color: #FFFFFF; 
-    border: none; 
-    font-style: normal; 
-    font-weight: 700; 
+.botaovoltar {
+    border-radius: 10px;
+    border: 1px solid #DACFCF;
+    background: #FFF;
+    height: 45px;
+    padding: 10px 5rem;
+    justify-content: center;
+    align-items: center;
+    color: #6B6B6B;
+    text-align: center;
+    font-family: Inter;
     font-size: 14px;
-    line-height: 29px; 
-    text-align: center; 
-    padding: 5px 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
 }
 
 .divisor{
-    color:#590B10; 
-    border: 2px solid #590B10; 
+    color:#5C1C26; 
+    background-color: #5C1C26;
     align-self: center;
 }
 
