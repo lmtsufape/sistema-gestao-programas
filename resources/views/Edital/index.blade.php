@@ -44,9 +44,11 @@
   @endif
   <br>
 
+
   <div style="display: flex; justify-content: space-evenly; align-items: center;">
       <h1 class = "titulo"><strong>Editais</strong></h1>
     </div>
+
 
     <form class="search-container" action="{{route("edital.index")}}" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
