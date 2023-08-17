@@ -239,6 +239,7 @@ Route::prefix('estagio')->group(function() {
     Route::put('/{id}', [EstagioController::class, 'update'])->name('estagio.update');
     Route::delete('/{id}', [EstagioController::class, 'destroy'])->name('estagio.delete');
     Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
+    Route::get('/documentos/{id}',[EstagioController::class, 'showDocuments'])->name('estagio.documentos');
 });
 
 Route::get('/estagios-aluno', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
