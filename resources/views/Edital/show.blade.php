@@ -102,13 +102,13 @@
 
                     @csrf
 
-                    <label class="titulo" for="">CPF do estudante: <strong style="color: red">*</strong></label>
+                    <label class="titulo" for="">CPF do estudante: <strong style="color: #8B5558">*</strong></label>
                     <input type="text" id="cpf" class="boxinfo cpf-autocomplete" name="cpf"
                         value="{{ old('cpf') }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}">
                     <br>
                     <br>
                     <div class="labelTooltip">
-                        <label class="titulo" for="bolsa">Tipo da bolsa: <strong style="color: red">*</strong></label>
+                        <label class="titulo" for="bolsa">Tipo da bolsa: <strong style="color: #8B5558">*</strong></label>
                         <a type="button" data-bs-toggle="tooltip" data-bs-placement="right"
                             title="Informar se o aluno a ser vinculado receberá bolsa ou não.">
                             <img src="{{ asset('images/info.png') }}" alt="Informação do tipo de bolsa"
@@ -130,7 +130,7 @@
                     </div>
 
                     <br>
-                    <label class="titulo" for="orientador">Orientador: <strong style="color: red">*</strong></label>
+                    <label class="titulo" for="orientador">Orientador: <strong style="color: #8B5558">*</strong></label>
                     <select aria-label="Default select example" class="boxinfo" id="orientador" name="orientador" required>
                         <option value disabled selected hidden>Selecione um orientador</option>
                         @foreach ($orientadores as $orientador)
@@ -149,7 +149,7 @@
                     <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno" value="{{ old('termo_compromisso_aluno') }}" required>
                     <br>
                     <br>
-                    <label class="titulo" for="plano_projeto">Plano de trabalho:<strong
+                    <label class="titulo" for="plano_projeto">Plano de trabalho<strong
                         style="color: red">*</strong> </label>
                     <input type="file" id="plano_projeto" class="boxinfo" name="plano_projeto" value="{{ old('plano_projeto') }}">
                     <br>

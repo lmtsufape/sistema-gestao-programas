@@ -22,30 +22,30 @@
                     @csrf
                     @method('PUT')
 
-                    <label class="titulopequeno" for="titulo_edital">Título<strong style="color: red">*</strong></label>
+                    <label class="titulopequeno" for="titulo_edital">Título<strong style="color: #8B5558">*</strong></label>
                     <input class="boxcadastrar" type="text" name="titulo_edital" id="titulo_edital"
                         value="{{ $edital->titulo_edital }}"><br><br>
 
-                    <label class="titulopequeno" for="semestre">Semestre de Início:<strong style="color: red">*</strong></label>
+                    <label class="titulopequeno" for="semestre">Semestre de Início<strong style="color: #8B5558">*</strong></label>
                     <input class="boxcadastrar" type="text" name="semestre" id="semestre"
                         value="{{ $edital->semestre }}"><br><br>
 
-                    <label class="titulopequeno" for="programa">Programa:<strong style="color: red">*</strong></label>
+                    <label class="titulopequeno" for="programa">Programa<strong style="color: #8B5558">*</strong></label>
                     <select aria-label="Default select example" class="boxcadastrar" name="programa" id="programa">
                         @foreach ($programas as $programa)
                             <option value="{{ $programa->id }}" {{ $edital->programa_id == $programa->id ? 'selected' : '' }}>
                                 {{ $programa->nome }}</option>
                         @endforeach
                     </select><br><br>
-                    
+
                     <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
                         <div style="width: 50%">
-                        <label class="titulopequeno" for="data_inicio">Data de início<strong style="color: red">*</strong></label>
+                        <label class="titulopequeno" for="data_inicio">Data de início<strong style="color: #8B5558">*</strong></label>
                         <br>
                         <input class="boxcadastrar" type="date" name="data_inicio" id="data_inicio" value="{{ $edital->data_inicio->format('Y-m-d') }}" ><br><br>
                         </div>
                         <div style="width: 50%">
-                        <label class="titulopequeno"  for="data_fim" >Data de fim<strong style="color: red">*</strong></label>
+                        <label class="titulopequeno"  for="data_fim" >Data de fim<strong style="color: #8B5558">*</strong></label>
                         <br>
                         <input class="boxcadastrar"  type="date" name="data_fim" id="data_fim" value="{{ $edital->data_fim->format('Y-m-d') }}"><br><br>
                         </div>
@@ -55,10 +55,10 @@
                     <textarea class="boxcadastrar" name="descricao" id="descricao" cols="30" rows="5">{{ $edital->descricao }}</textarea><br><br>
 
                     <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
-                        
+
                         @if($edital->valor_bolsa == null)
                         <div style="width: 50%">
-                            <label class="titulopequeno" for="bolsa">Possui bolsa? <strong style="color: red">*</strong></label>
+                            <label class="titulopequeno" for="bolsa">Possui bolsa? <strong style="color: #8B5558">*</strong></label>
                             <br>
                             <input type="radio" name="checkBolsa" value="sim" required>
                             <label class="textinho" for="checkBolsa_sim">Sim</label>
@@ -67,7 +67,7 @@
                             <label class="textinho" for="checkBolsa_nao">Não</label><br><br>
 
                             <div id="valor_bolsa" hidden>
-                                <label class="titulopequeno" for="valor_bolsa">Valor da Bolsa<strong style="color: red">*</strong></label>
+                                <label class="titulopequeno" for="valor_bolsa">Valor da Bolsa<strong style="color: #8B5558">*</strong></label>
                                 <input class="boxcadastrar" placeholder="Digite o valor da bolsa"
                                 type="number" name="valor_bolsa" id="valor_bolsa" value="{{ $edital->valor_bolsa }}"><br><br>
                             </div>
@@ -75,7 +75,7 @@
                         </div>
                         @else
                         <div style="width: 50%">
-                            <label class="titulopequeno" for="bolsa">Possui bolsa? <strong style="color: red">*</strong></label>
+                            <label class="titulopequeno" for="bolsa">Possui bolsa? <strong style="color: #8B5558">*</strong></label>
                             <br>
                             <input type="radio" name="checkBolsa" value="sim" required checked>
                             <label class="textinho" for="checkBolsa_sim">Sim</label>
@@ -84,18 +84,18 @@
                             <label class="textinho" for="checkBolsa_nao">Não</label><br><br>
 
                             <div id="valor_bolsa">
-                                <label class="titulopequeno" for="valor_bolsa">Valor da Bolsa<strong style="color: red">*</strong></label>
+                                <label class="titulopequeno" for="valor_bolsa">Valor da Bolsa<strong style="color: #8B5558">*</strong></label>
                                 <input class="boxcadastrar" placeholder="Digite o valor da bolsa"
                                 type="number" name="valor_bolsa" id="valor_bolsa" value="{{ $edital->valor_bolsa }}"><br><br>
                             </div>
 
                         </div>
-                        @endif                    
-                        
+                        @endif
+
                         <div style="width: 50%" >
 
                             @if(count($edital->disciplinas) == 0)
-                            <label class="titulopequeno" for="disciplina">Possui disciplina(s)? <strong style="color: red">*</strong></label>
+                            <label class="titulopequeno" for="disciplina">Possui disciplina(s)? <strong style="color: #8B5558">*</strong></label>
                             <br>
                             <input type="radio" name="checkDisciplina" value="sim" required>
                             <label class="textinho" for="checkDisciplina_sim">Sim</label>
@@ -124,7 +124,7 @@
                                     </div>
                                     @endforeach
                                 </div><br><br>
-                            </div>                      
+                            </div>
                             @endif
 
                         </div>

@@ -121,7 +121,7 @@
 
             <div class="row">
                 <div class="col-9">
-                    <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno: <strong style="color: red">*</strong></label>
+                    <label class="titulo" for="termo_compromisso_aluno">Termo de compromisso do aluno: <strong style="color: #8B5558">*</strong></label>
                     <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno">
                 </div>
                 <div class="col-3">
@@ -138,7 +138,7 @@
 
             <div class="row">
                 <div class="col-9">
-                    <label class="titulo" for="plano_projeto">Plano de trabalho:<strong style="color: red">*</strong> </label>
+                    <label class="titulo" for="plano_projeto">Plano de trabalho<strong style="color: #8B5558">*</strong> </label>
                     <input type="file" id="plano_projeto" class="boxinfo" name="plano_projeto" value="{{ old('plano_projeto') }}">
                 </div>
                 <div class="col-3">

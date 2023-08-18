@@ -60,7 +60,7 @@
                 padding-right: 20px; /* Ajuste o valor conforme necessário */
             }
 
-            
+
 
         </style>
         <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
@@ -76,82 +76,69 @@
                     <h1 class="titulogrande"> Cadastrar Edital {{$programa->nome}}</h1>
                 </div>
 
-                <hr>
+                <hr style="color:#5C1C26; background-color: #5C1C26">
 
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
 
-                    <label class="titulopequeno" for="titulo_edital">Título:<strong style="color: red">*</strong></label>
+                    <label class="titulopequeno" for="titulo_edital">Título<strong style="color: #8B5558">*</strong></label>
                     <input class="boxcadastrar" placeholder="Digite o título" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
 
-                    <label class="titulopequeno" for="semestre">Semestre de Início:<strong style="color: red">*</strong></label>
+                    <label class="titulopequeno" for="semestre">Semestre de Início<strong style="color: #8B5558">*</strong></label>
                     <input class="boxcadastrar" placeholder="Digite o semestre (Ex: 2023.2)" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
 
                     <div class="container-divisao">
                     <div class="box-dividido">
-                        <label class="titulopequeno" for="data_inicio" >Data de início:<strong style="color: red">*</strong></label>
+                        <label class="titulopequeno" for="data_inicio" >Data de início<strong style="color: #8B5558">*</strong></label>
                         <input class="boxcadastrar" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}">
                     </div>
 
                     <div class="box-dividido">
-                        <label class="titulopequeno" for="data_fim" >Data de fim:<strong style="color: red">*</strong></label>
+                        <label class="titulopequeno" for="data_fim" >Data de fim<strong style="color: #8B5558">*</strong></label>
                         <input class="boxcadastrar" type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}">
                     </div>
                     </div>
 
                     <label class="titulopequeno" for="Descrição">Descrição:</label>
                     <textarea class="boxcadastrar" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="3"> {{ old('descricao') }}</textarea><br><br>
-                    
-                    <div class="container-divisao">
-                    <div class="box-dividido">
-                    <div id="checkBolsa">
-                        <label class="titulopequeno radio-spacing" for="bolsa">Possui bolsa: <strong style="color: red">*</strong></label>
-                        <br>                     
-                        <input type="radio" name="checkBolsa" value="sim" required>
-                        <label class="radio-spacing" for="checkBolsa_sim">Sim</label> 
-                        <br>
-                                               
-                        <input type="radio" name="checkBolsa" value="nao" required>
-                        <label class="radio-spacing" for="checkBolsa_nao">Não</label>
-                        <br><br>
-                    </div>
+                    <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
+                        <div style="width: 50%">
+                            <label class="titulopequeno" for="bolsa">Possui bolsa? <strong style="color: #8B5558">*</strong></label>
+                            <br>
+                            <input type="radio" name="checkBolsa" value="sim" required>
+                            <label class="textinho" for="checkBolsa_sim">Sim</label>
+                            <br>
+                            <input type="radio" name="checkBolsa" value="nao" required>
+                            <label class="textinho" for="checkBolsa_nao">Não</label><br><br>
 
-                    <div id="valor_bolsa" hidden>
-                        <label class="titulopequeno" for="valor_bolsa">Valor da Bolsa:<strong style="color: red">*</strong></label>
-                        <input class="boxcadastrar" placeholder="Digite o valor da bolsa"
-                        type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
-                    </div>
-
-                    <!-- <label class="titulopequeno" for="programa">Programa:<strong style="color: red">*</strong></label>
-                    <select aria-label="Default select example" class="boxcadastrar" name="programa" id="programa">
-                        <option value="{{$programa->id}}" selected>{{$programa->nome}}</option>
-                    </select><br><br> -->
-
-                    <input type="hidden" name="programa" value="{{$programa->id}}">
-                    </div>
-                    <div class="box-dividido">
-                    <div id="checkDisciplina">
-                        <label class="titulopequeno radio-spacing" for="disciplina">Possui disciplina(s): <strong style="color: red">*</strong></label>                        
-                        <br>
-                        <input type="radio" name="checkDisciplina" value="sim" required>
-                        <label class="radio-spacing" for="checkDisciplina_sim">Sim</label>
-                        <br>
-                        <input type="radio" name="checkDisciplina" value="nao" required>
-                        <label class="radio-spacing" for="checkDisciplina_nao">Não</label>
-                        <br><br>
-                    </div>
-
-                    <div id="disciplinas" hidden>
-                        <label class="titulopequeno" for="disciplina">Disciplina(s):</label>
-                        <div class="colunm">
-                            @foreach ($disciplinas as $disciplina)
-                            <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
-                                <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}"> {{ $disciplina->nome . '/' . $disciplina->curso->nome}}<br>
+                            <div id="valor_bolsa" hidden>
+                                <label class="titulopequeno" for="valor_bolsa">Valor da Bolsa<strong style="color: #8B5558">*</strong></label>
+                                <input class="boxcadastrar" placeholder="Digite o valor da bolsa"
+                                type="number" name="valor_bolsa" id="valor_bolsa" value="{{ old('valor_bolsa') }}"><br><br>
                             </div>
-                            @endforeach</div><br><br>
+
                         </div>
-                    </div>
-                    </div>
+                        <div style="width: 50%">
+                            <label class="titulopequeno" for="disciplina">Possui disciplina(s)? <strong style="color: #8B5558">*</strong></label>
+                            <br>
+                            <input type="radio" name="checkDisciplina" value="sim" required>
+                            <label class="textinho" for="checkDisciplina_sim">Sim</label>
+                            <br>
+                            <input type="radio" name="checkDisciplina" value="nao" required>
+                            <label class="textinho" for="checkDisciplina_nao">Não</label><br><br>
+
+
+                            <div id="disciplinas" hidden>
+                                <label class="titulo" for="disciplina">Disciplina(s)</label>
+                                <div class="colunm">
+                                    @foreach ($disciplinas as $disciplina)
+                                    <div class="col-md-12" style="display: flex; justify-items:flex-start; gap:3%">
+                                        <input type="checkbox" id="disciplina_{{ $disciplina->id }}" name="disciplinas[]" value="{{ $disciplina->id }}"> {{ $disciplina->nome . '/' . $disciplina->curso->nome}}<br>
+                                    </div>
+                                    @endforeach</div><br><br>
+                            </div>
+                        </div>
+                        </div>
                     <br><br>
 
                     <div class="botoessalvarvoltar">

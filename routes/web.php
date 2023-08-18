@@ -7,6 +7,7 @@ use App\Http\Controllers\ServidorController;
 use App\Http\Controllers\OrientadorController;
 use App\Http\Controllers\EditalController;
 use App\Http\Controllers\DisciplinaController;
+use App\Http\Controllers\DocumentosController;
 use App\Http\Controllers\EstagioController;
 use App\Http\Controllers\FrequenciaController;
 use Illuminate\Support\Facades\Mail;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MeusAlunosController;
 use App\Http\Controllers\MeusProgramasController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PDFController;
+
 
 // Rotas de autenticacao
 Route::get('/', function () {
@@ -24,15 +27,15 @@ Route::post('/home', [UserController::class, 'store'])->name('store');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/sistema', function(){
+Route::get('/sistema', function () {
     return view('sistema');
 });
 
-Route::get('/parceria', function(){
+Route::get('/parceria', function () {
     return view('parceria');
 });
 
-Route::get('/contato', function(){
+Route::get('/contato', function () {
     return view('contato');
 });
 
@@ -49,7 +52,7 @@ Route::middleware([
 // Rotas de aluno
 Route::resource('/alunos', AlunoController::class);
 
-Route::prefix('alunos')->group(function() {
+Route::prefix('alunos')->group(function () {
     Route::get('/', [AlunoController::class, 'index'])->name('alunos.index');
     Route::get('/create', [AlunoController::class, 'create'])->name('alunos.create');
     Route::post('/', [AlunoController::class, 'store'])->name('alunos.store');
@@ -63,7 +66,7 @@ Route::prefix('alunos')->group(function() {
 // Rotas de servidor
 Route::resource('/servidores', ServidorController::class);
 
-Route::prefix('servidores')->group(function() {
+Route::prefix('servidores')->group(function () {
     Route::get('/', [ServidorController::class, 'index'])->name('servidores.index');
     Route::get('/create', [ServidorController::class, 'create'])->name('servidores.create');
     Route::post('/', [ServidorController::class, 'store'])->name('servidores.store');
@@ -79,7 +82,7 @@ Route::post("/servidors/permissao/{id}", [ServidorController::class, "adicionar_
 // Rotas de orientador //Fazer  - colocar todos os métodos do Controler
 Route::resource('/orientadors', OrientadorController::class);
 
-Route::prefix('orientadors')->group(function() {
+Route::prefix('orientadors')->group(function () {
     Route::get('/', [OrientadorController::class, 'index'])->name('orientadors.index');
     Route::get('/create', [OrientadorController::class, 'create'])->name('orientadors.create');
     Route::post('/', [OrientadorController::class, 'store'])->name('orientadors.store');
@@ -96,7 +99,7 @@ Route::get('/MeusProgramas', [MeusProgramasController::class, "index"]);
 // Rotas de programa //Organizar rotas em grupos
 Route::resource('/programas', ProgramaController::class);
 
-Route::prefix('programas')->group(function(){
+Route::prefix('programas')->group(function () {
     Route::get('/', [ProgramaController::class, 'index'])->name('programas.index');
     Route::get('/{id}/editais', [ProgramaController::class, 'listar_editais'])->name('programas.editais');
     Route::get('/create', [ProgramaController::class, 'create'])->name('programas.create');
@@ -117,10 +120,10 @@ Route::prefix('programas')->group(function(){
 
 // Rotas de Edital
 
-    // Route::get('/vinculo/create', [EditalController::class, "cadastrar_alunos"]);
+// Route::get('/vinculo/create', [EditalController::class, "cadastrar_alunos"]);
 Route::resource('/edital', EditalController::class);
 
-Route::prefix('edital')->group(function() {
+Route::prefix('edital')->group(function () {
     Route::get('/', [EditalController::class, 'index'])->name('edital.index');
     Route::get('/create', [EditalController::class, 'create'])->name('edital.create');
     Route::post('/', [EditalController::class, 'store'])->name('edital.store');
@@ -148,13 +151,12 @@ Route::prefix('edital')->group(function() {
     Route::get('/{fileName}/termo-orientador', [EditalController::class, 'download_termo_orientador'])->name('orientador_termo.download');
     Route::get('/{fileName}/historico-escolar', [EditalController::class, 'download_historico_escolares_alunos'])->name('historico_escolar.download');
     Route::get('/{fileName}/comprovante-bancario', [EditalController::class, 'download_comprovante_bancario'])->name('comprovante_bancario.download');
-    
 });
 
 // Rotas de Disciplina
 Route::resource('/disciplinas', DisciplinaController::class);
 
-Route::prefix('disciplinas')->group(function() {
+Route::prefix('disciplinas')->group(function () {
     Route::get('/', [DisciplinaController::class, 'index'])->name('disciplinas.index');
     Route::get('/create', [DisciplinaController::class, 'create'])->name('disciplinas.create');
     Route::post('/', [DisciplinaController::class, 'store'])->name('disciplinas.store');
@@ -163,12 +165,11 @@ Route::prefix('disciplinas')->group(function() {
     Route::delete('/{id}', [DisciplinaController::class, 'destroy'])->name('disciplinas.delete');
     Route::get('{id}', [DisciplinaController::class, 'show'])->name('disciplinas.show');
     Route::get('/create_diciplina_curso/{id}', [DisciplinaController::class, 'create_disciplina_curso'])->name('disciplinas_curso.create');
-
 });
 // Rotas de curso
 Route::resource('/cursos', CursoController::class);
 
-Route::prefix('cursos')->group(function() {
+Route::prefix('cursos')->group(function () {
     Route::get('/', [CursoController::class, 'index'])->name('cursos.index');
     Route::get('/create', [CursoController::class, 'create'])->name('cursos.create');
     Route::post('/', [CursoController::class, 'store'])->name('cursos.store');
@@ -231,7 +232,7 @@ Route::post('/frequencia-aluno', [EditalController::class, 'enviarFrequencia'])-
 
 //Rotas do Estágio
 
-Route::prefix('estagio')->group(function() {
+Route::prefix('estagio')->group(function () {
     Route::get('/', [EstagioController::class, 'index'])->name('estagio.index');
     Route::get('/cadastrar', [EstagioController::class, 'create'])->name('estagio.create');
     Route::post('/', [EstagioController::class, 'store'])->name('estagio.store');
@@ -239,7 +240,17 @@ Route::prefix('estagio')->group(function() {
     Route::put('/{id}', [EstagioController::class, 'update'])->name('estagio.update');
     Route::delete('/{id}', [EstagioController::class, 'destroy'])->name('estagio.delete');
     Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
+
+
+    Route::get('/documentos/termo_encaminhamento', [DocumentosController::class, 'termo_encaminhamento_form'])->name('estagio.formularios.termo_encaminhamento'); 
+    Route::post('/documentos/termo_encaminhamento', [DocumentosController::class, 'termo_encaminhamento'])->name('estagio.formularios.termo_encaminhamento.store');
+    // comentado temporariamente 
+    //Route::get('/documentos/{id}',[EstagioController::class, 'showDocuments'])->name('estagio.documentos');
+    //Route::get('/documentos/{id}/termo-de-encaminhamento', [EstagioController::class, 'storeTermoDeEncaminhamento'])->name('estagio.documentos.termo-de-encaminhamento');
+
 });
 
 Route::get('/estagios-aluno', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
-  
+
+
+Route::get('/termo_encaminhamento', [DocumentosController::class, 'termo_encaminhamento'])->name('Estagio.formularios.termo_encaminhamento');

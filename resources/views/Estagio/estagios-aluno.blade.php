@@ -99,6 +99,10 @@
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($estagio->data_inicio), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($estagio->data_fim), "d/m/Y")}}</td>
             <td>
+                <a type="button" href="{{  route('estagio.documentos', ['id' => $estagio->id] )  }}">
+                    <img src="{{asset("images/iconsbarralateral/listardocbl.png")}}" alt="Acessar Documentos" style="height: 30px; width: 30px;">
+                  </a>
+
             @endforeach
                 </tbody>
             </table>

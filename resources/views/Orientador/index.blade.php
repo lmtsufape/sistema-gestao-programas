@@ -30,7 +30,7 @@
 
 
 @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
-<div class="container-fluid" style="font-family: 'Roboto', sans-serif;">
+<div class="container-fluid">
   @if (session('sucesso'))
   <div class="alert alert-success">
     {{session('sucesso')}}
@@ -38,43 +38,19 @@
   @endif
   <br>
 
-  <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1 style="color:#2D3875;"><strong>Professores</strong></h1>
-    <div style="margin: auto"></div>
-    <form action="{{route("orientadors.index")}}" method="GET">
-      <input type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
-            border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            background-position: 10px 2px;
-            background-repeat: no-repeat;
-            width: 35%;
-            font-size: 16px;
-            height: 45px;
-            border: 1px solid #ddd;
-            margin-bottom: 12px; margin-right: 10px">
-
-      <input type="submit" value="" style="background-image: url('/images/searchicon.png');
-            background-color: #D9D9D9;
-            border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            width: 40px;
-            font-size: 16px;
-            height: 45px;
-            border: 1px solid #ddd;
-            position: absolute;
-            margin: auto;" />
-
-    </form>
-  </div>
-  <div style="padding-bottom: 6px">
-    <div style="display: contents; align-content: center; align-items: center;">
-      <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-        font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
-        align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-        padding-left: 10px;" href="{{route("orientadors.create")}}"
-        onmouseover="this.style.backgroundColor='#2D3875'"
-        onmouseout="this.style.backgroundColor='#34A853'">
-        <img src="{{asset("images/plus.png")}}" alt="Cadastrar orientador" style="padding-bottom: 5px"> Cadastrar Professor
-      </a>
+  <div style="display: flex; justify-content: space-evenly; align-items: center;">
+      <h1 class = "titulo"><strong>Professores</strong></h1>
     </div>
+
+    {{-- TODO: Falta adicionar um modal com os possiveis filtros  --}}
+    <form class="search-container" action="{{route("orientadors.index")}}" method="GET">
+        <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
+        <input class="search-button" type="submit" value=""></input>
+        <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("orientadors.create") }}'">Cadastrar professor</button>
+    </form>
+
+  </div>
+
     <br>
     <br>
 
@@ -85,39 +61,40 @@
       </p>
     </div>
     @else
+
+
     <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
       <div class="col-md-9 corpo p-2 px-3">
-        <table class="table" style="border-radius: 10px; background-color: #F2F2F2;
-            min-width: 600px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); min-height: 50px; ">
+        <table class="table">
                 <thead>
-                    <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">CPF</th>
-                        <th scope="col">Matrícula</th>
-                        <th scope="col">Ações</th>
+                    <tr class ="table-head">
+                        <th scope="col" class="text-center">Nome</th>
+                        <th scope="col" class="text-center">E-mail</th>
+                        <th scope="col" class="text-center">CPF</th>
+                        <th scope="col" class="text-center">Matrícula</th>
+                        <th scope="col" class="text-center">Ações</th>
                     </tr>
                     </thead>
                     @foreach ($orientadors as $orientador)
                 <tbody>
                         <tr>
-                            <td>{{$orientador->user->name}}</td>
-                            <td>{{$orientador->user->email}}</td>
-                            <td>{{$orientador->cpf}}</td>
-                            <td>{{$orientador->matricula}}</td>
-                            <td>
+                            <td class="align-middle">{{$orientador->user->name}}</td>
+                            <td class="align-middle">{{$orientador->user->email}}</td>
+                            <td class="align-middle">{{$orientador->cpf}}</td>
+                            <td class="align-middle">{{$orientador->matricula}}</td>
+                            <td class="align-middle">
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$orientador->id}}">
-                                <img src="{{asset("images/info.png")}}" alt="Info professor" style="height: 30px; width: 30px;">
+                                <img src="{{asset('images/information.svg')}}" alt="Info professor" style="height: 30px; width: 30px;">
                                 </a>
                                {{--  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$orientador->id}}">
-                                <img src="{{asset("images/document.png")}}" alt="Documento professor"  style="height: 30px; width: 30px;">
+                                <img src="{{asset('images/document.png')}}" alt="Documento professor"  style="height: 30px; width: 30px;">
 
                                 </a>--}}
                                 <a href=" {{route('orientadors.edit', ['id' => $orientador->id] )}}">
-                                <img src="{{asset("images/edit-outline-blue.png")}}" alt="Editar professor"  style="height: 30px; width: 30px;">
+                                <img src="{{asset('images/pencil.svg')}}" alt="Editar professor"  style="height: 30px; width: 30px;">
                                 </a>
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$orientador->id}}">
-                                <img src="{{asset("images/delete.png")}}" alt="Deletar professor" style="height: 30px; width: 30px;">
+                                <img src="{{asset('images/delete.svg')}}" alt="Deletar professor" style="height: 30px; width: 30px;">
                                 </a>
 
 
@@ -132,7 +109,7 @@
                 </tbody>
             </table>
         </div>
-
+<!--
       <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
         width: 150px; height: 50%;">
         <div style="align-self: center; margin-right: auto">
@@ -166,6 +143,7 @@
         </div>
       </div>
     </div>
+          -->
     {{-- <div style="margin: auto; width: 45%; padding: 10px;">
         <div class="pagination">
           <a href="#" style="border-radius: 15px; background: #131833; color: white;">Anterior</a>

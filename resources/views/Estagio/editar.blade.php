@@ -79,15 +79,15 @@
                     <label class="titulo" for="Descrição">Descrição:</label>
                     <textarea class="boxinfo" name="descricao" id="descricao" cols="30" rows="5">{{ $estagio->descricao }}</textarea><br><br>
 
-                    <label class="titulo" for="data_inicio">Data de início:<strong style="color: red">*</strong></label>
+                    <label class="titulo" for="data_inicio">Data de início<strong style="color: #8B5558">*</strong></label>
                     <input class="boxinfo" type="date" name="data_inicio" id="data_inicio"
                         value="{{ $estagio->data_inicio->format('Y-m-d')}}"><br><br>
 
-                    <label class="titulo" for="data_fim">Data de fim:<strong style="color: red">*</strong></label>
+                    <label class="titulo" for="data_fim">Data de fim<strong style="color: #8B5558">*</strong></label>
                     <input class="boxinfo" type="date" name="data_fim" id="data_fim"
                         value="{{ $estagio->data_fim->format('Y-m-d')}}"><br><br>
 
-                    <label class="titulo" for="data_solicitacao">Data de Solicitação:<strong style="color: red">*</strong></label>
+                    <label class="titulo" for="data_solicitacao">Data de Solicitação<strong style="color: #8B5558">*</strong></label>
                     <input class="boxinfo" type="date" name="data_solicitacao" id="data_solicitacao"
                         value="{{ $estagio->data_solicitacao->format('Y-m-d') }}"><br><br>
                 <br><br>
