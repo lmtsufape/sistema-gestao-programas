@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Estagio;
 use Illuminate\Http\Request;
 
 
 class DocumentosController extends Controller
 {
-    public function termo_encaminhamento_form()
+    public function termo_encaminhamento_form($id)
     {
-        return view('Estagio.formularios.termo_encaminhamento');
+        $estagio = Estagio::findOrFail($id);
+
+        return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio"));
     }
 
     public function termo_encaminhamento(Request $request)
