@@ -48,7 +48,7 @@
         <input class="search-button" type="submit" value=""></input>
         <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("orientadors.create") }}'">Cadastrar professor</button>
     </form>
-    
+
   </div>
 
     <br>

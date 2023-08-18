@@ -54,7 +54,7 @@
       <h1 class = "titulo"><strong>Programas</strong></h1>
   </div>
 
-  <form class="search-container" action="{{route("programas.index")}}" method="GET">
+    <form class="search-container" action="{{route("programas.index")}}" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
         <input class="search-button" type="submit" value=""></input>
         <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("programas.create") }}'">Cadastrar programa</button>
@@ -107,7 +107,7 @@
               </a>
             </td>
           </tr>
-          
+
           @include("Programa.components.modal_show", ["programa" => $programas, "servidors" => $servidors, "users" => $users])
           @include("Programa.components.modal_delete", ["programa" => $programas])
           @endforeach

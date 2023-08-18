@@ -52,3 +52,22 @@
     margin: 10px;
 }
 
+.caixinhasetinha {
+    color: #AE4959;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+}
+
+.caixinhasetinha:hover{
+    color: #A1141D;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration: none;
+}
