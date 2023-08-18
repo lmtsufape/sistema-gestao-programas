@@ -36,6 +36,10 @@ class CreateEstagiosTable extends Migration
             
             $table->unsignedBigInteger('curso_id');
             $table->foreign('curso_id')->references('id')->on('cursos');
+
+            $table->unsignedBigInteger('disciplina_id')->nullable(true);
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+
         });
     }
 

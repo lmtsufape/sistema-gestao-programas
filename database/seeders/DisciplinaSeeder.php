@@ -49,5 +49,15 @@ class DisciplinaSeeder extends Seeder
             'nome' => "Calculo 1",
             'curso_id' => 2,
         ]);
+
+        $disciplina7 = Disciplina::create([
+            'nome' => "Estágio",
+            'curso_id' => 1,
+        ]);
+
+        $disciplina8 = Disciplina::create([
+            'nome' => "Estágio",
+            'curso_id' => 2,
+        ]);
     }
 }
