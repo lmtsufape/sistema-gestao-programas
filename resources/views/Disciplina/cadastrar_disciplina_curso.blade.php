@@ -20,7 +20,7 @@
 
                 <form action="{{route("disciplinas.store")}}" method="post">
                     @csrf
-                    <label for="disciplina" class="titulopequeno">Disciplina:<strong style="color: red">*</strong></label>
+                    <label for="disciplina" class="titulopequeno">Disciplina<strong style="color: #8B5558">*</strong></label>
                     <br>
                     <input class="boxcadastrar" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
                     <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>

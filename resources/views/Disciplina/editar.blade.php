@@ -19,13 +19,13 @@
                 <form action="{{url("disciplinas/$disciplina->id")}}" method="POST">
                     @csrf
                     @method("PUT")
-                    <label for="nome" class="titulopequeno">Título:<strong style="color: red">*</strong></label>
+                    <label for="nome" class="titulopequeno">Título<strong style="color: #8B5558">*</strong></label>
                     <br>
                     <input class="boxcadastrar" type="text" id="nome" name="nome"  value="{{$disciplina->nome}}"  required placeholder="Digite o nome">
                     <div class="invalid-feedback">Por favor preencha esse campo</div>
                     <br><br>
 
-                    <label for="inputCurso" class="titulopequeno" >Curso:<strong style="color: red">*</strong></label>
+                    <label for="inputCurso" class="titulopequeno" >Curso<strong style="color: #8B5558">*</strong></label>
                     <br>
                     <select aria-label="Default select example" class="boxcadastrar" id="inputCurso" name="curso">
                         @foreach ($cursos as $curso)
@@ -42,7 +42,7 @@
                 </form>
             </div>
         </div>
-        
+
     @elsecan
         <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
         <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>

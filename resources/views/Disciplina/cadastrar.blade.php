@@ -19,12 +19,12 @@
 
                 <form action="{{route("disciplinas.store")}}" method="post">
                     @csrf
-                    <label for="disciplina" class="titulopequeno">Disciplina:<strong style="color: red">*</strong></label>
+                    <label for="disciplina" class="titulopequeno">Disciplina<strong style="color: #8B5558">*</strong></label>
                     <br>
                     <input class="boxcadastrar" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
                     <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-                    <label for="inputCurso" class="titulopequeno" >Curso:<strong style="color: red">*</strong></label>
+                    <label for="inputCurso" class="titulopequeno" >Curso<strong style="color: #8B5558">*</strong></label>
                     <br>
                     <select aria-label="Default select example" class="boxcadastrar" id="inputCurso" name="curso">
                         <option value disabled selected hidden>Selecione o curso</option>

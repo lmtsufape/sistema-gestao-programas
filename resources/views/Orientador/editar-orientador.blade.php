@@ -76,7 +76,7 @@
 
                 <input type="file" id="image" name="image" class="form-control-file">
 
-                <label for="nome" class="titulo">Nome:<strong style="color: red">*</strong></label>
+                <label for="nome" class="titulo">Nome<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo" type="text" id="name" name="name" placeholder="Digite o nome" value="{{$orientador->user->name}}"
                 ><br/><br>
 
@@ -84,19 +84,19 @@
                 <input class="boxinfo" type="text" id="name_social" name="name_social" placeholder="Digite o nome social" value="{{$orientador->user->name_social}}"
                 ><br/><br>
 
-                <label for="email" for="nome" class="titulo">E-mail:<strong style="color: red">*</strong></label>
+                <label for="email" for="nome" class="titulo">E-mail<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo" type="text" id="email" name="email" placeholder="Digite o e-mail" value="{{$orientador->user->email}}"><br/><br>
 
-                <label for="cpf" for="nome" class="titulo">CPF:<strong style="color: red">*</strong></label>
+                <label for="cpf" for="nome" class="titulo">CPF<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo cpf-autocomplete" name="cpf" id="cpf" type="text" placeholder="Digite o CPF" value="{{$orientador->cpf}}" ><br/><br>
 
-                <label for="matricula" class="titulo">Matrícula:<strong style="color: red">*</strong></label>
+                <label for="matricula" class="titulo">Matrícula<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)" value="{{$orientador->matricula}}"><br><br>
 
-                <label for="instituicaoVinculo" class="titulo">Instituição:<strong style="color: red">*</strong></label>
+                <label for="instituicaoVinculo" class="titulo">Instituição<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a instituição vinculada ao professor" value="{{ $orientador->instituicaoVinculo }}" required><br><br>
 
-                <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s):<strong style="color: red">*</strong></label>
+                <label for="curso" class="mb-2" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Curso(s)<strong style="color: #8B5558">*</strong></label>
                 @foreach ($cursos as $curso)
                     <div>
                         <input type="checkbox" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}" @if(in_array($curso->id, $cursosSelecionados)) checked @endif>
@@ -105,7 +105,7 @@
                 @endforeach
                 <br><br>
 
-                <label for="senha" for="nome" class="titulo">Senha:<strong style="color: red">*</strong></label>
+                <label for="senha" for="nome" class="titulo">Senha<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo" type="password" id="senha" name="senha" placeholder="Digite a senha"><br/><br>
 
                 <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">

@@ -48,23 +48,38 @@
                         <button class="botaoinvisivel" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <img src="../../images/arrowdown.svg" alt="Seta para baixo" style="height: auto; width: auto">
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding: 15px">
                             @if (auth()->user()->typage_type == "App\Models\Servidor")
-                            <a href="{{route('meu-perfil-servidor')}}" class="fonteheader" style="padding-left: 5%" href="#">Meu perfil</a>
+                            {{--  a com icon de UserVector  --}}
+                            <a href="{{route('meu-perfil-servidor')}}" class="caixinhasetinha" style="">
+                                <img src="../../images/UserVector.svg" alt="Icone de usuário">
+                                <span style="margin-left: 5px;">Meu perfil</span>
+                            </a>
                             @endif
                             @if (auth()->user()->typage_type == "App\Models\Orientador")
-                            <a href="{{route('meu-perfil-orientador')}}" class="fonteheader" style="padding-left: 5%" href="#">Meu perfil</a>
+                            <a href="{{route('meu-perfil-orientador')}}" class="caixinhasetinha"  href="#">
+                                <img src="../../images/UserVector.svg" alt="Icone de usuário">
+                                <span style="margin-left: 5px;">Meu perfil</span>
+                            </a>
                             @endif
                             @if (auth()->user()->typage_type == "App\Models\Aluno")
-                            <a href="{{route('meu-perfil-aluno')}}" class="fonteheader" style="padding-left: 5%" href="#">Meu perfil</a>
+                            <a href="{{route('meu-perfil-aluno')}}" class="caixinhasetinha"  href="#">
+                                <img src="../../images/UserVector.svg" alt="Icone de usuário">
+                                <span style="margin-left: 5px;">Meu perfil</span>
+                            </a>
                             @endif
-                            <form action="/logout" method="POST" style="padding-left: 5%">
+                            <form action="/logout" method="POST">
                                 @csrf
-                                <a href="/logout"  onclick="event.preventDefault(); this.closest('form').submit()" class="link_navbar">
-                                <p class="fonteheader"> Sair </p>
-                                </a>
+                                <div style="padding-top: 10px">
+                                    <a href="/logout"  class="caixinhasetinha" onclick="event.preventDefault(); this.closest('form').submit()" class="link_navbar">
+                                        <img src="../../images/logoutVector.svg" alt="Sai da conta">
+                                        <span style="margin-left: 5px;"> Sair </span>
+                                    </a>
+                                </div>
                             </form>
                         </div>
+
                     </div>
                     @endauth
 
