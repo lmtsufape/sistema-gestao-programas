@@ -79,6 +79,15 @@
                             @endforeach
                     </select><br><br>
 
+                    <label class="titulopequeno" for="supervisor">Supervisor<strong style="color: #8B5558">*</strong></label>
+                    <select aria-label="Default select example" class="boxcadastrar" name="supervisor" id="supervisor" >
+                        <option  value disabled selected hidden> Selecione o Supervisor</option>
+                            @foreach ($supervisors as $supervisor)
+                                <option value="{{$supervisor->id}}" {{ old('supervisor') == $supervisor->id ? 'selected' : '' }}>{{$supervisor->nome}}</option>
+                            @endforeach
+                    </select><br><br>
+
+
                     @if($aluno)
                         <label class="titulopequeno" for="curso">Curso<strong style="color: #8B5558">*</strong></label>
                         <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso" style="background: #eee; pointer-events: none; touch-action: none;">
@@ -98,6 +107,16 @@
 
                     @endif
 
+                    <div id="disciplinas" hidden>
+                        <label class="titulopequeno" for="curso">Disciplina:<strong style="color: #8B5558">*</strong></label>
+                        <select aria-label="Default select example" class="boxcadastrar" name="disciplina" id="disciplina">
+                            <option value disabled selected hidden> Selecione a Disciplina</option>
+                            @foreach ($disciplinas as $disciplina)
+                            <option value="{{$disciplina->id}}" {{ old('disciplina') == $disciplina->id ? 'selected' : '' }} >{{$disciplina->nome}} / {{$disciplina->curso->nome}}</option>
+                            @endforeach. S
+                        </select><br><br>
+                    </div>
+
                     <div class="botoessalvarvoltar">
                         <input type="button" value="Voltar" href="{{url('/home/')}}" onclick="window.location.href='{{url('/home/')}}'" class="botaovoltar">
                         <input class="botaosalvar" type="submit" value="Salvar">
@@ -107,6 +126,25 @@
             <br><br>
         </div>
 
+        <script>
+            
+            const selectDisciplina = document.getElementById('disciplina');
+
+            $(document).ready(function() {
+                $("input[name='checkTipo']").change(function() {
+                    if ($("input[name='checkTipo']:checked").val() == "eo"){
+                        $("#disciplinas").removeAttr("hidden");
+                        selectDisciplina.required = true;
+                    } else {
+                        $("#disciplinas").attr("hidden", true);
+                        selectDisciplina.required = false;
+
+                    }
+                });
+
+
+            });
+        </script>
         <script  src="{{ mix('js/app.js') }}">
 
             $("#orientadors").chosen({

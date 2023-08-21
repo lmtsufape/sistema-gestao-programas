@@ -6,8 +6,10 @@ use App\Http\Requests\EstagioStoreFormRequest;
 use App\Http\Requests\EstagioUpdateFormRequest;
 use App\Models\Aluno;
 use App\Models\Curso;
+use App\Models\Disciplina;
 use App\Models\Estagio;
 use App\Models\Orientador;
+use App\Models\Supervisor;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -53,18 +55,24 @@ class EstagioController extends Controller
     public function create()
     {
         $aluno = null;
+        $disciplinas = null;
 
         if(auth()->user()->typage_type == "App\Models\Aluno"){
             //Se for aluno, vamos obter o aluno pelo typage_id
             $aluno_id = auth()->user()->typage_id;
             $aluno = Aluno::Where('id', $aluno_id)->first();
 
+            $disciplinas = $aluno->curso->disciplinas; //seleciona apenas as disciplinas dos alunos
             //dd($aluno);
+        }else{
+            $disciplinas = Disciplina::all();
         }
+
         $orientadors = Orientador::all();
         $cursos = Curso::all();
+        $supervisors = Supervisor::all();
 
-        return view('Estagio.cadastrar', compact('orientadors', 'cursos', 'aluno'));
+        return view('Estagio.cadastrar', compact('orientadors', 'cursos', 'aluno', 'disciplinas', 'supervisors'));
     }
 
     public function store(EstagioStoreFormRequest $request)
@@ -81,7 +89,10 @@ class EstagioController extends Controller
 
         $estagio->aluno_id = $aluno->id;
         $estagio->orientador_id = $request->orientador;
+        $estagio->supervisor_id = $request->supervisor;
         $estagio->curso_id = $request->curso;
+        $estagio->disciplina_id = $request->disciplina;
+        $estagio->tipo = $request->checkTipo;
         $estagio->save();
         DB::commit();
 
@@ -159,12 +170,5 @@ class EstagioController extends Controller
         $estagio = Estagio::findOrFail($id);
 
         return view('Estagio.documentos.documentos_show',compact("estagio"));
-    }
-
-    public function storeTermoDeEncaminhamento($id)
-    {
-        $estagio = Estagio::findOrFail($id);
-
-        return view('Estagio.documentos.termo_de_encaminhamento');
     }
 }
