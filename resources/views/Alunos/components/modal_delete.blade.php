@@ -1,6 +1,6 @@
 @canany(['admin', 'servidor'])
   <div class="modal fade" id="modal_delete_{{$aluno->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog">
       <div class="modal-content" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
         <div class="modal-header">
           <h5 class="modal-title title fw-bold " style="color: #131833; font-size: 25px; line-height: 47px;" id="exampleModalLabel">Deletar estudante</h5>
