@@ -9,6 +9,7 @@ use App\Models\Curso;
 use App\Models\Disciplina;
 use App\Models\Estagio;
 use App\Models\Orientador;
+use App\Models\Supervisor;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -69,8 +70,9 @@ class EstagioController extends Controller
 
         $orientadors = Orientador::all();
         $cursos = Curso::all();
+        $supervisors = Supervisor::all();
 
-        return view('Estagio.cadastrar', compact('orientadors', 'cursos', 'aluno', 'disciplinas'));
+        return view('Estagio.cadastrar', compact('orientadors', 'cursos', 'aluno', 'disciplinas', 'supervisors'));
     }
 
     public function store(EstagioStoreFormRequest $request)
@@ -87,8 +89,10 @@ class EstagioController extends Controller
 
         $estagio->aluno_id = $aluno->id;
         $estagio->orientador_id = $request->orientador;
+        $estagio->supervisor_id = $request->supervisor;
         $estagio->curso_id = $request->curso;
         $estagio->disciplina_id = $request->disciplina;
+        $estagio->tipo = $request->checkTipo;
         $estagio->save();
         DB::commit();
 

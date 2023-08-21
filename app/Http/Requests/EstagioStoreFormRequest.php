@@ -33,6 +33,7 @@ class EstagioStoreFormRequest extends FormRequest
             "cpf_aluno" => "required|formato_cpf|cpf",
             "checkTipo" => "required",
             "orientador" => "required",
+            "supervisor" => "required",
             "curso" => "required"
         ];
     }
