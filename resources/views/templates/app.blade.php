@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -15,16 +15,16 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="../../../css/style.css">
-    <link href="../../../css/header.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../css/login.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../css/register.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../css/footer.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../css/menu.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../css/home.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../css/app.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../css/cadastro.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../css/listar.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../css/modais.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../css/header.css" rel="stylesheet" type="text/css" />
+    <link href="../../../css/login.css" rel="stylesheet" type="text/css" />
+    <link href="../../../css/register.css" rel="stylesheet" type="text/css" />
+    <link href="../../../css/footer.css" rel="stylesheet" type="text/css" />
+    <link href="../../../css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="../../../css/home.css" rel="stylesheet" type="text/css" />
+    <link href="../../../css/app.css" rel="stylesheet" type="text/css" />
+    <link href="../../../css/cadastro.css" rel="stylesheet" type="text/css" />
+    <link href="../../../css/listar.css" rel="stylesheet" type="text/css" />
+    <link href="../../../css/modais.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
@@ -38,14 +38,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
-        integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
     <script defer="defer" src="//barra.brasil.gov.br/barra_2.0.js" type="text/javascript"></script>
 
 
-  </head>
+</head>
 
-  <body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100">
     <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
         <ul id="menu-barra-temp" style="list-style:none;">
             <li
@@ -61,23 +62,23 @@
     @include('layouts.menu')
 
     <div>
-      <div style="text-align: center">
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+        <div style="text-align: center">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
 
-        @endif
-        @yield('body')
-      </div>
+            @endif
+            @yield('body')
+        </div>
     </div>
     @include('layouts.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
-</html>
 
+</html>
