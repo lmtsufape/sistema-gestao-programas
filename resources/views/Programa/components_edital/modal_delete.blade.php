@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal_delete_{{$edital->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal" id="modal_delete_{{$edital->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content modal-create" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header">
@@ -13,7 +13,7 @@
         <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Cancelar</button>
 
         <form action="{{route ('programas.edital-delete', ['id'=> $edital->id])}}" method="delete">
-          
+
           @csrf
           <button type="submit" class="btn btn-danger">Deletar</button>
         </form>

@@ -1,5 +1,5 @@
 @canany(['admin', 'servidor'])
-  <div class="modal fade" id="modal_delete_{{$disciplina->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal" id="modal_delete_{{$disciplina->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal-create" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
         <div class="modal-header">
@@ -22,7 +22,7 @@
     </div>
   </div>
 @else
-<div class="modal fade" id="modal_delete_{{$disciplina->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal" id="modal_delete_{{$disciplina->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
             <div class="modal-header">

@@ -1,5 +1,5 @@
 @canany(['admin', 'servidor', 'gestor'])
-<div data-backdrop="static" data-keyboard="false" role="dialog" class="modal fade" id="modal_edit_{{$aluno->id}}" tabindex="-1" aria-hidden="true">
+<div data-backdrop="static" data-keyboard="false" role="dialog" class="modal" id="modal_edit_{{$aluno->id}}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
     <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header" >
@@ -14,7 +14,7 @@
           <img src="/images/fotos-perfil/{{ $aluno->user->image }}"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">
           @else
 
-          <img src="/images/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">            
+          <img src="/images/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">
 
           @endif
 

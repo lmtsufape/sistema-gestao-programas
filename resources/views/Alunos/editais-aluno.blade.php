@@ -91,8 +91,8 @@
             <td style="border-right: 1px solid #d3d3d3;">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
             <td style="border-right: 1px solid #d3d3d3;">{{$edital->programa->nome}}</td>
             <td>
-            
-              
+
+
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$edital->id}}">
                 <img src="{{asset("images/info.png")}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
@@ -104,7 +104,7 @@
               <a class="link" alt="Listar orientadores" href="{{  route('edital.listar_orientadores', ['id' => $edital->id]) }}" >
                 <img src="{{asset("images/orientadores.png")}}" alt="Listar orientadores" style="height: 40px; width: 40px;">
               </a>
-        
+
             </td>
           </tr>
           <tr>
@@ -142,14 +142,14 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Frequencia Mensal do Monitor</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form class="container form" 
+          <form class="container form"
               action="{{ Route('frequencia.enviar') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="modal-body">
