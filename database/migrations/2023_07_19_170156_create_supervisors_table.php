@@ -14,6 +14,7 @@ class CreateSupervisorsTable extends Migration
     public function up()
     {
         Schema::create('supervisors', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('nome');
             $table->string('cpf', 14)->unique();
