@@ -14,6 +14,7 @@ class CreateListaDocumentosObrigatorios extends Migration
     public function up()
     {
         Schema::create('lista_documentos_obrigatorios', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('titulo');
             $table->string('descricao_documento');

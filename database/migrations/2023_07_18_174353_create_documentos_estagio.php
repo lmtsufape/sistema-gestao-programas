@@ -14,6 +14,7 @@ class CreateDocumentosEstagio extends Migration
     public function up()
     {
         Schema::create('documentos_estagio', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->date('data');
             $table->timestamps();
