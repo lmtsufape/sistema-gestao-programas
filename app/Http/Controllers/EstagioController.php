@@ -19,18 +19,18 @@ class EstagioController extends Controller
 {
     public function index(Request $request)
     {
-        if (sizeof($request-> query()) > 0){
+        if (sizeof($request->query()) > 0) {
             $campo = $request->query('campo');
             $valor = $request->query('valor');
 
-            if ($valor == null){
-                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            if ($valor == null) {
+                return redirect()->back()->withErrors("Deve ser informado algum valor para o filtro.");
             }
 
             $estagios = Estagio::join('alunos', 'estagios.aluno_id', '=', 'alunos.id')
-            ->leftJoin('orientadors', 'estagios.orientador_id', '=', 'orientadors.id')
-            ->leftJoin('users', 'users.typage_id', '=', 'orientadors.id');
-            
+                ->leftJoin('orientadors', 'estagios.orientador_id', '=', 'orientadors.id')
+                ->leftJoin('users', 'users.typage_id', '=', 'orientadors.id');
+
             $estagios = $estagios->where(function ($query) use ($valor) {
                 if ($valor) {
                     $query->orWhere("users.cpf", "LIKE", "%{$valor}%");
@@ -40,10 +40,10 @@ class EstagioController extends Controller
                     $query->orWhere("estagios.descricao", "LIKE", "%{$valor}%");
                 }
             })
-            ->orderBy('estagios.created_at', 'desc')
-            ->select("estagios.*")
-            ->distinct()
-            ->get();
+                ->orderBy('estagios.created_at', 'desc')
+                ->select("estagios.*")
+                ->distinct()
+                ->get();
 
             return view('Estagio.index', compact('estagios'));
         } else {
@@ -57,14 +57,14 @@ class EstagioController extends Controller
         $aluno = null;
         $disciplinas = null;
 
-        if(auth()->user()->typage_type == "App\Models\Aluno"){
+        if (auth()->user()->typage_type == "App\Models\Aluno") {
             //Se for aluno, vamos obter o aluno pelo typage_id
             $aluno_id = auth()->user()->typage_id;
             $aluno = Aluno::Where('id', $aluno_id)->first();
 
             $disciplinas = $aluno->curso->disciplinas; //seleciona apenas as disciplinas dos alunos
             //dd($aluno);
-        }else{
+        } else {
             $disciplinas = Disciplina::all();
         }
 
@@ -96,8 +96,8 @@ class EstagioController extends Controller
         $estagio->save();
         DB::commit();
 
-        if (auth()->user()->typage_type == "App\Models\Aluno"){
-            return redirect('/estagios-aluno')->with('sucesso', 'Estágio cadastrado com sucesso.');
+        if (auth()->user()->typage_type == "App\Models\Aluno") {
+            return redirect('/meus-estagios')->with('sucesso', 'Estágio cadastrado com sucesso.');
         }
 
         return redirect('/estagio')->with('sucesso', 'Estágio cadastrado com sucesso.');
@@ -128,9 +128,9 @@ class EstagioController extends Controller
     }
 
     public function update(EstagioUpdateFormRequest $request, $id)
-    {               
+    {
         DB::beginTransaction();
-        try{    
+        try {
             $estagio = Estagio::find($id);
             
             $estagio->descricao = $request->descricao ? $request->descricao : $estagio->descricao;
@@ -149,18 +149,17 @@ class EstagioController extends Controller
             $estagio->tipo = $request->checkTipo ? $request->checkTipo : $estagio->tipo;
 
             $estagio->update();
-    
+
             DB::commit();
 
             return redirect()->route('estagio.index')
-            ->with('sucesso', 'Estágio editado com sucesso.');
-
-        }catch (Exception $e) {
+                ->with('sucesso', 'Estágio editado com sucesso.');
+        } catch (Exception $e) {
             DB::rollback();
             $errorMessage = "Falha ao editar Estágio. Tente novamente mais tarde.";
-        
+
             // $errorMessage .= " " . $e->getMessage();
-        
+
             return redirect()->back()->withErrors(['error' => $errorMessage]);
         }
     }
@@ -169,35 +168,42 @@ class EstagioController extends Controller
     public function destroy($id)
     {
         DB::beginTransaction();
-        
-        try{
+
+        try {
             $estagio = Estagio::Where('id', $id)->first();
 
             $estagio->delete();
 
             DB::commit();
             return redirect()->route('estagio.index')->with('sucesso', 'Estágio deletado com sucesso.');
-
-        }catch(exception $e){
+        } catch (exception $e) {
             DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao deletar Estágio. tente novamente mais tarde." );
+            return redirect()->back()->withErrors("Falha ao deletar Estágio. tente novamente mais tarde.");
         }
     }
 
     public function estagios_profile(Request $request)
-     {
-        $pivos = Estagio::where('aluno_id', $request->user()->typage_id)->get();
-        $estagios = array();
-        foreach ($pivos as $pivo){
-            array_push($estagios, $pivo);
-        }
-        return view('Estagio.estagios-aluno', compact("estagios"));
+    {
+        $aluno_id = auth()->user()->typage_id;
+
+        $valorBusca = $request->input('valor');
+        $estagios = Estagio::where('aluno_id', $aluno_id)
+            ->where(function ($query) use ($valorBusca) {
+                $query->where('descricao', 'LIKE', "%$valorBusca%")
+                    ->orWhere('created_at', 'LIKE', "%$valorBusca%")
+                    ->orWhere('data_inicio', 'LIKE', "%$valorBusca%")
+                    ->orWhere('data_fim', 'LIKE', "%$valorBusca%");
+            })
+            ->get();
+            
+        return view('Estagio.estagios-aluno', compact('estagios'));
     }
+
 
     public function showDocuments($id)
     {
         $estagio = Estagio::findOrFail($id);
 
-        return view('Estagio.documentos.documentos_show',compact("estagio"));
+        return view('Estagio.documentos.documentos_show', compact("estagio"));
     }
 }
