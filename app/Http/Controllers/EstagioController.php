@@ -97,7 +97,7 @@ class EstagioController extends Controller
         DB::commit();
 
         if (auth()->user()->typage_type == "App\Models\Aluno") {
-            return redirect('/estagios-aluno')->with('sucesso', 'Estágio cadastrado com sucesso.');
+            return redirect('/meus-estagios')->with('sucesso', 'Estágio cadastrado com sucesso.');
         }
 
         return redirect('/estagio')->with('sucesso', 'Estágio cadastrado com sucesso.');
