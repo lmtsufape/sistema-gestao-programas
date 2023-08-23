@@ -15,16 +15,6 @@
                 <h1 class="titulo"><strong>Estudantes</strong></h1>
             </div>
 
-            {{--  <div class="barra-pesquisa-add p-2 px-3">
-        <form action="{{route('alunos.index')}}" method="GET">
-          <input class="busca" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor">
-          <input class="lupa" type="submit" value="">
-        </form>
-        <button class="cadastrar-botao" href="{{route("alunos.create")}}">
-          Cadastrar estudantes
-        </button>
-    </div>  --}}
-
             <form class="search-container" action="{{ route('programas.index') }}" method="GET">
                 <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor"
                     name="valor" style="text-align: start">
@@ -68,10 +58,6 @@
                                                 <img src="{{ asset('images/information.svg') }}" alt="Info aluno"
                                                     style="height: 30px; width: 30px;">
                                             </a>
-
-                                            {{-- <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$aluno->id}}">
-                            <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
-                        </a> --}}
 
                                             <a href=" {{ route('alunos.edit', ['id' => $aluno->id]) }}">
                                                 <img src="{{ asset('images/pencil.svg') }}" alt="Editar aluno"

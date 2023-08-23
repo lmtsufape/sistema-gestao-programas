@@ -1,4 +1,4 @@
-<div class="modal fade " id="modal_documents{{$aluno->id}}" tabindex="-1" aria-hidden="true">
+<div class="modal " id="modal_documents{{$aluno->id}}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
     <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header">
@@ -25,9 +25,9 @@
 </div>
 <style>
   .link{
-    color: #2D3875; 
-    border: #2D3875; 
-    margin-top: 5px; 
+    color: #2D3875;
+    border: #2D3875;
+    margin-top: 5px;
     margin-bottom: 5px;
   }
   .link:hover{

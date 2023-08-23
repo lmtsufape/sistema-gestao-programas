@@ -1,5 +1,5 @@
 @canany(['admin', 'servidor', 'aluno', 'orientador', 'pro_reitor', 'gestor'])
-<div class="modal fade " id="modal_show{{$estagio->id}}" tabindex="-1" aria-hidden="true">
+<div class="modal " id="modal_show{{$estagio->id}}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
     <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header">
@@ -10,7 +10,7 @@
         <div class="mb-3">
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Status:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> 
+          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
             @if($estagio->status == 0)
               {{"Inativo"}}
             @else
@@ -22,12 +22,12 @@
           <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$estagio->descricao}} </div>
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Tipo:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> 
+          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
             @if($estagio->tipo == "eno")
               {{"Não-Obrigatório"}}
             @else
               {{"Obrigatório"}}
-            @endif  
+            @endif
           </div>
 
           <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Data de início:</label>

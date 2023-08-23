@@ -1,4 +1,4 @@
-<div class="modal fade " id="modal_documents{{$vinculo->id}}" tabindex="-1" aria-hidden="true">
+<div class="modal " id="modal_documents{{$vinculo->id}}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
     <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header">
@@ -29,7 +29,7 @@
           </div>
 
           <label for="historico_escolar" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Histórico Escolar:</label>
-          <div style="justify-content: flex-start; align-items: center; display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 5px;"> 
+          <div style="justify-content: flex-start; align-items: center; display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 5px;">
             <a href="{{ route('historico_escolar.download', ['fileName' => $vinculo->historico_escolar]) }}" target="_blank"  class="link">
               <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
              Baixar
@@ -59,9 +59,9 @@
 </div>
 <style>
   .link{
-    color: #2D3875; 
-    border: #2D3875; 
-    margin-top: 5px; 
+    color: #2D3875;
+    border: #2D3875;
+    margin-top: 5px;
     margin-bottom: 5px;
   }
   .link:hover{
