@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+
+class CreateDocumentosEstagiosTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        DB::statement("SET GLOBAL max_allowed_packet=16777216;");
+
+        Schema::create('documentos_estagios', function (Blueprint $table) {
+            $table->id();
+            //$table->date('data');
+            $table->timestamps();
+
+
+            $table->unsignedBigInteger('aluno_id');
+            //$table->unsignedBigInteger('lista_documentos_obrigatorios_id');
+
+            $table->foreign('aluno_id')->references('id')->on('alunos');
+
+            //por algum motivo o codigo nao funciona com essa chave estrangeira, por enquanto subindo sem ela
+            //$table->foreign('lista_documentos_obrigatorios_id')->references('id')->on('lista_documentos_obrigatorios');
+        });
+
+        DB::statement("ALTER TABLE documentos_estagios ADD pdf MEDIUMBLOB");
+    }
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('documentos_estagios');
+    }
+}

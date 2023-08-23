@@ -5,10 +5,16 @@
         <div class="row" style="align-content: left;">
             <h1 class="titulogrande">Termo de encaminhamento</h1>
         </div>
+        @if (Session::has('pdf_generated_success'))
+            <div class="alert alert-success">
+                {{ Session::get('pdf_generated_success') }}
+            </div>
+        @endif
 
         <hr style="color:#5C1C26; background-color: #5C1C26">
 
-        <form action="{{ route('estagio.documentos.termo-de-encaminhamento.store', ['id' => $estagio->id]) }}"method="post">
+        <form action="{{ route('estagio.documentos.termo-de-encaminhamento.store', ['id' => $estagio->id]) }}"method="post"
+            target="_blank">
             @csrf
 
 

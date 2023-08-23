@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Models\DocumentoEstagio;
+use Illuminate\Support\Facades\DB;
 use TCPDF;
 
 class PDFController extends Controller
 {
 
     protected const AZUL = '#00009C';
-
 
     public function editImage($documentType, $dados)
     {
@@ -43,15 +47,31 @@ class PDFController extends Controller
         // Incorporar a imagem no PDF
         $pdf->Image($tmpImagePath, 7, 0, 200);
 
-        // Renderizar o PDF no navegador
+        // Capturar a saída PDF em uma variável
+        ob_start();
         $pdf->Output('documento.pdf', 'I');
+        $pdfContent = ob_get_contents();
+        ob_end_clean();
+
+        $generatedPdf = new DocumentoEstagio();
         
+
+        DB::beginTransaction();
+        $generatedPdf->pdf = $pdfContent;
+        $generatedPdf->aluno_id = Auth::id();
+        //$generatedPdf->lista_documentos_obrigatorios_id = $estagio->getEstagioAtual();
+
+        $generatedPdf->save();
+        DB::commit();
+
+        // Renderizar o PDF no navegador
+        //$pdf->Output('documento.pdf', 'I');
+
         unlink($tmpImagePath);
 
-        // Encerrar a criação do PDF
         $pdf->close();
 
-        return $pdf->Output('documento.pdf', 'I');
+        return $pdfContent;
     }
 
     private function editTermoCompromisso($documentPath, $dados)
@@ -84,7 +104,10 @@ class PDFController extends Controller
             $font->size(42);
             $font->color(self::AZUL);
         });
+        //$pdfContent = $this->toPDF($image);
+        Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
 
-        return $this->toPDF($image);
+        $estagio = new EstagioController();
+        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
     }
 }

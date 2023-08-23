@@ -7,7 +7,7 @@ use App\Models\Estagio;
 use Illuminate\Http\Request;
 
 
-class DocumentosController extends Controller
+class DocumentoEstagioController extends Controller
 {
     public function termo_encaminhamento_form($id)
     {

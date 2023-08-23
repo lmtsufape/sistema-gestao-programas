@@ -166,7 +166,7 @@ class EstagioController extends Controller
                     ->orWhere('data_fim', 'LIKE', "%$valorBusca%");
             })
             ->get();
-            
+
         return view('Estagio.estagios-aluno', compact('estagios'));
     }
 
@@ -176,5 +176,17 @@ class EstagioController extends Controller
         $estagio = Estagio::findOrFail($id);
 
         return view('Estagio.documentos.documentos_show', compact("estagio"));
+    }
+
+    public function getEstagioAtual()
+    {
+        $aluno_id = auth()->user()->typage_id;
+
+        $estagioAtual = Estagio::where('aluno_id', $aluno_id)
+            ->where('status', true)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        return $estagioAtual;
     }
 }
