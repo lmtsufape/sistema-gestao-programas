@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             RelatorioSeeder::class,
             HistoricoVinculoAlunosSeeder::class,
             SupervisorSeeder::class,
+            ListaDocumentosObrigatoriosSeeder::class,
             EstagioSeeder::class,
         ]);
     }

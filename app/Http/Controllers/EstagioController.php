@@ -7,6 +7,7 @@ use App\Http\Requests\EstagioUpdateFormRequest;
 use App\Models\Aluno;
 use App\Models\Curso;
 use App\Models\Disciplina;
+use App\Models\DocumentoEstagio;
 use App\Models\Estagio;
 use App\Models\Orientador;
 use App\Models\Supervisor;
@@ -195,7 +196,7 @@ class EstagioController extends Controller
                     ->orWhere('data_fim', 'LIKE', "%$valorBusca%");
             })
             ->get();
-            
+
         return view('Estagio.estagios-aluno', compact('estagios'));
     }
 
@@ -203,7 +204,23 @@ class EstagioController extends Controller
     public function showDocuments($id)
     {
         $estagio = Estagio::findOrFail($id);
+        $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', 'documentos_estagios.lista_documentos_obrigatorios_id', '=', 'lista_documentos_obrigatorios.id')
+            ->where('documentos_estagios.aluno_id', $estagio->aluno_id)
+            ->select('documentos_estagios.*', 'lista_documentos_obrigatorios.titulo')
+            ->get();
 
-        return view('Estagio.documentos.documentos_show', compact("estagio"));
+        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos"));
+    }
+
+    public function getEstagioAtual()
+    {
+        $aluno_id = auth()->user()->typage_id;
+
+        $estagioAtual = Estagio::where('aluno_id', $aluno_id)
+            ->where('status', true)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        return $estagioAtual;
     }
 }
