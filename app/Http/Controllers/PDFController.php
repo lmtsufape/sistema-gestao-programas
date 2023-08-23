@@ -58,6 +58,7 @@ class PDFController extends Controller
         DB::beginTransaction();
         $generatedPdf->aluno_id = Auth::id();
         $generatedPdf->pdf = $pdfContent;
+        $generatedPdf->lista_documentos_obrigatorios_id = 1; //1 por enquanto, pq eu não sei uma forma de pegar o id do estagio atual
         $generatedPdf->save();
         DB::commit();
 
@@ -70,6 +71,21 @@ class PDFController extends Controller
 
         return $pdfContent;
     }
+    
+    public function viewPDF($id)
+    {
+        $documento = DocumentoEstagio::findOrFail($id);
+
+        if ($documento->aluno_id != Auth::id()) {
+            return redirect()->back()->with('error', 'Você não tem permissão para visualizar este documento.');
+        }
+
+        $pdfData = $documento->pdf;
+
+        header("Content-type: application/pdf");
+        echo $pdfData;
+    }
+
 
     private function editTermoCompromisso($documentPath, $dados)
     {

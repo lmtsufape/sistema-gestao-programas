@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\DocumentoEstagio;
 use App\Models\Estagio;
 use Illuminate\Http\Request;
 

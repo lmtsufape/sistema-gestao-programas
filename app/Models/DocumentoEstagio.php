@@ -20,8 +20,8 @@ class DocumentoEstagio extends Model
         return $this->belongsTo(Aluno::class, "aluno_id");
     }
 
-    /*public function lista_documentos_obrigatorios()
+    public function lista_documentos_obrigatorios()
     {
         return $this->belongsTo(ListaDocumentosObrigatorios::class, "lista_documentos_obrigatorios_id");
-    }*/
+    }
 }

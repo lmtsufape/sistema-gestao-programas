@@ -20,12 +20,12 @@ class CreateDocumentosEstagiosTable extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger('aluno_id');
-            //$table->unsignedBigInteger('lista_documentos_obrigatorios_id');
+            $table->unsignedBigInteger('lista_documentos_obrigatorios_id');
 
             $table->foreign('aluno_id')->references('id')->on('alunos');
 
             //por algum motivo o codigo nao funciona com essa chave estrangeira, por enquanto subindo sem ela
-            //$table->foreign('lista_documentos_obrigatorios_id')->references('id')->on('lista_documentos_obrigatorios');
+            $table->foreign('lista_documentos_obrigatorios_id')->references('id')->on('lista_documentos_obrigatorios');
         });
         if (config('database.default') === 'mysql') {
             DB::statement("SET GLOBAL max_allowed_packet=32777216;");
