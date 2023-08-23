@@ -14,13 +14,10 @@ class CreateDocumentosEstagiosTable extends Migration
      */
     public function up()
     {
-        DB::statement("SET GLOBAL max_allowed_packet=16777216;");
-
         Schema::create('documentos_estagios', function (Blueprint $table) {
             $table->id();
             //$table->date('data');
             $table->timestamps();
-
 
             $table->unsignedBigInteger('aluno_id');
             //$table->unsignedBigInteger('lista_documentos_obrigatorios_id');
@@ -30,8 +27,11 @@ class CreateDocumentosEstagiosTable extends Migration
             //por algum motivo o codigo nao funciona com essa chave estrangeira, por enquanto subindo sem ela
             //$table->foreign('lista_documentos_obrigatorios_id')->references('id')->on('lista_documentos_obrigatorios');
         });
-
-        DB::statement("ALTER TABLE documentos_estagios ADD pdf MEDIUMBLOB");
+        if (config('database.default') === 'mysql') {
+            DB::statement("SET GLOBAL max_allowed_packet=32777216;");
+            DB::statement("ALTER TABLE documentos_estagios ADD pdf MEDIUMBLOB");
+        }
+        
     }
     /**
      * Reverse the migrations.

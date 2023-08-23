@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\DocumentoEstagio;
 use Illuminate\Support\Facades\DB;
 use TCPDF;
+use FPDF;
 
 class PDFController extends Controller
 {
@@ -49,18 +50,14 @@ class PDFController extends Controller
 
         // Capturar a saída PDF em uma variável
         ob_start();
-        $pdf->Output('documento.pdf', 'I');
+        $pdf->Output('documento.pdf', 'D');
         $pdfContent = ob_get_contents();
         ob_end_clean();
 
         $generatedPdf = new DocumentoEstagio();
-        
-
         DB::beginTransaction();
-        $generatedPdf->pdf = $pdfContent;
         $generatedPdf->aluno_id = Auth::id();
-        //$generatedPdf->lista_documentos_obrigatorios_id = $estagio->getEstagioAtual();
-
+        $generatedPdf->pdf = $pdfContent;
         $generatedPdf->save();
         DB::commit();
 
@@ -104,10 +101,10 @@ class PDFController extends Controller
             $font->size(42);
             $font->color(self::AZUL);
         });
-        //$pdfContent = $this->toPDF($image);
+        $pdfContent = $this->toPDF($image);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
-
         $estagio = new EstagioController();
+
         return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
     }
 }
