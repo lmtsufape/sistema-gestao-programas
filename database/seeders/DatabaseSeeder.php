@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             HistoricoVinculoAlunosSeeder::class,
             SupervisorSeeder::class,
             EstagioSeeder::class,
+            InstituicaoSeeder::class,
         ]);
     }
 }
