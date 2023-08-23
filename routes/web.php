@@ -240,7 +240,7 @@ Route::prefix('estagio')->group(function () {
     Route::put('/{id}', [EstagioController::class, 'update'])->name('estagio.update');
     Route::delete('/{id}', [EstagioController::class, 'destroy'])->name('estagio.delete');
     Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
-
+    
 
     // Route::get('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.formularios.termo_encaminhamento'); 
     // Route::post('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.formularios.termo_encaminhamento.store');
@@ -255,4 +255,4 @@ Route::prefix('estagio')->group(function () {
     
 });
 
-Route::get('/estagios-aluno', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
+Route::get('/meus-estagios', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
