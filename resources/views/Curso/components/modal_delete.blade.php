@@ -15,7 +15,7 @@
                     <form action="{{ url("/cursos/$curso->id") }}" method="post">
                         @method('DELETE')
                         @csrf
-                        <button type="submit" class="apagarmodalbotao" >Deletar</button>
+                        <button type="submit" class="apagarmodalbotao" >Remover</button>
                     </form>
                 </div>
             </div>

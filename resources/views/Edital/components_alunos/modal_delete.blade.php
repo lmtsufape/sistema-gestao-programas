@@ -7,7 +7,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">Deseja realmente deletar o estudante?</p>
+          <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">Deseja realmente remover o estudante?</p>
         </div>
 
         <div class="modal-footer d-flex justify-content-between">
@@ -16,7 +16,7 @@
           <form action="{{ route('edital.aluno.delete', ['aluno_id' => $aluno->id, 'edital_id' => $edital->id]) }}" method="GET">
 
             @csrf
-            <button type="submit" class="btn btn-danger" style="border-radius: 45px;">Deletar</button>
+            <button type="submit" class="btn btn-danger" style="border-radius: 45px;">Remover</button>
         </form>
         </div>
       </div>

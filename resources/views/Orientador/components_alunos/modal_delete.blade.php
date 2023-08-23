@@ -7,7 +7,7 @@
         </div>
         <div class="modal-body">
           <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">
-            Deseja realmente deletar o estudante?</p>
+            Deseja realmente remover o estudante?</p>
         </div>
         <div class="modal-footer d-flex justify-content-between">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -15,7 +15,7 @@
             @method("DELETE")
             @csrf
             <input type="hidden" name="id" value="">
-            <button type="submit" class="btn btn-danger">Deletar</button>
+            <button type="submit" class="btn btn-danger">Remover</button>
           </form>
         </div>
       </div>

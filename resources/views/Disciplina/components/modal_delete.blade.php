@@ -14,7 +14,7 @@
                         @method('DELETE')
                         @csrf
                         <input type="hidden" name="id" value="{{ $disciplina->id }}">
-                        <button type="submit" class="apagarmodalbotao">Deletar</button>
+                        <button type="submit" class="apagarmodalbotao">Remover</button>
                     </form>
                 </div>
             </div>
