@@ -22,17 +22,6 @@
       </div>
     </div>
   </div>
-  <style>
-    .btn-secondary{
-        color: #fff;
-        background-color: #2d3875;
-        border-color: #2d3875;
-    }
-    .btn-secondary:hover{
-        background-color: #4353ab;
-        border-color: #4353ab;
-    }
-</style>
 @else
 <div class="modal" id="modal_delete_{{$programa->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

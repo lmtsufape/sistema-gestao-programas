@@ -16,6 +16,8 @@
                         <div class="textoinfomodal">
                             {{ $programa->nome }}
                         </div>
+                    </div>
+                    <div class="mb-3">
 
                         <label for="nome_edit"
                             style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;"
@@ -25,6 +27,8 @@
                         <div class="textoinfomodal">
                             {{ $programa->descricao }}
                         </div>
+                    </div>
+                    <div class="mb-3">
 
                         <label for="nome_edit"
                             style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;"
@@ -34,6 +38,8 @@
                         <div class="textoinfomodal">
                             {{ date_format(date_create($programa->data_inicio), 'd/m/Y') }}
                         </div>
+                    </div>
+                    <div class="mb-3">
 
                         <label for="nome_edit"
                             style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;"
@@ -43,6 +49,8 @@
                         <div class="textoinfomodal">
                             {{ date_format(date_create($programa->data_fim), 'd/m/Y') }}
                         </div>
+                    </div>
+                    <div class="mb-3">
 
                         <label for="nome_edit"
                             style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;"
@@ -59,19 +67,19 @@
                             @endif
 
                         </div>
-
-                        @if (!empty($errors->update->first('name')))
-                            <span class="invalid-feedback d-block">
-                                <strong> {{ $errors->update->first('name') }} </strong>
-                            </span>
-                        @endif
                     </div>
-                </div>
-                <div class="modal-footer border-0">
-                    <button type="button" class="btn" data-bs-dismiss="modal">Fechar</button>
+
+                    @if (!empty($errors->update->first('name')))
+                        <span class="invalid-feedback d-block">
+                            <strong> {{ $errors->update->first('name') }} </strong>
+                        </span>
+                    @endif
                 </div>
             </div>
+            <div class="modal-footer border-0">
+            </div>
         </div>
+    </div>
     </div>
 @else
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
