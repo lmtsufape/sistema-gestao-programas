@@ -2,44 +2,6 @@
 
 @section("body")
 
-<style>
-  pagination {
-    display: inline-block;
-  }
-
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 10px 4px;
-  }
-
-  .pagination a.active {
-    background-color: #3B864F;
-    color: white;
-    border: 1px solid #3B864F;
-  }
-
-  .pagination a:hover:not(.active) {
-    background-color: #34A853;
-  }
-
-  .textolegenda {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 130%;
-    margin: 5px
-  }
-
-
-  .botao-secundario a:hover{
-    transform: scale(1.08);
-  }
-</style>
 
 @canany(['admin', 'pro_reitor', 'gestor'])
 <div class="container-fluid">
