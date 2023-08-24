@@ -20,31 +20,31 @@
             </div>
 
             <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">Nome:</label>
-            <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$orientador->user->name}}</div>
+            <div class="textoinfomodal"> {{$orientador->user->name}}</div>
 
             @if ($orientador->user->name_social != null)
             <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">Nome Social:</label>
-            <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$orientador->user->name_social}}</div>
+            <div class="textoinfomodal"> {{$orientador->user->name_social}}</div>
             @endif
 
             <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">CPF:</label>
-            <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$orientador->cpf}}</div>
+            <div class="textoinfomodal"> {{$orientador->cpf}}</div>
 
             <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">E-mail:</label>
-            <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{$orientador->user->email}}</div>
+            <div class="textoinfomodal">{{$orientador->user->email}}</div>
 
             <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" for=" matricula_editar" class="form-label mt-3">Matrícula:</label>
-            <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$orientador->matricula}}</div>
+            <div class="textoinfomodal"> {{$orientador->matricula}}</div>
 
-            <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Curso(s):</label>
-            <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
+            <label class="tituloinfomodal form-label mt-3">Curso(s):</label>
+            <div class="textoinfomodal">
             @foreach($orientador->cursos as $curso)
               {{$curso->nome}}<br>
             @endforeach
             </div>
 
-            <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Instituição:</label>
-            <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$orientador->instituicaoVinculo}}</div>
+            <label class="tituloinfomodal form-label mt-3">Instituição:</label>
+            <div class="textoinfomodal"> {{$orientador->instituicaoVinculo}}</div>
         </div>
         <div class="modal-footer">
           <button type="button"  class="btn " data-bs-dismiss="modal">Fechar</button>

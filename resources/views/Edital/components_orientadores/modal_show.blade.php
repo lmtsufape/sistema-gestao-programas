@@ -7,17 +7,17 @@
       </div>
       <div class="modal-body" style="overflow: auto">
         <div class="mb-3">
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Nome :</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  $orientador->name  }} </div>
+          <label class="tituloinfomodal form-label mt-3">Nome :</label>
+          <div class="textoinfomodal"> {{  $orientador->name  }} </div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Edital:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  $pivo->titulo }}</div>
+          <label class="tituloinfomodal form-label mt-3">Edital:</label>
+          <div class="textoinfomodal"> {{  $pivo->titulo }}</div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Data de início:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  date('d/m/Y', strtotime($pivo->data_inicio)) }} </div>
+          <label class="tituloinfomodal form-label mt-3">Data de início:</label>
+          <div class="textoinfomodal"> {{  date('d/m/Y', strtotime($pivo->data_inicio)) }} </div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Data de fim:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  date('d/m/Y', strtotime($pivo->data_fim)) }} </div>
+          <label class="tituloinfomodal form-label mt-3">Data de fim:</label>
+          <div class="textoinfomodal"> {{  date('d/m/Y', strtotime($pivo->data_fim)) }} </div>
 
 
 

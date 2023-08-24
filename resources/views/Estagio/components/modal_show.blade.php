@@ -9,8 +9,8 @@
       <div class="modal-body" style="overflow: auto">
         <div class="mb-3">
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Status:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
+          <label class="tituloinfomodal form-label mt-3">Status:</label>
+          <div class="textoinfomodal">
             @if($estagio->status == 0)
               {{"Inativo"}}
             @else
@@ -18,11 +18,11 @@
             @endif
           </div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Descrição:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$estagio->descricao}} </div>
+          <label class="tituloinfomodal form-label mt-3">Descrição:</label>
+          <div class="textoinfomodal"> {{$estagio->descricao}} </div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Tipo:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
+          <label class="tituloinfomodal form-label mt-3">Tipo:</label>
+          <div class="textoinfomodal">
             @if($estagio->tipo == "eno")
               {{"Não-Obrigatório"}}
             @else
@@ -30,20 +30,20 @@
             @endif
           </div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Data de início:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{date_format(date_create($estagio->data_inicio), "d/m/Y")}}</div>
+          <label class="tituloinfomodal form-label mt-3">Data de início:</label>
+          <div class="textoinfomodal"> {{date_format(date_create($estagio->data_inicio), "d/m/Y")}}</div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Data de fim:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{date_format(date_create($estagio->data_fim), "d/m/Y")}}</div>
+          <label class="tituloinfomodal form-label mt-3">Data de fim:</label>
+          <div class="textoinfomodal"> {{date_format(date_create($estagio->data_fim), "d/m/Y")}}</div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Data da solicitação:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{date_format(date_create($estagio->data_solicitacao), "d/m/Y")}}</div>
+          <label class="tituloinfomodal form-label mt-3">Data da solicitação:</label>
+          <div class="textoinfomodal"> {{date_format(date_create($estagio->data_solicitacao), "d/m/Y")}}</div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Professor:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$estagio->orientador->user->name}} </div>
+          <label class="tituloinfomodal form-label mt-3">Professor:</label>
+          <div class="textoinfomodal"> {{$estagio->orientador->user->name}} </div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Estudante:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$estagio->aluno->nome_aluno}} </div>
+          <label class="tituloinfomodal form-label mt-3">Estudante:</label>
+          <div class="textoinfomodal"> {{$estagio->aluno->nome_aluno}} </div>
 
 
         </div>

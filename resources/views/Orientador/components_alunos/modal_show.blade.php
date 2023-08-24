@@ -7,23 +7,23 @@
       </div>
       <div class="modal-body" style="overflow: auto">
         <div class="mb-3">
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Nome do aluno:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  $pivo->aluno->nome_aluno  }} </div>
+          <label class="tituloinfomodal form-label mt-3">Nome do aluno:</label>
+          <div class="textoinfomodal"> {{  $pivo->aluno->nome_aluno  }} </div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Edital:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  $pivo->edital->titulo_edital }}</div>
+          <label class="tituloinfomodal form-label mt-3">Edital:</label>
+          <div class="textoinfomodal"> {{  $pivo->edital->titulo_edital }}</div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Início do edital:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{ date_format(date_create($pivo->data_inicio), "d/m/Y") }} </div>
+          <label class="tituloinfomodal form-label mt-3">Início do edital:</label>
+          <div class="textoinfomodal"> {{ date_format(date_create($pivo->data_inicio), "d/m/Y") }} </div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Fim do edital:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  date_format(date_create($pivo->data_fim), "d/m/Y") }}</div>
+          <label class="tituloinfomodal form-label mt-3">Fim do edital:</label>
+          <div class="textoinfomodal"> {{  date_format(date_create($pivo->data_fim), "d/m/Y") }}</div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Bolsa:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">{{  $pivo->bolsa }}</div>
+          <label class="tituloinfomodal form-label mt-3">Bolsa:</label>
+          <div class="textoinfomodal">{{  $pivo->bolsa }}</div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Informações complementares:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{  $pivo->info_complementares }}</div>
+          <label class="tituloinfomodal form-label mt-3">Informações complementares:</label>
+          <div class="textoinfomodal"> {{  $pivo->info_complementares }}</div>
 
         </div>
         <div class="modal-footer">

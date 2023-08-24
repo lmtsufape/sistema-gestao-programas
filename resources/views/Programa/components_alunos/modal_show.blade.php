@@ -7,17 +7,17 @@
       </div>
       <div class="modal-body" style="overflow: auto">
         <div class="mb-3">
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Nome:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> </div>
+          <label class="tituloinfomodal form-label mt-3">Nome:</label>
+          <div class="textoinfomodal"> </div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Edital:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> </div>
+          <label class="tituloinfomodal form-label mt-3">Edital:</label>
+          <div class="textoinfomodal"> </div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Bolsa:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"></div>
+          <label class="tituloinfomodal form-label mt-3">Bolsa:</label>
+          <div class="textoinfomodal"></div>
 
-          <label style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Valor da bolsa:</label>
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> </div>
+          <label class="tituloinfomodal form-label mt-3">Valor da bolsa:</label>
+          <div class="textoinfomodal"> </div>
 
         </div>
         <div class="modal-footer">

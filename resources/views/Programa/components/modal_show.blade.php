@@ -11,35 +11,35 @@
           <label for="nome_edit" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">
             Nome:</label>
 
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
+          <div class="textoinfomodal">
             {{$programa->nome}}
           </div>
 
           <label for="nome_edit" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">
             Descrição:</label>
 
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
+          <div class="textoinfomodal">
             {{$programa->descricao}}
           </div>
 
           <label for="nome_edit" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">
             Data de Início:</label>
 
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
+          <div class="textoinfomodal">
             {{date_format(date_create($programa->data_inicio), "d/m/Y")}}
           </div>
 
           <label for="nome_edit" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">
             Data de Fim:</label>
 
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
+          <div class="textoinfomodal">
             {{date_format(date_create($programa->data_fim), "d/m/Y")}}
           </div>
 
           <label for="nome_edit" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class=" form-label mt-3">
             Servidores:</label>
 
-          <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px">
+          <div class="textoinfomodal">
             @if(count($programa->servidores))
               @foreach($programa->servidores as $servidor)
                 {{$servidor->user->name}}<br>
