@@ -1,117 +1,165 @@
 @extends("templates.app")
 
-@section("body")
-<style>
-    select[multiple] {
-        overflow: hidden;
-        background: #f5f5f5;
-        width:100%;
-        height:auto;
-        padding: 0px 5px;
-        margin:0;
-        border-width: 2px;
-        border-radius: 5px;
-        -moz-appearance: menulist;
-        -webkit-appearance: menulist;
-        appearance: menulist;
-      }
-      /* select single */
-      .required .chosen-single {
-        background: #F5F5F5;
-        border-radius: 5px;
-        border: 1px #D3D3D3;
-        padding: 5px;
-        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
-    }
-    /* select multiple */
-    .required .chosen-choices {
-        background: #F5F5F5;
-        border-radius: 5px;
-        border: 1px #D3D3D3;
-        padding: 0px 5px;
-        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
-    }
-    .titulo {
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 28px;
-        display: flex;
-        color: #131833;
-    }
-    .boxinfo{
-        background: #F5F5F5;
-        border-radius: 6px;
-        border: 1px #D3D3D3;
-        width: 100%;
-        padding: 5px;
-        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);
+@section('body')
 
-    }
-    .boxchild{
-        background: #FFFFFF;
-        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-        padding: 34px;
-        width: 65%
-    }
-</style>
+@canany(['admin', 'servidor', 'gestor', 'aluno'])
 
-@canany(['admin', 'servidor'])
-    <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
+<div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
+            @if (session('sucesso'))
+                <div class="alert alert-success" style="width: 100%;">
+                    {{session('sucesso')}}
+                </div>
+            @endif
+            <br>
 
-        @if (session('sucesso'))
-            <div class="alert alert-success" style="width: 100%;">
-                {{session('sucesso')}}
+            <div class="fundocadastrar">
+                <div class="row" style="align-content: left;">
+                    <h1 class="titulogrande">Editar Estágio</h1>
+                </div>
+
+                <hr style="color:#5C1C26; background-color: #5C1C26">
+
+                <form action="{{route('estagio.update', ['id' => $estagio->id]) }}" method="POST">
+                    @csrf
+                    @method("PUT")
+
+                    <div id="checkStatus">
+                        <label class="titulopequeno" for="status">Status: <strong style="color: #8B5558">*</strong></label>
+                        <br>
+                        <input type="radio" name="checkStatus" value=1 required @if($estagio->status == 1) checked @endif>
+                        <label class="textinho" for="checkStatus_ativo">Ativo</label>
+                        <br>
+                        <input type="radio" name="checkStatus" value=0 required @if($estagio->status == 0) checked @endif>
+                        <label class="textinho" for="checkStatus_inativo">Inativo</label><br><br>
+                    </div>
+
+
+                    <label class="titulopequeno" for="Descrição">Descrição<strong style="color: #8B5558">*</strong></label>
+                    <textarea class="boxcadastrar" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="3"> {{ $estagio->descricao }}</textarea><br><br>
+
+                    <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
+                        <div style="width: 50%">
+                        <label class="titulopequeno" for="data_inicio">Data de início<strong style="color: #8B5558">*</strong></label>
+                        <br>
+                        <input class="boxcadastrar" type="date" name="data_inicio" id="data_inicio" value="{{ $estagio->data_inicio->format('Y-m-d') }}"><br><br>
+                        </div>
+                        <div style="width: 50%">
+                        <label class="titulopequeno"  for="data_fim" >Data de fim<strong style="color: #8B5558">*</strong></label>
+                        <br>
+                        <input class="boxcadastrar"  type="date" name="data_fim" id="data_fim" value="{{ $estagio->data_fim->format('Y-m-d') }}"><br><br>
+                        </div>
+                    </div>
+
+                    <div id="checkTipo">
+                        <label class="titulopequeno" for="tipo">Tipo: <strong style="color: #8B5558">*</strong></label>
+                        <br>
+                        <input type="radio" name="checkTipo" value="eo" required @if($estagio->tipo == 'eo') checked @endif>
+                        <label class="textinho" for="checkTipo_obrigatorio">Obrigatório</label>
+                        <br>
+                        <input type="radio" name="checkTipo" value="eno" required @if($estagio->tipo == 'eno') checked @endif>
+                        <label class="textinho" for="checkTipo_nao_obrigatorio">Não Obrigatório</label><br><br>
+                    </div>
+
+                    @if($aluno)
+                        <label class="titulopequeno" for="">CPF do estudante: <strong style="color: #8B5558">*</strong></label>
+                        <input type="text" id="cpf" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"
+                            value="{{ $aluno->cpf }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}" readonly style="background: #eee; ">
+                    @else
+                        <label class="titulopequeno" for="">CPF do estudante: <strong style="color: #8B5558">*</strong></label>
+                        <input type="text" id="cpf_aluno" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"
+                            value="{{ $estagio->aluno->cpf }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}">
+                    @endif
+                    <br>
+                    <br>
+
+                    <label class="titulopequeno" for="orientador">Orientador<strong style="color: #8B5558">*</strong></label>
+                    <select aria-label="Default select example" class="boxcadastrar" name="orientador" id="orientador" >
+                        <option  value disabled selected hidden> Selecione o Orientador</option>
+                            @foreach ($orientadors as $orientador)
+                                <option value="{{$orientador->id}}" {{ $estagio->orientador_id == $orientador->id ? 'selected' : '' }}>{{$orientador->user->name}}</option>
+                            @endforeach
+                    </select><br><br>
+
+                    <label class="titulopequeno" for="supervisor">Supervisor<strong style="color: #8B5558">*</strong></label>
+                    <select aria-label="Default select example" class="boxcadastrar" name="supervisor" id="supervisor" >
+                        <option  value disabled selected hidden> Selecione o Supervisor</option>
+                            @foreach ($supervisors as $supervisor)
+                                <option value="{{$supervisor->id}}" {{ $estagio->supervisor_id == $supervisor->id ? 'selected' : '' }}>{{$supervisor->nome}}</option>
+                            @endforeach
+                    </select><br><br>
+
+
+                    @if($aluno)
+                        <label class="titulopequeno" for="curso">Curso<strong style="color: #8B5558">*</strong></label>
+                        <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso" style="background: #eee; pointer-events: none; touch-action: none;">
+                            <option value disabled selected hidden> Selecione o Curso</option>
+                            @foreach ($cursos as $curso)
+                            <option value="{{$curso->id}}" {{ $aluno->curso_id == $curso->id ? 'selected' : '' }} >{{$curso->nome}}</option>
+                            @endforeach
+                        </select><br><br>
+                    @else
+                        <label class="titulopequeno" for="curso">Curso<strong style="color: #8B5558">*</strong></label>
+                        <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso">
+                            <option value disabled selected hidden> Selecione o Curso</option>
+                            @foreach ($cursos as $curso)
+                            <option value="{{$curso->id}}" {{ $estagio->curso_id == $curso->id ? 'selected' : '' }} >{{$curso->nome}}</option>
+                            @endforeach
+                        </select><br><br>
+
+                    @endif
+
+                    <div id="disciplinas"  @if($estagio->tipo == 'eno') hidden @endif >
+                        <label class="titulopequeno" for="curso">Disciplina:<strong style="color: #8B5558">*</strong></label>
+                        <select aria-label="Default select example" class="boxcadastrar" name="disciplina" id="disciplina">
+                            <option value disabled selected hidden> Selecione a Disciplina</option>
+                            @foreach ($disciplinas as $disciplina)
+                            <option value="{{$disciplina->id}}" {{ $estagio->disciplina_id == $disciplina->id ? 'selected' : '' }} >{{$disciplina->nome}} / {{$disciplina->curso->nome}}</option>
+                            @endforeach. S
+                        </select><br><br>
+                    </div>
+
+                    <div class="botoessalvarvoltar">
+                        <input type="button" value="Voltar" href="{{url('/home/')}}" onclick="window.location.href='{{url('/home/')}}'" class="botaovoltar">
+                        <input class="botaosalvar" type="submit" value="Salvar">
+                    </div>
+                </form>
             </div>
-        @endif
-        <br>
-        <div class="boxchild">
-            <div class="row">
-                <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #131833;">
-                    Editar Estágio</h1>
-            </div>
-            <hr>
-
-            <form action="{{ route('estagio.update', ['id' => $estagio->id]) }}" method="POST">
-                @csrf
-                @method("PUT")
-
-                    <label class="titulo" for="Descrição">Descrição</label>
-                    <textarea class="boxinfo" name="descricao" id="descricao" cols="30" rows="5">{{ $estagio->descricao }}</textarea><br><br>
-
-                    <label class="titulo" for="data_inicio">Data de início<strong style="color: #8B5558">*</strong></label>
-                    <input class="boxinfo" type="date" name="data_inicio" id="data_inicio"
-                        value="{{ $estagio->data_inicio->format('Y-m-d')}}"><br><br>
-
-                    <label class="titulo" for="data_fim">Data de fim<strong style="color: #8B5558">*</strong></label>
-                    <input class="boxinfo" type="date" name="data_fim" id="data_fim"
-                        value="{{ $estagio->data_fim->format('Y-m-d')}}"><br><br>
-
-                    <label class="titulo" for="data_solicitacao">Data de Solicitação<strong style="color: #8B5558">*</strong></label>
-                    <input class="boxinfo" type="date" name="data_solicitacao" id="data_solicitacao"
-                        value="{{ $estagio->data_solicitacao->format('Y-m-d') }}"><br><br>
-                <br><br>
-
-                <input type="submit" value="Salvar" style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
-
-                @if ($errors->has('error'))
-                    <div class="alert alert-danger">
-                         <ul>
-                            <li>{{ $errors->first('error') }}</li>
-                         </ul>
-                     </div>
-                @endif
-
-            </form>
+            <br><br>
         </div>
-        <br>
-        <br>
-    </div>
-@else
-    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
-@endcan
+
+        <script>
+
+            const selectDisciplina = document.getElementById('disciplina');
+
+            $(document).ready(function() {
+                $("input[name='checkTipo']").change(function() {
+                    if ($("input[name='checkTipo']:checked").val() == "eo"){
+                        $("#disciplinas").removeAttr("hidden");
+                        selectDisciplina.required = true;
+                    } else {
+                        $("#disciplinas").attr("hidden", true);
+                        selectDisciplina.required = false;
+
+                    }
+                });
+
+
+            });
+        </script>
+        <script  src="{{ mix('js/app.js') }}">
+
+            $("#orientadors").chosen({
+                placeholder_text_multiple: "Selecione um orientador",
+                // max_shown_results : 5,
+                no_results_text: "Não possui orientadors."
+            });
+
+            $('div.chosen-container-single').addClass('required');
+            $('div.chosen-container-multi').addClass('required');
+        </script>
+    @else
+        <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+        <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/login')}}">Voltar</a>
+  @endcan
 
 @endsection

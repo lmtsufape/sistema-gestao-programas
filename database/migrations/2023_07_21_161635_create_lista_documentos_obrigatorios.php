@@ -14,15 +14,17 @@ class CreateListaDocumentosObrigatorios extends Migration
     public function up()
     {
         Schema::create('lista_documentos_obrigatorios', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('titulo');
             $table->string('descricao_documento');
-            $table->date('prazo');
+            //$table->date('prazo');
             $table->enum('tipo_entrega', ['inicial','final']);
             $table->enum('tipo_estagio', ['eo', 'eno']);
 
-            $table->foreign('estagio_id')->references('id')->on('estagios');
-            $table->unsignedBigInteger('estagio_id');
+            
+            
+            
 
             $table->timestamps();
         });

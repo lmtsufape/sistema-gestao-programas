@@ -7,6 +7,7 @@ use App\Http\Requests\EstagioUpdateFormRequest;
 use App\Models\Aluno;
 use App\Models\Curso;
 use App\Models\Disciplina;
+use App\Models\DocumentoEstagio;
 use App\Models\Estagio;
 use App\Models\Orientador;
 use App\Models\Supervisor;
@@ -97,7 +98,7 @@ class EstagioController extends Controller
         DB::commit();
 
         if (auth()->user()->typage_type == "App\Models\Aluno") {
-            return redirect('/estagios-aluno')->with('sucesso', 'Estágio cadastrado com sucesso.');
+            return redirect('/meus-estagios')->with('sucesso', 'Estágio cadastrado com sucesso.');
         }
 
         return redirect('/estagio')->with('sucesso', 'Estágio cadastrado com sucesso.');
@@ -105,8 +106,26 @@ class EstagioController extends Controller
 
     public function edit($id)
     {
+        $aluno = null;
+        $disciplinas = null;
+
+        if(auth()->user()->typage_type == "App\Models\Aluno"){
+            //Se for aluno, vamos obter o aluno pelo typage_id
+            $aluno_id = auth()->user()->typage_id;
+            $aluno = Aluno::Where('id', $aluno_id)->first();
+
+            $disciplinas = $aluno->curso->disciplinas; //seleciona apenas as disciplinas dos alunos
+            //dd($aluno);
+        }else{
+            $disciplinas = Disciplina::all();
+        }
+
+        $orientadors = Orientador::all();
+        $cursos = Curso::all();
+        $supervisors = Supervisor::all();
+
         $estagio = Estagio::Where('id', $id)->first();
-        return view("Estagio.editar", compact('estagio'));
+        return view("Estagio.editar", compact('estagio', 'aluno', 'disciplinas', 'orientadors', 'cursos', 'supervisors'));
     }
 
     public function update(EstagioUpdateFormRequest $request, $id)
@@ -114,10 +133,21 @@ class EstagioController extends Controller
         DB::beginTransaction();
         try {
             $estagio = Estagio::find($id);
+            
             $estagio->descricao = $request->descricao ? $request->descricao : $estagio->descricao;
             $estagio->data_inicio = $request->data_inicio ? $request->data_inicio : $estagio->data_inicio;
             $estagio->data_fim = $request->data_fim ? $request->data_fim : $estagio->data_fim;
-            $estagio->data_solicitacao = $request->data_solicitacao ? $request->data_solicitacao : $estagio->data_soliticao;
+            $estagio->status = $request->checkStatus ? $request->checkStatus : $estagio->status;
+            
+            $aluno = Aluno::Where('cpf', $request->cpf_aluno)->first();
+
+            $estagio->aluno_id = $request->cpf_aluno ? $aluno->id : $estagio->aluno_id;
+
+            $estagio->orientador_id = $request->orientador ? $request->orientador : $estagio->orientador_id;
+            $estagio->supervisor_id = $request->supervisor ? $request->supervisor : $estagio->supervisor_id;
+            $estagio->curso_id = $request->curso ? $request->curso : $estagio->curso_id;
+            $estagio->disciplina_id = $request->disciplina ?  $request->disciplina : $estagio->disciplina_id;
+            $estagio->tipo = $request->checkTipo ? $request->checkTipo : $estagio->tipo;
 
             $estagio->update();
 
@@ -166,7 +196,7 @@ class EstagioController extends Controller
                     ->orWhere('data_fim', 'LIKE', "%$valorBusca%");
             })
             ->get();
-            
+
         return view('Estagio.estagios-aluno', compact('estagios'));
     }
 
@@ -174,7 +204,23 @@ class EstagioController extends Controller
     public function showDocuments($id)
     {
         $estagio = Estagio::findOrFail($id);
+        $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', 'documentos_estagios.lista_documentos_obrigatorios_id', '=', 'lista_documentos_obrigatorios.id')
+            ->where('documentos_estagios.aluno_id', $estagio->aluno_id)
+            ->select('documentos_estagios.*', 'lista_documentos_obrigatorios.titulo')
+            ->get();
 
-        return view('Estagio.documentos.documentos_show', compact("estagio"));
+        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos"));
+    }
+
+    public function getEstagioAtual()
+    {
+        $aluno_id = auth()->user()->typage_id;
+
+        $estagioAtual = Estagio::where('aluno_id', $aluno_id)
+            ->where('status', true)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        return $estagioAtual;
     }
 }

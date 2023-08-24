@@ -92,7 +92,7 @@
                                 </a>
                             @empty
                         <tr>
-                            <td colspan="6" class="text-center">Nenhum estágio corresponde à busca.</td>
+                            <td colspan="6" class="text-center">Nenhum estágio encontrado.</td>
                         </tr>
                     @endforelse
                 </tbody>
