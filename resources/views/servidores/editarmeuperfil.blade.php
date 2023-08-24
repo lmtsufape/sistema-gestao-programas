@@ -1,6 +1,6 @@
 @extends("templates.app")
 @section("body")
-        <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:10em; flex-direction:cloumn;">
+        <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:10em; flex-direction:column;">
 
             @if (session('sucesso'))
                 <div class="alert alert-success">
@@ -33,7 +33,6 @@
                     <br>
 
                     <label for="nome" class="titulopequeno">Nome Completo<strong style="color: #8B5558">*</strong></label>
-                    <br>
                     <input class="boxcadastrar" type="text" id="inputName" name="nome" required placeholder="Digite o nome" value="{{$servidor->user->name}}">
                     <div class="invalid-feedback"> Por favor preencha esse campo</div>
                     <br>
