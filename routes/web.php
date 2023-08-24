@@ -261,4 +261,3 @@ Route::prefix('estagio')->group(function () {
 });
 
 Route::get('/meus-estagios', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
-
