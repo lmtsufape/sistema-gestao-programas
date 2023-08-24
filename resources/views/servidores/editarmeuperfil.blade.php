@@ -42,13 +42,13 @@
                     <div class="invalid-feedback"> Por favor preencha esse campo</div>
                     <br>
 
-                    <label class="titulopequeno" for="senha" for="nome">Senha<strong style="color: #8B5558">*</strong></label>
-                    <input class="boxcadastrar" type="password" id="senha" name="senha" required placeholder="Digite a senha">
-                    <div class="invalid-feedback"> Por favor preencha esse campo</div>
-                    <br>
-
                     <label class="titulopequeno" for="cpf" for="nome" >CPF<strong style="color: #8B5558">*</strong></label>
                     <input  class="boxcadastrar boxinfo cpf-autocomplete" name="cpf" id="cpf" type="text" required placeholder="Digite o CPF" value="{{$servidor->cpf}}">
+                    <div class="invalid-feedback"> Por favor preencha esse campo</div>
+                    <br>
+                    
+                    <label class="titulopequeno" for="senha" for="nome">Senha<strong style="color: #8B5558">*</strong></label>
+                    <input class="boxcadastrar" type="password" id="senha" name="senha" required placeholder="Digite a senha">
                     <div class="invalid-feedback"> Por favor preencha esse campo</div>
                     <br>
                     <br>
