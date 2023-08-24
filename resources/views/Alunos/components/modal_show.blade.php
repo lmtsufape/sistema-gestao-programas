@@ -19,7 +19,7 @@
                             <img src="/images/sem-foto-perfil.png" class="img-fluid profilepic mb-3" alt="Foto de perfil">
                         @endif
 
-                        <div class="mb-5">
+                        <div class="mb-3">
                             <label class="tituloinfomodal form-label mt-3" for="nome_edit">Nome</label>
                             <div class="textoinfomodal">
                                 {{ old('name', $aluno->user->name) }}</div>
@@ -31,7 +31,7 @@
                         </div>
 
                         @if ($aluno->user->name_social != null)
-                        <div class="mb-5">
+                        <div class="mb-3">
                             <label class="tituloinfomodal form-label mt-3">Nome Social</label>
                             <div class="textoinfomodal">
                                 {{ old('name', $aluno->user->name_social) }}
@@ -39,7 +39,7 @@
                         </div>
                         @endif
 
-                        <div class="mb-5">
+                        <div class="mb-3">
                             <label for="email_edit" class="tituloinfomodal form-label">E-mail</label>
                             <div class="textoinfomodal">
                                 {{ old('name', $aluno->user->email) }}</div>
@@ -50,7 +50,7 @@
                             @endif
                         </div>
 
-                        <div class="mb-5">
+                        <div class="mb-3">
                             <label for="cpf_edit" class="tituloinfomodal form-label">
                                 CPF</label>
                             <div class="textoinfomodal">
@@ -62,7 +62,7 @@
                             @endif
                         </div>
 
-                        <div class="mb-5">
+                        <div class="mb-3">
                             <label for="curso_edit" class="tituloinfomodal form-label">
                                 Curso</label>
                             <div class="textoinfomodal">
@@ -74,7 +74,7 @@
                             @endif
                         </div>
 
-                        <div class="mb-5">
+                        <div class="mb-3">
                             <label for="curso_edit" class="tituloinfomodal form-label"> Semestre de entrada</label>
                             <div class="textoinfomodal">{{ old('name', $aluno->semestre_entrada) }}</div>
                             @if (!empty($errors->update->first('semestra_entrada')))

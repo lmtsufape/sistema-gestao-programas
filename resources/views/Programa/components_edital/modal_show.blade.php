@@ -5,7 +5,7 @@
         <h5 style="color: #2D3875; font-style: normal; font-weight: 600; font-size: 30px; line-height: 47px; text-align: center;" class="modal-title title fw-bold">Informações do Edital</h5>
         <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" style="overflow: auto">
+      <div class="modal-body" style="text-align: start">
         <div class="mb-3">
           <label class="tituloinfomodal form-label mt-3">Data de início:</label>
           <div class="textoinfomodal"> {{date_format(date_create($edital->data_inicio), "d/m/Y")}}</div>
@@ -16,7 +16,7 @@
           <label class="tituloinfomodal form-label mt-3">Programa:</label>
           <div class="textoinfomodal">{{$edital->programa->nome}}</div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer border-0">
           <button type="button" style="background: #34A853; border: #34A853;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>

@@ -27,7 +27,7 @@
           @endif -->
         </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer border-0">
         <button type="button" style="background: #34A853; border: #34A853;" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
       </div>
     </div>

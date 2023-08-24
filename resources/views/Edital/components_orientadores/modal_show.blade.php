@@ -5,7 +5,7 @@
         <h5 style="color: #2D3875; font-style: normal; font-weight: 600; font-size: 30px; line-height: 47px; text-align: center;" class="modal-title title fw-bold">Informações do Professor</h5>
         <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" style="overflow: auto">
+      <div class="modal-body" style="text-align: start">
         <div class="mb-3">
           <label class="tituloinfomodal form-label mt-3">Nome :</label>
           <div class="textoinfomodal"> {{  $orientador->name  }} </div>
@@ -22,7 +22,7 @@
 
 
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer border-0">
           <button type="button"  class="btn" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>

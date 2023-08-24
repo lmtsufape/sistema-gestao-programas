@@ -46,7 +46,7 @@
             <label class="tituloinfomodal form-label mt-3">Instituição:</label>
             <div class="textoinfomodal"> {{$orientador->instituicaoVinculo}}</div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer border-0">
           <button type="button"  class="btn " data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>

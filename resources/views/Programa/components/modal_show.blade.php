@@ -57,7 +57,7 @@
           @endif
         </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer border-0">
         <button type="button"  class="btn" data-bs-dismiss="modal">Fechar</button>
       </div>
     </div>

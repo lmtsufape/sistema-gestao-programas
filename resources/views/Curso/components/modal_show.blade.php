@@ -7,7 +7,7 @@
                     <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="text-align: start">
-                    <div class="mb-5">
+                    <div class="mb-3">
                         <label class="tituloinfomodal form-label mt-3" for="nome_edit">Curso</label>
                         <div class="textoinfomodal"> {{ $curso->nome }} </div>
                         <br>
