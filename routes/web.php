@@ -249,13 +249,17 @@ Route::prefix('estagio')->group(function () {
     // Route::post('/documentos/termo_encaminhamento', [DocumentosController::class, 'termo_encaminhamento'])->name('estagio.formularios.termo_encaminhamento.store');
     // comentado temporariamente 
     
-    Route::get('/documentos/{id}',[EstagioController::class, 'showDocuments'])->name('estagio.documentos');
-    Route::get('/documentos/{id}/termo-de-encaminhamento', [DocumentosController::class, 'termo_encaminhamento_form'])->name('estagio.documentos.termo-de-encaminhamento');
-    Route::post('/documentos/{id}/termo-de-encaminhamento', [DocumentosController::class, 'termo_encaminhamento'])->name('estagio.documentos.termo-de-encaminhamento.store');
-
     Route::get('/instituicao',[InstituicaoController::class, 'index'])->name('instituicao.index');
     Route::get('/instituicao/edit',[InstituicaoController::class, 'edit'])->name('instituicao.edit');
     Route::post('/instituicao',[InstituicaoController::class,'update'])->name('instituicao.update');
+});
+
+Route::prefix('/documentos')->group(function () {
+    Route::get('/{id}', [EstagioController::class, 'showDocuments'])->name('estagio.documentos');
+    Route::get('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.documentos.termo-de-encaminhamento');
+    Route::post('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.documentos.termo-de-encaminhamento.store');
+    
+    Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
 });
 
 Route::get('/meus-estagios', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
