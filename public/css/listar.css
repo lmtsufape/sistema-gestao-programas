@@ -1,4 +1,4 @@
-pagination {
+  pagination {
     display: inline-block;
   }
   .pagination a {
@@ -130,3 +130,8 @@ pagination {
     cursor: pointer;
   }
 
+  .title-position{
+    display: flex; 
+    justify-content: space-evenly; 
+    align-items: center;
+  }

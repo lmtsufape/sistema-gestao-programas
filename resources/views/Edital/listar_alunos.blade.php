@@ -18,7 +18,7 @@
   <br>
 
 
-  <div style="display: flex; justify-content: space-evenly; align-items: center;">
+  <div class="title-position">
     <h1 class="titulo"><strong>Estudantes Vinculados</strong></h1>
   </div>
 
