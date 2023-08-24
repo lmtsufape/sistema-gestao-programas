@@ -241,6 +241,10 @@ Route::prefix('estagio')->group(function () {
     Route::put('/{id}', [EstagioController::class, 'update'])->name('estagio.update');
     Route::delete('/{id}', [EstagioController::class, 'destroy'])->name('estagio.delete');
     // Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
+
+    Route::get('/instituicao',[InstituicaoController::class, 'index'])->name('instituicao.index');
+    Route::get('/instituicao/edit',[InstituicaoController::class, 'edit'])->name('instituicao.edit');
+    Route::post('/instituicao',[InstituicaoController::class,'update'])->name('instituicao.update');
     
 
     // Route::get('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.formularios.termo_encaminhamento'); 
@@ -253,10 +257,6 @@ Route::prefix('estagio')->group(function () {
         
         Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
     });
-
-    Route::get('/instituicao',[InstituicaoController::class, 'index'])->name('instituicao.index');
-    Route::get('/instituicao/edit',[InstituicaoController::class, 'edit'])->name('instituicao.edit');
-    Route::post('/instituicao',[InstituicaoController::class,'update'])->name('instituicao.update');
     
 });
 
