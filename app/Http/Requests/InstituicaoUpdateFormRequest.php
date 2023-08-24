@@ -39,4 +39,11 @@ class InstituicaoUpdateFormRequest extends FormRequest
             "cargo_representante" => "required"
         ];
     }
+
+    public function messages()
+    {
+        return [
+            "required" => "uhfehwufhwifuwhu."
+        ];
+    }
 }

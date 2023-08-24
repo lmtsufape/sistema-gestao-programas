@@ -20,7 +20,7 @@
 
         <form action="{{ route('instituicao.update') }}" method="POST">
             @csrf
-            @method("PUT")
+            @method("POST")
 
             <div class="form-group">
                 <label for="nome">Instituição:</label>
