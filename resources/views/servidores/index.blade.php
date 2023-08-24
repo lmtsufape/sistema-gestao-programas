@@ -87,8 +87,9 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    @include('servidores.components.modal_show', ['servidor' => $servidor])
+
                                     @include('servidores.components.modal_delete', ['servidor' => $servidor,])
+                                    @include('servidores.components.modal_show', ['servidor' => $servidor])
                             @endforeach
                             </tbody>
                         </table>
