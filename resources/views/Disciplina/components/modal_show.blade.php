@@ -4,7 +4,7 @@
             <div class="modal-content modal-create p-2">
                 <div class="modal-header border-0">
                     <p class="titulomodal">Informações da Disciplina</p>
-                        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="text-align: start">
                     <div class="mb-3">
