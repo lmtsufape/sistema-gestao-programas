@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             SupervisorSeeder::class,
             ListaDocumentosObrigatoriosSeeder::class,
             EstagioSeeder::class,
+            InstituicaoSeeder::class,
         ]);
     }
 }

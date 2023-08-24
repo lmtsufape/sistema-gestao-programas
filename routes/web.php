@@ -10,6 +10,7 @@ use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\DocumentoEstagioController;
 use App\Http\Controllers\EstagioController;
 use App\Http\Controllers\FrequenciaController;
+use App\Http\Controllers\InstituicaoController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MeusAlunosController;
@@ -239,7 +240,11 @@ Route::prefix('estagio')->group(function () {
     Route::get('/{id}/edit', [EstagioController::class, 'edit'])->where('id', '[0-9]+')->name('estagio.edit');
     Route::put('/{id}', [EstagioController::class, 'update'])->name('estagio.update');
     Route::delete('/{id}', [EstagioController::class, 'destroy'])->name('estagio.delete');
-    Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
+    // Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
+
+    Route::get('/instituicao',[InstituicaoController::class, 'index'])->name('instituicao.index');
+    Route::get('/instituicao/edit',[InstituicaoController::class, 'edit'])->name('instituicao.edit');
+    Route::post('/instituicao',[InstituicaoController::class,'update'])->name('instituicao.update');
     
 
     // Route::get('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.formularios.termo_encaminhamento'); 
