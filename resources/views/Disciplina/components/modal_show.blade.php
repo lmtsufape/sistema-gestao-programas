@@ -11,7 +11,6 @@
                         <label class="tituloinfomodal form-label mt-3">Disciplina</label>
                         <div class="textoinfomodal">{{ $disciplina->nome }}</div>
                     </div>
-
                     <div class="mb-3">
                         <label class="tituloinfomodal form-label mt-3">Curso</label>
                         <div class="textoinfomodal">{{ $disciplina->curso->nome }}</div>

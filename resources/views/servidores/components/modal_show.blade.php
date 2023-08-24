@@ -6,12 +6,13 @@
           <h5 style="color: #2D3875; font-style: normal; font-weight: 600; font-size: 30px; line-height: 47px;" class="modal-title title fw-bold">Informações do Servidor</h5>
           <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-          <div class="modal-body">
+          <div class="modal-body" style="text-align: start">
             <div class="row mb-3">
 
-              <div class="modal-body">
+              <div class="modal-body" style="text-align: start">
                 @if ($servidor->user->image)
-                <img src="/images/fotos-perfil/{{ $servidor->user->image }}"  class="img-fluid mt-3" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">
+                <img src="/images/fotos-perfil/{{ $servidor->user->image }}" class="img-fluid profilepic mb-3"
+                                alt="Foto de perfil">
                 @else
 
                 <img src="/images/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">

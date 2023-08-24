@@ -6,18 +6,18 @@
       <h5 class="modal-title title fw-bold " style="color: #131833; font-size: 25px; line-height: 47px;">Deletar Servidor</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="text-align: start">
         <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">Deseja realmente remover o servidor {{$servidor->user->name}}?</p>
       </div>
 
       <div class="modal-footer d-flex justify-content-between">
-        <button stype="button" class="btn btn-secondary" style="border-radius: 45px; " data-bs-dismiss="modal">Cancelar</button>
+        <button stype="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Cancelar</button>
 
         <form action="{{url("/servidores/$servidor->id")}}" method="post">
           @method("DELETE")
           @csrf
           <input type="hidden" name="id" value="{{$servidor->id}}">
-          <button type="submit" class="btn btn-danger" style="border-radius: 45px;">Remover</button>
+          <button type="submit" class="apagarmodalbotao">Remover</button>
         </form>
       </div>
     </div>

@@ -7,7 +7,7 @@
         </div>
         <form action="{{route("alunos.create")}}" method="post">
           @csrf
-          <div class="modal-body">
+          <div class="modal-body" style="text-align: start">
             <div class="mb-3" style="">
               <label for="name" class="form-label">Nome</label>
               <input name="name"  id="name" type="text" placeholder="Digite o nome" value="{{ old('name') }}"

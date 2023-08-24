@@ -4,7 +4,7 @@
         <div class="modal-content fundomodaldelete">
             <div class="modal-header border-0">
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="text-align: start">
                 <p class="titulomodal">Deseja realmente remover o edital?</p>
         </div>
 
