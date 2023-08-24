@@ -11,7 +11,7 @@
       </div>
 
       <div class="modal-footer d-flex justify-content-between border-0">
-        <button stype="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Cancelar</button>
 
         <form action="{{url("/servidores/$servidor->id")}}" method="post">
           @method("DELETE")

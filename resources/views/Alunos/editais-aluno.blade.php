@@ -153,7 +153,7 @@
               action="{{ Route('frequencia.enviar') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="modal-body" style="text-align: start">
-                  <label>Frequencia Mensal:</label>
+                  <label>Frequencia Mensal</label>
                   <input class="w-75 form-control" type="file" name="frequencia_mensal" id="frequencia_mensal"
                       title="Envie sua frequencia" required>
               </div>

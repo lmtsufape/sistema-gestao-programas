@@ -77,7 +77,7 @@
                 <input class="boxinfo" type="text" id="name" name="name" placeholder="Digite o nome" value="{{$orientador->user->name}}"
                 ><br/><br>
 
-                <label for="nome_social" class="titulo">Nome Social:</label>
+                <label for="nome_social" class="titulo">Nome Social</label>
                 <input class="boxinfo" type="text" id="name_social" name="name_social" placeholder="Digite o nome social" value="{{$orientador->user->name_social}}"
                 ><br/><br>
 

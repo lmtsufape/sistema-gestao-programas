@@ -1,13 +1,13 @@
 <div class="modal " id="modal_documents{{$orientador->id}}" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered"> <!-- div antes do real modal -->
-    <div class="modal-content modal-create p-3" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
-      <div class="modal-header">
-        <h5 style="color: #2D3875; font-style: normal; font-weight: 600; font-size: 30px; line-height: 47px; text-align: center;" class="modal-title title fw-bold">Documentos do Orientador</h5>
+  <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-create p-2">
+                <div class="modal-header border-0">
+                    <p class="titulomodal">Documentos do Orientador</h5>
         <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" style="text-align: start">
         <div class="mb-3">
-          <label for="plano_projeto" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Plano de Trabalho:</label>
+          <label for="plano_projeto" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Plano de Trabalho</label>
           <div style="justify-content: flex-start; align-items: flex-start; display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 5px;">
             <a href="{{ route('plano_trabalho.download', ['fileName' => $pivo->plano_projeto]) }}" target="_blank"  class="link">
               <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
@@ -18,7 +18,7 @@
           </div>
 
           @if($pivo->outros_documentos != null)
-          <label for="outros_documentos" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Outros Documentos:</label>
+          <label for="outros_documentos" style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;" class="form-label mt-3">Outros Documentos</label>
           <div style="justify-content: flex-start; align-items: flex-start; display: flex; flex-direction: column; margin-top: 5px; margin-bottom: 5px;">
             <a href="{{ route('outros_documentos.download', ['fileName' => $pivo->outros_documentos]) }}" target="_blank"  class="link">
               <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">

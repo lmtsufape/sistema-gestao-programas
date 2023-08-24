@@ -30,7 +30,7 @@
                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>
 
-                    <label for="nome_social" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome Social:</label>
+                    <label for="nome_social" for="nome" style="display:flex; font-weight: 600; font-size: 20px; line-height: 28px; color: #131833;">Nome Social</label>
                     <input type="text" id="nome_social" name="nome_social" value="{{$servidor->user->name_social}}"
                     style="background: #F5F5F5; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px;
                     box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.25);"><br/><br>

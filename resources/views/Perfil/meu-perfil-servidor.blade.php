@@ -24,18 +24,18 @@
             <img src="/images/sem-foto-perfil.png"  class="img-fluid" style="border-radius: 50%; width:150px; height:150px;" alt="Foto de perfil">
             @endif
 
-            <label class="tituloinfomodal form-label mt-3" for="nome_edit">Nome:</label>
+            <label class="tituloinfomodal form-label mt-3" for="nome_edit">Nome</label>
             <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"> {{$servidor->user->name}} </div>
 
             @if ( $servidor->name_social != null )
-            <label class="tituloinfomodal form-label mt-3" for="nome_edit">Nome Social:</label>
+            <label class="tituloinfomodal form-label mt-3" for="nome_edit">Nome Social</label>
             <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"> {{$servidor->name_social}} </div>
             @endif
 
-            <label class="tituloinfomodal form-label mt-3" for="nome_edit">E-mail:</label>
+            <label class="tituloinfomodal form-label mt-3" for="nome_edit">E-mail</label>
             <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"> {{$servidor->user->email}} </div>
 
-            <label class="tituloinfomodal form-label mt-3" for="nome_edit">CPF:</label>
+            <label class="tituloinfomodal form-label mt-3" for="nome_edit">CPF</label>
             <div style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"> {{$servidor->cpf}} </div>
         </div>
         <br>

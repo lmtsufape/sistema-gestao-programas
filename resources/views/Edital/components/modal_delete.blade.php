@@ -9,7 +9,7 @@
         </div>
 
         <div class="modal-footer d-flex justify-content-between border-0">
-            <button stype="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Cancelar</button>
 
           <form action="{{route('edital.delete',$edital->id)}}" method="post">
             @method("DELETE")
@@ -26,7 +26,7 @@
         <div class="modal-content" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
             <div class="modal-header">
                 <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-                <button stype="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Fechar</a>
+                <button type="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Fechar</a>
 
             </div>
         </div>

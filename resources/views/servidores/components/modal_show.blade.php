@@ -7,7 +7,7 @@
           <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
           <div class="modal-body" style="text-align: start">
-            <div class="row mb-3">
+            <div class="mb-3">
 
               <div class="modal-body" style="text-align: start">
                 @if ($servidor->user->image)
@@ -20,21 +20,21 @@
                 @endif
               </div>
 
-                <label class="tituloinfomodal form-label mt-3">Nome:</label>
+                <label class="tituloinfomodal form-label mt-3">Nome</label>
                 <div  style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->user->name}}</div>
 
                 @if($servidor->nome_social != null)
-                  <label class="tituloinfomodal form-label mt-3">Nome social:</label>
+                  <label class="tituloinfomodal form-label mt-3">Nome social</label>
                   <div  style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->nome_social}}</div>
                 @endif
 
-                <label class="tituloinfomodal form-label mt-3">CPF:</label>
+                <label class="tituloinfomodal form-label mt-3">CPF</label>
                 <div  style="background: #EEEEEE; border-radius: 13px; border: 1px #D3D3D3; width: 100%; padding: 5px"> {{$servidor->cpf}}</div>
 
-                <label class="tituloinfomodal form-label mt-3">E-mail:</label>
+                <label class="tituloinfomodal form-label mt-3">E-mail</label>
                 <div class="textoinfomodal">{{$servidor->user->email}}</div>
 
-                <label class="tituloinfomodal form-label mt-3">Tipo do servidor:</label>
+                <label class="tituloinfomodal form-label mt-3">Tipo do servidor</label>
                 @switch($servidor->tipo_servidor)
                   @case('adm')
                     <div class="textoinfomodal"> Administrador</div>

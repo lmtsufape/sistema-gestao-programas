@@ -14,29 +14,29 @@
                         <img src="/images/sem-foto-perfil.png" class="img-fluid profilepic mb-3" alt="Foto de perfil">
                     @endif
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3" for="nome_edit">Nome:</label>
+                        <label class="tituloinfomodal form-label mt-3" for="nome_edit">Nome</label>
                         <div class="textoinfomodal"> {{ $orientador->user->name }}</div>
                     </div>
                     <div class="mb-3">
                         @if ($orientador->user->nome_social != null)
-                            <label class="tituloinfomodal form-label mt-3" for="nome_edit">Nome Social:</label>
+                            <label class="tituloinfomodal form-label mt-3" for="nome_edit">Nome Social</label>
                             <div class="textoinfomodal"> {{ $orientador->user->name_social }}</div>
                         @endif
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3" for="nome_edit">CPF:</label>
+                        <label class="tituloinfomodal form-label mt-3" for="nome_edit">CPF</label>
                         <div class="textoinfomodal"> {{ $orientador->cpf }}</div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3" for="nome_edit">E-mail:</label>
+                        <label class="tituloinfomodal form-label mt-3" for="nome_edit">E-mail</label>
                         <div class="textoinfomodal">{{ $orientador->user->email }}</div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3" for="nome_edit">Matrícula:</label>
+                        <label class="tituloinfomodal form-label mt-3" for="nome_edit">Matrícula</label>
                         <div class="textoinfomodal"> {{ $orientador->matricula }}</div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Curso(s):</label>
+                        <label class="tituloinfomodal form-label mt-3">Curso(s)</label>
                         <div class="textoinfomodal">
                             @foreach ($orientador->cursos as $curso)
                                 {{ $curso->nome }}<br>
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Instituição:</label>
+                        <label class="tituloinfomodal form-label mt-3">Instituição</label>
                         <div class="textoinfomodal"> {{ $orientador->instituicaoVinculo }}</div>
                     </div>
                 </div>

@@ -8,19 +8,19 @@
                 </div>
                 <div class="modal-body" style="text-align: start">
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Título:</label>
+                        <label class="tituloinfomodal form-label mt-3">Título</label>
                         <div class="textoinfomodal"> {{ $vinculo->edital->titulo_edital }} </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Semestre de Início:</label>
+                        <label class="tituloinfomodal form-label mt-3">Semestre de Início</label>
                         <div class="textoinfomodal"> {{ $vinculo->edital->semestre }} </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Descrição:</label>
+                        <label class="tituloinfomodal form-label mt-3">Descrição</label>
                         <div class="textoinfomodal"> {{ $vinculo->edital->descricao }} </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Valor da Bolsa:</label>
+                        <label class="tituloinfomodal form-label mt-3">Valor da Bolsa</label>
                         <div class="textoinfomodal">
                             @if ($vinculo->edital->valor_bolsa)
                                 {{ $vinculo->edital->valor_bolsa }}
@@ -30,21 +30,21 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Data de início:</label>
+                        <label class="tituloinfomodal form-label mt-3">Data de início</label>
                         <div class="textoinfomodal"> {{ date_format(date_create($vinculo->edital->data_inicio), 'd/m/Y') }}
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Data de fim:</label>
+                        <label class="tituloinfomodal form-label mt-3">Data de fim</label>
                         <div class="textoinfomodal"> {{ date_format(date_create($vinculo->edital->data_fim), 'd/m/Y') }}
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Programa:</label>
+                        <label class="tituloinfomodal form-label mt-3">Programa</label>
                         <div class="textoinfomodal"> {{ $vinculo->edital->programa->nome }} </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Disciplina(s):</label>
+                        <label class="tituloinfomodal form-label mt-3">Disciplina(s)</label>
                         <div class="textoinfomodal">
                             @if (count($vinculo->edital->disciplinas) != 0)
                                 @foreach ($vinculo->edital->disciplinas as $disciplina)
@@ -56,15 +56,15 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Nome do Aluno:</label>
+                        <label class="tituloinfomodal form-label mt-3">Nome do Aluno</label>
                         <div class="textoinfomodal"> {{ $vinculo->aluno->user->name }} </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">CPF do Aluno:</label>
+                        <label class="tituloinfomodal form-label mt-3">CPF do Aluno</label>
                         <div class="textoinfomodal"> {{ $vinculo->aluno->cpf }} </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Bolsista?:</label>
+                        <label class="tituloinfomodal form-label mt-3">Bolsista?</label>
                         @if ($vinculo->bolsista == 1)
                             <div class="textoinfomodal">Sim</div>
                         @else

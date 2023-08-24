@@ -139,7 +139,7 @@
                     </select>
                     <br>
                     <br>
-                    <label class="titulo" for="info_complementares">Informações complementares:</label>
+                    <label class="titulo" for="info_complementares">Informações complementares</label>
                     <input type="text" id="info_complementares" class="boxinfo" name="info_complementares"
                         value="{{ old('info_complementares') }}" placeholder=" Digite as informações complementares">
                     <br>

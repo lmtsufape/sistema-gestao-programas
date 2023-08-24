@@ -20,11 +20,11 @@
             </select>
 
 
-        <button stype="button" class="btn btn-primary" style="border-radius: 45px; margin-top: 15px; margin-right: 10px " data-bs-dismiss="modal">Salvar</button>
+        <button type="button" class="btn btn-primary" style="border-radius: 45px; margin-top: 15px; margin-right: 10px " data-bs-dismiss="modal">Salvar</button>
 
         </form>
 
-        <button stype="button" class="btn btn-secondary" style="border-radius: 45px; margin-top: 15px; margin-left: 10px  " data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary" style="border-radius: 45px; margin-top: 15px; margin-left: 10px  " data-bs-dismiss="modal">Cancelar</button>
 
       </div>
 

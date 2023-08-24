@@ -9,22 +9,22 @@
                 <div class="modal-body" style="text-align: start">
                     <div class="modal-body" style="text-align: start">
                         <div class="mb-3">
-                            <label class="tituloinfomodal form-label mt-3">Título:</label>
+                            <label class="tituloinfomodal form-label mt-3">Título</label>
                             <div class="textoinfomodal">
                                 {{ $edital->titulo_edital }} </div>
                         </div>
                         <div class="mb-3">
-                            <label class="tituloinfomodal form-label mt-3">Semestre de Início:</label>
+                            <label class="tituloinfomodal form-label mt-3">Semestre de Início</label>
                             <div class="textoinfomodal">
                                 {{ $edital->semestre }} </div>
                         </div>
                         <div class="mb-3">
-                            <label class="tituloinfomodal form-label mt-3">Descrição:</label>
+                            <label class="tituloinfomodal form-label mt-3">Descrição</label>
                             <div class="textoinfomodal">{{ $edital->descricao }} </div>
                         </div>
                         <div class="mb-3">
 
-                            <label class="tituloinfomodal form-label mt-3">Valor da Bolsa:</label>
+                            <label class="tituloinfomodal form-label mt-3">Valor da Bolsa</label>
                             <div class="textoinfomodal">
                                 @if ($edital->valor_bolsa)
                                     {{ $edital->valor_bolsa }}
@@ -35,19 +35,19 @@
                         </div>
                         <div class="mb-3">
 
-                            <label class="tituloinfomodal form-label mt-3">Data de início:</label>
+                            <label class="tituloinfomodal form-label mt-3">Data de início</label>
                             <div class="textoinfomodal">{{ date_format(date_create($edital->data_inicio), 'd/m/Y') }}</div>
                         </div>
                         <div class="mb-3">
-                            <label class="tituloinfomodal form-label mt-3">Data de fim:</label>
+                            <label class="tituloinfomodal form-label mt-3">Data de fim</label>
                             <div class="textoinfomodal">{{ date_format(date_create($edital->data_fim), 'd/m/Y') }}</div>
                         </div>
                         <div class="mb-3">
-                            <label class="tituloinfomodal form-label mt-3">Programa:</label>
+                            <label class="tituloinfomodal form-label mt-3">Programa</label>
                             <div class="textoinfomodal">{{ $edital->programa->nome }} </div>
                         </div>
                         <div class="mb-3">
-                            <label class="tituloinfomodal form-label mt-3">Disciplina(s):</label>
+                            <label class="tituloinfomodal form-label mt-3">Disciplina(s)</label>
                             <div class="textoinfomodal">
                                 @if (count($edital->disciplinas) != 0)
                                     @foreach ($edital->disciplinas as $disciplina)

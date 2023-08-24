@@ -8,7 +8,7 @@
                 <p class="titulomodal">Deseja realmente remover o orientador {{$orientador->user->name}} ?</p>
         </div>
         <div class="modal-footer d-flex justify-content-between border-0">
-                    <button stype="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Cancelar</button>
           <form action="{{route ('orientadors.delete', ['id'=> $orientador->id])}}" method="post">
             @method("DELETE")
             @csrf

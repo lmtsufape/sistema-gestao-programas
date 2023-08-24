@@ -76,7 +76,7 @@
                 @csrf
                 @method("PUT")
 
-                    <label class="titulo" for="Descrição">Descrição:</label>
+                    <label class="titulo" for="Descrição">Descrição</label>
                     <textarea class="boxinfo" name="descricao" id="descricao" cols="30" rows="5">{{ $estagio->descricao }}</textarea><br><br>
 
                     <label class="titulo" for="data_inicio">Data de início<strong style="color: #8B5558">*</strong></label>

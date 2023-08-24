@@ -8,7 +8,7 @@
                 </div>
                 <div class="modal-body" style="text-align: start">
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Status:</label>
+                        <label class="tituloinfomodal form-label mt-3">Status</label>
                         <div class="textoinfomodal">
                             @if ($estagio->status == 0)
                                 {{ 'Inativo' }}
@@ -19,12 +19,12 @@
                     </div>
                     <div class="mb-3">
 
-                        <label class="tituloinfomodal form-label mt-3">Descrição:</label>
+                        <label class="tituloinfomodal form-label mt-3">Descrição</label>
                         <div class="textoinfomodal"> {{ $estagio->descricao }} </div>
                     </div>
                     <div class="mb-3">
 
-                        <label class="tituloinfomodal form-label mt-3">Tipo:</label>
+                        <label class="tituloinfomodal form-label mt-3">Tipo</label>
                         <div class="textoinfomodal">
                             @if ($estagio->tipo == 'eno')
                                 {{ 'Não-Obrigatório' }}
@@ -34,24 +34,24 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Data de início:</label>
+                        <label class="tituloinfomodal form-label mt-3">Data de início</label>
                         <div class="textoinfomodal"> {{ date_format(date_create($estagio->data_inicio), 'd/m/Y') }}</div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Data de fim:</label>
+                        <label class="tituloinfomodal form-label mt-3">Data de fim</label>
                         <div class="textoinfomodal"> {{ date_format(date_create($estagio->data_fim), 'd/m/Y') }}</div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Data da solicitação:</label>
+                        <label class="tituloinfomodal form-label mt-3">Data da solicitação</label>
                         <div class="textoinfomodal"> {{ date_format(date_create($estagio->data_solicitacao), 'd/m/Y') }}
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Professor:</label>
+                        <label class="tituloinfomodal form-label mt-3">Professor</label>
                         <div class="textoinfomodal"> {{ $estagio->orientador->user->name }} </div>
                     </div>
                     <div class="mb-3">
-                        <label class="tituloinfomodal form-label mt-3">Estudante:</label>
+                        <label class="tituloinfomodal form-label mt-3">Estudante</label>
                         <div class="textoinfomodal"> {{ $estagio->aluno->nome_aluno }} </div>
                     </div>
 
