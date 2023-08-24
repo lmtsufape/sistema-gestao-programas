@@ -240,30 +240,24 @@ Route::prefix('estagio')->group(function () {
     Route::get('/{id}/edit', [EstagioController::class, 'edit'])->where('id', '[0-9]+')->name('estagio.edit');
     Route::put('/{id}', [EstagioController::class, 'update'])->name('estagio.update');
     Route::delete('/{id}', [EstagioController::class, 'destroy'])->name('estagio.delete');
-
-    // ???
-    // Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show'); 
+    // Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
     
 
-    // Route::get('/documentos/termo_encaminhamento', [DocumentosController::class, 'termo_encaminhamento_form'])->name('estagio.formularios.termo_encaminhamento'); 
-    // Route::post('/documentos/termo_encaminhamento', [DocumentosController::class, 'termo_encaminhamento'])->name('estagio.formularios.termo_encaminhamento.store');
+    // Route::get('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.formularios.termo_encaminhamento'); 
+    // Route::post('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.formularios.termo_encaminhamento.store');
     // comentado temporariamente 
-    
+    Route::prefix('/documentos')->group(function () {
+        Route::get('/{id}', [EstagioController::class, 'showDocuments'])->name('estagio.documentos');
+        Route::get('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.documentos.termo-de-encaminhamento');
+        Route::post('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.documentos.termo-de-encaminhamento.store');
+        
+        Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
+    });
+
     Route::get('/instituicao',[InstituicaoController::class, 'index'])->name('instituicao.index');
     Route::get('/instituicao/edit',[InstituicaoController::class, 'edit'])->name('instituicao.edit');
     Route::post('/instituicao',[InstituicaoController::class,'update'])->name('instituicao.update');
-});
-
-Route::prefix('/documentos')->group(function () {
-    Route::get('/{id}', [EstagioController::class, 'showDocuments'])->name('estagio.documentos');
-    Route::get('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.documentos.termo-de-encaminhamento');
-    Route::post('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.documentos.termo-de-encaminhamento.store');
     
-    Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
 });
 
 Route::get('/meus-estagios', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
-
-
-
-// Route::get('/termo_encaminhamento', [DocumentosController::class, 'termo_encaminhamento'])->name('Estagio.formularios.termo_encaminhamento');
