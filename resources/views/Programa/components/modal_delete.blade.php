@@ -10,7 +10,7 @@
           <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">
             Deseja realmente remover o programa {{$programa->nome}}?</p>
         </div>
-        <div class="modal-footer d-flex justify-content-between">
+        <div class="modal-footer d-flex justify-content-between border-0">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <form action="{{url("/programas/>1")}}" method="post">
             @method("DELETE")

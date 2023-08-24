@@ -28,7 +28,7 @@
 
       </div>
 
-      <div class="modal-footer d-flex justify-content-between">
+      <div class="modal-footer d-flex justify-content-between border-0">
 
       </div>
     </div>

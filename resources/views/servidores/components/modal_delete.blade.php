@@ -10,7 +10,7 @@
         <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">Deseja realmente remover o servidor {{$servidor->user->name}}?</p>
       </div>
 
-      <div class="modal-footer d-flex justify-content-between">
+      <div class="modal-footer d-flex justify-content-between border-0">
         <button stype="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Cancelar</button>
 
         <form action="{{url("/servidores/$servidor->id")}}" method="post">

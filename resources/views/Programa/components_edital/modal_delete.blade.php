@@ -9,7 +9,7 @@
         <p style="color: #131833; font-style: normal; font-weight: 400; font-size: 20px; line-height: 47px;">Deseja realmente remover o edital?</p>
       </div>
 
-      <div class="modal-footer d-flex justify-content-between">
+      <div class="modal-footer d-flex justify-content-between border-0">
         <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Cancelar</button>
 
         <form action="{{route ('programas.edital-delete', ['id'=> $edital->id])}}" method="delete">
