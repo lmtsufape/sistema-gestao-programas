@@ -8,10 +8,7 @@
                 </div>
                 <div class="modal-body" style="text-align: start">
                     <div class="mb-3">
-                        <label for="nome_edit"
-                            style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;"
-                            class=" form-label mt-3">
-                            Nome</label>
+                        <label class="tituloinfomodal form-label mt-3">Nome</label>
 
                         <div class="textoinfomodal">
                             {{ $programa->nome }}
@@ -19,10 +16,7 @@
                     </div>
                     <div class="mb-3">
 
-                        <label for="nome_edit"
-                            style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;"
-                            class=" form-label mt-3">
-                            Descrição</label>
+                        <label class="tituloinfomodal form-label mt-3">Descrição</label>
 
                         <div class="textoinfomodal">
                             {{ $programa->descricao }}
@@ -30,10 +24,7 @@
                     </div>
                     <div class="mb-3">
 
-                        <label for="nome_edit"
-                            style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;"
-                            class=" form-label mt-3">
-                            Data de Início</label>
+                        <label class="tituloinfomodal form-label mt-3">Data de Início</label>
 
                         <div class="textoinfomodal">
                             {{ date_format(date_create($programa->data_inicio), 'd/m/Y') }}
@@ -41,10 +32,7 @@
                     </div>
                     <div class="mb-3">
 
-                        <label for="nome_edit"
-                            style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;"
-                            class=" form-label mt-3">
-                            Data de Fim</label>
+                        <label class="tituloinfomodal form-label mt-3">Data de Fim</label>
 
                         <div class="textoinfomodal">
                             {{ date_format(date_create($programa->data_fim), 'd/m/Y') }}
@@ -52,10 +40,7 @@
                     </div>
                     <div class="mb-3">
 
-                        <label for="nome_edit"
-                            style="display:flex; font-weight: 400; font-size: 20px; line-height: 28px; color: #131833; margin-bottom:8px;"
-                            class=" form-label mt-3">
-                            Servidores</label>
+                        <label class="tituloinfomodal form-label mt-3">Servidores</label>
 
                         <div class="textoinfomodal">
                             @if (count($programa->servidores))
@@ -85,18 +70,3 @@
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
     <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{ url('/login') }}">Voltar</a>
 @endcan
-<style>
-    .btn {
-        color: #fff;
-        background: #34A853;
-        border-color: #34A853;
-        border-radius: 20px;
-        width: 120px;
-    }
-
-    .btn:hover {
-        background-color: #40b760;
-        border-color: #40b760;
-        color: #fff;
-    }
-</style>
