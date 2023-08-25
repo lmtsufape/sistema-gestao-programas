@@ -18,7 +18,7 @@
 
 
     <div class="title-position">
-        <h1 class="titulo"><strong>Orientadores</strong></h1>
+        <h1 class="titulo"><strong>Professores Vinculados</strong></h1>
     </div>
 
     <form class="search-container" action="" method="GET">
@@ -34,10 +34,8 @@
             <table class="table">
                 <thead>
                     <tr class="table-head">
-                        <th scope="col" class="text-center">Nome</i></th>
+                        <th scope="col" class="text-center">Nome</th>
                         <th scope="col" class="text-center">Edital</th>
-                        <th scope="col" class="text-center">Data de início</th>
-                        <th scope="col" class="text-center">Data de fim</th>
                         <th scope="col" class="text-center">Ações</th>
                     </tr>
                 </thead>
@@ -47,8 +45,6 @@
                     <tr>
                         <td class="align-middle">{{ $orientador->name }}</td>
                         <td class="align-middle">{{ $pivo->titulo }}</td>
-                        <td class="align-middle">{{ date('d/m/Y', strtotime($pivo->data_inicio)) }}</td>
-                        <td class="align-middle">{{ date('d/m/Y', strtotime($pivo->data_fim)) }}</td>
                         <td>
 
 
@@ -57,7 +53,7 @@
                             </a>
 
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$orientador->id}}">
-                                <img src="{{asset('images/documento.svg')}}" alt="Mostrar Documentos" style="height: 30px; width: 30px;">
+                                <img src="{{asset('images/document.svg')}}" alt="Mostrar Documentos" style="height: 30px; width: 30px;">
                             </a>
 
 
