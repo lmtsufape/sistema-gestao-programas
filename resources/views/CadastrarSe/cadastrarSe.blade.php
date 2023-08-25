@@ -75,27 +75,27 @@
 
         <form action="{{url("/cadastrar-se/store")}}" method="POST">
             @csrf
-            <label for="inputName" class="titulo">Nome:</label>
+            <label for="inputName" class="titulo">Nome</label>
             <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputNomeSocial" class="titulo">Nome Social:</label>
+            <label for="inputNomeSocial" class="titulo">Nome Social</label>
             <input class="boxinfo" type="text" id="inputNomeSocial" name="nome_social" required placeholder="Digite o nome social">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputCpf" class="titulo">CPF:</label>
+            <label for="inputCpf" class="titulo">CPF</label>
             <input class="boxinfo" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputEmail4" class="titulo">E-mail:</label>
+            <label for="inputEmail4" class="titulo">E-mail</label>
             <input class="boxinfo" type="email" id="inputEmail4" name="email" required placeholder="Digite o email">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="inputPassword4" class="titulo">Senha:</label>
+            <label for="inputPassword4" class="titulo">Senha</label>
             <input type="password"  class="boxinfo" id="inputPassword4" name="senha" required placeholder="Digite a senha">
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
-            <label for="tipoUser" class="titulo">Tipo do usuário:</label>
+            <label for="tipoUser" class="titulo">Tipo do usuário</label>
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
                 <option value="servidor" selected>Servidor</option>
                 <option value="orientador">Orientador</option>
@@ -114,7 +114,7 @@
             </div>
 
             <div id="curso" hidden>
-                <label class="titulo" for="cursoAluno">Curso:</label>
+                <label class="titulo" for="cursoAluno">Curso</label>
                 <select aria-label="Default select example" class="boxinfo" id="curso" name="curso">
                     <option value="">Selecione o curso</option>
                     @foreach ($cursos as $curso)
@@ -126,13 +126,13 @@
 
             <div id="semestre" hidden>
 
-                <label class="titulo" for="sementreEntradaAluno">Semestre de entrada:</label>
+                <label class="titulo" for="sementreEntradaAluno">Semestre de entrada</label>
                 <input class="boxinfo" type="text"  id="sementreEntradaAluno" name="sementreEntradaAluno" placeholder="Digite o semestre">
                 <br><br>
             </div>
 
             <div id="matriculaOri" hidden>
-                <label class="titulo" for="matriculaOrientador">Matrícula:</label>
+                <label class="titulo" for="matriculaOrientador">Matrícula</label>
                 <input class="boxinfo" type="text"  id="matriculaOrientador" name="matriculaOrientador" placeholder="Digite a matrícula (Exemplo: SIAPE)">
                 <br><br>
             </div>

@@ -128,7 +128,7 @@
         </div>
 
         <script>
-            
+
             const selectDisciplina = document.getElementById('disciplina');
 
             $(document).ready(function() {

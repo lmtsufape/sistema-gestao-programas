@@ -106,15 +106,15 @@
 
             @csrf
             @method("PUT")
-            <label class="titulo" for="nome_aluno">Nome do Aluno:</label>
+            <label class="titulo" for="nome_aluno">Nome do Aluno</label>
             <input type="text" id="nome_aluno" class="boxinfo" placeholder="Nome do aluno" value="{{$aluno->nome_aluno}}" disabled>
             <br>
             <br>
-            <!-- <label class="titulo" for="bolsa">Tipo da bolsa:</label>
+            <!-- <label class="titulo" for="bolsa">Tipo da bolsa</label>
             <input type="text" id="bolsa" class="boxinfo" name="bolsa" placeholder="bolsa" value="{{$vinculo->bolsa}}" disabled>
             <br>
             <br> -->
-            <label class="titulo" for="info_complementares">Informações complementares:</label>
+            <label class="titulo" for="info_complementares">Informações complementares</label>
             <input type="text" id="info_complementares" class="boxinfo" name="info_complementares" placeholder="Informações complementares" value="{{$vinculo->info_complementares}}">
             <br>
             <br>
@@ -125,7 +125,7 @@
                     <input type="file" id="termo_compromisso_aluno" class="boxinfo" name="termo_compromisso_aluno">
                 </div>
                 <div class="col-3">
-                    <label class="titulo" for="termo_compromisso_aluno"> Atual:</label>
+                    <label class="titulo" for="termo_compromisso_aluno"> Atual</label>
                         <a class="boxlink" href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}" target="_blank" class="link">
                             <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
                             Baixar termo
@@ -142,7 +142,7 @@
                     <input type="file" id="plano_projeto" class="boxinfo" name="plano_projeto" value="{{ old('plano_projeto') }}">
                 </div>
                 <div class="col-3">
-                    <label class="titulo" for="plano_projeto"> Atual:</label>
+                    <label class="titulo" for="plano_projeto"> Atual</label>
                         <a class="boxlink" href="{{ route('plano_trabalho.download', ['fileName' => $vinculo->plano_projeto]) }}" target="_blank" class="link">
                             <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">
                             Baixar plano
@@ -158,7 +158,7 @@
                     <input type="file" id="outros_documentos" class="boxinfo" name="outros_documentos" value="{{ old('outros_documentos') }}">
                 </div>
                 <div class="col-3">
-                    <label class="titulo" for="outros_documentos">Atual:</label>
+                    <label class="titulo" for="outros_documentos">Atual</label>
                     @if($vinculo->outros_documentos != null)
                         <a class="boxlink" href="{{ route('outros_documentos.download', ['fileName' => $vinculo->outros_documentos]) }}" target="_blank" class="link">
                             <img src="{{asset('images/bxs_download.png')}}" alt="baixar arquivo" style="width: 30px; height: 30px; margin-right: 5px;">

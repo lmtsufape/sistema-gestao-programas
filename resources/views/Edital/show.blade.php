@@ -103,7 +103,7 @@
                     <input type="text" id="cpf" class="boxcadastrar cpf-autocomplete" name="cpf"
                         value="{{ old('cpf') }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}">
                     <br>
-                       
+
                     <label class="titulopequeno" for="bolsa">Tipo da bolsa <strong style="color: #8B5558">*</strong></label>
                     <div class="bolsa">
                         <div class="form-check">
@@ -136,8 +136,8 @@
 
                     <label class="titulopequeno" for="termo_compromisso_aluno">Termo de compromisso do aluno <strong
                             style="color: red">*</strong></label>
-                    <input type="file" id="termo_compromisso_aluno" class="form-control boxcadastrar" name="termo_compromisso_aluno" value="{{ old('termo_compromisso_aluno') }}" required>    
-        
+                    <input type="file" id="termo_compromisso_aluno" class="form-control boxcadastrar" name="termo_compromisso_aluno" value="{{ old('termo_compromisso_aluno') }}" required>
+
 
                     <label class="titulopequeno" for="plano_projeto">Plano de trabalho<strong
                         style="color: red">*</strong> </label>

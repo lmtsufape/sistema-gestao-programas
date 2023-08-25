@@ -1,12 +1,12 @@
 @canany(['admin', 'pro_reitor'])
-  <div class="modal fade" id="modal_adicionaPermissao_{{$servidor->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal" id="modal_adicionaPermissao_{{$servidor->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content modal-create" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
       <div class="modal-header">
       <h5 class="modal-title title fw-bold " style="color: #131833; font-size: 25px; line-height: 47px;">Adicionar permissão ao servidor</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="text-align: start">
         <form action="{{url("/servidores/permissao/$servidor->id")}}" method="post">
             @csrf
             <input type="hidden" name="id" value="{{$servidor->id}}">
@@ -20,15 +20,15 @@
             </select>
 
 
-        <button stype="button" class="btn btn-primary" style="border-radius: 45px; margin-top: 15px; margin-right: 10px " data-bs-dismiss="modal">Salvar</button>
+        <button type="button" class="btn btn-primary" style="border-radius: 45px; margin-top: 15px; margin-right: 10px " data-bs-dismiss="modal">Salvar</button>
 
         </form>
 
-        <button stype="button" class="btn btn-secondary" style="border-radius: 45px; margin-top: 15px; margin-left: 10px  " data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-secondary" style="border-radius: 45px; margin-top: 15px; margin-left: 10px  " data-bs-dismiss="modal">Cancelar</button>
 
       </div>
 
-      <div class="modal-footer d-flex justify-content-between">
+      <div class="modal-footer d-flex justify-content-between border-0">
 
       </div>
     </div>
@@ -47,7 +47,7 @@
     }
   </style>
 @else
-<div class="modal fade" id="modal_delete_{{$servidor->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal" id="modal_delete_{{$servidor->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
             <div class="modal-header">
