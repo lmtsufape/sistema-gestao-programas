@@ -78,3 +78,23 @@
     font-weight: 500;
     line-height: normal;
 }
+
+.baixar-arquivo{
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    display: flex; 
+    flex-direction: column; 
+    margin-top: 5px; 
+    margin-bottom: 5px;
+}
+
+.link {
+    color: #2B2B2B;
+    border: #2B2B2B;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .link:hover {
+    color: #DC574E;
+  }

@@ -37,9 +37,7 @@
       <table class="table">
         <thead>
           <tr class="table-head">
-            <th scope="col" class="text-center">Nome</i></th>
-            <th scope="col" class="text-center">Data de início</th>
-            <th scope="col" class="text-center">Data de fim</th>
+            <th scope="col" class="text-center">Nome</th>
             <th scope="col" class="text-center">Edital</th>
             <th scope="col" class="text-center">Ações</th>
           </tr>
@@ -48,8 +46,6 @@
           @foreach($vinculos as $vinculo)
           <tr>
             <td class="align-middle">{{ $vinculo->aluno->nome_aluno }}</td>
-            <td class="align-middle">{{ date_format(date_create($vinculo->data_inicio), "d/m/Y") }}</td>
-            <td class="align-middle">{{ date_format(date_create($vinculo->data_fim), "d/m/Y") }}</td>
             <td class="align-middle">{{ $vinculo->edital->titulo_edital }}</td>
             <td>
 
@@ -64,7 +60,7 @@
                 <img src="{{asset('images/unlink.png')}}" alt="Deletar edital" style="height: 25px; width: 25px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$vinculo->aluno->id}}">
-                <img src="{{asset('images/documento.svg')}}" alt="Documento aluno" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/document.svg')}}" alt="Documento aluno" style="height: 30px; width: 30px;">
               </a>
               {{-- <a href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}">Baixar PDF</a> --}}
 
