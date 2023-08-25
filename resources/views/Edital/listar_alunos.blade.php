@@ -2,115 +2,68 @@
 
 @section("body")
 
-<style>
-  pagination {
-    display: inline-block;
-
-  }
-
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 10px 4px;
-  }
-
-  .pagination a.active {
-    background-color: #3B864F;
-    color: white;
-    border: 1px solid #3B864F;
-  }
-
-  .pagination a:hover:not(.active) {
-    background-color: #34A853;
-  }
-</style>
 
 <div class="container-fluid">
   @if (session('sucesso'))
-  <div class="alert alert-success">
+  <div class="alert alert-sucess">
     {{session('sucesso')}}
+  </div>
+  @endif
+
+  @if (session('falha'))
+  <div class="alert alert-danger">
+    {{session('falha')}}
   </div>
   @endif
   <br>
 
-  <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1 style="color:#2D3875;"><strong>Estudantes Vinculados</strong></h1>
-    <div style="margin: auto"></div>
-    <form action="" method="GET">
-      <input class="text-center p-3" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
-                  border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                  background-position: 10px 2px;
-                  background-repeat: no-repeat;
-                  width: 35%;
-                  font-size: 16px;
-                  height: 45px;
-                  border: 1px solid #ddd;
-                  margin-bottom: 12px; margin-right: 10px
-                  ">
 
-      <input type="submit" value="" style="background-image: url('/images/searchicon.png');
-                  background-color: #D9D9D9;
-                  border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                  width: 40px;
-                  font-size: 16px;
-                  height: 45px;
-                  border: 1px solid #ddd;
-                  position: absolute;
-                  margin: auto;" />
-
-    </form>
-  </div>
- <div style="display: contents; align-content: center; align-items: center;">
-    <a style="background:#34A853; border-radius: 25px; border: #2D3875; color: #f0f0f0; font-style: normal;
-      font-weight: 400; font-size: 20px; line-height: 28px; padding-top: 4px; padding-bottom: 4px; align-content: center;
-      align-items: center; padding-right: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); text-decoration: none;
-      padding-left: 10px;" onmouseover="this.style.backgroundColor='#2D3875'" onmouseout="this.style.backgroundColor='#34A853'"
-      href="{{route('edital.show', ['id' => $edital->id ])}}">
-      <img src="{{asset('images/plus.png')}}" alt="Cadastrar estudantes" style="padding-bottom: 5px"> Vincular Estudantes
-    </a>
+  <div class="title-position">
+    <h1 class="titulo"><strong>Estudantes Vinculados</strong></h1>
   </div>
 
 
- <br>
- <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+  <form class="search-container" action="" method="GET">
+    <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
+    <input class="search-button" type="submit" value=""></input>
+    <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{route("edital.show", ["id" => $edital->id ])}}'">Vincular Estudantes</button>
+  </form>
+
+  <br>
+  <br>
+
+  <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
     <div class="col-md-9 corpo p-2 px-3">
-      <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-        ;margin-bottom: 5px; min-height: 50px">
+      <table class="table">
         <thead>
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Edital</th>
-            <th scope="col">Data de Início</th>
-            <th scope="col">Data de Fim</th>
-            <th class="text-center">Ações</th>
+          <tr class="table-head">
+            <th scope="col" class="text-center">Nome</th>
+            <th scope="col" class="text-center">Edital</th>
+            <th scope="col" class="text-center">Ações</th>
           </tr>
         </thead>
         <tbody>
-        @foreach($vinculos as $vinculo)
-
+          @foreach($vinculos as $vinculo)
           <tr>
-            <td> {{ $vinculo->aluno->nome_aluno }} </td>
-            <td> {{ $vinculo->edital->titulo_edital }} </td>
-            <td>{{date_format(date_create($vinculo->data_inicio), "d/m/Y")}}</td>
-            <td>{{date_format(date_create($vinculo->data_fim), "d/m/Y")}}</td>
+            <td class="align-middle">{{ $vinculo->aluno->nome_aluno }}</td>
+            <td class="align-middle">{{ $vinculo->edital->titulo_edital }}</td>
             <td>
+
+
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$vinculo->aluno->id}}" data-bs-id="{{$vinculo->aluno->id}}">
-                <img src="{{asset('images/info.png')}}" alt="Info aluno" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/information.svg')}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
               <a type="button" href="{{ route('edital.editar_vinculo', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
-                <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar vinculo" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/pencil.svg')}}" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
               <a type="button" href="{{ route('edital.aluno.delete', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
-                <img src="{{asset('images/desvinculo_edital.png')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/unlink.png')}}" alt="Deletar edital" style="height: 25px; width: 25px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$vinculo->aluno->id}}">
-                <img src="{{asset('images/document.png')}}" alt="Documento aluno"  style="height: 30px; width: 30px;">
+                <img src="{{asset('images/document.svg')}}" alt="Documento aluno" style="height: 30px; width: 30px;">
               </a>
               {{-- <a href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}">Baixar PDF</a> --}}
+
             </td>
           </tr>
           <!-- Modal show -->
@@ -118,11 +71,11 @@
           @include('Edital.components_alunos.modal_documents', ['aluno' => $vinculo->aluno, 'vinculo' => $vinculo])
           <!-- Modal delete-->
           @include('Edital.components_alunos.modal_delete', ['aluno' => $vinculo->aluno, 'edital' => $vinculo->edital])
-        @endforeach
+          @endforeach
         </tbody>
       </table>
     </div>
-
+    <!--
     <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
             ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
 
@@ -155,10 +108,12 @@
         </div>
       </div>
     </div>
+-->
   </div>
   <br>
   <br>
 </div>
+
 
 <script type="text/javascript">
   function exibirModalDeletar(id) {
@@ -173,6 +128,5 @@
     $('#modal_documents' + id).modal('documents');
   }
 </script>
-
 
 @endsection

@@ -21,7 +21,7 @@
                 @csrf
                 @method("PUT")
                 <div style="display: flex; flex-direction: column;">
-                    <label for="perfil" class="titulopequeno">Foto de Perfil:</label>
+                    <label for="perfil" class="titulopequeno">Foto de Perfil</label>
                     @if($orientador->user->image)
                     <img src="/images/fotos-perfil/{{ $orientador->user->image }}" alt="Foto Perfil" class="images"/>
                     @else
@@ -29,14 +29,14 @@
                     <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" class="images"/>
                     @endif
 
-                    <input type="file" id="image" name="image" class="form-control boxcadastrar"> 
+                    <input type="file" id="image" name="image" class="form-control boxcadastrar">
                 </div>
-                
+
 
                 <label for="nome" class="titulopequeno">Nome:<strong style="color: #8B5558">*</strong></label>
                 <input class="boxcadastrar" type="text" id="name" name="name" placeholder="Digite o nome" value="{{$orientador->user->name}}">
 
-                <label for="nome_social" class="titulopequeno">Nome Social:</label>
+                <label for="nome_social" class="titulopequeno">Nome Social</label>
                 <input class="boxcadastrar" type="text" id="name_social" name="name_social" placeholder="Digite o nome social" value="{{$orientador->user->name_social}}">
 
                 <label for="email" for="nome" class="titulopequeno">E-mail:<strong style="color: #8B5558">*</strong></label>
@@ -55,7 +55,7 @@
                 <div class="row">
                     @foreach ($cursos as $curso)
                         <div class="col-md-6" style="display: flex; justify-items:flex-start; gap:3%">
-                            <input type="checkbox" class="titulopequeno" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}" @if(in_array($curso->id, $cursosSelecionados)) checked @endif> 
+                            <input type="checkbox" class="titulopequeno" id="curso_{{ $curso->id }}" name="cursos[]" value="{{ $curso->id }}" @if(in_array($curso->id, $cursosSelecionados)) checked @endif>
                             <span class="checkbox-text">{{ $curso->nome }}</span>
                         </div>
                     @endforeach
@@ -72,7 +72,7 @@
         <br>
         <br>
     </div>
-    
+
     </style>
     <script  src="{{ mix('js/app.js') }}">
         $('.cpf-autocomplete').inputmask('999.999.999-99');

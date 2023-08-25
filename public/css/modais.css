@@ -1,0 +1,100 @@
+.modal-header{
+    display: inline;
+  }
+
+
+.titulomodal {
+    color: var(#2B2B2B);
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+}
+
+.cancelarmodalbotao{
+    border-radius: 6.238px;
+    border: 0.74px solid #DC574E;
+    background: #FFF;
+    height: 45px;
+    padding: 10px 4rem;
+    justify-content: center;
+    align-items: center;
+    color: #DC574E;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.apagarmodalbotao{
+    border-radius: 6.238px;
+    border: 0.74px solid #DC574E;
+    background: #DC574E;
+    height: 45px;
+    padding: 10px 4rem;
+    justify-content: center;
+    align-items: center;
+    color: var(--branco, #FFF);
+    text-align: center;
+    font-family: Inter;
+    font-size: 14.79px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.fundomodaldelete {
+    border-radius: 14px;
+    border: 1px solid #FDF6F5;
+    background: var(--branco, #FFF);
+    padding: 5% 8% 5% 8%;
+}
+
+.profilepic {
+    border-radius: 50%;
+    width:100px;
+    height:100px;
+    display: flex;
+}
+
+.tituloinfomodal {
+    color: var(--vermelho-v-200, #A95260);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.textoinfomodal {
+    color: var(--preto-p-200, #2B2B2B);
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.baixar-arquivo{
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    display: flex; 
+    flex-direction: column; 
+    margin-top: 5px; 
+    margin-bottom: 5px;
+}
+
+.link {
+    color: #2B2B2B;
+    border: #2B2B2B;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .link:hover {
+    color: #DC574E;
+  }

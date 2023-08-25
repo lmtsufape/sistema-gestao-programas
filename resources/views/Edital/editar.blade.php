@@ -51,7 +51,7 @@
                         </div>
                     </div>
 
-                    <label class="titulopequeno" for="Descrição">Descrição:</label>
+                    <label class="titulopequeno" for="Descrição">Descrição</label>
                     <textarea class="boxcadastrar" name="descricao" id="descricao" cols="30" rows="5">{{ $edital->descricao }}</textarea><br><br>
 
                     <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">

@@ -25,7 +25,7 @@
                 <input class="boxcadastrar" type="text" id="inputName" name="name" required placeholder="Digite o nome" value="{{ old('name') }}">
                 <div class="invalid-feedback">Por favor preencha esse campo</div><br>
 
-                <label for="inputNomeSocial" class="titulopequeno">Nome Social:</label>
+                <label for="inputNomeSocial" class="titulopequeno">Nome Social</label>
                 <input class="boxcadastrar" type="text" id="inputNomeSocial" name="name_social" placeholder="Digite o nome social" value="{{ old('name_social') }}">
                 <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 

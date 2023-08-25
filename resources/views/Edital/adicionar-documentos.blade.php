@@ -64,8 +64,8 @@
 
             .bolsa {
                 display: flex;
-                flex-direction: row;
-                align-items: center;
+                flex-direction: column;
+                align-items: start;
                 justify-content: space-evenly;
             }
 
@@ -79,8 +79,7 @@
                 justify-content: flex-start;
             }
         </style>
-        <div class="container-fluid"
-            style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
+        <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
             @if (session('sucesso'))
                 <div class="alert alert-success" style="width: 100%;">
                     {{ session('sucesso') }}
@@ -88,9 +87,9 @@
             @endif
             <br>
 
-            <div class="boxchild">
-                <div class="row" style="display: flex; align-items: center;">
-                    <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; color: #2D3875;">
+            <div class="fundocadastrar">
+                <div class="row" style="display: flex; align-items: left;">
+                    <h1 class="titulogrande">
                         Adicionar Documentos</h1>
                 </div>
 
@@ -100,37 +99,30 @@
                     @method('PUT')
                     <input type="hidden" id="vinculo_id" name="vinculo_id" value="{{$vinculo->id}}">
 
-                    <label class="titulo" for="termo_orientador">Termo do Professor: <strong
+                    <label class="titulopequeno" for="termo_orientador">Termo do Professor <strong
                             style="color: red">*</strong></label>
-                    <input type="file" id="termo_orientador" class="boxinfo" name="termo_orientador" value="{{ old('termo_orientador') }}" required>
-                    <br>
-                    <br>
-                    <label class="titulo" for="termo_aluno">Termo do Estudante: <strong
-                            style="color: red">*</strong></label>
-                    <input type="file" id="termo_aluno" class="boxinfo" name="termo_aluno" value="{{ old('termo_aluno') }}" required>
-                    <br>
-                    <br>
-                    <label class="titulo" for="historico_escolar">Histórico Escolar do Estudante: <strong
-                            style="color: red">*</strong></label>
-                    <input type="file" id="historico_escolar" class="boxinfo" name="historico_escolar" value="{{ old('historico_escolar') }}" required>
-                    <br>
-                    <br>
-                    <label class="titulo" for="comprovante_bancario">Comprovante Bancário: </label>
-                    <input type="file" id="comprovante_bancario" class="boxinfo" name="comprovante_bancario" value="{{ old('comprovante_bancario') }}">
-                    <br>
+                    <input type="file" id="termo_orientador" class="form-control boxcadastrar" name="termo_orientador" value="{{ old('termo_orientador') }}" required>
                     <br>
 
-                    <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%">
-                        <input type="button" value="Voltar" href="{{ route('orientadors.editais-orientador') }}"
-                            onclick="window.location.href='{{ route('orientadors.editais-orientador') }}'"
-                            style="background: #2D3875;
-                            box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25); display: inline-block;
-                            border-radius: 13px; color: #FFFFFF; border: #2D3875; font-style: normal; font-weight: 400; font-size: 24px;
-                            line-height: 29px; text-align: center; padding: 5px 15px;">
-                        <input type="submit" value="Salvar"
-                            style="background: #34A853; box-shadow: 4px 5px 7px rgba(0, 0, 0, 0.25);
-                            display: inline-block; border-radius: 13px; color: #FFFFFF; border: #34A853; font-style: normal;
-                            font-weight: 400; font-size: 24px; line-height: 29px; text-align: center; padding: 5px 15px;">
+                    <label class="titulopequeno" for="termo_aluno">Termo do Estudante <strong
+                            style="color: red">*</strong></label>
+                    <input type="file" id="termo_aluno" class="form-control boxcadastrar" name="termo_aluno" value="{{ old('termo_aluno') }}" required>
+                    <br>
+
+                    <label class="titulopequeno" for="historico_escolar">Histórico Escolar do Estudante <strong
+                            style="color: red">*</strong></label>
+                    <input type="file" id="historico_escolar" class="form-control boxcadastrar" name="historico_escolar" value="{{ old('historico_escolar') }}" required>
+                    <br>
+
+                    <label class="titulopequeno" for="comprovante_bancario">Comprovante Bancário </label>
+                    <input type="file" id="comprovante_bancario" class="form-control boxcadastrar" name="comprovante_bancario" value="{{ old('comprovante_bancario') }}">
+                    <br>
+
+
+                    <div class="botoessalvarvoltar">
+                        <input class="botaovoltar" type="button" value="Voltar" href="{{ route('orientadors.editais-orientador') }}"
+                            onclick="window.location.href='{{ route('orientadors.editais-orientador') }}'">
+                        <input class="botaosalvar" type="submit" value="Salvar">
                     </div>
                 </form>
             </div>

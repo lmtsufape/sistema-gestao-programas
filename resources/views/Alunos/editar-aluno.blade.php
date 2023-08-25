@@ -18,7 +18,7 @@
             @method("PUT")
 
             <div style="display: flex; flex-direction: column;">
-                <label for="perfil" class="titulopequeno">Foto de Perfil:</label>
+                <label for="perfil" class="titulopequeno">Foto de Perfil</label>
                 @if($aluno->user->image)
                 <img src="/images/fotos-perfil/{{ $aluno->user->image }}" alt="Foto Perfil" class="images"/>
                 @else
@@ -34,7 +34,7 @@
             <input type="text" id="nome" name="nome" value="{{$aluno->user->name}}"
             class="boxcadastrar">
 
-            <label for="nome_social" class="titulopequeno">Nome Social:</label>
+            <label for="nome_social" class="titulopequeno">Nome Social</label>
             <input type="text" id="nome_social" name="nome_social" value="{{$aluno->user->name_social}}" class="boxcadastrar">
 
             <label for="email" for="nome" class="titulopequeno">E-mail:<strong style="color: #996A6D">*</strong></label>
