@@ -92,7 +92,7 @@
               </a>
 
               <a class="link" alt="Listar alunos" href="{{  route('edital.vinculo', ['id' => $edital->id]) }}" >
-                <img src="{{asset('images/estudantes_vinculados.svg')}}" alt="Listar estudantes vinculados" style="height: 28px; width: 30px;">
+                <img src="{{asset('images/estudantes_vinculados.svg')}}" alt="Listar estudantes vinculados" style="height: 28px; width: 28px;">
               </a>
 
               <a class="link" alt="Listar alunos inativos" href="{{  route('edital.vinculoInativo', ['id' => $edital->id]) }}" >

@@ -1,4 +1,4 @@
-pagination {
+  pagination {
     display: inline-block;
   }
   .pagination a {
@@ -19,8 +19,9 @@ pagination {
     background-color: #34A853;
   }
   .titulo{
-    color: #2D3875;
+    color: #2B2B2B;
     font-size: 24px;
+    margin-bottom: 80px;
   }
   .busca{
     border-radius: 10px 0px 0px 10px;
@@ -129,3 +130,8 @@ pagination {
     cursor: pointer;
   }
 
+  .title-position{
+    display: flex; 
+    justify-content: space-evenly; 
+    align-items: center;
+  }
