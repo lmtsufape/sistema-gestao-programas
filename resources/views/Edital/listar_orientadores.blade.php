@@ -2,110 +2,75 @@
 
 @section("body")
 
-<style>
-  pagination {
-    display: inline-block;
-
-  }
-
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 10px 4px;
-  }
-
-  .pagination a.active {
-    background-color: #3B864F;
-    color: white;
-    border: 1px solid #3B864F;
-  }
-
-  .pagination a:hover:not(.active) {
-    background-color: #34A853;
-  }
-</style>
-
 <div class="container-fluid">
-  @if (session('sucesso'))
-  <div class="alert alert-sucess">
-    {{session('sucesso')}}
-  </div>
-  @endif
+    @if (session('sucesso'))
+    <div class="alert alert-sucess">
+        {{session('sucesso')}}
+    </div>
+    @endif
 
-  <br>
+    @if (session('falha'))
+    <div class="alert alert-danger">
+        {{session('falha')}}
+    </div>
+    @endif
+    <br>
 
-  <div style="margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-    <h1 style="color:#2D3875;"><strong>Orientadores </strong></h1>
-    <div style="margin: auto"></div>
-    <form action="" method="GET">
-      <input class="text-center p-3" type="text" onkeyup="" placeholder="Digite a busca" title="" id="valor" name="valor" style="background-color: #D9D9D9;
-                  border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                  background-position: 10px 2px;
-                  background-repeat: no-repeat;
-                  width: 35%;
-                  font-size: 16px;
-                  height: 45px;
-                  border: 1px solid #ddd;
-                  margin-bottom: 12px; margin-right: 10px
-                  ">
 
-      <input type="submit" value="" style="background-image: url('/images/searchicon.png');
-                  background-color: #D9D9D9;
-                  border-radius: 30px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                  width: 40px;
-                  font-size: 16px;
-                  height: 45px;
-                  border: 1px solid #ddd;
-                  position: absolute;
-                  margin: auto;" />
-
-    </form>
-  </div>
-
- <br>
- <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
-    <div class="col-md-9 corpo p-2 px-3">
-      <table class="table" style="border-radius: 15px; background-color: #F2F2F2; min-width: 600px; box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25)
-        ;margin-bottom: 5px; min-height: 50px">
-        <thead>
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Edital</th>
-            <th scope="col">Data de Início</th>
-            <th scope="col">Data de Fim</th>
-            <th scope="col">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-        @foreach($orientadores as $orientador)
-          @foreach ($pivot as $pivo)
-          <tr>
-            <td> {{ $orientador->name}} </td>
-            <td> {{ $pivo->titulo }} </td>
-            <td> {{ date('d/m/Y', strtotime($pivo->data_inicio)) }} </td>
-            <td> {{ date('d/m/Y', strtotime($pivo->data_fim)) }} </td>
-            <td>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$orientador->id}}" >
-                <img src="{{asset('images/info.png')}}" alt="Informações do aluno" style="height: 30px; width: 30px;">
-              </a>
-
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$orientador->id}}">
-                <img src="{{asset('images/document.png')}}" alt="Documentos do orientador" style="height: 30px; width: 30px;">
-              </a>
-            </td>
-          </tr>
-          @include('Edital.components_orientadores.modal_show', ['orientador' => $orientador, 'pivo' => $pivo])
-          @include('Edital.components_orientadores.modal_documents', ['orientador' => $orientador, 'pivo' => $pivo])
-          @endforeach
-        @endforeach
-        </tbody>
-      </table>
+    <div class="title-position">
+        <h1 class="titulo"><strong>Orientadores</strong></h1>
     </div>
 
+    <form class="search-container" action="" method="GET">
+        <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
+        <input class="search-button" type="submit" value=""></input>
+    </form>
+
+    <br>
+    <br>
+
+    <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
+        <div class="col-md-9 corpo p-2 px-3">
+            <table class="table">
+                <thead>
+                    <tr class="table-head">
+                        <th scope="col" class="text-center">Nome</i></th>
+                        <th scope="col" class="text-center">Edital</th>
+                        <th scope="col" class="text-center">Data de início</th>
+                        <th scope="col" class="text-center">Data de fim</th>
+                        <th scope="col" class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($orientadores as $orientador)
+                    @foreach ($pivot as $pivo)
+                    <tr>
+                        <td class="align-middle">{{ $orientador->name }}</td>
+                        <td class="align-middle">{{ $pivo->titulo }}</td>
+                        <td class="align-middle">{{ date('d/m/Y', strtotime($pivo->data_inicio)) }}</td>
+                        <td class="align-middle">{{ date('d/m/Y', strtotime($pivo->data_fim)) }}</td>
+                        <td>
+
+
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$orientador->id}}">
+                                <img src="{{asset('images/information.svg')}}" alt="Info Orientador" style="height: 30px; width: 30px;">
+                            </a>
+
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$orientador->id}}">
+                                <img src="{{asset('images/documento.svg')}}" alt="Mostrar Documentos" style="height: 30px; width: 30px;">
+                            </a>
+
+
+                        </td>
+                    </tr>
+                </tbody>
+                @include('Edital.components_orientadores.modal_show', ['orientador' => $orientador, 'pivo' => $pivo])
+                @include('Edital.components_orientadores.modal_documents', ['orientador' => $orientador, 'pivo' => $pivo])
+                @endforeach
+                @endforeach
+            </table>
+        </div>
+        <!--
     <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
             ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
 
@@ -128,21 +93,20 @@
         </div>
       </div>
     </div>
-  </div>
-  <br>
-  <br>
+-->
+    </div>
+    <br>
+    <br>
 </div>
 
 <script type="text/javascript">
+    function exibirModalVisualizar(id) {
+        $('#modal_show' + id).modal('show');
+    }
 
-  function exibirModalVisualizar(id) {
-    $('#modal_show' + id).modal('show');
-  }
-
-  function exibirModalDocumentos(id) {
-    $('#modal_documents' + id).modal('show');
-  }
-
+    function exibirModalDocumentos(id) {
+        $('#modal_documents' + id).modal('show');
+    }
 </script>
 
 
