@@ -39,7 +39,12 @@
           <tr class="table-head">
             <th scope="col" class="text-center">Nome</th>
             <th scope="col" class="text-center">Curso</th>
-            <th scope="col" class="text-center">Ações</th>
+            <th class="text-center">
+                Ações
+                <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                    <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
+                </button>
+            </th>
           </tr>
         </thead>
         @foreach ($disciplinas as $disciplinas)
@@ -62,6 +67,7 @@
         </tbody>
         @include("Disciplina.components.modal_show", ["disciplina" => $disciplinas])
         @include("Disciplina.components.modal_delete", ["disciplina" => $disciplinas])
+        @include("Disciplina.components.modal_legenda")
         @endforeach
       </table>
     </div>
