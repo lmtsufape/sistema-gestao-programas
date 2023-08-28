@@ -58,7 +58,7 @@
     </style>
 
 
-    <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5rem; margin-bottom:10px; ">
+    <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
         @if (session('sucesso'))
             <div class="alert alert-success">
                 {{session('sucesso')}}
@@ -66,31 +66,25 @@
         @endif
         <br>
 
-        <div class="boxchild">
-            <div class="row">
-                <h1 style="font-weight: 600; font-size: 30px; line-height: 47px; display: flex; align-items: center; color: #3D3434;">
-                    Editar Curso</h1>
+        <div class="fundocadastrar">
+            <div class="row" style="align-content: left;">
+                <h1 class="titulogrande">Editar Curso</h1>
             </div>
 
-            <hr style="color:#2D3875;">
+            <br>
 
             <form action="{{url("/cursos/$curso->id")}}"method="post">
                 @csrf
                 @method("put")
 
-                <label for="nome" style="color:#3D3434" class="titulo">Nome<strong style="color: #8B5558 ">*</strong></label>
-                <input class="boxinfo" type="text" name="nome" id="nome" placeholder="Digite o nome do curso" value="{{$curso->nome}}" >
-
-
-
-                <div style="display: flex; align-content: center; align-items: center; justify-content: center; gap:5%; padding-top: 15px;">
-
-                    <input type="button" value="Voltar" href="{{url("/cursos/")}}" onclick="window.location.href='{{url("/cursos/")}}'" style="display: flex; width: 170px; padding: 10px; justify-content: center; align-items: center;
-                                                                                                                                                gap: 10px; flex-shrink: 0; align-self: stretch; border-radius: 10px; border: 1px solid #DACFCF; color: #6B6B6B; font-family: Inter; background-color: white">
-                   <input type="submit" value="Salvar" style="display: flex; width: 170px; height: 45px; padding: 10px; justify-content: center; align-items: center;
-                                                                gap: 10px; flex-shrink: 0; border-radius: 10px; background: var(--green-g-200, #2B8C64); outline: none; border: #2B8C64; color: white; font-family: Inter;">
-
-                </div>
+                <label for="nome" style="color:#3D3434" class="titulopequeno">Nome<strong style="color: #8B5558 ">*</strong></label>
+                <input class="boxcadastrar" type="text" name="nome" id="nome" placeholder="Digite o nome do curso" value="{{$curso->nome}}" >
+                <br><br>
+               
+                <div class="botoessalvarvoltar">
+                        <input type="button" value="Voltar" href="{{url("/cursos/")}}" onclick="window.location.href='{{url("/cursos/")}}'" class="botaovoltar">
+                        <input class="botaosalvar" type="submit" value="Salvar">
+            </div>
 
 
             </form>
