@@ -36,7 +36,12 @@
                     <tr class="table-head">
                         <th scope="col" class="text-center">Nome</th>
                         <th scope="col" class="text-center">Edital</th>
-                        <th scope="col" class="text-center">Ações</th>
+                        <th class="text-center">
+                Ações
+                <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                    <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
+                </button>
+            </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,6 +65,7 @@
                         </td>
                     </tr>
                 </tbody>
+                @include('Edital.components_orientadores.modal_legenda')
                 @include('Edital.components_orientadores.modal_show', ['orientador' => $orientador, 'pivo' => $pivo])
                 @include('Edital.components_orientadores.modal_documents', ['orientador' => $orientador, 'pivo' => $pivo])
                 @endforeach
