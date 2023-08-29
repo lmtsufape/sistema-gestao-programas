@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use App\Models\DocumentoEstagio;
 use App\Models\ListaDocumentosObrigatorios;
 use Illuminate\Support\Facades\DB;
 use TCPDF;
-use FPDF;
 
 class PDFController extends Controller
 {
@@ -25,10 +23,12 @@ class PDFController extends Controller
 
         // terá um método para cada documento, esse switchcase servirá para selecionar o método especifico de cada documento.
         switch ($this->documentType) {
+            //termo de encaminhamento
             case 1:
                 $documentPath = storage_path('app/docs/termo_encaminhamento/0.png');
                 return $this->editTermoEncaminhamento($documentPath, $dados);
                 break;
+            //termo de compromisso
             case 2:
                 $documentPath = storage_path('app/docs/termo_compromisso/0.png');
                 return $this->editTermoCompromisso($documentPath, $dados);
@@ -59,8 +59,6 @@ class PDFController extends Controller
         $pdf->Output('documento.pdf', 'D');
         $pdfContent = ob_get_contents();
         ob_end_clean();
-
-        
 
         $generatedPdf = new DocumentoEstagio();
         DB::beginTransaction();
@@ -158,7 +156,6 @@ class PDFController extends Controller
             $font->size(37);
             $font->color(self::AZUL);
         });
-
 
         $image->text($dados['cep'], 267, 1372, function ($font) {
             $font->file(resource_path(self::FONT));
