@@ -72,7 +72,7 @@ class DocumentoEstagioController extends Controller
             'emailAluno' => $request->input('emailAluno'),
         ];
 
-        return $pdf->editImage('termo_encaminhamento', $dados);
+        return $pdf->editImage(2, $dados);
     }
 
     public function termo_encaminhamento_form($id)
@@ -91,6 +91,6 @@ class DocumentoEstagioController extends Controller
             'periodo' => $request->input('periodo'),
         ];
 
-        return $pdf->editImage('termo_encaminhamento', $dados);
+        return $pdf->editImage(1, $dados);
     }
 }

@@ -7,27 +7,29 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\DocumentoEstagio;
+use App\Models\ListaDocumentosObrigatorios;
 use Illuminate\Support\Facades\DB;
 use TCPDF;
 use FPDF;
 
 class PDFController extends Controller
 {
-    protected const AZUL = '#00009C';
-    protected const FONT = 'fonts/Arial.ttf';
+    private const AZUL = '#00009C';
+    private const FONT = 'fonts/Arial.ttf';
+    private $documentType = 0;
 
     public function editImage($documentType, $dados)
     {
 
-        $documentType = 'termo_compromisso';
+        $this->documentType = $documentType;
 
         // terá um método para cada documento, esse switchcase servirá para selecionar o método especifico de cada documento.
-        switch ($documentType) {
-            case 'termo_encaminhamento':
+        switch ($this->documentType) {
+            case 1:
                 $documentPath = storage_path('app/docs/termo_encaminhamento/0.png');
                 return $this->editTermoEncaminhamento($documentPath, $dados);
                 break;
-            case 'termo_compromisso':
+            case 2:
                 $documentPath = storage_path('app/docs/termo_compromisso/0.png');
                 return $this->editTermoCompromisso($documentPath, $dados);
                 break;
@@ -58,11 +60,13 @@ class PDFController extends Controller
         $pdfContent = ob_get_contents();
         ob_end_clean();
 
+        
+
         $generatedPdf = new DocumentoEstagio();
         DB::beginTransaction();
         $generatedPdf->aluno_id = Auth::id();
         $generatedPdf->pdf = $pdfContent;
-        $generatedPdf->lista_documentos_obrigatorios_id = 1; //1 por enquanto, pq eu não sei uma forma de pegar o id do estagio atual
+        $generatedPdf->lista_documentos_obrigatorios_id = $this->getListaDeDocumentosId(); //1 por enquanto, pq eu não sei uma forma de pegar o id do estagio atual
         $generatedPdf->save();
         DB::commit();
 
@@ -351,5 +355,11 @@ class PDFController extends Controller
         $estagio = new EstagioController();
 
         return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+    }
+
+    protected function getListaDeDocumentosId(){
+        $listaDocumentosObrigatorios = new ListaDocumentosObrigatorios();
+        $document = $listaDocumentosObrigatorios->where('id', $this->documentType)->first();
+        return $document->id;
     }
 }
