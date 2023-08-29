@@ -26,7 +26,7 @@ class PDFController extends Controller
             case 'termo_encaminhamento':
                 $documentPath1 = storage_path('app/docs/termo_encaminhamento/0.png');
                 $documentPath2 = storage_path('app/docs/termo_encaminhamento/1.png');
-                return $this->editTermoCompromisso([$documentPath1, $documentPath2], $dados);
+                return $this->editTermoEncaminhamento([$documentPath1,$documentPath2], $dados);
                 break;
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
@@ -34,7 +34,7 @@ class PDFController extends Controller
     }
     
 
-    private function toPDF($image)
+    private function toPDF($images)
     {
         $pdf = new TCPDF();
         $pdf->SetMargins(0, 0, 0);
@@ -43,12 +43,28 @@ class PDFController extends Controller
 
         $pdf->AddPage();
 
-        // Salvar a imagem editada temporariamente
-        $tmpImagePath = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
-        $image->save($tmpImagePath, 100);
+        foreach($images as $index => $image)
+        {
+            if ($index !== 0) {
+                $pdf->AddPage();
+            }
+    
+            // Salvar a imagem editada temporariamente
+            $tmpImagePath = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
+            $image->save($tmpImagePath, 100);
+    
+            // Incorporar a imagem no PDF
+            $pdf->Image($tmpImagePath, 7, 0, 200);
+    
+            unlink($tmpImagePath); // Excluir a imagem temporária após uso
+        }
 
-        // Incorporar a imagem no PDF
-        $pdf->Image($tmpImagePath, 7, 0, 200);
+        // // Salvar a imagem editada temporariamente
+        // $tmpImagePath = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
+        // $image->save($tmpImagePath, 100);
+
+        // // Incorporar a imagem no PDF
+        // $pdf->Image($tmpImagePath, 7, 0, 200);
 
         // Capturar a saída PDF em uma variável
         ob_start();
@@ -89,15 +105,19 @@ class PDFController extends Controller
     }
 
 
-    private function editTermoCompromisso($documentPath, $dados)
+private function editTermoEncaminhamento($documentPaths, $dados)
     {
-        $pdf = new FPDF();
-        $pdf->AddPage();
+        $image1 = Image::make($documentPaths[0]);
 
-        // Primeira Imagem
-        $image1 = Image::make($documentPath['documentPath1']);
+        /*$dados[0] = 'Universidade de Pernambuco';
 
-        // Edições específicas para a primeira imagem
+        $image->text($dados[], 280, 695, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(42);
+            $font->color(self::AZUL);
+
+        }); */
+
         $image1->text($dados['instituicao'], 300, 695, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
@@ -153,42 +173,17 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        // Salvar a imagem editada temporariamente
-        $tmpImagePath1 = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
-        $image1->save($tmpImagePath1, 100);
+        $image2 = Image::make($documentPaths[1]);
+    
+        $image2->text("GUILHERMEEEEE", 667, 1519, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
 
-        // Incorporar a primeira imagem no PDF
-        $pdf->Image($tmpImagePath1, 10, 10, 190); // Ajuste as coordenadas e dimensões conforme necessário
 
-        // Remover o arquivo temporário da primeira imagem
-        unlink($tmpImagePath1);
-
-        // Adicionar uma nova página ao PDF para a próxima imagem
-        $pdf->AddPage();
-
-        // Segunda Imagem
-         $image2 = Image::make($documentPath['documentPath2']);
-
-         // Edições específicas para a segunda imagem
-         $image2->text('oioioi', 300, 695, function ($font) {
-                $font->file(resource_path('fonts/Arial.ttf'));    
-                $font->size(42);
-                $font->color(self::AZUL);
-            });
-        
-         // ... Outras edições para a segunda imagem
-        
-        // Salvar a imagem editada temporariamente
-        $tmpImagePath2 = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
-        $image2->save($tmpImagePath2, 100);
-        
-        // Incorporar a segunda imagem no PDF
-        $pdf->Image($tmpImagePath2, 10, 10, 190); // Ajuste as coordenadas e dimensões conforme necessário
-        // Remover o arquivo temporário da segunda imagem
-        unlink($tmpImagePath2);
-
-        
-        // $pdfContent = $this->toPDF($image);
+        $images = [$image1, $image2];
+        $this->toPDF($images);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 
