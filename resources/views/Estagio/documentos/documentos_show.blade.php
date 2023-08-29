@@ -12,6 +12,8 @@
 
         <a href="{{ route('estagio.documentos.termo-de-encaminhamento', ['id' => $estagio->id]) }}">Termo de Encaminhamento</a>
         <br>
+        <a href="{{ route('estagio.documentos.termo-de-compromisso', ['id' => $estagio->id]) }}">Termo de Compromisso</a>
+        <br>
         <br>
         <h1>Documentos preenchidos:</h1>
         @foreach ($documentos as $documento)
