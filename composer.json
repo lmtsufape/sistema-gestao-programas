@@ -19,7 +19,7 @@
         "laravel/ui": "*",
         "laravellegends/pt-br-validator": "^9.1",
         "livewire/livewire": "^2.5",
-        "setasign/fpdf": "1.8",
+        "setasign/fpdf": "^1.8",
         "setasign/fpdi": "^2.4",
         "spatie/laravel-permission": "^5.5",
         "spatie/pdf-to-image": "^1.2",

@@ -21,9 +21,15 @@ class DocumentoEstagioController extends Controller
     {
         $pdf = new PDFController;
         $dados = [
+            'instituicao' => $request->input('instituicao'),
             'nome' => $request->input('nome'),
             'curso' => $request->input('curso'),
             'periodo' => $request->input('periodo'),
+            'ano_etapa' => $request->input('ano_etapa'),
+            'versao_estagio' => $request->input('versao_estagio'),
+            'data_inicio' => $request->input('data_inicio'),
+            'data_fim' => $request->input('data_fim'),
+            'ano' => $request->input('ano'),
         ];
 
         return $pdf->editImage('termo_encaminhamento', $dados);
