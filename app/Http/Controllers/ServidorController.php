@@ -24,8 +24,31 @@ class ServidorController extends Controller {
 
     public function index(Request $request)
     {
-            $servidores = Servidor::all();
-            return view("servidores.index", compact("servidores"));
+    
+            if (sizeof($request-> query()) > 0){
+                $campo = $request->query('campo');
+                $valor = $request->query('valor');
+    
+                if ($valor == null){
+                    return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+                }
+    
+                $servidores = Servidor::join("users", "users.typage_id", "=", "servidors.id");
+                $servidores = $servidores->where(function ($query) use ($valor) {
+                    if ($valor) {
+                        $query->orWhere("users.name", "LIKE", "%{$valor}%");
+                        $query->orWhere("users.email", "LIKE", "%{$valor}%");
+                        $query->orWhere("servidors.cpf", "LIKE", "%{$valor}%");
+                        $query->orWhere("servidors.matricula", "LIKE", "%{$valor}%");
+                    }
+                })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->distinct()->get();
+    
+                return view("servidores.index", compact("servidores"));
+            } else {
+                $servidores = Servidor::all();
+                return view("servidores.index", compact("servidores"));
+            }
+
     }
 
 
