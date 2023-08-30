@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\DocumentoEstagio;
+use App\Models\ListaDocumentosObrigatorios;
 use Illuminate\Support\Facades\DB;
 use TCPDF;
-use FPDF;
+
 
 class PDFController extends Controller
 {
@@ -40,6 +41,9 @@ class PDFController extends Controller
         }
     }
     
+    
+
+
 
     private function toPDF($images)
     {
@@ -96,7 +100,7 @@ class PDFController extends Controller
 
         return $pdfContent;
     }
-    
+
     public function viewPDF($id)
     {
         $documento = DocumentoEstagio::findOrFail($id);
@@ -106,7 +110,6 @@ class PDFController extends Controller
         }
 
         $pdfData = $documento->pdf;
-
         header("Content-type: application/pdf");
         echo $pdfData;
     }
@@ -563,5 +566,11 @@ class PDFController extends Controller
         $estagio = new EstagioController();
 
         return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+    }
+
+    protected function getListaDeDocumentosId(){
+        $listaDocumentosObrigatorios = new ListaDocumentosObrigatorios();
+        $document = $listaDocumentosObrigatorios->where('id', $this->documentType)->first();
+        return $document->id;
     }
 }
