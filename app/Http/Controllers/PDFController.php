@@ -175,12 +175,156 @@ private function editTermoEncaminhamento($documentPaths, $dados)
 
         $image2 = Image::make($documentPaths[1]);
     
-        $image2->text("GUILHERMEEEEE", 667, 1519, function ($font) {
+        $image2->text($dados['nome_supervisor'], 472, 325, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
+            $font->size(23);
             $font->color(self::AZUL);
         });
 
+        $image2->text($dados['cpf_supervisor'], 147, 364, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['formação_supervisor'], 584, 364, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['instituicao_estagio'], 190, 450, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['telefone_supervisor'], 187, 490, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['email_supervisor'], 598, 490, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['nome'], 194, 575, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['versao_estagio'], 350, 617, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['cidade_estágio'], 540, 700, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['dia_atual'], 740, 700, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['mes_atual'], 860, 700, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['ano'], 1045, 702, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['instituicao'], 220, 1220, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['cnpj_estagio'], 170, 1275, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['local_estagio'], 270, 1332, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['endereco_estagio'], 200, 1389, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['n_estagio'], 145, 1443, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['complemento_estagio'], 446, 1443, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['cep_estagio'], 157, 1500, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['bairro_estagio'], 480, 1500, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['cidade_estagio'], 780, 1500, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['estado_estagio'], 1040, 1500, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['representantelegal_estagio'], 310, 1555, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['cargo_representantelegal'], 870, 1555, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+
+        $image2->text($dados['horario_estagio'], 296, 1612, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(23);
+            $font->color(self::AZUL);
+        });
+        
 
         $images = [$image1, $image2];
         $this->toPDF($images);
