@@ -44,7 +44,7 @@
 
     <form class="search-container" action="{{route("cursos.index")}}" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
-        <input class="search-button" type="submit" value=""></input>
+        <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
         <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("cursos.create") }}'">Cadastrar curso</button>
     </form>
 
@@ -81,16 +81,16 @@
               <td class="align-middle">{{$cursos->nome}}</td>
               <td class="align-middle">
                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$cursos->id}}">
-                  <img src="{{asset('images/information.svg')}}" alt="Info curso" style="height: 30px; width: 30px;">
+                  <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info curso" style="height: 30px; width: 30px;">
                 </a>
                 <a href="{{url("/disciplinas/create_diciplina_curso/$cursos->id")}}">
-                  <img src="{{asset('images/add_disciplina.svg')}}" alt="Cadastrar Disciplina no curso" style="height: 27px; width: 30px;">
+                  <img src="{{asset('images/add_disciplina.svg')}}" title="Adicionar uma disciplina" alt="Cadastrar Disciplina no curso" style="height: 27px; width: 30px;">
                 </a>
                 <a href="{{url("/cursos/$cursos->id/edit")}}">
-                  <img src="{{asset('images/pencil.svg')}}" alt="Editar curso">
+                  <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar curso">
                 </a>
                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$cursos->id}}">
-                  <img src="{{asset('images/delete.svg')}}" alt="Deletar curso" style="height: 30px; width: 30px;">
+                  <img src="{{asset('images/delete.svg')}}"title="Remover" alt="Deletar curso" style="height: 30px; width: 30px;">
                 </a>
               </td>
             </tr>

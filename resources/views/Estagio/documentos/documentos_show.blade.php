@@ -58,7 +58,7 @@
                                 @endphp
                                 <td class="align-middle">
                                     <a>
-                                        <img src="{{ asset('images/information.svg') }}" alt="Info documento"
+                                        <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento"
                                             style="height: 30px; width: 30px;">
                                     </a>
                                     <a href="{{ route($rota, ['id' => $estagio->id]) }}">

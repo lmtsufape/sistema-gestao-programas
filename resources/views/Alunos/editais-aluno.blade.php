@@ -50,7 +50,7 @@
 
     <form class="search-container" action="" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
-        <input class="search-button" type="submit" value=""></input>
+        <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
     </form>
 
     <br>
@@ -71,7 +71,7 @@
             @foreach ($editais as $edital)
         <tbody>
           <tr>
-          
+
             <td class="align-middle">{{ $edital->titulo_edital}}</td>
             <td class="align-middle">{{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
             <td class="align-middle">{{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
@@ -96,7 +96,7 @@
         </tbody>
         @include("Edital.components.modal_show", ["edital" => $edital])
         @endforeach
-               
+
     </table>
 </div>
         </div>

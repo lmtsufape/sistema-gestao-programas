@@ -22,7 +22,7 @@
                 </a>
               @else
                   <a href="{{url('/')}}" type="button">
-                      <img src="{{asset("images/Logo-SGPA.svg")}}" alt="Logo da SGPA">
+                      <img src="{{asset("images/Logo-SGPA.svg")}}" title="Logo SGPA" alt="Logo da SGPA">
                   </a>
               @endauth
             </ul>
@@ -31,10 +31,10 @@
                 <div class="d-lg-flex">
                     @auth
                     <button class="botaoinvisivel" type="button">
-                        <img src="{{ asset('images/sininho.svg') }}" alt="Notificações" style="height: auto; width: auto">
+                        <img src="{{ asset('images/sininho.svg') }}" title="Notificações do sistema" alt="Notificações" style="height: auto; width: auto">
                     </button>
 
-                    <img src="{{ asset('images/sem-foto-perfil.svg') }}" class="img-fluid fotouser" alt="Foto de perfil">
+                    <img src="{{ asset('images/sem-foto-perfil.svg') }}" title="Minha foto de perfil" class="img-fluid fotouser" alt="Foto de perfil">
 
                     @endauth
 
@@ -47,7 +47,7 @@
                     @auth
                     <div class="dropdown"  style="margin-top: 10px; margin-right: 5em">
                         <button class="botaoinvisivel" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ asset('images/arrowdown.svg') }}" alt="Seta para baixo" style="height: auto; width: auto">
+                            <img src="{{ asset('images/arrowdown.svg') }}" title="Opções do meu perfil" alt="Seta para baixo" style="height: auto; width: auto">
                         </button>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding: 15px">

@@ -26,7 +26,7 @@
 
     <form class="search-container" action="{{route("edital.index")}}" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
-        <input class="search-button" type="submit" value=""></input>
+        <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
         <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("edital.create") }}'">Cadastrar edital</button>
     </form>
 
@@ -63,31 +63,31 @@
 
 
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$edital->id}}">
-                <img src="{{asset('images/information.svg')}}" alt="Info edital" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
 
               <a href="{{route('edital.show', ['id' => $edital->id]  )}}">
-                <img src="{{asset('images/vincular_estudante.svg')}}" alt="Vincular aluno" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/vincular_estudante.svg')}}" title="Vincular estudante" alt="Vincular aluno" style="height: 30px; width: 30px;">
               </a>
 
               <a class="link" alt="Listar alunos" href="{{  route('edital.vinculo', ['id' => $edital->id]) }}" >
-                <img src="{{asset('images/estudantes_vinculados.svg')}}" alt="Listar estudantes vinculados" style="height: 28px; width: 28px;">
+                <img src="{{asset('images/estudantes_vinculados.svg')}}" title="Listar estudantes vinculados" alt="Listar estudantes vinculados" style="height: 28px; width: 28px;">
               </a>
 
               <a class="link" alt="Listar alunos inativos" href="{{  route('edital.vinculoInativo', ['id' => $edital->id]) }}" >
-                <img src="{{asset('images/estudantes_vinculados_inativos.svg')}}" alt="Listar estudantes vinculados inativos" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/estudantes_vinculados_inativos.svg')}}"  title="Listar estudantes vinculados inativos" alt="Listar estudantes vinculados inativos" style="height: 30px; width: 30px;">
               </a>
 
               <a class="link" alt="Listar orientadores" href="{{  route('edital.listar_orientadores', ['id' => $edital->id]) }}" >
-                <img src="{{asset('images/orientadores.svg')}}" alt="Listar orientadores" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/orientadores.svg')}}" title="Listar orientadores" alt="Listar orientadores" style="height: 30px; width: 30px;">
               </a>
 
               <a type="button" href="{{  route('edital.edit', ['id' => $edital->id] )  }}">
-                <img src="{{asset('images/pencil.svg')}}" alt="Editar edital" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
 
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$edital->id}}">
-                <img src="{{asset('images/delete.svg')}}" alt="Deletar edital" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/delete.svg')}}"title="Remover" alt="Deletar edital" style="height: 30px; width: 30px;">
               </a>
             </td>
           </tr>

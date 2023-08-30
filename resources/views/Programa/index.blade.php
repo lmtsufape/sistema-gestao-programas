@@ -17,8 +17,8 @@
   </div>
 
     <form class="search-container" action="{{route("programas.index")}}" method="GET">
-        <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
-        <input class="search-button" type="submit" value=""></input>
+        <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="Digite a sua pesquisa" id="valor" name="valor" style="text-align: start">
+        <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
         <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("programas.create") }}'">Cadastrar programa</button>
     </form>
 
@@ -55,22 +55,22 @@
             <td class="align-middle"> {{$programas->descricao}} </td>
             <td class="align-middle">
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$programas->id}}">
-                <img src="{{asset('images/information.svg')}}" alt="Info programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info programa" style="height: 30px; width: 30px;">
               </a>
               <a href="{{url("/programas/$programas->id/atribuir-servidor")}}">
-                <img src="{{asset('images/add_servidor.svg')}}" alt="Add Servidor" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/add_servidor.svg')}}" title="Adicionar servidor" alt="Add Servidor" style="height: 30px; width: 30px;">
               </a>
               <a href="{{url("/programas/$programas->id/editais")}}">
-                <img src="{{asset('images/listar_edital.svg')}}" alt="Listar edital" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/listar_edital.svg')}}" title="Listar edital" alt="Listar edital" style="height: 30px; width: 30px;">
               </a>
               <a href="{{url("/programas/$programas->id/criar-edital")}}">
-                <img src="{{asset('images/add_edital.svg')}}" alt="Add Edital" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/add_edital.svg')}}" title="Adicionar edital" alt="Add Edital" style="height: 30px; width: 30px;">
               </a>
               <a href="{{url("/programas/$programas->id/edit")}}">
-                <img src="{{asset('images/pencil.svg')}}" alt="Editar programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar programa" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$programas->id}}">
-                <img src="{{asset('images/delete.svg')}}" alt="Deletar programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/delete.svg')}}"title="Remover" alt="Deletar programa" style="height: 30px; width: 30px;">
               </a>
             </td>
           </tr>
