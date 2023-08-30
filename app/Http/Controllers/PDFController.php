@@ -62,10 +62,16 @@ class PDFController extends Controller
 
         $generatedPdf = new DocumentoEstagio();
         DB::beginTransaction();
+        $generatedPdf->id = $this->getListaDeDocumentosId();
         $generatedPdf->aluno_id = Auth::id();
         $generatedPdf->pdf = $pdfContent;
-        $generatedPdf->lista_documentos_obrigatorios_id = $this->getListaDeDocumentosId(); //1 por enquanto, pq eu não sei uma forma de pegar o id do estagio atual
+        $generatedPdf->lista_documentos_obrigatorios_id = $this->getListaDeDocumentosId();
         $generatedPdf->save();
+
+        $listaDocumentosObrigatorios = ListaDocumentosObrigatorios::find($this->getListaDeDocumentosId());
+        $listaDocumentosObrigatorios->data_envio = now(); // Defina a data atual
+        $listaDocumentosObrigatorios->save();
+
         DB::commit();
 
         // Renderizar o PDF no navegador
