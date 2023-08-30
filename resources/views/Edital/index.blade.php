@@ -4,32 +4,6 @@
 
 @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
 
-<style>
-  pagination {
-    display: inline-block;
-  }
-
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 10px 4px;
-  }
-
-  .pagination a.active {
-    background-color: #3B864F;
-    color: white;
-    border: 1px solid #3B864F;
-  }
-
-  .pagination a:hover:not(.active) {
-    background-color: #34A853;
-  }
-</style>
-
 <div class="container-fluid">
   @if (session('sucesso'))
   <div class="alert alert-sucess">
@@ -70,7 +44,12 @@
             <th scope="col" class="text-center">Data de início</th>
             <th scope="col" class="text-center">Data de fim</th>
             <th scope="col" class="text-center">Programa</th>
-            <th scope="col" class="text-center">Ações</th>
+            <th class="text-center">
+                Ações
+                <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                    <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
+                </button>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -86,7 +65,7 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$edital->id}}">
                 <img src="{{asset('images/information.svg')}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
-              
+
               <a href="{{route('edital.show', ['id' => $edital->id]  )}}">
                 <img src="{{asset('images/vincular_estudante.svg')}}" alt="Vincular aluno" style="height: 30px; width: 30px;">
               </a>
@@ -115,6 +94,7 @@
         </tbody>
         @include("Edital.components.modal_show", ["edital" => $edital])
         @include("Edital.components.modal_delete", ["edital" => $edital])
+        @include("Edital.components.modal_legenda")
         @endforeach
       </table>
     </div>

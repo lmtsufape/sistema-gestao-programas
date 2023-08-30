@@ -42,7 +42,12 @@
                                     <th scope="col" class="text-center">Nome Social</th>
                                     <th scope="col" class="text-center">CPF</th>
                                     <th scope="col" class="text-center">Curso</th>
-                                    <th class="text-center">Ações</th>
+                                    <th class="text-center">
+                                        Ações
+                                        <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                                            <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
+                                        </button>
+                                    </th>
                                 </tr>
                             </thead>
                             @foreach ($alunos as $aluno)
@@ -54,18 +59,18 @@
                                         <td class="align-middle">{{ $aluno->curso->nome }}</td>
                                         <td class="align-middle">
                                             <a type="button" data-bs-toggle="modal"
-                                                data-bs-target="#modal_edit_{{ $aluno->id }}">
+                                                data-bs-target="#modal_edit_{{ $aluno->id }}" title="Informações do estudante">
                                                 <img src="{{ asset('images/information.svg') }}" alt="Info aluno"
                                                     style="height: 30px; width: 30px;">
                                             </a>
 
-                                            <a href=" {{ route('alunos.edit', ['id' => $aluno->id]) }}">
+                                            <a href=" {{ route('alunos.edit', ['id' => $aluno->id]) }}" title="Editar o estudante">
                                                 <img src="{{ asset('images/pencil.svg') }}" alt="Editar aluno"
                                                     style="height: 30px; width: 30px;">
                                             </a>
 
                                             <a type="button" data-bs-toggle="modal"
-                                                data-bs-target="#modal_delete_{{ $aluno->id }}">
+                                                data-bs-target="#modal_delete_{{ $aluno->id }}" title="Deletar o estudante">
                                                 <img src="{{ asset('images/delete.svg') }}" alt="Deletar aluno"
                                                     style="height: 30px; width: 30px;">
                                             </a>
@@ -76,6 +81,7 @@
                                     <tr></tr>
                                         @include('Alunos.components.modal_show', ['aluno' => $aluno])
                                         @include('Alunos.components.modal_delete', ['aluno' => $aluno])
+                                        @include('Alunos.components.modal_legenda', ['aluno' => $aluno])
                             @endforeach
                             </tbody>
                         </table>
