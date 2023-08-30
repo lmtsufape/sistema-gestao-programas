@@ -25,7 +25,7 @@
 
   <form class="search-container" action="" method="GET">
     <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
-    <input class="search-button" type="submit" value=""></input>
+    <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
     <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{route("edital.show", ["id" => $edital->id ])}}'">Vincular Estudantes</button>
   </form>
 
@@ -56,16 +56,16 @@
 
 
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$vinculo->aluno->id}}" data-bs-id="{{$vinculo->aluno->id}}">
-                <img src="{{asset('images/information.svg')}}" alt="Info edital" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
               <a type="button" href="{{ route('edital.editar_vinculo', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
-                <img src="{{asset('images/pencil.svg')}}" alt="Editar edital" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
               <a type="button" href="{{ route('edital.aluno.delete', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
-                <img src="{{asset('images/unlink.png')}}" alt="Deletar edital" style="height: 25px; width: 25px;">
+                <img src="{{asset('images/unlink.png')}}" title="Desvincular" alt="Deletar edital" style="height: 25px; width: 25px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$vinculo->aluno->id}}">
-                <img src="{{asset('images/document.svg')}}" alt="Documento aluno" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/document.svg')}}" title="Ver documentos" alt="Documento aluno" style="height: 30px; width: 30px;">
               </a>
               {{-- <a href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}">Baixar PDF</a> --}}
 

@@ -45,7 +45,7 @@
             <form class="search-container" action="{{ route('orientadors.index') }}" method="GET">
                 <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor"
                     name="valor" style="text-align: start">
-                <input class="search-button" type="submit" value=""></input>
+                <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
                 <button class="cadastrar-botao" type="button"
                     onclick="window.location.href = '{{ route('orientadors.create') }}'">Cadastrar professor</button>
             </form>
@@ -91,7 +91,7 @@
                                     <td class="align-middle">
                                         <a type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal_show_{{ $orientador->id }}">
-                                            <img src="{{ asset('images/information.svg') }}" alt="Info professor"
+                                            <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info professor"
                                                 style="height: 30px; width: 30px;">
                                         </a>
                                         {{--  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$orientador->id}}">
@@ -99,12 +99,12 @@
 
                                 </a> --}}
                                         <a href=" {{ route('orientadors.edit', ['id' => $orientador->id]) }}">
-                                            <img src="{{ asset('images/pencil.svg') }}" alt="Editar professor"
+                                            <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar professor"
                                                 style="height: 30px; width: 30px;">
                                         </a>
                                         <a type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal_delete_{{ $orientador->id }}">
-                                            <img src="{{ asset('images/delete.svg') }}" alt="Deletar professor"
+                                            <img src="{{ asset('images/delete.svg') }}" title="Remover" alt="Deletar professor"
                                                 style="height: 30px; width: 30px;">
                                         </a>
 

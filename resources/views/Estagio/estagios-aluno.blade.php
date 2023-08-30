@@ -50,7 +50,7 @@
         <form class="search-container" action="{{ route('Estagio.estagios-aluno') }}" method="GET">
             <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
                 id="valor" name="valor" style="text-align: start">
-            <input class="search-button" type="submit" value=""></input>
+            <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
         </form>
 
     </div>

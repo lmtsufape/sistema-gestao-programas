@@ -19,7 +19,7 @@
             <form class="search-container" action="{{ route('servidores.index') }}" method="GET">
                 <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
                     id="valor" name="valor" style="text-align: start">
-                <button class="search-button" type="submit" value=""></button>
+                <button class="search-button" title="Fazer a pesquisa" type="submit" value=""></button>
                 <button class="cadastrar-botao" type="button"
                     onclick="window.location.href = '{{ route('servidores.create') }}'"">Cadastrar servidor</button>
             </form>
@@ -80,16 +80,16 @@
                                         <td class="align-middle">
                                             <a type="button" data-bs-toggle="modal"
                                                 data-bs-target="#modal_show_{{ $servidor->id }}">
-                                                <img src="{{ asset('images/information.svg') }}" alt="Info servidor"
+                                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info servidor"
                                                     style="height: 30px; width: 30px;">
                                             </a>
                                             <a href="{{ url('/servidores/' . $servidor->id . '/edit') }}">
-                                                <img src="{{ asset('images/pencil.svg') }}" alt="Editar servidor"
+                                                <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar servidor"
                                                     style="height: 30px; width: 30px;">
                                             </a>
                                             <a type="button" data-bs-toggle="modal"
                                                 data-bs-target="#modal_delete_{{ $servidor->id }}">
-                                                <img src="{{ asset('images/delete.svg') }}" alt="Deletar servidor"
+                                                <img src="{{ asset('images/delete.svg') }}" title="Remover" alt="Deletar servidor"
                                                     style="height: 30px; width: 30px;">
                                             </a>
                                         </td>
