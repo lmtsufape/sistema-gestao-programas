@@ -17,7 +17,7 @@
 
     <form class="search-container" action="{{route("disciplinas.index")}}" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
-        <input class="search-button" type="submit" value=""></input>
+        <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
         <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("disciplinas.create") }}'">Cadastrar disciplina</button>
     </form>
 
@@ -39,7 +39,12 @@
           <tr class="table-head">
             <th scope="col" class="text-center">Nome</th>
             <th scope="col" class="text-center">Curso</th>
-            <th scope="col" class="text-center">Ações</th>
+            <th class="text-center">
+                Ações
+                <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                    <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
+                </button>
+            </th>
           </tr>
         </thead>
         @foreach ($disciplinas as $disciplinas)
@@ -49,19 +54,20 @@
             <td class="align-middle">{{$disciplinas->curso->nome}}</td>
             <td class="align-middle">
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$disciplinas->id}}">
-                <img src="{{asset('images/information.svg')}}" alt="Info programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info programa" style="height: 30px; width: 30px;">
               </a>
               <a href="{{url("/disciplinas/$disciplinas->id/edit")}}">
-                <img src="{{asset('images/pencil.svg')}}" alt="Editar programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar programa" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$disciplinas->id}}">
-                <img src="{{asset('images/delete.svg')}}" alt="Deletar programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/delete.svg')}}"title="Remover" alt="Deletar programa" style="height: 30px; width: 30px;">
               </a>
             </td>
           </tr>
         </tbody>
         @include("Disciplina.components.modal_show", ["disciplina" => $disciplinas])
         @include("Disciplina.components.modal_delete", ["disciplina" => $disciplinas])
+        @include("Disciplina.components.modal_legenda")
         @endforeach
       </table>
     </div>

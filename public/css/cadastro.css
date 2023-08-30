@@ -35,6 +35,26 @@
     text-align: center;
 }
 
+.botaoeditar{    
+        display: flex;
+        flex-direction: row;
+        border-radius: 10px;
+        background: white;
+        height: 45px;
+        padding: 10px 5rem;
+        justify-content: right;
+        align-self: right;
+        border: 1.5px solid var(--teste-12, #BD8184);
+        color: var(--teste-11, #972E3F);
+        text-align: center;
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-align: center;
+        cursor: pointer;
+}
 .botaovoltar {
     border-radius: 10px;
     border: 1px solid #DACFCF;
@@ -132,5 +152,23 @@
     color:#5C1C26; 
     background-color: #5C1C26;
     align-self: center;
+}
+
+.input-informacao{
+    color: var(--preto-p-100, #6B6B6B); 
+    font-family: Inter; 
+    font-size: 14px; 
+    font-style: normal; 
+    font-weight: 500; 
+    line-height: normal;
+}
+
+.output-informacao{
+    color: var(--preto-p-200, #2B2B2B); 
+    font-family: Inter; 
+    font-size: 16px; 
+    font-style: normal; 
+    font-weight: 700; 
+    line-height: normal;
 }
 

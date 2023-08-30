@@ -22,7 +22,7 @@
                 </a>
               @else
                   <a href="{{url('/')}}" type="button">
-                      <img src="{{asset("images/Logo-SGPA.svg")}}" alt="Logo da SGPA">
+                      <img src="{{asset("images/Logo-SGPA.svg")}}" title="Logo SGPA" alt="Logo da SGPA">
                   </a>
               @endauth
             </ul>
@@ -30,11 +30,12 @@
             <div>
                 <div class="d-lg-flex">
                     @auth
-                    <button class="botaoinvisivel" type="button" >
-                        <img src="../../images/sininho.svg" alt="Notificações" style="height: auto; width: auto">
+                    <button class="botaoinvisivel" type="button">
+                        <img src="{{ asset('images/sininho.svg') }}" title="Notificações do sistema" alt="Notificações" style="height: auto; width: auto">
                     </button>
 
-                    <img src="../../images/sem-foto-perfil.svg"  class="img-fluid fotouser" alt="Foto de perfil">
+                    <img src="{{ asset('images/sem-foto-perfil.svg') }}" title="Minha foto de perfil" class="img-fluid fotouser" alt="Foto de perfil">
+
                     @endauth
 
                     <h2 class="fonteheader">
@@ -46,39 +47,40 @@
                     @auth
                     <div class="dropdown"  style="margin-top: 10px; margin-right: 5em">
                         <button class="botaoinvisivel" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <img src="../../images/arrowdown.svg" alt="Seta para baixo" style="height: auto; width: auto">
+                            <img src="{{ asset('images/arrowdown.svg') }}" title="Opções do meu perfil" alt="Seta para baixo" style="height: auto; width: auto">
                         </button>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding: 15px">
                             @if (auth()->user()->typage_type == "App\Models\Servidor")
                             {{--  a com icon de UserVector  --}}
-                            <a href="{{route('meu-perfil-servidor')}}" class="caixinhasetinha" style="">
-                                <img src="../../images/UserVector.svg" alt="Icone de usuário">
+                            <a href="{{ route('meu-perfil-servidor') }}" class="caixinhasetinha">
+                                <img src="{{ asset('images/UserVector.svg') }}" alt="Icone de usuário">
                                 <span style="margin-left: 5px;">Meu perfil</span>
                             </a>
                             @endif
                             @if (auth()->user()->typage_type == "App\Models\Orientador")
-                            <a href="{{route('meu-perfil-orientador')}}" class="caixinhasetinha"  href="#">
-                                <img src="../../images/UserVector.svg" alt="Icone de usuário">
+                            <a href="{{ route('meu-perfil-orientador') }}" class="caixinhasetinha">
+                                <img src="{{ asset('images/UserVector.svg') }}" alt="Icone de usuário">
                                 <span style="margin-left: 5px;">Meu perfil</span>
                             </a>
                             @endif
                             @if (auth()->user()->typage_type == "App\Models\Aluno")
-                            <a href="{{route('meu-perfil-aluno')}}" class="caixinhasetinha"  href="#">
-                                <img src="../../images/UserVector.svg" alt="Icone de usuário">
+                            <a href="{{ route('meu-perfil-aluno') }}" class="caixinhasetinha">
+                                <img src="{{ asset('images/UserVector.svg') }}" alt="Icone de usuário">
                                 <span style="margin-left: 5px;">Meu perfil</span>
                             </a>
                             @endif
                             <form action="/logout" method="POST">
                                 @csrf
                                 <div style="padding-top: 10px">
-                                    <a href="/logout"  class="caixinhasetinha" onclick="event.preventDefault(); this.closest('form').submit()" class="link_navbar">
-                                        <img src="../../images/logoutVector.svg" alt="Sai da conta">
+                                    <a href="/logout" class="caixinhasetinha" onclick="event.preventDefault(); this.closest('form').submit()" class="link_navbar">
+                                        <img src="{{ asset('images/logoutVector.svg') }}" alt="Sai da conta">
                                         <span style="margin-left: 5px;"> Sair </span>
                                     </a>
                                 </div>
                             </form>
                         </div>
+
 
                     </div>
                     @endauth

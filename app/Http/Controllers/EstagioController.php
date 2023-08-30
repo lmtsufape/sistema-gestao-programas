@@ -15,6 +15,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\ListaDocumentosObrigatorios;
 
 class EstagioController extends Controller
 {
@@ -208,8 +209,10 @@ class EstagioController extends Controller
             ->where('documentos_estagios.aluno_id', $estagio->aluno_id)
             ->select('documentos_estagios.*', 'lista_documentos_obrigatorios.titulo')
             ->get();
+            
+        $lista_documentos = ListaDocumentosObrigatorios::all();
 
-        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos"));
+        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos", "lista_documentos"));
     }
 
     public function getEstagioAtual()

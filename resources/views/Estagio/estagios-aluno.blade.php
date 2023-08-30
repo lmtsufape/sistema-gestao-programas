@@ -50,7 +50,7 @@
         <form class="search-container" action="{{ route('Estagio.estagios-aluno') }}" method="GET">
             <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
                 id="valor" name="valor" style="text-align: start">
-            <input class="search-button" type="submit" value=""></input>
+            <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
         </form>
 
     </div>
@@ -67,7 +67,12 @@
                         <th scope="col" class="text-center">Data de solicitação</i></th>
                         <th scope="col" class="text-center">Data de início</th>
                         <th scope="col" class="text-center">Data de fim</th>
-                        <th scope="col" class="text-center">Ações</th>
+                        <th class="text-center">
+                Ações
+                <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                    <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
+                </button>
+            </th>
                     </tr>
                 </thead>
                 <tbody>

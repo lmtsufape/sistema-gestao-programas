@@ -21,7 +21,7 @@
             @csrf
             <!-- imagem de perfil
 
-            <label for="image" class="titulo-cad">Imagem do Perfil:</label>
+            <label for="image" class="titulo-cad">Imagem do Perfil</label>
             <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" class="images" /><br>
             <div class="row d-flex justify-content-center">
                 <div class="col-6 ">

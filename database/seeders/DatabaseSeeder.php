@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
             HistoricoVinculoAlunosSeeder::class,
             SupervisorSeeder::class,
             ListaDocumentosObrigatoriosSeeder::class,
-            EstagioSeeder::class,
             InstituicaoSeeder::class,
+            EstagioSeeder::class,
         ]);
     }
 }

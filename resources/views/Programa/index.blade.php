@@ -2,44 +2,6 @@
 
 @section("body")
 
-<style>
-  pagination {
-    display: inline-block;
-  }
-
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 10px 4px;
-  }
-
-  .pagination a.active {
-    background-color: #3B864F;
-    color: white;
-    border: 1px solid #3B864F;
-  }
-
-  .pagination a:hover:not(.active) {
-    background-color: #34A853;
-  }
-
-  .textolegenda {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 130%;
-    margin: 5px
-  }
-
-
-  .botao-secundario a:hover{
-    transform: scale(1.08);
-  }
-</style>
 
 @canany(['admin', 'pro_reitor', 'gestor'])
 <div class="container-fluid">
@@ -55,8 +17,8 @@
   </div>
 
     <form class="search-container" action="{{route("programas.index")}}" method="GET">
-        <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
-        <input class="search-button" type="submit" value=""></input>
+        <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="Digite a sua pesquisa" id="valor" name="valor" style="text-align: start">
+        <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
         <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("programas.create") }}'">Cadastrar programa</button>
     </form>
 
@@ -78,7 +40,12 @@
           <tr class= table-head>
             <th scope="col" class="text-center">Nome</th>
             <th scope="col" class="text-center">Descrição</th>
-            <th class="text-center" class="text-center">Ações</th>
+            <th class="text-center">
+                Ações
+                <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                    <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
+                </button>
+            </th>
           </tr>
         </thead>
         @foreach ($programas as $programas)
@@ -88,26 +55,26 @@
             <td class="align-middle"> {{$programas->descricao}} </td>
             <td class="align-middle">
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$programas->id}}">
-                <img src="{{asset('images/information.svg')}}" alt="Info programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info programa" style="height: 30px; width: 30px;">
               </a>
               <a href="{{url("/programas/$programas->id/atribuir-servidor")}}">
-                <img src="{{asset('images/add_servidor.svg')}}" alt="Add Servidor" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/add_servidor.svg')}}" title="Adicionar servidor" alt="Add Servidor" style="height: 30px; width: 30px;">
               </a>
               <a href="{{url("/programas/$programas->id/editais")}}">
-                <img src="{{asset('images/listar_edital.svg')}}" alt="Listar edital" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/listar_edital.svg')}}" title="Listar edital" alt="Listar edital" style="height: 30px; width: 30px;">
               </a>
               <a href="{{url("/programas/$programas->id/criar-edital")}}">
-                <img src="{{asset('images/add_edital.svg')}}" alt="Add Edital" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/add_edital.svg')}}" title="Adicionar edital" alt="Add Edital" style="height: 30px; width: 30px;">
               </a>
               <a href="{{url("/programas/$programas->id/edit")}}">
-                <img src="{{asset('images/pencil.svg')}}" alt="Editar programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar programa" style="height: 30px; width: 30px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$programas->id}}">
-                <img src="{{asset('images/delete.svg')}}" alt="Deletar programa" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/delete.svg')}}"title="Remover" alt="Deletar programa" style="height: 30px; width: 30px;">
               </a>
             </td>
           </tr>
-
+          @include("Programa.components.modal_legenda")
           @include("Programa.components.modal_show", ["programa" => $programas, "servidors" => $servidors, "users" => $users])
           @include("Programa.components.modal_delete", ["programa" => $programas])
           @endforeach

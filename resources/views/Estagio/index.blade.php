@@ -48,12 +48,12 @@
 
     <form class="search-container" action="{{route("estagio.index")}}" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
-        <input class="search-button" type="submit" value=""></input>
-        <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("estagio.create") }}'">Cadastrar estágio</button>
+        <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
+        <button class="cadastrar-botao" style="margin-right: 10px" type="button" onclick="window.location.href = '{{ route("estagio.create") }}'">Cadastrar estágio</button>
         <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("instituicao.index") }}'">Informações da Instituição</button>
     </form>
 
-    
+
 
     <br>
     <br>
@@ -70,7 +70,12 @@
             <th scope="col" class="text-center">Data de fim</th>
             <th scope="col" class="text-center">Professor</th>
             <th scope="col" class="text-center">Estudante</th>
-            <th scope="col" class="text-center">Ações</th>
+            <th class="text-center">
+                Ações
+                <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                    <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
+                </button>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -93,15 +98,15 @@
 
 
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$estagio->id}}">
-                <img src="{{asset('images/information.svg')}}" alt="Info Estagio" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info Estagio" style="height: 30px; width: 30px;">
               </a>
 
               <a type="button" href="{{  route('estagio.edit', ['id' => $estagio->id] )  }}">
-                <img src="{{asset('images/pencil.svg')}}" alt="Editar Estagio" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar Estagio" style="height: 30px; width: 30px;">
               </a>
 
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$estagio->id}}">
-                <img src="{{asset('images/delete.svg')}}" alt="Deletar Estagio" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/delete.svg')}}"title="Remover" alt="Deletar Estagio" style="height: 30px; width: 30px;">
               </a>
 
 
@@ -111,6 +116,7 @@
             {{-- Não apagar esse tr  --}}
           </tr>
         </tbody>
+        @include("Estagio.components.modal_legenda")
         @include("Estagio.components.modal_show", ["estagio" => $estagio])
         @include("Estagio.components.modal_delete", ["estagio" => $estagio])
         @endforeach

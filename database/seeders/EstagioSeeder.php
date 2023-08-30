@@ -26,7 +26,8 @@ class EstagioSeeder extends Seeder
             'orientador_id' => 1,
             'curso_id' => 1,
             'disciplina_id' => 7,
-            'supervisor_id' => 1
+            'supervisor_id' => 1,
+            'instituicao_id' => 1
         ]);
 
         $estagio2 = Estagio::create([

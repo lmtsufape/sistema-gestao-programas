@@ -99,7 +99,7 @@
                     </div>
                     </div>
 
-                    <label class="titulopequeno" for="Descrição">Descrição:</label>
+                    <label class="titulopequeno" for="Descrição">Descrição</label>
                     <textarea class="boxcadastrar" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30" rows="3"> {{ old('descricao') }}</textarea><br><br>
                     <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
                         <div style="width: 50%">

@@ -16,7 +16,7 @@
                     <form action="{{ route('meu-perfil-servidor.atualizar', ['id' => $servidor->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
-                    
+
                     <div style="display: flex;">
                     @if($servidor->user->image)
                     <img src="/images/fotos-perfil/{{ $servidor->user->image }}" alt="Foto Perfil" style="width: 8.77rem; border-radius: 50%; margin-top: 2rem; margin-bottom: 1rem;"/>
@@ -46,7 +46,7 @@
                     <input  class="boxcadastrar boxinfo cpf-autocomplete" name="cpf" id="cpf" type="text" required placeholder="Digite o CPF" value="{{$servidor->cpf}}">
                     <div class="invalid-feedback"> Por favor preencha esse campo</div>
                     <br>
-                    
+
                     <label class="titulopequeno" for="senha" for="nome">Senha<strong style="color: #8B5558">*</strong></label>
                     <input class="boxcadastrar" type="password" id="senha" name="senha" required placeholder="Digite a senha">
                     <div class="invalid-feedback"> Por favor preencha esse campo</div>
