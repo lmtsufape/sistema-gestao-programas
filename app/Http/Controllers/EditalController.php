@@ -31,13 +31,39 @@ class EditalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($programa_id = null)
+    //public function index($programa_id = null)
+    public function index(Request $request)
     {
         $orientadors = Orientador::all();
 
-        $editais = Edital::all();
+        if (sizeof($request-> query()) > 0){
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
 
-        return view("Edital.index", compact("editais", "orientadors"));
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $editais = Edital::join('programas', 'editals.programa_id', '=', 'programas.id');
+
+            $editais = $editais->where(function ($query) use ($valor) {
+                if ($valor) {
+                    $query->orWhere("editals.titulo_edital", "LIKE", "%{$valor}%");
+                    $query->orWhere("editals.descricao", "LIKE", "%{$valor}%");
+                    $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
+                }
+            })->orderBy('editals.created_at', 'desc')->select("editals.*")->distinct()->get();
+
+
+            return view("Edital.index", compact("editais", "orientadors"));
+ 
+        } else {
+            $editais = Edital::all();
+            return view("Edital.index", compact("editais", "orientadors"));
+    
+        }
+
+
     }
 
     public function getCpfs() {
