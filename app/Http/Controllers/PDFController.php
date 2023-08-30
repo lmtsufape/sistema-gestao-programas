@@ -23,15 +23,19 @@ class PDFController extends Controller
 
         // terá um método para cada documento, esse switchcase servirá para selecionar o método especifico de cada documento.
         switch ($this->documentType) {
-            //termo de encaminhamento
+                //termo de encaminhamento
             case 1:
                 $documentPath = storage_path('app/docs/termo_encaminhamento/0.png');
                 return $this->editTermoEncaminhamento($documentPath, $dados);
                 break;
-            //termo de compromisso
+                //termo de compromisso
             case 2:
                 $documentPath = storage_path('app/docs/termo_compromisso/0.png');
                 return $this->editTermoCompromisso($documentPath, $dados);
+                break;
+            case 3:
+                $documentPath = storage_path('app/docs/plano_de_atividades/0.png');
+                return $this->editPlanoDeAtividades($documentPath, $dados);
                 break;
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
@@ -354,7 +358,25 @@ class PDFController extends Controller
         return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
     }
 
-    protected function getListaDeDocumentosId(){
+    private function editPlanoDeAtividades($documentPath, $dados)
+    {
+        $image = Image::make($documentPath);
+
+        $image->text($dados['exemplo'], 730, 915, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $this->toPDF($image);
+        Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
+        $estagio = new EstagioController();
+
+        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+    }
+
+    protected function getListaDeDocumentosId()
+    {
         $listaDocumentosObrigatorios = new ListaDocumentosObrigatorios();
         $document = $listaDocumentosObrigatorios->where('id', $this->documentType)->first();
         return $document->id;

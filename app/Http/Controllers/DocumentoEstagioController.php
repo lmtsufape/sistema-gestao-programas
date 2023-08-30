@@ -79,7 +79,7 @@ class DocumentoEstagioController extends Controller
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
-        return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio", "aluno"));
+        return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno"));
     }
 
     public function termo_encaminhamento(Request $request)
@@ -92,5 +92,24 @@ class DocumentoEstagioController extends Controller
         ];
 
         return $pdf->editImage(1, $dados);
+    }
+
+    public function plano_de_atividades_form($id)
+    {
+        $estagio = Estagio::findOrFail($id);
+        $aluno = Aluno::findOrFail($estagio->aluno_id);
+        return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno"));
+    }
+
+    public function plano_de_atividades(Request $request)
+    {
+        $pdf = new PDFController;
+        $dados = [
+            'exemplo' => $request->input('exemplo'),
+            'exemplo' => $request->input('exemplo'),
+            'exemplo' => $request->input('exemplo'),
+        ];
+
+        return $pdf->editImage(3, $dados);
     }
 }
