@@ -59,7 +59,12 @@
             <th scope="col" class="text-center">Data de fim</th>
             <th scope="col" class="text-center">Programa</th>
             <th scope="col" class="text-center">Estudante</i></th>
-            <th scope="col" class="text-center">Ações</th>
+            <th class="text-center">
+                Ações
+                <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                    <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
+                </button>
+            </th>
           </tr>
         </thead>
         @foreach ($vinculos as $vinculo)
@@ -77,7 +82,7 @@
               <a href="{{route('edital.add-documentos-vinculo', ['id' => $vinculo->id]  )}}">
                 <img src="{{asset("images/add_disciplina.svg")}}" alt="Adicionar Documentos" style="height: 30px; width: 30px;">
               </a>
-              @if($vinculo->termo_aluno)  
+              @if($vinculo->termo_aluno)
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$vinculo->id}}">
                 <img src="{{asset('images/document.svg')}}" alt="Termo do Aluno"  style="height: 30px; width: 30px;">
               </a>

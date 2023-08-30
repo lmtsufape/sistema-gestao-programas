@@ -67,7 +67,12 @@
           <thead>
             <tr class= table-head>
               <th scope="col" class="text-center">Nome</th>
-              <th class="text-center">Ações</th>
+              <th class="text-center">
+                Ações
+                <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                    <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
+                </button>
+            </th>
             </tr>
           </thead>
             @foreach ($cursos as $cursos)
@@ -91,6 +96,7 @@
             </tr>
             @include("Curso.components.modal_show", ["curso" => $cursos, "disciplinas" => $disciplinas])
             @include("Curso.components.modal_delete", ["curso" => $cursos])
+            @include("Curso.components.modal_legenda")
             @endforeach
           </tbody>
         </table>
@@ -132,7 +138,7 @@
   -->
     </div>
   </div>
- 
+
 <script type="text/javascript">
   function exibirModalDeletar(id){
     $('#modal_delete_' + id).modal('show');

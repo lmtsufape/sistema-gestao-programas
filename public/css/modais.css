@@ -10,6 +10,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    padding-top: 8px;
 
 }
 
@@ -79,12 +80,19 @@
     line-height: normal;
 }
 
+.infobutton{
+    cursor: pointer;
+    border: 0px;
+    background-color: transparent;
+    padding-bottom: 5px;
+}
+
 .baixar-arquivo{
-    justify-content: flex-start; 
-    align-items: flex-start; 
-    display: flex; 
-    flex-direction: column; 
-    margin-top: 5px; 
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 
