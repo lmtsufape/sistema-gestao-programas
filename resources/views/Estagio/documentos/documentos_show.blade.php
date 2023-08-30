@@ -2,25 +2,79 @@
 
 @section('body')
     @canany(['aluno'])
-        @if (Session::has('pdf_generated_success'))
-            <div class="alert alert-success">
-                {{ Session::get('pdf_generated_success') }}
+        <div class="container-fluid">
+            @if (Session::has('pdf_generated_success'))
+                <div class="alert alert-success">
+                    {{ Session::get('pdf_generated_success') }}
+                </div>
+            @endif
+            <br>
+            <div style="display: flex; justify-content: space-evenly; align-items: center;">
+                <h1 class="titulo"><strong>Documentos do Estágio</strong></h1>
             </div>
-        @endif
-        <h1>Documentos</h1>
-
-
-        <a href="{{ route('estagio.documentos.termo-de-encaminhamento', ['id' => $estagio->id]) }}">Termo de Encaminhamento</a>
-        <br>
-        <a href="{{ route('estagio.documentos.termo-de-compromisso', ['id' => $estagio->id]) }}">Termo de Compromisso</a>
-        <br>
-        <br>
-        <h1>Documentos preenchidos:</h1>
-        @foreach ($documentos as $documento)
-            <li>
-                Documento: {{ $documento->titulo }}
-                <a href="{{ route('visualizar.pdf', ['id' => $documento->id]) }}" target="_blank">Visualizar</a>
-            </li>
-        @endforeach
+            <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse">
+                <div class="col-md-9 corpo p-2 px-3">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-head">
+                                <th scope="col" class="text-center">Nome</th>
+                                <th scope="col" class="text-center">Data Limite</th>
+                                <th scope="col" class="text-center">Data de Envio</th>
+                                <th scope="col" class="text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        @foreach ($lista_documentos as $lista_documento)
+                            <tbody>
+                                <td class="align-middle">{{ $lista_documento->titulo }}</td>
+                                <td class="align-middle"></td>
+                                <td class="align-middle"></td>
+                                @php
+                                    switch ($lista_documento->id) {
+                                        case 1:
+                                            $rota = 'estagio.documentos.termo-de-encaminhamento';
+                                            break;
+                                        case 2:
+                                            $rota = 'estagio.documentos.termo-de-compromisso';
+                                            break;
+                                        case 3:
+                                            $rota = 'estagio.documentos.termo-de-encaminhamento';
+                                            break;
+                                        case 4:
+                                            $rota = 'estagio.documentos.termo-de-encaminhamento';
+                                            break;
+                                        case 5:
+                                            $rota = 'estagio.documentos.termo-de-encaminhamento';
+                                            break;
+                                        case 6:
+                                            $rota = 'estagio.documentos.termo-de-encaminhamento';
+                                            break;
+                                        case 7:
+                                            $rota = 'estagio.documentos.termo-de-encaminhamento';
+                                            break;
+                                        default:
+                                            $rota = null;
+                                            break;
+                                    }
+                                @endphp
+                                <td class="align-middle">
+                                    <a>
+                                        <img src="{{ asset('images/information.svg') }}" alt="Info documento"
+                                            style="height: 30px; width: 30px;">
+                                    </a>
+                                    <a href="{{ route($rota, ['id' => $estagio->id]) }}">
+                                        <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher/Editar Documento"
+                                            style="height: 30px; width: 30px;">
+                                    </a>
+                                    <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->id]) }}">
+                                        <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
+                                            style="height: 30px; width: 30px;">
+                                    </a>
+                                </td>
+                            </tbody>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
     @endcan
 @endsection
