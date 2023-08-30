@@ -13,7 +13,6 @@ use TCPDF;
 
 class PDFController extends Controller
 {
-
     private const AZUL = '#00009C';
     private const FONT = 'fonts/Arial.ttf';
     private $documentType = 0;
@@ -34,7 +33,7 @@ class PDFController extends Controller
             //termo de compromisso
             case 2:
                 $documentPath = storage_path('app/docs/termo_compromisso/0.png');
-                return $this->editTermoCompromisso([$documentPath], $dados);
+                return $this->editTermoCompromisso($documentPath, $dados);
                 break;
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
@@ -561,7 +560,7 @@ class PDFController extends Controller
         
 
         $images = [$image1, $image2];
-        
+
         $this->toPDF($images);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
