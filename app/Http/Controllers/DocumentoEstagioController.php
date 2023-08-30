@@ -86,9 +86,13 @@ class DocumentoEstagioController extends Controller
     {
         $pdf = new PDFController;
         $dados = [
+            //ESTAGIÁRIO 
             'nome' => $request->input('nome'),
+            'email' => $request->input('email'),
             'curso' => $request->input('curso'),
             'periodo' => $request->input('periodo'),
+            //CAMPO DE ESTÁGIO
+            'insituicao' => $request->input('instituicao'),
         ];
 
         return $pdf->editImage(1, $dados);
@@ -105,9 +109,9 @@ class DocumentoEstagioController extends Controller
     {
         $pdf = new PDFController;
         $dados = [
-            'exemplo' => $request->input('exemplo'),
-            'exemplo' => $request->input('exemplo'),
-            'exemplo' => $request->input('exemplo'),
+            'nome' => $request->input('nome'),
+            'email' => $request->input('email'),
+            'curso' => $request->input('curso'),
         ];
 
         return $pdf->editImage(3, $dados);

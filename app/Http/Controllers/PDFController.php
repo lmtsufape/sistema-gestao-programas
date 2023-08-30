@@ -361,8 +361,171 @@ class PDFController extends Controller
     private function editPlanoDeAtividades($documentPath, $dados)
     {
         $image = Image::make($documentPath);
+        //ESTAGIARIO
+        $image->text($dados['nome'], 305, 657, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
 
-        $image->text($dados['exemplo'], 730, 915, function ($font) {
+        $image->text($dados['email'], 1551, 658, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['curso'], 309, 749, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['periodo'], 1385, 752, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+        //CAMPO DE ESTÁGIO
+        $image->text($dados['instituição'], 381, 989, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['endereco'], 924, 1079, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['numCasa'], 253, 1168, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['complemento'], 821, 1166, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['fone'], 1623, 1169, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['cep'], 298, 1262, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+        
+        $image->text($dados['bairro'], 915, 1257, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['cidade'],1490, 1254, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['estado'], 2012, 1254, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['pontoReferencia'], 532, 1346, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['supervisorEstagio'], 568, 1432, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['FoneSupervisor'], 434,, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['email'], 1022, 1524, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['cargo'], 1628, 1524, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['educacaoEscolar'], 544, 1616, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['educacaoNaoEscolar'], 1232, 1616, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['modalidade'], 441, 1890, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        //PROGRAMA DE ESTÁGIO
+        $image->text($dados['semestreLetivo'], 464, 2122, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['componenteCurricular'], 1173, 2125, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['professorComponenteCurricular'], 796, 2218, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['professorOrientador'],544, 2308 , function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['cargaHorariaSemanal'], 1114, 2398, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['diasRealizacao'], 510, 2490, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['horario'], 1388, 2486, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
