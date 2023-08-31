@@ -74,7 +74,7 @@ class PDFController extends Controller
 
         // Capturar a saída PDF em uma variável
         ob_start();
-        $pdf->Output('documento.pdf', 'D');
+        $pdf->Output('documento.pdf', 'I');
         $pdfContent = ob_get_contents();
         ob_end_clean();
 
@@ -87,7 +87,7 @@ class PDFController extends Controller
         $generatedPdf->save();
 
         $listaDocumentosObrigatorios = ListaDocumentosObrigatorios::find($this->getListaDeDocumentosId());
-        $listaDocumentosObrigatorios->data_envio = now(); // Defina a data atual
+        $listaDocumentosObrigatorios->data_envio = now();
         $listaDocumentosObrigatorios->save();
 
         DB::commit();
@@ -95,7 +95,7 @@ class PDFController extends Controller
         // Renderizar o PDF no navegador
         //$pdf->Output('documento.pdf', 'I');
 
-        unlink($tmpImagePath);
+        //unlink($tmpImagePath);
 
         $pdf->close();
 
