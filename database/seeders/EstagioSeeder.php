@@ -30,6 +30,21 @@ class EstagioSeeder extends Seeder
             'instituicao_id' => 1
         ]);
 
+        $estagio2 = Estagio::create([
+            'descricao' => "Estágio KLY",
+            'data_inicio' => "2023-08-30",
+            'data_fim' => "2024-06-21",
+            //'data_solicitacao' => "2023-05-21",
+            //'cpf_aluno' => "348.126.240-02",
+            'tipo' => "eo",
+            'status' => true,
+            'aluno_id' => 2,
+            'orientador_id' => 1,
+            'curso_id' => 1,
+            'disciplina_id' => 7,
+            'supervisor_id' => 1
+        ]);
+
         /*$estagio2 = Estagio::create([
             'descricao' => "Estágio2",
             'data_inicio' => "2023-07-10",

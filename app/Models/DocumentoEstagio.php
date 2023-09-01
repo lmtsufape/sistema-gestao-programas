@@ -12,7 +12,9 @@ class DocumentoEstagio extends Model
     protected $table = "documentos_estagios";
 
     protected $fillable = [
-        'pdf'
+        'pdf',
+        'data_envio',
+        'data_limite',
     ];
 
     public function aluno()
