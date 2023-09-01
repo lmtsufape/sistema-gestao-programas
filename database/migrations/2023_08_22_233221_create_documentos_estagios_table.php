@@ -20,7 +20,7 @@ class CreateDocumentosEstagiosTable extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger('aluno_id');
-            $table->unsignedBigInteger('lista_documentos_obrigatorios_id');
+            $table->unsignedBigInteger('lista_documentos_obrigatorios_id')->unique();
 
             $table->foreign('aluno_id')->references('id')->on('alunos');
 
