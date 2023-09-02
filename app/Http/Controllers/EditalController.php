@@ -331,19 +331,70 @@ class EditalController extends Controller
 
     }
 
-    public function listar_alunos_inativos($id){
-        
-        $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', false)->get();
-        $count = $vinculos->count();
+    public function listar_alunos_inativos(Request $request, $id){
+
         $edital = Edital::where('id', $id)->first();
 
-        if ($vinculos->isEmpty()) {
-            return redirect()->back()->with('falha', 'Não há alunos inativos no edital.');
-        } else {
+        if (sizeof($request-> query()) > 0){
+     
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
+
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $vinculos = EditalAlunoOrientadors::where('edital_id', $id)
+            ->where('status', false)
+            ->where(function ($query) use ($valor) {
+                $query->orWhereHas('aluno', function ($subquery) use ($valor) {
+                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                    ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
+                })
+                ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
+                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                            ->orWhere('name', 'LIKE', "%{$valor}%")
+                            ->orWhere('email', 'LIKE', "%{$valor}%")
+                            ->orWhere('matricula', 'LIKE', "%{$valor}%");
+
+                })
+                ->orWhereHas('edital', function ($subquery) use ($valor) {
+                    $subquery->where('titulo_edital', 'LIKE', "%{$valor}%");
+
+                })
+                //Query para a tabela edital_aluno_orientadors
+                ->orWhere('titulo', 'LIKE', "%{$valor}%")
+                ->orWhere('info_complementares', 'LIKE', "%{$valor}%");
+
+            })
+            ->orderBy('created_at', 'desc')
+            ->distinct()
+            ->get();       
+
             return view("Edital.listar_alunos_inativos", compact("vinculos", "edital"));
-        }
+ 
+        } else {
+        
+            $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', false)->get();
+            $count = $vinculos->count();
+
+            if ($vinculos->isEmpty()) {
+                return redirect()->back()->with('falha', 'Não há alunos inativos no edital.');
+            } else{
+                return view("Edital.listar_alunos_inativos", compact("vinculos", "edital"));
+        
+            }
+    }
+
+        
+
+
+        
+        //-----------------------------
+
 
     }
+
 
     public function ativarVinculo($id){
         try{
