@@ -10,7 +10,7 @@
             <div class="col-3" style="margin-top: 20px; padding-left: 100px">
                 <div class="d-flex align-items-center justify-content-start">
                     <a href="" title="Logo do SGPA" target="_blank">
-                        <img src="{{asset('images/sgpa-branco 1.svg')}}" alt="Logo SGPA" style="margin-left: 20px">
+                        <img src="{{asset('images/sgpa-branco 1.svg')}}" alt="Logo SGPA" style="margin-left: 20px; height: 60px;">
                     </a>
                 </div>
             </div>

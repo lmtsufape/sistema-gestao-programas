@@ -1,7 +1,9 @@
 .footer {
     margin-top: auto;
     background-color: #972E3F;
-    height: 105px;
+    height: 80px;
+    display: flex;
+    
   }
 
 .logo {
@@ -18,5 +20,5 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 12px;
-  background-color: #fff;
+    background-color: #fff;
 }
