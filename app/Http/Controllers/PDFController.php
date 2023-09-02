@@ -452,7 +452,7 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['FoneSupervisor'], 434,, function ($font) {
+        $image->text($dados['FoneSupervisor'], 434,1524, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);

@@ -178,12 +178,6 @@
                 id="cargaHorariaSemanal" required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="cargaHorariaSemanal" class="titulopequeno">Carga Horária Semanal<strong style="color: #8B5558">*</strong></label>
-            <br>
-            <input class="boxcadastrar" type="text" name="cargaHorariaSemanal"
-                id="cargaHorariaSemanal" required><br>
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
-
             <label for="diasRealizacao" class="titulopequeno">Dias de Realização<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="diasRealizacao"
