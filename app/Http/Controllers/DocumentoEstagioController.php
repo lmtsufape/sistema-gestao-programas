@@ -112,6 +112,33 @@ class DocumentoEstagioController extends Controller
             'nome' => $request->input('nome'),
             'email' => $request->input('email'),
             'curso' => $request->input('curso'),
+            'periodo' => $request->input('periodo'),
+            //CAMPO DE ESTAGIO
+            'instituicao' => $request->input('instituição'),
+            'endereco' => $request->input('endereco'),
+            'numCasa' => $request->input('numCasa'),
+            'complemento' => $request->input('complemento'),
+            'fone' => $request->input('fone'),
+            'cep' => $request->input('cep'),
+            'bairro' => $request->input('bairro'),
+            'cidade' => $request->input('cidade'),
+            'estado' => $request->input('estado'),
+            'pontoReferencia' => $request->input('pontoReferencia'),
+            'supervisorEstagio' => $request->input('supervisorEstagio'),
+            'FoneSupervisor' => $request->input('FoneSupervisor'),
+            'emailSup' => $request->input('emailSup'),
+            'cargo' => $request->input('cargo'),
+            'educacaoEscolar' => $request->input('educacaoEscolar'),
+            'educacaoNaoEscolar' => $request->input('educacaoNaoEscolar'),
+            'modalidade' => $request->input('modalidade'),
+            //PROGRAMA DE ESTAGIO
+            'semestreLetivo' => $request->input('semestreLetivo'),
+            'componenteCurricular' => $request->input('componenteCurricular'),
+            'professorComponenteCurricular' => $request->input('professorComponenteCurricular'),
+            'professorOrientador' => $request->input('professorOrientador'),
+            'cargaHorariaSemanal' => $request->input('cargaHorariaSemanal'),
+            'diasRealizacao' => $request->input('diasRealizacao'),
+            'horario' => $request->input('horario'),
         ];
 
         return $pdf->editImage(3, $dados);

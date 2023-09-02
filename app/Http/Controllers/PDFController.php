@@ -386,7 +386,7 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
         //CAMPO DE ESTÁGIO
-        $image->text($dados['instituição'], 381, 989, function ($font) {
+        $image->text($dados['instituicao'], 381, 989, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
@@ -458,7 +458,7 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['email'], 1022, 1524, function ($font) {
+        $image->text($dados['emailSup'], 1022, 1524, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
