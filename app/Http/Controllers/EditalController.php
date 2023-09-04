@@ -566,13 +566,14 @@ class EditalController extends Controller
     }
 
 
-    public function deletarVinculo($aluno_id, $edital_id){
+    public function deletarVinculo($id){
 
         DB::beginTransaction();
         try {
-            EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->update(['status' => false]);
+            //EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->update(['status' => false]);
+            EditalAlunoOrientadors::where("id", $id)->update(['status' => false]);
 
-            $vinculo = EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->first();
+            $vinculo = EditalAlunoOrientadors::where("id", $id)->first();
             #dd($vinculo['id']);
             HistoricoVinculoAlunos::where("vinculo_id", $vinculo->id)->update(['data_fim' => date('Y-m-d')]);
 

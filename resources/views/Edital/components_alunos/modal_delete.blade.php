@@ -12,7 +12,7 @@
                     <button type="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Cancelar</button>
 
                     <form
-                        action="{{ route('edital.aluno.delete', ['aluno_id' => $aluno->id, 'edital_id' => $edital->id]) }}"
+                        action="{{ route('edital.aluno.delete', ['id' => $vinculo->id]) }}"
                         method="GET">
 
                         @csrf
