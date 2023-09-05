@@ -29,23 +29,24 @@ class EstagioController extends Controller
                 return redirect()->back()->withErrors("Deve ser informado algum valor para o filtro.");
             }
 
-            $estagios = Estagio::join('alunos', 'estagios.aluno_id', '=', 'alunos.id')
-                ->leftJoin('orientadors', 'estagios.orientador_id', '=', 'orientadors.id')
-                ->leftJoin('users', 'users.typage_id', '=', 'orientadors.id');
+            $estagios = Estagio::where(function ($query) use ($valor) {
+                $query->orWhereHas('aluno', function ($subquery) use ($valor) {
+                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                    ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
+                })
+                ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
+                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                            ->orWhere('name', 'LIKE', "%{$valor}%")
+                            ->orWhere('email', 'LIKE', "%{$valor}%")
+                            ->orWhere('matricula', 'LIKE', "%{$valor}%");
 
-            $estagios = $estagios->where(function ($query) use ($valor) {
-                if ($valor) {
-                    $query->orWhere("users.cpf", "LIKE", "%{$valor}%");
-                    $query->orWhere("users.name", "LIKE", "%{$valor}%");
-                    $query->orWhere("users.email", "LIKE", "%{$valor}%");
-                    $query->orWhere("orientadors.matricula", "LIKE", "%{$valor}%");
-                    $query->orWhere("estagios.descricao", "LIKE", "%{$valor}%");
-                }
+                })
+                //Query para a tabela estagios
+                ->orWhere('descricao', 'LIKE', "%{$valor}%");
             })
-                ->orderBy('estagios.created_at', 'desc')
-                ->select("estagios.*")
-                ->distinct()
-                ->get();
+            ->orderBy('created_at', 'desc')
+            ->distinct()
+            ->get();       
 
             return view('Estagio.index', compact('estagios'));
         } else {
