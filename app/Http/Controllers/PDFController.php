@@ -33,6 +33,12 @@ class PDFController extends Controller
                 $documentPath = storage_path('app/docs/termo_compromisso/0.png');
                 return $this->editTermoCompromisso($documentPath, $dados);
                 break;
+            
+            case 4:
+                $documentPath = storage_path('app/docs/ficha-frequencia/0.png');
+                return $this->editFichaFrequencia([$documentPath], $dados);
+                break;
+
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
         }
@@ -562,6 +568,24 @@ class PDFController extends Controller
         
 
         $images = [$image1, $image2];
+        $this->toPDF($images);
+        Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
+        $estagio = new EstagioController();
+
+        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+    }
+
+    private function editFichaFrequencia($documentPaths, $dados)
+    {
+        $image = Image::make($documentPaths[0]);
+
+        $image->text($dados['campus'], 300, 695, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $images = [$image];
         $this->toPDF($images);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();

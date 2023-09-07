@@ -252,12 +252,16 @@ Route::prefix('estagio')->group(function () {
     // comentado temporariamente 
     Route::prefix('/documentos')->group(function () {
         Route::get('/{id}', [EstagioController::class, 'showDocuments'])->name('estagio.documentos');
+
+
         Route::get('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.documentos.termo-de-encaminhamento');
         Route::post('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.documentos.termo-de-encaminhamento.store');
         
         Route::get('/{id}/termo-de-compromisso', [DocumentoEstagioController::class, 'termo_compromisso_form'])->name('estagio.documentos.termo-de-compromisso');
         Route::post('/{id}/termo-de-compromisso', [DocumentoEstagioController::class, 'termo_compromisso'])->name('estagio.documentos.termo-de-compromisso.store');
 
+        Route::get('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia_form'])->name('estagio.documentos.ficha-frequencia');
+        Route::post('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia'])->name('estagio.documentos.ficha-frequencia.store');
 
         Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
     });

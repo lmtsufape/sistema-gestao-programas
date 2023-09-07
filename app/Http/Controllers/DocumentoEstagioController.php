@@ -120,4 +120,21 @@ class DocumentoEstagioController extends Controller
 
         return $pdf->editImage(1, $dados);
     }
+
+    public function ficha_frequencia_form($id)
+    {
+        $estagio = Estagio::findOrFail($id);
+        $aluno = Aluno::findOrFail($estagio->aluno_id);
+        return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno"));
+    }
+
+    public function ficha_frequencia(Request $request)
+    {
+        $pdf = new PDFController;
+        $dados = [
+            'campus' => $request->input('campus'),
+        ];
+
+        return $pdf->editImage(4,$dados);
+    }
 }
