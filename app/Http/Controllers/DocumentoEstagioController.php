@@ -8,11 +8,44 @@ use App\Models\DocumentoEstagio;
 use App\Models\Estagio;
 use App\Models\Instituicao;
 use App\Models\Orientador;
+use Exception;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class DocumentoEstagioController extends Controller
 {
+
+    public function edit($id)
+    {
+        $documento = DocumentoEstagio::findOrFail($id);
+        return view('Estagio.documentos.editDocumento', compact('documento'));
+    }
+
+    public function update($dados, $id)
+    {
+        $documento = DocumentoEstagio::Where('id', $id)->first();
+
+        // terá um método para cada documento, esse switchcase servirá para selecionar o método especifico de cada documento.
+        switch ($id) {
+                //termo de encaminhamento
+            case 1:
+                $documentPath1 = storage_path('app/docs/termo_encaminhamento/0.png');
+                $documentPath2 = storage_path('app/docs/termo_encaminhamento/1.png');
+                return $this->editTermoEncaminhamento([$documentPath1, $documentPath2], $dados);
+                break;
+                //termo de compromisso
+            case 2:
+                $documentPath1 = storage_path('app/docs/termo_compromisso/0.png');
+                $documentPath2 = storage_path('app/docs/termo_compromisso/1.png');
+                return $this->editTermoCompromisso([$documentPath1, $documentPath2], $dados);
+                break;
+            default:
+                return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
+        }
+
+        $documento->save();
+    }
+
 
     public function termo_compromisso_form($id)
     {
@@ -99,7 +132,7 @@ class DocumentoEstagioController extends Controller
             'cpf_supervisor' => $request->input('cpf_supervisor'),
             'formação_supervisor' => $request->input('formação_supervisor'),
             'instituicao_estagio' => $request->input('instituicao_estagio'),
-            'telefone_supervisor' => $request->input('telefone_supervisor'), 
+            'telefone_supervisor' => $request->input('telefone_supervisor'),
             'email_supervisor' => $request->input('email_supervisor'),
             'cidade_estágio' => $request->input('cidade_estagio'),
             'dia_atual' => $request->input('dia_atual'),

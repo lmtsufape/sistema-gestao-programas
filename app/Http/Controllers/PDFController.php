@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\DocumentoEstagio;
 use App\Models\ListaDocumentosObrigatorios;
 use Illuminate\Support\Facades\DB;
+use Exception;
 use TCPDF;
 
 class PDFController extends Controller
@@ -39,7 +40,7 @@ class PDFController extends Controller
         }
     }
 
-    private function toPDF($images)
+    private function toPDF($images, $dados)
     {
         $pdf = new TCPDF();
         $pdf->SetMargins(0, 0, 0);
@@ -81,6 +82,7 @@ class PDFController extends Controller
         $generatedPdf->id = $this->getListaDeDocumentosId();
         $generatedPdf->aluno_id = Auth::id();
         $generatedPdf->pdf = $pdfContent;
+        $generatedPdf->json = json_encode($dados);
         $generatedPdf->lista_documentos_obrigatorios_id = $this->getListaDeDocumentosId();
         $generatedPdf->save();
 
@@ -334,7 +336,7 @@ class PDFController extends Controller
 
 
         $images = [$image1, $image2];
-        $this->toPDF($images);
+        $this->toPDF($images, $dados);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 
@@ -562,7 +564,7 @@ class PDFController extends Controller
 
 
         $images = [$image1, $image2];
-        $this->toPDF($images);
+        $this->toPDF($images, $dados);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 
