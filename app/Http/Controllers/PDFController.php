@@ -34,8 +34,9 @@ class PDFController extends Controller
                 return $this->editTermoCompromisso($documentPath, $dados);
                 break;
             
+            //ficha de frequência
             case 4:
-                $documentPath = storage_path('app/docs/ficha-frequencia/0.png');
+                $documentPath = storage_path('app/docs/ficha_frequencia/0.png');
                 return $this->editFichaFrequencia([$documentPath], $dados);
                 break;
 
@@ -579,7 +580,61 @@ class PDFController extends Controller
     {
         $image = Image::make($documentPaths[0]);
 
-        $image->text($dados['campus'], 300, 695, function ($font) {
+        $image->text($dados['campus'], 345, 477, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['periodo'], 1900, 477, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['nome_estagiario'], 410, 568, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['periodo'], 1797, 568, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['curso'], 300, 653, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['componente_curricular'], 1360, 653, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['prof_componente_curricular'], 840, 745, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['prof_orientador'], 630, 833, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['local_estagio'], 470, 925, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['supervisor_estagio'], 620, 1012, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);

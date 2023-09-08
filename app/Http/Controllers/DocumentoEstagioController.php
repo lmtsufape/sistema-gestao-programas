@@ -133,8 +133,17 @@ class DocumentoEstagioController extends Controller
         $pdf = new PDFController;
         $dados = [
             'campus' => $request->input('campus'),
+            'semestre_letivo' => $request->input('semestre_letivo'),
+            'nome_estagiario' => $request->input('nome_estagiario'),
+            'periodo' => $request->input('periodo'),
+            'curso' => $request->input('curso'),
+            'componente_curricular' => $request->input('componente_curricular'),
+            'prof_componente_curricular' => $request->input('prof_componente_curricular'),
+            'prof_orientador' => $request->input('prof_orientador'),
+            'local_estagio' => $request->input('local_estagio'),
+            'supervisor_estagio' => $request->input('supervisor_estagio')
         ];
 
-        return $pdf->editImage(4,$dados);
+        return $pdf->editImage(4, $dados);
     }
 }

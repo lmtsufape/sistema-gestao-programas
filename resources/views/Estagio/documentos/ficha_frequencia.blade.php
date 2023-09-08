@@ -20,6 +20,32 @@
             <label for="campus" class="titulopequeno">Campus</label>
             <br> <input class="boxcadastrar" type="text" name="campus" id="campus" required><br><br>
 
+            <label for="semestre_letivo" class="titulopequeno">Semestre Letivo</label>
+            <br> <input class="boxcadastrar" type="text" name="semestre_letivo" id="semestre_letivo" required><br><br>
+
+            <label for="nome_estagiario" class="titulopequeno">Estagiário</label>
+            <br> <input class="boxcadastrar" type="text" name="nome_estagiario" id="nome_estagiario" required><br><br>
+
+            <label for="periodo" class="titulopequeno">Período</label>
+            <br> <input class="boxcadastrar" type="text" name="periodo" id="periodo" required><br><br>
+
+            <label for="curso" class="titulopequeno">Curso</label>
+            <br> <input class="boxcadastrar" type="text" name="curso" id="curso" required><br><br>
+
+            <label for="componente_curricular" class="titulopequeno">Componente Curricular</label>
+            <br> <input class="boxcadastrar" type="text" name="componente_curricular" id="componente_curricular" required><br><br>
+
+            <label for="prof_componente_curricular" class="titulopequeno">Professor(a) do Componente Curricular</label>
+            <br> <input class="boxcadastrar" type="text" name="prof_componente_curricular" id="prof_componente_curricular" required><br><br>
+
+            <label for="prof_orientador" class="titulopequeno">Professor(a) Orientador(a)</label>
+            <br> <input class="boxcadastrar" type="text" name="prof_orientador" id="prof_orientador" required><br><br>
+
+            <label for="local_estagio" class="titulopequeno">Local do Estágio</label>
+            <br> <input class="boxcadastrar" type="text" name="local_estagio" id="local_estagio" required><br><br>
+
+            <label for="supervisor_estagio" class="titulopequeno">Supervisor(a) do Estágio</label>
+            <br> <input class="boxcadastrar" type="text" name="supervisor_estagio" id="supervisor_estagio" required><br><br>
 
             <br><br>
             <div class="botoessalvarvoltar">
