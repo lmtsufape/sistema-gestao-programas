@@ -16,9 +16,9 @@
             @csrf
             @method("PUT")
 
-            <div style="display: flex;">
+            <div style="display: flex; flex-direction: row; gap:15px; margin-bottom:20px">
                 @if($aluno->user->image)
-                <img src="/images/fotos-perfil/{{ $aluno->user->image }}" alt="Foto Perfil" style="width: 8.77rem; border-radius: 50%; margin-top: 2rem; margin-bottom: 1rem;"/>
+                <img src="/images/fotos-perfil/{{ $aluno->user->image }}" alt="Foto Perfil" style="width: 80px; height: 80px; border-radius:50px;"/>
                 @else
                 <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 8.77rem; border-radius: 50%; margin-top: 2rem; margin-bottom: 1rem;"/>
                 @endif
