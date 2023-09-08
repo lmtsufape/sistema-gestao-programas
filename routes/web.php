@@ -186,9 +186,6 @@ Route::prefix('cursos')->group(function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Rotas de Frequencia mensal
-Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
-
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
 
