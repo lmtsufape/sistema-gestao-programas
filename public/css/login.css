@@ -14,7 +14,7 @@
         font-family: 'Inter' !important;
     }
     .login{
-        justify-content: center; 
+        justify-content: center;
         align-items: center
     }
     .paragraph{
@@ -32,7 +32,7 @@
 
     .form-card{
         display: flex;
-        width: 40% !important; 
+        width: 40% !important;
         padding: 40px 30px;
         flex-direction: column;
         justify-content: center;
@@ -57,7 +57,7 @@
         align-items: flex-start;
     }
 
-  
+
     .form-content{
         padding: 0% 5%;
     }
@@ -130,19 +130,19 @@
     }
 
     .register-button{
-        color: #6B6B6B; 
+        color: #6B6B6B;
         text-decoration: none;
         width:100%;
         display: inline-block;
-        border-radius: 5px; 
-        background: #FFFFFF; 
+        border-radius: 5px;
+        background: #FFFFFF;
         border: 1px solid #DACFCF;
-        font-style: normal; 
-        font-weight: 700; 
+        font-style: normal;
+        font-weight: 700;
         font-size: 14px;
-        line-height: 29px; 
-        text-align: center; 
-        padding: 5px 15px;
+        line-height: 29px;
+        text-align: center;
+        padding: 2% 5%;
     }
 
     .register-button:hover{
