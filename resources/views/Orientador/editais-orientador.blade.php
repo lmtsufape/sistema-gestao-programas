@@ -3,37 +3,37 @@
 @section("body")
 
 <style>
-    pagination {
-        display: inline-block;
-    }
+  pagination {
+    display: inline-block;
+  }
 
-    .pagination a {
-        color: black;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
-        transition: background-color .3s;
-        border: 1px solid #ddd;
-        margin: 10px 4px;
-    }
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 10px 4px;
+  }
 
-    .pagination a.active {
-        background-color: #3B864F;
-        color: white;
-        border: 1px solid #3B864F;
-    }
+  .pagination a.active {
+    background-color: #3B864F;
+    color: white;
+    border: 1px solid #3B864F;
+  }
 
-    .pagination a:hover:not(.active) {
-        background-color: #34A853;
-    }
+  .pagination a:hover:not(.active) {
+    background-color: #34A853;
+  }
 
-    .textolegenda {
-        font-style: normal;
-        font-weight: 400;
-        font-size: 15px;
-        line-height: 130%;
-        margin: 5px
-    }
+  .textolegenda {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 130%;
+    margin: 5px
+  }
 </style>
 
 
@@ -80,7 +80,7 @@
                 <img src="{{asset("images/information.svg")}}" alt="Info edital" style="height: 30px; width: 30px;">
               </a>
               <a href="{{route('edital.add-documentos-vinculo', ['id' => $vinculo->id]  )}}">
-                <img src="{{asset("images/add_disciplina.svg")}}" alt="Adicionar Documentos" style="height: 30px; width: 30px;">
+                <img src="{{asset("images/add_disciplina.svg")}}" alt="Adicionar Documentos" style="height: 25px; width: 25px;">
               </a>
               @if($vinculo->termo_aluno)
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$vinculo->id}}">

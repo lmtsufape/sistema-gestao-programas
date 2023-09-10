@@ -765,4 +765,15 @@ class EditalController extends Controller
         return redirect(route('Aluno.editais-aluno'))->with('sucesso', 'A frequencia foi enviada com sucesso.');
     }
 
+    public function download_frequencia_mensal($fileName) {
+        $path = "frequencia_mensal/".$fileName;
+
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+    }
+
+
 }

@@ -262,4 +262,14 @@ class AlunoController extends Controller
         return view('Alunos.editais-aluno',compact("editais"));
     }
 
+    public function frequencia_modal(Request $request) {
+        $vinculos = EditalAlunoOrientadors::where('aluno_id', $request->user()->typage_id)->where('status', true)->get();
+        $editais = array();
+        foreach ($vinculos as $vinculo){
+            array_push($editais, $vinculo->edital);
+        }
+        return view('Alunos.components.modal_frequencia',compact("editais", "vinculos"));
+    }
+
+
 }
