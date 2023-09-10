@@ -8,22 +8,22 @@
             <div class="modal-body" style="text-align: start">
                 <div class="mb-3">
                     <label class="tituloinfomodal form-label mt-3">Nome </label>
-                    <div class="textoinfomodal"> {{ $orientador->name }} </div>
+                    <div class="textoinfomodal"> {{ $orientador->user->name }} </div>
                 </div>
 
                 <div class="mb-3">
                     <label class="tituloinfomodal form-label mt-3">Edital</label>
-                    <div class="textoinfomodal"> {{ $pivo->titulo }}</div>
+                    <div class="textoinfomodal"> {{ $vinculo->titulo }}</div>
                 </div>
 
                 <div class="mb-3">
                     <label class="tituloinfomodal form-label mt-3">Data de início</label>
-                    <div class="textoinfomodal"> {{ date('d/m/Y', strtotime($pivo->data_inicio)) }} </div>
+                    <div class="textoinfomodal"> {{ date('d/m/Y', strtotime($vinculo->data_inicio)) }} </div>
                 </div>
 
                 <div class="mb-3">
                     <label class="tituloinfomodal form-label mt-3">Data de fim</label>
-                    <div class="textoinfomodal"> {{ date('d/m/Y', strtotime($pivo->data_fim)) }} </div>
+                    <div class="textoinfomodal"> {{ date('d/m/Y', strtotime($vinculo->data_fim)) }} </div>
                 </div>
 
 

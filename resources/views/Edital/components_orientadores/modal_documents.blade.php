@@ -9,7 +9,7 @@
         <div class="mb-3">
           <label class="tituloinfomodal form-label mt-3">Plano de Trabalho</label>
           <div class="baixar-arquivo">
-            <a href="{{ route('plano_trabalho.download', ['fileName' => $pivo->plano_projeto]) }}" target="_blank" class="link">
+            <a href="{{ route('plano_trabalho.download', ['fileName' => $vinculo->plano_projeto]) }}" target="_blank" class="link">
               <img src="{{asset('images/download.svg')}}" alt="baixar arquivo" style="width: 20px; height: 20px; margin-right: 5px;">
               Baixar
             </a>
@@ -17,10 +17,10 @@
             <br>
           </div>
 
-          @if($pivo->outros_documentos != null)
+          @if($vinculo->outros_documentos != null)
           <label class="tituloinfomodal form-label mt-3">Outros Documentos</label>
           <div class="baixar-arquivo">
-            <a href="{{ route('outros_documentos.download', ['fileName' => $pivo->outros_documentos]) }}" target="_blank" class="link">
+            <a href="{{ route('outros_documentos.download', ['fileName' => $vinculo->outros_documentos]) }}" target="_blank" class="link">
               <img src="{{asset('images/download.svg')}}" alt="baixar arquivo" style="width: 20px; height: 20px; margin-right: 5px;">
               Baixar
             </a>
