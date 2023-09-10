@@ -27,14 +27,16 @@
             </ul>
 
             <div>
-                <div class="d-lg-flex">
+                <div class="d-lg-flex justify-content-end">
                     @auth
                     <button class="botaoinvisivel" type="button">
                         <img src="{{ asset('images/sininho.svg') }}" title="Notificações do sistema" alt="Notificações" style="height: auto; width: auto">
                     </button>
-
+                    @if (Auth::user()->image)
+                    <img src="{{ asset('images/fotos-perfil/' . Auth::user()->image) }}" title="Minha foto de perfil" class="img-fluid fotoUserAuth" alt="Foto de perfil">
+                    @else
                     <img src="{{ asset('images/sem-foto-perfil.svg') }}" title="Minha foto de perfil" class="img-fluid fotouser" alt="Foto de perfil">
-
+                    @endif
                     @endauth
 
                     <h2 class="fonteheader">
