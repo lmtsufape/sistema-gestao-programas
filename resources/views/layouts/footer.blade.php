@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="../../../css/footer.css">
 @endsection
 
-<footer class="footer2">
+<footer class="footer">
     <div class="footer_sgpa">
         <a href="" class="footer_sgpa" title="Logo SGPA" target="_blank">
         <img src="{{asset('images/sgpa-branco 1.svg')}}" alt="Logo SGPA">

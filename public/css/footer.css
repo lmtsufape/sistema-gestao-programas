@@ -1,28 +1,5 @@
-.footer {
-    background-color: #972E3F;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-  }
 
-.logo {
-    width: 80px;
-    height: 80px;
-    margin: 2px;
-    border-radius: 5px;
-    padding: 5px;
-}
-.logo-box{
-    width: 80px;
-    height: 40px;
-    margin: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    background-color: #fff;
-}
-
-.footer2{
+.footer{
     background-color: #972E3F;
     height: auto;
     width: 100%;
@@ -32,6 +9,7 @@
     justify-content: space-around;
     align-items: center;
     padding: 1% 0;
+    margin-top: auto;
 }
 
 .footer_sgpa{
