@@ -9,6 +9,7 @@ use App\Http\Controllers\EditalController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\DocumentoEstagioController;
 use App\Http\Controllers\EstagioController;
+use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\FrequenciaController;
 use App\Http\Controllers\InstituicaoController;
 use Illuminate\Support\Facades\Mail;
@@ -262,3 +263,13 @@ Route::prefix('estagio')->group(function () {
 });
 
 Route::get('/meus-estagios', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
+
+//Rotas de Supervisor
+Route::prefix('supervisor')->group(function () {
+    Route::get('/', [SupervisorController::class, 'index'])->name('supervisor.index');
+    Route::get('/cadastrar', [SupervisorController::class, 'create'])->name('supervisor.create');
+    Route::post('/', [SupervisorController::class, 'store'])->name('supervisor.store');
+    Route::get('/{id}/edit', [SupervisorController::class, 'edit'])->where('id', '[0-9]+')->name('supervisor.edit');
+    Route::put('/{id}', [SupervisorController::class, 'update'])->name('supervisor.update');
+    Route::delete('/{id}', [SupervisorController::class, 'destroy'])->name('supervisor.delete');
+});
