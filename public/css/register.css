@@ -72,18 +72,18 @@ select[multiple] {
 }
 
 .main_title{
-    font-weight: 600; 
-    font-size: 30px; 
-    line-height: 47px; 
-    display: flex; 
-    align-items: center; 
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 47px;
+    display: flex;
+    align-items: center;
     color: #590B10;
 }
 .container{
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    margin-top: 1em; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
     margin-bottom:10px
 }
 
@@ -92,8 +92,8 @@ select[multiple] {
 }
 
 .images{
-    width: 150px; 
-    height: 150px; 
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     margin: 5%;
 }
@@ -135,15 +135,15 @@ select[multiple] {
 }
 
 .divisor{
-    color:#5C1C26; 
+    color:#5C1C26;
     background-color: #5C1C26;
     align-self: center;
 }
 
 .container-botoes{
-    display: flex; 
+    display: flex;
     align-content: center;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
     gap:5%
 }

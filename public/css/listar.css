@@ -56,19 +56,30 @@
 
   .cadastrar-botao{
     border-radius: 9px;
-    height: 4.8vh;
+    height: auto; /* Remova a altura fixa */
+    padding: 10px 20px; /* Ajuste o preenchimento conforme necessário */
+    font-size: 1em; /* Tamanho da fonte em unidades relativas */
+    /* height: 4.8vh; */
     border: 1px solid var(--green-g-200, #2B8C64);
     background: var(--green-g-200, #2B8C64);
     justify-content: center;
     align-items: center;
     color: var(--tons-claros-t-50, #FEFEFE);
     font-family: Inter;
-    font-size: 14px;
+    /* font-size: 14px; */
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     text-decoration: none;
   }
+
+/* Estilo para dispositivos móveis (max-width: 768px) */
+@media (max-width: 768px) {
+    .cadastrar-botao {
+        padding: 5px 10px;
+    }
+}
+
 
   .cadastrar-botao:hover{
     text-decoration: none;
@@ -99,13 +110,27 @@
     line-height: normal;
   }
 
-  .search-container {
+  /* .search-container {
     display: flex;
     align-items: center;
     width: 74%;
     margin: 0 auto;
 
-  }
+  } */
+  .search-container {
+    display: flex;
+    align-items: center;
+    width: 74%;
+    margin: 0 auto;
+    /* Largura responsiva para dispositivos móveis */
+    @media (max-width: 768px) {
+        width: 100%;
+        flex-direction: row;
+    }
+
+}
+
+
 
   .search-input {
     flex-grow: 1;
@@ -115,6 +140,10 @@
     height: 4.8vh;
     border: 1px solid #E6E6E6;
     padding: 10px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
   }
 
   .search-button {
@@ -131,7 +160,7 @@
   }
 
   .title-position{
-    display: flex; 
-    justify-content: space-evenly; 
+    display: flex;
+    justify-content: space-evenly;
     align-items: center;
   }
