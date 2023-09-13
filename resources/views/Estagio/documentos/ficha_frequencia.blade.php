@@ -47,6 +47,18 @@
             <label for="supervisor_estagio" class="titulopequeno">Supervisor(a) do Estágio</label>
             <br> <input class="boxcadastrar" type="text" name="supervisor_estagio" id="supervisor_estagio" required><br><br>
 
+            <label for="data1" class="titulopequeno">Data</label>
+            <br> <input class="boxcadastrar" type="text" name="data1" id="data1" required><br><br>
+
+            <label for="atividade1" class="titulopequeno">Atividade</label>
+            <br> <input class="boxcadastrar" type="text" name="atividade1" id="atividade1" required><br><br>
+
+            <label for="ch1" class="titulopequeno">CH</label>
+            <br> <input class="boxcadastrar" type="text" name="ch1" id="ch1" required><br><br>
+
+            <label for="ch_total" class="titulopequeno">Carga Horária Total</label>
+            <br> <input class="boxcadastrar" type="text" name="ch_total" id="ch_total" required><br><br>
+
             <br><br>
             <div class="botoessalvarvoltar">
                 <input type="button" value="Voltar" onclick="window.location.href='{{ url('/home/') }}'"
