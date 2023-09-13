@@ -22,16 +22,17 @@ class PDFController extends Controller
 
         // terá um método para cada documento, esse switchcase servirá para selecionar o método especifico de cada documento.
         switch ($this->documentType) {
-            //termo de encaminhamento
+                //termo de encaminhamento
             case 1:
                 $documentPath1 = storage_path('app/docs/termo_encaminhamento/0.png');
                 $documentPath2 = storage_path('app/docs/termo_encaminhamento/1.png');
-                return $this->editTermoEncaminhamento([$documentPath1,$documentPath2], $dados);
+                return $this->editTermoEncaminhamento([$documentPath1, $documentPath2], $dados);
                 break;
-            //termo de compromisso
+                //termo de compromisso
             case 2:
-                $documentPath = storage_path('app/docs/termo_compromisso/0.png');
-                return $this->editTermoCompromisso($documentPath, $dados);
+                $documentPath1 = storage_path('app/docs/termo_compromisso/0.png');
+                $documentPath2 = storage_path('app/docs/termo_compromisso/1.png');
+                return $this->editTermoCompromisso([$documentPath1, $documentPath2], $dados);
                 break;
             
             //ficha de frequência
@@ -44,8 +45,6 @@ class PDFController extends Controller
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
         }
     }
-    
-    
 
     private function toPDF($images)
     {
@@ -56,19 +55,18 @@ class PDFController extends Controller
 
         $pdf->AddPage();
 
-        foreach($images as $index => $image)
-        {
+        foreach ($images as $index => $image) {
             if ($index !== 0) {
                 $pdf->AddPage();
             }
-    
+
             // Salvar a imagem editada temporariamente
             $tmpImagePath = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
             $image->save($tmpImagePath, 100);
-    
+
             // Incorporar a imagem no PDF
             $pdf->Image($tmpImagePath, 7, 0, 200);
-    
+
             unlink($tmpImagePath); // Excluir a imagem temporária após uso
         }
 
@@ -122,225 +120,228 @@ class PDFController extends Controller
         echo $pdfData;
     }
 
-    private function editTermoCompromisso($documentPath, $dados)
+    private function editTermoCompromisso($documentPaths, $dados)
     {
-        $image = Image::make($documentPath);
+        $image1 = Image::make($documentPaths[0]);
 
         //INSTITUIÇÃO DE ENSINO
-        $image->text($dados['professorComponenteCurricular'], 730, 915, function ($font) {
+        $image1->text($dados['professorComponenteCurricular'], 730, 915, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['instituicaoEmail'], 300, 960, function ($font) {
+        $image1->text($dados['instituicaoEmail'], 300, 960, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['orientador'], 530, 1000, function ($font) {
+        $image1->text($dados['orientador'], 530, 1000, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['emailOrientador'], 295, 1050, function ($font) {
+        $image1->text($dados['emailOrientador'], 295, 1050, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
         //UNIDADE CONCEDENTE
-        $image->text($dados['instituicaoUnidadeConcedente'], 360, 1146, function ($font) {
+        $image1->text($dados['instituicaoUnidadeConcedente'], 360, 1146, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['cnpj'], 290, 1190, function ($font) {
+        $image1->text($dados['cnpj'], 290, 1190, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['localEstagio'], 460, 1237, function ($font) {
+        $image1->text($dados['localEstagio'], 460, 1237, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['endereco'], 350, 1282, function ($font) {
+        $image1->text($dados['endereco'], 350, 1282, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['numero'], 230, 1325, function ($font) {
+        $image1->text($dados['numero'], 230, 1325, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['complemento'], 797, 1325, function ($font) {
+        $image1->text($dados['complemento'], 797, 1325, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['cep'], 267, 1372, function ($font) {
+        $image1->text($dados['cep'], 267, 1372, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['bairro'], 900, 1372, function ($font) {
+        $image1->text($dados['bairro'], 900, 1372, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['cidade'], 1473, 1372, function ($font) {
+        $image1->text($dados['cidade'], 1473, 1372, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['estado'], 2000, 1372, function ($font) {
+        $image1->text($dados['estado'], 2000, 1372, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['representanteLegal'], 525, 1420, function ($font) {
+        $image1->text($dados['representanteLegal'], 525, 1420, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['cargoRepresentante'], 1610, 1420, function ($font) {
+        $image1->text($dados['cargoRepresentante'], 1610, 1420, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['supervisor'], 555, 1465, function ($font) {
+        $image1->text($dados['supervisor'], 555, 1465, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['cargoSupervisor'], 1605, 1465, function ($font) {
+        $image1->text($dados['cargoSupervisor'], 1605, 1465, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['formacaoSupervisor'], 357, 1512, function ($font) {
+        $image1->text($dados['formacaoSupervisor'], 357, 1512, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['cpfSupervisor'], 1173, 1512, function ($font) {
+        $image1->text($dados['cpfSupervisor'], 1173, 1512, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['emailSupervisor'], 295, 1558, function ($font) {
+        $image1->text($dados['emailSupervisor'], 295, 1558, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['telefoneSupervisor'], 1397, 1558, function ($font) {
+        $image1->text($dados['telefoneSupervisor'], 1397, 1558, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
         //ESTAGIÁRIO
-        $image->text($dados['nomeAluno'], 288, 1651, function ($font) {
+        $image1->text($dados['nomeAluno'], 288, 1651, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['cpfAluno'], 263, 1697, function ($font) {
+        $image1->text($dados['cpfAluno'], 263, 1697, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['curso'], 958, 1697, function ($font) {
+        $image1->text($dados['curso'], 958, 1697, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['periodo'], 1705, 1697, function ($font) {
+        $image1->text($dados['periodo'], 1705, 1697, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['enderecoAluno'], 350, 1742, function ($font) {
+        $image1->text($dados['enderecoAluno'], 350, 1742, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['numeroEnderecoAluno'], 230, 1790, function ($font) {
+        $image1->text($dados['numeroEnderecoAluno'], 230, 1790, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['complementoAluno'], 800, 1790, function ($font) {
+        $image1->text($dados['complementoAluno'], 800, 1790, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['cepAluno'], 265, 1835, function ($font) {
+        $image1->text($dados['cepAluno'], 265, 1835, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['bairroAluno'], 875, 1835, function ($font) {
+        $image1->text($dados['bairroAluno'], 875, 1835, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['cidadeAluno'], 1473, 1835, function ($font) {
+        $image1->text($dados['cidadeAluno'], 1473, 1835, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['estadoAluno'], 2020, 1835, function ($font) {
+        $image1->text($dados['estadoAluno'], 2020, 1835, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['telefoneAluno'], 393, 1880, function ($font) {
+        $image1->text($dados['telefoneAluno'], 393, 1880, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image->text($dados['emailAluno'], 1187, 1880, function ($font) {
+        $image1->text($dados['emailAluno'], 1187, 1880, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
+        $image2 = Image::make($documentPaths[1]);
 
-        $this->toPDF($image);
+
+        $images = [$image1, $image2];
+        $this->toPDF($images);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 
@@ -384,7 +385,6 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        
         $image1->text($dados['ano_etapa'], 500, 1340, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
@@ -416,7 +416,7 @@ class PDFController extends Controller
         });
 
         $image2 = Image::make($documentPaths[1]);
-    
+
         $image2->text($dados['nome_supervisor'], 472, 325, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(23);
@@ -566,500 +566,9 @@ class PDFController extends Controller
             $font->size(23);
             $font->color(self::AZUL);
         });
-        
+
 
         $images = [$image1, $image2];
-        $this->toPDF($images);
-        Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
-        $estagio = new EstagioController();
-
-        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
-    }
-
-    private function editFichaFrequencia($documentPaths, $dados)
-    {
-        $image = Image::make($documentPaths[0]);
-
-        $image->text($dados['campus'], 345, 477, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['periodo'], 1900, 477, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['nome_estagiario'], 410, 568, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['periodo'], 1797, 568, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['curso'], 300, 653, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['componente_curricular'], 1360, 653, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['prof_componente_curricular'], 840, 745, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['prof_orientador'], 630, 833, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['local_estagio'], 470, 925, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['supervisor_estagio'], 620, 1012, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['data1'], 170, 1265, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 1
-        $image->text($dados['data1'], 170, 1265, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade1'], 420, 1265, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch1'], 1610, 1265, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 2
-        $image->text($dados['data2'], 170, 1335, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade2'], 420, 1335, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch2'], 1610, 1335, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 3
-        $image->text($dados['data3'], 170, 1410, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade3'], 420, 1410, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch3'], 1610, 1410, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 4
-        $image->text($dados['data4'], 170, 1485, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-                // Linha 5
-        $image->text($dados['data5'], 170, 1560, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade5'], 420, 1560, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch5'], 1610, 1560, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 6
-        $image->text($dados['data6'], 170, 1635, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade6'], 420, 1635, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch6'], 1610, 1635, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 7
-        $image->text($dados['data7'], 170, 1710, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade7'], 420, 1710, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch7'], 1610, 1710, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 8
-        $image->text($dados['data8'], 170, 1785, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade8'], 420, 1785, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch8'], 1610, 1785, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 9
-        $image->text($dados['data9'], 170, 1860, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade9'], 420, 1860, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch9'], 1610, 1860, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 10
-        $image->text($dados['data10'], 170, 1935, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade10'], 420, 1935, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch10'], 1610, 1935, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-
-        // Linha 11
-        $image->text($dados['data11'], 170, 2010, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade11'], 420, 2010, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch11'], 1610, 2010, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 12
-        $image->text($dados['data12'], 170, 2085, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade12'], 420, 2085, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch12'], 1610, 2085, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 13
-        $image->text($dados['data13'], 170, 2160, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade13'], 420, 2160, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch13'], 1610, 2160, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 14
-        $image->text($dados['data14'], 170, 2235, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade14'], 420, 2235, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch14'], 1610, 2235, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 15
-        $image->text($dados['data15'], 170, 2310, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade15'], 420, 2310, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch15'], 1610, 2310, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 16
-        $image->text($dados['data16'], 170, 2385, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade16'], 420, 2385, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch16'], 1610, 2385, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 17
-        $image->text($dados['data17'], 170, 2460, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade17'], 420, 2460, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch17'], 1610, 2460, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 18
-        $image->text($dados['data18'], 170, 2535, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade18'], 420, 2535, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch18'], 1610, 2535, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 19
-        $image->text($dados['data19'], 170, 2610, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade19'], 420, 2610, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch19'], 1610, 2610, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 20
-        $image->text($dados['data20'], 170, 2685, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade20'], 420, 2685, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch20'], 1610, 2685, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 21
-        $image->text($dados['data21'], 170, 2760, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade21'], 420, 2760, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch21'], 1610, 2760, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        // Linha 22
-        $image->text($dados['data22'], 170, 2835, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(32);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['atividade22'], 420, 2835, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch22'], 1610, 2835, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $image->text($dados['ch_total'], 720, 2920, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
-
-        $images = [$image];
         $this->toPDF($images);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();

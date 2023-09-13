@@ -317,33 +317,122 @@ class EditalController extends Controller
             return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
         }
     }
-    public function listar_alunos($id){
-        
-        $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', true)->get();
-        $count = $vinculos->count();
+    public function listar_alunos(Request $request, $id){
+
         $edital = Edital::where('id', $id)->first();
 
-        if ($vinculos->isEmpty()) {
-            return redirect()->back()->with('falha', 'Não há alunos cadastrados no edital.');
-        } else {
+        if (sizeof($request-> query()) > 0){
+     
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
+
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $vinculos = EditalAlunoOrientadors::where('edital_id', $id)
+            ->where('status', true)
+            ->where(function ($query) use ($valor) {
+                $query->orWhereHas('aluno', function ($subquery) use ($valor) {
+                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                    ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
+                })
+                ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
+                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                            ->orWhere('name', 'LIKE', "%{$valor}%")
+                            ->orWhere('email', 'LIKE', "%{$valor}%")
+                            ->orWhere('matricula', 'LIKE', "%{$valor}%");
+
+                })
+                ->orWhereHas('edital', function ($subquery) use ($valor) {
+                    $subquery->where('titulo_edital', 'LIKE', "%{$valor}%");
+
+                })
+                //Query para a tabela edital_aluno_orientadors
+                ->orWhere('titulo', 'LIKE', "%{$valor}%")
+                ->orWhere('info_complementares', 'LIKE', "%{$valor}%");
+
+            })
+            ->orderBy('created_at', 'desc')
+            ->distinct()
+            ->get();       
+
             return view("Edital.listar_alunos", compact("vinculos", "edital"));
+        }else{        
+            $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', true)->get();
+        
+            if ($vinculos->isEmpty()) {
+                return redirect()->back()->with('falha', 'Não há alunos cadastrados no edital.');
+            } else {
+                return view("Edital.listar_alunos", compact("vinculos", "edital"));
+            }
         }
-
     }
 
-    public function listar_alunos_inativos($id){
-        
-        $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', false)->get();
-        $count = $vinculos->count();
+    public function listar_alunos_inativos(Request $request, $id){
+
         $edital = Edital::where('id', $id)->first();
 
-        if ($vinculos->isEmpty()) {
-            return redirect()->back()->with('falha', 'Não há alunos inativos no edital.');
-        } else {
+        if (sizeof($request-> query()) > 0){
+     
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
+
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $vinculos = EditalAlunoOrientadors::where('edital_id', $id)
+            ->where('status', false)
+            ->where(function ($query) use ($valor) {
+                $query->orWhereHas('aluno', function ($subquery) use ($valor) {
+                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                    ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
+                })
+                ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
+                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                            ->orWhere('name', 'LIKE', "%{$valor}%")
+                            ->orWhere('email', 'LIKE', "%{$valor}%")
+                            ->orWhere('matricula', 'LIKE', "%{$valor}%");
+
+                })
+                ->orWhereHas('edital', function ($subquery) use ($valor) {
+                    $subquery->where('titulo_edital', 'LIKE', "%{$valor}%");
+
+                })
+                //Query para a tabela edital_aluno_orientadors
+                ->orWhere('titulo', 'LIKE', "%{$valor}%")
+                ->orWhere('info_complementares', 'LIKE', "%{$valor}%");
+
+            })
+            ->orderBy('created_at', 'desc')
+            ->distinct()
+            ->get();       
+
             return view("Edital.listar_alunos_inativos", compact("vinculos", "edital"));
-        }
+ 
+        } else {
+        
+            $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', false)->get();
+            $count = $vinculos->count();
+
+            if ($vinculos->isEmpty()) {
+                return redirect()->back()->with('falha', 'Não há alunos inativos no edital.');
+            } else{
+                return view("Edital.listar_alunos_inativos", compact("vinculos", "edital"));
+        
+            }
+    }
+
+        
+
+
+        
+        //-----------------------------
+
 
     }
+
 
     public function ativarVinculo($id){
         try{
@@ -370,24 +459,48 @@ class EditalController extends Controller
         return view("Edital.listar_disciplinas", compact("disciplinas"));
     }
 
-    public function listar_orientadores($id){
-        $pivot = EditalAlunoOrientadors::where('edital_id', $id)->get();
-        $count = $pivot->count();
-        if($pivot->isEmpty()) {
-            return redirect()->back()->with('falha', 'Não há orientadores cadastrados no edital.');
-        }
-        elseif($count > 1) {
-            foreach($pivot as $pivo) {
-                $orientador = Orientador::where('id', $pivo->orientador_id)->with('user')->get();
-                $orientadores = User::where('typage_type', 'App\Models\Orientador')->where('typage_id', $orientador[0]->id)->get();
+    public function listar_orientadores(Request $request, $id){
+
+        if (sizeof($request-> query()) > 0){
+     
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
+
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
             }
-            return view("Edital.listar_orientadores", compact("orientadores", "pivot"));
-        }
-        else {
-            $orientador = $pivot->first();
-            $orientador = Orientador::where('id', $orientador->orientador_id)->with('user')->get();
-            $orientadores = User::where('typage_type', 'App\Models\Orientador')->where('typage_id', $orientador[0]->id)->get();
-            return view("Edital.listar_orientadores", compact("orientadores", "pivot"));
+
+            $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where(function ($query) use ($valor) {
+                $query->orWhereHas('orientador.user', function ($subquery) use ($valor) {
+                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                            ->orWhere('name', 'LIKE', "%{$valor}%")
+                            ->orWhere('email', 'LIKE', "%{$valor}%")
+                            ->orWhere('matricula', 'LIKE', "%{$valor}%");
+
+                })
+                ->orWhereHas('edital', function ($subquery) use ($valor) {
+                    $subquery->where('titulo_edital', 'LIKE', "%{$valor}%");
+
+                })
+                //Query para a tabela edital_aluno_orientadors
+                ->orWhere('titulo', 'LIKE', "%{$valor}%")
+                ->orWhere('info_complementares', 'LIKE', "%{$valor}%");
+
+            })
+            ->orderBy('created_at', 'desc')
+            ->distinct()
+            ->get();       
+
+            return view("Edital.listar_orientadores", compact("vinculos"));
+        } else {
+            $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->get();
+
+            if($vinculos->isEmpty()) {
+                return redirect()->back()->with('falha', 'Não há orientadores cadastrados no edital.');
+            }
+            else {
+                return view("Edital.listar_orientadores", compact("vinculos"));
+            }
         }
 
     }
@@ -515,13 +628,14 @@ class EditalController extends Controller
     }
 
 
-    public function deletarVinculo($aluno_id, $edital_id){
+    public function deletarVinculo($id){
 
         DB::beginTransaction();
         try {
-            EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->update(['status' => false]);
+            //EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->update(['status' => false]);
+            EditalAlunoOrientadors::where("id", $id)->update(['status' => false]);
 
-            $vinculo = EditalAlunoOrientadors::where("aluno_id", $aluno_id)->where('edital_id', $edital_id)->first();
+            $vinculo = EditalAlunoOrientadors::where("id", $id)->first();
             #dd($vinculo['id']);
             HistoricoVinculoAlunos::where("vinculo_id", $vinculo->id)->update(['data_fim' => date('Y-m-d')]);
 
@@ -712,5 +826,16 @@ class EditalController extends Controller
        
         return redirect(route('Aluno.editais-aluno'))->with('sucesso', 'A frequencia foi enviada com sucesso.');
     }
+
+    public function download_frequencia_mensal($fileName) {
+        $path = "frequencia_mensal/".$fileName;
+
+        if(Storage::exists($path)) {
+            return Storage::download($path);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+    }
+
 
 }

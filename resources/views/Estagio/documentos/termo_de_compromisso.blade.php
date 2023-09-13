@@ -31,11 +31,13 @@
 
             <label for="orientador" class="titulopequeno">Orientador</label>
             <br>
-            <input class="boxcadastrar" type="text" name="orientador" id="orientador" required><br><br>
+            <input class="boxcadastrar" type="text" name="orientador" id="orientador"
+                value="{{ $orientador->user->name }}" readonly style="background: #eee; " required><br><br>
 
             <label for="emailOrientador" class="titulopequeno">E-mail do Orientador</label>
             <br>
-            <input class="boxcadastrar" type="email" name="emailOrientador" id="emailOrientador" required><br><br>
+            <input class="boxcadastrar" type="email" name="emailOrientador" id="emailOrientador"
+                value="{{ $orientador->user->email }}" readonly style="background: #eee; " required><br><br>
 
             <!-- UNIDADE CONCEDENTE -->
             <h1 class="titulogrande">Unidade concedente</h1>
@@ -83,11 +85,13 @@
 
             <label for="localEstagio" class="titulopequeno">Representante legal</label>
             <br>
-            <input class="boxcadastrar" type="text" name="representanteLegal" id="representanteLegal" required><br><br>
-            
+            <input class="boxcadastrar" type="text" name="representanteLegal" id="representanteLegal"
+                required><br><br>
+
             <label for="localEstagio" class="titulopequeno">Cargo do representante</label>
             <br>
-            <input class="boxcadastrar" type="text" name="cargoRepresentante" id="cargoRepresentante" required><br><br>
+            <input class="boxcadastrar" type="text" name="cargoRepresentante" id="cargoRepresentante"
+                required><br><br>
 
             <!-- SUPERVISOR -->
             <label for="supervisor" class="titulopequeno">Supervisor</label>
@@ -100,7 +104,8 @@
 
             <label for="formacaoSupervisor" class="titulopequeno">Formação do Supervisor</label>
             <br>
-            <input class="boxcadastrar" type="text" name="formacaoSupervisor" id="formacaoSupervisor" required><br><br>
+            <input class="boxcadastrar" type="text" name="formacaoSupervisor" id="formacaoSupervisor"
+                required><br><br>
 
             <label for="cpfSupervisor" class="titulopequeno">CPF do Supervisor</label>
             <br>
@@ -112,22 +117,26 @@
 
             <label for="telefoneSupervisor" class="titulopequeno">Telefone do Supervisor</label>
             <br>
-            <input class="boxcadastrar" type="tel" name="telefoneSupervisor" id="telefoneSupervisor" required><br><br>
+            <input class="boxcadastrar" type="tel" name="telefoneSupervisor" id="telefoneSupervisor"
+                required><br><br>
 
             <!-- ESTAGIÁRIO -->
             <h1 class="titulogrande">Dados do estagiário</h1>
 
             <label for="nomeAluno" class="titulopequeno">Nome do Aluno</label>
             <br>
-            <input class="boxcadastrar" type="text" name="nomeAluno" id="nomeAluno" required><br><br>
+            <input class="boxcadastrar" type="text" name="nomeAluno" id="nomeAluno" value="{{ $aluno->user->name }}"
+                readonly style="background: #eee; " required><br><br>
 
             <label for="cpfAluno" class="titulopequeno">CPF do Aluno</label>
             <br>
-            <input class="boxcadastrar" type="text" name="cpfAluno" id="cpfAluno" required><br><br>
+            <input class="boxcadastrar" type="text" name="cpfAluno" id="cpfAluno" value="{{ $aluno->user->cpf }}"
+                readonly style="background: #eee; " required><br><br>
 
             <label for="curso" class="titulopequeno">Curso</label>
             <br>
-            <input class="boxcadastrar" type="text" name="curso" id="curso" required><br><br>
+            <input class="boxcadastrar" type="text" name="curso" id="curso" value="{{ $aluno->curso->nome }}"
+                readonly style="background: #eee; " required><br><br>
 
             <label for="periodo" class="titulopequeno">Período</label>
             <br>
@@ -168,7 +177,8 @@
 
             <label for="emailAluno" class="titulopequeno">E-mail do Aluno</label>
             <br>
-            <input class="boxcadastrar" type="email" name="emailAluno" id="emailAluno" required><br><br>
+            <input class="boxcadastrar" type="email" name="emailAluno" id="emailAluno"
+                value="{{ $aluno->user->email }}" readonly style="background: #eee; " required><br><br>
 
             <br><br>
             <div class="botoessalvarvoltar">

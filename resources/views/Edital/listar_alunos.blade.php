@@ -61,7 +61,7 @@
               <a type="button" href="{{ route('edital.editar_vinculo', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
                 <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar edital" style="height: 30px; width: 30px;">
               </a>
-              <a type="button" href="{{ route('edital.aluno.delete', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
+              <a type="button" href="{{ route('edital.aluno.delete', ['id' => $vinculo->id]) }}">
                 <img src="{{asset('images/unlink.png')}}" title="Desvincular" alt="Deletar edital" style="height: 25px; width: 25px;">
               </a>
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$vinculo->aluno->id}}">
@@ -77,7 +77,7 @@
           @include('Edital.components_alunos.modal_show', ['aluno' => $vinculo->aluno, 'vinculo' => $vinculo])
           @include('Edital.components_alunos.modal_documents', ['aluno' => $vinculo->aluno, 'vinculo' => $vinculo])
           <!-- Modal delete-->
-          @include('Edital.components_alunos.modal_delete', ['aluno' => $vinculo->aluno, 'edital' => $vinculo->edital])
+          @include('Edital.components_alunos.modal_delete', ['aluno' => $vinculo->aluno, 'edital' => $vinculo->edital, 'vinculo' => $vinculo])
           @endforeach
         </tbody>
       </table>

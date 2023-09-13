@@ -77,7 +77,7 @@
               {{-- <a type="button" href="{{ route('edital.editar_vinculo', ['aluno_id' => $pivo->aluno_id, 'edital_id' => $pivo->edital_id]) }}">
                 <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar vinculo" style="height: 30px; width: 30px;">
               </a>--}}
-              {{--<a type="button" href="{{ route('edital.aluno.delete', ['aluno_id' => $pivo->aluno_id, 'edital_id' => $pivo->edital_id]) }}">
+              {{--<a type="button" href="{{ route('edital.aluno.delete', ['id' => $pivo->id]) }}">
                 <img src="{{asset('images/delete.png')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
               </a>--}}
               {{--<a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$pivo->aluno->id}}">

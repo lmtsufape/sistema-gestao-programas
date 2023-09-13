@@ -16,8 +16,8 @@
 }
 
 .navbar-menu{
-  background: #972E3F; 
-  padding: 10px 100px; 
+  background: #972E3F;
+  padding: 10px 100px;
   flex-wrap: nowrap;
   color: #fff;
   display: flex !important;
@@ -35,24 +35,24 @@
 }
 
 .image-size{
-  width: 28px; 
+  width: 28px;
   height: 28px;
   margin-right: 20px;
 }
 
 .arrow-dd{
-  width: 9px; 
-  height: 4px; 
+  width: 9px;
+  height: 4px;
   margin-left: 60px
 }
 .dropdown-menu-dark{
-   background-color: #972E3F !important; 
+   background-color: #972E3F !important;
 }
 .dropdown-menu{
- 
-  width:15%; 
+
+  width:15%;
   padding: 5px 10px;
-  
+
 }
 
 .dropdown-menu>li>a{
@@ -69,3 +69,26 @@
 
 }
 
+/* Estilo para dispositivos móveis (max-width: 768px) */
+@media (max-width: 768px) {
+    .navbar-menu {
+        padding: 10px 20px; /* Reduza o espaçamento horizontal */
+        flex-direction: column; /* Alinhe verticalmente em uma coluna */
+    }
+    .container-fluid {
+        gap: 20px; /* Reduza o espaço entre os botões */
+    }
+    .btn-menu {
+        margin-right: 0; /* Remova a margem direita dos botões */
+    }
+    .image-size {
+        margin-right: 10px; /* Reduza a margem entre a imagem e o texto */
+    }
+    .arrow-dd {
+        margin-left: 0; /* Remova a margem esquerda das setas */
+    }
+    .dropdown-menu {
+        width: auto; /* Permita que o menu se ajuste ao conteúdo */
+        padding: 10px; /* Aumente o espaço dentro do menu */
+    }
+}

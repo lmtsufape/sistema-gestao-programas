@@ -44,7 +44,7 @@ class CreateEstagiosTable extends Migration
             $table->foreign('supervisor_id')->references('id')->on('supervisors');
 
             $table->unsignedBigInteger('instituicao_id')->default(1);
-            $table->foreign('instituicao_id')->references('id')->on('instituicaos');
+            $table->foreign('instituicao_id')->references('id')->on('instituicao');
         });
     }
 

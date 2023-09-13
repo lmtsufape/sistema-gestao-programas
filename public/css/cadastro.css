@@ -34,8 +34,17 @@
     line-height: normal;
     text-align: center;
 }
+/* Estilo para dispositivos móveis (max-width: 768px) */
+@media (max-width: 768px) {
+    .botaosalvar {
+        padding: 10px; /* Reduza o preenchimento horizontal */
+        font-size: 14px; /* Reduza o tamanho da fonte */
+        height: auto; /* Remova a altura fixa */
+        width: 100%; /* Ocupa toda a largura disponível */
+    }
+}
 
-.botaoeditar{    
+.botaoeditar{
         display: flex;
         flex-direction: row;
         border-radius: 10px;
@@ -55,6 +64,15 @@
         text-align: center;
         cursor: pointer;
 }
+@media (max-width: 768px) {
+    .botaoeditar {
+        padding: 10px; /* Reduza o preenchimento horizontal */
+        font-size: 14px; /* Reduza o tamanho da fonte */
+        height: auto; /* Remova a altura fixa */
+        width: 100%; /* Ocupa toda a largura disponível */
+    }
+}
+
 .botaovoltar {
     border-radius: 10px;
     border: 1px solid #DACFCF;
@@ -71,6 +89,14 @@
     font-weight: 700;
     line-height: normal;
     text-align: center;
+}
+@media (max-width: 768px) {
+    .botaovoltar {
+        padding: 10px; /* Reduza o preenchimento horizontal */
+        font-size: 14px; /* Reduza o tamanho da fonte */
+        height: auto; /* Remova a altura fixa */
+        width: 100%; /* Ocupa toda a largura disponível */
+    }
 }
 
 .fundocadastrar{
@@ -142,33 +168,33 @@
 }
 
 .images{
-    width: 150px; 
-    height: 150px; 
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     margin: 5%;
 }
 
 .divisor{
-    color:#5C1C26; 
+    color:#5C1C26;
     background-color: #5C1C26;
     align-self: center;
 }
 
 .input-informacao{
-    color: var(--preto-p-100, #6B6B6B); 
-    font-family: Inter; 
-    font-size: 14px; 
-    font-style: normal; 
-    font-weight: 500; 
+    color: var(--preto-p-100, #6B6B6B);
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
     line-height: normal;
 }
 
 .output-informacao{
-    color: var(--preto-p-200, #2B2B2B); 
-    font-family: Inter; 
-    font-size: 16px; 
-    font-style: normal; 
-    font-weight: 700; 
+    color: var(--preto-p-200, #2B2B2B);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
     line-height: normal;
 }
 
