@@ -22,17 +22,16 @@ class PDFController extends Controller
 
         // terá um método para cada documento, esse switchcase servirá para selecionar o método especifico de cada documento.
         switch ($this->documentType) {
-                //termo de encaminhamento
+            //termo de encaminhamento
             case 1:
                 $documentPath1 = storage_path('app/docs/termo_encaminhamento/0.png');
                 $documentPath2 = storage_path('app/docs/termo_encaminhamento/1.png');
-                return $this->editTermoEncaminhamento([$documentPath1, $documentPath2], $dados);
+                return $this->editTermoEncaminhamento([$documentPath1,$documentPath2], $dados);
                 break;
-                //termo de compromisso
+            //termo de compromisso
             case 2:
-                $documentPath1 = storage_path('app/docs/termo_compromisso/0.png');
-                $documentPath2 = storage_path('app/docs/termo_compromisso/1.png');
-                return $this->editTermoCompromisso([$documentPath1, $documentPath2], $dados);
+                $documentPath = storage_path('app/docs/termo_compromisso/0.png');
+                return $this->editTermoCompromisso($documentPath, $dados);
                 break;
             
             //ficha de frequência
@@ -40,11 +39,13 @@ class PDFController extends Controller
                 $documentPath = storage_path('app/docs/ficha_frequencia/0.png');
                 return $this->editFichaFrequencia([$documentPath], $dados);
                 break;
-            
+
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
         }
     }
+    
+    
 
     private function toPDF($images)
     {
@@ -55,18 +56,19 @@ class PDFController extends Controller
 
         $pdf->AddPage();
 
-        foreach ($images as $index => $image) {
+        foreach($images as $index => $image)
+        {
             if ($index !== 0) {
                 $pdf->AddPage();
             }
-
+    
             // Salvar a imagem editada temporariamente
             $tmpImagePath = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
             $image->save($tmpImagePath, 100);
-
+    
             // Incorporar a imagem no PDF
             $pdf->Image($tmpImagePath, 7, 0, 200);
-
+    
             unlink($tmpImagePath); // Excluir a imagem temporária após uso
         }
 
@@ -120,228 +122,225 @@ class PDFController extends Controller
         echo $pdfData;
     }
 
-    private function editTermoCompromisso($documentPaths, $dados)
+    private function editTermoCompromisso($documentPath, $dados)
     {
-        $image1 = Image::make($documentPaths[0]);
+        $image = Image::make($documentPath);
 
         //INSTITUIÇÃO DE ENSINO
-        $image1->text($dados['professorComponenteCurricular'], 730, 915, function ($font) {
+        $image->text($dados['professorComponenteCurricular'], 730, 915, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['instituicaoEmail'], 300, 960, function ($font) {
+        $image->text($dados['instituicaoEmail'], 300, 960, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['orientador'], 530, 1000, function ($font) {
+        $image->text($dados['orientador'], 530, 1000, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['emailOrientador'], 295, 1050, function ($font) {
+        $image->text($dados['emailOrientador'], 295, 1050, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
         //UNIDADE CONCEDENTE
-        $image1->text($dados['instituicaoUnidadeConcedente'], 360, 1146, function ($font) {
+        $image->text($dados['instituicaoUnidadeConcedente'], 360, 1146, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['cnpj'], 290, 1190, function ($font) {
+        $image->text($dados['cnpj'], 290, 1190, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['localEstagio'], 460, 1237, function ($font) {
+        $image->text($dados['localEstagio'], 460, 1237, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['endereco'], 350, 1282, function ($font) {
+        $image->text($dados['endereco'], 350, 1282, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['numero'], 230, 1325, function ($font) {
+        $image->text($dados['numero'], 230, 1325, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['complemento'], 797, 1325, function ($font) {
+        $image->text($dados['complemento'], 797, 1325, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['cep'], 267, 1372, function ($font) {
+        $image->text($dados['cep'], 267, 1372, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['bairro'], 900, 1372, function ($font) {
+        $image->text($dados['bairro'], 900, 1372, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['cidade'], 1473, 1372, function ($font) {
+        $image->text($dados['cidade'], 1473, 1372, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['estado'], 2000, 1372, function ($font) {
+        $image->text($dados['estado'], 2000, 1372, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['representanteLegal'], 525, 1420, function ($font) {
+        $image->text($dados['representanteLegal'], 525, 1420, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['cargoRepresentante'], 1610, 1420, function ($font) {
+        $image->text($dados['cargoRepresentante'], 1610, 1420, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['supervisor'], 555, 1465, function ($font) {
+        $image->text($dados['supervisor'], 555, 1465, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['cargoSupervisor'], 1605, 1465, function ($font) {
+        $image->text($dados['cargoSupervisor'], 1605, 1465, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['formacaoSupervisor'], 357, 1512, function ($font) {
+        $image->text($dados['formacaoSupervisor'], 357, 1512, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['cpfSupervisor'], 1173, 1512, function ($font) {
+        $image->text($dados['cpfSupervisor'], 1173, 1512, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['emailSupervisor'], 295, 1558, function ($font) {
+        $image->text($dados['emailSupervisor'], 295, 1558, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['telefoneSupervisor'], 1397, 1558, function ($font) {
+        $image->text($dados['telefoneSupervisor'], 1397, 1558, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
         //ESTAGIÁRIO
-        $image1->text($dados['nomeAluno'], 288, 1651, function ($font) {
+        $image->text($dados['nomeAluno'], 288, 1651, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['cpfAluno'], 263, 1697, function ($font) {
+        $image->text($dados['cpfAluno'], 263, 1697, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['curso'], 958, 1697, function ($font) {
+        $image->text($dados['curso'], 958, 1697, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['periodo'], 1705, 1697, function ($font) {
+        $image->text($dados['periodo'], 1705, 1697, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['enderecoAluno'], 350, 1742, function ($font) {
+        $image->text($dados['enderecoAluno'], 350, 1742, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['numeroEnderecoAluno'], 230, 1790, function ($font) {
+        $image->text($dados['numeroEnderecoAluno'], 230, 1790, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['complementoAluno'], 800, 1790, function ($font) {
+        $image->text($dados['complementoAluno'], 800, 1790, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['cepAluno'], 265, 1835, function ($font) {
+        $image->text($dados['cepAluno'], 265, 1835, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['bairroAluno'], 875, 1835, function ($font) {
+        $image->text($dados['bairroAluno'], 875, 1835, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['cidadeAluno'], 1473, 1835, function ($font) {
+        $image->text($dados['cidadeAluno'], 1473, 1835, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['estadoAluno'], 2020, 1835, function ($font) {
+        $image->text($dados['estadoAluno'], 2020, 1835, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['telefoneAluno'], 393, 1880, function ($font) {
+        $image->text($dados['telefoneAluno'], 393, 1880, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['emailAluno'], 1187, 1880, function ($font) {
+        $image->text($dados['emailAluno'], 1187, 1880, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(37);
             $font->color(self::AZUL);
         });
 
-        $image2 = Image::make($documentPaths[1]);
 
-
-        $images = [$image1, $image2];
-        $this->toPDF($images);
+        $this->toPDF($image);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 
@@ -385,6 +384,7 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
+        
         $image1->text($dados['ano_etapa'], 500, 1340, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
@@ -416,7 +416,7 @@ class PDFController extends Controller
         });
 
         $image2 = Image::make($documentPaths[1]);
-
+    
         $image2->text($dados['nome_supervisor'], 472, 325, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(23);
@@ -566,7 +566,7 @@ class PDFController extends Controller
             $font->size(23);
             $font->color(self::AZUL);
         });
-
+        
 
         $images = [$image1, $image2];
         $this->toPDF($images);
@@ -1059,9 +1059,6 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-
-
-
         $images = [$image];
         $this->toPDF($images);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
@@ -1069,9 +1066,8 @@ class PDFController extends Controller
 
         return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
     }
-
-    protected function getListaDeDocumentosId()
-    {
+    
+    protected function getListaDeDocumentosId(){
         $listaDocumentosObrigatorios = new ListaDocumentosObrigatorios();
         $document = $listaDocumentosObrigatorios->where('id', $this->documentType)->first();
         return $document->id;
