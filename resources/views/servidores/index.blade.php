@@ -20,8 +20,10 @@
                 <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
                     id="valor" name="valor" style="text-align: start">
                 <button class="search-button" title="Fazer a pesquisa" type="submit" value=""></button>
-                <button class="cadastrar-botao" type="button"
-                    onclick="window.location.href = '{{ route('servidores.create') }}'"">Cadastrar servidor</button>
+                @if (Auth::user()->typage->tipo_servidor != 'pro_reitor')
+                    <button class="cadastrar-botao" type="button"
+                        onclick="window.location.href = '{{ route('servidores.create') }}'"">Cadastrar servidor</button>
+                @endif
             </form>
 
             <br>
@@ -80,18 +82,20 @@
                                         <td class="align-middle">
                                             <a type="button" data-bs-toggle="modal"
                                                 data-bs-target="#modal_show_{{ $servidor->id }}">
-                                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info servidor"
-                                                    style="height: 30px; width: 30px;">
+                                                <img src="{{ asset('images/information.svg') }}" title="Informações"
+                                                    alt="Info servidor" style="height: 30px; width: 30px;">
                                             </a>
-                                            <a href="{{ url('/servidores/' . $servidor->id . '/edit') }}">
-                                                <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar servidor"
-                                                    style="height: 30px; width: 30px;">
-                                            </a>
-                                            <a type="button" data-bs-toggle="modal"
-                                                data-bs-target="#modal_delete_{{ $servidor->id }}">
-                                                <img src="{{ asset('images/delete.svg') }}" title="Remover" alt="Deletar servidor"
-                                                    style="height: 30px; width: 30px;">
-                                            </a>
+                                            @if (Auth::user()->typage->tipo_servidor != 'pro_reitor')
+                                                <a href="{{ url('/servidores/' . $servidor->id . '/edit') }}">
+                                                    <img src="{{ asset('images/pencil.svg') }}" title="Editar"
+                                                        alt="Editar servidor" style="height: 30px; width: 30px;">
+                                                </a>
+                                                <a type="button" data-bs-toggle="modal"
+                                                    data-bs-target="#modal_delete_{{ $servidor->id }}">
+                                                    <img src="{{ asset('images/delete.svg') }}" title="Remover"
+                                                        alt="Deletar servidor" style="height: 30px; width: 30px;">
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
 
@@ -105,39 +109,39 @@
                         </table>
                     </div>
                     <!--
-                    <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+                                            <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
         width: 150px; height: 50%;">
-                                <div style="align-self: center; margin-right: auto">
-                                    <br>
-                                    <h4 class="fw-bold"style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
-                                </div>
-                      <div style="align-self: center; margin-right: auto">
-                        <div style="display: flex; margin: 10px">
-                          <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
-                          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
-                        </div>
-                      </div>
-                      <div style="align-self: center; margin-right: auto">
-                        <div style="display: flex; margin: 10px">
-                          <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
-                          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
-                        </div>
-                        <div style="display: flex; margin: 10px">
-                          <a><img src="{{ asset('images/delete.png') }}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
-                          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
-                        </div>
+                                                        <div style="align-self: center; margin-right: auto">
+                                                            <br>
+                                                            <h4 class="fw-bold"style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
+                                                        </div>
+                                              <div style="align-self: center; margin-right: auto">
+                                                <div style="display: flex; margin: 10px">
+                                                  <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
+                                                  <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
+                                                </div>
+                                              </div>
+                                              <div style="align-self: center; margin-right: auto">
+                                                <div style="display: flex; margin: 10px">
+                                                  <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
+                                                  <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
+                                                </div>
+                                                <div style="display: flex; margin: 10px">
+                                                  <a><img src="{{ asset('images/delete.png') }}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
+                                                  <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
+                                                </div>
 
-                        <div style="display: flex; margin: 10px">
-                          <a><img src="{{ asset('images/searchicon.png') }}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-                          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
-                        </div>
-                      </div>
-                        </div>
-                      </div>
-                      <br>
-                      <br>
+                                                <div style="display: flex; margin: 10px">
+                                                  <a><img src="{{ asset('images/searchicon.png') }}" alt="Procurar" style="width: 20px; height: 20px;"></a>
+                                                  <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
+                                                </div>
+                                              </div>
+                                                </div>
+                                              </div>
+                                              <br>
+                                              <br>
         @endif
-                      -->
+                                              -->
                 </div>
 
         </div>
