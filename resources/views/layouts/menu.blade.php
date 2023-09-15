@@ -27,8 +27,11 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark" role="menu"
                                 aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="{{ route('programas.index') }}">Programas</a></li>
-                                <li><a class="dropdown-item" href="{{ route('servidores.index') }}">Servidores</a></li>
+                                @if (Auth::user()->typage->tipo_servidor != 'servidor')
+                                    <li><a class="dropdown-item" href="{{ route('programas.index') }}">Programas</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('servidores.index') }}">Servidores</a></li>
+                                @endif
+
                                 @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
                                     <li><a class="dropdown-item" href="{{ route('alunos.index') }}">Estudantes</a></li>
                                 @endif
