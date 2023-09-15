@@ -18,13 +18,15 @@ class CreateListaDocumentosObrigatorios extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('descricao_documento');
+            $table->date('data_envio')->nullable();
+            $table->date('data_limite')->nullable();
             //$table->date('prazo');
-            $table->enum('tipo_entrega', ['inicial','final']);
+            $table->enum('tipo_entrega', ['inicial', 'final']);
             $table->enum('tipo_estagio', ['eo', 'eno']);
 
-            
-            
-            
+
+
+
 
             $table->timestamps();
         });

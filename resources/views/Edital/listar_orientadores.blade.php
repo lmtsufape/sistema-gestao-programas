@@ -23,7 +23,7 @@
 
     <form class="search-container" action="" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
-        <input class="search-button" type="submit" value=""></input>
+        <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
     </form>
 
     <br>
@@ -45,20 +45,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($orientadores as $orientador)
-                    @foreach ($pivot as $pivo)
+                    @foreach ($vinculos as $vinculo)
                     <tr>
-                        <td class="align-middle">{{ $orientador->name }}</td>
-                        <td class="align-middle">{{ $pivo->titulo }}</td>
+                        <td class="align-middle">{{ $vinculo->orientador->user->name }}</td>
+                        <td class="align-middle">{{ $vinculo->titulo }}</td>
                         <td>
 
 
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$orientador->id}}">
-                                <img src="{{asset('images/information.svg')}}" alt="Info Orientador" style="height: 30px; width: 30px;">
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$vinculo->orientador->id}}">
+                                <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info Orientador" style="height: 30px; width: 30px;">
                             </a>
 
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$orientador->id}}">
-                                <img src="{{asset('images/document.svg')}}" alt="Mostrar Documentos" style="height: 30px; width: 30px;">
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$vinculo->orientador->id}}">
+                                <img src="{{ asset('images/document.svg') }}" title="Ver documentos" alt="Mostrar Documentos" style="height: 30px; width: 30px;">
                             </a>
 
 
@@ -66,9 +65,8 @@
                     </tr>
                 </tbody>
                 @include('Edital.components_orientadores.modal_legenda')
-                @include('Edital.components_orientadores.modal_show', ['orientador' => $orientador, 'pivo' => $pivo])
-                @include('Edital.components_orientadores.modal_documents', ['orientador' => $orientador, 'pivo' => $pivo])
-                @endforeach
+                @include('Edital.components_orientadores.modal_show', ['orientador' => $vinculo->orientador, 'vinculo' => $vinculo])
+                @include('Edital.components_orientadores.modal_documents', ['orientador' => $vinculo->orientador, 'vinculo' => $vinculo])
                 @endforeach
             </table>
         </div>

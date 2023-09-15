@@ -5104,6 +5104,11 @@ $(document).ready(function () {
   $('.cpf-autocomplete').mask('000.000.000-00', {
     reverse: true
   });
+  
+  $('.telefone-autocomplete').mask('00 00000-0000', {
+    reverse: true
+  });
+  
 });
 
 /***/ }),

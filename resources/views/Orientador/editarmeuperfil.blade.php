@@ -19,7 +19,7 @@
                 @csrf
                 @method("PUT")
 
-                <div style="display: flex;">
+                <div style="display: flex; flex-direction: row; gap:15px; margin-bottom:20px">
                 @if($orientador->user->image)
                 <img src="/images/fotos-perfil/{{ $orientador->user->image }}" alt="Foto Perfil" style="width: 8.77rem; border-radius: 50%; margin-top: 2rem; margin-bottom: 1rem;"/>
                 @else

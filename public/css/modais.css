@@ -48,6 +48,17 @@
     line-height: normal;
 }
 
+/* Estilo para dispositivos móveis (max-width: 768px) */
+@media (max-width: 768px) {
+    .cancelarmodalbotao,
+    .apagarmodalbotao {
+        padding: 10px 2rem; /* Reduza o preenchimento horizontal */
+        font-size: 14px; /* Reduza o tamanho da fonte */
+        height: auto; /* Remova a altura fixa */
+        width: 100%; /* Ocupa toda a largura disponível */
+    }
+}
+
 .fundomodaldelete {
     border-radius: 14px;
     border: 1px solid #FDF6F5;

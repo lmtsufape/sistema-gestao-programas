@@ -15,10 +15,10 @@
                 <h1 class="titulo"><strong>Estudantes</strong></h1>
             </div>
 
-            <form class="search-container" action="{{ route('programas.index') }}" method="GET">
+            <form class="search-container" action="{{ route('alunos.index') }}" method="GET">
                 <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor"
                     name="valor" style="text-align: start">
-                <input class="search-button" type="submit" value=""></input>
+                <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
                 <button class="cadastrar-botao" type="button"
                     onclick="window.location.href = '{{ route('alunos.create') }}'">Cadastrar estudantes</button>
             </form>
@@ -60,18 +60,18 @@
                                         <td class="align-middle">
                                             <a type="button" data-bs-toggle="modal"
                                                 data-bs-target="#modal_edit_{{ $aluno->id }}" title="Informações do estudante">
-                                                <img src="{{ asset('images/information.svg') }}" alt="Info aluno"
+                                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info aluno"
                                                     style="height: 30px; width: 30px;">
                                             </a>
 
                                             <a href=" {{ route('alunos.edit', ['id' => $aluno->id]) }}" title="Editar o estudante">
-                                                <img src="{{ asset('images/pencil.svg') }}" alt="Editar aluno"
+                                                <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar aluno"
                                                     style="height: 30px; width: 30px;">
                                             </a>
 
                                             <a type="button" data-bs-toggle="modal"
                                                 data-bs-target="#modal_delete_{{ $aluno->id }}" title="Deletar o estudante">
-                                                <img src="{{ asset('images/delete.svg') }}" alt="Deletar aluno"
+                                                <img src="{{ asset('images/delete.svg') }}" title="Remover" alt="Deletar aluno"
                                                     style="height: 30px; width: 30px;">
                                             </a>
 

@@ -43,10 +43,10 @@
 
     <form class="search-container" action="" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
-        <input class="search-button" type="submit" value=""></input>
+        <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
     </form>
   </div>
-    
+
     <br>
     <br>
 
@@ -72,12 +72,12 @@
             <td class="align-middle">{{date_format(date_create($pivo->data_fim), "d/m/Y")}}</td>
             <td class="align-middle">
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$pivo->aluno->id}}" data-bs-id="{{$pivo->aluno->id}}">
-                <img src="{{asset('images/information.svg')}}" alt="Info aluno" style="height: 30px; width: 30px;">
+                <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info aluno" style="height: 30px; width: 30px;">
               </a>
               {{-- <a type="button" href="{{ route('edital.editar_vinculo', ['aluno_id' => $pivo->aluno_id, 'edital_id' => $pivo->edital_id]) }}">
                 <img src="{{asset('images/edit-outline-blue.png')}}" alt="Editar vinculo" style="height: 30px; width: 30px;">
               </a>--}}
-              {{--<a type="button" href="{{ route('edital.aluno.delete', ['aluno_id' => $pivo->aluno_id, 'edital_id' => $pivo->edital_id]) }}">
+              {{--<a type="button" href="{{ route('edital.aluno.delete', ['id' => $pivo->id]) }}">
                 <img src="{{asset('images/delete.png')}}" alt="Deletar aluno" style="height: 30px; width: 30px;">
               </a>--}}
               {{--<a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$pivo->aluno->id}}">

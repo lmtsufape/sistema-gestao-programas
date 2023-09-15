@@ -26,8 +26,17 @@
                         @foreach ($lista_documentos as $lista_documento)
                             <tbody>
                                 <td class="align-middle">{{ $lista_documento->titulo }}</td>
-                                <td class="align-middle"></td>
-                                <td class="align-middle"></td>
+                                <td class="align-middle">A definir</td>
+                                <td class="align-middle">
+                                    @php
+                                        $documento_enviado = $lista_documento->data_envio ?? null;
+                                    @endphp
+                                    @if ($documento_enviado)
+                                        {{ date_format(date_create($documento_enviado), "d/m/Y") }}
+                                    @else
+                                        Não enviado
+                                    @endif
+                                </td>
                                 @php
                                     switch ($lista_documento->id) {
                                         case 1:
@@ -40,7 +49,7 @@
                                             $rota = 'estagio.documentos.plano-de-atividades';
                                             break;
                                         case 4:
-                                            $rota = 'estagio.documentos.termo-de-encaminhamento';
+                                            $rota = 'estagio.documentos.ficha-frequencia';
                                             break;
                                         case 5:
                                             $rota = 'estagio.documentos.termo-de-encaminhamento';
@@ -58,17 +67,22 @@
                                 @endphp
                                 <td class="align-middle">
                                     <a>
-                                        <img src="{{ asset('images/information.svg') }}" alt="Info documento"
-                                            style="height: 30px; width: 30px;">
+                                        <img src="{{ asset('images/information.svg') }}" title="Informações"
+                                            alt="Info documento" style="height: 30px; width: 30px;">
                                     </a>
                                     <a href="{{ route($rota, ['id' => $estagio->id]) }}">
                                         <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher/Editar Documento"
                                             style="height: 30px; width: 30px;">
                                     </a>
-                                    <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->id]) }}">
+                                    @if ($documento_enviado)
+                                        <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->id]) }}" target="_blank">
+                                            <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
+                                                style="height: 30px; width: 30px;">
+                                        </a>
+                                    @else
                                         <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
-                                            style="height: 30px; width: 30px;">
-                                    </a>
+                                            style="height: 30px; width: 30px; opacity: 50%;" disabled>
+                                    @endif
                                 </td>
                             </tbody>
                         @endforeach
