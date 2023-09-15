@@ -70,10 +70,17 @@
                                         <img src="{{ asset('images/information.svg') }}" title="Informações"
                                             alt="Info documento" style="height: 30px; width: 30px;">
                                     </a>
-                                    <a href="{{ route($rota, ['id' => $estagio->id]) }}">
-                                        <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher/Editar Documento"
+                                    @if ($documento_enviado)
+                                    <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
+                                        <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento"
                                             style="height: 30px; width: 30px;">
                                     </a>
+                                    @else
+                                    <a href="{{ route($rota, ['id' => $estagio->id]) }}">
+                                        <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento"
+                                            style="height: 30px; width: 30px;">
+                                    </a>
+                                    @endif
                                     @if ($documento_enviado)
                                         <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->id]) }}" target="_blank">
                                             <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"

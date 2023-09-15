@@ -14,13 +14,20 @@ use Illuminate\Http\Request;
 class DocumentoEstagioController extends Controller
 {
 
-    public function termo_compromisso_form($id)
+    public function termo_compromisso_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
         $instituicao = Instituicao::findOrFail($estagio->instituicao_id);
         $orientador = Orientador::findOrFail($estagio->orientador_id);
-        return view('Estagio.documentos.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador"));
+        $documentos = DocumentoEstagio::where('estagio_id', $estagio->id)->get();
+        $json = $documentos->dados;
+        $dados = json_decode($json, true);
+        $edit = $request->query('edit');
+        if ($edit)
+            return view('Estagio.documentos.termo_de_compromisso_edit', compact("estagio", "aluno", "instituicao", "orientador", ['dados' => $dados]));
+        else
+            return view('Estagio.documentos.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador"));
     }
 
     public function termo_compromisso(Request $request)
@@ -75,11 +82,20 @@ class DocumentoEstagioController extends Controller
         return $pdf->editImage(2, $dados);
     }
 
-    public function termo_encaminhamento_form($id)
+    public function termo_encaminhamento_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
-        return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio", "aluno"));
+        $documento = DocumentoEstagio::findOrFail($estagio->id);
+        $edit = $request->query('edit');
+        if ($edit == true) {
+            $json = $documento->dados;
+            $dados = json_decode($json, true);
+            //dd($dados);
+            return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio", "aluno", "dados"));
+        } else {
+            return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio", "aluno"));
+        }
     }
 
     public function termo_encaminhamento(Request $request)
@@ -99,7 +115,7 @@ class DocumentoEstagioController extends Controller
             'cpf_supervisor' => $request->input('cpf_supervisor'),
             'formação_supervisor' => $request->input('formação_supervisor'),
             'instituicao_estagio' => $request->input('instituicao_estagio'),
-            'telefone_supervisor' => $request->input('telefone_supervisor'), 
+            'telefone_supervisor' => $request->input('telefone_supervisor'),
             'email_supervisor' => $request->input('email_supervisor'),
             'cidade_estágio' => $request->input('cidade_estagio'),
             'dia_atual' => $request->input('dia_atual'),
