@@ -24,15 +24,15 @@ class ServidorController extends Controller {
 
     public function index(Request $request)
     {
-    
+
             if (sizeof($request-> query()) > 0){
                 $campo = $request->query('campo');
                 $valor = $request->query('valor');
-    
+
                 if ($valor == null){
                     return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
                 }
-    
+
                 $servidores = Servidor::join("users", "users.typage_id", "=", "servidors.id");
                 $servidores = $servidores->where(function ($query) use ($valor) {
                     if ($valor) {
@@ -42,7 +42,7 @@ class ServidorController extends Controller {
                         $query->orWhere("servidors.matricula", "LIKE", "%{$valor}%");
                     }
                 })->orderBy('servidors.created_at', 'desc')->select("servidors.*")->distinct()->get();
-    
+
                 return view("servidores.index", compact("servidores"));
             } else {
                 $servidores = Servidor::all();
@@ -77,7 +77,7 @@ class ServidorController extends Controller {
                     $permission = "gestor";
                     break;
             };
-            
+
             $servidor = Servidor::Create([
                 'cpf' => $request->input('cpf'),
                 'tipo_servidor' => $permission,
@@ -87,7 +87,7 @@ class ServidorController extends Controller {
 
             $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
-                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);
             }
 
             if(
@@ -103,7 +103,7 @@ class ServidorController extends Controller {
                 #$mensagem_sucesso = "Orientador cadastrado com sucesso.";
 
                 DB::commit();
-                
+
                 return redirect('/servidores')->with('sucesso', 'Servidor cadastrado com sucesso.');
 
             } else {
@@ -172,8 +172,8 @@ class ServidorController extends Controller {
             if($request->hasFile('image') && $request->file('image')->isValid()) {
                 $imageName = ManipulacaoImagens::salvarImagem($request->image);
                 if($servidor->user->image){
-                    ManipulacaoImagens::deletarImagem($servidor->user->image); //Se houver uma nova imagem, remove a anterior do servidor                                
-                }                    
+                    ManipulacaoImagens::deletarImagem($servidor->user->image); //Se houver uma nova imagem, remove a anterior do servidor
+                }
             }
             $servidor->user->image = $request->image == null ? $servidor->user->image : $imageName;
 
@@ -189,8 +189,8 @@ class ServidorController extends Controller {
 
                 if ($servidor->user->update()){
                     $mensagem_sucesso = "Servidor editado com sucesso.";
-                    DB::commit();                
-        
+                    DB::commit();
+
                     return redirect("/servidores")->with('sucesso', 'Servidor editado com sucesso.');
                 } else {
                     DB::rollback();
@@ -236,8 +236,8 @@ class ServidorController extends Controller {
             if($request->hasFile('image') && $request->file('image')->isValid()) {
                 $imageName = ManipulacaoImagens::salvarImagem($request->image);
                 if($servidor->user->image){
-                    ManipulacaoImagens::deletarImagem($servidor->user->image); //Se houver uma nova imagem, remove a anterior do servidor                                
-                }                    
+                    ManipulacaoImagens::deletarImagem($servidor->user->image); //Se houver uma nova imagem, remove a anterior do servidor
+                }
             }
             $servidor->user->image = $request->image == null ? $servidor->user->image : $imageName;
 
@@ -279,21 +279,21 @@ class ServidorController extends Controller {
 
             $id = $request->only(['id']);
             $servidor = Servidor::findOrFail($id)->first();
-            $imageName = $servidor->user->image;     
+            $imageName = $servidor->user->image;
 
-            $servidor->user->delete();            
+            $servidor->user->delete();
             $servidor->delete();
-            ManipulacaoImagens::deletarImagem($imageName); 
-            DB::commit();                
+            ManipulacaoImagens::deletarImagem($imageName);
+            DB::commit();
             return redirect(route("servidores.index"))->with('sucesso', 'Servidor Deletado com Sucesso!');
-            
+
 
         } catch(QueryException $e){
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao deletar Servidor. O Servidor possui vínculo com algum Programa." );
         }catch (Exception $e) {
             DB::rollback();
-            dd($e);
+            //dd($e);
             return redirect()->back()->withErrors("Falha ao deletar servidor. Tente novamente mais tarde.");
         }
     }
