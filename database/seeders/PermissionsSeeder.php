@@ -41,10 +41,10 @@ class PermissionsSeeder extends Seeder
             'created_at' => date('Y-m-d h:i:s')
             ],
             [
-                'name' => 'gestor',
-                'guard_name' => 'web',
-                'created_at' => date('Y-m-d h:i:s')
-                ]
+            'name' => 'gestor',
+            'guard_name' => 'web',
+            'created_at' => date('Y-m-d h:i:s')
+            ]
         ]);
     }
 }
