@@ -32,7 +32,7 @@
                                     <li><a class="dropdown-item" href="{{ route('servidores.index') }}">Servidores</a></li>
                                 @endif
 
-                                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
+                                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                                     <li><a class="dropdown-item" href="{{ route('alunos.index') }}">Estudantes</a></li>
                                 @endif
                                 <li><a class="dropdown-item" href="{{ route('orientadors.index') }}">Professores</a></li>
@@ -48,7 +48,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark"role="menu" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item" href="{{ route('edital.index') }}">Editais</a></li>
-                                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
+                                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                                     <li><a class="dropdown-item" href="{{ route('cursos.index') }}">Cursos</a></li>
                                     <li><a class="dropdown-item" href="{{ route('disciplinas.index') }}">Disciplinas</a>
                                     </li>

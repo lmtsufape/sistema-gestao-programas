@@ -20,7 +20,7 @@
                 <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
                     id="valor" name="valor" style="text-align: start">
                 <button class="search-button" title="Fazer a pesquisa" type="submit" value=""></button>
-                @if (Auth::user()->typage->tipo_servidor != 'pro_reitor')
+                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                     <button class="cadastrar-botao" type="button"
                         onclick="window.location.href = '{{ route('servidores.create') }}'"">Cadastrar servidor</button>
                 @endif
@@ -85,7 +85,7 @@
                                                 <img src="{{ asset('images/information.svg') }}" title="Informações"
                                                     alt="Info servidor" style="height: 30px; width: 30px;">
                                             </a>
-                                            @if (Auth::user()->typage->tipo_servidor != 'pro_reitor')
+                                            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                                                 <a href="{{ url('/servidores/' . $servidor->id . '/edit') }}">
                                                     <img src="{{ asset('images/pencil.svg') }}" title="Editar"
                                                         alt="Editar servidor" style="height: 30px; width: 30px;">
