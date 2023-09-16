@@ -11,7 +11,7 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Informações do estudante</span>
                 </div>
-                @if (Auth::user()->typage->tipo_servidor != 'pro_reitor')
+                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                     <div class="mb-3">
                         <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar aluno"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
