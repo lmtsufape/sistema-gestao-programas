@@ -8,8 +8,9 @@ use App\Models\DocumentoEstagio;
 use App\Models\Estagio;
 use App\Models\Instituicao;
 use App\Models\Orientador;
+use Exception;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class DocumentoEstagioController extends Controller
 {

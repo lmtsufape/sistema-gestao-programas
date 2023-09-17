@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\DocumentoEstagio;
 use App\Models\ListaDocumentosObrigatorios;
 use Illuminate\Support\Facades\DB;
+use Exception;
 use TCPDF;
 
 class PDFController extends Controller
@@ -85,23 +86,10 @@ class PDFController extends Controller
 
         $documento = new DocumentoEstagio();
         DB::beginTransaction();
-
-        $verificaDocumento = $documento::where('id', $this->getListaDeDocumentosId())->first();
-
-        if ($verificaDocumento) {
-            $verificaDocumento->delete();
-        }
-
-
         $documento->id = $this->getListaDeDocumentosId();
         $documento->aluno_id = Auth::id();
-        $estagio = new EstagioController();
-
-        $documento->estagio_id = $estagio->getEstagioAtual()->id;
-
         $documento->pdf = $pdfContent;
         $documento->lista_documentos_obrigatorios_id = $this->getListaDeDocumentosId();
-        $documento->dados = json_encode($dados);
         $documento->save();
 
         $listaDocumentosObrigatorios = ListaDocumentosObrigatorios::find($this->getListaDeDocumentosId());
