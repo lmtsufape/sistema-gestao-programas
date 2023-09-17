@@ -84,28 +84,36 @@ class PDFController extends Controller
         $pdfContent = ob_get_contents();
         ob_end_clean();
 
+
+        try {
+            DB::beginTransaction();
         
-        DB::beginTransaction();
-
-        $documentoExistente = DocumentoEstagio::where('id', $this->getListaDeDocumentosId())->first();
-
-        if (!$documentoExistente) {
-            $documento = new DocumentoEstagio();
-            $documento->id = $this->getListaDeDocumentosId();
-            $documento->aluno_id = Auth::id();
-            $documento->pdf = $pdfContent;
-            $documento->lista_documentos_obrigatorios_id = $this->getListaDeDocumentosId();
-            $documento->dados = json_encode($dados);
-            $estagio = new EstagioController();
-            $documento->estagio_id = $estagio->getEstagioAtual()->id;
-            $documento->save();
-        } else {
-            $documentoExistente->dados = json_encode($dados);
-            $documentoExistente->pdf = $pdfContent;
-            $documentoExistente->update();
+            $listaDocumentosId = $this->getListaDeDocumentosId();
+            $alunoId = Auth::id();
+            
+            $documentoExistente = DocumentoEstagio::where('lista_documentos_obrigatorios_id', $listaDocumentosId)
+                ->where('aluno_id', $alunoId)
+                ->first();
+        
+            if (!$documentoExistente) {
+                $documento = new DocumentoEstagio();
+                $documento->aluno_id = $alunoId;
+                $documento->pdf = $pdfContent;
+                $documento->lista_documentos_obrigatorios_id = $listaDocumentosId;
+                $documento->dados = json_encode($dados);
+                $estagio = new EstagioController();
+                $documento->estagio_id = $estagio->getEstagioAtual()->id;
+                $documento->save();
+            } else {
+                $documentoExistente->dados = json_encode($dados);
+                $documentoExistente->pdf = $pdfContent;
+                $documentoExistente->save();
+            }
+        
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
         }
-
-        DB::commit();
 
         // Renderizar o PDF no navegador
         //$pdf->Output('documento.pdf', 'I');

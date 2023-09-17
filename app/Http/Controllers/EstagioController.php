@@ -214,7 +214,7 @@ class EstagioController extends Controller
             $join->on('lista_documentos_obrigatorios.id', '=', 'documentos_estagios.lista_documentos_obrigatorios_id')
                 ->where('documentos_estagios.aluno_id', $estagio->aluno_id);
         })
-            ->select('lista_documentos_obrigatorios.*', 'documentos_estagios.created_at as data_envio', 'documentos_estagios.updated_at as data_atualizacao')
+            ->select('lista_documentos_obrigatorios.*', 'documentos_estagios.created_at as data_envio', 'documentos_estagios.updated_at as data_atualizacao', 'documentos_estagios.id as documento_id')
             ->get();
 
 
