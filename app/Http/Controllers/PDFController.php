@@ -84,13 +84,26 @@ class PDFController extends Controller
         $pdfContent = ob_get_contents();
         ob_end_clean();
 
-        $documento = new DocumentoEstagio();
+        
         DB::beginTransaction();
-        $documento->id = $this->getListaDeDocumentosId();
-        $documento->aluno_id = Auth::id();
-        $documento->pdf = $pdfContent;
-        $documento->lista_documentos_obrigatorios_id = $this->getListaDeDocumentosId();
-        $documento->save();
+
+        $documentoExistente = DocumentoEstagio::where('id', $this->getListaDeDocumentosId())->first();
+
+        if (!$documentoExistente) {
+            $documento = new DocumentoEstagio();
+            $documento->id = $this->getListaDeDocumentosId();
+            $documento->aluno_id = Auth::id();
+            $documento->pdf = $pdfContent;
+            $documento->lista_documentos_obrigatorios_id = $this->getListaDeDocumentosId();
+            $documento->dados = json_encode($dados);
+            $estagio = new EstagioController();
+            $documento->estagio_id = $estagio->getEstagioAtual()->id;
+            $documento->save();
+        }
+
+        $documentoExistente->dados = json_encode($dados);
+        $documentoExistente->pdf = $pdfContent;
+        $documentoExistente->update();
 
         $listaDocumentosObrigatorios = ListaDocumentosObrigatorios::find($this->getListaDeDocumentosId());
         $listaDocumentosObrigatorios->data_envio = now();

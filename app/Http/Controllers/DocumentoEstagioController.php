@@ -15,20 +15,52 @@ use Illuminate\Support\Facades\DB;
 class DocumentoEstagioController extends Controller
 {
 
+    public function edit($id)
+    {
+        $documento = DocumentoEstagio::findOrFail($id);
+        return view('Estagio.documentos.editDocumento', compact('documento'));
+    }
+
+    public function update($dados, $id)
+    {
+        $documento = DocumentoEstagio::Where('id', $id)->first();
+
+        // terá um método para cada documento, esse switchcase servirá para selecionar o método especifico de cada documento.
+        switch ($id) {
+                //termo de encaminhamento
+            case 1:
+                $documentPath1 = storage_path('app/docs/termo_encaminhamento/0.png');
+                $documentPath2 = storage_path('app/docs/termo_encaminhamento/1.png');
+                return $this->editTermoEncaminhamento([$documentPath1, $documentPath2], $dados);
+                break;
+                //termo de compromisso
+            case 2:
+                $documentPath1 = storage_path('app/docs/termo_compromisso/0.png');
+                $documentPath2 = storage_path('app/docs/termo_compromisso/1.png');
+                return $this->editTermoCompromisso([$documentPath1, $documentPath2], $dados);
+                break;
+            default:
+                return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
+        }
+
+        $documento->save();
+    }
+
+
     public function termo_compromisso_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
         $instituicao = Instituicao::findOrFail($estagio->instituicao_id);
         $orientador = Orientador::findOrFail($estagio->orientador_id);
-        $documentos = DocumentoEstagio::where('estagio_id', $estagio->id)->get();
-        $json = $documentos->dados;
-        $dados = json_decode($json, true);
-        $edit = $request->query('edit');
-        if ($edit)
-            return view('Estagio.documentos.termo_de_compromisso_edit', compact("estagio", "aluno", "instituicao", "orientador", ['dados' => $dados]));
-        else
-            return view('Estagio.documentos.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador"));
+
+        if ($request->query("edit") === "true") {
+            $documento = DocumentoEstagio::findOrFail(2);
+            $dados = json_decode($documento->dados, true);
+            return view('Estagio.documentos.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador", "dados"));
+        }
+
+        return view('Estagio.documentos.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador"));
     }
 
     public function termo_compromisso(Request $request)
@@ -87,16 +119,15 @@ class DocumentoEstagioController extends Controller
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
-        $documento = DocumentoEstagio::findOrFail($estagio->id);
-        $edit = $request->query('edit');
-        if ($edit == true) {
-            $json = $documento->dados;
-            $dados = json_decode($json, true);
-            //dd($dados);
+
+        if ($request->query("edit") == 1 ) {
+            $documento = DocumentoEstagio::findOrFail(1);
+            $dados = json_decode($documento->dados, true);
+            
             return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio", "aluno", "dados"));
-        } else {
-            return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio", "aluno"));
         }
+        //dd($estagio);
+        return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio", "aluno"));
     }
 
     public function termo_encaminhamento(Request $request)
@@ -138,10 +169,17 @@ class DocumentoEstagioController extends Controller
         return $pdf->editImage(1, $dados);
     }
 
-    public function ficha_frequencia_form($id)
+    public function ficha_frequencia_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
+
+        if ($request->query("edit") === "true") {
+            $documento = DocumentoEstagio::findOrFail(4);
+            $dados = json_decode($documento->dados, true);
+            return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno", "dados"));
+        }
+
         return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno"));
     }
 
