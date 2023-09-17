@@ -105,11 +105,6 @@ class PDFController extends Controller
             $documentoExistente->update();
         }
 
-        
-        $listaDocumentosObrigatorios = ListaDocumentosObrigatorios::find($this->getListaDeDocumentosId());
-        $listaDocumentosObrigatorios->data_envio = now();
-        $listaDocumentosObrigatorios->save();
-
         DB::commit();
 
         // Renderizar o PDF no navegador
