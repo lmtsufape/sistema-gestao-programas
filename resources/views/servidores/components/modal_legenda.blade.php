@@ -11,16 +11,18 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Informações do servidor</span>
                 </div>
-                <div class="mb-3">
-                    <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar servidor"
-                        style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Editar o servidor</span>
-                </div>
-                <div class="mb-3">
-                    <img src="{{ asset('images/delete_red.svg') }}" alt="Deletar servidor"
-                        style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Deletar o servidor</span>
-                </div>
+                @if (Auth::user()->typage->tipo_servidor != 'pro_reitor')
+                    <div class="mb-3">
+                        <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar servidor"
+                            style="height: 30px; width: 30px; padding-bottom: 5px">
+                        <span class="textoinfomodal">Editar o servidor</span>
+                    </div>
+                    <div class="mb-3">
+                        <img src="{{ asset('images/delete_red.svg') }}" alt="Deletar servidor"
+                            style="height: 30px; width: 30px; padding-bottom: 5px">
+                        <span class="textoinfomodal">Deletar o servidor</span>
+                    </div>
+                @endif
             </div>
             <div class="modal-footer border-0"></div>
         </div>

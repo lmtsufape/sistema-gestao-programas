@@ -45,19 +45,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($orientadores as $orientador)
-                    @foreach ($pivot as $pivo)
+                    @foreach ($vinculos as $vinculo)
                     <tr>
-                        <td class="align-middle">{{ $orientador->name }}</td>
-                        <td class="align-middle">{{ $pivo->titulo }}</td>
+                        <td class="align-middle">{{ $vinculo->orientador->user->name }}</td>
+                        <td class="align-middle">{{ $vinculo->titulo }}</td>
                         <td>
 
 
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$orientador->id}}">
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$vinculo->orientador->id}}">
                                 <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info Orientador" style="height: 30px; width: 30px;">
                             </a>
 
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$orientador->id}}">
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{$vinculo->orientador->id}}">
                                 <img src="{{ asset('images/document.svg') }}" title="Ver documentos" alt="Mostrar Documentos" style="height: 30px; width: 30px;">
                             </a>
 
@@ -66,9 +65,8 @@
                     </tr>
                 </tbody>
                 @include('Edital.components_orientadores.modal_legenda')
-                @include('Edital.components_orientadores.modal_show', ['orientador' => $orientador, 'pivo' => $pivo])
-                @include('Edital.components_orientadores.modal_documents', ['orientador' => $orientador, 'pivo' => $pivo])
-                @endforeach
+                @include('Edital.components_orientadores.modal_show', ['orientador' => $vinculo->orientador, 'vinculo' => $vinculo])
+                @include('Edital.components_orientadores.modal_documents', ['orientador' => $vinculo->orientador, 'vinculo' => $vinculo])
                 @endforeach
             </table>
         </div>

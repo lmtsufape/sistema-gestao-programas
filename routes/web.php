@@ -9,6 +9,7 @@ use App\Http\Controllers\EditalController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\DocumentoEstagioController;
 use App\Http\Controllers\EstagioController;
+use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\FrequenciaController;
 use App\Http\Controllers\InstituicaoController;
 use Illuminate\Support\Facades\Mail;
@@ -186,9 +187,6 @@ Route::prefix('cursos')->group(function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Rotas de Frequencia mensal
-Route::get('/frequencia/create', [FrequenciaController::class, 'create']);
-
 //Rotas de listar modelos de documentos
 Route::get('/listar-modelos', [App\Http\Controllers\ListarModelosController::class, 'index'])->name('listar-modelos');
 
@@ -252,12 +250,16 @@ Route::prefix('estagio')->group(function () {
     // comentado temporariamente 
     Route::prefix('/documentos')->group(function () {
         Route::get('/{id}', [EstagioController::class, 'showDocuments'])->name('estagio.documentos');
+
+
         Route::get('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.documentos.termo-de-encaminhamento');
         Route::post('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.documentos.termo-de-encaminhamento.store');
         
         Route::get('/{id}/termo-de-compromisso', [DocumentoEstagioController::class, 'termo_compromisso_form'])->name('estagio.documentos.termo-de-compromisso');
         Route::post('/{id}/termo-de-compromisso', [DocumentoEstagioController::class, 'termo_compromisso'])->name('estagio.documentos.termo-de-compromisso.store');
 
+        Route::get('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia_form'])->name('estagio.documentos.ficha-frequencia');
+        Route::post('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia'])->name('estagio.documentos.ficha-frequencia.store');
 
         Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
     });
@@ -265,3 +267,13 @@ Route::prefix('estagio')->group(function () {
 });
 
 Route::get('/meus-estagios', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
+
+//Rotas de Supervisor
+Route::prefix('supervisor')->group(function () {
+    Route::get('/', [SupervisorController::class, 'index'])->name('supervisor.index');
+    Route::get('/cadastrar', [SupervisorController::class, 'create'])->name('supervisor.create');
+    Route::post('/', [SupervisorController::class, 'store'])->name('supervisor.store');
+    Route::get('/{id}/edit', [SupervisorController::class, 'edit'])->where('id', '[0-9]+')->name('supervisor.edit');
+    Route::put('/{id}', [SupervisorController::class, 'update'])->name('supervisor.update');
+    Route::delete('/{id}', [SupervisorController::class, 'destroy'])->name('supervisor.delete');
+});
