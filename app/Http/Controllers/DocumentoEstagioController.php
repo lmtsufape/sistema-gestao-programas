@@ -54,7 +54,7 @@ class DocumentoEstagioController extends Controller
         $instituicao = Instituicao::findOrFail($estagio->instituicao_id);
         $orientador = Orientador::findOrFail($estagio->orientador_id);
 
-        if ($request->query("edit") === "true") {
+        if ($request->query("edit") == true) {
             $documento = DocumentoEstagio::findOrFail(2);
             $dados = json_decode($documento->dados, true);
             return view('Estagio.documentos.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador", "dados"));
@@ -120,7 +120,7 @@ class DocumentoEstagioController extends Controller
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
 
-        if ($request->query("edit") == 1 ) {
+        if ($request->query("edit") == true ) {
             $documento = DocumentoEstagio::findOrFail(1);
             $dados = json_decode($documento->dados, true);
             
@@ -174,7 +174,7 @@ class DocumentoEstagioController extends Controller
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
 
-        if ($request->query("edit") === "true") {
+        if ($request->query("edit") == true) {
             $documento = DocumentoEstagio::findOrFail(4);
             $dados = json_decode($documento->dados, true);
             return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno", "dados"));

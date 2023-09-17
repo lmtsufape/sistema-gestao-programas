@@ -99,12 +99,13 @@ class PDFController extends Controller
             $estagio = new EstagioController();
             $documento->estagio_id = $estagio->getEstagioAtual()->id;
             $documento->save();
+        } else {
+            $documentoExistente->dados = json_encode($dados);
+            $documentoExistente->pdf = $pdfContent;
+            $documentoExistente->update();
         }
 
-        $documentoExistente->dados = json_encode($dados);
-        $documentoExistente->pdf = $pdfContent;
-        $documentoExistente->update();
-
+        
         $listaDocumentosObrigatorios = ListaDocumentosObrigatorios::find($this->getListaDeDocumentosId());
         $listaDocumentosObrigatorios->data_envio = now();
         $listaDocumentosObrigatorios->save();

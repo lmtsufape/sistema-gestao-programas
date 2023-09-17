@@ -20,8 +20,8 @@
             <label for="nome" class="titulopequeno">Instituição<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="instituicao" id="instituicao"
-                placeholder="Digite o nome da instituição onde será feito o estágio" value="{{ $dados['instituicao'] ?? '' }}"
-                required><br><br>
+                placeholder="Digite o nome da instituição onde será feito o estágio"
+                value="{{ $dados['instituicao'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
@@ -50,7 +50,8 @@
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="ano_etapa" id="ano_etapa"
-                placeholder="Digite o Ano/Etapa/Modalidade do estágio" value="{{ $dados['ano_etapa']  ?? ''}}" required><br><br>
+                placeholder="Digite o Ano/Etapa/Modalidade do estágio" value="{{ $dados['ano_etapa'] ?? '' }}"
+                required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
@@ -58,7 +59,8 @@
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="versao_estagio" id="versao_estagio"
-                placeholder="Digite qual o Estágio Supervisionado" value="{{ $dados['versao_estagio'] ?? '' }}" required><br><br>
+                placeholder="Digite qual o Estágio Supervisionado" value="{{ $dados['versao_estagio'] ?? '' }}"
+                required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
@@ -67,7 +69,7 @@
             <br>
             <input class="boxcadastrar" type="text" name="data_inicio" id="data_inicio"
                 placeholder="Digite qual a data e o mês de início do estágio EX: 23 de Ago"
-                value="{{ $dados['data_inicio']  ?? ''}}" required><br><br>
+                value="{{ $dados['data_inicio'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
@@ -75,8 +77,8 @@
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="data_fim" id="data_fim"
-                placeholder="Digite qual a data e o mês de fim do estágio EX: 23 de Ago" value="{{ $dados['data_fim'] ?? '' }}"
-                required><br><br>
+                placeholder="Digite qual a data e o mês de fim do estágio EX: 23 de Ago"
+                value="{{ $dados['data_fim'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
@@ -134,7 +136,8 @@
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="email_supervisor" id="email_supervisor"
-                placeholder="Digite o E-mail do Supervisor" value="{{ $dados['email_supervisor'] ?? '' }}" required><br><br>
+                placeholder="Digite o E-mail do Supervisor" value="{{ $dados['email_supervisor'] ?? '' }}"
+                required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
@@ -179,29 +182,32 @@
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="endereco_estagio" id="endereco_estagio"
-                placeholder="Digite o endereço do estágio" value="{{ $dados['endereco_estagio'] ?? '' }}" required><br><br>
+                placeholder="Digite o endereço do estágio" value="{{ $dados['endereco_estagio'] ?? '' }}"
+                required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
             <label for="nome" class="titulopequeno">Nº<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="n_estagio" id="n_estagio"
-                placeholder="Digite o número do endereço do estágio" value="{{ $dados['n_estagio'] ?? '' }}" required><br><br>
+                placeholder="Digite o número do endereço do estágio" value="{{ $dados['n_estagio'] ?? '' }}"
+                required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
             <label for="nome" class="titulopequeno">Complemento<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="complemento_estagio" id="complemento_estagio"
-                placeholder="Digite o complemento do endereço do estágio" value="{{ $dados['complemento_estagio'] ?? '' }}"
-                required><br><br>
+                placeholder="Digite o complemento do endereço do estágio"
+                value="{{ $dados['complemento_estagio'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
             <label for="nome" class="titulopequeno">CEP<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cep_estagio" id="cep_estagio"
-                placeholder="Digite o CEP do endereço do estágio" value="{{ $dados['cep_estagio'] ?? '' }}" required><br><br>
+                placeholder="Digite o CEP do endereço do estágio" value="{{ $dados['cep_estagio'] ?? '' }}"
+                required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
 
 
