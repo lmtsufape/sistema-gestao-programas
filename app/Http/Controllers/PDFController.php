@@ -34,13 +34,16 @@ class PDFController extends Controller
                 $documentPath2 = storage_path('app/docs/termo_compromisso/1.png');
                 return $this->editTermoCompromisso([$documentPath1, $documentPath2], $dados);
                 break;
-            
+                //plano de atividades
+            case 3:
+                $documentPath = storage_path('app/docs/plano_de_atividades/0.png');
+                return $this->editPlanoDeAtividades($documentPath, $dados);
+                break;
             //ficha de frequência
             case 4:
                 $documentPath = storage_path('app/docs/ficha_frequencia/0.png');
                 return $this->editFichaFrequencia([$documentPath], $dados);
                 break;
-
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
         }
@@ -1067,7 +1070,188 @@ class PDFController extends Controller
         return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
     }
 
-    protected function getListaDeDocumentosId(){
+    private function editPlanoDeAtividades($documentPath, $dados)
+    {
+        $image = Image::make($documentPath);
+        //ESTAGIARIO
+        $image->text($dados['nome'], 305, 657, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['email'], 1551, 658, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['curso'], 309, 749, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['periodo'], 1385, 752, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+        //CAMPO DE ESTÁGIO
+        $image->text($dados['instituicao'], 381, 989, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['endereco'], 924, 1079, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['numCasa'], 253, 1168, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['complemento'], 821, 1166, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['fone'], 1623, 1169, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['cep'], 298, 1262, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+        
+        $image->text($dados['bairro'], 915, 1257, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['cidade'],1490, 1254, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['estado'], 2012, 1254, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['pontoReferencia'], 532, 1346, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['supervisorEstagio'], 568, 1432, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['FoneSupervisor'], 434,1524, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['emailSup'], 1022, 1524, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['cargo'], 1628, 1524, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['educacaoEscolar'], 544, 1616, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['educacaoNaoEscolar'], 1232, 1616, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['modalidade'], 441, 1890, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        //PROGRAMA DE ESTÁGIO
+        $image->text($dados['semestreLetivo'], 464, 2122, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['componenteCurricular'], 1173, 2125, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['professorComponenteCurricular'], 796, 2218, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['professorOrientador'],544, 2308 , function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['cargaHorariaSemanal'], 1114, 2398, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['diasRealizacao'], 510, 2490, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $image->text($dados['horario'], 1388, 2486, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(37);
+            $font->color(self::AZUL);
+        });
+
+        $this->toPDF($image);
+        Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
+        $estagio = new EstagioController();
+
+        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+    }
+
+    protected function getListaDeDocumentosId()
+    {
         $listaDocumentosObrigatorios = new ListaDocumentosObrigatorios();
         $document = $listaDocumentosObrigatorios->where('id', $this->documentType)->first();
         return $document->id;

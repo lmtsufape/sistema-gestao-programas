@@ -46,7 +46,7 @@
                                             $rota = 'estagio.documentos.termo-de-compromisso';
                                             break;
                                         case 3:
-                                            $rota = 'estagio.documentos.termo-de-encaminhamento';
+                                            $rota = 'estagio.documentos.plano-de-atividades';
                                             break;
                                         case 4:
                                             $rota = 'estagio.documentos.ficha-frequencia';
