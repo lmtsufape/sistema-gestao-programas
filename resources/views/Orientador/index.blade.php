@@ -46,7 +46,7 @@
                 <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
                     id="valor" name="valor" style="text-align: start">
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
-                @if (Auth::user()->typage->tipo_servidor != 'pro_reitor')
+                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                     <button class="cadastrar-botao" type="button"
                         onclick="window.location.href = '{{ route('orientadors.create') }}'">Cadastrar professor</button>
                 @endif
@@ -101,7 +101,7 @@
 
                                 </a> --}}
 
-                                        @if (Auth::user()->typage->tipo_servidor != 'pro_reitor')
+                                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                                             <a href=" {{ route('orientadors.edit', ['id' => $orientador->id]) }}">
                                                 <img src="{{ asset('images/pencil.svg') }}" title="Editar"
                                                     alt="Editar professor" style="height: 30px; width: 30px;">

@@ -20,7 +20,7 @@
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
 
 
-                @if (Auth::user()->typage->tipo_servidor != 'pro_reitor')
+                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                     <button class="cadastrar-botao" type="button"
                         onclick="window.location.href = '{{ route('programas.create') }}'">Cadastrar programa</button>
                 @endif
@@ -65,7 +65,7 @@
                                                 <img src="{{ asset('images/information.svg') }}" title="Informações"
                                                     alt="Info programa" style="height: 30px; width: 30px;">
                                             </a>
-                                            @if (Auth::user()->typage->tipo_servidor != 'pro_reitor')
+                                            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                                                 <a href="{{ url("/programas/$programas->id/atribuir-servidor") }}">
                                                     <img src="{{ asset('images/add_servidor.svg') }}" title="Adicionar servidor"
                                                         alt="Add Servidor" style="height: 30px; width: 30px;">
@@ -75,7 +75,7 @@
                                                 <img src="{{ asset('images/listar_edital.svg') }}" title="Listar edital"
                                                     alt="Listar edital" style="height: 30px; width: 30px;">
                                             </a>
-                                            @if (Auth::user()->typage->tipo_servidor != 'pro_reitor')
+                                            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                                                 <a href="{{ url("/programas/$programas->id/criar-edital") }}">
                                                     <img src="{{ asset('images/add_edital.svg') }}" title="Adicionar edital"
                                                         alt="Add Edital" style="height: 30px; width: 30px;">

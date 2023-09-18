@@ -119,7 +119,7 @@ class DocumentoEstagioController extends Controller
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
-
+      
         if ($request->query("edit") == true ) {
             $documento = DocumentoEstagio::findOrFail(1);
             $dados = json_decode($documento->dados, true);
@@ -136,8 +136,10 @@ class DocumentoEstagioController extends Controller
         $dados = [
             'instituicao' => $request->input('instituicao'),
             'nome' => $request->input('nome'),
+            'email' => $request->input('email'),
             'curso' => $request->input('curso'),
             'periodo' => $request->input('periodo'),
+            //CAMPO DE ESTÁGIO
             'ano_etapa' => $request->input('ano_etapa'),
             'versao_estagio' => $request->input('versao_estagio'),
             'data_inicio' => $request->input('data_inicio'),
@@ -169,6 +171,53 @@ class DocumentoEstagioController extends Controller
         return $pdf->editImage(1, $dados);
     }
 
+  
+    public function plano_de_atividades_form($id)
+    {
+        $estagio = Estagio::findOrFail($id);
+        $aluno = Aluno::findOrFail($estagio->aluno_id);
+        return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno"));
+    }
+
+    public function plano_de_atividades(Request $request)
+    {
+        $pdf = new PDFController;
+        $dados = [
+            'nome' => $request->input('nome'),
+            'email' => $request->input('email'),
+            'curso' => $request->input('curso'),
+            'periodo' => $request->input('periodo'),
+            //CAMPO DE ESTAGIO
+            'instituicao' => $request->input('instituição'),
+            'endereco' => $request->input('endereco'),
+            'numCasa' => $request->input('numCasa'),
+            'complemento' => $request->input('complemento'),
+            'fone' => $request->input('fone'),
+            'cep' => $request->input('cep'),
+            'bairro' => $request->input('bairro'),
+            'cidade' => $request->input('cidade'),
+            'estado' => $request->input('estado'),
+            'pontoReferencia' => $request->input('pontoReferencia'),
+            'supervisorEstagio' => $request->input('supervisorEstagio'),
+            'FoneSupervisor' => $request->input('FoneSupervisor'),
+            'emailSup' => $request->input('emailSup'),
+            'cargo' => $request->input('cargo'),
+            'educacaoEscolar' => $request->input('educacaoEscolar'),
+            'educacaoNaoEscolar' => $request->input('educacaoNaoEscolar'),
+            'modalidade' => $request->input('modalidade'),
+            //PROGRAMA DE ESTAGIO
+            'semestreLetivo' => $request->input('semestreLetivo'),
+            'componenteCurricular' => $request->input('componenteCurricular'),
+            'professorComponenteCurricular' => $request->input('professorComponenteCurricular'),
+            'professorOrientador' => $request->input('professorOrientador'),
+            'cargaHorariaSemanal' => $request->input('cargaHorariaSemanal'),
+            'diasRealizacao' => $request->input('diasRealizacao'),
+            'horario' => $request->input('horario'),
+        ];
+
+        return $pdf->editImage(3, $dados);
+    }
+  
     public function ficha_frequencia_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
