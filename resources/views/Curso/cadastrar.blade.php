@@ -30,7 +30,7 @@
 
                 <br><br>
                 <div class="botoessalvarvoltar">
-                    <input type="button" value="Voltar" href="{{url('/home/')}}" onclick="window.location.href='{{url('/home/')}}'" class="botaovoltar">
+                    <input type="button" value="Voltar" href="{{url('/cursos/')}}" onclick="window.location.href='{{url('/cursos/')}}'" class="botaovoltar">
                     <input class="botaosalvar" type="submit" value="Salvar">
                 </div>
 
