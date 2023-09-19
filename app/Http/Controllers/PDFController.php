@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\DocumentoEstagio;
 use App\Models\ListaDocumentosObrigatorios;
 use Illuminate\Support\Facades\DB;
+use Exception;
 use TCPDF;
 
 class PDFController extends Controller
@@ -39,7 +40,7 @@ class PDFController extends Controller
                 $documentPath = storage_path('app/docs/plano_de_atividades/0.png');
                 return $this->editPlanoDeAtividades($documentPath, $dados);
                 break;
-            //ficha de frequência
+                //ficha de frequência
             case 4:
                 $documentPath = storage_path('app/docs/ficha_frequencia/0.png');
                 return $this->editFichaFrequencia([$documentPath], $dados);
@@ -49,7 +50,7 @@ class PDFController extends Controller
         }
     }
 
-    private function toPDF($images)
+    private function toPDF($images, $dados)
     {
         $pdf = new TCPDF();
         $pdf->SetMargins(0, 0, 0);
@@ -86,19 +87,36 @@ class PDFController extends Controller
         $pdfContent = ob_get_contents();
         ob_end_clean();
 
-        $generatedPdf = new DocumentoEstagio();
-        DB::beginTransaction();
-        $generatedPdf->id = $this->getListaDeDocumentosId();
-        $generatedPdf->aluno_id = Auth::id();
-        $generatedPdf->pdf = $pdfContent;
-        $generatedPdf->lista_documentos_obrigatorios_id = $this->getListaDeDocumentosId();
-        $generatedPdf->save();
 
-        $listaDocumentosObrigatorios = ListaDocumentosObrigatorios::find($this->getListaDeDocumentosId());
-        $listaDocumentosObrigatorios->data_envio = now();
-        $listaDocumentosObrigatorios->save();
-
-        DB::commit();
+        try {
+            DB::beginTransaction();
+        
+            $listaDocumentosId = $this->getListaDeDocumentosId();
+            $alunoId = Auth::id();
+            
+            $documentoExistente = DocumentoEstagio::where('lista_documentos_obrigatorios_id', $listaDocumentosId)
+                ->where('aluno_id', $alunoId)
+                ->first();
+        
+            if (!$documentoExistente) {
+                $documento = new DocumentoEstagio();
+                $documento->aluno_id = $alunoId;
+                $documento->pdf = $pdfContent;
+                $documento->lista_documentos_obrigatorios_id = $listaDocumentosId;
+                $documento->dados = json_encode($dados);
+                $estagio = new EstagioController();
+                $documento->estagio_id = $estagio->getEstagioAtual()->id;
+                $documento->save();
+            } else {
+                $documentoExistente->dados = json_encode($dados);
+                $documentoExistente->pdf = $pdfContent;
+                $documentoExistente->save();
+            }
+        
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+        }
 
         // Renderizar o PDF no navegador
         //$pdf->Output('documento.pdf', 'I');
@@ -344,7 +362,7 @@ class PDFController extends Controller
 
 
         $images = [$image1, $image2];
-        $this->toPDF($images);
+        $this->toPDF($images, $dados);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 
@@ -572,7 +590,7 @@ class PDFController extends Controller
 
 
         $images = [$image1, $image2];
-        $this->toPDF($images);
+        $this->toPDF($images, $dados);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 
@@ -713,7 +731,7 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-                // Linha 5
+        // Linha 5
         $image->text($dados['data5'], 170, 1560, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(32);
@@ -1063,7 +1081,7 @@ class PDFController extends Controller
         });
 
         $images = [$image];
-        $this->toPDF($images);
+        $this->toPDF($images, $dados);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 

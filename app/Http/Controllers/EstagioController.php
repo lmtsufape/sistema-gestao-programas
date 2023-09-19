@@ -32,21 +32,20 @@ class EstagioController extends Controller
             $estagios = Estagio::where(function ($query) use ($valor) {
                 $query->orWhereHas('aluno', function ($subquery) use ($valor) {
                     $subquery->where('cpf', 'LIKE', "%{$valor}%")
-                    ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
+                        ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
                 })
-                ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
-                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                    ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
+                        $subquery->where('cpf', 'LIKE', "%{$valor}%")
                             ->orWhere('name', 'LIKE', "%{$valor}%")
                             ->orWhere('email', 'LIKE', "%{$valor}%")
                             ->orWhere('matricula', 'LIKE', "%{$valor}%");
-
-                })
-                //Query para a tabela estagios
-                ->orWhere('descricao', 'LIKE', "%{$valor}%");
+                    })
+                    //Query para a tabela estagios
+                    ->orWhere('descricao', 'LIKE', "%{$valor}%");
             })
-            ->orderBy('created_at', 'desc')
-            ->distinct()
-            ->get();       
+                ->orderBy('created_at', 'desc')
+                ->distinct()
+                ->get();
 
             return view('Estagio.index', compact('estagios'));
         } else {
@@ -111,14 +110,14 @@ class EstagioController extends Controller
         $aluno = null;
         $disciplinas = null;
 
-        if(auth()->user()->typage_type == "App\Models\Aluno"){
+        if (auth()->user()->typage_type == "App\Models\Aluno") {
             //Se for aluno, vamos obter o aluno pelo typage_id
             $aluno_id = auth()->user()->typage_id;
             $aluno = Aluno::Where('id', $aluno_id)->first();
 
             $disciplinas = $aluno->curso->disciplinas; //seleciona apenas as disciplinas dos alunos
             //dd($aluno);
-        }else{
+        } else {
             $disciplinas = Disciplina::all();
         }
 
@@ -135,12 +134,12 @@ class EstagioController extends Controller
         DB::beginTransaction();
         try {
             $estagio = Estagio::find($id);
-            
+
             $estagio->descricao = $request->descricao ? $request->descricao : $estagio->descricao;
             $estagio->data_inicio = $request->data_inicio ? $request->data_inicio : $estagio->data_inicio;
             $estagio->data_fim = $request->data_fim ? $request->data_fim : $estagio->data_fim;
             $estagio->status = $request->checkStatus ? $request->checkStatus : $estagio->status;
-            
+
             $aluno = Aluno::Where('cpf', $request->cpf_aluno)->first();
 
             $estagio->aluno_id = $request->cpf_aluno ? $aluno->id : $estagio->aluno_id;
@@ -210,8 +209,19 @@ class EstagioController extends Controller
             ->where('documentos_estagios.aluno_id', $estagio->aluno_id)
             ->select('documentos_estagios.*', 'lista_documentos_obrigatorios.titulo')
             ->get();
-            
-        $lista_documentos = ListaDocumentosObrigatorios::all();
+
+        $lista_documentos = ListaDocumentosObrigatorios::leftJoin('documentos_estagios', function ($join) use ($estagio) {
+            $join->on('lista_documentos_obrigatorios.id', '=', 'documentos_estagios.lista_documentos_obrigatorios_id')
+                ->where('documentos_estagios.aluno_id', $estagio->aluno_id);
+        })
+            ->select(
+                'lista_documentos_obrigatorios.*',
+                'documentos_estagios.created_at as data_envio',
+                'documentos_estagios.updated_at as data_atualizacao',
+                'documentos_estagios.id as documento_id'
+            )
+            ->get();
+
 
         return view('Estagio.documentos.documentos_show', compact("estagio", "documentos", "lista_documentos"));
     }

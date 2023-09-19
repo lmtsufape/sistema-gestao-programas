@@ -23,16 +23,19 @@
             <label for="ProfessorComponenteCurricular" class="titulopequeno">Professor Componente Curricular</label>
             <br>
             <input class="boxcadastrar" type="text" name="ProfessorComponenteCurricular"
-                id="ProfessorComponenteCurricular" required><br><br>
+                id="ProfessorComponenteCurricular" value="{{ $dados['professorComponenteCurricular'] ?? '' }}"
+                required><br><br>
 
             <label for="instituicaoEmail" class="titulopequeno">E-mail da Instituição</label>
             <br>
-            <input class="boxcadastrar" type="email" name="instituicaoEmail" id="instituicaoEmail" required><br><br>
+            <input class="boxcadastrar" type="email" name="instituicaoEmail" id="instituicaoEmail"
+                value="{{ $dados['instituicaoEmail'] ?? '' }}" required><br><br>
 
             <label for="orientador" class="titulopequeno">Orientador</label>
             <br>
             <input class="boxcadastrar" type="text" name="orientador" id="orientador"
-                value="{{ $orientador->user->name }}" readonly style="background: #eee; " required><br><br>
+                value="{{ $orientador->user->name }}" readonly style="background: #eee; "
+                value="{{ $dados['instituicaoEmail'] ?? '' }}" required><br><br>
 
             <label for="emailOrientador" class="titulopequeno">E-mail do Orientador</label>
             <br>
@@ -42,91 +45,94 @@
             <!-- UNIDADE CONCEDENTE -->
             <h1 class="titulogrande">Unidade concedente</h1>
 
-            <label for="instituicaoUnidadeConcedente" class="titulopequeno">Unidade Concedente</label>
-            <br>
-            <input class="boxcadastrar" type="text" name="instituicaoUnidadeConcedente" id="instituicaoUnidadeConcedente"
-                required><br><br>
-
             <label for="cnpj" class="titulopequeno">CNPJ</label>
             <br>
-            <input class="boxcadastrar" type="text" name="cnpj" id="cnpj" required><br><br>
+            <input class="boxcadastrar" type="text" name="cnpj" id="cnpj" value="{{ $dados['cnpj'] ?? '' }}"
+                required><br><br>
 
             <label for="localEstagio" class="titulopequeno">Local de Estágio</label>
             <br>
-            <input class="boxcadastrar" type="text" name="localEstagio" id="localEstagio" required><br><br>
+            <input class="boxcadastrar" type="text" name="localEstagio" id="localEstagio"
+                value="{{ $dados['localEstagio'] ?? '' }}" required><br><br>
 
-            <label for="localEstagio" class="titulopequeno">Endereço</label>
+            <label for="endereco" class="titulopequeno">Endereço</label>
             <br>
-            <input class="boxcadastrar" type="text" name="endereco" id="endereco" required><br><br>
+            <input class="boxcadastrar" type="text" name="endereco" id="endereco" value="{{ $dados['endereco'] ?? '' }}"
+                required><br><br>
 
-            <label for="localEstagio" class="titulopequeno">Número</label>
+            <label for="numero" class="titulopequeno">Número</label>
             <br>
-            <input class="boxcadastrar" type="text" name="numero" id="numero" required><br><br>
+            <input class="boxcadastrar" type="text" name="numero" id="numero" value="{{ $dados['numero'] ?? '' }}"
+                required><br><br>
 
-            <label for="localEstagio" class="titulopequeno">Complemento</label>
+            <label for="complemento" class="titulopequeno">Complemento</label>
             <br>
-            <input class="boxcadastrar" type="text" name="complemento" id="complemento" required><br><br>
+            <input class="boxcadastrar" type="text" name="complemento" id="complemento"
+                value="{{ $dados['complemento'] ?? '' }}" required><br><br>
 
-            <label for="localEstagio" class="titulopequeno">CEP</label>
+            <label for="cep" class="titulopequeno">CEP</label>
             <br>
-            <input class="boxcadastrar" type="text" name="cep" id="cep" required><br><br>
+            <input class="boxcadastrar" type="text" name="cep" id="cep" value="{{ $dados['cep'] ?? '' }}"
+                required><br><br>
 
-            <label for="localEstagio" class="titulopequeno">Bairro</label>
+            <label for="bairro" class="titulopequeno">Bairro</label>
             <br>
-            <input class="boxcadastrar" type="text" name="bairro" id="bairro" required><br><br>
+            <input class="boxcadastrar" type="text" name="bairro" id="bairro" value="{{ $dados['bairro'] ?? '' }}"
+                required><br><br>
 
-            <label for="localEstagio" class="titulopequeno">Cidade</label>
+            <label for="cidade" class="titulopequeno">Cidade</label>
             <br>
-            <input class="boxcadastrar" type="text" name="cidade" id="cidade" required><br><br>
+            <input class="boxcadastrar" type="text" name="cidade" id="cidade" value="{{ $dados['cidade'] ?? '' }}"
+                required><br><br>
 
-            <label for="localEstagio" class="titulopequeno">Estado</label>
+            <label for="estado" class="titulopequeno">Estado</label>
             <br>
-            <input class="boxcadastrar" type="text" name="estado" id="estado" required><br><br>
+            <input class="boxcadastrar" type="text" name="estado" id="estado"
+                value="{{ $dados['estado'] ?? '' }}" required><br><br>
 
-            <label for="localEstagio" class="titulopequeno">Representante legal</label>
+            <label for="representanteLegal" class="titulopequeno">Representante legal</label>
             <br>
             <input class="boxcadastrar" type="text" name="representanteLegal" id="representanteLegal"
-                required><br><br>
+                value="{{ $dados['representanteLegal'] ?? '' }}" required><br><br>
 
-            <label for="localEstagio" class="titulopequeno">Cargo do representante</label>
+            <label for="cargoRepresentante" class="titulopequeno">Cargo do representante</label>
             <br>
             <input class="boxcadastrar" type="text" name="cargoRepresentante" id="cargoRepresentante"
-                required><br><br>
+                value="{{ $dados['cargoRepresentante'] ?? '' }}" required><br><br>
 
             <!-- SUPERVISOR -->
-            <label for="supervisor" class="titulopequeno">Supervisor</label>
-            <br>
-            <input class="boxcadastrar" type="text" name="supervisor" id="supervisor" required><br><br>
-
             <label for="cargoSupervisor" class="titulopequeno">Cargo do Supervisor</label>
             <br>
-            <input class="boxcadastrar" type="text" name="cargoSupervisor" id="cargoSupervisor" required><br><br>
+            <input class="boxcadastrar" type="text" name="cargoSupervisor" id="cargoSupervisor"
+                value="{{ $dados['cargoSupervisor'] ?? '' }}" required><br><br>
 
             <label for="formacaoSupervisor" class="titulopequeno">Formação do Supervisor</label>
             <br>
             <input class="boxcadastrar" type="text" name="formacaoSupervisor" id="formacaoSupervisor"
-                required><br><br>
+                value="{{ $dados['formacaoSupervisor'] ?? '' }}" required><br><br>
 
             <label for="cpfSupervisor" class="titulopequeno">CPF do Supervisor</label>
             <br>
-            <input class="boxcadastrar" type="text" name="cpfSupervisor" id="cpfSupervisor" required><br><br>
+            <input class="boxcadastrar" type="text" name="cpfSupervisor" id="cpfSupervisor"
+                value="{{ $dados['cpfSupervisor'] ?? '' }}" required><br><br>
 
             <label for="emailSupervisor" class="titulopequeno">E-mail do Supervisor</label>
             <br>
-            <input class="boxcadastrar" type="email" name="emailSupervisor" id="emailSupervisor" required><br><br>
+            <input class="boxcadastrar" type="email" name="emailSupervisor" id="emailSupervisor"
+                value="{{ $dados['emailSupervisor'] ?? '' }}" required><br><br>
 
             <label for="telefoneSupervisor" class="titulopequeno">Telefone do Supervisor</label>
             <br>
             <input class="boxcadastrar" type="tel" name="telefoneSupervisor" id="telefoneSupervisor"
-                required><br><br>
+                value="{{ $dados['telefoneSupervisor'] ?? '' }}" required><br><br>
 
             <!-- ESTAGIÁRIO -->
             <h1 class="titulogrande">Dados do estagiário</h1>
 
             <label for="nomeAluno" class="titulopequeno">Nome do Aluno</label>
             <br>
-            <input class="boxcadastrar" type="text" name="nomeAluno" id="nomeAluno" value="{{ $aluno->user->name }}"
-                readonly style="background: #eee; " required><br><br>
+            <input class="boxcadastrar" type="text" name="nomeAluno" id="nomeAluno"
+                value="{{ $aluno->user->name }}" readonly style="background: #eee; " required><br><br>
 
             <label for="cpfAluno" class="titulopequeno">CPF do Aluno</label>
             <br>
@@ -140,40 +146,47 @@
 
             <label for="periodo" class="titulopequeno">Período</label>
             <br>
-            <input class="boxcadastrar" type="text" name="periodo" id="periodo" required><br><br>
+            <input class="boxcadastrar" type="text" name="periodo" id="periodo"
+                value="{{ $dados['periodo'] ?? '' }}" required><br><br>
 
             <label for="enderecoAluno" class="titulopequeno">Endereço do Aluno</label>
             <br>
-            <input class="boxcadastrar" type="text" name="enderecoAluno" id="enderecoAluno" required><br><br>
+            <input class="boxcadastrar" type="text" name="enderecoAluno" id="enderecoAluno"
+                value="{{ $dados['enderecoAluno'] ?? '' }}" required><br><br>
 
             <label for="numeroEnderecoAluno" class="titulopequeno">Número do Endereço do Aluno</label>
             <br>
             <input class="boxcadastrar" type="text" name="numeroEnderecoAluno" id="numeroEnderecoAluno"
-                required><br><br>
+                value="{{ $dados['numeroEnderecoAluno'] ?? '' }}" required><br><br>
 
             <label for="complementoAluno" class="titulopequeno">Complemento do Endereço do Aluno</label>
             <br>
-            <input class="boxcadastrar" type="text" name="complementoAluno" id="complementoAluno"><br><br>
-
+            <input class="boxcadastrar" type="text" name="complementoAluno" id="complementoAluno"
+                value="{{ $dados['complementoAluno'] ?? '' }}"><br><br>
             <label for="cepAluno" class="titulopequeno">CEP do Aluno</label>
             <br>
-            <input class="boxcadastrar" type="text" name="cepAluno" id="cepAluno" required><br><br>
+            <input class="boxcadastrar" type="text" name="cepAluno" id="cepAluno"
+                value="{{ $dados['cepAluno'] ?? '' }}" required><br><br>
 
             <label for="bairroAluno" class="titulopequeno">Bairro do Aluno</label>
             <br>
-            <input class="boxcadastrar" type="text" name="bairroAluno" id="bairroAluno" required><br><br>
+            <input class="boxcadastrar" type="text" name="bairroAluno" id="bairroAluno"
+                value="{{ $dados['bairroAluno'] ?? '' }}" required><br><br>
 
             <label for="cidadeAluno" class="titulopequeno">Cidade do Aluno</label>
             <br>
-            <input class="boxcadastrar" type="text" name="cidadeAluno" id="cidadeAluno" required><br><br>
+            <input class="boxcadastrar" type="text" name="cidadeAluno" id="cidadeAluno"
+                value="{{ $dados['cidadeAluno'] ?? '' }}" required><br><br>
 
             <label for="estadoAluno" class="titulopequeno">Estado do Aluno</label>
             <br>
-            <input class="boxcadastrar" type="text" name="estadoAluno" id="estadoAluno" required><br><br>
+            <input class="boxcadastrar" type="text" name="estadoAluno" id="estadoAluno"
+                value="{{ $dados['estadoAluno'] ?? '' }}" required><br><br>
 
             <label for="telefoneAluno" class="titulopequeno">Telefone do Aluno</label>
             <br>
-            <input class="boxcadastrar" type="tel" name="telefoneAluno" id="telefoneAluno" required><br><br>
+            <input class="boxcadastrar" type="tel" name="telefoneAluno" id="telefoneAluno"
+                value="{{ $dados['telefoneAluno'] ?? '' }}" required><br><br>
 
             <label for="emailAluno" class="titulopequeno">E-mail do Aluno</label>
             <br>

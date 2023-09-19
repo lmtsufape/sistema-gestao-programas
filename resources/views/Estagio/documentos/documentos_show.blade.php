@@ -20,6 +20,7 @@
                                 <th scope="col" class="text-center">Nome</th>
                                 <th scope="col" class="text-center">Data Limite</th>
                                 <th scope="col" class="text-center">Data de Envio</th>
+                                <th scope="col" class="text-center">Última data de atualização</th>
                                 <th scope="col" class="text-center">Ações</th>
                             </tr>
                         </thead>
@@ -32,9 +33,19 @@
                                         $documento_enviado = $lista_documento->data_envio ?? null;
                                     @endphp
                                     @if ($documento_enviado)
-                                        {{ date_format(date_create($documento_enviado), "d/m/Y") }}
+                                        {{ date_format(date_create($documento_enviado), 'd/m/Y') }}
                                     @else
                                         Não enviado
+                                    @endif
+                                </td>
+                                <td class="align-middle">
+                                    @php
+                                        $documento_enviado = $lista_documento->data_atualizacao ?? null;
+                                    @endphp
+                                    @if ($documento_enviado)
+                                        {{ date_format(date_create($documento_enviado), 'd/m/Y') }}
+                                    @else
+                                        Nunca atualizado
                                     @endif
                                 </td>
                                 @php
@@ -70,12 +81,19 @@
                                         <img src="{{ asset('images/information.svg') }}" title="Informações"
                                             alt="Info documento" style="height: 30px; width: 30px;">
                                     </a>
-                                    <a href="{{ route($rota, ['id' => $estagio->id]) }}">
-                                        <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher/Editar Documento"
-                                            style="height: 30px; width: 30px;">
-                                    </a>
                                     @if ($documento_enviado)
-                                        <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->id]) }}" target="_blank">
+                                        <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
+                                            <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento"
+                                                style="height: 30px; width: 30px;">
+                                        </a>
+                                    @else
+                                        <a href="{{ route($rota, ['id' => $estagio->id]) }}">
+                                            <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento"
+                                                style="height: 30px; width: 30px;">
+                                        </a>
+                                    @endif
+                                    @if ($documento_enviado)
+                                        <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->documento_id]) }}" target="_blank">
                                             <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                                 style="height: 30px; width: 30px;">
                                         </a>
