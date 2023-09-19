@@ -51,6 +51,7 @@
                                 @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                                     <li><a class="dropdown-item" href="{{ route('cursos.index') }}">Cursos</a></li>
                                     <li><a class="dropdown-item" href="{{ route('disciplinas.index') }}">Disciplinas</a>
+                                    <li><a class="dropdown-item" href="{{ route('estagio.index') }}">Estágio</a></li>
                                     </li>
                                 @endif
                             </ul>
