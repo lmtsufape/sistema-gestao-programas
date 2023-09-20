@@ -21,10 +21,12 @@
                                 <th scope="col" class="text-center">Data Limite</th>
                                 <th scope="col" class="text-center">Data de Envio</th>
                                 <th scope="col" class="text-center">Última data de atualização</th>
+                                <th scope="col" class="text-center">Status</th>
                                 <th scope="col" class="text-center">Ações</th>
                             </tr>
                         </thead>
                         @foreach ($lista_documentos as $lista_documento)
+
                             <tbody>
                                 <td class="align-middle">{{ $lista_documento->titulo }}</td>
                                 <td class="align-middle">A definir</td>
@@ -48,6 +50,17 @@
                                         Nunca atualizado
                                     @endif
                                 </td>
+                                <td class="align-middle">
+                                    @php
+                                        $status = $lista_documento->status ?? null;
+                                    @endphp
+                                     @if ($status)
+                                        {{ $status }}
+                                    @else
+                                        Não enviado
+                                    @endif
+                                </td>
+                                
                                 @php
                                     switch ($lista_documento->id) {
                                         case 1:
