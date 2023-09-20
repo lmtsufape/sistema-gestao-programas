@@ -101,6 +101,10 @@
                 <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info Estagio" style="height: 30px; width: 30px;">
               </a>
 
+              <a type="button" href="{{  route('estagio.documentos', ['id' => $estagio->id] )  }}">
+                <img src="{{asset('images/list-box.svg')}}" title="documentos" alt="Visualizar documentos" style="height: 30px; width: 30px;">
+              </a>
+
               <a type="button" href="{{  route('estagio.edit', ['id' => $estagio->id] )  }}">
                 <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar Estagio" style="height: 30px; width: 30px;">
               </a>

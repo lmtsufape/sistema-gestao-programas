@@ -251,6 +251,9 @@ Route::prefix('estagio')->group(function () {
     Route::prefix('/documentos')->group(function () {
         Route::get('/{id}', [EstagioController::class, 'showDocuments'])->name('estagio.documentos');
 
+        Route::get('/aprovar-documento/{id}',[DocumentoEstagioController::class, 'aprovar_documento'])->name('aprovar.documento');
+        Route::get('/negar-documento/{id}',[DocumentoEstagioController::class, 'negar_documento'])->name('negar.documento');
+
         Route::get('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.documentos.termo-de-encaminhamento');
         Route::post('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.documentos.termo-de-encaminhamento.store');
         
