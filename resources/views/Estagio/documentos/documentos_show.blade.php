@@ -129,6 +129,7 @@
                                         @endcan
                                     @endif
                                     @if ($documento_enviado)
+    
                                         <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->documento_id]) }}" target="_blank">
                                             <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                                 style="height: 30px; width: 30px;">
@@ -136,6 +137,7 @@
                                     @else
                                         <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                             style="height: 30px; width: 30px; opacity: 50%;" disabled>
+                                    
                                     @endif
                                 </td>
                             </tbody>
