@@ -92,8 +92,8 @@
           <tr>
             {{-- Não apagar esse tr  --}}
           </tr>
-
         @include("Edital.components_vinculos.modal_show", ["vinculo" => $vinculo])
+        @include("Orientador.components.modal_legenda")
         @include('Edital.components_vinculos.modal_documents', ['vinculo' => $vinculo])
         @endforeach
         </tbody>

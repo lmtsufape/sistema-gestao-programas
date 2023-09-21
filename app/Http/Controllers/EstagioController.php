@@ -216,6 +216,7 @@ class EstagioController extends Controller
         })
             ->select(
                 'lista_documentos_obrigatorios.*',
+                'documentos_estagios.status',
                 'documentos_estagios.created_at as data_envio',
                 'documentos_estagios.updated_at as data_atualizacao',
                 'documentos_estagios.id as documento_id'

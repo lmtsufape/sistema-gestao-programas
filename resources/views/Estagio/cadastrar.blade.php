@@ -118,7 +118,7 @@
                     </div>
 
                     <div class="botoessalvarvoltar">
-                        <input type="button" value="Voltar" href="{{url('/home/')}}" onclick="window.location.href='{{url('/home/')}}'" class="botaovoltar">
+                        <input type="button" value="Voltar" href="{{url('/estagio/')}}" onclick="window.location.href='{{url('/estagio/')}}'" class="botaovoltar">
                         <input class="botaosalvar" type="submit" value="Salvar">
                     </div>
                 </form>
@@ -127,7 +127,7 @@
         </div>
 
         <script>
-            
+
             const selectDisciplina = document.getElementById('disciplina');
 
             $(document).ready(function() {

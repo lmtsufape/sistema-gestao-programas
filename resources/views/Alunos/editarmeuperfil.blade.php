@@ -65,7 +65,7 @@
             <br>
 
             <div class="botoessalvarvoltar" style="justify-content: start">
-                <input class="botaovoltar" type="button" value="Voltar" href="{{url('/alunos/')}}" onclick="window.location.href='{{url('/alunos/')}}'">
+                <input class="botaovoltar" type="button" value="Voltar" href="{{url('/meu-perfil-aluno/')}}" onclick="window.location.href='{{url('/meu-perfil-aluno/')}}'">
                 <input class="botaosalvar" type="submit" value="Salvar">
             </div>
         </form>

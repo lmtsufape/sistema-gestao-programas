@@ -132,9 +132,9 @@ class PDFController extends Controller
     {
         $documento = DocumentoEstagio::findOrFail($id);
 
-        if ($documento->aluno_id != Auth::id()) {
-            return redirect()->back()->with('error', 'Você não tem permissão para visualizar este documento.');
-        }
+        // if ($documento->aluno_id != Auth::id()) {
+        //     return redirect()->back()->with('error', 'Você não tem permissão para visualizar este documento.');
+        // }
 
         $pdfData = $documento->pdf;
         header("Content-type: application/pdf");
@@ -1261,7 +1261,7 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        $this->toPDF($image);
+        $this->toPDF($image,$dados);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 
