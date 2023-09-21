@@ -1,7 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['aluno'])
+    @canany(['admin', 'servidor', 'gestor', 'aluno'])
         <div class="container-fluid">
             @if (Session::has('pdf_generated_success'))
                 <div class="alert alert-success">
@@ -21,10 +21,12 @@
                                 <th scope="col" class="text-center">Data Limite</th>
                                 <th scope="col" class="text-center">Data de Envio</th>
                                 <th scope="col" class="text-center">Última data de atualização</th>
+                                <th scope="col" class="text-center">Status</th>
                                 <th scope="col" class="text-center">Ações</th>
                             </tr>
                         </thead>
                         @foreach ($lista_documentos as $lista_documento)
+
                             <tbody>
                                 <td class="align-middle">{{ $lista_documento->titulo }}</td>
                                 <td class="align-middle">A definir</td>
@@ -48,6 +50,17 @@
                                         Nunca atualizado
                                     @endif
                                 </td>
+                                <td class="align-middle">
+                                    @php
+                                        $status = $lista_documento->status ?? null;
+                                    @endphp
+                                     @if ($status)
+                                        {{ $status }}
+                                    @else
+                                        Não enviado
+                                    @endif
+                                </td>
+                                
                                 @php
                                     switch ($lista_documento->id) {
                                         case 1:
@@ -82,17 +95,41 @@
                                             alt="Info documento" style="height: 30px; width: 30px;">
                                     </a>
                                     @if ($documento_enviado)
-                                        <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
-                                            <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento"
-                                                style="height: 30px; width: 30px;">
-                                        </a>
+                                        @can('aluno') <!-- Verifica se o usuário tem a função de aluno -->
+
+                                        @if ($lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')
+                                            <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
+                                                <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento"
+                                                    style="height: 30px; width: 30px;">
+                                            </a>
+                                        @endif
+                                        @endcan
+                                        
+                                        @can('admin', 'servidor', 'gestor')
+                                            <a href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}"
+                                                class="aprovar-documento-link">
+                                                <img src="{{ asset('images/verificar.svg') }}" alt="Aprovar Documento"
+                                                    style="height: 30px; width: 30px;">
+                                            </a>
+                                         
+
+                                            <a href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}"
+                                                class="negar-documento-link">
+                                                <img src="{{ asset('images/cruz-pequeno.svg') }}" alt="Negar Documento"
+                                                    style="height: 30px; width: 30px;">
+                                            </a>
+                                        @endcan
+
                                     @else
-                                        <a href="{{ route($rota, ['id' => $estagio->id]) }}">
-                                            <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento"
-                                                style="height: 30px; width: 30px;">
-                                        </a>
+                                         @can('aluno') <!-- Verifica se o usuário tem a função de aluno -->
+                                            <a href="{{ route($rota, ['id' => $estagio->id]) }}">
+                                                <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento"
+                                                    style="height: 30px; width: 30px;">
+                                            </a>
+                                        @endcan
                                     @endif
                                     @if ($documento_enviado)
+    
                                         <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->documento_id]) }}" target="_blank">
                                             <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                                 style="height: 30px; width: 30px;">
@@ -100,6 +137,7 @@
                                     @else
                                         <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                             style="height: 30px; width: 30px; opacity: 50%;" disabled>
+                                    
                                     @endif
                                 </td>
                             </tbody>

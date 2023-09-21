@@ -132,9 +132,9 @@ class PDFController extends Controller
     {
         $documento = DocumentoEstagio::findOrFail($id);
 
-        if ($documento->aluno_id != Auth::id()) {
-            return redirect()->back()->with('error', 'Você não tem permissão para visualizar este documento.');
-        }
+        // if ($documento->aluno_id != Auth::id()) {
+        //     return redirect()->back()->with('error', 'Você não tem permissão para visualizar este documento.');
+        // }
 
         $pdfData = $documento->pdf;
         header("Content-type: application/pdf");

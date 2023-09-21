@@ -276,4 +276,33 @@ class DocumentoEstagioController extends Controller
 
         return $pdf->editImage(4, $dados);
     }
+
+    public function aprovar_documento($id)
+    {
+        $documentoEstagio = DocumentoEstagio::find($id);
+    
+        if (!$documentoEstagio) {
+            return redirect()->back()->with('error', 'Documento não encontrado');
+        }
+    
+        $documentoEstagio->status = 'Aprovado';
+        $documentoEstagio->save();
+    
+        return redirect()->back()->with('success', 'Documento aprovado com sucesso');
+    }
+
+    public function negar_documento($id)
+    {
+        $documentoEstagio = DocumentoEstagio::find($id);
+    
+        if (!$documentoEstagio) {
+            return redirect()->back()->with('error', 'Documento não encontrado');
+        }
+    
+        $documentoEstagio->status = 'Negado';
+        $documentoEstagio->save();
+    
+        return redirect()->back()->with('success', 'Documento aprovado com sucesso');
+    }
+
 }
