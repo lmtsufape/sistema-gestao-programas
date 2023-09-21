@@ -54,12 +54,6 @@
                 <br>
 
                 <div class="buttons-organization -aluno">
-                    <button class="botao" ref="{{ url('/listar-modelos') }}"
-                        onclick="window.location.href='{{ url('/listar-modelos') }}'">
-                        <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
-                        <p class="third-title"> Listar modelos de documentos </p>
-                    </button>
-
                     <button class="botao" ref="{{ url('/editais-aluno') }}"
                         onclick="window.location.href='{{ url('/editais-aluno') }}'">
                         <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
@@ -97,13 +91,6 @@
                         onclick="window.location.href='{{ url('/editais-orientador') }}'">
                         <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 20px;">
                         <p class="third-title"> Meus editais </p>
-                    </button>
-
-                    <button class="botao" href="{{ url('/listar-modelos') }}"
-                        onclick="window.location.href='{{ url('/listar-modelos') }}'">
-                        <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 20px;">
-                        <p class="third-title"> Listar modelos de documentos </p>
-
                     </button>
                 </div>
                 <br>
