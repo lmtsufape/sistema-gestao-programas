@@ -39,6 +39,12 @@ class DocumentoEstagioController extends Controller
                 $documentPath2 = storage_path('app/docs/termo_compromisso/1.png');
                 return $this->editTermoCompromisso([$documentPath1, $documentPath2], $dados);
                 break;
+            
+            case 4:
+                $documentPath1 = storage_path('app/docs/termo_compromisso/0.png');
+                return $this->editFichaFrequencia([$documentPath1], $dados);
+                break; 
+              
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
         }
@@ -54,8 +60,13 @@ class DocumentoEstagioController extends Controller
         $instituicao = Instituicao::findOrFail($estagio->instituicao_id);
         $orientador = Orientador::findOrFail($estagio->orientador_id);
 
+        $id_estagio = $estagio->id;
+
         if ($request->query("edit") == true) {
-            $documento = DocumentoEstagio::findOrFail(2);
+            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
+                                        ->where('lista_documentos_obrigatorios_id', 2)
+                                        ->first();
+                                        
             $dados = json_decode($documento->dados, true);
             return view('Estagio.documentos.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador", "dados"));
         }
@@ -119,9 +130,14 @@ class DocumentoEstagioController extends Controller
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
+
+        $id_estagio = $estagio->id;
       
         if ($request->query("edit") == true ) {
-            $documento = DocumentoEstagio::findOrFail(1);
+            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
+                                        ->where('lista_documentos_obrigatorios_id', 1)
+                                        ->first();
+
             $dados = json_decode($documento->dados, true);
             
             return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio", "aluno", "dados"));
@@ -172,10 +188,23 @@ class DocumentoEstagioController extends Controller
     }
 
   
-    public function plano_de_atividades_form($id)
+    public function plano_de_atividades_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
+
+        $id_estagio = $estagio->id;
+
+        if ($request->query("edit") == true ) {
+            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
+                                        ->where('lista_documentos_obrigatorios_id', 3)
+                                        ->first();
+                                        
+            $dados = json_decode($documento->dados, true);
+            
+            return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno", "dados"));
+        }
+
         return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno"));
     }
 
@@ -223,8 +252,12 @@ class DocumentoEstagioController extends Controller
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
 
+        $id_estagio = $estagio->id;
+
         if ($request->query("edit") == true) {
-            $documento = DocumentoEstagio::findOrFail(4);
+            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
+                                    ->where('lista_documentos_obrigatorios_id', 4)
+                                    ->first();
             $dados = json_decode($documento->dados, true);
             return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno", "dados"));
         }
