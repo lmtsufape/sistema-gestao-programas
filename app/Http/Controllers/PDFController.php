@@ -1261,7 +1261,7 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        $this->toPDF($image);
+        $this->toPDF($image,$dados);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 
