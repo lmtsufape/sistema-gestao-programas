@@ -17,46 +17,46 @@
         <form action="{{ route('estagio.documentos.ficha-frequencia.store', ['id' => $estagio->id]) }}" method="post">
             @csrf
 
-            <label for="campus" class="titulopequeno">Campus</label>
+            <label for="campus" class="titulopequeno">Campus<strong style="color: #8B5558">*</strong></label>   
             <br> <input class="boxcadastrar" type="text" name="campus" id="campus" required><br><br>
 
-            <label for="semestre_letivo" class="titulopequeno">Semestre Letivo</label>
+            <label for="semestre_letivo" class="titulopequeno">Semestre Letivo<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="semestre_letivo" id="semestre_letivo" required><br><br>
 
-            <label for="nome_estagiario" class="titulopequeno">Estagiário</label>
+            <label for="nome_estagiario" class="titulopequeno">Estagiário<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="nome_estagiario" id="nome_estagiario" required><br><br>
 
-            <label for="periodo" class="titulopequeno">Período</label>
+            <label for="periodo" class="titulopequeno">Período<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="periodo" id="periodo" required><br><br>
 
-            <label for="curso" class="titulopequeno">Curso</label>
+            <label for="curso" class="titulopequeno">Curso<<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="curso" id="curso" required><br><br>
 
-            <label for="componente_curricular" class="titulopequeno">Componente Curricular</label>
+            <label for="componente_curricular" class="titulopequeno">Componente Curricular<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="componente_curricular" id="componente_curricular" required><br><br>
 
-            <label for="prof_componente_curricular" class="titulopequeno">Professor(a) do Componente Curricular</label>
+            <label for="prof_componente_curricular" class="titulopequeno">Professor(a) do Componente Curricular<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="prof_componente_curricular" id="prof_componente_curricular" required><br><br>
 
-            <label for="prof_orientador" class="titulopequeno">Professor(a) Orientador(a)</label>
+            <label for="prof_orientador" class="titulopequeno">Professor(a) Orientador(a)<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="prof_orientador" id="prof_orientador" required><br><br>
 
-            <label for="local_estagio" class="titulopequeno">Local do Estágio</label>
+            <label for="local_estagio" class="titulopequeno">Local do Estágio<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="local_estagio" id="local_estagio" required><br><br>
 
-            <label for="supervisor_estagio" class="titulopequeno">Supervisor(a) do Estágio</label>
+            <label for="supervisor_estagio" class="titulopequeno">Supervisor(a) do Estágio<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="supervisor_estagio" id="supervisor_estagio" required><br><br>
 
-            <label for="data1" class="titulopequeno">Data</label>
+            <label for="data1" class="titulopequeno">Data<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="data1" id="data1" required><br><br>
 
-            <label for="atividade1" class="titulopequeno">Atividade</label>
+            <label for="atividade1" class="titulopequeno">Atividade<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="atividade1" id="atividade1" required><br><br>
 
-            <label for="ch1" class="titulopequeno">CH</label>
+            <label for="ch1" class="titulopequeno">CH<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="ch1" id="ch1" required><br><br>
 
-            <label for="ch_total" class="titulopequeno">Carga Horária Total</label>
+            <label for="ch_total" class="titulopequeno">Carga Horária Total<strong style="color: #8B5558">*</strong></label>
             <br> <input class="boxcadastrar" type="text" name="ch_total" id="ch_total" required><br><br>
 
             <br><br>
