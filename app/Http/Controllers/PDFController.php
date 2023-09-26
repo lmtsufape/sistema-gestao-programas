@@ -159,7 +159,6 @@ class PDFController extends Controller
         }
         
         
-
         $nome_arquivo = $documentoObrigatorio->titulo . '_' . $aluno->name;
         $nome_arquivo = (str_replace(' ', '_', $nome_arquivo));
         $nome_arquivo = strtolower($nome_arquivo);
