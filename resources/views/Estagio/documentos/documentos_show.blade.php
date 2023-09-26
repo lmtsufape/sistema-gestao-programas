@@ -10,7 +10,7 @@
             @endif
             <br>
             <div style="display: flex; justify-content: space-evenly; align-items: center;">
-                <h1 class="titulo"><strong>Documentos do Estágio</strong></h1>
+                <h1 class="titulo"><strong>Documentos do Estágio - {{ $estagio->descricao}}</strong></h1>
             </div>
             <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse">
                 <div class="col-md-9 corpo p-2 px-3">
