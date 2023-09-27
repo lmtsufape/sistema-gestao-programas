@@ -102,6 +102,11 @@
                                                 <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento"
                                                     style="height: 30px; width: 30px;">
                                             </a>
+
+                                            <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
+                                                <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
+                                            </a>
+                                            
                                         @endif
                                         @endcan
                                         
@@ -117,6 +122,10 @@
                                                 class="negar-documento-link">
                                                 <img src="{{ asset('images/cruz-pequeno.svg') }}" alt="Negar Documento"
                                                     style="height: 30px; width: 30px;">
+                                            </a>
+
+                                            <a href="{{ route('observacao.edit', ['id' => $lista_documento->id]) }}">
+                                                <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                             </a>
                                         @endcan
 
