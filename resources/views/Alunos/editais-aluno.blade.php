@@ -93,8 +93,8 @@
                                 </a>
                                 @if ($edital->programa->nome == 'Monitoria')
                                     <a type="button" data-bs-toggle="modal" data-bs-target="#modal_frequencia">
-                                        <img src="{{ asset('images/document.svg') }}" alt="Frequencia"
-                                            style="height: 30px; width: 30px;">
+                                        <img src="{{ asset('images/add_edital.svg') }}" alt="Frequencia"
+                                            style="height: 30px; width: 30px; ">
                                     </a>
                                 @endif
 
