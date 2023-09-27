@@ -30,6 +30,19 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Ver documento</span>
                 </div>
+
+                @canany(['admin', 'professor', 'servidor', 'gestor'])
+                <div class="mb-3">
+                    <img src="{{ asset('images/document-checkmark-red.svg') }}" alt="Listar edital"
+                        style="height: 30px; width: 30px; padding-bottom: 5px">
+                    <span class="textoinfomodal">Aprovar documento</span>
+                </div>
+                <div class="mb-3">
+                    <img src="{{ asset('images/document-dismiss-red.svg') }}" alt="Listar edital"
+                        style="height: 30px; width: 30px; padding-bottom: 5px">
+                    <span class="textoinfomodal">Negar documento</span>
+                </div>
+                @endcanany
                 {{--  com o documento disabled  --}}
                 {{--  <div class="mb-3">
                     <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
