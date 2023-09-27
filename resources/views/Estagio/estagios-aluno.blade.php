@@ -94,7 +94,7 @@
                             <td class="align-middle">{{ date_format(date_create($estagio->data_fim), 'd/m/Y') }}</td>
                             <td>
                                 <a type="button" href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}">
-                                    <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Acessar Documentos"
+                                    <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Acessar Documentos" title="Documentos do estágio"
                                         style="height: 30px; width: 30px;">
                                 </a>
                             @empty

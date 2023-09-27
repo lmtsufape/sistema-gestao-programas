@@ -18,6 +18,11 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Preencher documento</span>
                 </div>
+                <div class="mb-3">
+                    <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar estágio"
+                        style="height: 30px; width: 30px; padding-bottom: 5px">
+                    <span class="textoinfomodal">Editar o documento do estágio</span>
+                </div>
                 @endcan
 
                 <div class="mb-3">
