@@ -263,6 +263,9 @@ Route::prefix('estagio')->group(function () {
         Route::get('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia_form'])->name('estagio.documentos.ficha-frequencia');
         Route::post('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia'])->name('estagio.documentos.ficha-frequencia.store');
 
+        Route::get('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo_form'])->name('estagio.documentos.relatorio-acompanhamento-campo');
+        Route::post('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo'])->name('estagio.documentos.relatorio-acompanhamento-campo.store');
+
 
         Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
     });

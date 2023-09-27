@@ -47,6 +47,12 @@ class PDFController extends Controller
                 break;
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
+            
+            case 5:
+                $documentPath1 = storage_path('app/docs/relatorio_acompanhamento_campo/0.png');
+                $documentPath2 = storage_path('app/docs/relatorio_acompanhamento_campo/1.png');
+                return $this->editRelatorioCampo([$documentPath1, $documentPath2], $dados);
+                break;
         }
     }
 
@@ -1266,6 +1272,385 @@ class PDFController extends Controller
         $estagio = new EstagioController();
 
         return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+    }
+
+    private function editRelatorioCampo($documentPaths, $dados)
+    {
+        $image1 = Image::make($documentPaths[0]);
+
+
+        $image1->text('X', 676, 425, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text($dados['curso'], 420, 519, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('2023.1', 2100, 519, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Cleyton Rodrigues', 702, 610, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Instituição', 430, 839, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('X', 520, 940, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('X', 860, 940, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        }); 
+
+        $image1->text('Rua Joaquim Gomes', 975, 1033, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        }); 
+
+        $image1->text('61', 300, 1125, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        }); 
+
+        $image1->text('Casa', 860, 1125, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        }); 
+
+        $image1->text('(87) 9612-3254', 1520, 1125, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        }); 
+
+        $image1->text('55789-980', 330, 1220, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Heliópolis', 920, 1220, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        }); 
+
+        $image1->text('Garanhuns', 1500, 1220, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        }); 
+        
+        $image1->text('Pernambuco', 2020, 1220, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        }); 
+
+        $image1->text('Representante da Silva', 510, 1315, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Coordenador', 1630, 1315, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Supervisor dos Santos', 620, 1415, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Professor', 1720, 1415, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Doutor em Engenharia de Software', 440, 1510, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('(87) 9612-3254', 340, 1610, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Supervisor34@gmail.com', 1300, 1610, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('X', 590, 1710, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('X', 1280, 1710, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Modalidade', 450, 1805, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('X', 680, 1905, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('X', 1300, 1905, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('X', 1810, 1905, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Seu zé, Dona Maria e João Dantas', 770, 2000, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Estágio muito divertido e muito bom', 760, 2100, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Estagiário01', 305, 2480, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('001.01', 1660, 2480, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Turno01', 2010, 2480, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Estagiário02', 305, 2580, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('002.02', 1660, 2580, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Turno02', 2010, 2580, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Estagiário03', 305, 2680, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('003.03', 1660, 2680, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Turno03', 2010, 2680, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Estagiário04', 305, 2780, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('004.04', 1660, 2780, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Turno04', 2010, 2780, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Estagiário05', 305, 2860, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('005.05', 1660, 2860, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Turno05', 2010, 2860, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Estagiário06', 305, 2960, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('006.06', 1660, 2960, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Turno06', 2010, 2960, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Estagiário07', 305, 3040, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('007.07', 1660, 3040, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Turno07', 2010, 3040, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text('Estagiário08', 305, 3120, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('008.08', 1660, 3120, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Turno08', 2010, 3120, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Estagiário09', 305, 3210, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('009.09', 1660, 3210, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Turno09', 2010, 3210, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Estagiário10', 305, 3300, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('010.10', 1660, 3300, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text('Turno10', 2010, 3300, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(42);
+            $font->color(self::AZUL);
+        });
+        
+        
+
+
+
+        
+        $images = [$image1];
+        $this->toPDF($images, $dados);
+        Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
+        $estagio = new EstagioController();
+
+        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+
     }
 
     protected function getListaDeDocumentosId()

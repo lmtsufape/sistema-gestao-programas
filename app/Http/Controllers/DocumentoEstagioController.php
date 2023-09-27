@@ -310,6 +310,38 @@ class DocumentoEstagioController extends Controller
         return $pdf->editImage(4, $dados);
     }
 
+    public function relatorio_acompanhamento_campo_form($id, Request $request)
+    {
+        $estagio = Estagio::findOrFail($id);
+        $aluno = Aluno::findOrFail($estagio->aluno_id);
+        $instituicao = Instituicao::findOrFail($estagio->instituicao_id);
+        $orientador = Orientador::findOrFail($estagio->orientador_id);
+
+        $id_estagio = $estagio->id;
+
+        if ($request->query("edit") == true) {
+            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
+                                        ->where('lista_documentos_obrigatorios_id', 5)
+                                        ->first();
+                                        
+            $dados = json_decode($documento->dados, true);
+            return view('Estagio.documentos.relatorio_acompanhamento_campo', compact("estagio", "aluno", "instituicao", "orientador", "dados"));
+        }
+
+        return view('Estagio.documentos.relatorio_acompanhamento_campo', compact("estagio", "aluno", "instituicao", "orientador"));
+    }
+
+    public function relatorio_acompanhamento_campo(Request $request)
+    {
+        $pdf = new PDFController;
+        $dados = [
+            'curso' => $request->input('curso'),
+            'natureza' => $request->input('natureza'),
+        ];
+
+        return $pdf->editImage(5, $dados);
+    }
+
     public function aprovar_documento($id)
     {
         $documentoEstagio = DocumentoEstagio::find($id);
