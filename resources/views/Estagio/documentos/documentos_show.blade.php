@@ -114,14 +114,14 @@
                                         @can('admin', 'servidor', 'gestor')
                                             <a href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                 class="aprovar-documento-link">
-                                                <img src="{{ asset('images/verificar.svg') }}" alt="Aprovar Documento" title="Aprovar documento"
+                                                <img src="{{ asset('images/document-checkmark.svg') }}" alt="Aprovar Documento" title="Aprovar documento"
                                                     style="height: 30px; width: 30px;">
                                             </a>
 
 
                                             <a href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                 class="negar-documento-link">
-                                                <img src="{{ asset('images/cruz-pequeno.svg') }}" alt="Negar Documento" title="Negar documento"
+                                                <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento" title="Negar documento"
                                                     style="height: 30px; width: 30px;">
                                             </a>
                                         @endcan
