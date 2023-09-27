@@ -39,12 +39,12 @@ class DocumentoEstagioController extends Controller
                 $documentPath2 = storage_path('app/docs/termo_compromisso/1.png');
                 return $this->editTermoCompromisso([$documentPath1, $documentPath2], $dados);
                 break;
-            
+
             case 4:
                 $documentPath1 = storage_path('app/docs/termo_compromisso/0.png');
                 return $this->editFichaFrequencia([$documentPath1], $dados);
-                break; 
-              
+                break;
+
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
         }
@@ -63,10 +63,10 @@ class DocumentoEstagioController extends Controller
         $id_estagio = $estagio->id;
 
         if ($request->query("edit") == true) {
-            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
-                                        ->where('lista_documentos_obrigatorios_id', 2)
-                                        ->first();
-                                        
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 2)
+                ->first();
+
             $dados = json_decode($documento->dados, true);
             return view('Estagio.documentos.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador", "dados"));
         }
@@ -132,14 +132,14 @@ class DocumentoEstagioController extends Controller
         $aluno = Aluno::findOrFail($estagio->aluno_id);
 
         $id_estagio = $estagio->id;
-      
-        if ($request->query("edit") == true ) {
-            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
-                                        ->where('lista_documentos_obrigatorios_id', 1)
-                                        ->first();
+
+        if ($request->query("edit") == true) {
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 1)
+                ->first();
 
             $dados = json_decode($documento->dados, true);
-            
+
             return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio", "aluno", "dados"));
         }
         //dd($estagio);
@@ -187,7 +187,7 @@ class DocumentoEstagioController extends Controller
         return $pdf->editImage(1, $dados);
     }
 
-  
+
     public function plano_de_atividades_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
@@ -195,13 +195,13 @@ class DocumentoEstagioController extends Controller
 
         $id_estagio = $estagio->id;
 
-        if ($request->query("edit") == true ) {
-            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
-                                        ->where('lista_documentos_obrigatorios_id', 3)
-                                        ->first();
-                                        
+        if ($request->query("edit") == true) {
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 3)
+                ->first();
+
             $dados = json_decode($documento->dados, true);
-            
+
             return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno", "dados"));
         }
 
@@ -246,7 +246,7 @@ class DocumentoEstagioController extends Controller
 
         return $pdf->editImage(3, $dados);
     }
-  
+
     public function ficha_frequencia_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
@@ -255,9 +255,9 @@ class DocumentoEstagioController extends Controller
         $id_estagio = $estagio->id;
 
         if ($request->query("edit") == true) {
-            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
-                                    ->where('lista_documentos_obrigatorios_id', 4)
-                                    ->first();
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 4)
+                ->first();
             $dados = json_decode($documento->dados, true);
             return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno", "dados"));
         }
@@ -310,32 +310,65 @@ class DocumentoEstagioController extends Controller
         return $pdf->editImage(4, $dados);
     }
 
+    public function frequencia_residente_form($id, Request $request)
+    {
+        $estagio = Estagio::findOrFail($id);
+        $aluno = Aluno::findOrFail($estagio->aluno_id);
+
+        $id_estagio = $estagio->id;
+
+        if ($request->query("edit") == true) {
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 7)
+                ->first();
+            $dados = json_decode($documento->dados, true);
+            return view('Estagio.documentos.frequencia_residente', compact("estagio", "aluno", "dados"));
+        }
+        return view('Estagio.documentos.frequencia_residente', compact("estagio", "aluno"));
+    }
+
+    public function frequencia_residente(Request $request)
+    {
+        $pdf = new PDFController;
+        $dados = [
+            'residente' => $request->input('residente'),
+            'curso' => $request->input('curso'),
+            'unidade' => $request->input('unidade'),
+            'nomeConcedente' => $request->input('nomeConcedente'),
+            'etapaEducacaoBasica' => $request->input('etapaEducacaoBasica'),
+            'ano' => $request->input('ano'),
+            'nomeProf' => $request->input('nomeProf'),
+            'numMatricula' => $request->input('numMatricula')
+        ];
+
+        return $pdf->editImage(7, $dados);
+    }
+
     public function aprovar_documento($id)
     {
         $documentoEstagio = DocumentoEstagio::find($id);
-    
+
         if (!$documentoEstagio) {
             return redirect()->back()->with('error', 'Documento não encontrado');
         }
-    
+
         $documentoEstagio->status = 'Aprovado';
         $documentoEstagio->save();
-    
+
         return redirect()->back()->with('success', 'Documento aprovado com sucesso');
     }
 
     public function negar_documento($id)
     {
         $documentoEstagio = DocumentoEstagio::find($id);
-    
+
         if (!$documentoEstagio) {
             return redirect()->back()->with('error', 'Documento não encontrado');
         }
-    
+
         $documentoEstagio->status = 'Negado';
         $documentoEstagio->save();
-    
+
         return redirect()->back()->with('success', 'Documento aprovado com sucesso');
     }
-
 }

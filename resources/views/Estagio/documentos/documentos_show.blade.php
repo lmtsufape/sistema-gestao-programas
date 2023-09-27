@@ -82,7 +82,7 @@
                                             $rota = 'estagio.documentos.termo-de-encaminhamento';
                                             break;
                                         case 7:
-                                            $rota = 'estagio.documentos.termo-de-encaminhamento';
+                                            $rota = 'estagio.documentos.frequencia-residente';
                                             break;
                                         default:
                                             $rota = null;
