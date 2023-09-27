@@ -14,7 +14,7 @@ class AddObservacaoToDocumentosEstagiosTable extends Migration
     public function up()
     {
         Schema::table('documentos_estagios', function (Blueprint $table) {
-            $table->string('observacao')->default(' observacaoTeste45');
+            $table->string('observacao')->default(' ');
         });
     }
 
