@@ -21,8 +21,10 @@
         <form action="{{route('alunos.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="image" class="titulopequeno">Imagem do Perfil</label>
-            <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 150px; height: 150px; border-radius: 50%;"/>
-            <input type="file" id="image" name="image" class="form-control-file">
+            <div style="display: flex; flex-direction: row; gap:15px; margin-bottom:20px; align-items:center"> 
+                <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 100px; height: 100px; border-radius: 50%;"/>
+                <input type="file" id="image" name="image" class="form-control boxinfo">
+            </div>
 
             <label for="inputName" class="titulopequeno">Nome<strong style="color: #8B5558;">*</strong></label>
             <input class="boxcadastrar" type="text" id="inputName" name="nome" required placeholder="Digite o nome" value="{{ old('nome') }}">
