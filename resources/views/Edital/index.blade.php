@@ -5,7 +5,7 @@
 
         <div class="container-fluid">
             @if (session('sucesso'))
-                <div class="alert alert-sucess">
+                <div class="alert alert-success">
                     {{ session('sucesso') }}
                 </div>
             @endif
