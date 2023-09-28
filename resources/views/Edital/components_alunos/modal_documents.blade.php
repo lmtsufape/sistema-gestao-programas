@@ -16,8 +16,22 @@
             <br>
             <br>
           </div>
-
         </div>
+        @if ($vinculo->edital->programa->nome == 'Monitoria')
+        @foreach ($frequencias as $frequencia)
+        <div class="mb-3">
+          <label for="frequencia_mensal" class="tituloinfomodal form-label mt-3">Frequência Mensal</label>
+          <div class="baixar-arquivo">
+            <a href="{{ route('frequencia.download', ['fileName' => $frequencia->frequencia_mensal]) }}" target="_blank" class="link">
+              <img src="{{asset('images/download.svg')}}" alt="baixar arquivo" style="width: 20px; height: 20px; margin-right: 5px;">
+              Baixar
+            </a>
+            <br>
+            <br>
+          </div>
+        </div>
+        @endforeach
+        @endif
       </div>
     </div>
   </div>
