@@ -135,6 +135,7 @@
                                             <a href="{{ route('observacao.edit', ['id' => $lista_documento->id]) }}">
                                                 <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                             </a>
+                                            
                                         @endcan
                                     @else
                                         @can('aluno')
