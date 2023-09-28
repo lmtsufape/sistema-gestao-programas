@@ -46,6 +46,11 @@ class PDFController extends Controller
                 $documentPath = storage_path('app/docs/ficha_frequencia/0.png');
                 return $this->editFichaFrequencia([$documentPath], $dados);
                 break;
+            case 7:
+                $documentPath1 = storage_path('app/docs/frequencia_residente/0.png');
+                $documentPath2 = storage_path('app/docs/frequencia_residente/1.png');
+                return $this->editFrequenciaResidente([$documentPath1, $documentPath2], $dados);
+                break;
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
         }
@@ -1291,7 +1296,72 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        $this->toPDF($image, $dados);
+        $images = [$image];
+
+        $this->toPDF($images,$dados);
+        Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
+        $estagio = new EstagioController();
+
+        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+    }
+
+    private function editFrequenciaResidente($documentPaths, $dados) {
+
+        $image1 = Image::make($documentPaths[0]);
+
+        $image1->text($dados['residente'], 158, 465, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(39);
+            $font->color(self::AZUL);
+        });
+        
+        $image1->text($dados['curso'], 315, 533, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(39);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text($dados['unidade'], 1878, 533, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(39);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text($dados['nomeConcedente'], 158, 721, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(39);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text($dados['etapaEducacaoBasica'], 1694, 721, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(39);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text($dados['ano'], 2321, 721, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(39);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text($dados['nomeProf'], 162, 857, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(39);
+            $font->color(self::AZUL);
+        });
+
+        $image1->text($dados['numMatricula'], 1707, 857, function ($font) {
+            $font->file(resource_path(self::FONT));
+            $font->size(39);
+            $font->color(self::AZUL);
+        });
+
+        $image2 = Image::make($documentPaths[1]);
+
+        $images = [$image1, $image2];
+        $this->toPDF($images, $dados);
+
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 
