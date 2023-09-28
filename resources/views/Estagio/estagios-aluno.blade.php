@@ -62,17 +62,19 @@
             <table class="table">
                 <thead>
                     <tr class="table-head">
-                        <th scope="col" class="text-center">Status</th>
-                        <th scope="col" class="text-center">Descrição</i></th>
-                        <th scope="col" class="text-center">Data de solicitação</i></th>
-                        <th scope="col" class="text-center">Data de início</th>
-                        <th scope="col" class="text-center">Data de fim</th>
+                        <th scope="col" class="text-center align-middle">Status</th>
+                        <th scope="col" class="text-center align-middle">Descrição</i></th>
+                        <th scope="col" class="text-center align-middle">Data de solicitação</i></th>
+                        <th scope="col" class="text-center align-middle">Data de início</th>
+                        <th scope="col" class="text-center align-middle">Data de fim</th>
                         <th class="text-center">
-                Ações
-                <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
-                    <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
-                </button>
-            </th>
+                            Ações
+                            <button type="button" class="infobutton align-bottom" data-bs-toggle="modal" data-bs-target="#modal_legenda"
+                                title="Ver legenda dos ícones">
+                                <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda"
+                                    style="height: 20px; width: 20px;">
+                            </button>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -92,7 +94,7 @@
                             <td class="align-middle">{{ date_format(date_create($estagio->data_fim), 'd/m/Y') }}</td>
                             <td>
                                 <a type="button" href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}">
-                                    <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Acessar Documentos"
+                                    <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Acessar Documentos" title="Documentos do estágio"
                                         style="height: 30px; width: 30px;">
                                 </a>
                             @empty
@@ -101,6 +103,7 @@
                         </tr>
                     @endforelse
                 </tbody>
+                @include('Estagio.components.modal_legenda')
             </table>
         </div>
     </div>
