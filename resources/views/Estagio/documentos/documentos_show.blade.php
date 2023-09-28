@@ -95,7 +95,6 @@
                                             alt="Info documento" style="height: 30px; width: 30px;">
                                     </a>
                                     @if ($documento_enviado)
-
                                     @can('aluno')
                                             <!-- Verifica se o usuário tem a função de aluno -->
 
