@@ -24,7 +24,7 @@
                     <span class="textoinfomodal">Editar o estágio</span>
                 </div>
                 <div class="mb-3">
-                    <img src="{{ asset('images/list-box.svg') }}" alt="Ver documentos do estágio"
+                    <img src="{{ asset('images/file_red.svg') }}" alt="Ver documentos do estágio"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Ver os documentos do estágio</span>
                 </div>
