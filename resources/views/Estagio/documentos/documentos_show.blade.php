@@ -96,7 +96,6 @@
                                     </a>
                                     @if ($documento_enviado)
 
-                                    
                                     @can('aluno')
                                             <!-- Verifica se o usuário tem a função de aluno -->
 
@@ -156,3 +155,5 @@
         </div>
     @endcan
 @endsection
+
+
