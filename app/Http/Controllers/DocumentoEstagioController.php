@@ -344,6 +344,67 @@ class DocumentoEstagioController extends Controller
         return $pdf->editImage(7, $dados);
     }
 
+    public function aprovar_documento($id)
+    {
+        $documentoEstagio = DocumentoEstagio::find($id);
+
+        if (!$documentoEstagio) {
+            return redirect()->back()->with('error', 'Documento não encontrado');
+        }
+
+        $documentoEstagio->status = 'Aprovado';
+        $documentoEstagio->save();
+
+        return redirect()->back()->with('success', 'Documento aprovado com sucesso');
+    }
+
+    public function negar_documento($id)
+    {
+        $documentoEstagio = DocumentoEstagio::find($id);
+
+        if (!$documentoEstagio) {
+            return redirect()->back()->with('error', 'Documento não encontrado');
+        }
+
+        $documentoEstagio->status = 'Negado';
+        $documentoEstagio->save();
+
+        return redirect()->back()->with('success', 'Documento aprovado com sucesso');
+    }
+
+    public function observacao_show($id)
+    {
+        $doc = DocumentoEstagio::Where('id', $id)->first();
+
+        return view('Estagio.documentos.showObservacao',compact('doc'));
+    }
+
+    public function observacao_edit($id)
+    {
+        $doc = DocumentoEstagio::Where('id', $id)->first();
+        return view('Estagio.documentos.editObservacao',compact('doc'));
+    }
+
+    public function observacao_update(Request $request, $id)
+    {
+        DB::beginTransaction();
+        try{
+            $doc = DocumentoEstagio::find($id);
+            $doc->observacao = $request->observacao  ? $request->observacao  : $doc->observacao;
+
+            $doc->update();
+
+            DB::commit();
+
+            return redirect()->route('estagio.documentos',['id' => $doc->estagio_id])
+            ->with('sucesso', 'Observação editado com sucesso.');
+
+        } catch(exception $e){
+            DB::rollback();
+            return redirect()->back()->withErrors( "Falha ao editar Observação. tente novamente mais tarde." );
+        }
+    }
+
     public function relatorio_acompanhamento_campo_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
@@ -432,67 +493,6 @@ class DocumentoEstagioController extends Controller
 
         return $pdf->editImage(5, $dados);
     }
-
-    public function aprovar_documento($id)
-    {
-        $documentoEstagio = DocumentoEstagio::find($id);
-
-        if (!$documentoEstagio) {
-            return redirect()->back()->with('error', 'Documento não encontrado');
-        }
-
-        $documentoEstagio->status = 'Aprovado';
-        $documentoEstagio->save();
-
-        return redirect()->back()->with('success', 'Documento aprovado com sucesso');
-    }
-
-    public function negar_documento($id)
-    {
-        $documentoEstagio = DocumentoEstagio::find($id);
-
-        if (!$documentoEstagio) {
-            return redirect()->back()->with('error', 'Documento não encontrado');
-        }
-
-        $documentoEstagio->status = 'Negado';
-        $documentoEstagio->save();
-
-        return redirect()->back()->with('success', 'Documento aprovado com sucesso');
-    }
-
-    public function observacao_show($id)
-    {
-        $doc = DocumentoEstagio::Where('id', $id)->first();
-
-        return view('Estagio.documentos.showObservacao',compact('doc'));
-    }
-
-    public function observacao_edit($id)
-    {
-        $doc = DocumentoEstagio::Where('id', $id)->first();
-        return view('Estagio.documentos.editObservacao',compact('doc'));
-    }
-
-    public function observacao_update(Request $request, $id)
-    {
-        DB::beginTransaction();
-        try{
-            $doc = DocumentoEstagio::find($id);
-            $doc->observacao = $request->observacao  ? $request->observacao  : $doc->observacao;
-
-            $doc->update();
-
-            DB::commit();
-
-            return redirect()->route('estagio.documentos',['id' => $doc->estagio_id])
-            ->with('sucesso', 'Observação editado com sucesso.');
-
-        } catch(exception $e){
-            DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao editar Observação. tente novamente mais tarde." );
-        }
-    }
-
 }
+
 
