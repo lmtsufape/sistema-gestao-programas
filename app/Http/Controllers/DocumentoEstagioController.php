@@ -344,6 +344,96 @@ class DocumentoEstagioController extends Controller
         return $pdf->editImage(7, $dados);
     }
 
+    
+    public function relatorio_acompanhamento_campo_form($id, Request $request)
+    {
+        $estagio = Estagio::findOrFail($id);
+        $aluno = Aluno::findOrFail($estagio->aluno_id);
+
+        $id_estagio = $estagio->id;
+
+        if ($request->query("edit") == true) {
+            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
+                                        ->where('lista_documentos_obrigatorios_id', 5)
+                                        ->first();
+                                        
+            $dados = json_decode($documento->dados, true);
+            return view('Estagio.documentos.relatorio_acompanhamento_campo', compact("estagio", "aluno","dados"));
+        }
+
+        return view('Estagio.documentos.relatorio_acompanhamento_campo', compact("estagio", "aluno"));
+    }
+
+    public function relatorio_acompanhamento_campo(Request $request)
+    {
+        $pdf = new PDFController;
+        $dados = [
+            'curso' => $request->input('curso'),
+            'semestre' => $request->input('semestre'),
+            'orientador' => $request->input('orientador'),
+            'instituicao' => $request->input('instituicao'),
+            'natureza' => $request->input('natureza'),
+            'endereco' => $request->input('endereco'),
+            'num' => $request->input('num'),
+            'complemento' => $request->input('complemento'),
+            'fone1' => $request->input('fone1'),
+            'cep' => $request->input('cep'),
+            'bairro' => $request->input('bairro'),
+            'cidade' => $request->input('cidade'),
+            'estado' => $request->input('estado'),
+            'representante' => $request->input('representante'),
+            'cargo_representante' => $request->input('cargo_representante'),
+            'supervisor' => $request->input('supervisor'),
+            'cargo_supervisor' => $request->input('cargo_supervisor'),
+            'formacao_supervisor' => $request->input('formacao_supervisor'),
+            'fone2' => $request->input('fone2'),
+            'email_supervisor' => $request->input('email_supervisor'),
+            'educacao' => $request->input('educacao'),
+            'modalidade' => $request->input('modalidade'),
+            'etapa' => $request->input('etapa'),
+            'entrevistados' => $request->input('entrevistados'),
+            'complementares' => $request->input('complementares'),
+
+            'estag1' => $request->input('estag1') ?: ' ', 'turma1' => $request->input('turma1') ?: ' ', 'turno1' => $request->input('turno1') ?: ' ',
+            'estag2' => $request->input('estag2') ?: ' ', 'turma2' => $request->input('turma2') ?: ' ', 'turno2' => $request->input('turno2') ?: ' ',
+            'estag3' => $request->input('estag3') ?: ' ', 'turma3' => $request->input('turma3') ?: ' ', 'turno3' => $request->input('turno3') ?: ' ',
+            'estag4' => $request->input('estag4') ?: ' ', 'turma4' => $request->input('turma4') ?: ' ', 'turno4' => $request->input('turno4') ?: ' ',
+            'estag5' => $request->input('estag5') ?: ' ', 'turma5' => $request->input('turma5') ?: ' ', 'turno5' => $request->input('turno5') ?: ' ',
+            'estag6' => $request->input('estag6') ?: ' ', 'turma6' => $request->input('turma6') ?: ' ', 'turno6' => $request->input('turno6') ?: ' ',
+            'estag7' => $request->input('estag7') ?: ' ', 'turma7' => $request->input('turma7') ?: ' ', 'turno7' => $request->input('turno7') ?: ' ',
+            'estag8' => $request->input('estag8') ?: ' ', 'turma8' => $request->input('turma8') ?: ' ', 'turno8' => $request->input('turno8') ?: ' ',
+            'estag9' => $request->input('estag9') ?: ' ', 'turma9' => $request->input('turma9') ?: ' ', 'turno9' => $request->input('turno9') ?: ' ',
+            'estag10' => $request->input('estag10') ?: ' ', 'turma10' => $request->input('turma10') ?: ' ', 'turno10' => $request->input('turno10') ?: ' ',
+
+            'opc1' => $request->input('opc1'),
+            'opc2' => $request->input('opc2'),
+            'opc3' => $request->input('opc3'),
+            'opc4' => $request->input('opc4'),
+            'opc5' => $request->input('opc5'),
+
+            '3_l1' => $request->input('3_l1'),
+            '3_l2' => $request->input('3_l2'),
+            '3_l3' => $request->input('3_l3'),
+
+            '4_l1' => $request->input('4_l1'),
+            '4_l2' => $request->input('4_l2'),
+            '4_l3' => $request->input('4_l3'),
+            '4_l4' => $request->input('4_l4'),
+
+            '5_l1' => $request->input('5_l1'),
+            '5_l2' => $request->input('5_l2'),
+            '5_l3' => $request->input('5_l3'),
+            '5_l4' => $request->input('5_l4'),
+
+            '6_l1' => $request->input('6_l1'),
+            '6_l2' => $request->input('6_l2'),
+            '6_l3' => $request->input('6_l3'),
+            '6_l4' => $request->input('6_l4'),
+        ];
+
+        return $pdf->editImage(5, $dados);
+    }
+
     public function aprovar_documento($id)
     {
         $documentoEstagio = DocumentoEstagio::find($id);
