@@ -31,7 +31,7 @@
                     <span class="textoinfomodal">Ver documento</span>
                 </div>
 
-                @canany(['admin', 'professor', 'servidor', 'gestor'])
+                @canany(['admin', 'servidor', 'gestor'])
                 <div class="mb-3">
                     <img src="{{ asset('images/document-checkmark-red.svg') }}" alt="Listar edital"
                         style="height: 30px; width: 30px; padding-bottom: 5px">

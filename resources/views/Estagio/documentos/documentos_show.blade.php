@@ -111,7 +111,7 @@
                                             @endif
                                         @endcan
 
-                                        @can('admin', 'servidor', 'gestor')
+                                        @canany(['admin', 'servidor', 'gestor'])
                                             <a href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                 class="aprovar-documento-link">
                                                 <img src="{{ asset('images/document-checkmark.svg') }}" alt="Aprovar Documento" title="Aprovar documento"
