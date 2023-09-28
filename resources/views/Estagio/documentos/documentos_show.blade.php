@@ -12,21 +12,26 @@
             <div style="display: flex; justify-content: space-evenly; align-items: center;">
                 <h1 class="titulo"><strong>Documentos do Estágio</strong></h1>
             </div>
-            <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse">
+            <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
                 <div class="col-md-9 corpo p-2 px-3">
                     <table class="table">
                         <thead>
                             <tr class="table-head">
-                                <th scope="col" class="text-center">Nome</th>
-                                <th scope="col" class="text-center">Data Limite</th>
-                                <th scope="col" class="text-center">Data de Envio</th>
-                                <th scope="col" class="text-center">Última data de atualização</th>
-                                <th scope="col" class="text-center">Status</th>
-                                <th scope="col" class="text-center">Ações</th>
+                                <th scope="col" class="text-center align-middle">Nome</th>
+                                <th scope="col" class="text-center align-middle">Data Limite</th>
+                                <th scope="col" class="text-center align-middle">Data de Envio</th>
+                                <th scope="col" class="text-center align-middle">Última data de atualização</th>
+                                <th scope="col" class="text-center align-middle">Status</th>
+                                <th scope="col" class="text-center align-middle">Ações
+                                    <button type="button" class="infobutton align-bottom" data-bs-toggle="modal"
+                                        data-bs-target="#modal_legenda_doc" title="Ver legenda dos ícones">
+                                        <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda"
+                                            style="height: 20px; width: 20px;">
+                                    </button>
+                                </th>
                             </tr>
                         </thead>
                         @foreach ($lista_documentos as $lista_documento)
-
                             <tbody>
                                 <td class="align-middle">{{ $lista_documento->titulo }}</td>
                                 <td class="align-middle">A definir</td>
@@ -54,13 +59,13 @@
                                     @php
                                         $status = $lista_documento->status ?? null;
                                     @endphp
-                                     @if ($status)
+                                    @if ($status)
                                         {{ $status }}
                                     @else
                                         Não enviado
                                     @endif
                                 </td>
-                                
+
                                 @php
                                     switch ($lista_documento->id) {
                                         case 1:
@@ -95,52 +100,71 @@
                                             alt="Info documento" style="height: 30px; width: 30px;">
                                     </a>
                                     @if ($documento_enviado)
-                                        @can('aluno') <!-- Verifica se o usuário tem a função de aluno -->
+                                        @can('aluno')
+                                            <!-- Verifica se o usuário tem a função de aluno -->
 
-                                        @if ($lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')
-                                            <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
-                                                <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento"
-                                                    style="height: 30px; width: 30px;">
-                                            </a>
-                                        @endif
+                                            @if ($lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')
+                                                <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
+                                                    <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento"
+                                                        style="height: 30px; width: 30px;">
+                                                </a>
+<<<<<<< HEAD
+
+                                                
+                                                <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
+                                                    <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
+                                                </a>
+
+=======
+>>>>>>> main
+                                            @endif
                                         @endcan
-                                        
-                                        @can('admin', 'servidor', 'gestor')
+
+                                        @canany(['admin', 'servidor', 'gestor'])
                                             <a href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                 class="aprovar-documento-link">
-                                                <img src="{{ asset('images/verificar.svg') }}" alt="Aprovar Documento"
+                                                <img src="{{ asset('images/document-checkmark.svg') }}" alt="Aprovar Documento" title="Aprovar documento"
                                                     style="height: 30px; width: 30px;">
                                             </a>
-                                         
+
 
                                             <a href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                 class="negar-documento-link">
-                                                <img src="{{ asset('images/cruz-pequeno.svg') }}" alt="Negar Documento"
+                                                <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento" title="Negar documento"
                                                     style="height: 30px; width: 30px;">
                                             </a>
-                                        @endcan
+<<<<<<< HEAD
 
+                                            
+                                            <a href="{{ route('observacao.edit', ['id' => $lista_documento->id]) }}">
+                                                <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
+                                            </a>
+                                            
+=======
+>>>>>>> main
+                                        @endcan
                                     @else
-                                         @can('aluno') <!-- Verifica se o usuário tem a função de aluno -->
+                                        @can('aluno')
+                                            <!-- Verifica se o usuário tem a função de aluno -->
                                             <a href="{{ route($rota, ['id' => $estagio->id]) }}">
-                                                <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento"
+                                                <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento" title="Preencher documento"
                                                     style="height: 30px; width: 30px;">
                                             </a>
                                         @endcan
                                     @endif
                                     @if ($documento_enviado)
-    
-                                        <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->documento_id]) }}" target="_blank">
-                                            <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
+                                        <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->documento_id]) }}"
+                                            target="_blank">
+                                            <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido" title="Documento preenchido"
                                                 style="height: 30px; width: 30px;">
                                         </a>
                                     @else
-                                        <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
+                                        <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido" title="Documento não preenchido"
                                             style="height: 30px; width: 30px; opacity: 50%;" disabled>
-                                    
                                     @endif
                                 </td>
                             </tbody>
+                            @include('Estagio.components.modal_legenda_doc')
                         @endforeach
                     </table>
                 </div>
