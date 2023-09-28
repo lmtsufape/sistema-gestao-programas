@@ -96,12 +96,17 @@
                                     </a>
                                     @if ($documento_enviado)
                                     @can('aluno')
+
                                             <!-- Verifica se o usuário tem a função de aluno -->
 
                                             @if ($lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')
                                                 <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
                                                     <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento"
                                                         style="height: 30px; width: 30px;">
+                                                </a>
+
+                                                <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
+                                                    <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                                 </a>
                                             @endif
                                         @endcan
