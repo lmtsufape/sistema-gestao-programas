@@ -63,16 +63,16 @@
       <table class="table">
         <thead>
           <tr class ="table-head">
-            <th scope="col" class="text-center">Status</i></th>
-            <th scope="col" class="text-center">Descrição</th>
-            <th scope="col" class="text-center">Data de solicitação</th>
-            <th scope="col" class="text-center">Data de início</th>
-            <th scope="col" class="text-center">Data de fim</th>
-            <th scope="col" class="text-center">Professor</th>
-            <th scope="col" class="text-center">Estudante</th>
+            <th scope="col" class="text-center align-middle">Status</i></th>
+            <th scope="col" class="text-center align-middle">Descrição</th>
+            <th scope="col" class="text-center align-middle">Data de solicitação</th>
+            <th scope="col" class="text-center align-middle">Data de início</th>
+            <th scope="col" class="text-center align-middle">Data de fim</th>
+            <th scope="col" class="text-center align-middle">Professor</th>
+            <th scope="col" class="text-center align-middle">Estudante</th>
             <th class="text-center">
                 Ações
-                <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                <button type="button" class="infobutton align-bottom" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
                     <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
                 </button>
             </th>
@@ -102,7 +102,9 @@
               </a>
 
               <a type="button" href="{{  route('estagio.documentos', ['id' => $estagio->id] )  }}">
-                <img src="{{asset('images/document.svg')}}" title="documentos" alt="Visualizar documentos" style="height: 30px; width: 30px;">
+
+                <img src="{{asset('images/list-box2.svg')}}" title="Documentos" alt="Visualizar documentos" style="height: 30px; width: 30px;">
+
               </a>
 
               <a type="button" href="{{  route('estagio.edit', ['id' => $estagio->id] )  }}">

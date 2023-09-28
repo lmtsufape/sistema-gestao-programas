@@ -55,13 +55,13 @@
     <table class="table">
       <thead>
         <tr class="table-head">
-          <th scope="col" class="text-center">Nome</th>
-          <th scope="col" class="text-center">Edital</th>
-          <th scope="col" class="text-center">Data de Início</th>
-          <th scope="col" class="text-center">Data de Fim</th>
+          <th scope="col" class="text-center align-middle">Nome</th>
+          <th scope="col" class="text-center align-middle">Edital</th>
+          <th scope="col" class="text-center align-middle">Data de Início</th>
+          <th scope="col" class="text-center align-middle">Data de Fim</th>
           <th class="text-center" class="text-center">
             Ações
-            <button type="button" class="infobutton" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+            <button type="button" class="infobutton align-bottom" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
               <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
             </button>
           </th>
