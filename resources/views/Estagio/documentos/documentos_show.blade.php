@@ -95,6 +95,7 @@
                                             alt="Info documento" style="height: 30px; width: 30px;">
                                     </a>
                                     @if ($documento_enviado)
+
                                     @can('aluno')
                                     <!-- Verifica se o usuário tem a função de aluno -->
 
@@ -111,6 +112,7 @@
                                 @endcan
 
                                 @canany(['admin', 'servidor', 'gestor'])
+                                
                                             <a href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                 class="aprovar-documento-link">
                                                 <img src="{{ asset('images/verificar.svg') }}" alt="Aprovar Documento"
