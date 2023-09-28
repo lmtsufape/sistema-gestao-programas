@@ -251,6 +251,10 @@ Route::prefix('estagio')->group(function () {
         Route::get('/aprovar-documento/{id}',[DocumentoEstagioController::class, 'aprovar_documento'])->name('aprovar.documento');
         Route::get('/negar-documento/{id}',[DocumentoEstagioController::class, 'negar_documento'])->name('negar.documento');
 
+        Route::get('/observacao/show/{id}',[DocumentoEstagioController::class, 'observacao_show'])->name('observacao.show');
+        Route::get('/observacao/edit/{id}',[DocumentoEstagioController::class, 'observacao_edit'])->name('observacao.edit');
+        Route::post('/observacao/update/{id}',[DocumentoEstagioController::class, 'observacao_update'])->name('observacao.update');
+
         Route::get('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.documentos.termo-de-encaminhamento');
         Route::post('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.documentos.termo-de-encaminhamento.store');
 
@@ -263,10 +267,12 @@ Route::prefix('estagio')->group(function () {
         Route::get('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia_form'])->name('estagio.documentos.ficha-frequencia');
         Route::post('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia'])->name('estagio.documentos.ficha-frequencia.store');
 
+        Route::get('/{id}/frequencia_residente', [DocumentoEstagioController::class, 'frequencia_residente_form'])->name('estagio.documentos.frequencia-residente');
+        Route::post('/{id}/frequencia_residente', [DocumentoEstagioController::class, 'frequencia_residente'])->name('estagio.documentos.frequencia-residente.store');
+
         Route::get('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo_form'])->name('estagio.documentos.relatorio-acompanhamento-campo');
         Route::post('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo'])->name('estagio.documentos.relatorio-acompanhamento-campo.store');
-
-
+        
         Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
     });
 
