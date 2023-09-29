@@ -18,6 +18,6 @@ class FrequenciaMensalAlunos extends Model
 
     public function edital_aluno_orientadors()
     {
-        return $this->belongsTo(Edital_Aluno_Orientadors::class);
+        return $this->belongsTo(Edital_Aluno_Orientadors::class, 'edital_aluno_orientador_id');
     }
 }

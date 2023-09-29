@@ -806,7 +806,9 @@ class EditalController extends Controller
         $vinculo = EditalAlunoOrientadors::where('edital_id', $request->edital_id)
         ->whereHas('aluno', function ($query) {
             $query->where('cpf', Auth::user()->cpf);
-        })->first();
+        })
+        ->with('frequencias') 
+        ->first();
         
         $request->validate([
             'frequencia_mensal' => 'required|mimes:pdf|max:2048',
