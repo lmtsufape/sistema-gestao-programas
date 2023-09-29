@@ -16,7 +16,8 @@ class DocumentoEstagio extends Model
         'data_envio',
         'data_limite',
         'dados',
-        'status'
+        'status',
+        'observacao'
     ];
 
     public function aluno()
