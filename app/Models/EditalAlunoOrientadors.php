@@ -38,4 +38,9 @@ class EditalAlunoOrientadors extends Model
     {
         return $this->belongsTo(Orientador::class, "orientador_id");
     }
+
+    public function frequencias()
+    {
+        return $this->hasMany(FrequenciaMensalAlunos::class, 'edital_aluno_orientador_id');
+    }
 }

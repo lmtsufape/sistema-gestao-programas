@@ -54,13 +54,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                       
                         @foreach ($vinculos as $vinculo)
                             <tr>
                                 <td class="align-middle">{{ $vinculo->aluno->nome_aluno }}</td>
                                 <td class="align-middle">{{ $vinculo->edital->titulo_edital }}</td>
                                 <td>
-
-
                                     <a type="button" data-bs-toggle="modal"
                                         data-bs-target="#modal_show_{{ $vinculo->aluno->id }}"
                                         data-bs-id="{{ $vinculo->aluno->id }}">

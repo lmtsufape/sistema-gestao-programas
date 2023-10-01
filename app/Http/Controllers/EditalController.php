@@ -355,16 +355,18 @@ class EditalController extends Controller
             })
             ->orderBy('created_at', 'desc')
             ->distinct()
-            ->get();       
+            ->get();     
+            
 
-            return view("Edital.listar_alunos", compact("vinculos", "edital"));
+            return view("Edital.listar_alunos", compact("vinculos", "edital", "frequencia"));
         }else{        
             $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', true)->get();
+            $frequencias = FrequenciaMensalAlunos::where('edital_aluno_orientador_id', $id)->get();
         
             if ($vinculos->isEmpty()) {
                 return redirect()->back()->with('falha', 'Não há alunos cadastrados no edital.');
             } else {
-                return view("Edital.listar_alunos", compact("vinculos", "edital"));
+                return view("Edital.listar_alunos", compact("vinculos", "edital", "frequencias"));
             }
         }
     }
@@ -802,7 +804,11 @@ class EditalController extends Controller
     public function enviarFrequencia(Request $request)
     {
         $vinculo = EditalAlunoOrientadors::where('edital_id', $request->edital_id)
-            ->where('aluno_id', Auth::user()->id)->first();
+        ->whereHas('aluno', function ($query) {
+            $query->where('cpf', Auth::user()->cpf);
+        })
+        ->with('frequencias') 
+        ->first();
         
         $request->validate([
             'frequencia_mensal' => 'required|mimes:pdf|max:2048',
