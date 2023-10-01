@@ -109,13 +109,19 @@
                                                         style="height: 30px; width: 30px;">
                                                 </a>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> main
 
                                                 
                                                 <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
                                                     <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                                 </a>
 
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> main
 >>>>>>> main
                                             @endif
                                         @endcan
@@ -134,13 +140,19 @@
                                                     style="height: 30px; width: 30px;">
                                             </a>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> main
 
                                             
                                             <a href="{{ route('observacao.edit', ['id' => $lista_documento->id]) }}">
                                                 <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                             </a>
                                             
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> main
 >>>>>>> main
                                         @endcan
                                     @else
