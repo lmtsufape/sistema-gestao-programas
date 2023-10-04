@@ -115,9 +115,6 @@
 
                                             @if ($lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')
                                                 @if ($hoje > $dataLimite)
-                                                    <img src="{{ asset('images/pencil.svg') }}" alt="Documento Preenchido"
-                                                        title="Documento não preenchido"
-                                                        style="height: 30px; width: 30px; opacity: 50%;" disabled>
                                                     <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
                                                         <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação"
                                                             style="height: 30px; width: 30px;">
