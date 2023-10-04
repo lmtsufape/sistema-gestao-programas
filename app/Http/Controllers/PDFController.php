@@ -46,6 +46,12 @@ class PDFController extends Controller
                 $documentPath = storage_path('app/docs/ficha_frequencia/0.png');
                 return $this->editFichaFrequencia([$documentPath], $dados);
                 break;
+                // Relatório de Acompanhamento do Campo de Estágio
+            case 5:
+                    $documentPath1 = storage_path('app/docs/relatorio_acompanhamento_campo/0.png');
+                    $documentPath2 = storage_path('app/docs/relatorio_acompanhamento_campo/1.png');
+                    return $this->editRelatorioCampo([$documentPath1, $documentPath2], $dados);
+                    break;
             case 7:
                 $documentPath1 = storage_path('app/docs/frequencia_residente/0.png');
                 $documentPath2 = storage_path('app/docs/frequencia_residente/1.png');
