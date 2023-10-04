@@ -50,6 +50,7 @@
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
         <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
         <button class="cadastrar-botao" style="margin-right: 10px" type="button" onclick="window.location.href = '{{ route("estagio.create") }}'">Cadastrar estágio</button>
+        <button class="cadastrar-botao" style="margin-right: 10px" type="button" onclick="window.location.href = '{{ route("estagio.editConfig") }}'">Configurar estágios</button>
         <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("instituicao.index") }}'">Informações da Instituição</button>
     </form>
 
