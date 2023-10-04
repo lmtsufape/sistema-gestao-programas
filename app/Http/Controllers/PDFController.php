@@ -60,11 +60,6 @@ class PDFController extends Controller
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
             
-            case 5:
-                $documentPath1 = storage_path('app/docs/relatorio_acompanhamento_campo/0.png');
-                $documentPath2 = storage_path('app/docs/relatorio_acompanhamento_campo/1.png');
-                return $this->editRelatorioCampo([$documentPath1, $documentPath2], $dados);
-                break;
         }
     }
 
