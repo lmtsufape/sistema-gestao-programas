@@ -29,7 +29,7 @@
  
             <label for="nome" class="titulopequeno">Professor Orientador<strong style="color: #8B5558">*</strong></label><br>
             <input class="boxcadastrar" type="text" name="orientador" id="orientador"
-                value="{{ $dados['orientador'] ?? '' }}"required><br><br>
+                value="{{ $orientador->user->name }}" readonly required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
             
 
