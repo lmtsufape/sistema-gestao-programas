@@ -192,6 +192,8 @@ class DocumentoEstagioController extends Controller
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
+        $orientador = Orientador::findOrFail($estagio->orientador_id);
+
 
         $id_estagio = $estagio->id;
 
@@ -202,10 +204,10 @@ class DocumentoEstagioController extends Controller
                                         
             $dados = json_decode($documento->dados, true);
 
-            return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno", "dados"));
+            return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno", "dados", "orientador"));
         }
 
-        return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno"));
+        return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno", "orientador"));
     }
 
     public function plano_de_atividades(Request $request)
@@ -251,6 +253,7 @@ class DocumentoEstagioController extends Controller
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
+        $orientador = Orientador::findOrFail($estagio->orientador_id);
 
         $id_estagio = $estagio->id;
 
@@ -259,10 +262,10 @@ class DocumentoEstagioController extends Controller
                 ->where('lista_documentos_obrigatorios_id', 4)
                 ->first();
             $dados = json_decode($documento->dados, true);
-            return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno", "dados"));
+            return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno", "dados", "orientador"));
         }
 
-        return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno"));
+        return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno", "orientador"));
     }
 
     public function ficha_frequencia(Request $request)
@@ -349,6 +352,7 @@ class DocumentoEstagioController extends Controller
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
+        $orientador = Orientador::findOrFail($estagio->orientador_id);
 
         $id_estagio = $estagio->id;
 
@@ -358,10 +362,10 @@ class DocumentoEstagioController extends Controller
                                         ->first();
                                         
             $dados = json_decode($documento->dados, true);
-            return view('Estagio.documentos.relatorio_acompanhamento_campo', compact("estagio", "aluno","dados"));
+            return view('Estagio.documentos.relatorio_acompanhamento_campo', compact("estagio", "aluno","dados", "orientador"));
         }
 
-        return view('Estagio.documentos.relatorio_acompanhamento_campo', compact("estagio", "aluno"));
+        return view('Estagio.documentos.relatorio_acompanhamento_campo', compact("estagio", "aluno", "orientador"));
     }
 
     public function relatorio_acompanhamento_campo(Request $request)

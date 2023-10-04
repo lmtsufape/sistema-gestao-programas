@@ -31,7 +31,7 @@
             <label for="nome_estagiario" class="titulopequeno">Estagiário</label>
             <br>
             <input class="boxcadastrar" type="text" name="nome_estagiario" id="nome_estagiario"
-                value="{{ $dados['nome_estagiario'] ?? '' }}" required><br><br>
+                value="{{ $aluno->user->name }}" readonly required><br><br>
 
             <label for="periodo" class="titulopequeno">Período</label>
             <br>
@@ -40,7 +40,7 @@
 
             <label for="curso" class="titulopequeno">Curso</label>
             <br>
-            <input class="boxcadastrar" type="text" name="curso" id="curso" value="{{ $dados['curso'] ?? '' }}"
+            <input class="boxcadastrar" type="text" name="curso" id="curso" value="{{ $aluno->curso->nome }}" readonly
                 required><br><br>
 
             <label for="componente_curricular" class="titulopequeno">Componente Curricular</label>
@@ -56,7 +56,7 @@
             <label for="prof_orientador" class="titulopequeno">Professor(a) Orientador(a)</label>
             <br>
             <input class="boxcadastrar" type="text" name="prof_orientador" id="prof_orientador"
-                value="{{ $dados['prof_orientador'] ?? '' }}" required><br><br>
+                value="{{ $orientador->user->name }}" readonly required><br><br>
 
             <label for="local_estagio" class="titulopequeno">Local do Estágio</label>
             <br>
