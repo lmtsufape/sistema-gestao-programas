@@ -23,7 +23,7 @@ class ListaDocumentosObrigatoriosController extends Controller
             $documento->save();
         });
 
-        return redirect()->route('estagio.editConfig')->with('success', 'Documento atualizado com sucesso!');
+        return redirect()->route('estagio.index')->with('success', 'Configuração atualizada com sucesso!');
     }
     
     

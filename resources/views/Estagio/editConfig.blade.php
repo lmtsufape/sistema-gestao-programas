@@ -13,7 +13,7 @@
                 <div class="col-md-8">
                     <div class="">
                         <br><br>
-                        <div class="titulogrande">Configurar Estágio</div>
+                        <div class="titulogrande">Configurar Estágios</div>
                         <br><br>
                         <div>
                             <form action="{{ route('estagio.updateConfig') }}" method="POST">
