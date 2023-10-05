@@ -114,7 +114,7 @@
 >>>>>>> main
 
                                                 
-                                                <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
+                                                <a href="{{ route('observacao.show', ['id' => $lista_documento->documento_id]) }}">
                                                     <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                                 </a>
 
@@ -145,7 +145,7 @@
 >>>>>>> main
 
                                             
-                                            <a href="{{ route('observacao.edit', ['id' => $lista_documento->id]) }}">
+                                            <a href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
                                                 <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                             </a>
                                             
