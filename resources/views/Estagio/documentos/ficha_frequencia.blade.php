@@ -97,10 +97,10 @@
 
             <br><br>
             <div class="botoessalvarvoltar">
-                <input type="button" value="Voltar" onclick="window.location.href='{{ url('/home/') }}'"
-                    class="botaovoltar">
+                <a href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}" class="botaovoltar">Voltar</a>
                 <input class="botaosalvar" type="submit" value="Salvar">
             </div>
+            
         </form>
     </div>
 @endsection
