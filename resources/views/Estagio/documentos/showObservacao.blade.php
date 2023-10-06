@@ -18,7 +18,6 @@
             <label class="input-informacao" for="">Observação</label>
             <p class="output-informacao">{{ $doc->observacao }}</p>
 
-            
         </form>
 
         <br>
