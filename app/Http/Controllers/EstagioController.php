@@ -222,11 +222,8 @@ class EstagioController extends Controller
                 'documentos_estagios.id as documento_id'
             )
             ->get();
-        
-            $doc = DocumentoEstagio::Where('id', $id)->first();
 
-
-        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos", "lista_documentos", "doc"));
+        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos", "lista_documentos"));
     }
 
     public function getEstagioAtual()

@@ -466,12 +466,12 @@ class DocumentoEstagioController extends Controller
         return redirect()->back()->with('success', 'Documento aprovado com sucesso');
     }
 
-    public function observacao_show($id)
-    {
-        $doc = DocumentoEstagio::Where('id', $id)->first();
+    // public function observacao_show($id)
+    // {
+    //     $doc = DocumentoEstagio::Where('id', $id)->first();
 
-        return view('Estagio.components.modal_observacao',compact('doc'));
-    }
+    //     return view('Estagio.components.modal_observacao',compact('doc'));
+    // }
 
     public function observacao_edit($id)
     {

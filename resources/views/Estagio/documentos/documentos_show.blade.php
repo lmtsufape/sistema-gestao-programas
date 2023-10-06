@@ -103,7 +103,7 @@
 
                         @if ($lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')
                         
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao">
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->id}}">
                             <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
                         </a>
                         
@@ -125,7 +125,6 @@
                         <a href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}" class="negar-documento-link">
                             <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento" title="Negar documento" style="height: 30px; width: 30px;">
                         </a>
-
 
                         <a href="{{ route('observacao.edit', ['id' => $lista_documento->id]) }}">
                             <img src="{{ asset('images/information.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
@@ -150,7 +149,7 @@
                     </td>
                 </tbody>
                 @include('Estagio.components.modal_legenda_doc')
-                @include('Estagio.components.modal_observacao', ['lista_documento' => $lista_documento, 'doc' => $doc ])
+                @include('Estagio.components.modal_observacao', ['lista_documento' => $lista_documento, 'documentos' => $documentos])
                 @endforeach
             </table>
         </div>
