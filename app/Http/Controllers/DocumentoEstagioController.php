@@ -470,7 +470,7 @@ class DocumentoEstagioController extends Controller
     {
         $doc = DocumentoEstagio::Where('id', $id)->first();
 
-        return view('Estagio.documentos.showObservacao',compact('doc'));
+        return view('Estagio.components.modal_observacao',compact('doc'));
     }
 
     public function observacao_edit($id)

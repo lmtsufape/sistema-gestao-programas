@@ -1,4 +1,4 @@
-@extends("templates.app")
+{{--<!-- @extends("templates.app")
 
 @section('body')
 
@@ -12,7 +12,7 @@
 
         <br>
 
-        <form action="{{ route('observacao.show', ['id' => $doc->id]) }}"method="post">
+        <form action="{{ route('observacao.show', ['id' => $doc->id]) }}"method="get">
             @csrf
             
             <label class="input-informacao" for="">Observação</label>
@@ -29,4 +29,4 @@
 </div>
 
 @endcan
-@endsection
+@endsection -->--}}
