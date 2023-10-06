@@ -34,7 +34,17 @@
                         @foreach ($lista_documentos as $lista_documento)
                             <tbody>
                                 <td class="align-middle">{{ $lista_documento->titulo }}</td>
-                                <td class="align-middle">A definir</td>
+                                <td class="align-middle">
+                                    @php
+                                        $dataLimite = $lista_documento->data_limite ?? null;
+                                        $hoje = now();
+                                    @endphp
+                                    @if ($dataLimite)
+                                        {{ date('d/m/Y', strtotime($dataLimite)) }}
+                                    @else
+                                        A definir
+                                    @endif
+                                </td>
                                 <td class="align-middle">
                                     @php
                                         $documento_enviado = $lista_documento->data_envio ?? null;
@@ -104,40 +114,36 @@
                                             <!-- Verifica se o usuário tem a função de aluno -->
 
                                             @if ($lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')
-                                                <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
-                                                    <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento"
-                                                        style="height: 30px; width: 30px;">
-                                                </a>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> main
-
-                                                
-                                                <a href="{{ route('observacao.show', ['id' => $lista_documento->documento_id]) }}">
-                                                    <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
-                                                </a>
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> main
->>>>>>> main
+                                                @if ($hoje > $dataLimite)
+                                                    <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
+                                                        <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação"
+                                                            style="height: 30px; width: 30px;">
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
+                                                        <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento"
+                                                            title="Editar documento" style="height: 30px; width: 30px;">
+                                                    </a>
+                                                    <a href="{{ route('observacao.show', ['id' => $lista_documento->documento_id]) }}">
+                                                        <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação"
+                                                            style="height: 30px; width: 30px;">
+                                                    </a>
+                                                @endif
                                             @endif
                                         @endcan
 
                                         @canany(['admin', 'servidor', 'gestor'])
                                             <a href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                 class="aprovar-documento-link">
-                                                <img src="{{ asset('images/document-checkmark.svg') }}" alt="Aprovar Documento" title="Aprovar documento"
-                                                    style="height: 30px; width: 30px;">
+                                                <img src="{{ asset('images/document-checkmark.svg') }}" alt="Aprovar Documento"
+                                                    title="Aprovar documento" style="height: 30px; width: 30px;">
                                             </a>
 
 
                                             <a href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                 class="negar-documento-link">
-                                                <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento" title="Negar documento"
-                                                    style="height: 30px; width: 30px;">
+                                                <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento"
+                                                    title="Negar documento" style="height: 30px; width: 30px;">
                                             </a>
 <<<<<<< HEAD
 =======
@@ -148,31 +154,33 @@
                                             <a href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
                                                 <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                             </a>
-                                            
-<<<<<<< HEAD
-=======
-=======
->>>>>>> main
->>>>>>> main
+
                                         @endcan
                                     @else
                                         @can('aluno')
                                             <!-- Verifica se o usuário tem a função de aluno -->
-                                            <a href="{{ route($rota, ['id' => $estagio->id]) }}">
-                                                <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento" title="Preencher documento"
-                                                    style="height: 30px; width: 30px;">
-                                            </a>
+                                            @if ($hoje > $dataLimite)
+                                                <img src="{{ asset('images/add_disciplina.svg') }}" alt="Documento Preenchido"
+                                                    title="Documento não preenchido"
+                                                    style="height: 30px; width: 30px; opacity: 50%;" disabled>
+                                            @else
+                                                <a href="{{ route($rota, ['id' => $estagio->id]) }}">
+                                                    <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento"
+                                                        title="Preencher documento" style="height: 30px; width: 30px;">
+                                                </a>
+                                            @endif
                                         @endcan
                                     @endif
                                     @if ($documento_enviado)
                                         <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->documento_id]) }}"
                                             target="_blank">
-                                            <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido" title="Documento preenchido"
-                                                style="height: 30px; width: 30px;">
+                                            <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
+                                                title="Documento preenchido" style="height: 30px; width: 30px;">
                                         </a>
                                     @else
-                                        <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido" title="Documento não preenchido"
-                                            style="height: 30px; width: 30px; opacity: 50%;" disabled>
+                                        <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
+                                            title="Documento não preenchido" style="height: 30px; width: 30px; opacity: 50%;"
+                                            disabled>
                                     @endif
                                 </td>
                             </tbody>
