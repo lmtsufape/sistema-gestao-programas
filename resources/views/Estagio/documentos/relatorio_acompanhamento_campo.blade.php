@@ -355,12 +355,12 @@
                     value="{{ $dados['6_l4'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-                <br><br>
-                <div class="botoessalvarvoltar">
-                    <input type="button" value="Voltar" href="{{ url('/meus-estagios') }}"
-                        onclick="window.location.href='{{ url('/meus-estagios') }}'" class="botaovoltar">
-                    <input class="botaosalvar" type="submit" value="Salvar">
-                </div>
+            <br><br>
+            <div class="botoessalvarvoltar">
+                <a href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}" class="botaovoltar">Voltar</a>
+                <input class="botaosalvar" type="submit" value="Salvar">
+            </div>
+
 
 
             </form>

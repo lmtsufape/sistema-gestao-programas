@@ -12,13 +12,14 @@ use App\Http\Controllers\EstagioController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\FrequenciaController;
 use App\Http\Controllers\InstituicaoController;
+use App\Http\Controllers\ListaDocumentosObrigatoriosController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MeusAlunosController;
 use App\Http\Controllers\MeusProgramasController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PDFController;
-
+use App\Models\ListaDocumentosObrigatorios;
 
 // Rotas de autenticacao
 Route::get('/', function () {
@@ -242,6 +243,8 @@ Route::prefix('estagio')->group(function () {
     Route::get('/instituicao/edit',[InstituicaoController::class, 'edit'])->name('instituicao.edit');
     Route::post('/instituicao',[InstituicaoController::class,'update'])->name('instituicao.update');
 
+    Route::get('/configurar', [ListaDocumentosObrigatoriosController::class, 'editConfig'])->name('estagio.editConfig');
+    Route::post('/configurar', [ListaDocumentosObrigatoriosController::class, 'updateConfig'])->name('estagio.updateConfig');
 
     // Route::get('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.formularios.termo_encaminhamento');
     // Route::post('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.formularios.termo_encaminhamento.store');
