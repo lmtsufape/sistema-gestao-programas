@@ -141,35 +141,24 @@
                                                 <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento"
                                                     title="Negar documento" style="height: 30px; width: 30px;">
                                             </a>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> main
-
 
                                             <a href="{{ route('observacao.edit', ['id' => $lista_documento->id]) }}">
                                                 <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                             </a>
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> main
->>>>>>> main
                                         @endcan
                                     @else
                                         @can('aluno')
                                             <!-- Verifica se o usuário tem a função de aluno -->
-                                            @if ($hoje > $dataLimite)
+                                            {{--  @if ($hoje > $dataLimite)
                                                 <img src="{{ asset('images/add_disciplina.svg') }}" alt="Documento Preenchido"
                                                     title="Documento não preenchido"
                                                     style="height: 30px; width: 30px; opacity: 50%;" disabled>
-                                            @else
+                                            @else  --}}
                                                 <a href="{{ route($rota, ['id' => $estagio->id]) }}">
                                                     <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento"
                                                         title="Preencher documento" style="height: 30px; width: 30px;">
                                                 </a>
-                                            @endif
+                                            {{--  @endif  --}}
                                         @endcan
                                     @endif
                                     @if ($documento_enviado)
