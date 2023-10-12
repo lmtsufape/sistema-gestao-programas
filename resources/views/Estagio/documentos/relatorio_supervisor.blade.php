@@ -16,7 +16,7 @@
         <form action="{{ route('estagio.documentos.relatorio-supervisor.store', ['id' => $estagio->id]) }}"method="post" enctype="multipart/form-data">
             @csrf
 
-            <label for="Arquivo" class="titulopequeno">Anexar Arquivo<strong style="color: #8B5558">*</strong></label>
+            <label for="Arquivo" class="titulopequeno">Insira o documento já preenchido pelo Supervisor<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="file" name="arquivo" id="arquivo" required><br>
             <div class="invalid-feedback">Por favor, anexe um arquivo</div><br>

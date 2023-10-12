@@ -467,6 +467,8 @@ class DocumentoEstagioController extends Controller
 
                 $documento->pdf = $arquivo_pdf_blob;
 
+                return redirect()->route('estagio.documentos', ['id' => $id])->with('success', 'Documento anexado com sucesso.');
+
             } else {
                 $documento = new DocumentoEstagio();
                 $documento->aluno_id = $aluno->id;
@@ -476,8 +478,6 @@ class DocumentoEstagioController extends Controller
 
                 $arquivo_pdf_blob = $arquivo_pdf->get();
                 $documento->pdf = $arquivo_pdf_blob;
-
-
 
                 $documento->lista_documentos_obrigatorios_id = $listaDocumentosId;
                 $documento->dados = null;
@@ -491,6 +491,9 @@ class DocumentoEstagioController extends Controller
             DB::rollBack();
             dd($e);
         }
+
+        return redirect()->route('estagio.documentos', ['id' => $id])->with('success', 'Documento anexado com sucesso.');
+
     }
     
 
