@@ -277,6 +277,9 @@ Route::prefix('estagio')->group(function () {
         Route::get('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo_form'])->name('estagio.documentos.relatorio-acompanhamento-campo');
         Route::post('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo'])->name('estagio.documentos.relatorio-acompanhamento-campo.store');
         
+        Route::get('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor_form'])->name('estagio.documentos.relatorio-supervisor');
+        Route::post('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor'])->name('estagio.documentos.relatorio-supervisor.store');
+        
         Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
     });
 

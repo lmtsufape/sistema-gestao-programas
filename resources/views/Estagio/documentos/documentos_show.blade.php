@@ -94,7 +94,7 @@
                                             $rota = 'estagio.documentos.relatorio-acompanhamento-campo';
                                             break;
                                         case 6:
-                                            $rota = 'estagio.documentos.termo-de-encaminhamento';
+                                            $rota = 'estagio.documentos.relatorio-supervisor';
                                             break;
                                         case 7:
                                             $rota = 'estagio.documentos.frequencia-residente';

@@ -14,7 +14,7 @@ class AddJsonToDocumentosEstagiosTable extends Migration
     public function up()
     {
         Schema::table('documentos_estagios', function (Blueprint $table) {
-            $table->json('dados');
+            $table->json('dados')->nullable();
         });
     }
 
