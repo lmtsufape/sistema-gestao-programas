@@ -32,13 +32,8 @@
 
             <label for="nome_estagiario" class="titulopequeno">Estagiário<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="nome_estagiario" id="nome_estagiario"
-<<<<<<< HEAD
-                value="{{ $aluno->user->name }}" readonly required><br><br>
-=======
-                placeholder="Digite o nome do estagiário"
-                value="{{ $dados['nome_estagiario'] ?? '' }}" required><br><br>
->>>>>>> main
+            <input class="boxcadastrar" type="text" name="nome_estagiario" id="nome_estagiario" 
+               placeholder="Digite o nome do estagiário" value="{{ $aluno->user->name }}" readonly required><br><br>
 
             <label for="periodo" class="titulopequeno">Período<strong style="color: #8B5558">*</strong></label>
             <br>
@@ -48,12 +43,7 @@
 
             <label for="curso" class="titulopequeno">Curso<strong style="color: #8B5558">*</strong></label>
             <br>
-<<<<<<< HEAD
-            <input class="boxcadastrar" type="text" name="curso" id="curso" value="{{ $aluno->curso->nome }}" readonly
-=======
-            <input class="boxcadastrar" type="text" name="curso" id="curso" value="{{ $dados['curso'] ?? '' }}"
-                placeholder="Digite o curso do estagiário"
->>>>>>> main
+            <input class="boxcadastrar" type="text" name="curso" id="curso" value="{{ $aluno->curso->nome }}" placeholder="Digite o curso do estagiário" readonly
                 required><br><br>
 
             <label for="componente_curricular" class="titulopequeno">Componente Curricular<strong style="color: #8B5558">*</strong></label>
@@ -71,12 +61,7 @@
             <label for="prof_orientador" class="titulopequeno">Professor(a) Orientador(a)<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="prof_orientador" id="prof_orientador"
-<<<<<<< HEAD
-                value="{{ $orientador->user->name }}" readonly required><br><br>
-=======
-                placeholder="Digite o nome do professor orientador do estagiário"
-                value="{{ $dados['prof_orientador'] ?? '' }}" required><br><br>
->>>>>>> main
+                value="{{ $orientador->user->name }}" placeholder="Digite o nome do professor orientador do estagiário" readonly required><br><br>
 
             <label for="local_estagio" class="titulopequeno">Local do Estágio<strong style="color: #8B5558">*</strong></label>
             <br>
