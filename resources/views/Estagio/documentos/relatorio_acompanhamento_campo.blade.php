@@ -216,7 +216,8 @@
                 <br><br>
 
                 <label for="nome" class="titulopequeno">
-                    O ambiente onde se desenvolve o estágio possui recursos e materiais para o desenvolvimento das atividades planejadas.
+                    O ambiente onde se desenvolve o estágio possui recursos e materiais para o desenvolvimento das
+                    atividades planejadas.
                     <strong style="color: #8B5558">*</strong></label>
                 <br>
                 <select name="opc2" id="opc2" class="boxcadastrar">
@@ -261,7 +262,8 @@
                 <br><br>
 
                 <label for="nome" class="titulopequeno">
-                    As atividades desenvolvidas pelos estudantes são compaatíveis com o curso e permitem que eles apliquem os conhecimentos teóricos e práticos obtidos em sua formação.
+                    As atividades desenvolvidas pelos estudantes são compaatíveis com o curso e permitem que eles apliquem
+                    os conhecimentos teóricos e práticos obtidos em sua formação.
                     <strong style="color: #8B5558">*</strong></label>
                 <br>
                 <select name="opc5" id="opc5" class="boxcadastrar">
@@ -277,21 +279,27 @@
 
                 {{-- Parte de comentarios --}}
 
-                <label for="nome" class="titulopequeno">Comentários sobre os aspectos observados durante a visita.<strong
-                        style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="3_l1" id="3_l1" maxlength="87"
-                    value="{{ $dados['3_l1'] ?? '' }}"required><br>
-                <div class="invalid-feedback"> Por favor preencha esse campo</div>
+                <label for="nome" class="titulopequeno">Comentários sobre os aspectos observados durante a
+                    visita.<strong style="color: #8B5558">*</strong></label><br>
+
+                <textarea class="boxcadastrar" name="3_l1" id="3_l1" rows="3" maxlength="260"
+                    oninput="limitCharactersPerLine(this, 90);" required>{{ $dados['3_l1'] ?? '' }}</textarea>
+
+                {{--  <input class="boxcadastrar" type="text" name="3_l1" id="3_l1" maxlength="87"
+                    value="{{ $dados['3_l1'] ?? '' }}"required><br>  --}}
+                {{--  <div class="invalid-feedback"> Por favor preencha esse campo</div>
                 <input class="boxcadastrar" type="text" name="3_l2" id="3_l2" maxlength="87"
-                    value="{{ $dados['3_l2'] ?? '' }}"required><br>
+                    value="{{ $dados['3_l2'] ?? '' }}"><br>
                 <input class="boxcadastrar" type="text" name="3_l3" id="3_l3" maxlength="87"
-                    value="{{ $dados['3_l3'] ?? '' }}"required><br>
+                    value="{{ $dados['3_l3'] ?? '' }}"><br>  --}}
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 {{-- Quarta questao --}}
-                <label for="nome" class="titulopequeno">Foi identificado algum desafio à implementação dos Planos de atividades do estágio? Qual(is)?<strong
-                        style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="4_l1" id="4_l1" maxlength="86"
+                <label for="nome" class="titulopequeno">Foi identificado algum desafio à implementação dos Planos de
+                    atividades do estágio? Qual(is)?<strong style="color: #8B5558">*</strong></label><br>
+                <textarea class="boxcadastrar" name="4_l1" id="4_l1" rows="3" maxlength="285"
+                    oninput="limitCharactersPerLine(this, 95);" required>{{ $dados['4_l1'] ?? '' }}</textarea>
+                {{--  <input class="boxcadastrar" type="text" name="4_l1" id="4_l1" maxlength="86"
                     value="{{ $dados['4_l1'] ?? '' }}"required><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
                 <input class="boxcadastrar" type="text" name="4_l2" id="4_l2" maxlength="86"
@@ -299,13 +307,16 @@
                 <input class="boxcadastrar" type="text" name="4_l3" id="4_l3" maxlength="86"
                     value="{{ $dados['4_l3'] ?? '' }}"required><br>
                 <input class="boxcadastrar" type="text" name="4_l4" id="4_l4" maxlength="86"
-                    value="{{ $dados['4_l4'] ?? '' }}"required><br>
+                    value="{{ $dados['4_l4'] ?? '' }}"required><br>  --}}
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 {{-- Quinta questao --}}
-                <label for="nome" class="titulopequeno">Registre informações sobre aspectos exitosos identificados nos estágios realizados neste campo:<strong
-                        style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="5_l1" id="5_l1" maxlength="86"
+                <label for="nome" class="titulopequeno">Registre informações sobre aspectos exitosos identificados nos
+                    estágios realizados neste campo:<strong style="color: #8B5558">*</strong></label><br>
+
+                <textarea class="boxcadastrar" name="5_l1" id="5_l1" rows="3" maxlength="285"
+                    oninput="limitCharactersPerLine(this, 95);" required>{{ $dados['5_l1'] ?? '' }}</textarea>
+                {{--  <input class="boxcadastrar" type="text" name="5_l1" id="5_l1" maxlength="86"
                     value="{{ $dados['5_l1'] ?? '' }}"required><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
                 <input class="boxcadastrar" type="text" name="5_l2" id="5_l2" maxlength="86"
@@ -313,13 +324,16 @@
                 <input class="boxcadastrar" type="text" name="5_l3" id="5_l3" maxlength="86"
                     value="{{ $dados['5_l3'] ?? '' }}"required><br>
                 <input class="boxcadastrar" type="text" name="5_l4" id="5_l4" maxlength="86"
-                    value="{{ $dados['5_l4'] ?? '' }}"required><br>
+                    value="{{ $dados['5_l4'] ?? '' }}"required><br>  --}}
 
 
                 {{-- Sexta questão --}}
-                    <label for="nome" class="titulopequeno">Sugestões apresentadas durante a visita: <strong
+                <label for="nome" class="titulopequeno">Sugestões apresentadas durante a visita: <strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="6_l1" id="6_l1" maxlength="86"
+                <textarea class="boxcadastrar" name="6_l1" id="6_l1" rows="3" maxlength="285"
+                    oninput="limitCharactersPerLine(this, 95);" required>{{ $dados['6_l1'] ?? '' }}</textarea>
+
+                {{--  <input class="boxcadastrar" type="text" name="6_l1" id="6_l1" maxlength="86"
                     value="{{ $dados['6_l1'] ?? '' }}"required><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
                 <input class="boxcadastrar" type="text" name="6_l2" id="6_l2" maxlength="86"
@@ -327,17 +341,42 @@
                 <input class="boxcadastrar" type="text" name="6_l3" id="6_l3" maxlength="86"
                     value="{{ $dados['6_l3'] ?? '' }}"required><br>
                 <input class="boxcadastrar" type="text" name="6_l4" id="6_l4" maxlength="86"
-                    value="{{ $dados['6_l4'] ?? '' }}"required><br>
+                    value="{{ $dados['6_l4'] ?? '' }}"required><br>  --}}
 
-            <br><br>
-            <div class="botoessalvarvoltar">
-                <a href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}" class="botaovoltar">Voltar</a>
-                <input class="botaosalvar" type="submit" value="Salvar">
-            </div>
+                <br><br>
+                <div class="botoessalvarvoltar">
+                    <a href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}" class="botaovoltar">Voltar</a>
+                    <input class="botaosalvar" type="submit" value="Salvar">
+                </div>
 
 
 
             </form>
+
+            <script>
+                function limitCharactersPerLine(textarea, maxCharsPerLine) {
+                    const lines = textarea.value.split('\n');
+                    const result = [];
+
+                    lines.forEach(line => {
+                        let currentLine = '';
+                        const words = line.split(' ');
+
+                        words.forEach(word => {
+                            if ((currentLine + word).length <= maxCharsPerLine) {
+                                currentLine += (currentLine === '' ? '' : ' ') + word;
+                            } else {
+                                result.push(currentLine);
+                                currentLine = word;
+                            }
+                        });
+
+                        result.push(currentLine);
+                    });
+
+                    textarea.value = result.join('\n');
+                }
+            </script>
 
         </div>
     </div>

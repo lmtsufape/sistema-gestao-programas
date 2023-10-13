@@ -59,7 +59,7 @@ class PDFController extends Controller
                 break;
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
-            
+
         }
     }
 
@@ -69,6 +69,7 @@ class PDFController extends Controller
         $pdf->SetMargins(0, 0, 0);
         $pdf->SetPrintHeader(false);
         $pdf->setPrintFooter(false);
+        $pdf->setCellHeightRatio(0.8);
 
         $pdf->AddPage();
 
@@ -169,15 +170,15 @@ class PDFController extends Controller
             $pdf = stream_get_contents($pdf);
             $pdf = base64_decode($pdf);
         }
-        
-        
+
+
         $nome_arquivo = $documentoObrigatorio->titulo . '_' . $aluno->name;
         $nome_arquivo = (str_replace(' ', '_', $nome_arquivo));
         $nome_arquivo = strtolower($nome_arquivo);
-                
+
         $headers = [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => "inline; filename=\"$nome_arquivo.pdf\"", 
+            'Content-Disposition' => "inline; filename=\"$nome_arquivo.pdf\"",
         ];
 
         return Response::make($pdf, 200, $headers);
@@ -1321,7 +1322,7 @@ class PDFController extends Controller
             $font->size(39);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['curso'], 315, 533, function ($font) {
             $font->file(resource_path(self::FONT));
             $font->size(39);
@@ -1420,32 +1421,32 @@ class PDFController extends Controller
                 $font->file(resource_path('fonts/Arial.ttf'));
                 $font->size(42);
                 $font->color(self::AZUL);
-            }); 
+            });
         }
 
         $image1->text($dados['endereco'], 975, 1033, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
-        }); 
+        });
 
         $image1->text($dados['num'], 300, 1125, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
-        }); 
+        });
 
         $image1->text($dados['complemento'], 860, 1125, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
-        }); 
+        });
 
         $image1->text($dados['fone1'], 1520, 1125, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
-        }); 
+        });
 
         $image1->text($dados['cep'], 330, 1220, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
@@ -1457,19 +1458,19 @@ class PDFController extends Controller
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
-        }); 
+        });
 
         $image1->text($dados['cidade'], 1500, 1220, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
-        }); 
-        
+        });
+
         $image1->text($dados['estado'], 2020, 1220, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
-        }); 
+        });
 
         $image1->text($dados['representante'], 510, 1315, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
@@ -1606,13 +1607,13 @@ class PDFController extends Controller
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turma3'], 1660, 2680, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turno3'], 2010, 2680, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
@@ -1624,67 +1625,67 @@ class PDFController extends Controller
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turma4'], 1660, 2780, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turno4'], 2010, 2780, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['estag5'], 305, 2860, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turma5'], 1660, 2860, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turno5'], 2010, 2860, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['estag6'], 305, 2960, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turma6'], 1660, 2960, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turno6'], 2010, 2960, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['estag7'], 305, 3040, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turma7'], 1660, 3040, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turno7'], 2010, 3040, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
@@ -1696,49 +1697,49 @@ class PDFController extends Controller
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turma8'], 1660, 3120, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turno8'], 2010, 3120, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['estag9'], 305, 3210, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turma9'], 1660, 3210, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turno9'], 2010, 3210, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['estag10'], 305, 3300, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turma10'], 1660, 3300, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
         });
-        
+
         $image1->text($dados['turno10'], 2010, 3300, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
@@ -1847,7 +1848,7 @@ class PDFController extends Controller
             });
         }
 
-        $image2->text($dados['3_l1'], 235, 1360, function ($font) {
+        $image2->text($dados['3_l1'], 235, 1365, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
