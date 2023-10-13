@@ -106,7 +106,6 @@
                         <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->id}}">
                             <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
                         </a>
-                        
 
                         <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
                             <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento" style="height: 30px; width: 30px;">
@@ -149,7 +148,7 @@
                     </td>
                 </tbody>
                 @include('Estagio.components.modal_legenda_doc')
-                @include('Estagio.components.modal_observacao', ['lista_documento' => $lista_documento, 'documentos' => $documentos])
+                @include('Estagio.components.modal_observacao', ['lista_documento' => $lista_documento])
                 @endforeach
             </table>
         </div>
