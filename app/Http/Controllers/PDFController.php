@@ -16,7 +16,7 @@ class PDFController extends Controller
 {
     private const AZUL = '#00009C';
     private const FONT = 'fonts/Arial.ttf';
-    private $documentType = 0;
+    private $documentType = 6;
 
     public function editImage($documentType, $dados)
     {
@@ -103,14 +103,14 @@ class PDFController extends Controller
 
         try {
             DB::beginTransaction();
-        
+
             $listaDocumentosId = $this->getListaDeDocumentosId();
             $alunoId = Auth::id();
-            
+
             $documentoExistente = DocumentoEstagio::where('lista_documentos_obrigatorios_id', $listaDocumentosId)
                 ->where('aluno_id', $alunoId)
                 ->first();
-        
+
             if (!$documentoExistente) {
                 $documento = new DocumentoEstagio();
                 $documento->aluno_id = $alunoId;
@@ -125,7 +125,7 @@ class PDFController extends Controller
                 $documentoExistente->pdf = $pdfContent;
                 $documentoExistente->save();
             }
-        
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -1937,7 +1937,7 @@ class PDFController extends Controller
 
     }
 
-    protected function getListaDeDocumentosId()
+    public function getListaDeDocumentosId()
     {
         $listaDocumentosObrigatorios = new ListaDocumentosObrigatorios();
         $document = $listaDocumentosObrigatorios->where('id', $this->documentType)->first();
