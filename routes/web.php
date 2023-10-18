@@ -280,6 +280,9 @@ Route::prefix('estagio')->group(function () {
         Route::get('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo_form'])->name('estagio.documentos.documento-completo');
         Route::post('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo'])->name('estagio.documentos.documento-completo.store');
 
+        Route::get('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor_form'])->name('estagio.documentos.relatorio-supervisor');
+        Route::post('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor'])->name('estagio.documentos.relatorio-supervisor.store');
+        
         Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
     });
 
