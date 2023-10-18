@@ -128,6 +128,10 @@
                                                         <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação"
                                                             style="height: 30px; width: 30px;">
                                                     </a>
+                                                    <a href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
+                                                        <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação"
+                                                            style="height: 30px; width: 30px;">
+                                                    </a>                                                
                                                 @endif
                                             @endif
                                         @endcan
@@ -145,12 +149,7 @@
                                                 <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento"
                                                     title="Negar documento" style="height: 30px; width: 30px;">
                                             </a>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> main
-
-                                            
+                            
                                             <a href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
                                                 <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                             </a>
