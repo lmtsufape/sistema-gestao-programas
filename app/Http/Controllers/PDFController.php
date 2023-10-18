@@ -16,7 +16,7 @@ class PDFController extends Controller
 {
     private const AZUL = '#00009C';
     private const FONT = 'fonts/Arial.ttf';
-    private $documentType = 0;
+    private $documentType = 6;
 
     public function editImage($documentType, $dados)
     {
@@ -1937,7 +1937,7 @@ class PDFController extends Controller
 
     }
 
-    protected function getListaDeDocumentosId()
+    public function getListaDeDocumentosId()
     {
         $listaDocumentosObrigatorios = new ListaDocumentosObrigatorios();
         $document = $listaDocumentosObrigatorios->where('id', $this->documentType)->first();

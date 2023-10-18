@@ -94,7 +94,7 @@
                                             $rota = 'estagio.documentos.relatorio-acompanhamento-campo';
                                             break;
                                         case 6:
-                                            $rota = 'estagio.documentos.termo-de-encaminhamento';
+                                            $rota = 'estagio.documentos.relatorio-supervisor';
                                             break;
                                         case 7:
                                             $rota = 'estagio.documentos.frequencia-residente';
@@ -114,17 +114,31 @@
                                             <!-- Verifica se o usuário tem a função de aluno -->
 
                                             @if ($lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')
-                                                <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
+                                                {{-- <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
                                                     <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento"
                                                         style="height: 30px; width: 30px;">
-                                                </a>
+                                                </a> --}}
 
 
-
-                                                <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
+                                                {{-- <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
                                                     <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
-                                                </a>
+                                                </a> --}}
 
+                                                @if ($hoje > $dataLimite)
+                                                    <a href="{{ route('observacao.show', ['id' => $lista_documento->documento_id]) }}">
+                                                        <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação"
+                                                            style="height: 30px; width: 30px;">
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
+                                                        <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento"
+                                                            title="Editar documento" style="height: 30px; width: 30px;">
+                                                    </a>
+                                                    <a href="{{ route('observacao.show', ['id' => $lista_documento->documento_id]) }}">
+                                                        <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação"
+                                                            style="height: 30px; width: 30px;">
+                                                    </a>
+                                                @endif
                                             @endif
                                         @endcan
 
@@ -142,9 +156,12 @@
                                                     title="Negar documento" style="height: 30px; width: 30px;">
                                             </a>
 
-                                            <a href="{{ route('observacao.edit', ['id' => $lista_documento->id]) }}">
+
+
+                                            <a href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
                                                 <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                             </a>
+
                                         @endcan
                                     @else
                                         @can('aluno')
