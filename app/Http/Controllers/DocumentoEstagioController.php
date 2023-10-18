@@ -400,6 +400,65 @@ class DocumentoEstagioController extends Controller
         return $pdf->editImage(5, $dados);
     }
 
+    public function relatorio_supervisor_form($id){
+
+        $estagio = Estagio::findOrFail($id);
+
+        return view('Estagio.documentos.relatorio_supervisor' , compact("estagio"));
+    }
+
+    public function relatorio_supervisor($id, Request $request){
+        try {
+            DB::beginTransaction();
+    
+            $estagio = Estagio::findOrFail($id);
+            $aluno = Aluno::findOrFail($estagio->aluno_id);
+    
+            $pdfController = new PDFController();
+            $listaDocumentosId = $pdfController->getListaDeDocumentosId();
+
+            $documento = DocumentoEstagio::where('estagio_id', $estagio->id)
+                ->where('aluno_id', $aluno->id)
+                ->where('lista_documentos_obrigatorios_id', $listaDocumentosId)
+                ->first();
+    
+            if ($documento) {
+                $arquivo_pdf = $request->file('arquivo');
+
+                $arquivo_pdf_blob = $arquivo_pdf->get();
+
+                $documento->pdf = $arquivo_pdf_blob;
+
+                return redirect()->route('estagio.documentos', ['id' => $id])->with('success', 'Documento anexado com sucesso.');
+
+            } else {
+                $documento = new DocumentoEstagio();
+                $documento->aluno_id = $aluno->id;
+
+                $arquivo_pdf = $request->file('arquivo');
+                // dd($arquivo_pdf);
+
+                $arquivo_pdf_blob = $arquivo_pdf->get();
+                $documento->pdf = $arquivo_pdf_blob;
+
+                $documento->lista_documentos_obrigatorios_id = $listaDocumentosId;
+                $documento->dados = null;
+                $documento->estagio_id = $estagio->id;
+            }
+    
+            $documento->save();
+            DB::commit();
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            dd($e);
+        }
+
+        return redirect()->route('estagio.documentos', ['id' => $id])->with('success', 'Documento anexado com sucesso.');
+
+    }
+    
+
     public function aprovar_documento($id)
     {
         $documentoEstagio = DocumentoEstagio::find($id);
