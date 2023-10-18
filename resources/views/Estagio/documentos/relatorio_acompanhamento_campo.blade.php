@@ -282,8 +282,8 @@
                 <label for="nome" class="titulopequeno">Comentários sobre os aspectos observados durante a
                     visita.<strong style="color: #8B5558">*</strong></label><br>
 
-                <textarea class="boxcadastrar" name="3_l1" id="3_l1" rows="3" maxlength="260"
-                    oninput="limitCharactersPerLine(this, 90);" required>{{ $dados['3_l1'] ?? '' }}</textarea>
+                <textarea class="boxcadastrar" name="3_l1" id="3_l1" rows="4" maxlength="400"
+                    oninput="limitCharactersPerLine(this, 100);" required>{{ $dados['3_l1'] ?? '' }}</textarea>
 
                 {{--  <input class="boxcadastrar" type="text" name="3_l1" id="3_l1" maxlength="87"
                     value="{{ $dados['3_l1'] ?? '' }}"required><br>  --}}
@@ -297,8 +297,8 @@
                 {{-- Quarta questao --}}
                 <label for="nome" class="titulopequeno">Foi identificado algum desafio à implementação dos Planos de
                     atividades do estágio? Qual(is)?<strong style="color: #8B5558">*</strong></label><br>
-                <textarea class="boxcadastrar" name="4_l1" id="4_l1" rows="3" maxlength="285"
-                    oninput="limitCharactersPerLine(this, 95);" required>{{ $dados['4_l1'] ?? '' }}</textarea>
+                <textarea class="boxcadastrar" name="4_l1" id="4_l1" rows="4" maxlength="400"
+                    oninput="limitCharactersPerLine(this, 100);" required>{{ $dados['4_l1'] ?? '' }}</textarea>
                 {{--  <input class="boxcadastrar" type="text" name="4_l1" id="4_l1" maxlength="86"
                     value="{{ $dados['4_l1'] ?? '' }}"required><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
@@ -314,8 +314,8 @@
                 <label for="nome" class="titulopequeno">Registre informações sobre aspectos exitosos identificados nos
                     estágios realizados neste campo:<strong style="color: #8B5558">*</strong></label><br>
 
-                <textarea class="boxcadastrar" name="5_l1" id="5_l1" rows="3" maxlength="285"
-                    oninput="limitCharactersPerLine(this, 95);" required>{{ $dados['5_l1'] ?? '' }}</textarea>
+                <textarea class="boxcadastrar" name="5_l1" id="5_l1" rows="4" maxlength="400"
+                    oninput="limitCharactersPerLine(this, 100);" required>{{ $dados['5_l1'] ?? '' }}</textarea>
                 {{--  <input class="boxcadastrar" type="text" name="5_l1" id="5_l1" maxlength="86"
                     value="{{ $dados['5_l1'] ?? '' }}"required><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
@@ -330,8 +330,8 @@
                 {{-- Sexta questão --}}
                 <label for="nome" class="titulopequeno">Sugestões apresentadas durante a visita: <strong
                         style="color: #8B5558">*</strong></label><br>
-                <textarea class="boxcadastrar" name="6_l1" id="6_l1" rows="3" maxlength="285"
-                    oninput="limitCharactersPerLine(this, 95);" required>{{ $dados['6_l1'] ?? '' }}</textarea>
+                <textarea class="boxcadastrar" name="6_l1" id="6_l1" rows="4" maxlength="400"
+                    oninput="limitCharactersPerLine(this, 100);" required>{{ $dados['6_l1'] ?? '' }}</textarea>
 
                 {{--  <input class="boxcadastrar" type="text" name="6_l1" id="6_l1" maxlength="86"
                     value="{{ $dados['6_l1'] ?? '' }}"required><br>
