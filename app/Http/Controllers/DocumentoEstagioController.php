@@ -404,7 +404,7 @@ class DocumentoEstagioController extends Controller
 
         $estagio = Estagio::findOrFail($id);
 
-        return view('Estagio.documentos.relatorio_supervisor' , compact("estagio"));
+        return view('Estagio.documentos.UPE.relatorio_supervisor' , compact("estagio"));
     }
 
     public function relatorio_supervisor($id, Request $request){
