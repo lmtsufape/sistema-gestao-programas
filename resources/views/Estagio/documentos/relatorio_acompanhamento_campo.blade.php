@@ -72,7 +72,7 @@
 
                 <label for="nome" class="titulopequeno">Fone<strong style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="fone1" id="fone1"
-                    placeholder="Digite o telefone sem traços ou espaços"
+                    placeholder="Digite o telefone com o DDD. Exemplo (87)90000-0000"
                     value="{{ $dados['fone1'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
@@ -133,7 +133,7 @@
                 <label for="nome" class="titulopequeno">Fone do Supervisor de Estágio<strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="fone2" id="fone2"
-                    placeholder="Digite o telefone do supervisor sem traços ou espaços"
+                    placeholder="Digite o telefone com o DDD. Exemplo (87)90000-0000"
                     value="{{ $dados['fone2'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
