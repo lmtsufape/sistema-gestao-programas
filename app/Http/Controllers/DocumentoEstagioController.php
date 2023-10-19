@@ -546,6 +546,9 @@ class DocumentoEstagioController extends Controller
 
             $documento->pdf = $arquivo_pdf_blob;
 
+            $documento->is_completo = True;
+            $documento->status = 'Aguardando verificação';
+            
             $documento->save();
             DB::commit();
 

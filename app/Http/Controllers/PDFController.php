@@ -97,28 +97,20 @@ class PDFController extends Controller
         // Capturar a saída PDF em uma variável
         ob_start();
         $pdf->Output('documento.pdf', 'I');
-
-        if (config('database.default') === 'pgsql') {
-            $pdfContent = ob_get_contents();
-            $pdfContent = base64_encode($pdfContent);
-        } else {
-            $pdfContent = ob_get_contents();
-        }
-
+        $pdfContent = ob_get_contents();
         ob_end_clean();
 
 
         try {
             DB::beginTransaction();
-
-
+        
             $listaDocumentosId = $this->getListaDeDocumentosId();
             $alunoId = Auth::id();
-
+            
             $documentoExistente = DocumentoEstagio::where('lista_documentos_obrigatorios_id', $listaDocumentosId)
                 ->where('aluno_id', $alunoId)
                 ->first();
-
+        
             if (!$documentoExistente) {
                 $documento = new DocumentoEstagio();
                 $documento->aluno_id = $alunoId;
@@ -130,14 +122,13 @@ class PDFController extends Controller
                 $documento->save();
             } else {
                 $documentoExistente->dados = json_encode($dados);
-                //$documentoExistente->pdf = $pdfContent;
+                $documentoExistente->pdf = $pdfContent;
                 $documentoExistente->save();
             }
-
+        
             DB::commit();
         } catch (\Exception $e) {
-            //dd($e);
-            //DB::rollBack();
+            DB::rollBack();
         }
 
         // Renderizar o PDF no navegador

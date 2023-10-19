@@ -219,7 +219,8 @@ class EstagioController extends Controller
                 'documentos_estagios.status',
                 'documentos_estagios.created_at as data_envio',
                 'documentos_estagios.updated_at as data_atualizacao',
-                'documentos_estagios.id as documento_id'
+                'documentos_estagios.id as documento_id',
+                'documentos_estagios.is_completo'
             )
             ->get();
 
