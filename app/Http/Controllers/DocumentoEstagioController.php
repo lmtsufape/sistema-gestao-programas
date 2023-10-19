@@ -15,44 +15,6 @@ use Illuminate\Support\Facades\DB;
 class DocumentoEstagioController extends Controller
 {
 
-    public function edit($id)
-    {
-        $documento = DocumentoEstagio::findOrFail($id);
-        return view('Estagio.documentos.editDocumento', compact('documento'));
-    }
-
-    public function update($dados, $id)
-    {
-        $documento = DocumentoEstagio::Where('id', $id)->first();
-
-        // terá um método para cada documento, esse switchcase servirá para selecionar o método especifico de cada documento.
-        switch ($id) {
-                //termo de encaminhamento
-            case 1:
-                $documentPath1 = storage_path('app/docs/termo_encaminhamento/0.png');
-                $documentPath2 = storage_path('app/docs/termo_encaminhamento/1.png');
-                return $this->editTermoEncaminhamento([$documentPath1, $documentPath2], $dados);
-                break;
-                //termo de compromisso
-            case 2:
-                $documentPath1 = storage_path('app/docs/termo_compromisso/0.png');
-                $documentPath2 = storage_path('app/docs/termo_compromisso/1.png');
-                return $this->editTermoCompromisso([$documentPath1, $documentPath2], $dados);
-                break;
-            
-            case 4:
-                $documentPath1 = storage_path('app/docs/termo_compromisso/0.png');
-                return $this->editFichaFrequencia([$documentPath1], $dados);
-                break; 
-              
-            default:
-                return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
-        }
-
-        $documento->save();
-    }
-
-
     public function termo_compromisso_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
@@ -63,15 +25,15 @@ class DocumentoEstagioController extends Controller
         $id_estagio = $estagio->id;
 
         if ($request->query("edit") == true) {
-            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
-                                        ->where('lista_documentos_obrigatorios_id', 2)
-                                        ->first();
-                                        
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 2)
+                ->first();
+
             $dados = json_decode($documento->dados, true);
-            return view('Estagio.documentos.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador", "dados"));
+            return view('Estagio.documentos.UPE.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador", "dados"));
         }
 
-        return view('Estagio.documentos.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador"));
+        return view('Estagio.documentos.UPE.termo_de_compromisso', compact("estagio", "aluno", "instituicao", "orientador"));
     }
 
     public function termo_compromisso(Request $request)
@@ -132,18 +94,18 @@ class DocumentoEstagioController extends Controller
         $aluno = Aluno::findOrFail($estagio->aluno_id);
 
         $id_estagio = $estagio->id;
-      
-        if ($request->query("edit") == true ) {
-            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
-                                        ->where('lista_documentos_obrigatorios_id', 1)
-                                        ->first();
+
+        if ($request->query("edit") == true) {
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 1)
+                ->first();
 
             $dados = json_decode($documento->dados, true);
-            
-            return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio", "aluno", "dados"));
+
+            return view('Estagio.documentos.UPE.termo_de_encaminhamento', compact("estagio", "aluno", "dados"));
         }
         //dd($estagio);
-        return view('Estagio.documentos.termo_de_encaminhamento', compact("estagio", "aluno"));
+        return view('Estagio.documentos.UPE.termo_de_encaminhamento', compact("estagio", "aluno"));
     }
 
     public function termo_encaminhamento(Request $request)
@@ -197,17 +159,17 @@ class DocumentoEstagioController extends Controller
 
         $id_estagio = $estagio->id;
 
-        if ($request->query("edit") == true ) {
-            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
-                                        ->where('lista_documentos_obrigatorios_id', 3)
-                                        ->first();
-                                        
+        if ($request->query("edit") == true) {
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 3)
+                ->first();
+
             $dados = json_decode($documento->dados, true);
 
-            return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno", "dados", "orientador"));
+            return view('Estagio.documentos.UPE.plano_de_atividades', compact("estagio", "aluno", "dados", "orientador"));
         }
 
-        return view('Estagio.documentos.plano_de_atividades', compact("estagio", "aluno", "orientador"));
+        return view('Estagio.documentos.UPE.plano_de_atividades', compact("estagio", "aluno", "orientador"));
     }
 
     public function plano_de_atividades(Request $request)
@@ -262,10 +224,10 @@ class DocumentoEstagioController extends Controller
                 ->where('lista_documentos_obrigatorios_id', 4)
                 ->first();
             $dados = json_decode($documento->dados, true);
-            return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno", "dados", "orientador"));
+            return view('Estagio.documentos.UPE.ficha_frequencia', compact("estagio", "aluno", "dados", "orientador"));
         }
 
-        return view('Estagio.documentos.ficha_frequencia', compact("estagio", "aluno", "orientador"));
+        return view('Estagio.documentos.UPE.ficha_frequencia', compact("estagio", "aluno", "orientador"));
     }
 
     public function ficha_frequencia(Request $request)
@@ -325,9 +287,9 @@ class DocumentoEstagioController extends Controller
                 ->where('lista_documentos_obrigatorios_id', 7)
                 ->first();
             $dados = json_decode($documento->dados, true);
-            return view('Estagio.documentos.frequencia_residente', compact("estagio", "aluno", "dados"));
+            return view('Estagio.documentos.UPE.frequencia_residente', compact("estagio", "aluno", "dados"));
         }
-        return view('Estagio.documentos.frequencia_residente', compact("estagio", "aluno"));
+        return view('Estagio.documentos.UPE.frequencia_residente', compact("estagio", "aluno"));
     }
 
     public function frequencia_residente(Request $request)
@@ -347,7 +309,7 @@ class DocumentoEstagioController extends Controller
         return $pdf->editImage(7, $dados);
     }
 
-    
+
     public function relatorio_acompanhamento_campo_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
@@ -357,15 +319,15 @@ class DocumentoEstagioController extends Controller
         $id_estagio = $estagio->id;
 
         if ($request->query("edit") == true) {
-            $documento = DocumentoEstagio::where('estagio_id',$id_estagio)
-                                        ->where('lista_documentos_obrigatorios_id', 5)
-                                        ->first();
-                                        
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 5)
+                ->first();
+
             $dados = json_decode($documento->dados, true);
-            return view('Estagio.documentos.relatorio_acompanhamento_campo', compact("estagio", "aluno","dados", "orientador"));
+            return view('Estagio.documentos.UPE.relatorio_acompanhamento_campo', compact("estagio", "aluno", "dados", "orientador"));
         }
 
-        return view('Estagio.documentos.relatorio_acompanhamento_campo', compact("estagio", "aluno", "orientador"));
+        return view('Estagio.documentos.UPE.relatorio_acompanhamento_campo', compact("estagio", "aluno", "orientador"));
     }
 
     public function relatorio_acompanhamento_campo(Request $request)
@@ -442,7 +404,7 @@ class DocumentoEstagioController extends Controller
 
         $estagio = Estagio::findOrFail($id);
 
-        return view('Estagio.documentos.relatorio_supervisor' , compact("estagio"));
+        return view('Estagio.documentos.UPE.relatorio_supervisor' , compact("estagio"));
     }
 
     public function relatorio_supervisor($id, Request $request){
@@ -529,19 +491,19 @@ class DocumentoEstagioController extends Controller
     {
         $doc = DocumentoEstagio::Where('id', $id)->first();
 
-        return view('Estagio.documentos.showObservacao',compact('doc'));
+        return view('Estagio.documentos.showObservacao', compact('doc'));
     }
 
     public function observacao_edit($id)
     {
         $doc = DocumentoEstagio::Where('id', $id)->first();
-        return view('Estagio.documentos.editObservacao',compact('doc'));
+        return view('Estagio.documentos.editObservacao', compact('doc'));
     }
 
     public function observacao_update(Request $request, $id)
     {
         DB::beginTransaction();
-        try{
+        try {
             $doc = DocumentoEstagio::find($id);
             $doc->observacao = $request->observacao  ? $request->observacao  : $doc->observacao;
 
@@ -549,14 +511,11 @@ class DocumentoEstagioController extends Controller
 
             DB::commit();
 
-            return redirect()->route('estagio.documentos',['id' => $doc->estagio_id])
-            ->with('sucesso', 'Observação editado com sucesso.');
-
-        } catch(exception $e){
+            return redirect()->route('estagio.documentos', ['id' => $doc->estagio_id])
+                ->with('sucesso', 'Observação editado com sucesso.');
+        } catch (exception $e) {
             DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao editar Observação. tente novamente mais tarde." );
+            return redirect()->back()->withErrors("Falha ao editar Observação. tente novamente mais tarde.");
         }
     }
-
 }
-
