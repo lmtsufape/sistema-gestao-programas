@@ -77,23 +77,23 @@
             @csrf
             <label for="inputName" class="titulo">Nome</label>
             <input class="boxinfo" type="text" id="inputName" name="nome" required placeholder="Digite o nome">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="inputNomeSocial" class="titulo">Nome Social</label>
             <input class="boxinfo" type="text" id="inputNomeSocial" name="nome_social" required placeholder="Digite o nome social">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="inputCpf" class="titulo">CPF</label>
             <input class="boxinfo" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="inputEmail4" class="titulo">E-mail</label>
             <input class="boxinfo" type="email" id="inputEmail4" name="email" required placeholder="Digite o email">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="inputPassword4" class="titulo">Senha</label>
             <input type="password"  class="boxinfo" id="inputPassword4" name="senha" required placeholder="Digite a senha">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="tipoUser" class="titulo">Tipo do usuário</label>
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">

@@ -25,7 +25,7 @@
                 <label for="nome" class="titulopequeno">Nome<strong style="color: #8B5558">*</strong></label>
                 <br>
                 <input class="boxcadastrar" type="text" name="nome" id="nome" placeholder="Digite o nome do curso" required><br><br>
-                <div class="invalid-feedback"> Por favor preencha esse campo</div><br><br>
+                <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
 
                 <br><br>
