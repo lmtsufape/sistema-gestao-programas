@@ -444,6 +444,9 @@ class DocumentoEstagioController extends Controller
                 $documento->lista_documentos_obrigatorios_id = $listaDocumentosId;
                 $documento->dados = null;
                 $documento->estagio_id = $estagio->id;
+                $documento->is_completo = True;
+                $documento->status = 'Aguardando verificação';
+                
             }
     
             $documento->save();
@@ -458,6 +461,7 @@ class DocumentoEstagioController extends Controller
 
     }
     
+
 
     public function aprovar_documento($id)
     {
@@ -485,6 +489,40 @@ class DocumentoEstagioController extends Controller
         $documentoEstagio->save();
 
         return redirect()->back()->with('success', 'Documento aprovado com sucesso');
+    }
+
+    public function documento_completo_form($id)
+    {
+        $documento = DocumentoEstagio::findOrFail($id);
+
+        return view('Estagio.documentos.documento_completo' , compact("documento"));
+    }
+
+    public function documento_completo($id, Request $request)
+    {
+        try{
+            DB::beginTransaction();
+
+            $documento = DocumentoEstagio::findOrFail($id);
+            // dd($documento);
+            $arquivo_pdf = $request->file('arquivo');
+
+            $arquivo_pdf_blob = $arquivo_pdf->get();
+
+            $documento->pdf = $arquivo_pdf_blob;
+
+            $documento->is_completo = True;
+            $documento->status = 'Aguardando verificação';
+            
+            $documento->save();
+            DB::commit();
+
+            return redirect()->route('estagio.documentos', ['id' => $documento->estagio_id])->with('success', 'Documento enviado com sucesso.');
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            dd($e);
+        }
     }
 
     public function observacao_show($id)
