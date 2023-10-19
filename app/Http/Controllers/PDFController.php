@@ -1414,7 +1414,7 @@ class PDFController extends Controller
             });
         }
 
-        $image1->text($dados['endereco'], 975, 10508, function ($font) {
+        $image1->text($dados['endereco'], 975, 1050, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
