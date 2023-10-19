@@ -6,7 +6,7 @@
             @if (Session::has('pdf_generated_success'))
                 <div class="alert alert-success">
                     {{ Session::get('pdf_generated_success') }}
-                </div>         
+                </div>
             @endif
             <br>
             <div style="display: flex; justify-content: space-evenly; align-items: center;">
@@ -119,7 +119,7 @@
                                                         style="height: 30px; width: 30px;">
                                                 </a> --}}
 
-                                                
+
                                                 {{-- <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
                                                     <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                                 </a> --}}
@@ -168,26 +168,28 @@
                                             </a>
 
 
+
+
                                            
                             
                                             <a href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
                                                 <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                             </a>
-                                            
+
                                         @endcan
                                     @else
                                         @can('aluno')
                                             <!-- Verifica se o usuário tem a função de aluno -->
-                                            @if ($hoje > $dataLimite)
+                                            {{--  @if ($hoje > $dataLimite)
                                                 <img src="{{ asset('images/add_disciplina.svg') }}" alt="Documento Preenchido"
                                                     title="Documento não preenchido"
                                                     style="height: 30px; width: 30px; opacity: 50%;" disabled>
-                                            @else
+                                            @else  --}}
                                                 <a href="{{ route($rota, ['id' => $estagio->id]) }}">
                                                     <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento"
                                                         title="Preencher documento" style="height: 30px; width: 30px;">
                                                 </a>
-                                            @endif
+                                            {{--  @endif  --}}
                                         @endcan
                                     @endif
                                     @if ($documento_enviado)
