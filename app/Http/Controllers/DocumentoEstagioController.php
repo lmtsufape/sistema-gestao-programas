@@ -482,6 +482,9 @@ class DocumentoEstagioController extends Controller
                 $documento->lista_documentos_obrigatorios_id = $listaDocumentosId;
                 $documento->dados = null;
                 $documento->estagio_id = $estagio->id;
+                $documento->is_completo = True;
+                $documento->status = 'Aguardando verificação';
+                
             }
     
             $documento->save();
