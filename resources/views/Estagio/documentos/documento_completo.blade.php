@@ -19,7 +19,7 @@
             <label for="Arquivo" class="titulopequeno">Insira o documento completo<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="file" name="arquivo" id="arquivo" required><br>
-            <div class="invalid-feedback">Por favor, anexe um arquivo</div><br>
+            <div class="invalid-feedback">Por favor, anexe o arquivo preenchido com as assinaturas</div><br>
 
             <br><br>
             <div class="botoessalvarvoltar">
@@ -27,8 +27,6 @@
                 <input class="botaosalvar" type="submit" value="Salvar">
             </div>
             
-
-
         </form>
 
     </div>

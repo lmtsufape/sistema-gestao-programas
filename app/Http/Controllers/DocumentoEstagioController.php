@@ -535,7 +535,26 @@ class DocumentoEstagioController extends Controller
 
     public function documento_completo($id, Request $request)
     {
+        try{
+            DB::beginTransaction();
 
+            $documento = DocumentoEstagio::findOrFail($id);
+            // dd($documento);
+            $arquivo_pdf = $request->file('arquivo');
+
+            $arquivo_pdf_blob = $arquivo_pdf->get();
+
+            $documento->pdf = $arquivo_pdf_blob;
+
+            $documento->save();
+            DB::commit();
+
+            return redirect()->route('estagio.documentos', ['id' => $documento->estagio_id])->with('success', 'Documento enviado com sucesso.');
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            dd($e);
+        }
     }
 
     public function observacao_show($id)
