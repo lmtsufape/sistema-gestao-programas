@@ -18,49 +18,56 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
             'titulo' => "Termo de Encaminhamento",
             'descricao_documento' => "Termo de encaminhamento do aluno para o estágio.",
             'tipo_entrega' => "final",
-            'tipo_estagio' => "eo"
+            'tipo_estagio' => "eo",
+            'instituicao' => "UPE"
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
             'titulo' => "Termo de Compromisso",
             'descricao_documento' => "Documento que formaliza o início do estágio, com as informações do estagiário, da empresa e do supervisor de estágio.",
             'tipo_entrega' => "final",
-            'tipo_estagio' => "eo"
+            'tipo_estagio' => "eo",
+            'instituicao' => "UPE"
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
             'titulo' => "Plano de Atividades",
             'descricao_documento' => "Plano de atividades do estágio.",
             'tipo_entrega' => "final",
-            'tipo_estagio' => "eo"
+            'tipo_estagio' => "eo",
+            'instituicao' => "UPE"
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
             'titulo' => "Ficha de Frequência",
             'descricao_documento' => "Ficha de frequência do aluno.",
             'tipo_entrega' => "final",
-            'tipo_estagio' => "eo"
+            'tipo_estagio' => "eo",
+            'instituicao' => "UPE"
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
             'titulo' => "Relatório de Acompanhamento do Campo de Estágio",
             'descricao_documento' => "Relatório de Acompanhamento do Campo de Estágio.",
             'tipo_entrega' => "final",
-            'tipo_estagio' => "eo"
+            'tipo_estagio' => "eo",
+            'instituicao' => "UPE"
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
             'titulo' => "Relatório de Avaliação do Supervisor de Estágio",
             'descricao_documento' => "Relatório de avaliação do supervisor de estágio.",
             'tipo_entrega' => "final",
-            'tipo_estagio' => "eo"
+            'tipo_estagio' => "eo",
+            'instituicao' => "UPE"
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
             'titulo' => "Formulário de Frequência do Residente na Concedente",
             'descricao_documento' => "Formulário de Frequência do Residente na Concedente.",
             'tipo_entrega' => "final",
-            'tipo_estagio' => "eo"
+            'tipo_estagio' => "eo",
+            'instituicao' => "UPE"
         ]);
     }
 }
