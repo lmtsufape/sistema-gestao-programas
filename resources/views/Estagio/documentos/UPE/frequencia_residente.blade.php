@@ -17,21 +17,25 @@
             @csrf
 
 
-            <label for="residente" class="titulopequeno">Residente<strong style="color: #8B5558">*</strong></label>
+            <label for="residente" class="titulopequeno">Nome do Residente<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="residente" id="residente"
-                value="{{ $dados['residente'] ?? '' }}" required><br>
+                value="{{ $dados['residente'] ?? '' }}" 
+                placeholder="Digite o nome do residente"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="curso" class="titulopequeno">Curso<strong style="color: #8B5558">*</strong></label>
+            <label for="curso" class="titulopequeno">Curso do Residente<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="curso" id="curso" value="{{ $dados['curso'] ?? '' }}"
+                placeholder="Digite o curso do residente"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="unidade" class="titulopequeno">Unidade<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="unidade" id="unidade" value="{{ $dados['unidade'] ?? '' }}"
+                placeholder="Digite a unidade"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
@@ -39,19 +43,24 @@
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="nomeConcedente" id="nomeConcedente"
-                value="{{ $dados['nomeConcedente'] ?? '' }}" required><br>
+                value="{{ $dados['nomeConcedente'] ?? '' }}" 
+                placeholder="Digite o nome da concedente"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="etapaEducacaoBasica" class="titulopequeno">Etapa da Educação Básica<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="etapaEducacaoBasica" id="etapaEducacaoBasica"
-                value="{{ $dados['etapaEducacaoBasica'] ?? '' }}" required><br>
+                value="{{ $dados['etapaEducacaoBasica'] ?? '' }}" 
+                placeholder="Digite a etapa da educação básica"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="ano" class="titulopequeno">Ano<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="ano" id="ano" value="{{ $dados['ano'] ?? '' }}"
+                placeholder="Digite o ano"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
@@ -59,6 +68,7 @@
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="nomeProf" id="nomeProf" value="{{ $dados['nomeProf'] ?? '' }}"
+                placeholder="Digite o nome do/a professor/a preceptor/a"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
@@ -66,7 +76,9 @@
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="numMatricula" id="numMatricula"
-                value="{{ $dados['numMatricula'] ?? '' }}" required><br>
+                value="{{ $dados['numMatricula'] ?? '' }}"
+                placeholder="Digite o n° da matrícula do/a professor/a preceptor/a"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <br><br>
