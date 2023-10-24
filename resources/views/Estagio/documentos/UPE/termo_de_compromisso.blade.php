@@ -14,7 +14,7 @@
 
         <hr style="color:#5C1C26; background-color: #5C1C26">
 
-        <form action="{{ route('estagio.documentos.termo-de-compromisso.store', ['id' => $estagio->id]) }}" method="post">
+        <form action="{{ route('estagio.documentos.UPE.termo-de-compromisso.store', ['id' => $estagio->id]) }}" method="post">
             @csrf
 
             <!-- INSTITUIÇÃO DE ENSINO -->

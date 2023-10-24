@@ -239,9 +239,9 @@ Route::prefix('estagio')->group(function () {
     Route::delete('/{id}', [EstagioController::class, 'destroy'])->name('estagio.delete');
     // Route::get('{id}', [EstagioController::class, 'show'])->name('estagio.show');
 
-    Route::get('/instituicao',[InstituicaoController::class, 'index'])->name('instituicao.index');
-    Route::get('/instituicao/edit',[InstituicaoController::class, 'edit'])->name('instituicao.edit');
-    Route::post('/instituicao',[InstituicaoController::class,'update'])->name('instituicao.update');
+    Route::get('/instituicao', [InstituicaoController::class, 'index'])->name('instituicao.index');
+    Route::get('/instituicao/edit', [InstituicaoController::class, 'edit'])->name('instituicao.edit');
+    Route::post('/instituicao', [InstituicaoController::class, 'update'])->name('instituicao.update');
 
     Route::get('/configurar', [ListaDocumentosObrigatoriosController::class, 'editConfig'])->name('estagio.editConfig');
     Route::post('/configurar', [ListaDocumentosObrigatoriosController::class, 'updateConfig'])->name('estagio.updateConfig');
@@ -252,40 +252,45 @@ Route::prefix('estagio')->group(function () {
     Route::prefix('/documentos')->group(function () {
         Route::get('/{id}', [EstagioController::class, 'showDocuments'])->name('estagio.documentos');
 
-        Route::get('/aprovar-documento/{id}',[DocumentoEstagioController::class, 'aprovar_documento'])->name('aprovar.documento');
-        Route::get('/negar-documento/{id}',[DocumentoEstagioController::class, 'negar_documento'])->name('negar.documento');
+        Route::get('/aprovar-documento/{id}', [DocumentoEstagioController::class, 'aprovar_documento'])->name('aprovar.documento');
+        Route::get('/negar-documento/{id}', [DocumentoEstagioController::class, 'negar_documento'])->name('negar.documento');
 
-        Route::get('/observacao/show/{id}',[DocumentoEstagioController::class, 'observacao_show'])->name('observacao.show');
-        Route::get('/observacao/edit/{id}',[DocumentoEstagioController::class, 'observacao_edit'])->name('observacao.edit');
-        Route::post('/observacao/update/{id}',[DocumentoEstagioController::class, 'observacao_update'])->name('observacao.update');
+        Route::get('/observacao/show/{id}', [DocumentoEstagioController::class, 'observacao_show'])->name('observacao.show');
+        Route::get('/observacao/edit/{id}', [DocumentoEstagioController::class, 'observacao_edit'])->name('observacao.edit');
+        Route::post('/observacao/update/{id}', [DocumentoEstagioController::class, 'observacao_update'])->name('observacao.update');
 
-        Route::get('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.documentos.termo-de-encaminhamento');
-        Route::post('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.documentos.termo-de-encaminhamento.store');
+        // Documentos UPE
 
-        Route::get('/{id}/termo-de-compromisso', [DocumentoEstagioController::class, 'termo_compromisso_form'])->name('estagio.documentos.termo-de-compromisso');
-        Route::post('/{id}/termo-de-compromisso', [DocumentoEstagioController::class, 'termo_compromisso'])->name('estagio.documentos.termo-de-compromisso.store');
+        Route::get('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.documentos.UPE.termo-de-encaminhamento');
+        Route::post('/{id}/termo-de-encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.documentos.UPE.termo-de-encaminhamento.store');
 
-        Route::get('/{id}/plano-de-atividades', [DocumentoEstagioController::class, 'plano_de_atividades_form'])->name('estagio.documentos.plano-de-atividades');
-        Route::post('/{id}/plano-de-atividades', [DocumentoEstagioController::class, 'plano_de_atividades'])->name('estagio.documentos.plano-de-atividades.store');
+        Route::get('/{id}/termo-de-compromisso', [DocumentoEstagioController::class, 'termo_compromisso_form'])->name('estagio.documentos.UPE.termo-de-compromisso');
+        Route::post('/{id}/termo-de-compromisso', [DocumentoEstagioController::class, 'termo_compromisso'])->name('estagio.documentos.UPE.termo-de-compromisso.store');
 
-        Route::get('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia_form'])->name('estagio.documentos.ficha-frequencia');
-        Route::post('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia'])->name('estagio.documentos.ficha-frequencia.store');
+        Route::get('/{id}/plano-de-atividades', [DocumentoEstagioController::class, 'plano_de_atividades_form'])->name('estagio.documentos.UPE.plano-de-atividades');
+        Route::post('/{id}/plano-de-atividades', [DocumentoEstagioController::class, 'plano_de_atividades'])->name('estagio.documentos.UPE.plano-de-atividades.store');
 
-        Route::get('/{id}/frequencia_residente', [DocumentoEstagioController::class, 'frequencia_residente_form'])->name('estagio.documentos.frequencia-residente');
-        Route::post('/{id}/frequencia_residente', [DocumentoEstagioController::class, 'frequencia_residente'])->name('estagio.documentos.frequencia-residente.store');
+        Route::get('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia_form'])->name('estagio.documentos.UPE.ficha-frequencia');
+        Route::post('/{id}/ficha-frequencia', [DocumentoEstagioController::class, 'ficha_frequencia'])->name('estagio.documentos.UPE.ficha-frequencia.store');
 
-        Route::get('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo_form'])->name('estagio.documentos.relatorio-acompanhamento-campo');
-        Route::post('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo'])->name('estagio.documentos.relatorio-acompanhamento-campo.store');
-        
-        Route::get('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo_form'])->name('estagio.documentos.documento-completo');
-        Route::post('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo'])->name('estagio.documentos.documento-completo.store');
+        Route::get('/{id}/frequencia_residente', [DocumentoEstagioController::class, 'frequencia_residente_form'])->name('estagio.documentos.UPE.frequencia-residente');
+        Route::post('/{id}/frequencia_residente', [DocumentoEstagioController::class, 'frequencia_residente'])->name('estagio.documentos.UPE.frequencia-residente.store');
 
-        Route::get('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor_form'])->name('estagio.documentos.relatorio-supervisor');
-        Route::post('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor'])->name('estagio.documentos.relatorio-supervisor.store');
-        
+        Route::get('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo_form'])->name('estagio.documentos.UPE.relatorio-acompanhamento-campo');
+        Route::post('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo'])->name('estagio.documentos.UPE.relatorio-acompanhamento-campo.store');
+
+        Route::get('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo_form'])->name('estagio.documentos.UPE.documento-completo');
+        Route::post('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo'])->name('estagio.documentos.UPE.documento-completo.store');
+
+        Route::get('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor_form'])->name('estagio.documentos.UPE.relatorio-supervisor');
+        Route::post('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor'])->name('estagio.documentos.UPE.relatorio-supervisor.store');
+
+        // documentos UFAPE
+        Route::get('/{id}/termo-de-compromisso-ufape', [DocumentoEstagioController::class, 'termo_compromisso_ufape_form'])->name('estagio.documentos.UFAPE.termo-de-compromisso');
+        Route::post('/{id}/termo-de-compromisso-ufape', [DocumentoEstagioController::class, 'termo_compromisso_ufape'])->name('estagio.documentos.UFAPE.termo-de-compromisso.store');
+
         Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
     });
-
 });
 
 Route::get('/meus-estagios', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');

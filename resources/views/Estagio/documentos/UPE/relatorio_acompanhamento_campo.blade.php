@@ -16,7 +16,7 @@
             <hr style="color:#5C1C26; background-color: #5C1C26">
 
             <form
-                action="{{ route('estagio.documentos.relatorio-acompanhamento-campo.store', ['id' => $estagio->id]) }}"method="post">
+                action="{{ route('estagio.documentos.UPE.relatorio-acompanhamento-campo.store', ['id' => $estagio->id]) }}"method="post">
                 @csrf
 
 
