@@ -21,25 +21,33 @@
             <label for="Nome" class="titulopequeno">Nome<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="Nome"
-                id="Nome" required><br>
+                id="Nome" 
+                placeholder="Digite o nome do estagiário"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="Email" class="titulopequeno">Email<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="Email"
-                id="Email" required><br>
+                id="Email" 
+                placeholder="Digite o email do estagiário"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="curso" class="titulopequeno">Curso<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="curso"
-                id="curso" required><br>
+                id="curso" 
+                placeholder="Digite o curso do estagiário"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="periodo" class="titulopequeno">Período<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="periodo"
-                id="periodo" required><br>
+                id="periodo" 
+                placeholder="Digite o período que o estagiário está cursando"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <h1 class="titulogrande">Campo de Estágio</h1><br>
@@ -47,103 +55,137 @@
             <label for="instituicao" class="titulopequeno">Instituição<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="instituicao"
-                id="instituicao" required><br>
+                id="instituicao" 
+                placeholder="Digite o nome da instituição"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="endereco" class="titulopequeno">Endereço (Local de realização do Estágio)<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="endereco"
-                id="endereco" required><br>
+                id="endereco" 
+                placeholder="Digite o endereço (Local de realização do Estágio)"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="numCasa" class="titulopequeno">Número do Endereço<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="numCasa"
-                id="numCasa" required><br>
+                id="numCasa" 
+                placeholder="Digite o número do endereço"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="complemento" class="titulopequeno">Complemento do Endereço<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="complemento"
-                id="complemento" required><br>
+                id="complemento" 
+                placeholder="Digite o complemento do endereço"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="fone" class="titulopequeno">Telefone<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="fone"
-                id="fone" required><br>
+                id="fone" 
+                placeholder="Digite o telefone"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
             
             <label for="cep" class="titulopequeno">CEP<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cep"
-                id="cep" required><br>
+                id="cep" 
+                placeholder="Digite o cep do endereço"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="bairro" class="titulopequeno">Bairro<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="bairro"
-                id="bairro" required><br>
+                id="bairro" 
+                placeholder="Digite o bairro do endereço"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="cidade" class="titulopequeno">Cidade<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cidade"
-                id="cidade" required><br>
+                id="cidade" 
+                placeholder="Digite a cidade do endereço"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="estado" class="titulopequeno">Estado<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="estado"
-                id="estado" required><br>
+                id="estado" 
+                placeholder="Digite o estado do endereço"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="pontoReferencia" class="titulopequeno">Ponto de Referencia<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="pontoReferencia"
-                id="pontoReferencia" required><br>
+                id="pontoReferencia" 
+                placeholder="Digite o ponto de referencia do endereço"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="supervisorEstagio" class="titulopequeno">Supervisor do Estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="supervisorEstagio"
-                id="supervisorEstagio" required><br>
+                id="supervisorEstagio" 
+                placeholder="Digite o nome do supervisor do estágio"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="FoneSupervisor" class="titulopequeno">Telefone do Supervisor do Estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="FoneSupervisor"
-                id="FoneSupervisor" required><br>
+                id="FoneSupervisor" 
+                placeholder="Digite o telefone do supervisor do estágio"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="emailSup" class="titulopequeno">Email do Supervisor do Estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="emailSup"
-                id="emailSup" required><br>
+                id="emailSup" 
+                placeholder="Digite o email do Supervisor do Estágio"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="cargo" class="titulopequeno">Cargo do Supervisor do Estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cargo"
-                id="cargo" required><br>
+                id="cargo" 
+                placeholder="Digite o cargo do Supervisor do Estágio"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="educacaoEscolar" class="titulopequeno">Educacao Escolar (Sim ou não)<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="educacaoEscolar"
-                id="educacaoEscolar" required><br>
+                id="educacaoEscolar" 
+                placeholder="Educacao Escolar (Sim ou não)"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
             
             <label for="educacaoNaoEscolar" class="titulopequeno">Educacao Não-Escolar (Sim ou não)<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="educacaoNaoEscolar"
-                id="educacaoNaoEscolar" required><br>
+                id="educacaoNaoEscolar" 
+                placeholder="Educacao Não-Escolar (Sim ou não)"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="modalidade" class="titulopequeno">Modalidade<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="modalidade"
-                id="modalidade" required><br>
+                id="modalidade" 
+                placeholder="Digite a modalidade"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
             
             <h1 class="titulogrande">Programa de Estágio</h1><br>
@@ -151,43 +193,57 @@
             <label for="semestreLetivo" class="titulopequeno">Semestre Letivo<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="semestreLetivo"
-                id="semestreLetivo" required><br>
+                id="semestreLetivo" 
+                placeholder="Digite a semestre letivo"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="componenteCurricular" class="titulopequeno">Componente Curricular<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="componenteCurricular"
-                id="componenteCurricular" required><br>
+                id="componenteCurricular" 
+                placeholder="Digite o componente curricular"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="professorComponenteCurricular" class="titulopequeno">Professor do Componente Curricular<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="professorComponenteCurricular"
-                id="professorComponenteCurricular" required><br>
+                id="professorComponenteCurricular" 
+                placeholder="Digite o nome do professor do componente curricular"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="professorOrientador" class="titulopequeno">Professor Orientador<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="professorOrientador"
-                id="professorOrientador" required><br>
+                id="professorOrientador" 
+                placeholder="Digite o nome do professor orientador"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="cargaHorariaSemanal" class="titulopequeno">Carga Horária Semanal<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cargaHorariaSemanal"
-                id="cargaHorariaSemanal" required><br>
+                id="cargaHorariaSemanal" 
+                placeholder="Digite a carga horária semanal"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="diasRealizacao" class="titulopequeno">Dias de Realização<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="diasRealizacao"
-                id="diasRealizacao" required><br>
+                id="diasRealizacao" 
+                placeholder="Digite os dias de realização do estágio"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="horario" class="titulopequeno">Horário<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="horario"
-                id="horario" required><br>
+                id="horario" 
+                placeholder="Digite o horário de realização do estágio"
+                required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
             
 
