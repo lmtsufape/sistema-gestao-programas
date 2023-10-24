@@ -74,6 +74,12 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
 
         //Documentos da UFAPE
 
-
+        $documento = ListaDocumentosObrigatorios::create([
+            'titulo' => "Termo de Compromisso",
+            'descricao_documento' => "Documento que formaliza o início do estágio, com as informações do estagiário, da empresa e do supervisor de estágio.",
+            'tipo_entrega' => "final",
+            'tipo_estagio' => "eo",
+            'instituicao' => "UFAPE"
+        ]);
     }
 }

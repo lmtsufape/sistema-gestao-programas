@@ -13,7 +13,7 @@
 
         <hr style="color:#5C1C26; background-color: #5C1C26">
 
-        <form action="{{ route('estagio.documentos.plano-de-atividades.store', ['id' => $estagio->id]) }}"method="post">
+        <form action="{{ route('estagio.documentos.UPE.plano-de-atividades.store', ['id' => $estagio->id]) }}"method="post">
             @csrf
 
             <h1 class="titulogrande">Estagiário</h1><br>
