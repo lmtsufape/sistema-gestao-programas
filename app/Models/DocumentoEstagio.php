@@ -16,6 +16,7 @@ class DocumentoEstagio extends Model
         'data_envio',
         'data_limite',
         'dados',
+        'is_completo',
         'status',
         'observacao'
     ];

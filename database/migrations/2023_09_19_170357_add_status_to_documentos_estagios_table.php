@@ -14,7 +14,7 @@ class AddStatusToDocumentosEstagiosTable extends Migration
     public function up()
     {
         Schema::table('documentos_estagios', function (Blueprint $table) {
-            $table->enum('status', ['Aprovado', 'Aguardando verificação', 'Negado'])->default('Aguardando verificação');
+            $table->enum('status', ['Aprovado', 'Aguardando documento assinado', 'Aguardando verificação', 'Negado'])->default('Aguardando documento assinado');
         });
     }
 
