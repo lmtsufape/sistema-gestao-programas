@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             ListaDocumentosObrigatoriosSeeder::class,
             InstituicaoSeeder::class,
             EstagioSeeder::class,
+            SiglaInstituicaoSeeder::class,
         ]);
     }
 }

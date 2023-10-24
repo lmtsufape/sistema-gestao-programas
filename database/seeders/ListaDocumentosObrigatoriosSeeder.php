@@ -14,6 +14,8 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
      */
     public function run()
     {
+        //Documentos da UPE
+
         $documento = ListaDocumentosObrigatorios::create([
             'titulo' => "Termo de Encaminhamento",
             'descricao_documento' => "Termo de encaminhamento do aluno para o estágio.",
@@ -69,5 +71,9 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
             'tipo_estagio' => "eo",
             'instituicao' => "UPE"
         ]);
+
+        //Documentos da UFAPE
+
+
     }
 }
