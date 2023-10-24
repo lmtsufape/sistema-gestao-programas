@@ -468,6 +468,21 @@ class DocumentoEstagioController extends Controller
         return view('Estagio.documentos.UFAPE.termo_de_compromisso' , compact("estagio"));
     }
 
+    public function carta_aceite_supervisor_ufape_form($id, Request $request)
+    {
+        $estagio = Estagio::findOrFail($id);
+
+        return view('Estagio.documentos.UFAPE.carta_aceite_supervisor' , compact("estagio"));
+    }
+
+    public function ficha_frequencia_ufape_form($id, Request $request)
+    {
+        $estagio = Estagio::findOrFail($id);
+
+        return view('Estagio.documentos.UFAPE.ficha_frequencia' , compact("estagio"));
+    }
+
+
 
     public function aprovar_documento($id)
     {
