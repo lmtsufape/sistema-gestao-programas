@@ -103,8 +103,7 @@
                                     @if ($documento_enviado)
                                         @can('aluno')
                                             <!-- Verifica se o usuário tem a função de aluno -->
-
-
+                                            
                         
                                             @if ($lista_documento->status == 'Aguardando documento assinado' || $lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')
                                                 {{-- <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
@@ -112,7 +111,7 @@
                                                         style="height: 30px; width: 30px;">
                                                 </a> --}}
 
-                                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->id}}">
+                                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->documento_id}}">
                                                     <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
                                                 </a>
 
@@ -190,7 +189,7 @@
                     </td>
                 </tbody>
                 @include('Estagio.components.modal_legenda_doc')
-                @include('Estagio.components.modal_observacao', ['lista_documento' => $lista_documento])
+                @include('Estagio.components.modal_observacao', ['lista_documento' => $lista_documento, 'documentos' => $documentos])
                 @endforeach
             </table>
         </div>
