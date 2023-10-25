@@ -485,8 +485,9 @@ class DocumentoEstagioController extends Controller
             $estagio = Estagio::findOrFail($id);
             $aluno = Aluno::findOrFail($estagio->aluno_id);
     
-            $pdfController = new PDFController();
-            $listaDocumentosId = $pdfController->getListaDeDocumentosId();
+            // $pdfController = new PDFController();
+            // $listaDocumentosId = $pdfController->getListaDeDocumentosId();
+            $listaDocumentosId = 9;
 
             $documento = DocumentoEstagio::where('estagio_id', $estagio->id)
                 ->where('aluno_id', $aluno->id)
