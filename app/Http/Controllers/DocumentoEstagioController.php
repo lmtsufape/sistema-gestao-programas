@@ -531,12 +531,12 @@ class DocumentoEstagioController extends Controller
         }
     }
 
-    public function observacao_show($id)
-    {
-        $doc = DocumentoEstagio::Where('id', $id)->first();
+    // public function observacao_show($id)
+    // {
+    //     $doc = DocumentoEstagio::Where('id', $id)->first();
 
-        return view('Estagio.documentos.showObservacao', compact('doc'));
-    }
+    //     return view('Estagio.documentos.showObservacao', compact('doc'));
+    // }
 
     public function observacao_edit($id)
     {
