@@ -64,42 +64,46 @@
                         @endif
                     </td>
 
-                    @php
-                    switch ($lista_documento->id) {
-                    case 1:
-                    $rota = 'estagio.documentos.termo-de-encaminhamento';
-                    break;
-                    case 2:
-                    $rota = 'estagio.documentos.termo-de-compromisso';
-                    break;
-                    case 3:
-                    $rota = 'estagio.documentos.plano-de-atividades';
-                    break;
-                    case 4:
-                    $rota = 'estagio.documentos.ficha-frequencia';
-                    break;
-                    case 5:
-                    $rota = 'estagio.documentos.relatorio-acompanhamento-campo';
-                    break;
-                    case 6:
-                    $rota = 'estagio.documentos.termo-de-encaminhamento';
-                    break;
-                    case 7:
-                    $rota = 'estagio.documentos.frequencia-residente';
-                    break;
-                    default:
-                    $rota = null;
-                    break;
-                    }
-                    @endphp
-                    <td class="align-middle">
-                        <a>
-                            <img src="{{ asset('images/information.svg') }}" title="Informações"
-                            alt="Info documento" style="height: 30px; width: 30px;">
-                        </a>
-                        @if ($documento_enviado)
-                        @can('aluno')
-                        <!-- Verifica se o usuário tem a função de aluno -->
+                                @php
+                                    switch ($lista_documento->id) {
+                                        case 1:
+                                            $rota = 'estagio.documentos.UPE.termo-de-encaminhamento';
+                                            break;
+                                        case 2:
+                                            $rota = 'estagio.documentos.UPE.termo-de-compromisso';
+                                            break;
+                                        case 3:
+                                            $rota = 'estagio.documentos.UPE.plano-de-atividades';
+                                            break;
+                                        case 4:
+                                            $rota = 'estagio.documentos.UPE.ficha-frequencia';
+                                            break;
+                                        case 5:
+                                            $rota = 'estagio.documentos.UPE.relatorio-acompanhamento-campo';
+                                            break;
+                                        case 6:
+                                            $rota = 'estagio.documentos.UPE.relatorio-supervisor';
+                                            break;
+                                        case 7:
+                                            $rota = 'estagio.documentos.UPE.frequencia-residente';
+                                            break;
+                                        case 8:
+                                            $rota = 'estagio.documentos.UFAPE.termo-de-compromisso';
+                                            break;
+                                        default:
+                                            $rota = null;
+                                            break;
+                                    }
+                                @endphp
+                                <td class="align-middle">
+                                    <a>
+                                        <img src="{{ asset('images/information.svg') }}" title="Informações"
+                                            alt="Info documento" style="height: 30px; width: 30px;">
+                                    </a>
+                                    @if ($documento_enviado)
+                                        @can('aluno')
+                                            <!-- Verifica se o usuário tem a função de aluno -->
+
 
                         
                                             @if ($lista_documento->status == 'Aguardando documento assinado' || $lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')

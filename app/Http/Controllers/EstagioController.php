@@ -9,6 +9,7 @@ use App\Models\Curso;
 use App\Models\Disciplina;
 use App\Models\DocumentoEstagio;
 use App\Models\Estagio;
+use App\Models\Instituicao;
 use App\Models\Orientador;
 use App\Models\Supervisor;
 use Exception;
@@ -205,15 +206,19 @@ class EstagioController extends Controller
     public function showDocuments($id)
     {
         $estagio = Estagio::findOrFail($id);
+        $instituicao = Instituicao::pluck('sigla')->first();
+
         $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', 'documentos_estagios.lista_documentos_obrigatorios_id', '=', 'lista_documentos_obrigatorios.id')
             ->where('documentos_estagios.aluno_id', $estagio->aluno_id)
-            ->select('documentos_estagios.*', 'lista_documentos_obrigatorios.titulo')
+            ->select('documentos_estagios.*', 'lista_documentos_obrigatorios.*')
             ->get();
 
+        // Filtra apenas os documentos com a sigla "UFAPE"
         $lista_documentos = ListaDocumentosObrigatorios::leftJoin('documentos_estagios', function ($join) use ($estagio) {
             $join->on('lista_documentos_obrigatorios.id', '=', 'documentos_estagios.lista_documentos_obrigatorios_id')
                 ->where('documentos_estagios.aluno_id', $estagio->aluno_id);
         })
+            ->where('lista_documentos_obrigatorios.instituicao', $instituicao) // Filtro para a sigla "UFAPE"
             ->select(
                 'lista_documentos_obrigatorios.*',
                 'documentos_estagios.status',

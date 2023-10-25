@@ -461,6 +461,12 @@ class DocumentoEstagioController extends Controller
 
     }
     
+    public function termo_compromisso_ufape_form($id, Request $request)
+    {
+        $estagio = Estagio::findOrFail($id);
+
+        return view('Estagio.documentos.UFAPE.termo_de_compromisso' , compact("estagio"));
+    }
 
 
     public function aprovar_documento($id)

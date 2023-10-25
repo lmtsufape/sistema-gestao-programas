@@ -13,7 +13,7 @@
 
         <hr style="color:#5C1C26; background-color: #5C1C26">
 
-        <form action="{{ route('estagio.documentos.termo-de-encaminhamento.store', ['id' => $estagio->id]) }}"method="post">
+        <form action="{{ route('estagio.documentos.UPE.termo-de-encaminhamento.store', ['id' => $estagio->id]) }}"method="post">
             @csrf
 
 
