@@ -290,6 +290,12 @@ Route::prefix('estagio')->group(function () {
         Route::get('/{id}/termo-de-compromisso-ufape', [DocumentoEstagioController::class, 'termo_compromisso_ufape_form'])->name('estagio.documentos.UFAPE.termo-de-compromisso');
         Route::post('/{id}/termo-de-compromisso-ufape', [DocumentoEstagioController::class, 'termo_compromisso_ufape'])->name('estagio.documentos.UFAPE.termo-de-compromisso.store');
 
+        Route::get('/{id}/carta-aceite-supervisor-ufape', [DocumentoEstagioController::class, 'carta_aceite_supervisor_ufape_form'])->name('estagio.documentos.UFAPE.carta-aceite-supervisor');
+        Route::post('/{id}/carta-aceite-supervisor-ufape', [DocumentoEstagioController::class, 'carta_aceite_supervisor_ufape'])->name('estagio.documentos.UFAPE.carta-aceite-supervisor.store');
+
+        Route::get('/{id}/ficha-frequencia-ufape', [DocumentoEstagioController::class, 'ficha_frequencia_ufape_form'])->name('estagio.documentos.UFAPE.ficha-frequencia');
+        Route::post('/{id}/ficha-frequencia-ufape', [DocumentoEstagioController::class, 'ficha_frequencia_ufape'])->name('estagio.documentos.UFAPE.ficha-frequencia.store');
+
         Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
     });
 });

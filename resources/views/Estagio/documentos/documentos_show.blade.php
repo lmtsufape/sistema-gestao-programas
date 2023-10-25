@@ -90,6 +90,12 @@
                                         case 8:
                                             $rota = 'estagio.documentos.UFAPE.termo-de-compromisso';
                                             break;
+                                        case 9:
+                                            $rota = 'estagio.documentos.UFAPE.carta-aceite-supervisor';
+                                            break;
+                                        case 10:
+                                            $rota = 'estagio.documentos.UFAPE.ficha-frequencia';
+                                            break;
                                         default:
                                             $rota = null;
                                             break;
