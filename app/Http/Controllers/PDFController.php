@@ -103,15 +103,15 @@ class PDFController extends Controller
 
         try {
             DB::beginTransaction();
-        
+
 
             $listaDocumentosId = $this->getListaDeDocumentosId();
             $alunoId = Auth::id();
-            
+
             $documentoExistente = DocumentoEstagio::where('lista_documentos_obrigatorios_id', $listaDocumentosId)
                 ->where('aluno_id', $alunoId)
                 ->first();
-        
+
             if (!$documentoExistente) {
                 $documento = new DocumentoEstagio();
                 $documento->aluno_id = $alunoId;
@@ -126,7 +126,7 @@ class PDFController extends Controller
                 $documentoExistente->pdf = $pdfContent;
                 $documentoExistente->save();
             }
-        
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -1383,7 +1383,7 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['semestre'], 2100, 535, function ($font) {
+        $image1->text($dados['semestre'], 2050, 535, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);
@@ -1451,7 +1451,7 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        $image1->text($dados['cidade'], 1500, 1235, function ($font) {
+        $image1->text($dados['cidade'], 1490, 1235, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(42);
             $font->color(self::AZUL);

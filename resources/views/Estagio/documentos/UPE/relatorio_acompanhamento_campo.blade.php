@@ -21,13 +21,13 @@
 
 
                 <label for="nome" class="titulopequeno">Curso<strong style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="curso" id="curso"
+                <input class="boxcadastrar" type="text" name="curso" id="curso" maxlength="30"
                     placeholder="Digite o nome do curso" value="{{ $dados['curso'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Semestre Letivo<strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="semestre" id="semestre" placeholder="Digite o semestre"
+                <input class="boxcadastrar" type="text" name="semestre" id="semestre" placeholder="Digite o semestre" maxlength="6"
                     value="{{ $dados['semestre'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
                 <label for="nome" class="titulopequeno">Professor Orientador<strong
@@ -39,7 +39,7 @@
 
 
                 <label for="nome" class="titulopequeno">Instituição<strong style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="instituicao" id="instituicao"
+                <input class="boxcadastrar" type="text" name="instituicao" id="instituicao" maxlength="44"
                     placeholder="Digite o nome da instituição" value="{{ $dados['instituicao'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
@@ -56,90 +56,90 @@
 
 
                 <label for="nome" class="titulopequeno">Endereço<strong style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="endereco" id="endereco"
+                <input class="boxcadastrar" type="text" name="endereco" id="endereco" maxlength="30"
                     placeholder="Digite o endereço completo" value="{{ $dados['endereco'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Nº<strong style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="num" id="num" placeholder="Digite o número"
+                <input class="boxcadastrar" type="text" name="num" id="num" placeholder="Digite o número" maxlength="6"
                     value="{{ $dados['num'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Complemento<strong style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="complemento" id="complemento"
+                <input class="boxcadastrar" type="text" name="complemento" id="complemento" maxlength="10"
                     placeholder="Digite o complemento" value="{{ $dados['complemento'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Fone<strong style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="fone1" id="fone1"
+                <input class="boxcadastrar" type="text" name="fone1" id="fone1" maxlength="14"
                     placeholder="Digite o telefone com o DDD. Exemplo (87)90000-0000"
                     value="{{ $dados['fone1'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">CEP<strong style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="cep" id="cep"
+                <input class="boxcadastrar" type="text" name="cep" id="cep" maxlength="12"
                     placeholder="Digite o CEP com traços" value="{{ $dados['cep'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Bairro<strong style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="bairro" id="bairro" placeholder="Digite o bairro"
+                <input class="boxcadastrar" type="text" name="bairro" id="bairro" placeholder="Digite o bairro" maxlength="10"
                     value="{{ $dados['bairro'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Cidade<strong style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="cidade" id="cidade" placeholder="Digite a cidade"
+                <input class="boxcadastrar" type="text" name="cidade" id="cidade" placeholder="Digite a cidade" maxlength="10"
                     value="{{ $dados['cidade'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Estado<strong style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="estado" id="estado" placeholder="Digite o estado"
+                <input class="boxcadastrar" type="text" name="estado" id="estado" placeholder="Digite o estado" maxlength="7"
                     value="{{ $dados['estado'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Representante<strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="representante" id="representante"
+                <input class="boxcadastrar" type="text" name="representante" id="representante" maxlength="24"
                     placeholder="Digite o nome do representante"
                     value="{{ $dados['representante'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Cargo do Representante<strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="cargo_representante" id="cargo_representante"
+                <input class="boxcadastrar" type="text" name="cargo_representante" id="cargo_representante" maxlength="15"
                     placeholder="Digite o cargo do representante"
                     value="{{ $dados['cargo_representante'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Supervisor de Estágio<strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="supervisor" id="supervisor"
+                <input class="boxcadastrar" type="text" name="supervisor" id="supervisor" maxlength="18"
                     placeholder="Digite o nome do supervisor" value="{{ $dados['supervisor'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Cargo/Função do Supervisor de Estágio<strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="cargo_supervisor" id="cargo_supervisor"
+                <input class="boxcadastrar" type="text" name="cargo_supervisor" id="cargo_supervisor" maxlength="12"
                     placeholder="Digite o cargo do supervisor"
                     value="{{ $dados['cargo_supervisor'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Formação do Supervisor de Estágio<strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="formacao_supervisor" id="formacao_supervisor"
+                <input class="boxcadastrar" type="text" name="formacao_supervisor" id="formacao_supervisor" maxlength="44"
                     placeholder="Digite a formação do supervisor"
                     value="{{ $dados['formacao_supervisor'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Fone do Supervisor de Estágio<strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="fone2" id="fone2"
+                <input class="boxcadastrar" type="text" name="fone2" id="fone2" maxlength="14"
                     placeholder="Digite o telefone com o DDD. Exemplo (87)90000-0000"
                     value="{{ $dados['fone2'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">E-mail do Supervisor de Estágio<strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="email_supervisor" id="email_supervisor"
+                <input class="boxcadastrar" type="text" name="email_supervisor" id="email_supervisor" maxlength="24"
                     placeholder="Digite o e-mail do supervisor"
                     value="{{ $dados['email_supervisor'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
@@ -159,7 +159,7 @@
 
                 <label for="nome" class="titulopequeno">Modalidade<strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="modalidade" id="modalidade" placeholder="Digite a modalidade"
+                <input class="boxcadastrar" type="text" name="modalidade" id="modalidade" placeholder="Digite a modalidade" maxlength="40"
                     value="{{ $dados['modalidade'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
@@ -179,32 +179,32 @@
 
                 <label for="nome" class="titulopequeno">Profissional (is) entrevistado (s) <strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="entrevistados" id="entrevistados"
+                <input class="boxcadastrar" type="text" name="entrevistados" id="entrevistados" maxlength="35"
                     placeholder="Digite o nome do entrevistado"
                     value="{{ $dados['entrevistados'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Informações Complementares <strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="complementares" id="complementares"
+                <input class="boxcadastrar" type="text" name="complementares" id="complementares" maxlength="35"
                     placeholder="Digite as informações complementares"
                     value="{{ $dados['complementares'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Estagiário<strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="estag1" id="estag1"
+                <input class="boxcadastrar" type="text" name="estag1" id="estag1" maxlength="30"
                     placeholder="Digite o nome do estagiário" value="{{ $dados['estag1'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Turma/Ano<strong
                         style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="turma1" id="turma1"
+                <input class="boxcadastrar" type="text" name="turma1" id="turma1" maxlength="8"
                     placeholder="Digite a turma/ano" value="{{ $dados['turma1'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 <label for="nome" class="titulopequeno">Turno<strong style="color: #8B5558">*</strong></label><br>
-                <input class="boxcadastrar" type="text" name="turno1" id="turno1" placeholder="Digite o turno"
+                <input class="boxcadastrar" type="text" name="turno1" id="turno1" placeholder="Digite o turno" maxlength="7"
                     value="{{ $dados['turno1'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
