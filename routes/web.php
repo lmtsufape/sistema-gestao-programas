@@ -255,9 +255,9 @@ Route::prefix('estagio')->group(function () {
         Route::get('/aprovar-documento/{id}', [DocumentoEstagioController::class, 'aprovar_documento'])->name('aprovar.documento');
         Route::get('/negar-documento/{id}', [DocumentoEstagioController::class, 'negar_documento'])->name('negar.documento');
 
-        // Route::get('/observacao/show/{id}',[DocumentoEstagioController::class, 'observacao_show'])->name('observacao.show');
-        Route::get('/observacao/edit/{id}',[DocumentoEstagioController::class, 'observacao_edit'])->name('observacao.edit');
-        Route::post('/observacao/update/{id}',[DocumentoEstagioController::class, 'observacao_update'])->name('observacao.update');
+        Route::get('/observacao/show/{id}', [DocumentoEstagioController::class, 'observacao_show'])->name('observacao.show');
+        Route::get('/observacao/edit/{id}', [DocumentoEstagioController::class, 'observacao_edit'])->name('observacao.edit');
+        Route::post('/observacao/update/{id}', [DocumentoEstagioController::class, 'observacao_update'])->name('observacao.update');
 
 
         // Documentos UPE
@@ -280,15 +280,23 @@ Route::prefix('estagio')->group(function () {
         Route::get('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo_form'])->name('estagio.documentos.UPE.relatorio-acompanhamento-campo');
         Route::post('/{id}/relatorio-acompanhamento-campo', [DocumentoEstagioController::class, 'relatorio_acompanhamento_campo'])->name('estagio.documentos.UPE.relatorio-acompanhamento-campo.store');
 
-        Route::get('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo_form'])->name('estagio.documentos.UPE.documento-completo');
-        Route::post('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo'])->name('estagio.documentos.UPE.documento-completo.store');
-
+        //DOCUMENTO COMPLETO--------------------------------------------------------------------------------------------
+        Route::get('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo_form'])->name('estagio.documentos.documento-completo');
+        Route::post('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo'])->name('estagio.documentos.documento-completo.store');
+        //--------------------------------------------------------------------------------------------------------------
+        
         Route::get('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor_form'])->name('estagio.documentos.UPE.relatorio-supervisor');
         Route::post('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor'])->name('estagio.documentos.UPE.relatorio-supervisor.store');
 
         // documentos UFAPE
         Route::get('/{id}/termo-de-compromisso-ufape', [DocumentoEstagioController::class, 'termo_compromisso_ufape_form'])->name('estagio.documentos.UFAPE.termo-de-compromisso');
         Route::post('/{id}/termo-de-compromisso-ufape', [DocumentoEstagioController::class, 'termo_compromisso_ufape'])->name('estagio.documentos.UFAPE.termo-de-compromisso.store');
+
+        Route::get('/{id}/carta-aceite-supervisor-ufape', [DocumentoEstagioController::class, 'carta_aceite_supervisor_ufape_form'])->name('estagio.documentos.UFAPE.carta-aceite-supervisor');
+        Route::post('/{id}/carta-aceite-supervisor-ufape', [DocumentoEstagioController::class, 'carta_aceite_supervisor_ufape'])->name('estagio.documentos.UFAPE.carta-aceite-supervisor.store');
+
+        Route::get('/{id}/ficha-frequencia-ufape', [DocumentoEstagioController::class, 'ficha_frequencia_ufape_form'])->name('estagio.documentos.UFAPE.ficha-frequencia');
+        Route::post('/{id}/ficha-frequencia-ufape', [DocumentoEstagioController::class, 'ficha_frequencia_ufape'])->name('estagio.documentos.UFAPE.ficha-frequencia.store');
 
         Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
     });
