@@ -255,7 +255,7 @@ Route::prefix('estagio')->group(function () {
         Route::get('/aprovar-documento/{id}', [DocumentoEstagioController::class, 'aprovar_documento'])->name('aprovar.documento');
         Route::get('/negar-documento/{id}', [DocumentoEstagioController::class, 'negar_documento'])->name('negar.documento');
 
-        Route::get('/observacao/show/{id}', [DocumentoEstagioController::class, 'observacao_show'])->name('observacao.show');
+        // Route::get('/observacao/show/{id}', [DocumentoEstagioController::class, 'observacao_show'])->name('observacao.show');
         Route::get('/observacao/edit/{id}', [DocumentoEstagioController::class, 'observacao_edit'])->name('observacao.edit');
         Route::post('/observacao/update/{id}', [DocumentoEstagioController::class, 'observacao_update'])->name('observacao.update');
 
