@@ -51,6 +51,8 @@
             <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
                 id="valor" name="valor" style="text-align: start">
             <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
+            <button class="cadastrar-botao" style="margin-right: 10px" type="button"
+                onclick="window.location.href = '{{ route('estagio.create') }}'">Cadastrar estágio</button>
         </form>
 
     </div>
@@ -69,8 +71,8 @@
                         <th scope="col" class="text-center align-middle">Data de fim</th>
                         <th class="text-center">
                             Ações
-                            <button type="button" class="infobutton align-bottom" data-bs-toggle="modal" data-bs-target="#modal_legenda"
-                                title="Ver legenda dos ícones">
+                            <button type="button" class="infobutton align-bottom" data-bs-toggle="modal"
+                                data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
                                 <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda"
                                     style="height: 20px; width: 20px;">
                             </button>
@@ -94,8 +96,8 @@
                             <td class="align-middle">{{ date_format(date_create($estagio->data_fim), 'd/m/Y') }}</td>
                             <td>
                                 <a type="button" href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}">
-                                    <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Acessar Documentos" title="Documentos do estágio"
-                                        style="height: 30px; width: 30px;">
+                                    <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Acessar Documentos"
+                                        title="Documentos do estágio" style="height: 30px; width: 30px;">
                                 </a>
                             @empty
                         <tr>
