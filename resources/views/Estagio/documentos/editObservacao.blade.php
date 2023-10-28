@@ -13,7 +13,7 @@
 
     <div class="fundocadastrar">
         <div class="row" style="align-content: left;">
-            <h1 class="titulogrande">Editar Observação</h1>
+            <h1 class="titulogrande">Editar observação</h1>
         </div>
 
         <br>
