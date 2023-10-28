@@ -53,7 +53,7 @@
                         Não enviado
                         @endif
                     </td>
-                    <td class="align-middle">
+                    <td class "align-middle">
                         @php
                         $documento_enviado = $lista_documento->data_atualizacao ?? null;
                         @endphp
@@ -119,7 +119,6 @@
                         @can('aluno')
                         <!-- Verifica se o usuário tem a função de aluno -->
 
-
                         @if ($lista_documento->status == 'Aguardando documento assinado' || $lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')
                         {{-- <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
                         <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento" style="height: 30px; width: 30px;">
@@ -133,32 +132,32 @@
                         <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                         </a> --}}
 
-                        @if ($hoje > $dataLimite)
-                        <!-- <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->documento_id}}">
-                            <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
-                        </a> -->
-                        @elseif ($lista_documento->is_completo == 0)
-                        <!-- Se o documento não estiver completo -->
-                        <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
-                            <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento" style="height: 30px; width: 30px;">
-                        </a>
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->documento_id}}">
-                            <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
-                        </a>
-                        <a href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
-                            <img src="{{ asset('images/folder-file_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
-                        </a>
-                        @else
-                        <!-- Se o documento estiver completo -->
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->documento_id}}">
-                            <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
-                        </a>
-                        <a href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
-                            <img src="{{ asset('images/folder-file_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
-                        </a>
+                            @if ($hoje > $dataLimite)
+                            <!-- <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->documento_id}}">
+                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
+                            </a> -->
+                            @elseif ($lista_documento->is_completo == 0)
+                            <!-- Se o documento não estiver completo -->
+                            <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
+                                <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento" style="height: 30px; width: 30px;">
+                            </a>
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->documento_id}}">
+                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
+                            </a>
+                            <a href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
+                                <img src="{{ asset('images/folder-file_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
+                            </a>
+                            @else
+                            <!-- Se o documento estiver completo -->
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->documento_id}}">
+                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
+                            </a>
+                            <a href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
+                                <img src="{{ asset('images/folder-file_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
+                            </a>
+                            @endif
+                        @endif
 
-                        @endif
-                        @endif
                         @endcan
 
                         @canany(['admin', 'servidor', 'gestor'])
@@ -168,7 +167,7 @@
 
 
                         <a href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}" class="negar-documento-link">
-                            <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento" title="Negar documento" style="height: 30px; width: 30px;">
+                            <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento" title "Negar documento" style="height: 30px; width: 30px;">
                         </a>
 
 
@@ -180,15 +179,15 @@
                         @else
                         @can('aluno')
                         <!-- Verifica se o usuário tem a função de aluno -->
-                        {{-- @if ($hoje > $dataLimite)
-                                                <img src="{{ asset('images/add_disciplina.svg') }}" alt="Documento Preenchido"
+                        @if ($hoje > $dataLimite)
+                        <img src="{{ asset('images/add_disciplina.svg') }}" alt="Documento Preenchido"
                         title="Documento não preenchido"
                         style="height: 30px; width: 30px; opacity: 50%;" disabled>
-                        @else --}}
+                        @else
                         <a href="{{ route($rota, ['id' => $estagio->id]) }}">
                             <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento" title="Preencher documento" style="height: 30px; width: 30px;">
                         </a>
-                        {{-- @endif  --}}
+                        @endif
                         @endcan
                         @endif
                         @if ($documento_enviado)
