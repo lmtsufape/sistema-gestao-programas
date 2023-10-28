@@ -20,7 +20,7 @@
             <!-- INSTITUIÇÃO DE ENSINO -->
             <h1 class="titulogrande">Instituição de ensino</h1>
 
-            <label for="ProfessorComponenteCurricular" class="titulopequeno">Professor Componente Curricular<strong style="color: #8B5558">*</strong></label>
+            <label for="ProfessorComponenteCurricular" class="titulopequeno">Professor componente curricular<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="ProfessorComponenteCurricular"
                 id="ProfessorComponenteCurricular" 
@@ -28,7 +28,7 @@
                 value="{{ $dados['professorComponenteCurricular'] ?? '' }}"
                 required><br><br>
 
-            <label for="instituicaoEmail" class="titulopequeno">E-mail do Professor do Componente Curricular<strong style="color: #8B5558">*</strong></label>
+            <label for="instituicaoEmail" class="titulopequeno">E-mail do professor do componente curricular<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="email" name="instituicaoEmail" id="instituicaoEmail"
                 placeholder=" Digite o email do professor do componente corricular"
@@ -40,7 +40,7 @@
                 value="{{ $orientador->user->name }}" readonly style="background: #eee; "
                 value="{{ $dados['instituicaoEmail'] ?? '' }}" required><br><br>
 
-            <label for="emailOrientador" class="titulopequeno">E-mail do Orientador<strong style="color: #8B5558">*</strong></label>
+            <label for="emailOrientador" class="titulopequeno">E-mail do orientador<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="email" name="emailOrientador" id="emailOrientador"
                 value="{{ $orientador->user->email }}" readonly style="background: #eee; " required><br><br>
@@ -55,7 +55,7 @@
                 value="{{ $dados['cnpj'] ?? '' }}"
                 required><br><br>
 
-            <label for="localEstagio" class="titulopequeno">Local de Estágio<strong style="color: #8B5558">*</strong></label>
+            <label for="localEstagio" class="titulopequeno">Local de estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="localEstagio" id="localEstagio"
                 placeholder=" Digite o nome da instituição onde será feito o estágio"
@@ -121,31 +121,31 @@
                 value="{{ $dados['cargoRepresentante'] ?? '' }}" required><br><br>
 
             <!-- SUPERVISOR -->
-            <label for="cargoSupervisor" class="titulopequeno">Cargo do Supervisor<strong style="color: #8B5558">*</strong></label>
+            <label for="cargoSupervisor" class="titulopequeno">Cargo do supervisor<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cargoSupervisor" id="cargoSupervisor"
                 placeholder=" Digite o cargo do supervisor do estágio"
                 value="{{ $dados['cargoSupervisor'] ?? '' }}" required><br><br>
 
-            <label for="formacaoSupervisor" class="titulopequeno">Formação do Supervisor<strong style="color: #8B5558">*</strong></label>
+            <label for="formacaoSupervisor" class="titulopequeno">Formação do supervisor<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="formacaoSupervisor" id="formacaoSupervisor"
                 placeholder=" Digite a formação do supervisor do estágio"
                 value="{{ $dados['formacaoSupervisor'] ?? '' }}" required><br><br>
 
-            <label for="cpfSupervisor" class="titulopequeno">CPF do Supervisor<strong style="color: #8B5558">*</strong></label>
+            <label for="cpfSupervisor" class="titulopequeno">CPF do supervisor<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cpfSupervisor" id="cpfSupervisor"
                 placeholder=" Digite o CPF do supervisor do estágio"
                 value="{{ $dados['cpfSupervisor'] ?? '' }}" required><br><br>
 
-            <label for="emailSupervisor" class="titulopequeno">E-mail do Supervisor<strong style="color: #8B5558">*</strong></label>
+            <label for="emailSupervisor" class="titulopequeno">E-mail do supervisor<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="email" name="emailSupervisor" id="emailSupervisor"
                 placeholder=" Digite o email do supervisor do estágio"
                 value="{{ $dados['emailSupervisor'] ?? '' }}" required><br><br>
 
-            <label for="telefoneSupervisor" class="titulopequeno">Telefone do Supervisor<strong style="color: #8B5558">*</strong></label>
+            <label for="telefoneSupervisor" class="titulopequeno">Telefone do supervisor<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="tel" name="telefoneSupervisor" id="telefoneSupervisor"
                 placeholder=" Digite o número do telefone do supervisor do estágio"
@@ -154,13 +154,13 @@
             <!-- ESTAGIÁRIO -->
             <h1 class="titulogrande">Dados do estagiário</h1>
 
-            <label for="nomeAluno" class="titulopequeno">Nome do Aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="nomeAluno" class="titulopequeno">Nome do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="nomeAluno" id="nomeAluno"
                 placeholder=" Digite o nome do aluno que vai ser estagiário"
                 value="{{ $aluno->user->name }}" readonly style="background: #eee; " required><br><br>
 
-            <label for="cpfAluno" class="titulopequeno">CPF do Aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="cpfAluno" class="titulopequeno">CPF do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cpfAluno" id="cpfAluno" 
                 placeholder=" Digite o CPF do aluno que vai ser estagiário"
@@ -180,54 +180,54 @@
                 placeholder=" Digite o período que está o aluno que vai ser estagiário"
                 value="{{ $dados['periodo'] ?? '' }}" required><br><br>
 
-            <label for="enderecoAluno" class="titulopequeno">Endereço do Aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="enderecoAluno" class="titulopequeno">Endereço do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="enderecoAluno" id="enderecoAluno"
                 placeholder=" Digite o endereço do aluno que vai ser estagiário"
                 value="{{ $dados['enderecoAluno'] ?? '' }}" required><br><br>
 
-            <label for="numeroEnderecoAluno" class="titulopequeno">Número do Endereço do Aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="numeroEnderecoAluno" class="titulopequeno">Número do endereço do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="numeroEnderecoAluno" id="numeroEnderecoAluno"
                 placeholder=" Digite o número do endereço do aluno que vai ser estagiário"
                 value="{{ $dados['numeroEnderecoAluno'] ?? '' }}" required><br><br>
 
-            <label for="complementoAluno" class="titulopequeno">Complemento do Endereço do Aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="complementoAluno" class="titulopequeno">Complemento do endereço do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="complementoAluno" id="complementoAluno"
                 placeholder=" Digite o complemento do endereço do aluno que vai ser estagiário"
                 value="{{ $dados['complementoAluno'] ?? '' }}"><br><br>
-            <label for="cepAluno" class="titulopequeno">CEP do Aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="cepAluno" class="titulopequeno">CEP do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cepAluno" id="cepAluno"
                 placeholder=" Digite o CEP do endereço do aluno que vai ser estagiário"
                 value="{{ $dados['cepAluno'] ?? '' }}" required><br><br>
 
-            <label for="bairroAluno" class="titulopequeno">Bairro do Aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="bairroAluno" class="titulopequeno">Bairro do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="bairroAluno" id="bairroAluno"
                 placeholder=" Digite o bairro do endereço do aluno que vai ser estagiário"
                 value="{{ $dados['bairroAluno'] ?? '' }}" required><br><br>
 
-            <label for="cidadeAluno" class="titulopequeno">Cidade do Aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="cidadeAluno" class="titulopequeno">Cidade do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cidadeAluno" id="cidadeAluno"
                 placeholder=" Digite a cidade em que aluno que vai ser estagiário mora"
                 value="{{ $dados['cidadeAluno'] ?? '' }}" required><br><br>
 
-            <label for="estadoAluno" class="titulopequeno">Estado do Aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="estadoAluno" class="titulopequeno">Estado do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="estadoAluno" id="estadoAluno"
                 placeholder=" Digite o estado em que aluno que vai ser estagiário mora"
                 value="{{ $dados['estadoAluno'] ?? '' }}" required><br><br>
 
-            <label for="telefoneAluno" class="titulopequeno">Telefone do Aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="telefoneAluno" class="titulopequeno">Telefone do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="tel" name="telefoneAluno" id="telefoneAluno"
                 placeholder=" Digite o número do telefone do aluno"
                 value="{{ $dados['telefoneAluno'] ?? '' }}" required><br><br>
 
-            <label for="emailAluno" class="titulopequeno">E-mail do Aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="emailAluno" class="titulopequeno">E-mail do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="email" name="emailAluno" id="emailAluno"
                 value="{{ $aluno->user->email }}" readonly style="background: #eee; " required><br><br>

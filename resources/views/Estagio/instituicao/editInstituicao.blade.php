@@ -13,7 +13,7 @@
 
     <div class="fundocadastrar">
         <div class="row" style="align-content: left;">
-            <h1 class="titulogrande">Editar Instituição</h1>
+            <h1 class="titulogrande">Editar instituição</h1>
         </div>
 
         <br>
@@ -34,7 +34,7 @@
                 <input class="boxcadastrar" type="text" name="cnpj" id="cnpj" class="form-control" value="{{ $instituicao->cnpj }}" required>
 
             
-                <label class="titulopequeno" for="sigla">Natureza Jurídica da Instituição:</label>
+                <label class="titulopequeno" for="sigla">Natureza jurídica da instituição:</label>
                 <input class="boxcadastrar" type="text" name="natureza_juridica" id="natureza_juridica" class="form-control" value="{{ $instituicao->natureza_juridica }}" required>
 
             
@@ -70,7 +70,7 @@
                 <input class="boxcadastrar" type="text" name="representante" id="representante" class="form-control" value="{{ $instituicao->representante }}" required>
 
             
-                <label class="titulopequeno" for="sigla">Cargo do Representante:</label>
+                <label class="titulopequeno" for="sigla">Cargo do representante:</label>
                 <input class="boxcadastrar" type="text" name="cargo_representante" id="cargo_representante" class="form-control" value="{{ $instituicao->cargo_representante }}" required>
 
                 <br>

@@ -14,7 +14,7 @@
 
             <div class="fundocadastrar">
                 <div class="row" style="align-content: left;">
-                    <h1 class="titulogrande">Editar Estágio</h1>
+                    <h1 class="titulogrande">Editar estágio</h1>
                 </div>
 
                 <hr style="color:#5C1C26; background-color: #5C1C26">
@@ -57,7 +57,7 @@
                         <label class="textinho" for="checkTipo_obrigatorio">Obrigatório</label>
                         <br>
                         <input type="radio" name="checkTipo" value="eno" required @if($estagio->tipo == 'eno') checked @endif>
-                        <label class="textinho" for="checkTipo_nao_obrigatorio">Não Obrigatório</label><br><br>
+                        <label class="textinho" for="checkTipo_nao_obrigatorio">Não obrigatório</label><br><br>
                     </div>
 
                     @if($aluno)
@@ -74,7 +74,7 @@
 
                     <label class="titulopequeno" for="orientador">Orientador<strong style="color: #8B5558">*</strong></label>
                     <select aria-label="Default select example" class="boxcadastrar" name="orientador" id="orientador" >
-                        <option  value disabled selected hidden> Selecione o Orientador</option>
+                        <option  value disabled selected hidden> Selecione o orientador</option>
                             @foreach ($orientadors as $orientador)
                                 <option value="{{$orientador->id}}" {{ $estagio->orientador_id == $orientador->id ? 'selected' : '' }}>{{$orientador->user->name}}</option>
                             @endforeach
@@ -82,7 +82,7 @@
 
                     <label class="titulopequeno" for="supervisor">Supervisor<strong style="color: #8B5558">*</strong></label>
                     <select aria-label="Default select example" class="boxcadastrar" name="supervisor" id="supervisor" >
-                        <option  value disabled selected hidden> Selecione o Supervisor</option>
+                        <option  value disabled selected hidden> Selecione o supervisor</option>
                             @foreach ($supervisors as $supervisor)
                                 <option value="{{$supervisor->id}}" {{ $estagio->supervisor_id == $supervisor->id ? 'selected' : '' }}>{{$supervisor->nome}}</option>
                             @endforeach
@@ -92,7 +92,7 @@
                     @if($aluno)
                         <label class="titulopequeno" for="curso">Curso<strong style="color: #8B5558">*</strong></label>
                         <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso" style="background: #eee; pointer-events: none; touch-action: none;">
-                            <option value disabled selected hidden> Selecione o Curso</option>
+                            <option value disabled selected hidden> Selecione o curso</option>
                             @foreach ($cursos as $curso)
                             <option value="{{$curso->id}}" {{ $aluno->curso_id == $curso->id ? 'selected' : '' }} >{{$curso->nome}}</option>
                             @endforeach
@@ -100,7 +100,7 @@
                     @else
                         <label class="titulopequeno" for="curso">Curso<strong style="color: #8B5558">*</strong></label>
                         <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso">
-                            <option value disabled selected hidden> Selecione o Curso</option>
+                            <option value disabled selected hidden> Selecione o curso</option>
                             @foreach ($cursos as $curso)
                             <option value="{{$curso->id}}" {{ $estagio->curso_id == $curso->id ? 'selected' : '' }} >{{$curso->nome}}</option>
                             @endforeach
@@ -111,7 +111,7 @@
                     <div id="disciplinas"  @if($estagio->tipo == 'eno') hidden @endif >
                         <label class="titulopequeno" for="curso">Disciplina:<strong style="color: #8B5558">*</strong></label>
                         <select aria-label="Default select example" class="boxcadastrar" name="disciplina" id="disciplina">
-                            <option value disabled selected hidden> Selecione a Disciplina</option>
+                            <option value disabled selected hidden> Selecione a disciplina</option>
                             @foreach ($disciplinas as $disciplina)
                             <option value="{{$disciplina->id}}" {{ $estagio->disciplina_id == $disciplina->id ? 'selected' : '' }} >{{$disciplina->nome}} / {{$disciplina->curso->nome}}</option>
                             @endforeach. S

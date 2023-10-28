@@ -5,7 +5,7 @@
         style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
         <div class="fundocadastrar">
             <div class="row" style="align-content: left;">
-                <h1 class="titulogrande">Relatório de Acompanhamento do Campo do Estágio</h1>
+                <h1 class="titulogrande">Relatório de acompanhamento do campo do estágio</h1>
             </div>
             @if (Session::has('pdf_generated_success'))
                 <div class="alert alert-success">
@@ -25,12 +25,12 @@
                     placeholder="Digite o nome do curso" value="{{ $dados['curso'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-                <label for="nome" class="titulopequeno">Semestre Letivo<strong
+                <label for="nome" class="titulopequeno">Semestre letivo<strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="semestre" id="semestre" placeholder="Digite o semestre" maxlength="6"
                     value="{{ $dados['semestre'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
-                <label for="nome" class="titulopequeno">Professor Orientador<strong
+                <label for="nome" class="titulopequeno">Professor orientador<strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="orientador" id="orientador"
                     placeholder="Digite o nome do orientador" value="{{ $orientador->user->name }}" readonly
@@ -103,48 +103,48 @@
                     value="{{ $dados['representante'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-                <label for="nome" class="titulopequeno">Cargo do Representante<strong
+                <label for="nome" class="titulopequeno">Cargo do representante<strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="cargo_representante" id="cargo_representante" maxlength="15"
                     placeholder="Digite o cargo do representante"
                     value="{{ $dados['cargo_representante'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-                <label for="nome" class="titulopequeno">Supervisor de Estágio<strong
+                <label for="nome" class="titulopequeno">Supervisor de estágio<strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="supervisor" id="supervisor" maxlength="18"
                     placeholder="Digite o nome do supervisor" value="{{ $dados['supervisor'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-                <label for="nome" class="titulopequeno">Cargo/Função do Supervisor de Estágio<strong
+                <label for="nome" class="titulopequeno">Cargo/função do supervisor de estágio<strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="cargo_supervisor" id="cargo_supervisor" maxlength="12"
                     placeholder="Digite o cargo do supervisor"
                     value="{{ $dados['cargo_supervisor'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-                <label for="nome" class="titulopequeno">Formação do Supervisor de Estágio<strong
+                <label for="nome" class="titulopequeno">Formação do supervisor de estágio<strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="formacao_supervisor" id="formacao_supervisor" maxlength="44"
                     placeholder="Digite a formação do supervisor"
                     value="{{ $dados['formacao_supervisor'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-                <label for="nome" class="titulopequeno">Fone do Supervisor de Estágio<strong
+                <label for="nome" class="titulopequeno">Fone do supervisor de estágio<strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="fone2" id="fone2" maxlength="14"
                     placeholder="Digite o telefone com o DDD. Exemplo (87)90000-0000"
                     value="{{ $dados['fone2'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-                <label for="nome" class="titulopequeno">E-mail do Supervisor de Estágio<strong
+                <label for="nome" class="titulopequeno">E-mail do supervisor de estágio<strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="email_supervisor" id="email_supervisor" maxlength="24"
                     placeholder="Digite o e-mail do supervisor"
                     value="{{ $dados['email_supervisor'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-                <label for="educacao" class="titulopequeno">Tipo da Educação<strong
+                <label for="educacao" class="titulopequeno">Tipo da educação<strong
                         style="color: #8B5558">*</strong></label>
                 <br>
                 <select name="educacao" id="educacao" class="boxcadastrar">
@@ -177,14 +177,14 @@
                 </select>
                 <br><br>
 
-                <label for="nome" class="titulopequeno">Profissional (is) entrevistado (s) <strong
+                <label for="nome" class="titulopequeno">Profissional(is) entrevistado(s) <strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="entrevistados" id="entrevistados" maxlength="35"
                     placeholder="Digite o nome do entrevistado"
                     value="{{ $dados['entrevistados'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-                <label for="nome" class="titulopequeno">Informações Complementares <strong
+                <label for="nome" class="titulopequeno">Informações complementares <strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="complementares" id="complementares" maxlength="35"
                     placeholder="Digite as informações complementares"
@@ -197,7 +197,7 @@
                     placeholder="Digite o nome do estagiário" value="{{ $dados['estag1'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-                <label for="nome" class="titulopequeno">Turma/Ano<strong
+                <label for="nome" class="titulopequeno">Turma/ano<strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="turma1" id="turma1" maxlength="8"
                     placeholder="Digite a turma/ano" value="{{ $dados['turma1'] ?? '' }}"required><br><br>
@@ -298,7 +298,7 @@
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
                 {{-- Quarta questao --}}
-                <label for="nome" class="titulopequeno">Foi identificado algum desafio à implementação dos Planos de
+                <label for="nome" class="titulopequeno">Foi identificado algum desafio à implementação dos planos de
                     atividades do estágio? Qual(is)?<strong style="color: #8B5558">*</strong></label><br>
                 <textarea class="boxcadastrar" name="4_l1" id="4_l1" rows="4" maxlength="400"
                     placeholder="Digite aqui os desafios à implementação dos Planos de atividades do estágio. Máximo de 400 caracteres."

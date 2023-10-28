@@ -12,7 +12,7 @@
 
             <div class="fundocadastrar">
                 <div class="row" style="align-content: left;">
-                    <h1 class="titulogrande">Configurar Estágios</h1>
+                    <h1 class="titulogrande">Configurar estágios</h1>
                 </div>
                 <hr style="color:#5C1C26; background-color: #5C1C26">
                 <form action="{{ route('estagio.updateConfig') }}" method="POST">

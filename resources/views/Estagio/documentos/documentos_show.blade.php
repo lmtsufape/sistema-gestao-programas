@@ -10,7 +10,7 @@
     @endif
     <br>
     <div style="display: flex; justify-content: space-evenly; align-items: center;">
-        <h1 class="titulo"><strong>Documentos do Estágio</strong></h1>
+        <h1 class="titulo"><strong>Documentos do estágio</strong></h1>
     </div>
     <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
         <div class="col-md-9 corpo p-2 px-3">
@@ -18,8 +18,8 @@
                 <thead>
                     <tr class="table-head">
                         <th scope="col" class="text-center align-middle">Nome</th>
-                        <th scope="col" class="text-center align-middle">Data Limite</th>
-                        <th scope="col" class="text-center align-middle">Data de Envio</th>
+                        <th scope="col" class="text-center align-middle">Data limite</th>
+                        <th scope="col" class="text-center align-middle">Data de envio</th>
                         <th scope="col" class="text-center align-middle">Última data de atualização</th>
                         <th scope="col" class="text-center align-middle">Status</th>
                         <th scope="col" class="text-center align-middle">Ações
