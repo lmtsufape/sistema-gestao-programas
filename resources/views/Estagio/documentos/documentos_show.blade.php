@@ -18,8 +18,8 @@
                 <thead>
                     <tr class="table-head">
                         <th scope="col" class="text-center align-middle">Nome</th>
-                        <th scope="col" class="text-center align-middle">Data Limite</th>
-                        <th scope="col" class="text-center align-middle">Data de Envio</th>
+                        <th scope="col" class="text-center align-middle">Data limite</th>
+                        <th scope="col" class="text-center align-middle">Data de envio</th>
                         <th scope="col" class="text-center align-middle">Última data de atualização</th>
                         <th scope="col" class="text-center align-middle">Status</th>
                         <th scope="col" class="text-center align-middle">Ações

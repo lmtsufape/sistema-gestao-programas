@@ -7,7 +7,7 @@
 <div class="fundocadastrar">
     <div class="container-fluid">
         <div class="row" style="align-content: left;">
-            <h1 class="titulogrande">Informações da Instituição</h1>
+            <h1 class="titulogrande">Informações da instituição</h1>
         </div>
 
         <br>
@@ -30,7 +30,7 @@
 
             <br>
 
-            <label class="input-informacao"  for="">Natureza Jurídica da Instituição</label>
+            <label class="input-informacao"  for="">Natureza jurídica da instituição</label>
             <p class="output-informacao">{{ $instituicao->natureza_juridica }}</p>
 
             <br>
@@ -75,7 +75,7 @@
             
             <br>
 
-            <label class="input-informacao"  for="">Cargo do Representante</label>
+            <label class="input-informacao"  for="">Cargo do representante</label>
             <p class="output-informacao">{{ $instituicao->cargo_representante }}</p>
             
         </form>

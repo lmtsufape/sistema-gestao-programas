@@ -3,7 +3,7 @@
 @section('body')
     <div class="fundocadastrar">
         <div class="row" style="align-content: left;">
-            <h1 class="titulogrande">Plano de Atividades</h1>
+            <h1 class="titulogrande">Plano de atividades</h1>
         </div>
         @if (Session::has('pdf_generated_success'))
             <div class="alert alert-success">
@@ -50,7 +50,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <h1 class="titulogrande">Campo de Estágio</h1><br>
+            <h1 class="titulogrande">Campo de estágio</h1><br>
 
             <label for="instituicao" class="titulopequeno">Instituição<strong style="color: #8B5558">*</strong></label>
             <br>
@@ -60,7 +60,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="endereco" class="titulopequeno">Endereço (Local de realização do Estágio)<strong style="color: #8B5558">*</strong></label>
+            <label for="endereco" class="titulopequeno">Endereço (Local de realização do estágio)<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="endereco"
                 id="endereco" 
@@ -68,7 +68,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="numCasa" class="titulopequeno">Número do Endereço<strong style="color: #8B5558">*</strong></label>
+            <label for="numCasa" class="titulopequeno">Número do endereço<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="numCasa"
                 id="numCasa" 
@@ -76,7 +76,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="complemento" class="titulopequeno">Complemento do Endereço<strong style="color: #8B5558">*</strong></label>
+            <label for="complemento" class="titulopequeno">Complemento do endereço<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="complemento"
                 id="complemento" 
@@ -124,7 +124,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="pontoReferencia" class="titulopequeno">Ponto de Referencia<strong style="color: #8B5558">*</strong></label>
+            <label for="pontoReferencia" class="titulopequeno">Ponto de referência<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="pontoReferencia"
                 id="pontoReferencia" 
@@ -132,7 +132,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="supervisorEstagio" class="titulopequeno">Supervisor do Estágio<strong style="color: #8B5558">*</strong></label>
+            <label for="supervisorEstagio" class="titulopequeno">Supervisor do estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="supervisorEstagio"
                 id="supervisorEstagio" 
@@ -140,7 +140,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="FoneSupervisor" class="titulopequeno">Telefone do Supervisor do Estágio<strong style="color: #8B5558">*</strong></label>
+            <label for="FoneSupervisor" class="titulopequeno">Telefone do supervisor do estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="FoneSupervisor"
                 id="FoneSupervisor" 
@@ -148,35 +148,35 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="emailSup" class="titulopequeno">Email do Supervisor do Estágio<strong style="color: #8B5558">*</strong></label>
+            <label for="emailSup" class="titulopequeno">Email do supervisor do estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="emailSup"
                 id="emailSup" 
-                placeholder="Digite o email do Supervisor do Estágio"
+                placeholder="Digite o email do supervisor do estágio"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="cargo" class="titulopequeno">Cargo do Supervisor do Estágio<strong style="color: #8B5558">*</strong></label>
+            <label for="cargo" class="titulopequeno">Cargo do supervisor do estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cargo"
                 id="cargo" 
-                placeholder="Digite o cargo do Supervisor do Estágio"
+                placeholder="Digite o cargo do eupervisor do estágio"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="educacaoEscolar" class="titulopequeno">Educacao Escolar (Sim ou não)<strong style="color: #8B5558">*</strong></label>
+            <label for="educacaoEscolar" class="titulopequeno">Educacao escolar (Sim ou não)<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="educacaoEscolar"
                 id="educacaoEscolar" 
-                placeholder="Educacao Escolar (Sim ou não)"
+                placeholder="Educacao escolar (Sim ou não)"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
             
-            <label for="educacaoNaoEscolar" class="titulopequeno">Educacao Não-Escolar (Sim ou não)<strong style="color: #8B5558">*</strong></label>
+            <label for="educacaoNaoEscolar" class="titulopequeno">Educacao não-escolar (Sim ou não)<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="educacaoNaoEscolar"
                 id="educacaoNaoEscolar" 
-                placeholder="Educacao Não-Escolar (Sim ou não)"
+                placeholder="Educacao não-escolar (Sim ou não)"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
@@ -188,9 +188,9 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
             
-            <h1 class="titulogrande">Programa de Estágio</h1><br>
+            <h1 class="titulogrande">Programa de estágio</h1><br>
 
-            <label for="semestreLetivo" class="titulopequeno">Semestre Letivo<strong style="color: #8B5558">*</strong></label>
+            <label for="semestreLetivo" class="titulopequeno">Semestre letivo<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="semestreLetivo"
                 id="semestreLetivo" 
@@ -198,7 +198,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="componenteCurricular" class="titulopequeno">Componente Curricular<strong style="color: #8B5558">*</strong></label>
+            <label for="componenteCurricular" class="titulopequeno">Componente curricular<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="componenteCurricular"
                 id="componenteCurricular" 
@@ -206,7 +206,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="professorComponenteCurricular" class="titulopequeno">Professor do Componente Curricular<strong style="color: #8B5558">*</strong></label>
+            <label for="professorComponenteCurricular" class="titulopequeno">Professor do componente curricular<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="professorComponenteCurricular"
                 id="professorComponenteCurricular" 
@@ -214,7 +214,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="professorOrientador" class="titulopequeno">Professor Orientador<strong style="color: #8B5558">*</strong></label>
+            <label for="professorOrientador" class="titulopequeno">Professor orientador<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="professorOrientador"
                 id="professorOrientador" 
@@ -222,7 +222,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="cargaHorariaSemanal" class="titulopequeno">Carga Horária Semanal<strong style="color: #8B5558">*</strong></label>
+            <label for="cargaHorariaSemanal" class="titulopequeno">Carga horária semanal<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cargaHorariaSemanal"
                 id="cargaHorariaSemanal" 
@@ -230,7 +230,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="diasRealizacao" class="titulopequeno">Dias de Realização<strong style="color: #8B5558">*</strong></label>
+            <label for="diasRealizacao" class="titulopequeno">Dias de realização<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="diasRealizacao"
                 id="diasRealizacao" 

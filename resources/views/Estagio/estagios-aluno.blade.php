@@ -44,7 +44,7 @@
 
 
         <div style="display: flex; justify-content: space-evenly; align-items: center;">
-            <h1 class="titulo"><strong>Meus Estágios</strong></h1>
+            <h1 class="titulo"><strong>Meus estágios</strong></h1>
         </div>
 
         <form class="search-container" action="{{ route('Estagio.estagios-aluno') }}" method="GET">

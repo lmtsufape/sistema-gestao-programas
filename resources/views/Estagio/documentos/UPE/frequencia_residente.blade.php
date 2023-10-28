@@ -3,7 +3,7 @@
 @section('body')
     <div class="fundocadastrar">
         <div class="row" style="align-content: left;">
-            <h1 class="titulogrande">Formulário de Frequência do Residente na Concedente</h1>
+            <h1 class="titulogrande">Formulário de frequência do residente na concedente</h1>
         </div>
         @if (Session::has('pdf_generated_success'))
             <div class="alert alert-success">
@@ -17,7 +17,7 @@
             @csrf
 
 
-            <label for="residente" class="titulopequeno">Nome do Residente<strong style="color: #8B5558">*</strong></label>
+            <label for="residente" class="titulopequeno">Nome do residente<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="residente" id="residente"
                 value="{{ $dados['residente'] ?? '' }}" 
@@ -25,7 +25,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="curso" class="titulopequeno">Curso do Residente<strong style="color: #8B5558">*</strong></label>
+            <label for="curso" class="titulopequeno">Curso do residente<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="curso" id="curso" value="{{ $dados['curso'] ?? '' }}"
                 placeholder="Digite o curso do residente"
@@ -48,7 +48,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="etapaEducacaoBasica" class="titulopequeno">Etapa da Educação Básica<strong
+            <label for="etapaEducacaoBasica" class="titulopequeno">Etapa da educação básica<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="etapaEducacaoBasica" id="etapaEducacaoBasica"
@@ -64,7 +64,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="nomeProf" class="titulopequeno">Nome Do/a Professor/a Preceptor/a<strong
+            <label for="nomeProf" class="titulopequeno">Nome do/a professor/a preceptor/a<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="nomeProf" id="nomeProf" value="{{ $dados['nomeProf'] ?? '' }}"
@@ -72,7 +72,7 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="numMatricula" class="titulopequeno">N° Da Matrícula Do/a Professor/a Preceptor/a<strong
+            <label for="numMatricula" class="titulopequeno">N° da matrícula do/a professor/a preceptor/a<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="numMatricula" id="numMatricula"
