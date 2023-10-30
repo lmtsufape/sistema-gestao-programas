@@ -11,7 +11,7 @@
                 <div class="mb-3">
                     <img src="{{ asset('images/information_red.svg') }}" alt="Info estágio"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Informações do estágio</span>
+                    <span class="textoinfomodal">Visualizar observação do documento</span>
                 </div>
                 <div class="mb-3">
                     <img src="{{ asset('images/file_red.svg') }}" alt="Info estágio"
