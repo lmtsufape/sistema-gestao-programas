@@ -28,7 +28,7 @@
                     id="valor" name="valor" style="text-align: start">
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
 
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
                     <button class="cadastrar-botao" type="button"
                         onclick="window.location.href = '{{ route('edital.create') }}'">Cadastrar edital
                     </button>
@@ -75,7 +75,7 @@
                                                 alt="Info edital" style="height: 30px; width: 30px;">
                                         </a>
 
-                                        @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                                        @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
                                             <a href="{{ route('edital.show', ['id' => $edital->id]) }}">
                                                 <img src="{{ asset('images/vincular_estudante.svg') }}"
                                                     title="Vincular estudante" alt="Vincular aluno"
@@ -88,7 +88,7 @@
                                                 title="Listar estudantes vinculados" alt="Listar estudantes vinculados"
                                                 style="height: 28px; width: 28px;">
                                         </a>
-                                        @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                                        @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
                                             <a class="link" alt="Listar alunos inativos"
                                                 href="{{ route('edital.vinculoInativo', ['id' => $edital->id]) }}">
                                                 <img src="{{ asset('images/estudantes_vinculados_inativos.svg') }}"
@@ -103,7 +103,7 @@
                                             <img src="{{ asset('images/orientadores.svg') }}" title="Listar orientadores"
                                                 alt="Listar orientadores" style="height: 30px; width: 30px;">
                                         </a>
-                                        @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                                        @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
                                             <a type="button" href="{{ route('edital.edit', ['id' => $edital->id]) }}">
                                                 <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar edital"
                                                     style="height: 30px; width: 30px;">

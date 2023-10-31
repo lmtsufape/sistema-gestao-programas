@@ -16,11 +16,6 @@ class Programa extends Model
         'data_fim'
     ];
 
-    // public function programa_servidors()
-    // {
-    //     return $this->hasMany(Programa_servidor::class, "programa_id");
-    // }
-
     public function editais()
     {
         return $this->hasMany(Edital::class, "programa_id");

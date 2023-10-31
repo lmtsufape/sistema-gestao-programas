@@ -2,7 +2,7 @@
 
 @section("body")
 
-@canany(['admin', 'servidor'])
+@canany(['admin', 'servidor', 'gestor'])
     <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
 
         @if (session('sucesso'))

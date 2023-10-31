@@ -9,7 +9,15 @@ use App\Models\Edital;
 class HomeController extends Controller {
 
     public function index() {
-        $programas = Programa::all();
+        $user = auth()->user()->typage;
+        $programas = [];
+        if(auth()->user()->typage_type != 'App\Models\Orientador' && auth()->user()->typage_type != 'App\Models\Aluno'){
+            if($user->tipo_servidor == 'adm'){
+                $programas = Programa::all();
+            } else{
+                $programas = $user->programas()->get();
+            }
+        }
         return view('home', compact('programas'));
     }
 }

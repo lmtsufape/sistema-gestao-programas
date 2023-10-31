@@ -29,9 +29,9 @@ class ProgramaController extends Controller
      */
     public function index(Request $request)
     {
-        // $programa_servidor = Programa_servidor::all();
         $servidors = Servidor::all();
         $users = User::all();
+        $user = auth()->user()->typage;
 
         if (sizeof($request-> query()) > 0){
             $campo = $request->query('campo');
@@ -41,19 +41,33 @@ class ProgramaController extends Controller
                 return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
             }
 
-            $programas = Programa::where(function ($query) use ($valor) {
+            $programas = [];
+            $filtro = function ($query) use ($valor)
+            {
                 if ($valor) {
                     $query->orWhere("programas.nome", "LIKE", "%{$valor}%");
                     $query->orWhere("programas.descricao", "LIKE", "%{$valor}%");
                 }
-            })->orderBy('programas.created_at', 'desc')->select("programas.*")->get();
+            };
 
-
-        return view("Programa.index", compact("programas", "servidors", "users"));
+            if($user->tipo_servidor == 'adm'){
+                $programas = Programa::where($filtro);
+            }else{
+                $programas = $user->programas()->where($filtro);
+            }
+            $programas = $programas->orderBy('programas.created_at', 'desc')->select("programas.*")->get();
+        
+            return view("Programa.index", compact("programas", "servidors", "users"));
         } else {
-            $programas = Programa::all();
+            $programas = [];
+            if($user->tipo_servidor == 'adm'){
+                $programas = Programa::all();
+            } else{
+                $programas = $user->programas()->get();
+            }
             return view("Programa.index", compact("programas", "servidors", "users"));
         }
+
     }
 
     /**
@@ -362,6 +376,7 @@ class ProgramaController extends Controller
 
     public function atribuir_servidor($id)
     {
+        //dd($id);
         $programa = Programa::Where('id', $id)->first();
         $servidors = Servidor::all();
 
