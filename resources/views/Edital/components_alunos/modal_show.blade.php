@@ -12,7 +12,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="tituloinfomodal form-label mt-3">Edital</label>
-                    <div class="textoinfomodal"> {{ $edital->titulo_edital }}</div>
+                    <div class="textoinfomodal"> {{ $edital ?? ''->titulo_edital }}</div>
                 </div>
                 <div class="mb-3">
                     <label class="tituloinfomodal form-label mt-3">Início do edital</label>

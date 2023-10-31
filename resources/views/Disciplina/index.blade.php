@@ -15,11 +15,13 @@
       <h1 class = "titulo"><strong>Disciplinas</strong></h1>
     </div>
 
-    <form class="search-container" action="{{route("disciplinas.index")}}" method="GET">
+    <form class="search-container" action="{{route('disciplinas.index')}}" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
         <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
-        <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("disciplinas.create") }}'">Cadastrar disciplina</button>
-    </form>
+        @if (auth()->user()->typage->tipo_servidor != 'gestor')
+          <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("disciplinas.create") }}'">Cadastrar disciplina</button>
+        @endif   
+      </form>
 
     <br>
     <br>
@@ -56,12 +58,14 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$disciplinas->id}}">
                 <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info programa" style="height: 30px; width: 30px;">
               </a>
-              <a href="{{url("/disciplinas/$disciplinas->id/edit")}}">
-                <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar programa" style="height: 30px; width: 30px;">
-              </a>
-              <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$disciplinas->id}}">
-                <img src="{{asset('images/delete.svg')}}"title="Remover" alt="Deletar programa" style="height: 30px; width: 30px;">
-              </a>
+              @if (auth()->user()->typage->tipo_servidor != 'gestor')
+                <a href="{{url('/disciplinas/$disciplinas->id/edit')}}">
+                  <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar programa" style="height: 30px; width: 30px;">
+                </a>
+                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$disciplinas->id}}">
+                  <img src="{{asset('images/delete.svg')}}"title="Remover" alt="Deletar programa" style="height: 30px; width: 30px;">
+                </a>
+              @endif
             </td>
           </tr>
         </tbody>
@@ -154,6 +158,6 @@
 
 @else
 <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-<a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/login")}}">Voltar</a>
+<a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/login')}}">Voltar</a>
 @endcan
 @endsection

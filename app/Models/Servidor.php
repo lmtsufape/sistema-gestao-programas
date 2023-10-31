@@ -20,11 +20,6 @@ class Servidor extends Model
         return $this->morphOne(User::class, "typage");
     }
 
-    // public function programa_servidors()
-    // {
-    //     return $this->hasMany(Programa_servidor::class, "id_servidor");
-    // }
-
     public function programas(){
         return $this->belongsToMany(Programa::class, 'programa_servidors');
     
@@ -32,7 +27,7 @@ class Servidor extends Model
 
     public static $rules = [
         'cpf' => 'bail|required|formato_cpf|cpf|unique:servidors|unique:alunos|unique:professors',
-        // 'tipo_servidor' => 'bail|required',
+
     ];
 
     public static $messages = [

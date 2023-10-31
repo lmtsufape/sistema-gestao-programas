@@ -1,6 +1,6 @@
 @extends("templates.app")
 @section("body")
-    @canany(['admin', 'pro_reitor'])
+    @canany(['admin', 'pro_reitor', 'gestor'])
 
         <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1rem; margin-bottom: 3.6rem; ">
 
@@ -16,7 +16,7 @@
                 <h1 class="titulogrande">
                     Editar Servidor</h1>
                     <hr class="divisor">
-                <form action="{{url("/servidores/$servidor->id")}}" method="POST" enctype="multipart/form-data">
+                <form action="{{url('/servidores/$servidor->id')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
 

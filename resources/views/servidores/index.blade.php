@@ -85,11 +85,12 @@
                                                 <img src="{{ asset('images/information.svg') }}" title="Informações"
                                                     alt="Info servidor" style="height: 30px; width: 30px;">
                                             </a>
-                                            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
-                                                <a href="{{ url('/servidores/' . $servidor->id . '/edit') }}">
-                                                    <img src="{{ asset('images/pencil.svg') }}" title="Editar"
-                                                        alt="Editar servidor" style="height: 30px; width: 30px;">
-                                                </a>
+                                        
+                                            <a href="{{ url('/servidores/' . $servidor->id . '/edit') }}">
+                                                <img src="{{ asset('images/pencil.svg') }}" title="Editar"
+                                                    alt="Editar servidor" style="height: 30px; width: 30px;">
+                                            </a>
+                                                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                                                 <a type="button" data-bs-toggle="modal"
                                                     data-bs-target="#modal_delete_{{ $servidor->id }}">
                                                     <img src="{{ asset('images/delete.svg') }}" title="Remover"

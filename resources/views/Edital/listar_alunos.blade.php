@@ -26,7 +26,7 @@
                 id="valor" name="valor" style="text-align: start">
             <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
 
-            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
                 <button class="cadastrar-botao" type="button"
                     onclick="window.location.href = '{{ route('edital.show', ['id' => $edital->id]) }}'">Vincular
                     Estudantes</button>
@@ -66,12 +66,14 @@
                                         <img src="{{ asset('images/information.svg') }}" title="Informações"
                                             alt="Info edital" style="height: 30px; width: 30px;">
                                     </a>
-                                    @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                                    @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
                                         <a type="button"
                                             href="{{ route('edital.editar_vinculo', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
                                             <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar edital"
                                                 style="height: 30px; width: 30px;">
                                         </a>
+                                    @endif
+                                    @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                                         <a type="button"
                                             href="{{ route('edital.aluno.delete', ['id' => $vinculo->id]) }}">
                                             <img src="{{ asset('images/unlink.png') }}" title="Desvincular"
