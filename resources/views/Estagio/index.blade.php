@@ -73,6 +73,7 @@
                                 <th scope="col" class="text-center align-middle">Data de solicitação</th>
                                 <th scope="col" class="text-center align-middle">Data de início</th>
                                 <th scope="col" class="text-center align-middle">Data de fim</th>
+                                <th scope="col" class="text-center align-middle">Curso</th>
                                 <th scope="col" class="text-center align-middle">Professor</th>
                                 <th scope="col" class="text-center align-middle">Estudante</th>
                                 <th class="text-center">
@@ -87,6 +88,10 @@
                         </thead>
                         <tbody>
                             @foreach ($estagios as $estagio)
+                                @php
+                                    $id_curso = $estagio->curso_id; 
+                                    $curso = $cursos->firstWhere('id', $id_curso); 
+                                @endphp
                                 <tr>
                                     <td class="align-middle">
                                         @if ($estagio->status == 0)
@@ -100,6 +105,7 @@
                                     <td class="align-middle">{{ date_format(date_create($estagio->data_inicio), 'd/m/Y') }}
                                     </td>
                                     <td class="align-middle">{{ date_format(date_create($estagio->data_fim), 'd/m/Y') }}</td>
+                                    <td class="align-middle"> {{$curso->nome}}</td>
                                     <td class="align-middle">{{ $estagio->orientador->user->name }}</td>
                                     <td class="align-middle">{{ $estagio->aluno->nome_aluno }}</td>
                                     <td>
