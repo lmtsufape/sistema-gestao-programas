@@ -53,7 +53,7 @@
                         Não enviado
                         @endif
                     </td>
-                    <td class "align-middle">
+                    <td class="align-middle" >
                         @php
                         $documento_enviado = $lista_documento->data_atualizacao ?? null;
                         @endphp
@@ -122,14 +122,6 @@
                         @if ($lista_documento->status == 'Aguardando documento assinado' || $lista_documento->status == 'Aguardando verificação' || $lista_documento->status == 'Negado')
                         {{-- <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
                         <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento" style="height: 30px; width: 30px;">
-                        </a> --}}
-
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->documento_id}}">
-                            <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
-                        </a>
-
-                        {{-- <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
-                        <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                         </a> --}}
 
                             @if ($hoje > $dataLimite)
