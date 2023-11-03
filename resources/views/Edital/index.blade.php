@@ -28,7 +28,7 @@
                     id="valor" name="valor" style="text-align: start">
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
 
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
                     <button class="cadastrar-botao" type="button"
                         onclick="window.location.href = '{{ route('edital.create') }}'">Cadastrar edital
                     </button>
