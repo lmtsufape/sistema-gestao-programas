@@ -107,9 +107,26 @@ class EditalController extends Controller
      */
     public function create()
     {
-        $programas = Programa::all();
-
+        $user = auth()->user()->typage;
         $disciplinas = Disciplina::all();
+
+        if($user->tipo_servidor == 'adm')
+        {
+            $programas = Programa::all()->sortBy('id');
+        }
+        else
+        {
+            $programas = [];
+            $programas_serv = Programa_servidor::where('servidor_id', Auth::user()->typage_id)->get();
+
+            foreach($programas_serv as $programa_serv)
+            {
+                $programa = Programa::findOrFail($programa_serv->programa_id);
+
+                $programas[] = $programa;
+            }
+        }
+
         return view("Edital.cadastrar", compact("programas", "disciplinas"));
     }
 
@@ -256,10 +273,27 @@ class EditalController extends Controller
 
     public function edit($id)
     {
+        $user = auth()->user()->typage;
         $edital = Edital::Where('id', $id)->first();
-        $programas = Programa::all();
         $disciplinas = Disciplina::all();
         $disciplinasSelecionadas = $edital->disciplinas->pluck('id')->toArray();
+
+        if($user->tipo_servidor == 'adm')
+        {
+            $programas = Programa::all()->sortBy('id');
+        }
+        else
+        {
+            $programas = [];
+            $programas_serv = Programa_servidor::where('servidor_id', Auth::user()->typage_id)->get();
+
+            foreach($programas_serv as $programa_serv)
+            {
+                $programa = Programa::findOrFail($programa_serv->programa_id);
+
+                $programas[] = $programa;
+            }
+        }
 
         return view("Edital.editar", compact("edital", "programas", "disciplinas", "disciplinasSelecionadas"));
     }
