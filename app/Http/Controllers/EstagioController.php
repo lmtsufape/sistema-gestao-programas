@@ -47,11 +47,14 @@ class EstagioController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->distinct()
                 ->get();
+            
+                $cursos = Curso::all();
 
-            return view('Estagio.index', compact('estagios'));
+            return view('Estagio.index', compact('estagios','cursos'));
         } else {
             $estagios = Estagio::all();
-            return view('Estagio.index', compact('estagios'));
+            $cursos = Curso::all();
+            return view('Estagio.index', compact('estagios', 'cursos'));
         }
     }
 

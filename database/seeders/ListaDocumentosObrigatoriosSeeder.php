@@ -17,7 +17,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         //Documentos da UPE
 
         $documento = ListaDocumentosObrigatorios::create([
-            'titulo' => "Termo de encaminhamento",
+            'titulo' => "Termo de Encaminhamento",
             'descricao_documento' => "Termo de encaminhamento do aluno para o estágio.",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
@@ -25,7 +25,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
-            'titulo' => "Termo de compromisso",
+            'titulo' => "Termo de Compromisso",
             'descricao_documento' => "Documento que formaliza o início do estágio, com as informações do estagiário, da empresa e do supervisor de estágio.",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
@@ -33,7 +33,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
-            'titulo' => "Plano de atividades",
+            'titulo' => "Plano de Atividades",
             'descricao_documento' => "Plano de atividades do estágio.",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
@@ -41,7 +41,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
-            'titulo' => "Ficha de frequência",
+            'titulo' => "Ficha de Frequência",
             'descricao_documento' => "Ficha de frequência do aluno.",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
@@ -49,7 +49,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
-            'titulo' => "Relatório de acompanhamento do campo de estágio",
+            'titulo' => "Relatório de Acompanhamento do Campo de Estágio",
             'descricao_documento' => "Relatório de Acompanhamento do Campo de Estágio.",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
@@ -57,7 +57,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
-            'titulo' => "Relatório de avaliação do supervisor de estágio",
+            'titulo' => "Relatório de Avaliação do Supervisor de Estágio",
             'descricao_documento' => "Relatório de avaliação do supervisor de estágio.",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
@@ -65,7 +65,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
-            'titulo' => "Formulário de frequência do residente na concedente",
+            'titulo' => "Formulário de Frequência do Residente na Concedente",
             'descricao_documento' => "Formulário de Frequência do Residente na Concedente.",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
@@ -75,7 +75,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         //Documentos da UFAPE
 
         $documento = ListaDocumentosObrigatorios::create([
-            'titulo' => "Termo de compromisso",
+            'titulo' => "Termo de Compromisso",
             'descricao_documento' => "Documento que formaliza o início do estágio, com as informações do estagiário, da empresa e do supervisor de estágio.",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
@@ -83,7 +83,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
-            'titulo' => "Carta de aceite do supervisor",
+            'titulo' => "Carta de Aceite do Supervisor",
             'descricao_documento' => "Documento que formaliza a concordância do supervisor em assumir a responsabilidade de orientar o aluno",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
@@ -91,7 +91,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         ]);
 
         $documento = ListaDocumentosObrigatorios::create([
-            'titulo' => "Ficha de frequência",
+            'titulo' => "Ficha de Frequência",
             'descricao_documento' => "Ficha de frequência das atividades realizadas pelo aluno.",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
@@ -102,6 +102,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         //     'titulo' => "Termo Aditivo",
         //     'descricao_documento' => "Ficha de frequência das atividades realizadas pelo aluno.",
         //     'tipo_entrega' => "final",
+        
         //     'tipo_estagio' => "eo",
         //     'instituicao' => "UFAPE"
         // ]);
