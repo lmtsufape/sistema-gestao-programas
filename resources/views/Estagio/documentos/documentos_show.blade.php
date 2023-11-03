@@ -137,7 +137,7 @@
                                 <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
                             </a>
                             <a href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
-                                <img src="{{ asset('images/folder-file_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
+                                <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                             </a>
                             @else
                             <!-- Se o documento estiver completo -->
@@ -145,7 +145,7 @@
                                 <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
                             </a>
                             <a href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
-                                <img src="{{ asset('images/folder-file_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
+                                <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                             </a>
                             @endif
                         @endif
