@@ -400,20 +400,22 @@ class DocumentoEstagioController extends Controller
         return $pdf->editImage(5, $dados);
     }
 
-    public function relatorio_supervisor_form($id){
+    public function relatorio_supervisor_form($id)
+    {
 
         $estagio = Estagio::findOrFail($id);
 
-        return view('Estagio.documentos.UPE.relatorio_supervisor' , compact("estagio"));
+        return view('Estagio.documentos.UPE.relatorio_supervisor', compact("estagio"));
     }
 
-    public function relatorio_supervisor($id, Request $request){
+    public function relatorio_supervisor($id, Request $request)
+    {
         try {
             DB::beginTransaction();
-    
+
             $estagio = Estagio::findOrFail($id);
             $aluno = Aluno::findOrFail($estagio->aluno_id);
-    
+
             $pdfController = new PDFController();
             $listaDocumentosId = $pdfController->getListaDeDocumentosId();
 
@@ -421,7 +423,7 @@ class DocumentoEstagioController extends Controller
                 ->where('aluno_id', $aluno->id)
                 ->where('lista_documentos_obrigatorios_id', $listaDocumentosId)
                 ->first();
-    
+
             if ($documento) {
                 $arquivo_pdf = $request->file('arquivo');
 
@@ -430,7 +432,6 @@ class DocumentoEstagioController extends Controller
                 $documento->pdf = $arquivo_pdf_blob;
 
                 return redirect()->route('estagio.documentos', ['id' => $id])->with('success', 'Documento anexado com sucesso.');
-
             } else {
                 $documento = new DocumentoEstagio();
                 $documento->aluno_id = $aluno->id;
@@ -446,33 +447,30 @@ class DocumentoEstagioController extends Controller
                 $documento->estagio_id = $estagio->id;
                 $documento->is_completo = True;
                 $documento->status = 'Aguardando verificação';
-                
             }
-    
+
             $documento->save();
             DB::commit();
-
         } catch (Exception $e) {
             DB::rollBack();
             dd($e);
         }
 
         return redirect()->route('estagio.documentos', ['id' => $id])->with('success', 'Documento anexado com sucesso.');
-
     }
-    
+
     public function termo_compromisso_ufape_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
 
-        return view('Estagio.documentos.UFAPE.termo_de_compromisso' , compact("estagio"));
+        return view('Estagio.documentos.UFAPE.termo_de_compromisso', compact("estagio"));
     }
 
     public function carta_aceite_supervisor_ufape_form($id)
     {
         $estagio = Estagio::findOrFail($id);
 
-        return view('Estagio.documentos.UFAPE.carta_aceite_supervisor' , compact("estagio"));
+        return view('Estagio.documentos.UFAPE.carta_aceite_supervisor', compact("estagio"));
     }
 
     public function carta_aceite_supervisor_ufape($id, Request $request)
@@ -481,10 +479,10 @@ class DocumentoEstagioController extends Controller
 
         try {
             DB::beginTransaction();
-    
+
             $estagio = Estagio::findOrFail($id);
             $aluno = Aluno::findOrFail($estagio->aluno_id);
-    
+
             // $pdfController = new PDFController();
             // $listaDocumentosId = $pdfController->getListaDeDocumentosId();
             $listaDocumentosId = 9;
@@ -493,7 +491,7 @@ class DocumentoEstagioController extends Controller
                 ->where('aluno_id', $aluno->id)
                 ->where('lista_documentos_obrigatorios_id', $listaDocumentosId)
                 ->first();
-    
+
             if ($documento) {
                 $arquivo_pdf = $request->file('arquivo');
 
@@ -502,7 +500,6 @@ class DocumentoEstagioController extends Controller
                 $documento->pdf = $arquivo_pdf_blob;
 
                 return redirect()->route('estagio.documentos', ['id' => $id])->with('success', 'Documento anexado com sucesso.');
-
             } else {
                 $documento = new DocumentoEstagio();
                 $documento->aluno_id = $aluno->id;
@@ -518,26 +515,23 @@ class DocumentoEstagioController extends Controller
                 $documento->estagio_id = $estagio->id;
                 $documento->is_completo = True;
                 $documento->status = 'Aguardando verificação';
-                
             }
-    
+
             $documento->save();
             DB::commit();
-
         } catch (Exception $e) {
             DB::rollBack();
             dd($e);
         }
 
         return redirect()->route('estagio.documentos', ['id' => $id])->with('success', 'Documento anexado com sucesso.');
-
     }
 
     public function ficha_frequencia_ufape_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
 
-        return view('Estagio.documentos.UFAPE.ficha_frequencia' , compact("estagio"));
+        return view('Estagio.documentos.UFAPE.ficha_frequencia', compact("estagio"));
     }
 
 
@@ -574,12 +568,12 @@ class DocumentoEstagioController extends Controller
     {
         $documento = DocumentoEstagio::findOrFail($id);
 
-        return view('Estagio.documentos.documento_completo' , compact("documento"));
+        return view('Estagio.documentos.documento_completo', compact("documento"));
     }
 
     public function documento_completo($id, Request $request)
     {
-        try{
+        try {
             DB::beginTransaction();
 
             $documento = DocumentoEstagio::findOrFail($id);
@@ -592,12 +586,11 @@ class DocumentoEstagioController extends Controller
 
             $documento->is_completo = True;
             $documento->status = 'Aguardando verificação';
-            
+
             $documento->save();
             DB::commit();
 
             return redirect()->route('estagio.documentos', ['id' => $documento->estagio_id])->with('success', 'Documento enviado com sucesso.');
-
         } catch (Exception $e) {
             DB::rollBack();
             dd($e);
@@ -634,5 +627,12 @@ class DocumentoEstagioController extends Controller
             DB::rollback();
             return redirect()->back()->withErrors("Falha ao editar Observação. tente novamente mais tarde.");
         }
+    }
+
+    public function download($nome)
+    {
+        $documento = storage_path("app\\docs\\pdfs\\" . $nome);
+
+        return response()->file($documento, ['Content-Type' => 'application/pdf', 'Content-Disposition' => 'inline']);
     }
 }
