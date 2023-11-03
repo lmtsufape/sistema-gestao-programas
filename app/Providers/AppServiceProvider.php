@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,5 +30,7 @@ class AppServiceProvider extends ServiceProvider
         //     'servidor' => 'App\Models\Servidor',
         //     'orientador' => 'App\Models\Orientador',
         // ]);
+
+        Paginator::useBootstrap();
     }
 }

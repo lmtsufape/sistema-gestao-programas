@@ -4,7 +4,7 @@
     @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
 
         <style>
-            pagination {
+            /* pagination {
                 display: inline-block;
             }
 
@@ -26,7 +26,7 @@
 
             .pagination a:hover:not(.active) {
                 background-color: #34A853;
-            }
+            } */
 
             .sortable {
                 cursor: pointer;
@@ -161,6 +161,9 @@
                         @include('Estagio.components.modal_delete', ['estagio' => $estagio])
                         @endforeach
                     </table>
+
+                    {{ $estagios->links('vendor.pagination.bootstrap-4') }}
+
                 </div>
 
             </div>
