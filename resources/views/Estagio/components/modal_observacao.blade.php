@@ -9,7 +9,6 @@
         </div>
         <div class="modal-body" style="text-align: start">
             <div class="mb-3">
-                    <label class="input-informacao" for="">Observação</label>
                     @if (empty($documento->observacao))
                     <p class="output-informacao">Sem observação</p>
                     @else
