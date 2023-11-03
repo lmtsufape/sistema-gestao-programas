@@ -259,6 +259,8 @@ Route::prefix('estagio')->group(function () {
         Route::get('/observacao/edit/{id}', [DocumentoEstagioController::class, 'observacao_edit'])->name('observacao.edit');
         Route::post('/observacao/update/{id}', [DocumentoEstagioController::class, 'observacao_update'])->name('observacao.update');
 
+        Route::get('/download/{nome}', [DocumentoEstagioController::class, 'download'])->name('download.documento');
+
 
         // Documentos UPE
 
