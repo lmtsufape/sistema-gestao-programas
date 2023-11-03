@@ -209,22 +209,27 @@ class EstagioController extends Controller
     public function showDocuments($id)
     {
         $estagio = Estagio::findOrFail($id);
+        $alunoId = $estagio->aluno_id;
         $instituicao = Instituicao::pluck('sigla')->first();
 
-        $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', 'documentos_estagios.lista_documentos_obrigatorios_id', '=', 'lista_documentos_obrigatorios.id')
-            ->where('documentos_estagios.aluno_id', $estagio->aluno_id)
+        $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', function ($join) use ($alunoId, $estagio) {
+            $join->on('documentos_estagios.lista_documentos_obrigatorios_id', '=', 'lista_documentos_obrigatorios.id')
+                ->where('documentos_estagios.aluno_id', $alunoId)
+                ->where('documentos_estagios.estagio_id', $estagio->id);
+        })
             ->select('documentos_estagios.*', 'lista_documentos_obrigatorios.*')
             ->get();
 
-        // Filtra apenas os documentos com a sigla "UFAPE"
-        $lista_documentos = ListaDocumentosObrigatorios::leftJoin('documentos_estagios', function ($join) use ($estagio) {
+        $lista_documentos = ListaDocumentosObrigatorios::leftJoin('documentos_estagios', function ($join) use ($alunoId, $estagio) {
             $join->on('lista_documentos_obrigatorios.id', '=', 'documentos_estagios.lista_documentos_obrigatorios_id')
-                ->where('documentos_estagios.aluno_id', $estagio->aluno_id);
+                ->where('documentos_estagios.aluno_id', $alunoId)
+                ->where('documentos_estagios.estagio_id', $estagio->id);
         })
-            ->where('lista_documentos_obrigatorios.instituicao', $instituicao) // Filtro para a sigla "UFAPE"
+            ->where('lista_documentos_obrigatorios.instituicao', $instituicao)
             ->select(
                 'lista_documentos_obrigatorios.*',
                 'documentos_estagios.status',
+                'documentos_estagios.estagio_id',
                 'documentos_estagios.observacao',
                 'documentos_estagios.created_at as data_envio',
                 'documentos_estagios.updated_at as data_atualizacao',
