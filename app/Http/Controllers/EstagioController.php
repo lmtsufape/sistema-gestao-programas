@@ -15,9 +15,8 @@ use App\Models\Supervisor;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use App\Models\ListaDocumentosObrigatorios;
-use App\Models\Servidor;
+use Illuminate\Pagination\Paginator;
 
 class EstagioController extends Controller
 {
@@ -27,9 +26,9 @@ class EstagioController extends Controller
             $campo = $request->query('campo');
             $valor = $request->query('valor');
 
-            if ($valor == null) {
-                return redirect()->back()->withErrors("Deve ser informado algum valor para o filtro.");
-            }
+            // if ($valor == null) {
+            //     return redirect()->back()->withErrors("Deve ser informado algum valor para o filtro.");
+            // }
 
             $estagios = Estagio::where(function ($query) use ($valor) {
                 $query->orWhereHas('aluno', function ($subquery) use ($valor) {
@@ -45,15 +44,16 @@ class EstagioController extends Controller
                     //Query para a tabela estagios
                     ->orWhere('descricao', 'LIKE', "%{$valor}%");
             })
-                ->orderBy('created_at', 'desc')
+                ->orderBy('created_at', 'asc')
+                ->orderBy('status', 'desc')
                 ->distinct()
-                ->get();
-            
-                $cursos = Curso::all();
+                ->paginate(25);
 
-            return view('Estagio.index', compact('estagios','cursos'));
+            $cursos = Curso::all();
+
+            return view('Estagio.index', compact('estagios', 'cursos'));
         } else {
-            $estagios = Estagio::all();
+            $estagios = Estagio::orderBy('created_at', 'desc')->paginate(25);
             $cursos = Curso::all();
             return view('Estagio.index', compact('estagios', 'cursos'));
         }
