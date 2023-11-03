@@ -75,7 +75,7 @@
                                                 <img src="{{ asset('images/listar_edital.svg') }}" title="Listar edital"
                                                     alt="Listar edital" style="height: 30px; width: 30px;">
                                             </a>
-                                            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                                            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
                                                 <a href="{{ url("/programas/$programas->id/criar-edital") }}">
                                                     <img src="{{ asset('images/add_edital.svg') }}" title="Adicionar edital"
                                                         alt="Add Edital" style="height: 30px; width: 30px;">
@@ -84,12 +84,14 @@
                                                     <img src="{{ asset('images/pencil.svg') }}" title="Editar"
                                                         alt="Editar programa" style="height: 30px; width: 30px;">
                                                 </a>
+                                            @endif    
+                                            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')   
                                                 <a type="button" data-bs-toggle="modal"
                                                     data-bs-target="#modal_delete_{{ $programas->id }}">
                                                     <img src="{{ asset('images/delete.svg') }}"title="Remover"
                                                         alt="Deletar programa" style="height: 30px; width: 30px;">
                                                 </a>
-                                            @endif
+                                            @endif     
                                         </td>
                                     </tr>
                                     @include('Programa.components.modal_legenda')

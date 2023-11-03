@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Programa_servidor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,7 @@ class EditalController extends Controller
     public function index(Request $request)
     {
         $orientadors = Orientador::all();
+        $user = auth()->user()->typage;
 
         if (sizeof($request-> query()) > 0){
             $campo = $request->query('campo');
@@ -56,11 +58,30 @@ class EditalController extends Controller
 
 
             return view("Edital.index", compact("editais", "orientadors"));
- 
+
         } else {
-            $editais = Edital::all();
+            if($user->tipo_servidor == 'adm')
+            {
+                $editais = Edital::all()->sortBy('id');
+            }
+            else
+            {
+                $editais = [];
+
+                $programas_serv = Programa_servidor::where('servidor_id', Auth::user()->typage_id)->get();
+
+                foreach($programas_serv as $programa_serv)
+                {
+                    $edital_programa = Edital::where('programa_id', $programa_serv->programa_id)->get();
+
+                    foreach($edital_programa as $edital)
+                    {
+                        $editais[] = $edital;
+                    }
+                }
+            }
+
             return view("Edital.index", compact("editais", "orientadors"));
-    
         }
 
 
@@ -153,7 +174,7 @@ class EditalController extends Controller
             $edital = Edital::find($id);
             $aluno = Aluno::where('cpf', $request->cpf)->with('user')->first();
             $orientador = Orientador::with('user')->find($request->orientador);
-          
+
             $orientador_id = (int)$request->orientador;
 
             $request->validate([
@@ -214,13 +235,13 @@ class EditalController extends Controller
                 $historico->vinculo_id = $editalAlunoOrientador->id;
                 $historico->data_inicio = date('Y-m-d');
                 $historico->save();
- 
+
                 DB::commit();
                  return redirect()->route('edital.vinculo', ['id' => $edital->id])->with('successo', 'O aluno foi inscrito com sucesso no edital.');
            }
         } catch(Exception $e){
              DB::rollback();
-             
+
              return redirect()->back()->withErrors( "Falha ao cadastrar aluno ao edital." )->withInput();
          }
     }
@@ -322,7 +343,7 @@ class EditalController extends Controller
         $edital = Edital::where('id', $id)->first();
 
         if (sizeof($request-> query()) > 0){
-     
+
             $campo = $request->query('campo');
             $valor = $request->query('valor');
 
@@ -355,14 +376,14 @@ class EditalController extends Controller
             })
             ->orderBy('created_at', 'desc')
             ->distinct()
-            ->get();     
-            
+            ->get();
+
 
             return view("Edital.listar_alunos", compact("vinculos", "edital", "frequencia"));
-        }else{        
+        }else{
             $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', true)->get();
             $frequencias = FrequenciaMensalAlunos::where('edital_aluno_orientador_id', $id)->get();
-        
+
             if ($vinculos->isEmpty()) {
                 return redirect()->back()->with('falha', 'Não há alunos cadastrados no edital.');
             } else {
@@ -376,7 +397,7 @@ class EditalController extends Controller
         $edital = Edital::where('id', $id)->first();
 
         if (sizeof($request-> query()) > 0){
-     
+
             $campo = $request->query('campo');
             $valor = $request->query('valor');
 
@@ -409,12 +430,12 @@ class EditalController extends Controller
             })
             ->orderBy('created_at', 'desc')
             ->distinct()
-            ->get();       
+            ->get();
 
             return view("Edital.listar_alunos_inativos", compact("vinculos", "edital"));
- 
+
         } else {
-        
+
             $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', false)->get();
             $count = $vinculos->count();
 
@@ -422,14 +443,14 @@ class EditalController extends Controller
                 return redirect()->back()->with('falha', 'Não há alunos inativos no edital.');
             } else{
                 return view("Edital.listar_alunos_inativos", compact("vinculos", "edital"));
-        
+
             }
     }
 
-        
 
 
-        
+
+
         //-----------------------------
 
 
@@ -445,7 +466,7 @@ class EditalController extends Controller
             $historico->data_inicio = date('Y-m-d');
 
             $historico->save();
-            
+
             return redirect()->route('edital.index')->with('sucesso', "O vínculo foi ativado com sucesso no edital.");
 
         } catch(exception $e){
@@ -464,7 +485,7 @@ class EditalController extends Controller
     public function listar_orientadores(Request $request, $id){
 
         if (sizeof($request-> query()) > 0){
-     
+
             $campo = $request->query('campo');
             $valor = $request->query('valor');
 
@@ -491,7 +512,7 @@ class EditalController extends Controller
             })
             ->orderBy('created_at', 'desc')
             ->distinct()
-            ->get();       
+            ->get();
 
             return view("Edital.listar_orientadores", compact("vinculos"));
         } else {
@@ -514,7 +535,7 @@ class EditalController extends Controller
     public function download_termo_compromisso_aluno($fileName) {
 
         $path = 'termo_compromisso_alunos/' . $fileName;
-        
+
         if(Storage::exists($path)) {
             return Storage::download($path);
         } else {
@@ -562,7 +583,7 @@ class EditalController extends Controller
             $orientador = Orientador::with('user')->find($vinculo->orientador_id);
 
             $vinculo->info_complementares = $request->info_complementares ? $request->info_complementares : $vinculo->info_complementares;
-            
+
             $plano_projeto = null;
             $termo_aluno = null;
             $outros_documentos = null;
@@ -570,8 +591,8 @@ class EditalController extends Controller
             if($request->hasFile('termo_compromisso_aluno') && $request->file('termo_compromisso_aluno')->isValid()) {
                 $aluno_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $aluno->nome_aluno);
                 $termo_aluno = "termo_compromisso_aluno_" . $aluno_nome . "_" . $edital->id . now()->format('YmdHis') . '.' . $request->termo_compromisso_aluno->extension();
-                
-                //Deleta o termo antigo do banco, caso haja algum 
+
+                //Deleta o termo antigo do banco, caso haja algum
                 $termo_aluno_antigo = "termo_compromisso_alunos/".$vinculo->termo_compromisso_aluno;
                 if (Storage::exists($termo_aluno_antigo)) {
                     Storage::delete($termo_aluno_antigo);
@@ -584,8 +605,8 @@ class EditalController extends Controller
             if($request->hasFile('plano_projeto') && $request->file('plano_projeto')->isValid()) {
                 $orientador_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $orientador->user->name);
                 $plano_projeto = "plano_projeto_" . $orientador_nome . "_" . $edital->id . now()->format('YmdHis') . '.' . $request->plano_projeto->extension();
-                
-                //Deleta o termo antigo do banco, caso haja algum 
+
+                //Deleta o termo antigo do banco, caso haja algum
                 $plano_projeto_antigo = "plano_projeto/".$vinculo->plano_projeto;
                 if (Storage::exists($plano_projeto_antigo)) {
                     Storage::delete($plano_projeto_antigo);
@@ -597,8 +618,8 @@ class EditalController extends Controller
 
             if($request->hasFile('outros_documentos') && $request->file('outros_documentos')->isValid()) {
                 $outros_documentos = "outros_documentos_" . $edital->id . now()->format('YmdHis') . '.' . $request->outros_documentos->extension();
-                
-                //Deleta o termo antigo do banco, caso haja algum 
+
+                //Deleta o termo antigo do banco, caso haja algum
                 $outros_documentos_antigo = "outros_documentos/".$vinculo->outros_documentos;
                 if (Storage::exists($outros_documentos_antigo)) {
                     Storage::delete($outros_documentos_antigo);
@@ -641,7 +662,7 @@ class EditalController extends Controller
             #dd($vinculo['id']);
             HistoricoVinculoAlunos::where("vinculo_id", $vinculo->id)->update(['data_fim' => date('Y-m-d')]);
 
-            /* 
+            /*
                 Como um vínculo não será apagado, apenas o status dele muda para "false"
                 então não vamos remover os documentos do banco, pois o vinculo pode ser
                 ativado novamente no futuro.
@@ -655,7 +676,7 @@ class EditalController extends Controller
 
         } catch(exception $e){
             DB::rollback();
-            
+
             return redirect()->back()->withErrors( "Falha ao Arquivar o vínculo do aluno no edital." );
         }
     }
@@ -684,11 +705,11 @@ class EditalController extends Controller
             $comprovante_bancario = "";
 
             $aluno_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $vinculo->aluno->nome_aluno);
-            
+
             if($request->hasFile('termo_aluno') && $request->file('termo_aluno')->isValid()) {
                 $termo_aluno = "termo_aluno_" . $aluno_nome . "_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->termo_aluno->extension();
 
-                //Deleta o termo antigo do banco, caso haja algum 
+                //Deleta o termo antigo do banco, caso haja algum
                 $termo_aluno_antigo = "termo_alunos/".$vinculo->termo_aluno;
                 if (Storage::exists($termo_aluno_antigo)) {
                     Storage::delete($termo_aluno_antigo);
@@ -701,8 +722,8 @@ class EditalController extends Controller
             if($request->hasFile('termo_orientador') && $request->file('termo_orientador')->isValid()) {
                 $orientador_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', $vinculo->orientador->user->name);
                 $termo_orientador = "termo_orientador_" . $orientador_nome . "_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->termo_orientador->extension();
-                
-                //Deleta o termo antigo do banco, caso haja algum 
+
+                //Deleta o termo antigo do banco, caso haja algum
                 $termo_orientador_antigo = "termo_orientadors/".$vinculo->termo_orientador;
                 if (Storage::exists($termo_orientador_antigo)) {
                     Storage::delete($termo_orientador_antigo);
@@ -715,7 +736,7 @@ class EditalController extends Controller
             if($request->hasFile('historico_escolar') && $request->file('historico_escolar')->isValid()) {
                 $historico_escolar = "historico_escolar_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->historico_escolar->extension();
 
-                //Deleta o termo antigo do banco, caso haja algum 
+                //Deleta o termo antigo do banco, caso haja algum
                 $historico_escolar_antigo = "historicos_escolares_alunos/".$vinculo->historico_escolar;
                 if (Storage::exists($historico_escolar_antigo)) {
                     Storage::delete($historico_escolar_antigo);
@@ -727,8 +748,8 @@ class EditalController extends Controller
 
             if($request->hasFile('comprovante_bancario') && $request->file('comprovante_bancario')->isValid()) {
                 $comprovante_bancario = "comprovante_bancario_" . $vinculo->id . now()->format('YmdHis') . '.' . $request->comprovante_bancario->extension();
-                
-                //Deleta o termo antigo do banco, caso haja algum 
+
+                //Deleta o termo antigo do banco, caso haja algum
                 $comprovante_bancario_antigo = "comprovantes_bancarios/".$vinculo->comprovante_bancario;
                 if (Storage::exists($comprovante_bancario_antigo)) {
                     Storage::delete($comprovante_bancario_antigo);
@@ -749,7 +770,7 @@ class EditalController extends Controller
 
             DB::commit();
             return redirect()->route('orientadors.editais-orientador')->with('sucesso', 'Documentos inseridos no vínculo com sucesso.');
-          
+
         } catch(ValidationException $e){
             DB::rollback();
             return redirect()->back()->withErrors( "Arquivo muito grande. Diminua os arquivos e tente novamente." );
@@ -783,7 +804,7 @@ class EditalController extends Controller
 
     public function download_historico_escolares_alunos($fileName) {
         $path = "historicos_escolares_alunos/".$fileName;
-        
+
         if(Storage::exists($path)) {
             return Storage::download($path);
         } else {
@@ -807,12 +828,12 @@ class EditalController extends Controller
         ->whereHas('aluno', function ($query) {
             $query->where('cpf', Auth::user()->cpf);
         })
-        ->with('frequencias') 
+        ->with('frequencias')
         ->first();
-        
+
         $request->validate([
             'frequencia_mensal' => 'required|mimes:pdf|max:2048',
-    
+
         ]);
         $frequencia_aluno = "";
 
@@ -822,14 +843,14 @@ class EditalController extends Controller
             // Armazenar o arquivo na pasta "frequencia_mensal"
             $request->frequencia_mensal->storeAs('frequencia_mensal', $frequencia_aluno);
         }
-        
+
         $frequencia = new FrequenciaMensalAlunos();
         $frequencia->edital_aluno_orientador_id = $vinculo->id;
         $frequencia->frequencia_mensal = $frequencia_aluno;
         $frequencia->data = now();
         $frequencia->save();
 
-       
+
         return redirect(route('Aluno.editais-aluno'))->with('sucesso', 'A frequencia foi enviada com sucesso.');
     }
 
