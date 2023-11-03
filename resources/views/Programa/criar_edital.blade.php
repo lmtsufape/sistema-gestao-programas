@@ -1,7 +1,7 @@
 @extends("templates.app")
 
 @section("body")
-    @canany(['admin', 'servidor'])
+    @canany(['admin', 'servidor', 'gestor' ])
         <style>
             select[multiple] {
                 overflow: hidden;

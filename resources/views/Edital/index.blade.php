@@ -28,7 +28,7 @@
                     id="valor" name="valor" style="text-align: start">
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
 
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
+                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                     <button class="cadastrar-botao" type="button"
                         onclick="window.location.href = '{{ route('edital.create') }}'">Cadastrar edital
                     </button>
@@ -103,7 +103,7 @@
                                             <img src="{{ asset('images/orientadores.svg') }}" title="Listar orientadores"
                                                 alt="Listar orientadores" style="height: 30px; width: 30px;">
                                         </a>
-                                        @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
+                                        @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' )
                                             <a type="button" href="{{ route('edital.edit', ['id' => $edital->id]) }}">
                                                 <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar edital"
                                                     style="height: 30px; width: 30px;">
