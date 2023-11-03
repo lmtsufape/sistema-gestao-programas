@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\ListaDocumentosObrigatorios;
+use App\Models\Servidor;
 
 class EstagioController extends Controller
 {
