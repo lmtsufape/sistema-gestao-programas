@@ -103,7 +103,7 @@
                                             <img src="{{ asset('images/orientadores.svg') }}" title="Listar orientadores"
                                                 alt="Listar orientadores" style="height: 30px; width: 30px;">
                                         </a>
-                                        @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
+                                        @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' )
                                             <a type="button" href="{{ route('edital.edit', ['id' => $edital->id]) }}">
                                                 <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar edital"
                                                     style="height: 30px; width: 30px;">

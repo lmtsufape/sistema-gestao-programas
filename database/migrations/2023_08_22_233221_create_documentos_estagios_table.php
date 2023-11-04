@@ -27,6 +27,7 @@ class CreateDocumentosEstagiosTable extends Migration
             $table->foreign('lista_documentos_obrigatorios_id')->references('id')->on('lista_documentos_obrigatorios');
 
             $table->boolean('is_completo')->default(false);
+            $table->boolean('is_visualizado')->default(false);
         });
         if (config('database.default') === 'mysql') {
             DB::statement("SET GLOBAL max_allowed_packet=32777216;");

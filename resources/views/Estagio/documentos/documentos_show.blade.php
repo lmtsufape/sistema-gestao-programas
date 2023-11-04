@@ -134,7 +134,7 @@
                                 <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento" style="height: 30px; width: 30px;">
                             </a>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->documento_id}}">
-                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
+                                <img src="{{ asset('images/information.svg') }}" title="Observação" alt="Ver Observação" style="height: 30px; width: 30px;">
                             </a>
                             <a href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
                                 <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
@@ -142,7 +142,7 @@
                             @else
                             <!-- Se o documento estiver completo -->
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->documento_id}}">
-                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
+                                <img src="{{ asset('images/information.svg') }}" title="Observação" alt="Ver Observação" style="height: 30px; width: 30px;">
                             </a>
                             <a href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
                                 <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
@@ -153,19 +153,27 @@
                         @endcan
 
                         @canany(['admin', 'servidor', 'gestor'])
-                        <a href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}" class="aprovar-documento-link">
-                            <img src="{{ asset('images/document-checkmark.svg') }}" alt="Aprovar Documento" title="Aprovar documento" style="height: 30px; width: 30px;">
-                        </a>
+                        @if($lista_documento->is_visualizado == 1)
+                            <a href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}" class="aprovar-documento-link">
+                                <img src="{{ asset('images/document-checkmark.svg') }}" alt="Aprovar Documento" title="Aprovar documento" style="height: 30px; width: 30px;">
+                            </a>
 
+                            <a href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}" class="negar-documento-link">
+                                <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento" title= "Negar documento" style="height: 30px; width: 30px;">
+                            </a>
 
-                        <a href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}" class="negar-documento-link">
-                            <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento" title "Negar documento" style="height: 30px; width: 30px;">
-                        </a>
+                            <a href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
+                                <img src="{{ asset('images/information.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
+                            </a>
+                        @else
+                            <img src="{{ asset('images/document-checkmark.svg') }}" alt="Aprovar Documento" title="Aprovar documento" style="height: 30px; width: 30px; opacity: 50%;" disabled>
 
+                            <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento" title="Negar documento" style="height: 30px; width: 30px; opacity: 50%;" disabled>
 
-                        <a href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
-                            <img src="{{ asset('images/information.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
-                        </a>
+                            <a href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
+                                <img src="{{ asset('images/information.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
+                            </a>
+                        @endif
 
                         @endcan
                         @else

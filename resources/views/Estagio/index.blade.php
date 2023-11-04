@@ -4,7 +4,7 @@
     @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
 
         <style>
-            pagination {
+            /* pagination {
                 display: inline-block;
             }
 
@@ -26,6 +26,20 @@
 
             .pagination a:hover:not(.active) {
                 background-color: #34A853;
+            } */
+
+            .sortable {
+                cursor: pointer;
+            }
+
+            .ascending::after {
+                content: " \25B2";
+                /* Triângulo para cima */
+            }
+
+            .descending::after {
+                content: " \25BC";
+                /* Triângulo para baixo */
             }
         </style>
 
@@ -68,13 +82,14 @@
                     <table class="table">
                         <thead>
                             <tr class="table-head">
-                                <th scope="col" class="text-center align-middle">Status</i></th>
-                                <th scope="col" class="text-center align-middle">Descrição</th>
-                                <th scope="col" class="text-center align-middle">Data de solicitação</th>
-                                <th scope="col" class="text-center align-middle">Data de início</th>
-                                <th scope="col" class="text-center align-middle">Data de fim</th>
-                                <th scope="col" class="text-center align-middle">Professor</th>
-                                <th scope="col" class="text-center align-middle">Estudante</th>
+                                <th scope="col" class="text-center align-middle sortable">Status</i></th>
+                                <th scope="col" class="text-center align-middle sortable">Descrição</th>
+                                <th scope="col" class="text-center align-middle sortable">Data de solicitação</th>
+                                <th scope="col" class="text-center align-middle sortable">Data de início</th>
+                                <th scope="col" class="text-center align-middle sortable">Data de fim</th>
+                                <th scope="col" class="text-center align-middle sortable">Curso</th>
+                                <th scope="col" class="text-center align-middle sortable">Professor</th>
+                                <th scope="col" class="text-center align-middle sortable">Estudante</th>
                                 <th class="text-center">
                                     Ações
                                     <button type="button" class="infobutton align-bottom" data-bs-toggle="modal"
@@ -87,6 +102,10 @@
                         </thead>
                         <tbody>
                             @foreach ($estagios as $estagio)
+                                @php
+                                    $id_curso = $estagio->curso_id;
+                                    $curso = $cursos->firstWhere('id', $id_curso);
+                                @endphp
                                 <tr>
                                     <td class="align-middle">
                                         @if ($estagio->status == 0)
@@ -100,6 +119,7 @@
                                     <td class="align-middle">{{ date_format(date_create($estagio->data_inicio), 'd/m/Y') }}
                                     </td>
                                     <td class="align-middle">{{ date_format(date_create($estagio->data_fim), 'd/m/Y') }}</td>
+                                    <td class="align-middle"> {{ $curso->nome }}</td>
                                     <td class="align-middle">{{ $estagio->orientador->user->name }}</td>
                                     <td class="align-middle">{{ $estagio->aluno->nome_aluno }}</td>
                                     <td>
@@ -141,13 +161,15 @@
                         @include('Estagio.components.modal_delete', ['estagio' => $estagio])
                         @endforeach
                     </table>
+
+                    {{ $estagios->links('vendor.pagination.bootstrap-4') }}
+
                 </div>
 
             </div>
             <br>
             <br>
         </div>
-
 
         <script type="text/javascript">
             function exibirModalDeletar(id) {
@@ -156,6 +178,72 @@
 
             function exibirModalVisualizar(id) {
                 $('#modal_show' + id).modal('show');
+            }
+
+            // Algorítmo de ordenação de tabelas
+            $(document).ready(function() {
+                $('.sortable').click(function() {
+                    const table = $(this).parents('table').eq(0);
+                    const rows = table.find('tr:gt(0)').toArray();
+                    const index = $(this).index();
+
+                    if ($(this).hasClass('ascending')) {
+                        rows.sort(comparer(index, true));
+                        $(this).removeClass('ascending').addClass('descending');
+                    } else {
+
+                        table.find('.sortable').removeClass('ascending descending');
+                        $(this).addClass('ascending');
+                        rows.sort(comparer(index, false));
+                    }
+
+                    for (let i = 0; i < rows.length; i++) {
+                        table.append(rows[i]);
+                    }
+                });
+            });
+
+            function comparer(index, reverse) {
+                return function(a, b) {
+                    const valA = getCellValue(a, index);
+                    const valB = getCellValue(b, index);
+
+                    if (reverse) {
+                        return compareValues(valB, valA);
+                    } else {
+                        return compareValues(valA, valB);
+                    }
+                };
+            }
+
+            function getCellValue(row, index) {
+                return $(row).children('td').eq(index).text();
+            }
+
+            function compareValues(valueA, valueB) {
+                if (valueA === valueB) return 0;
+                const dateA = parseDate(valueA);
+                const dateB = parseDate(valueB);
+                if (dateA !== null && dateB !== null) {
+                    return dateA - dateB;
+                }
+                return valueA.localeCompare(valueB, undefined, {
+                    numeric: true,
+                    sensitivity: 'base'
+                });
+            }
+
+            function parseDate(dateStr) {
+                const parts = dateStr.split('/');
+                if (parts.length === 3) {
+                    const day = parseInt(parts[0], 10);
+                    const month = parseInt(parts[1], 10) - 1;
+                    const year = parseInt(parts[2], 10);
+                    if (day >= 1 && day <= 31 && month >= 0 && month <= 11 && year >= 1000) {
+                        return new Date(year, month, day);
+                    }
+                }
+                return null;
             }
         </script>
     @else

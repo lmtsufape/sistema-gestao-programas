@@ -15,8 +15,8 @@ use App\Models\Supervisor;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use App\Models\ListaDocumentosObrigatorios;
+use Illuminate\Pagination\Paginator;
 
 class EstagioController extends Controller
 {
@@ -26,9 +26,9 @@ class EstagioController extends Controller
             $campo = $request->query('campo');
             $valor = $request->query('valor');
 
-            if ($valor == null) {
-                return redirect()->back()->withErrors("Deve ser informado algum valor para o filtro.");
-            }
+            // if ($valor == null) {
+            //     return redirect()->back()->withErrors("Deve ser informado algum valor para o filtro.");
+            // }
 
             $estagios = Estagio::where(function ($query) use ($valor) {
                 $query->orWhereHas('aluno', function ($subquery) use ($valor) {
@@ -44,14 +44,18 @@ class EstagioController extends Controller
                     //Query para a tabela estagios
                     ->orWhere('descricao', 'LIKE', "%{$valor}%");
             })
-                ->orderBy('created_at', 'desc')
+                ->orderBy('created_at', 'asc')
+                ->orderBy('status', 'desc')
                 ->distinct()
-                ->get();
+                ->paginate(25);
 
-            return view('Estagio.index', compact('estagios'));
+            $cursos = Curso::all();
+
+            return view('Estagio.index', compact('estagios', 'cursos'));
         } else {
-            $estagios = Estagio::all();
-            return view('Estagio.index', compact('estagios'));
+            $estagios = Estagio::orderBy('created_at', 'desc')->paginate(25);
+            $cursos = Curso::all();
+            return view('Estagio.index', compact('estagios', 'cursos'));
         }
     }
 
@@ -206,27 +210,33 @@ class EstagioController extends Controller
     public function showDocuments($id)
     {
         $estagio = Estagio::findOrFail($id);
+        $alunoId = $estagio->aluno_id;
         $instituicao = Instituicao::pluck('sigla')->first();
 
-        $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', 'documentos_estagios.lista_documentos_obrigatorios_id', '=', 'lista_documentos_obrigatorios.id')
-            ->where('documentos_estagios.aluno_id', $estagio->aluno_id)
+        $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', function ($join) use ($alunoId, $estagio) {
+            $join->on('documentos_estagios.lista_documentos_obrigatorios_id', '=', 'lista_documentos_obrigatorios.id')
+                ->where('documentos_estagios.aluno_id', $alunoId)
+                ->where('documentos_estagios.estagio_id', $estagio->id);
+        })
             ->select('documentos_estagios.*', 'lista_documentos_obrigatorios.*')
             ->get();
 
-        // Filtra apenas os documentos com a sigla "UFAPE"
-        $lista_documentos = ListaDocumentosObrigatorios::leftJoin('documentos_estagios', function ($join) use ($estagio) {
+        $lista_documentos = ListaDocumentosObrigatorios::leftJoin('documentos_estagios', function ($join) use ($alunoId, $estagio) {
             $join->on('lista_documentos_obrigatorios.id', '=', 'documentos_estagios.lista_documentos_obrigatorios_id')
-                ->where('documentos_estagios.aluno_id', $estagio->aluno_id);
+                ->where('documentos_estagios.aluno_id', $alunoId)
+                ->where('documentos_estagios.estagio_id', $estagio->id);
         })
-            ->where('lista_documentos_obrigatorios.instituicao', $instituicao) // Filtro para a sigla "UFAPE"
+            ->where('lista_documentos_obrigatorios.instituicao', $instituicao)
             ->select(
                 'lista_documentos_obrigatorios.*',
                 'documentos_estagios.status',
+                'documentos_estagios.estagio_id',
                 'documentos_estagios.observacao',
                 'documentos_estagios.created_at as data_envio',
                 'documentos_estagios.updated_at as data_atualizacao',
                 'documentos_estagios.id as documento_id',
-                'documentos_estagios.is_completo'
+                'documentos_estagios.is_completo',
+                'documentos_estagios.is_visualizado'
             )
             ->get();
 
