@@ -149,14 +149,14 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
 
-            <label for="nome" class="titulopequeno">Dia atual:<strong style="color: #8B5558">*</strong></label>
+            <label for="nome" class="titulopequeno">Dia atual<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="dia_atual" id="dia_atual" placeholder="Digite o dia atual"
                 value="{{ $dados['dia_atual'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
 
-            <label for="nome" class="titulopequeno">Mês atual:<strong style="color: #8B5558">*</strong></label>
+            <label for="nome" class="titulopequeno">Mês atual<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="mes_atual" id="mes_atual" placeholder="Digite o mês atual"
                 value="{{ $dados['mes_atual'] ?? '' }}" required><br><br>

@@ -307,7 +307,7 @@
 
                 {{-- Quinta questao --}}
                 <label for="nome" class="titulopequeno">Registre informações sobre aspectos exitosos identificados nos
-                    estágios realizados neste campo:<strong style="color: #8B5558">*</strong></label><br>
+                    estágios realizados neste campo<strong style="color: #8B5558">*</strong></label><br>
                 <textarea class="boxcadastrar" name="5_l1" id="5_l1" rows="4" maxlength="400"
                     placeholder="Digite aqui os aspectos exitosos identificados nos estágios realizados neste campo. Máximo de 400 caracteres."
                     oninput="limitCharactersPerLine(this, 100);" required>{{ $dados['5_l1'] ?? '' }}</textarea>

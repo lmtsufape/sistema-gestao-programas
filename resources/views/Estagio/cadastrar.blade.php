@@ -123,7 +123,7 @@
                     @endif
 
                     <div id="disciplinas" hidden>
-                        <label class="titulopequeno" for="curso">Disciplina:<strong
+                        <label class="titulopequeno" for="curso">Disciplina<strong
                                 style="color: #8B5558">*</strong></label>
                         <select aria-label="Default select example" class="boxcadastrar" name="disciplina" id="disciplina">
                             <option value disabled selected hidden> Selecione a disciplina</option>
