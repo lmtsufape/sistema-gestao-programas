@@ -35,9 +35,10 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="inputCpf" class="titulopequeno">CPF<strong style="color: #8B5558;">*</strong></label>
-            <input class="boxinfo cpf-autocomplete" type="text"  id="inputCpf" name="cpf" required placeholder="Digite o CPF" value="{{ old('cpf') }}">
-            <div class="invalid-feedback"> Por favor preencha esse campo</div>
+            <input class="boxinfo cpf-autocomplete" type="text" id="inputCpf" name="cpf" required placeholder="Digite o CPF" value="{{ isset($cpf) ? $cpf : old('cpf') }}">
+            <div class="invalid-feedback"> Por favor, preencha esse campo</div>
             <br><br>
+            
 
 
             <label for="inputSemestre" class="titulopequeno">Semestre de Entrada<strong style="color: #8B5558;">*</strong></label>
