@@ -133,9 +133,14 @@
                             <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
                                 <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento" style="height: 30px; width: 30px;">
                             </a>
+                            @if (!empty(trim($lista_documento->observacao)))
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{$lista_documento->documento_id}}">
                                 <img src="{{ asset('images/information.svg') }}" title="Observação" alt="Ver Observação" style="height: 30px; width: 30px;">
                             </a>
+                            @else
+                                
+                            @endif
+
                             <a href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
                                 <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                             </a>
