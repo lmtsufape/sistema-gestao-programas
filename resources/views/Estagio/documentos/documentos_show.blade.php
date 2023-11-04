@@ -53,7 +53,7 @@
                         Não enviado
                         @endif
                     </td>
-                    <td class "align-middle">
+                    <td class= "align-middle">
                         @php
                         $documento_enviado = $lista_documento->data_atualizacao ?? null;
                         @endphp
