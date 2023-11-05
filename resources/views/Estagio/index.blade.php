@@ -65,7 +65,7 @@
                     id="valor" name="valor" style="text-align: start">
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
-                    onclick="window.location.href = '{{ route('estagio.create') }}'">Cadastrar estágio</button>
+                    onclick="window.location.href = '{{ route('estagio.verificarAluno') }}'">Cadastrar estágio</button>
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
                     onclick="window.location.href = '{{ route('estagio.editConfig') }}'">Configurar estágios</button>
                 <button class="cadastrar-botao" type="button"

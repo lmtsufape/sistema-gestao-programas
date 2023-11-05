@@ -254,4 +254,27 @@ class EstagioController extends Controller
 
         return $estagioAtual;
     }
+
+    public function verificar_aluno_view()
+    {
+        return view('Estagio.verificar-aluno');
+    }
+
+    public function verificarAluno(Request $request)
+    {
+        $cpf = $request->input('cpf');
+        
+        $aluno = Aluno::where('cpf', $cpf)->first();
+        
+        $orientadors = Orientador::all();
+        $cursos = Curso::all();
+        $supervisors = Supervisor::all();
+        $disciplinas = Disciplina::all();
+
+        if($aluno){
+            return view('Estagio.cadastrar', compact('aluno', 'orientadors', 'cursos', 'supervisors', 'disciplinas'));
+        } else {
+            return view("Alunos.cadastro-aluno", compact('cursos','cpf'));
+        }
+    }
 }
