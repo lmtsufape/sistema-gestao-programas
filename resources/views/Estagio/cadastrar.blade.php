@@ -37,7 +37,7 @@
                     @endif
                     <label class="titulopequeno" for="Descrição">Descrição<strong style="color: #8B5558">*</strong></label>
                     <textarea class="boxcadastrar" placeholder="Digite a descrição" name="descricao" id="descricao" cols="30"
-                        rows="3"> {{ old('descricao') }}</textarea><br><br>
+                        rows="3">{{ old('descricao') }}</textarea><br><br>
 
                     <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
                         <div style="width: 50%">
@@ -92,13 +92,10 @@
                     </select><br><br>
 
                     <label class="titulopequeno" for="supervisor">Supervisor<strong style="color: #8B5558">*</strong></label>
-                    <select aria-label="Default select example" class="boxcadastrar" name="supervisor" id="supervisor">
-                        <option value disabled selected hidden> Selecione o supervisor</option>
-                        @foreach ($supervisors as $supervisor)
-                            <option value="{{ $supervisor->id }}"
-                                {{ old('supervisor') == $supervisor->id ? 'selected' : '' }}>{{ $supervisor->nome }}</option>
-                        @endforeach
-                    </select><br><br>
+                    <textarea class="boxcadastrar"
+                        placeholder='Digite os dados do supervisor do estágio, por exemplo: nome, contato etc. separados por ";" (ponto e vírgula).''
+                        name="supervisor" id="supervisor" cols="30
+                        rows="3">{{ old('supervisor') }}</textarea><br><br>
 
 
                     @if ($aluno)

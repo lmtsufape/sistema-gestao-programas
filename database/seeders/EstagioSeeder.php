@@ -26,12 +26,12 @@ class EstagioSeeder extends Seeder
             'orientador_id' => 1,
             'curso_id' => 1,
             'disciplina_id' => 7,
-            'supervisor_id' => 1,
+            'supervisor' => "João da Silva; 87 9 8123-4567;",
             'instituicao_id' => 1
         ]);
 
         $estagio2 = Estagio::create([
-            'descricao' => "Estágio KLY",
+            'descricao' => "Estágio 2",
             'data_inicio' => "2023-08-30",
             'data_fim' => "2024-06-21",
             //'data_solicitacao' => "2023-05-21",
@@ -42,7 +42,7 @@ class EstagioSeeder extends Seeder
             'orientador_id' => 1,
             'curso_id' => 1,
             'disciplina_id' => 7,
-            'supervisor_id' => 1
+            'supervisor' => "Maria da Silva; 87 9 8123-4567;",
         ]);
 
         /*$estagio2 = Estagio::create([
