@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
     <nav>
-        <ul class="pagination">
+        <ul class="pagination pagination-lg">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
                 <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
@@ -9,7 +9,7 @@
             @else
                 <li class="page-item">
                     <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev"
-                        aria-label="@lang('pagination.previous')">&lsaquo; Anterior;</a>
+                        aria-label="@lang('pagination.previous')">&lsaquo; Anterior</a>
                 </li>
             @endif
 
@@ -49,3 +49,28 @@
         </ul>
     </nav>
 @endif
+
+<style>
+    .pagination {
+        display: flex   !important;
+        align-items: center;
+        justify-content: center;
+    }
+    .page-item {
+        background: white !important;
+    }
+    .page-link {
+        color: #2b2b2b !important;
+        border-radius: 8px !important;
+    }
+    .page-link:hover {
+        background-color: #972E3F !important;
+        color: #ffff !important;
+    }
+    .page-item.active .page-link {
+        background-color: #972E3F !important;
+        color: #ffff !important;
+        border: #972E3F !important;
+    }
+   
+</style>
