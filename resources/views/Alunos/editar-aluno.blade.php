@@ -30,30 +30,30 @@
             </div>
 
 
-            <label for="nome" class="titulopequeno">Nome:<strong style="color: #996A6D">*</strong></label>
+            <label for="nome" class="titulopequeno">Nome<strong style="color: #996A6D">*</strong></label>
             <input type="text" id="nome" name="nome" value="{{$aluno->user->name}}"
             class="boxcadastrar">
 
             <label for="nome_social" class="titulopequeno">Nome Social</label>
             <input type="text" id="nome_social" name="nome_social" value="{{$aluno->user->name_social}}" class="boxcadastrar">
 
-            <label for="email" for="nome" class="titulopequeno">E-mail:<strong style="color: #996A6D">*</strong></label>
+            <label for="email" for="nome" class="titulopequeno">E-mail<strong style="color: #996A6D">*</strong></label>
             <input type="text" id="email" name="email" value="{{$aluno->user->email}}" class="boxcadastrar">
 
-            <label for="senha" for="nome" class="titulopequeno">Senha:<strong style="color: #996A6D">*</strong></label>
+            <label for="senha" for="nome" class="titulopequeno">Senha<strong style="color: #996A6D">*</strong></label>
             <input type="password" id="senha" name="senha" class="boxcadastrar">
 
-            <label for="cpf" for="nome" class="titulopequeno">CPF:<strong style="color: #996A6D">*</strong></label>
+            <label for="cpf" for="nome" class="titulopequeno">CPF<strong style="color: #996A6D">*</strong></label>
             <input type="text" id="cpf" name="cpf" value="{{$aluno->cpf}}" class="boxcadastrar cpf-autocomplete">
 
-            <label for="curso" for="nome" class="titulopequeno">Curso:<strong style="color: #996A6D">*</strong></label>
+            <label for="curso" for="nome" class="titulopequeno">Curso<strong style="color: #996A6D">*</strong></label>
             <select name="curso" id="curso" class="boxcadastrar">
                 @foreach ($cursos as $curso)
                     <option value="{{$curso->id}}" {{$aluno->curso_id == $curso->id ? "selected" : ""}}>{{$curso->nome}}</option>
                 @endforeach
             </select>
 
-            <label for="semestre_entrada" for="nome" class="titulopequeno">Semestre de entrada:<strong style="color: #996A6D">*</strong></label>
+            <label for="semestre_entrada" for="nome" class="titulopequeno">Semestre de entrada<strong style="color: #996A6D">*</strong></label>
             <input type="text" id="semestre_entrada" name="semestre_entrada" value="{{$aluno->semestre_entrada}}" class="boxcadastrar">
 
             <div class="botoessalvarvoltar">

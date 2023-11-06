@@ -11,7 +11,6 @@ use App\Models\DocumentoEstagio;
 use App\Models\Estagio;
 use App\Models\Instituicao;
 use App\Models\Orientador;
-use App\Models\Supervisor;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -77,9 +76,9 @@ class EstagioController extends Controller
 
         $orientadors = Orientador::all();
         $cursos = Curso::all();
-        $supervisors = Supervisor::all();
+        //$supervisors = Supervisor::all();
 
-        return view('Estagio.cadastrar', compact('orientadors', 'cursos', 'aluno', 'disciplinas', 'supervisors'));
+        return view('Estagio.cadastrar', compact('orientadors', 'cursos', 'aluno', 'disciplinas'));
     }
 
     public function store(EstagioStoreFormRequest $request)
@@ -89,6 +88,7 @@ class EstagioController extends Controller
         $estagio = new Estagio();
         $estagio->status = $request->checkStatus;
         $estagio->descricao = $request->descricao;
+        $estagio->supervisor = $request->supervisor;
         $estagio->data_inicio = $request->data_inicio;
         $estagio->data_fim = $request->data_fim;
 
@@ -96,7 +96,6 @@ class EstagioController extends Controller
 
         $estagio->aluno_id = $aluno->id;
         $estagio->orientador_id = $request->orientador;
-        $estagio->supervisor_id = $request->supervisor;
         $estagio->curso_id = $request->curso;
         $estagio->disciplina_id = $request->disciplina;
         $estagio->tipo = $request->checkTipo;
@@ -128,10 +127,10 @@ class EstagioController extends Controller
 
         $orientadors = Orientador::all();
         $cursos = Curso::all();
-        $supervisors = Supervisor::all();
+        //$supervisors = Supervisor::all();
 
         $estagio = Estagio::Where('id', $id)->first();
-        return view("Estagio.editar", compact('estagio', 'aluno', 'disciplinas', 'orientadors', 'cursos', 'supervisors'));
+        return view("Estagio.editar", compact('estagio', 'aluno', 'disciplinas', 'orientadors', 'cursos'));
     }
 
     public function update(EstagioUpdateFormRequest $request, $id)
@@ -141,6 +140,7 @@ class EstagioController extends Controller
             $estagio = Estagio::find($id);
 
             $estagio->descricao = $request->descricao ? $request->descricao : $estagio->descricao;
+            $estagio->supervisor = $request->supervisor ? $request->supervisor : $estagio->supervisor;
             $estagio->data_inicio = $request->data_inicio ? $request->data_inicio : $estagio->data_inicio;
             $estagio->data_fim = $request->data_fim ? $request->data_fim : $estagio->data_fim;
             $estagio->status = $request->checkStatus ? $request->checkStatus : $estagio->status;
@@ -150,7 +150,6 @@ class EstagioController extends Controller
             $estagio->aluno_id = $request->cpf_aluno ? $aluno->id : $estagio->aluno_id;
 
             $estagio->orientador_id = $request->orientador ? $request->orientador : $estagio->orientador_id;
-            $estagio->supervisor_id = $request->supervisor ? $request->supervisor : $estagio->supervisor_id;
             $estagio->curso_id = $request->curso ? $request->curso : $estagio->curso_id;
             $estagio->disciplina_id = $request->disciplina ?  $request->disciplina : $estagio->disciplina_id;
             $estagio->tipo = $request->checkTipo ? $request->checkTipo : $estagio->tipo;
@@ -210,20 +209,20 @@ class EstagioController extends Controller
     public function showDocuments($id)
     {
         $estagio = Estagio::findOrFail($id);
-        $alunoId = $estagio->aluno_id;
+        $aluno = aluno::findOrFail($estagio->aluno_id);
         $instituicao = Instituicao::pluck('sigla')->first();
 
-        $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', function ($join) use ($alunoId, $estagio) {
+        $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', function ($join) use ($aluno, $estagio) {
             $join->on('documentos_estagios.lista_documentos_obrigatorios_id', '=', 'lista_documentos_obrigatorios.id')
-                ->where('documentos_estagios.aluno_id', $alunoId)
+                ->where('documentos_estagios.aluno_id', $aluno)
                 ->where('documentos_estagios.estagio_id', $estagio->id);
         })
             ->select('documentos_estagios.*', 'lista_documentos_obrigatorios.*')
             ->get();
 
-        $lista_documentos = ListaDocumentosObrigatorios::leftJoin('documentos_estagios', function ($join) use ($alunoId, $estagio) {
+        $lista_documentos = ListaDocumentosObrigatorios::leftJoin('documentos_estagios', function ($join) use ($aluno, $estagio) {
             $join->on('lista_documentos_obrigatorios.id', '=', 'documentos_estagios.lista_documentos_obrigatorios_id')
-                ->where('documentos_estagios.aluno_id', $alunoId)
+                ->where('documentos_estagios.aluno_id', $aluno)
                 ->where('documentos_estagios.estagio_id', $estagio->id);
         })
             ->where('lista_documentos_obrigatorios.instituicao', $instituicao)
@@ -240,7 +239,7 @@ class EstagioController extends Controller
             )
             ->get();
 
-        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos", "lista_documentos"));
+        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos", "lista_documentos", "aluno"));
     }
 
     public function getEstagioAtual()
@@ -253,5 +252,27 @@ class EstagioController extends Controller
             ->first();
 
         return $estagioAtual;
+    }
+
+    public function verificar_aluno_view()
+    {
+        return view('Estagio.verificar-aluno');
+    }
+
+    public function verificarAluno(Request $request)
+    {
+        $cpf = $request->input('cpf');
+        
+        $aluno = Aluno::where('cpf', $cpf)->first();
+        
+        $orientadors = Orientador::all();
+        $cursos = Curso::all();
+        $disciplinas = Disciplina::all();
+
+        if($aluno){
+            return view('Estagio.cadastrar', compact('aluno', 'orientadors', 'cursos', 'disciplinas'));
+        } else {
+            return view("Alunos.cadastro-aluno", compact('cursos','cpf'));
+        }
     }
 }

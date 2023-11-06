@@ -39,7 +39,7 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
 
-            <label for="nome" class="titulopequeno">Periodo<strong style="color: #8B5558">*</strong></label>
+            <label for="nome" class="titulopequeno">Período<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="periodo" id="periodo" placeholder="Digite o periodo do curso"
                 value="{{ $dados['periodo'] ?? '' }}"required><br><br>
@@ -149,28 +149,28 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
 
-            <label for="nome" class="titulopequeno">Dia atual:<strong style="color: #8B5558">*</strong></label>
+            <label for="nome" class="titulopequeno">Dia atual<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="dia_atual" id="dia_atual" placeholder="Digite o dia atual"
                 value="{{ $dados['dia_atual'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
 
-            <label for="nome" class="titulopequeno">Mês atual:<strong style="color: #8B5558">*</strong></label>
+            <label for="nome" class="titulopequeno">Mês atual<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="mes_atual" id="mes_atual" placeholder="Digite o mês atual"
                 value="{{ $dados['mes_atual'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
 
-            <label for="nome" class="titulopequeno">CNPJ do estágio:<strong style="color: #8B5558">*</strong></label>
+            <label for="nome" class="titulopequeno">CNPJ do estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cnpj_estagio" id="cnpj_estagio"
                 placeholder="Digite o CNPJ do estágio" value="{{ $dados['cnpj_estagio'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
 
-            <label for="nome" class="titulopequeno">Local do estágio:<strong
+            <label for="nome" class="titulopequeno">Local do estágio<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="local_estagio" id="local_estagio"
@@ -178,7 +178,7 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
 
-            <label for="nome" class="titulopequeno">Endereço do estágio:<strong
+            <label for="nome" class="titulopequeno">Endereço do estágio<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="endereco_estagio" id="endereco_estagio"
@@ -264,7 +264,7 @@
                 <a href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}" class="botaovoltar">Voltar</a>
                 <input class="botaosalvar" type="submit" value="Salvar">
             </div>
-            
+
 
 
         </form>

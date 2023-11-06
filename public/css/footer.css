@@ -47,6 +47,10 @@
     height: 80%;
 }
 
+.footer_lapes{
+    width: 110%;
+}
+
 .footer_redes{
     display: flex;
     flex-direction: row;

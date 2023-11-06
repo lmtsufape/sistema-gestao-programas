@@ -246,6 +246,9 @@ Route::prefix('estagio')->group(function () {
     Route::get('/configurar', [ListaDocumentosObrigatoriosController::class, 'editConfig'])->name('estagio.editConfig');
     Route::post('/configurar', [ListaDocumentosObrigatoriosController::class, 'updateConfig'])->name('estagio.updateConfig');
 
+    Route::get('/verificar-aluno', [EstagioController::class, 'verificar_aluno_view'])->name('estagio.verificarAluno');
+    Route::post('/verificar-aluno', [EstagioController::class, 'verificarAluno'])->name('estagio.verificarAluno.control');
+
     // Route::get('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.formularios.termo_encaminhamento');
     // Route::post('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.formularios.termo_encaminhamento.store');
     // comentado temporariamente
