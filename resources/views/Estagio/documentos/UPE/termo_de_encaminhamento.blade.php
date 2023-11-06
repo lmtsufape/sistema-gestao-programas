@@ -39,7 +39,7 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
 
-            <label for="nome" class="titulopequeno">Periodo<strong style="color: #8B5558">*</strong></label>
+            <label for="nome" class="titulopequeno">Período<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="periodo" id="periodo" placeholder="Digite o periodo do curso"
                 value="{{ $dados['periodo'] ?? '' }}"required><br><br>
