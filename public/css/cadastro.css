@@ -198,3 +198,28 @@
     line-height: normal;
 }
 
+
+.pagination {
+    display: inline-block;
+    background-color: #fff;
+    height: 45px;
+    padding: 10px 5rem;
+    color: #6B6B6B;
+}
+
+.page-link{
+    border-radius: 2px;
+    border: 1px solid #DACFCF;
+    background: #FFF;
+    color: #6B6B6B;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.page-item{
+    background: #2B8C64;
+}
+
