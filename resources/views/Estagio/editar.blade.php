@@ -99,14 +99,10 @@
                     </select><br><br>
 
                     <label class="titulopequeno" for="supervisor">Supervisor<strong style="color: #8B5558">*</strong></label>
-                    <select aria-label="Default select example" class="boxcadastrar" name="supervisor" id="supervisor">
-                        <option value disabled selected hidden> Selecione o supervisor</option>
-                        @foreach ($supervisors as $supervisor)
-                            <option value="{{ $supervisor->id }}"
-                                {{ $estagio->supervisor_id == $supervisor->id ? 'selected' : '' }}>{{ $supervisor->nome }}
-                            </option>
-                        @endforeach
-                    </select><br><br>
+                    <textarea class="boxcadastrar"
+                        placeholder='Digite os dados do supervisor do estágio, por exemplo: nome, contato etc. separados por ";" (ponto e vírgula).''
+                        name="supervisor" id="supervisor" cols="30
+                        rows="3">{{ old('supervisor') }}</textarea><br><br>
 
 
                     @if ($aluno)

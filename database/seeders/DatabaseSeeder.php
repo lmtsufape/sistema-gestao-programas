@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
             Edital_Aluno_OrientadorSeeder::class,
             RelatorioSeeder::class,
             HistoricoVinculoAlunosSeeder::class,
-            SupervisorSeeder::class,
             ListaDocumentosObrigatoriosSeeder::class,
             InstituicaoSeeder::class,
             EstagioSeeder::class,

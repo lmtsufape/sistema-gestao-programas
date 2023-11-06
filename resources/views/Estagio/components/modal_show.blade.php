@@ -54,7 +54,11 @@
                         <label class="tituloinfomodal form-label mt-3">Estudante</label>
                         <div class="textoinfomodal"> {{ $estagio->aluno->nome_aluno }} </div>
                     </div>
-
+                    <div class="mb-3">
+                        <label class="tituloinfomodal form-label mt-3">Supervisor</label>
+                        <div class="textoinfomodal"> {{ $estagio->supervisor }} </div>
+                    </div>
+                    
                 </div>
 
                 <div class="modal-footer border-0">
