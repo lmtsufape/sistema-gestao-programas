@@ -3,8 +3,13 @@
 @section('body')
     <div class="fundocadastrar">
         <div class="row" style="align-content: left;">
-            <h1 class="titulogrande">Documento</h1>
+            <h1 class="titulogrande">Documento - {{$lista_documento->titulo}}</h1>
+            <h2 class="titulopequeno">Você deve fazer o download do documento e reenvia-lo com as assinaturas preenchidas.</h2>
         </div>
+        <br>
+        <a class="cadastrar-botao" style="text-decoration: none; color: white; margin-right: 10px" type="button"
+            href="{{ route('visualizar.pdf', ['id' => $documento->id]) }}" target="_blank">Fazer o download de: {{ $lista_documento->titulo }}</a>
+        <br>
         @if (Session::has('pdf_generated_success'))
             <div class="alert alert-success">
                 {{ Session::get('pdf_generated_success') }}

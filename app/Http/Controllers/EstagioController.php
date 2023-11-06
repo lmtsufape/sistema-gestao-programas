@@ -214,7 +214,7 @@ class EstagioController extends Controller
 
         $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', function ($join) use ($aluno, $estagio) {
             $join->on('documentos_estagios.lista_documentos_obrigatorios_id', '=', 'lista_documentos_obrigatorios.id')
-                ->where('documentos_estagios.aluno_id', $aluno)
+                ->where('documentos_estagios.aluno_id', $aluno->id)
                 ->where('documentos_estagios.estagio_id', $estagio->id);
         })
             ->select('documentos_estagios.*', 'lista_documentos_obrigatorios.*')
@@ -222,7 +222,7 @@ class EstagioController extends Controller
 
         $lista_documentos = ListaDocumentosObrigatorios::leftJoin('documentos_estagios', function ($join) use ($aluno, $estagio) {
             $join->on('lista_documentos_obrigatorios.id', '=', 'documentos_estagios.lista_documentos_obrigatorios_id')
-                ->where('documentos_estagios.aluno_id', $aluno)
+                ->where('documentos_estagios.aluno_id', $aluno->id)
                 ->where('documentos_estagios.estagio_id', $estagio->id);
         })
             ->where('lista_documentos_obrigatorios.instituicao', $instituicao)
