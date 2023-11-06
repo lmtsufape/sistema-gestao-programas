@@ -71,6 +71,7 @@
         background-color: #972E3F !important;
         color: #ffff !important;
         border: #972E3F !important;
+        margin-right: 5px !important;
     }
    
 </style>
