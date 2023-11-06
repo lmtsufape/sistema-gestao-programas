@@ -4,29 +4,7 @@
     @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
 
         <style>
-            /* pagination {
-                display: inline-block;
-            }
-
-            .pagination a {
-                color: black;
-                float: left;
-                padding: 8px 16px;
-                text-decoration: none;
-                transition: background-color .3s;
-                border: 1px solid #ddd;
-                margin: 10px 4px;
-            }
-
-            .pagination a.active {
-                background-color: #3B864F;
-                color: white;
-                border: 1px solid #3B864F;
-            }
-
-            .pagination a:hover:not(.active) {
-                background-color: #34A853;
-            } */
+            
 
             .sortable {
                 cursor: pointer;
