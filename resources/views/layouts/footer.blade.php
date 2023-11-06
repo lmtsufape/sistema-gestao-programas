@@ -19,6 +19,9 @@
         <a href="https://upe.br/" class="footer_box" title="Site UPE" target="_blank">
             <img  class="footer_upe" src="{{ asset('images/logoupe.png') }}" alt="Logo UPE">
         </a>
+        <a href="https://www.instagram.com/lapesupegus/" class="footer_box" title="Instagram LAPES" target="_blank">
+            <img  class="footer_lapes" src="{{ asset('images/logo_lapes.png') }}" alt="Logo LAPES">
+        </a>
     </div>
     <div class="footer_redes">
         <a href="https://www.facebook.com/LMTSUFAPE/" title="Facebook LMTS" target="_blank">
