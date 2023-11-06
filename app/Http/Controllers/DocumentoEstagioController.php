@@ -7,6 +7,7 @@ use App\Models\Aluno;
 use App\Models\DocumentoEstagio;
 use App\Models\Estagio;
 use App\Models\Instituicao;
+use App\Models\ListaDocumentosObrigatorios;
 use App\Models\Orientador;
 use Exception;
 use Illuminate\Http\Request;
@@ -567,8 +568,9 @@ class DocumentoEstagioController extends Controller
     public function documento_completo_form($id)
     {
         $documento = DocumentoEstagio::findOrFail($id);
+        $lista_documento = ListaDocumentosObrigatorios::findOrFail($documento->lista_documentos_obrigatorios_id);
 
-        return view('Estagio.documentos.documento_completo', compact("documento"));
+        return view('Estagio.documentos.documento_completo', compact("documento", "lista_documento"));
     }
 
     public function documento_completo($id, Request $request)
