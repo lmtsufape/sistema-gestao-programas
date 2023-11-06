@@ -148,7 +148,7 @@ Route::prefix('edital')->group(function () {
     Route::put('/vinculo/{id}', [EditalController::class, 'updateVinculo'])->name('edital.update_vinculo');
     Route::get('/{id}/delete', [EditalController::class, 'deletarVinculo'])->name('edital.aluno.delete');
     Route::get('/{id}/ativar_vinculo', [EditalController::class, 'ativarVinculo'])->name('edital.ativarVinculo');
-    Route::get('/vinculos-orientador/{id}/documentos', [EditalController::class, 'adicionar_documentos'])->where('id', '[0-9]+')->name('edital.add-documentos-vinculo');;
+    Route::get('/vinculos-orientador/{id}/documentos', [EditalController::class, 'adicionar_documentos'])->where('id', '[0-9]+')->name('edital.add-documentos-vinculo');
     Route::put('/vinculo/{id}/adicionar-documentos', [EditalController::class, 'store_adicionar_documentos'])->name('edital.salvar-documentos-vinculo');
     Route::get('/{fileName}/termo-aluno', [EditalController::class, 'download_termo_aluno'])->name('aluno_termo.download');
     Route::get('/{fileName}/termo-orientador', [EditalController::class, 'download_termo_orientador'])->name('orientador_termo.download');

@@ -11,6 +11,7 @@ use App\Models\Curso;
 use App\Models\Edital;
 use App\Models\EditalAlunoOrientadors;
 use App\Models\User;
+use App\Models\FrequenciaMensalAlunos;
 use App\Services\ManipulacaoImagens;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -259,7 +260,7 @@ class AlunoController extends Controller
         foreach ($pivos as $pivo){
             array_push($editais, $pivo->edital);
         }
-        return view('Alunos.editais-aluno',compact("editais"));
+        return view('Alunos.editais-aluno',compact("editais", "pivos"));
     }
 
     public function frequencia_modal(Request $request) {

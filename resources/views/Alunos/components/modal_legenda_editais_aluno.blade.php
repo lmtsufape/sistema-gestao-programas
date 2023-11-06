@@ -17,9 +17,14 @@
                     <span class="textoinfomodal">Professores vinculados</span>
                 </div>
                 <div class="mb-3">
-                    <img src="{{ asset('images/file-plus_red.svg') }}" alt="Editar aluno"
+                    <img src="{{ asset('images/file-plus_red.svg') }}" alt="Enviar frequência mensal"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Enviar frequência</span>
+                </div>
+                <div class="mb-3">
+                    <img src="{{ asset('images/download_red.svg') }}" alt="Baixar frequência enviada"
+                        style="height: 30px; width: 30px; padding-bottom: 5px">
+                    <span class="textoinfomodal">Baixar frequência enviada</span>
                 </div>
                 
             </div>

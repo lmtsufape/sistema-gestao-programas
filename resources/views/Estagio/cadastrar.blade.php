@@ -133,9 +133,16 @@
                     </div>
 
                     <div class="botoessalvarvoltar">
-                        <input type="button" value="Voltar" href="{{ url('/estagio/') }}"
-                            onclick="window.location.href='{{ url('/estagio/') }}'" class="botaovoltar">
-                        <input class="botaosalvar" type="submit" value="Salvar">
+                        @canany(['admin', 'servidor', 'gestor'])
+                            <input type="button" value="Voltar" href="{{ url('/estagio/') }}"
+                                onclick="window.location.href='{{ url('/estagio/') }}'" class="botaovoltar">
+                            <input class="botaosalvar" type="submit" value="Salvar">
+                        @endcan
+                        @can('aluno')
+                            <input type="button" value="Voltar" href="{{ url('/meus-estagios/') }}"
+                                onclick="window.location.href='{{ url('/meus-estagios/') }}'" class="botaovoltar">
+                            <input class="botaosalvar" type="submit" value="Salvar">
+                        @endcan
                     </div>
                 </form>
             </div>

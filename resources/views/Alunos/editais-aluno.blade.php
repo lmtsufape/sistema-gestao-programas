@@ -96,6 +96,26 @@
                                         <img src="{{ asset('images/add_edital.svg') }}" alt="Frequencia"
                                             style="height: 30px; width: 30px; ">
                                     </a>
+                                    @foreach ($pivos as $pivo)
+                                        @php
+                                            $latestFrequencia = null;
+                                        @endphp
+
+                                        @foreach ($pivo->frequencias as $frequencia)
+                                            @if ($frequencia->frequencia_mensal != null)
+                                                @php
+                                                    $latestFrequencia = $frequencia;
+                                                @endphp
+                                            @endif
+                                        @endforeach
+
+                                        @if ($latestFrequencia)
+                                            <a href="{{ route('frequencia.download', ['fileName' => $latestFrequencia->frequencia_mensal]) }}" target="_blank" class="link">
+                                                <img src="{{ asset('images/download.svg') }}" alt="baixar arquivo" style="height: 30px; width: 30px; ">
+                                            </a>
+                                        @endif
+                                    @endforeach
+
                                 @endif
 
                             </td>
