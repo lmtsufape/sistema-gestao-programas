@@ -210,20 +210,20 @@ class EstagioController extends Controller
     public function showDocuments($id)
     {
         $estagio = Estagio::findOrFail($id);
-        $alunoId = $estagio->aluno_id;
+        $aluno = aluno::findOrFail($estagio->aluno_id);
         $instituicao = Instituicao::pluck('sigla')->first();
 
-        $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', function ($join) use ($alunoId, $estagio) {
+        $documentos = DocumentoEstagio::join('lista_documentos_obrigatorios', function ($join) use ($aluno, $estagio) {
             $join->on('documentos_estagios.lista_documentos_obrigatorios_id', '=', 'lista_documentos_obrigatorios.id')
-                ->where('documentos_estagios.aluno_id', $alunoId)
+                ->where('documentos_estagios.aluno_id', $aluno)
                 ->where('documentos_estagios.estagio_id', $estagio->id);
         })
             ->select('documentos_estagios.*', 'lista_documentos_obrigatorios.*')
             ->get();
 
-        $lista_documentos = ListaDocumentosObrigatorios::leftJoin('documentos_estagios', function ($join) use ($alunoId, $estagio) {
+        $lista_documentos = ListaDocumentosObrigatorios::leftJoin('documentos_estagios', function ($join) use ($aluno, $estagio) {
             $join->on('lista_documentos_obrigatorios.id', '=', 'documentos_estagios.lista_documentos_obrigatorios_id')
-                ->where('documentos_estagios.aluno_id', $alunoId)
+                ->where('documentos_estagios.aluno_id', $aluno)
                 ->where('documentos_estagios.estagio_id', $estagio->id);
         })
             ->where('lista_documentos_obrigatorios.instituicao', $instituicao)
@@ -240,7 +240,7 @@ class EstagioController extends Controller
             )
             ->get();
 
-        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos", "lista_documentos"));
+        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos", "lista_documentos", "aluno"));
     }
 
     public function getEstagioAtual()
