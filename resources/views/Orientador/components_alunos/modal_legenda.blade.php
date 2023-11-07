@@ -11,6 +11,31 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Informações do estudante</span>
                 </div>
+
+                <div class="mb-3">
+                    <img src="{{ asset('images/adddiscipline_red.svg') }}" alt="Adicionar documentos"
+                         style="height: 30px; width: 30px; padding-bottom: 5px">
+                    <span class="textoinfomodal">Adicionar documentos</span>
+                </div>
+
+                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor' && auth()->user()->typage_type != 'App\Models\Orientador')
+                    <div class="mb-3">
+                        <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar aluno"
+                            style="height: 30px; width: 30px; padding-bottom: 5px">
+                        <span class="textoinfomodal">Editar o estudante</span>
+                    </div>
+                    <div class="mb-3">
+                        <img src="{{ asset('images/Unlink_red.svg') }}" alt="Desvincular aluno"
+                            style="height: 30px; width: 30px; padding-bottom: 5px">
+                        <span class="textoinfomodal">Desvincular o estudante</span>
+                    </div>
+                @endif
+                <div class="mb-3">
+                    <img src="{{ asset('images/file_red.svg') }}" alt="Docs aluno"
+                        style="height: 30px; width: 30px; padding-bottom: 5px">
+                    <span class="textoinfomodal">Documentos do estudante</span>
+                </div>
+
             </div>
             <div class="modal-footer border-0"></div>
         </div>
