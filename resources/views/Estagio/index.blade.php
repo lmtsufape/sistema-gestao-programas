@@ -4,10 +4,14 @@
     @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
 
         <style>
-            
+            .sortable a {
+                color: inherit;
+                text-decoration: none;
+            }
 
-            .sortable {
-                cursor: pointer;
+            .sortable a:hover {
+                color: inherit;
+                text-decoration: none;
             }
 
             .ascending::after {
@@ -60,14 +64,14 @@
                     <table class="table">
                         <thead>
                             <tr class="table-head">
-                                <th scope="col" class="text-center align-middle sortable">Status</i></th>
-                                <th scope="col" class="text-center align-middle sortable">Descrição</th>
-                                <th scope="col" class="text-center align-middle sortable">Data de solicitação</th>
-                                <th scope="col" class="text-center align-middle sortable">Data de início</th>
-                                <th scope="col" class="text-center align-middle sortable">Data de fim</th>
-                                <th scope="col" class="text-center align-middle sortable">Curso</th>
-                                <th scope="col" class="text-center align-middle sortable">Professor</th>
-                                <th scope="col" class="text-center align-middle sortable">Estudante</th>
+                                <th scope="col" class="text-center align-middle sortable">@sortablelink('status', 'Status')</th>
+                                <th scope="col" class="text-center align-middle sortable">@sortablelink('descricao', 'Descrição')</th>
+                                <th scope="col" class="text-center align-middle sortable">@sortablelink('data_solicitacao', 'Data de solicitação')</th>
+                                <th scope="col" class="text-center align-middle sortable">@sortablelink('data_inicio', 'Data de início')</th>
+                                <th scope="col" class="text-center align-middle sortable">@sortablelink('data_fim', 'Data de fim')</th>
+                                <th scope="col" class="text-center align-middle sortable">@sortablelink('curso.nome', 'Curso')</th>
+                                <th scope="col" class="text-center align-middle sortable">@sortablelink('orientador.id', 'Professor')</th>
+                                <th scope="col" class="text-center align-middle sortable">@sortablelink('aluno.nome_aluno', 'Estudante')</th>
                                 <th class="text-center">
                                     Ações
                                     <button type="button" class="infobutton align-bottom" data-bs-toggle="modal"
@@ -159,70 +163,70 @@
             }
 
             // Algorítmo de ordenação de tabelas
-            $(document).ready(function() {
-                $('.sortable').click(function() {
-                    const table = $(this).parents('table').eq(0);
-                    const rows = table.find('tr:gt(0)').toArray();
-                    const index = $(this).index();
+            // $(document).ready(function() {
+            //     $('.sortable').click(function() {
+            //         const table = $(this).parents('table').eq(0);
+            //         const rows = table.find('tr:gt(0)').toArray();
+            //         const index = $(this).index();
 
-                    if ($(this).hasClass('ascending')) {
-                        rows.sort(comparer(index, true));
-                        $(this).removeClass('ascending').addClass('descending');
-                    } else {
+            //         if ($(this).hasClass('ascending')) {
+            //             rows.sort(comparer(index, true));
+            //             $(this).removeClass('ascending').addClass('descending');
+            //         } else {
 
-                        table.find('.sortable').removeClass('ascending descending');
-                        $(this).addClass('ascending');
-                        rows.sort(comparer(index, false));
-                    }
+            //             table.find('.sortable').removeClass('ascending descending');
+            //             $(this).addClass('ascending');
+            //             rows.sort(comparer(index, false));
+            //         }
 
-                    for (let i = 0; i < rows.length; i++) {
-                        table.append(rows[i]);
-                    }
-                });
-            });
+            //         for (let i = 0; i < rows.length; i++) {
+            //             table.append(rows[i]);
+            //         }
+            //     });
+            // });
 
-            function comparer(index, reverse) {
-                return function(a, b) {
-                    const valA = getCellValue(a, index);
-                    const valB = getCellValue(b, index);
+            // function comparer(index, reverse) {
+            //     return function(a, b) {
+            //         const valA = getCellValue(a, index);
+            //         const valB = getCellValue(b, index);
 
-                    if (reverse) {
-                        return compareValues(valB, valA);
-                    } else {
-                        return compareValues(valA, valB);
-                    }
-                };
-            }
+            //         if (reverse) {
+            //             return compareValues(valB, valA);
+            //         } else {
+            //             return compareValues(valA, valB);
+            //         }
+            //     };
+            // }
 
-            function getCellValue(row, index) {
-                return $(row).children('td').eq(index).text();
-            }
+            // function getCellValue(row, index) {
+            //     return $(row).children('td').eq(index).text();
+            // }
 
-            function compareValues(valueA, valueB) {
-                if (valueA === valueB) return 0;
-                const dateA = parseDate(valueA);
-                const dateB = parseDate(valueB);
-                if (dateA !== null && dateB !== null) {
-                    return dateA - dateB;
-                }
-                return valueA.localeCompare(valueB, undefined, {
-                    numeric: true,
-                    sensitivity: 'base'
-                });
-            }
+            // function compareValues(valueA, valueB) {
+            //     if (valueA === valueB) return 0;
+            //     const dateA = parseDate(valueA);
+            //     const dateB = parseDate(valueB);
+            //     if (dateA !== null && dateB !== null) {
+            //         return dateA - dateB;
+            //     }
+            //     return valueA.localeCompare(valueB, undefined, {
+            //         numeric: true,
+            //         sensitivity: 'base'
+            //     });
+            // }
 
-            function parseDate(dateStr) {
-                const parts = dateStr.split('/');
-                if (parts.length === 3) {
-                    const day = parseInt(parts[0], 10);
-                    const month = parseInt(parts[1], 10) - 1;
-                    const year = parseInt(parts[2], 10);
-                    if (day >= 1 && day <= 31 && month >= 0 && month <= 11 && year >= 1000) {
-                        return new Date(year, month, day);
-                    }
-                }
-                return null;
-            }
+            // function parseDate(dateStr) {
+            //     const parts = dateStr.split('/');
+            //     if (parts.length === 3) {
+            //         const day = parseInt(parts[0], 10);
+            //         const month = parseInt(parts[1], 10) - 1;
+            //         const year = parseInt(parts[2], 10);
+            //         if (day >= 1 && day <= 31 && month >= 0 && month <= 11 && year >= 1000) {
+            //             return new Date(year, month, day);
+            //         }
+            //     }
+            //     return null;
+            // }
         </script>
     @else
         <h3 style="margin-top: 1rem">Você não possui permissão!</h3>

@@ -12,6 +12,7 @@
         "guzzlehttp/guzzle": "^7.5",
         "illuminate/console": "*",
         "intervention/image": "^2.7",
+        "kyslik/column-sortable": "^6.5",
         "laravel/framework": "^8.75",
         "laravel/jetstream": "^2.9",
         "laravel/sanctum": "^2.11",

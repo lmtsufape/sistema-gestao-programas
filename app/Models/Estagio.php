@@ -5,26 +5,44 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kyslik\ColumnSortable\Sortable;
 
 class Estagio extends Model
 {
     use SoftDeletes;
+
+    use Sortable;
+
 
     protected $fillable = [
         'descricao',
         'data_inicio',
         'data_fim',
         'data_solicitacao',
-        'tipo_estagio',
+        'tipo',
         'status'
     ];
 
     protected $dates = [
         'data_inicio',
         'data_fim',
-        'data_solicitacao'
+
     ];
-    
+
+    public $sortable = [
+        'status',
+        'descricao',
+        'created_at',
+        'data_inicio',
+        'data_fim',
+        'curso_id',
+        [
+            'orientador.user.name',
+            'path' => 'orientador.user.name',
+        ],
+        'aluno_id',
+    ];
+
 
     public function aluno()
     {
@@ -47,9 +65,8 @@ class Estagio extends Model
         return $this->belongsTo(Servidor::class, "servidor_id");
     }*/
 
-    public function supervisor()
-    {
-        return $this->belongsTo(Supervisor::class, "supervisor_id");;
-    }
-    
+    // public function supervisor()
+    // {
+    //     return $this->belongsTo(Supervisor::class, "supervisor_id");;
+    // }
 }
