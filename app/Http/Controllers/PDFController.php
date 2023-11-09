@@ -1881,6 +1881,50 @@ class PDFController extends Controller
 
     }
 
+    public function gerarPDF_Supervisor_UPE($path,$aluno, $curso, $disciplina, $tipo)
+    {
+        $pdf = new TCPDF();
+        $pdf->SetMargins(0, 0, 0);
+        $pdf->SetPrintHeader(false);
+        $pdf->setPrintFooter(false);
+    
+        $pdf->AddPage();
+
+        $tmpImagePath = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
+        $image = Image::make($path);
+    
+        $image->text($aluno, 750, 625, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(37);
+            $font->color('#00009C');
+        });
+    
+        $image->text($disciplina . "/" . $curso, 1350, 695, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(37);
+            $font->color('#00009C');
+        });
+    
+        $image->text($tipo, 400 , 837, function ($font) {
+            $font->file(resource_path('fonts/Arial.ttf'));
+            $font->size(37);
+            $font->color('#00009C');
+        });
+    
+        $image->save($tmpImagePath, 100);
+
+        $pdf->Image($tmpImagePath, 7, 0, 200);
+
+        unlink($tmpImagePath); 
+        $pdfFilePath = tempnam(sys_get_temp_dir(), 'pdf') . '.pdf';
+        
+        $pdf->Output($pdfFilePath, 'F');
+        $pdf->close();
+    
+        return $pdfFilePath;
+    }
+
+
     public function getListaDeDocumentosId()
     {
         $listaDocumentosObrigatorios = new ListaDocumentosObrigatorios();

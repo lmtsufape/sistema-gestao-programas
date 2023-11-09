@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Aluno;
+use App\Models\Curso;
+use App\Models\Disciplina;
 use App\Models\DocumentoEstagio;
 use App\Models\Estagio;
 use App\Models\Instituicao;
@@ -12,6 +14,10 @@ use App\Models\Orientador;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use TCPDF;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Response;
+
 
 class DocumentoEstagioController extends Controller
 {
@@ -631,10 +637,36 @@ class DocumentoEstagioController extends Controller
         }
     }
 
-    public function download($nome)
+    public function download($nome, $id)
     {
-        $documento = storage_path("app\\docs\\pdfs\\" . $nome);
+        $estagio = Estagio::findorfail($id);
+    
+        $aluno = Aluno::findorfail($estagio->aluno_id);
+        $curso = Curso::findorfail($estagio->curso_id);
+        $disciplina = Disciplina::findorfail($estagio->disciplina_id);
+    
+        $nome_aluno = $aluno->nome_aluno;
+        $nome_curso = $curso->nome;
+        $nome_disciplina = $disciplina->nome;
+        $tipo_estagio_sigla = $estagio->tipo;
+    
+        if ($tipo_estagio_sigla === 'eo') {
+            $tipo_estagio = 'Obrigatório';
+        } elseif ($tipo_estagio_sigla === 'eno') {
+            $tipo_estagio = 'Não Obrigatório';
+        }
 
-        return response()->file($documento, ['Content-Type' => 'application/pdf', 'Content-Disposition' => 'inline']);
-    }
+        $pdfController = new PDFController;
+    
+        $path = storage_path('app/docs/relatorio_supervisor/0.png');
+        $pdfFilePath = $pdfController->gerarPDF_Supervisor_UPE($path, $nome_aluno, $nome_curso, $nome_disciplina, $tipo_estagio); // Gere o PDF e obtenha o caminho do arquivo
+    
+        if ($pdfFilePath === false) {
+            return response()->json(['error' => 'Erro ao gerar o PDF'], 500);
+        }
+    
+        $fileName = $nome . '.pdf';
+    
+        return response()->file($pdfFilePath, ['Content-Type' => 'application/pdf', 'Content-Disposition' => "inline; filename=\"$fileName\""]);
+    }    
 }
