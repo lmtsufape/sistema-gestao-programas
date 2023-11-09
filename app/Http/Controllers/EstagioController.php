@@ -16,9 +16,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\ListaDocumentosObrigatorios;
 use Illuminate\Pagination\Paginator;
+use Kyslik\ColumnSortable\Sortable;
+
 
 class EstagioController extends Controller
 {
+    use Sortable;
+
     public function index(Request $request)
     {
         if (sizeof($request->query()) > 0) {
@@ -29,30 +33,36 @@ class EstagioController extends Controller
             //     return redirect()->back()->withErrors("Deve ser informado algum valor para o filtro.");
             // }
 
-            $estagios = Estagio::where(function ($query) use ($valor) {
-                $query->orWhereHas('aluno', function ($subquery) use ($valor) {
-                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
-                        ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
-                })
-                    ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
+            $estagios = Estagio::sortable(['descricao', 'created_at', 'status']) // Adicione as colunas que podem ser ordenadas aqui
+                ->where(function ($query) use ($valor) {
+                    $query->orWhereHas('aluno', function ($subquery) use ($valor) {
                         $subquery->where('cpf', 'LIKE', "%{$valor}%")
-                            ->orWhere('name', 'LIKE', "%{$valor}%")
-                            ->orWhere('email', 'LIKE', "%{$valor}%")
-                            ->orWhere('matricula', 'LIKE', "%{$valor}%");
+                            ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
                     })
-                    //Query para a tabela estagios
-                    ->orWhere('descricao', 'LIKE', "%{$valor}%");
-            })
+                        ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
+                            $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                                ->orWhere('name', 'LIKE', "%{$valor}%")
+                                ->orWhere('email', 'LIKE', "%{$valor}%")
+                                ->orWhere('matricula', 'LIKE', "%{$valor}%");
+                        })
+                        //Query para a tabela estagios
+                        ->orWhere('descricao', 'LIKE', "%{$valor}%");
+                })
                 ->orderBy('created_at', 'asc')
                 ->orderBy('status', 'desc')
                 ->distinct()
-                ->paginate(25);
+                ->paginate(15);
+
+                
 
             $cursos = Curso::all();
 
             return view('Estagio.index', compact('estagios', 'cursos'));
         } else {
-            $estagios = Estagio::orderBy('created_at', 'desc')->paginate(25);
+            $estagios = Estagio::sortable(['descricao', 'created_at', 'status'])
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
+
             $cursos = Curso::all();
             return view('Estagio.index', compact('estagios', 'cursos'));
         }
@@ -262,17 +272,17 @@ class EstagioController extends Controller
     public function verificarAluno(Request $request)
     {
         $cpf = $request->input('cpf');
-        
+
         $aluno = Aluno::where('cpf', $cpf)->first();
-        
+
         $orientadors = Orientador::all();
         $cursos = Curso::all();
         $disciplinas = Disciplina::all();
 
-        if($aluno){
+        if ($aluno) {
             return view('Estagio.cadastrar', compact('aluno', 'orientadors', 'cursos', 'disciplinas'));
         } else {
-            return view("Alunos.cadastro-aluno", compact('cursos','cpf'));
+            return view("Alunos.cadastro-aluno", compact('cursos', 'cpf'));
         }
     }
 }
