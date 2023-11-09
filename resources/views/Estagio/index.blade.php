@@ -56,7 +56,7 @@
             <br>
 
             <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
-                <div class="col-md-9 corpo p-2 px-3">
+                <div class="col-md-10 corpo p-2 px-3">
                     <table class="table">
                         <thead>
                             <tr class="table-head">

@@ -14,7 +14,7 @@
                 <h2 class="titulopequeno">{{ $estagio->descricao }}</h2>
             </div>
             <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
-                <div class="col-md-9 corpo p-2 px-3">
+                <div class="col-md-9 corpo p-2 px-6">
                     <table class="table">
                         <thead>
                             <tr class="table-head">
