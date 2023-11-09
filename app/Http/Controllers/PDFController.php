@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DocumentoEstagio;
 use App\Models\ListaDocumentosObrigatorios;
+use App\Models\Estagio;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
 use Exception;
 use TCPDF;
 
@@ -17,6 +19,13 @@ class PDFController extends Controller
     private const AZUL = '#00009C';
     private const FONT = 'fonts/Arial.ttf';
     private $documentType = 6;
+    private $estagio;
+
+    public function __construct()
+    {
+        $estagioId = Route::current()->parameter('id');
+        $this->estagio = Estagio::findOrFail($estagioId);        
+    }
 
     public function editImage($documentType, $dados)
     {
@@ -48,10 +57,10 @@ class PDFController extends Controller
                 break;
                 // Relatório de Acompanhamento do Campo de Estágio
             case 5:
-                    $documentPath1 = storage_path('app/docs/relatorio_acompanhamento_campo/0.png');
-                    $documentPath2 = storage_path('app/docs/relatorio_acompanhamento_campo/1.png');
-                    return $this->editRelatorioCampo([$documentPath1, $documentPath2], $dados);
-                    break;
+                $documentPath1 = storage_path('app/docs/relatorio_acompanhamento_campo/0.png');
+                $documentPath2 = storage_path('app/docs/relatorio_acompanhamento_campo/1.png');
+                return $this->editRelatorioCampo([$documentPath1, $documentPath2], $dados);
+                break;
             case 7:
                 $documentPath1 = storage_path('app/docs/frequencia_residente/0.png');
                 $documentPath2 = storage_path('app/docs/frequencia_residente/1.png');
@@ -59,7 +68,6 @@ class PDFController extends Controller
                 break;
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
-
         }
     }
 
@@ -110,6 +118,7 @@ class PDFController extends Controller
 
             $documentoExistente = DocumentoEstagio::where('lista_documentos_obrigatorios_id', $listaDocumentosId)
                 ->where('aluno_id', $alunoId)
+                ->where('estagio_id', $this->estagio->id)
                 ->first();
 
             if (!$documentoExistente) {
@@ -119,7 +128,7 @@ class PDFController extends Controller
                 $documento->lista_documentos_obrigatorios_id = $listaDocumentosId;
                 $documento->dados = json_encode($dados);
                 $estagio = new EstagioController();
-                $documento->estagio_id = $estagio->getEstagioAtual()->id;
+                $documento->estagio_id = $this->estagio->id;
                 $documento->save();
             } else {
                 $documentoExistente->dados = json_encode($dados);
@@ -144,7 +153,7 @@ class PDFController extends Controller
 
     public function viewPDF($id)
     {
-        $documento = DocumentoEstagio::findOrFail($id);
+        $documento = DocumentoEstagio::find($id);
 
         $documentoObrigatorio = ListaDocumentosObrigatorios::find($documento->lista_documentos_obrigatorios_id);
 
@@ -157,7 +166,7 @@ class PDFController extends Controller
 
         $pdf = $documento->pdf;
 
-        if(config('database.default') === 'pgsql'){
+        if (config('database.default') === 'pgsql') {
             $pdf = stream_get_contents($pdf);
             $pdf = base64_decode($pdf);
         }
@@ -172,7 +181,7 @@ class PDFController extends Controller
             'Content-Disposition' => "inline; filename=\"$nome_arquivo.pdf\"",
         ];
 
-        if(Auth::user()->typage_type == "App\Models\Servidor"){
+        if (Auth::user()->typage_type == "App\Models\Servidor") {
             $documento->is_visualizado = true;
             $documento->save();
         }
@@ -403,9 +412,9 @@ class PDFController extends Controller
         $images = [$image1, $image2];
         $this->toPDF($images, $dados);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
-        $estagio = new EstagioController();
+        //$estagio = new EstagioController();
 
-        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+        return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
     private function editTermoEncaminhamento($documentPaths, $dados)
@@ -631,9 +640,9 @@ class PDFController extends Controller
         $images = [$image1, $image2];
         $this->toPDF($images, $dados);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
-        $estagio = new EstagioController();
+        //$estagio = new EstagioController();
 
-        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+        return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
     private function editFichaFrequencia($documentPaths, $dados)
@@ -1124,7 +1133,7 @@ class PDFController extends Controller
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
         $estagio = new EstagioController();
 
-        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+        return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
     private function editPlanoDeAtividades($documentPath, $dados)
@@ -1302,14 +1311,15 @@ class PDFController extends Controller
 
         $images = [$image];
 
-        $this->toPDF($images,$dados);
+        $this->toPDF($images, $dados);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
-        $estagio = new EstagioController();
+        //$estagio = new EstagioController();
 
-        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+        return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
-    private function editFrequenciaResidente($documentPaths, $dados) {
+    private function editFrequenciaResidente($documentPaths, $dados)
+    {
 
         $image1 = Image::make($documentPaths[0]);
 
@@ -1367,9 +1377,9 @@ class PDFController extends Controller
         $this->toPDF($images, $dados);
 
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
-        $estagio = new EstagioController();
+        //$estagio = new EstagioController();
 
-        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
+        return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
     private function editRelatorioCampo($documentPaths, $dados)
@@ -1510,7 +1520,7 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        if ($dados['educacao'] === "escolar"){
+        if ($dados['educacao'] === "escolar") {
             $image1->text('X', 600, 1725, function ($font) {
                 $font->file(resource_path('fonts/Arial.ttf'));
                 $font->size(42);
@@ -1530,7 +1540,7 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        if ($dados['etapa'] === "infantil"){
+        if ($dados['etapa'] === "infantil") {
             $image1->text('X', 690, 1920, function ($font) {
                 $font->file(resource_path('fonts/Arial.ttf'));
                 $font->size(42);
@@ -1744,7 +1754,7 @@ class PDFController extends Controller
 
         $image2 = Image::make($documentPaths[1]);
 
-        if ($dados['opc1'] === "sim"){
+        if ($dados['opc1'] === "sim") {
             $image2->text('X', 300, 605, function ($font) {
                 $font->file(resource_path('fonts/Arial.ttf'));
                 $font->size(42);
@@ -1764,7 +1774,7 @@ class PDFController extends Controller
             });
         }
 
-        if ($dados['opc2'] === "sim"){
+        if ($dados['opc2'] === "sim") {
             $image2->text('X', 300, 695, function ($font) {
                 $font->file(resource_path('fonts/Arial.ttf'));
                 $font->size(42);
@@ -1784,7 +1794,7 @@ class PDFController extends Controller
             });
         }
 
-        if ($dados['opc3'] === "sim"){
+        if ($dados['opc3'] === "sim") {
             $image2->text('X', 300, 890, function ($font) {
                 $font->file(resource_path('fonts/Arial.ttf'));
                 $font->size(42);
@@ -1804,7 +1814,7 @@ class PDFController extends Controller
             });
         }
 
-        if ($dados['opc4'] === "sim"){
+        if ($dados['opc4'] === "sim") {
             $image2->text('X', 300, 1005, function ($font) {
                 $font->file(resource_path('fonts/Arial.ttf'));
                 $font->size(42);
@@ -1824,7 +1834,7 @@ class PDFController extends Controller
             });
         }
 
-        if ($dados['opc5'] === "sim"){
+        if ($dados['opc5'] === "sim") {
             $image2->text('X', 300, 1105, function ($font) {
                 $font->file(resource_path('fonts/Arial.ttf'));
                 $font->size(42);
@@ -1872,13 +1882,12 @@ class PDFController extends Controller
             $font->color(self::AZUL);
         });
 
-        $images = [$image1,$image2];
+        $images = [$image1, $image2];
         $this->toPDF($images, $dados);
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
-        $estagio = new EstagioController();
+        //$estagio = new EstagioController();
 
-        return redirect()->to(route('estagio.documentos', ['id' => $estagio->getEstagioAtual()]));
-
+        return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
     public function getListaDeDocumentosId()
