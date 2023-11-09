@@ -655,9 +655,11 @@ class DocumentoEstagioController extends Controller
         } elseif ($tipo_estagio_sigla === 'eno') {
             $tipo_estagio = 'Não Obrigatório';
         }
+
+        $pdfController = new PDFController;
     
         $path = storage_path('app/docs/relatorio_supervisor/0.png');
-        $pdfFilePath = $this->gerarPDF($path, $nome_aluno, $nome_curso, $nome_disciplina, $tipo_estagio); // Gere o PDF e obtenha o caminho do arquivo
+        $pdfFilePath = $pdfController->gerarPDF_Supervisor_UPE($path, $nome_aluno, $nome_curso, $nome_disciplina, $tipo_estagio); // Gere o PDF e obtenha o caminho do arquivo
     
         if ($pdfFilePath === false) {
             return response()->json(['error' => 'Erro ao gerar o PDF'], 500);
@@ -666,58 +668,5 @@ class DocumentoEstagioController extends Controller
         $fileName = $nome . '.pdf';
     
         return response()->file($pdfFilePath, ['Content-Type' => 'application/pdf', 'Content-Disposition' => "inline; filename=\"$fileName\""]);
-    }
-    
-    public function gerarPDF($path,$aluno, $curso, $disciplina, $tipo)
-    {
-        $pdf = new TCPDF();
-        $pdf->SetMargins(0, 0, 0);
-        $pdf->SetPrintHeader(false);
-        $pdf->setPrintFooter(false);
-    
-        $pdf->AddPage();
-    
-        // Salvar a imagem editada temporariamente
-        $tmpImagePath = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
-        $image = Image::make($path);
-    
-        $image->text($aluno, 750, 625, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(37);
-            $font->color('#00009C');
-        });
-    
-        $image->text($disciplina . "/" . $curso, 1350, 695, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(37);
-            $font->color('#00009C');
-        });
-    
-        $image->text($tipo, 400 , 837, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(37);
-            $font->color('#00009C');
-        });
-    
-        $image->save($tmpImagePath, 100);
-    
-        // Incorporar a imagem no PDF
-        $pdf->Image($tmpImagePath, 7, 0, 200);
-    
-        unlink($tmpImagePath); // Excluir a imagem temporária após uso
-    
-        // Caminho para salvar o PDF temporariamente
-        $pdfFilePath = tempnam(sys_get_temp_dir(), 'pdf') . '.pdf';
-    
-        // Salvar o PDF no arquivo temporário
-        $pdf->Output($pdfFilePath, 'F');
-    
-        // Fechar o objeto TCPDF
-        $pdf->close();
-    
-        return $pdfFilePath;
-    }
-
-    
-    
+    }    
 }
