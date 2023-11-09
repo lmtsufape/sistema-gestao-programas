@@ -13,7 +13,7 @@
 
         <hr style="color:#5C1C26; background-color: #5C1C26">
         <a class="cadastrar-botao" style="text-decoration: none; color: white; margin-right: 10px" type="button"
-            href="{{ route('download.documento', ['nome' => 'relatorio_supervisor.pdf']) }}" target="_blank">Visualizar
+            href="{{ route('download.documento', ['nome' => 'relatorio_supervisor', 'id' => $estagio->id]) }}" target="_blank">Visualizar
             modelo</a>
         <br><br>
         <form action="{{ route('estagio.documentos.UPE.relatorio-supervisor.store', ['id' => $estagio->id]) }}"method="post"
