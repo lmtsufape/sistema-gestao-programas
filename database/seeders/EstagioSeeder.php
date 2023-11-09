@@ -14,24 +14,24 @@ class EstagioSeeder extends Seeder
      */
     public function run()
     {
-        $estagio1 = Estagio::create([
-            'descricao' => "Estágio1",
-            'data_inicio' => "2023-06-21",
-            'data_fim' => "2024-06-21",
-            //'data_solicitacao' => "2023-05-21",
-            //'cpf_aluno' => "348.126.240-02",
-            'tipo' => "eo",
-            'status' => true,
-            'aluno_id' => 1,
-            'orientador_id' => 1,
-            'curso_id' => 1,
-            'disciplina_id' => 7,
-            'supervisor' => "João da Silva; 87 9 8123-4567;",
-            'instituicao_id' => 1
-        ]);
+        for ($i = 2; $i < 30; $i++) {
+            $estagio1 = Estagio::create([
+                'descricao' => "Estágio $i",
+                'data_inicio' => "2023-06-21",
+                'data_fim' => "2024-06-21",
+                'tipo' => "eo",
+                'status' => rand(true, false),
+                'aluno_id' => 1,
+                'orientador_id' => rand(1, 2),
+                'curso_id' => rand(1, 5),
+                'disciplina_id' => 7,
+                'supervisor' => "João da Silva; 87 9 8123-4567;",
+                'instituicao_id' => 1
+            ]);
+        }
 
         $estagio2 = Estagio::create([
-            'descricao' => "Estágio 2",
+            'descricao' => "Estágio 1",
             'data_inicio' => "2023-08-30",
             'data_fim' => "2024-06-21",
             //'data_solicitacao' => "2023-05-21",
