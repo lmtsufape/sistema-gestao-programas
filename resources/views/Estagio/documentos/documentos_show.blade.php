@@ -225,7 +225,7 @@
                                         @endcan
                                     @endif
                                     @if ($documento_enviado)
-                                        <a href="{{ route('visualizar.pdf', ['id' => $lista_documento->documento_id]) }}"
+                                        <a href="{{ route('visualizar.pdf', ['docId' => $lista_documento->documento_id]) }}"
                                             target="_blank" id="pdfLink" onclick="return openPdfLinkInNewTab(this.href)">
                                             <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                                 title="Documento preenchido" style="height: 30px; width: 30px;">

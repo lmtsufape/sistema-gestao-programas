@@ -303,7 +303,7 @@ Route::prefix('estagio')->group(function () {
         Route::get('/{id}/ficha-frequencia-ufape', [DocumentoEstagioController::class, 'ficha_frequencia_ufape_form'])->name('estagio.documentos.UFAPE.ficha-frequencia');
         Route::post('/{id}/ficha-frequencia-ufape', [DocumentoEstagioController::class, 'ficha_frequencia_ufape'])->name('estagio.documentos.UFAPE.ficha-frequencia.store');
 
-        Route::get('/visualizar-pdf/{id}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
+        Route::get('/visualizar-pdf/{docId}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
     });
 });
 

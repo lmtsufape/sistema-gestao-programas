@@ -24,7 +24,7 @@ class PDFController extends Controller
     public function __construct()
     {
         $estagioId = Route::current()->parameter('id');
-        $this->estagio = Estagio::findOrFail($estagioId);        
+        $this->estagio = Estagio::find($estagioId);
     }
 
     public function editImage($documentType, $dados)
@@ -151,9 +151,9 @@ class PDFController extends Controller
         return $pdfContent;
     }
 
-    public function viewPDF($id)
+    public function viewPDF($docId)
     {
-        $documento = DocumentoEstagio::find($id);
+        $documento = DocumentoEstagio::find($docId);
 
         $documentoObrigatorio = ListaDocumentosObrigatorios::find($documento->lista_documentos_obrigatorios_id);
 
