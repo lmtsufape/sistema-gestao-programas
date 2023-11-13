@@ -466,6 +466,43 @@ class DocumentoEstagioController extends Controller
         return redirect()->route('estagio.documentos', ['id' => $id])->with('success', 'Documento anexado com sucesso.');
     }
 
+    public function seguro_ufape_form($id)
+    {
+        $estagio = Estagio::findOrFail($id);
+
+        return view('Estagio.documentos.UFAPE.seguro', compact("estagio"));
+    }
+
+    public function seguro_ufape($id, Request $request){
+        $dados = [
+            'email' => $request->input('email'),
+        ];
+
+        $estagio = Estagio::findorfail($id);
+        $alunoid = $estagio->aluno_id;
+
+        $doc = DocumentoEstagio::where('estagio_id', $id)
+                   ->where('aluno_id', $alunoid)
+                   ->first();
+
+        if ($doc){
+            $doc->dados = json_encode($dados);
+            $doc->save();
+        } else {
+            $documento = new DocumentoEstagio();
+            $documento->aluno_id = $alunoid;
+            $documento->pdf = null;
+            $documento->lista_documentos_obrigatorios_id = 8;
+            $documento->dados = json_encode($dados);
+            $documento->estagio_id = $id;
+            $documento->is_completo = 1;
+            $documento->status = "Aguardando verificação";
+            $documento->save();
+        }
+
+        return redirect()->route('estagio.documentos',['id' => $id]);
+    }
+
     public function termo_compromisso_ufape_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);

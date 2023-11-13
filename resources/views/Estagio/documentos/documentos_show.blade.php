@@ -101,12 +101,15 @@
                                             $rota = 'estagio.documentos.UPE.frequencia-residente';
                                             break;
                                         case 8:
-                                            $rota = 'estagio.documentos.UFAPE.termo-de-compromisso';
+                                            $rota = 'estagio.documentos.UFAPE.seguro';
                                             break;
                                         case 9:
-                                            $rota = 'estagio.documentos.UFAPE.carta-aceite-supervisor';
+                                            $rota = 'estagio.documentos.UFAPE.termo-de-compromisso';
                                             break;
                                         case 10:
+                                            $rota = 'estagio.documentos.UFAPE.carta-aceite-supervisor';
+                                            break;
+                                        case 11:
                                             $rota = 'estagio.documentos.UFAPE.ficha-frequencia';
                                             break;
                                         default:
@@ -231,11 +234,21 @@
                                         @endcan
                                     @endif
                                     @if ($documento_enviado)
+                                                
+                                        @if($rota = 'estagio.documentos.UFAPE.seguro')
+
+                                        <a href="{{ route('estagio.documentos.UFAPE.seguro', ['id' => $lista_documento->documento_id]) }}"
+                                            target="_blank" id="pdfLink" onclick="return openPdfLinkInNewTab(this.href)">
+                                            <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
+                                                title="Documento preenchido" style="height: 30px; width: 30px;">
+                                        </a>
+                                        @else
                                         <a href="{{ route('visualizar.pdf', ['docId' => $lista_documento->documento_id]) }}"
                                             target="_blank" id="pdfLink" onclick="return openPdfLinkInNewTab(this.href)">
                                             <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                                 title="Documento preenchido" style="height: 30px; width: 30px;">
                                         </a>
+                                        @endif
 
                                         <iframe id="pdfIframe" style="display: none;"></iframe>
                                     @else
