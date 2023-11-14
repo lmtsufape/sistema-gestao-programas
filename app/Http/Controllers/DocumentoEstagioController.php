@@ -470,13 +470,33 @@ class DocumentoEstagioController extends Controller
     {
         $estagio = Estagio::findOrFail($id);
 
-        return view('Estagio.documentos.UFAPE.seguro', compact("estagio"));
+        $documento = DocumentoEstagio::where('estagio_id', $estagio->id)
+            ->where('lista_documentos_obrigatorios_id', 8)
+            ->first();
+        if($documento){
+            $dados = json_decode($documento->dados, true);
+            return view('Estagio.documentos.UFAPE.seguro', compact("estagio", "dados"));
+        } else {
+            return view('Estagio.documentos.UFAPE.seguro', compact("estagio"));
+        }
     }
 
     public function seguro_ufape($id, Request $request){
         $dados = [
             'email' => $request->input('email'),
+            'aluno_nome' => $request->input('aluno_nome'),
+            'cpf' => $request->input('cpf'),
+            'data_nascimento' => $request->input('data_nascimento'),
+            'sexo' => $request->input('sexo'),
+            'curso' => $request->input('curso'),
+            'inicio_estagio' => $request->input('inicio_estagio'),
+            'termino_estagio' => $request->input('termino_estagio'),
+            'local_estagio' => $request->input('local_estagio'),
+            'supervisor_estagio' => $request->input('supervisor_estagio'),
+            'email_supervisor' => $request->input('email_supervisor'),
+            'email_orientador' => $request->input('email_orientador'),
         ];
+        
 
         $estagio = Estagio::findorfail($id);
         $alunoid = $estagio->aluno_id;
