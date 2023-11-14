@@ -58,10 +58,13 @@
             <h6>Discentes UPE</h6>
             <ul style="padding-left: 5%;">
                 <li>Anna Victoria Feliciana da Silva</li>
+                <li>Artur dos Santos Loureiro</li>
+                <li>Ariel Nunes Braz Gomes</li>
                 <li>Camila Claudino da Silva</li>
                 <li>Guilherme Rivaldy de Sá Pereira</li>
                 <li>João Samuel Leal de Oliveira</li>
                 <li>Jonas Henrique da Silva Santos</li>
+                <li>Lucas Marques Monteiro</li>
                 <li>Matheus Interaminense Guerra Brito de Albuquerque</li>
             </ul>
 
