@@ -237,7 +237,7 @@
                                                 
                                         @if($rota = 'estagio.documentos.UFAPE.seguro')
 
-                                        <a href="{{ route('estagio.documentos.UFAPE.seguro', ['id' => $lista_documento->documento_id]) }}"
+                                        <a href="{{ route('estagio.documentos.UFAPE.seguro', ['id' => $lista_documento->estagio_id]) }}"
                                             target="_blank" id="pdfLink" onclick="return openPdfLinkInNewTab(this.href)">
                                             <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                                 title="Documento preenchido" style="height: 30px; width: 30px;">

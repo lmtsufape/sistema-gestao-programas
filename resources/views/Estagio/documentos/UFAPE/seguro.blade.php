@@ -69,13 +69,17 @@
             <input class="boxcadastrar" type="text" name="email_orientador" id="email_orientador" placeholder="Digite o email do orientador" required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
+            <label for="concordo">
+                <input type="checkbox" name="concordo" id="concordo" value="sim" required>
+                Ciente e de acordo que o Termo de Compromisso deverá ser providenciado antes da data de início do estágio e que a matrícula será confirmada após a entrega do Termo de Compromisso assinado por todas as partes.
+            </label>
+            
+
             <br><br>
             <div class="botoessalvarvoltar">
                 <a href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}" class="botaovoltar">Voltar</a>
                 <input class="botaosalvar" type="submit" value="Salvar">
             </div>
-
-            @endcan
 
             @can('admin','servidor','gestor')
             <label class="titulopequeno" for="email">Email</label>
@@ -111,14 +115,18 @@
             <label class="titulopequeno" for="email_supervisor">Email do Supervisor</label>
             <input class="boxcadastrar" type="text" name="email_supervisor" id="email_supervisor" class="form-control" value="{{ $dados['email_supervisor'] }}" readonly required>
             
-            <label class="titulopequeno" for="email_orientador">Email do Orientador</label>
-            <input class="boxcadastrar" type="text" name="email_orientador" id="email_orientador" class="form-control" value="{{ $dados['email_orientador'] }}" readonly required>
+            <label for="concordo">
+                <input type="checkbox" name="concordo" id="concordo" value="sim" checked disabled>
+                Ciente e de acordo que o Termo de Compromisso deverá ser providenciado antes da data de início do estágio e que a matrícula será confirmada após a entrega do Termo de Compromisso assinado por todas as partes.
+            </label>
+
             
             <br><br>
             <div class="botoessalvarvoltar">
                 <a href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}" class="botaovoltar">Voltar</a>
             </div>
 
+            @endcan
             @endcan
 
             {{-- <br><br>

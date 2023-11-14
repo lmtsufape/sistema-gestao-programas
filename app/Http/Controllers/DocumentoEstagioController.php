@@ -474,7 +474,11 @@ class DocumentoEstagioController extends Controller
             ->where('lista_documentos_obrigatorios_id', 8)
             ->first();
         if($documento){
+            $documento->is_visualizado = 1;
+            $documento->save();
+
             $dados = json_decode($documento->dados, true);
+            
             return view('Estagio.documentos.UFAPE.seguro', compact("estagio", "dados"));
         } else {
             return view('Estagio.documentos.UFAPE.seguro', compact("estagio"));
