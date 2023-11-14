@@ -17,20 +17,22 @@
         <form action="{{ route('estagio.documentos.UFAPE.seguro.store', ['id' => $estagio->id]) }}" method="post">
             @csrf
 
-            @can('aluno')
+
+            @if (!isset($dados))
             <label for="curso" class="titulopequeno">Email<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="email" id="email" placeholder="Digite o email do estagiário" required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="curso" class="titulopequeno">Nome do aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="aluno_nome" class="titulopequeno">Nome do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="aluno_nome" id="aluno_nome" placeholder="Digite o nome do estagiário" required><br>
+            <input class="boxcadastrar" type="text" name="aluno_nome" id="aluno_nome" placeholder="Digite o nome do estagiário" value="{{ $aluno->nome_aluno }}" readonly required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
+            
 
             <label for="curso" class="titulopequeno">CPF<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="cpf" id="cpf" placeholder="Digite o cpf do estagiário" required><br>
+            <input class="boxcadastrar" type="text" name="cpf" id="cpf" placeholder="Digite o cpf do estagiário" value="{{ $aluno->cpf }}" readonly required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="data_nascimento" class="titulopequeno">Data de Nascimento<strong style="color: #8B5558">*</strong></label><br>
@@ -42,7 +44,7 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="curso"s class="titulopequeno">Curso<strong style="color: #8B5558">*</strong></label><br>
-            <input class="boxcadastrar" type="text" name="curso" id="curso" placeholder="Digite o curso do estagiário" required><br>
+            <input class="boxcadastrar" type="text" name="curso" id="curso" placeholder="Digite o curso do estagiário" value="{{ $curso->nome }}" readonly required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="inicio_estagio" class="titulopequeno">Início do Estágio<strong style="color: #8B5558">*</strong></label><br>
@@ -81,7 +83,7 @@
                 <input class="botaosalvar" type="submit" value="Salvar">
             </div>
 
-            @can('admin','servidor','gestor')
+            @else
             <label class="titulopequeno" for="email">Email</label>
             <input class="boxcadastrar" type="text" name="email" id="email" class="form-control" value="{{ $dados['email'] }}" readonly required>
             
@@ -126,14 +128,7 @@
                 <a href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}" class="botaovoltar">Voltar</a>
             </div>
 
-            @endcan
-            @endcan
-
-            {{-- <br><br>
-            <div class="botoessalvarvoltar">
-                <a href="{{ route('estagio.documentos', ['id' => $estagio->id]) }}" class="botaovoltar">Voltar</a>
-                <input class="botaosalvar" type="submit" value="Salvar">
-            </div> --}}
+            @endif
             
         </form>
     </div>

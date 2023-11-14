@@ -469,6 +469,9 @@ class DocumentoEstagioController extends Controller
     public function seguro_ufape_form($id)
     {
         $estagio = Estagio::findOrFail($id);
+        $aluno = Aluno::findOrfail($estagio->aluno_id);
+        $curso = Curso::findOrfail($aluno->curso_id);
+
 
         $documento = DocumentoEstagio::where('estagio_id', $estagio->id)
             ->where('lista_documentos_obrigatorios_id', 8)
@@ -478,10 +481,10 @@ class DocumentoEstagioController extends Controller
             $documento->save();
 
             $dados = json_decode($documento->dados, true);
-            
+
             return view('Estagio.documentos.UFAPE.seguro', compact("estagio", "dados"));
         } else {
-            return view('Estagio.documentos.UFAPE.seguro', compact("estagio"));
+            return view('Estagio.documentos.UFAPE.seguro', compact("estagio","aluno","curso"));
         }
     }
 
