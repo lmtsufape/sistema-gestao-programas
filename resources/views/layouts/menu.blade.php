@@ -25,7 +25,7 @@
                                 Listar
                                 <span><img src="{{ asset('images/arrow-3.png') }}" alt="mostrar" class="arrow-dd"></span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-dark" role="menu"
+                            <ul class="dropdown-menu" role="menu"
                                 aria-labelledby="dropdownMenuButton">
                                 @if (Auth::user()->typage->tipo_servidor != 'servidor')
                                     <li><a class="dropdown-item" href="{{ route('programas.index') }}">Programas</a></li>
