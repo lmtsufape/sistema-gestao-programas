@@ -73,11 +73,18 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
         ]);
 
         //Documentos da UFAPE
+        $documento = ListaDocumentosObrigatorios::create([
+            'titulo' => "Seguro de estágio",
+            'descricao_documento' => "O seguro de estágio protege estagiários em casos de acidentes ou doenças durante o estágio.",
+            'tipo_entrega' => "inicial",
+            'tipo_estagio' => "eo",
+            'instituicao' => "UFAPE"
+        ]);
 
         $documento = ListaDocumentosObrigatorios::create([
             'titulo' => "Termo de compromisso",
             'descricao_documento' => "Documento que formaliza o início do estágio, com as informações do estagiário, da empresa e do supervisor de estágio.",
-            'tipo_entrega' => "final",
+            'tipo_entrega' => "inicial",
             'tipo_estagio' => "eo",
             'instituicao' => "UFAPE"
         ]);
