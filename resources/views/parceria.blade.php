@@ -64,6 +64,7 @@
                 <li>Guilherme Rivaldy de Sá Pereira</li>
                 <li>João Samuel Leal de Oliveira</li>
                 <li>Jonas Henrique da Silva Santos</li>
+                <li>Lucas Henrique de Assis Monteiro</li>
                 <li>Lucas Marques Monteiro</li>
                 <li>Matheus Interaminense Guerra Brito de Albuquerque</li>
             </ul>
