@@ -16,7 +16,7 @@
                 <h1 class="titulogrande">
                     Editar Servidor</h1>
                     <hr class="divisor">
-                <form action="{{url('/servidores/$servidor->id')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('servidores.update', ['id' => $servidor->id])}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
 
