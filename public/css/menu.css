@@ -46,17 +46,17 @@
   margin-left: 60px
 }
 
-.dropdown-menu{
+ .menu{
   background-color: #972E3F !important;
   width:15%;
   padding: 5px 10px;
 }
-.dropdown-menu>li>a:hover{
+.dropdown-item:hover{
   background-color: #fefefe !important;
   color: #972E3F !important;
 }
 
-.dropdown-menu>li>a{
+.dropdown-item{
   color: #fff !important;
 }
 
