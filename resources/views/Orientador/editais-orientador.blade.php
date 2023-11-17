@@ -83,7 +83,7 @@
                                 <img src="{{asset('images/information.svg')}}" title="Informações do edital" alt="Info edital"
                                      style="height: 30px; width: 30px;">
                             </a>
-                            <a href="{{route('edital.add-documentos-vinculo', ['id' => $vinculo->id]  )}}">
+                            <a type="button" href="{{route('edital.add-documentos-vinculo', ['id' => $vinculo->id]  )}}">
                                 <img src="{{asset('images/add_disciplina.svg')}}" title="Adicionar documentos" alt="Adicionar Documentos"
                                      style="height: 25px; width: 25px;">
                             </a>

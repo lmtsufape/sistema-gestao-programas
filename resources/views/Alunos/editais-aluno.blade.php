@@ -1,39 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    <style>
-        pagination {
-            display: inline-block;
-        }
-
-        .pagination a {
-            color: black;
-            float: left;
-            padding: 8px 16px;
-            text-decoration: none;
-            transition: background-color .3s;
-            border: 1px solid #ddd;
-            margin: 10px 4px;
-        }
-
-        .pagination a.active {
-            background-color: #3B864F;
-            color: white;
-            border: 1px solid #3B864F;
-        }
-
-        .pagination a:hover:not(.active) {
-            background-color: #34A853;
-        }
-
-        .textolegenda {
-            font-style: normal;
-            font-weight: 400;
-            font-size: 15px;
-            line-height: 130%;
-            margin: 5px
-        }
-    </style>
+ 
     @if (session('sucesso'))
         <div class="alert alert-success">
             {{ session('sucesso') }}
@@ -86,7 +54,7 @@
                                     <img src="{{ asset('images/information.svg') }}" alt="Info edital"
                                         style="height: 30px; width: 30px;" title="Informações do Edital">
                                 </a>
-                                <a class="link" alt="Listar orientadores"
+                                <a type="button" alt="Listar orientadores"
                                     href="{{ route('edital.listar_orientadores', ['id' => $edital->id]) }}">
                                     <img src="{{ asset('images/orientadores.svg') }}" alt="Listar orientadores"
                                         style="height: 30px; width: 30px;" title="Professores Vinculados">
@@ -110,7 +78,7 @@
                                         @endforeach
 
                                         @if ($latestFrequencia)
-                                            <a href="{{ route('frequencia.download', ['fileName' => $latestFrequencia->frequencia_mensal]) }}" target="_blank" class="link">
+                                            <a type="button" href="{{ route('frequencia.download', ['fileName' => $latestFrequencia->frequencia_mensal]) }}" target="_blank" >
                                                 <img src="{{ asset('images/download.svg') }}" alt="baixar arquivo" style="height: 30px; width: 30px; ">
                                             </a>
                                         @endif

@@ -129,7 +129,7 @@
                                                 $lista_documento->status == 'Aguardando documento assinado' ||
                                                     $lista_documento->status == 'Aguardando verificação' ||
                                                     $lista_documento->status == 'Negado')
-                                                {{-- <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
+                                                {{-- <a type="button" href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
                                                 <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento" style="height: 30px; width: 30px;">
                                                 </a> --}}
 
@@ -139,7 +139,7 @@
                                                         alt="Ver Observação" style="height: 30px; width: 30px;">
                                                 </a> --}}
 
-                                                {{-- <a href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
+                                                {{-- <a type="button" href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
                                                 <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
                                                 </a> --}}
 
@@ -156,12 +156,12 @@
                                                                 alt="Ver Observação" style="height: 30px; width: 30px;">
                                                         </a>
                                                     @endif
-                                                    <a href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
+                                                    <a type="button" href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
                                                         <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento"
                                                             title="Editar documento" style="height: 30px; width: 30px;">
                                                     </a>
 
-                                                    <a
+                                                    <a type="button"
                                                         href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
                                                         <img src="{{ asset('images/mostrar-documentos.svg') }}"
                                                             alt="Enviar Documento Completo" style="height: 30px; width: 30px;">
@@ -175,7 +175,7 @@
                                                                 alt="Ver Observação" style="height: 30px; width: 30px;">
                                                         </a>
                                                     @endif
-                                                    <a
+                                                    <a type="button"
                                                         href="{{ route('estagio.documentos.documento-completo', ['id' => $lista_documento->documento_id]) }}">
                                                         <img src="{{ asset('images/mostrar-documentos.svg') }}"
                                                             alt="Enviar Documento Completo" style="height: 30px; width: 30px;">
@@ -186,19 +186,19 @@
 
                                         @canany(['admin', 'servidor', 'gestor'])
                                             @if ($lista_documento->is_visualizado == 1)
-                                                <a href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}"
+                                                <a type="button" href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                     class="aprovar-documento-link">
                                                     <img src="{{ asset('images/document-checkmark.svg') }}" alt="Aprovar Documento"
                                                         title="Aprovar documento" style="height: 30px; width: 30px;">
                                                 </a>
 
-                                                <a href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}"
+                                                <a type="button" href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                     class="negar-documento-link">
                                                     <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento"
                                                         title= "Negar documento" style="height: 30px; width: 30px;">
                                                 </a>
 
-                                                <a href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
+                                                <a type="button" href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
                                                     <img src="{{ asset('images/information.svg') }}" alt="Ver Observação"
                                                         style="height: 30px; width: 30px;">
                                                 </a>
@@ -211,7 +211,7 @@
                                                     title="Negar documento" style="height: 30px; width: 30px; opacity: 50%;"
                                                     disabled>
 
-                                                <a href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
+                                                <a type="button" href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
                                                     <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação"
                                                         style="height: 30px; width: 30px;">
                                                 </a>
@@ -226,7 +226,7 @@
                                                     title="Documento não preenchido"
                                                     style="height: 30px; width: 30px; opacity: 50%;" disabled>
                                             @else
-                                                <a href="{{ route($rota, ['id' => $estagio->id]) }}">
+                                                <a type="button" href="{{ route($rota, ['id' => $estagio->id]) }}">
                                                     <img src="{{ asset('images/add_disciplina.svg') }}" alt="Preencher Documento"
                                                         title="Preencher documento" style="height: 30px; width: 30px;">
                                                 </a>
@@ -237,13 +237,13 @@
                                                 
                                         @if($rota = 'estagio.documentos.UFAPE.seguro')
 
-                                        <a href="{{ route('estagio.documentos.UFAPE.seguro', ['id' => $lista_documento->estagio_id]) }}"
+                                        <a type="button "href="{{ route('estagio.documentos.UFAPE.seguro', ['id' => $lista_documento->estagio_id]) }}"
                                             target="_blank" id="pdfLink" onclick="return openPdfLinkInNewTab(this.href)">
                                             <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                                 title="Documento preenchido" style="height: 30px; width: 30px;">
                                         </a>
                                         @else
-                                        <a href="{{ route('visualizar.pdf', ['docId' => $lista_documento->documento_id]) }}"
+                                        <a type="button" href="{{ route('visualizar.pdf', ['docId' => $lista_documento->documento_id]) }}"
                                             target="_blank" id="pdfLink" onclick="return openPdfLinkInNewTab(this.href)">
                                             <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                                 title="Documento preenchido" style="height: 30px; width: 30px;">

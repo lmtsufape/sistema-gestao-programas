@@ -66,21 +66,21 @@
                                                     alt="Info programa" style="height: 30px; width: 30px;">
                                             </a>
                                             @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
-                                                <a href="{{ url("/programas/$programas->id/atribuir-servidor") }}">
+                                                <a type="button" href="{{ url("/programas/$programas->id/atribuir-servidor") }}">
                                                     <img src="{{ asset('images/add_servidor.svg') }}" title="Adicionar servidor"
                                                         alt="Add Servidor" style="height: 30px; width: 30px;">
                                                 </a>
                                             @endif
-                                            <a href="{{ url("/programas/$programas->id/editais") }}">
+                                            <a type="button" href="{{ url("/programas/$programas->id/editais") }}">
                                                 <img src="{{ asset('images/listar_edital.svg') }}" title="Listar edital"
                                                     alt="Listar edital" style="height: 30px; width: 30px;">
                                             </a>
                                             @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
-                                                <a href="{{ url("/programas/$programas->id/criar-edital") }}">
+                                                <a type="button" href="{{ url("/programas/$programas->id/criar-edital") }}">
                                                     <img src="{{ asset('images/add_edital.svg') }}" title="Adicionar edital"
                                                         alt="Add Edital" style="height: 30px; width: 30px;">
                                                 </a>
-                                                <a href="{{ url("/programas/$programas->id/edit") }}">
+                                                <a type="button" href="{{ url("/programas/$programas->id/edit") }}">
                                                     <img src="{{ asset('images/pencil.svg') }}" title="Editar"
                                                         alt="Editar programa" style="height: 30px; width: 30px;">
                                                 </a>
@@ -108,53 +108,7 @@
                         </table>
                     </div>
 
-                    <!--
-                            <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-        width: 150px; height: 50%;">
-                              <div style="align-self: center; margin-right: auto">
-                                <br>
-                                <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
-                              </div>
-
-                              <div style="align-self: center; margin-right: auto">
-                                <div style="display: flex; margin: 10px">
-                                  <a><img src="{{ asset('images/searchicon.png') }}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-                                  <p class="textolegenda">Pesquisar</p>
-                                </div>
-                                <div style="display: flex; margin: 10px">
-                                  <a><img src="/images/adicionar-servidor.png" alt="Add Servidor" style="width: 20px; height: 20px;"></a>
-                                  <p class="textolegenda">Add Servidor</p>
-                                </div>
-                                <div style="display: flex; margin: 10px">
-                                  <a><img src="/images/add-edital.png" alt="Cadastrar Edital" style="width: 20px; height: 20px;"></a>
-                                  <p class="textolegenda">Cadastrar Edital</p>
-                                </div>
-                                <div style="display: flex; margin: 10px">
-                                    <a><img src="/images/listaredital.png" alt="Listar editais" style="width: 20px; height: 20px;"></a>
-                                    <p class="textolegenda">Listar Edital</p>
-                                </div>
-                                <div style="display: flex; margin: 10px">
-                                  <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
-                                  <p class="textolegenda">Informações</p>
-                                </div>
-                                <div style="align-self: center; margin-right: auto">
-                                  <div style="display: flex; margin: 10px">
-                                    <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
-                                    <p class="textolegenda">Editar</p>
-                                  </div>
-                                  <div style="display: flex; margin: 10px">
-                                    <a><img src="{{ asset('images/delete.png') }}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
-                                    <p class="textolegenda">Deletar</p>
-                                  </div>
-
-                                </div>
-                              -->
-                    <!-- <div style="align-self: center; margin-right: auto">
-                                  <div style="display: flex; margin: 10px">
-                                    <a><img src="/images/bx_user.png" alt="Listar alunos" style="width: 20px; height: 20px;"></a>
-                                    <p class="textolegenda">Listar Alunos</p>
-                                  </div>
-                                </div> -->
+                   
                 </div>
 
         </div>

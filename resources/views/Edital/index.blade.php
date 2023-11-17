@@ -76,20 +76,20 @@
                                         </a>
 
                                         @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
-                                            <a href="{{ route('edital.show', ['id' => $edital->id]) }}">
+                                            <a type="button" href="{{ route('edital.show', ['id' => $edital->id]) }}">
                                                 <img src="{{ asset('images/vincular_estudante.svg') }}"
                                                     title="Vincular estudante" alt="Vincular aluno"
                                                     style="height: 30px; width: 30px;">
                                             </a>
                                         @endif
-                                        <a class="link" alt="Listar alunos"
+                                        <a type="button" alt="Listar alunos"
                                             href="{{ route('edital.vinculo', ['id' => $edital->id]) }}">
                                             <img src="{{ asset('images/estudantes_vinculados.svg') }}"
                                                 title="Listar estudantes vinculados" alt="Listar estudantes vinculados"
                                                 style="height: 28px; width: 28px;">
                                         </a>
                                         @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
-                                            <a class="link" alt="Listar alunos inativos"
+                                            <a type="button" alt="Listar alunos inativos"
                                                 href="{{ route('edital.vinculoInativo', ['id' => $edital->id]) }}">
                                                 <img src="{{ asset('images/estudantes_vinculados_inativos.svg') }}"
                                                     title="Listar estudantes vinculados inativos"
@@ -98,7 +98,7 @@
                                             </a>
                                         @endif
 
-                                        <a class="link" alt="Listar orientadores"
+                                        <a type="button" alt="Listar orientadores"
                                             href="{{ route('edital.listar_orientadores', ['id' => $edital->id]) }}">
                                             <img src="{{ asset('images/orientadores.svg') }}" title="Listar orientadores"
                                                 alt="Listar orientadores" style="height: 30px; width: 30px;">
@@ -124,61 +124,7 @@
                         @endforeach
                     </table>
                 </div>
-                <!--
-                                            <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-       width: 150px; height: 50%;">
-                                              <div style="align-self: center; margin-right: auto">
-                                                <br>
-                                                <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
-                                              </div>
-                                              <div style="align-self: center; margin-right: auto">
-
-
-                                                <div style="display: flex; margin: 10px">
-                                                  <a><img src="/images/info.png" alt="Informações" style="width: 20px; height: 20px;"></a>
-                                                  <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
-                                                </div>
-
-                                                <div style="align-self: center; margin-right: auto">
-                                                  <div style="display: flex; margin: 10px">
-                                                    <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
-                                                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
-                                                  </div>
-
-                                                  <div style="display: flex; margin: 10px">
-                                                    <a><img src="{{ asset('images/delete.png') }}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
-                                                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
-                                                  </div>
-
-                                                  <div style="display: flex; margin: 10px">
-                                                  <a><img src="{{ asset('images/searchicon.png') }}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-                                                  <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
-                                                </div>
-
-                                                  <div style="display: flex; margin: 10px">
-                                                    <a><img src="{{ asset('images/vinculo_edital.png') }}" alt="Vincular aluno" style="width: 20px; height: 20px;"></a>
-                                                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Vincular Estudantes</p>
-                                                  </div>
-
-                                                  <div style="display: flex; margin: 10px">
-                                                    <a><img src="{{ asset('images/bx_user.png') }}" alt="Listar alunos vinculados" style="width: 20px; height: 20px;"></a>
-                                                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Estudantes vinculados</p>
-                                                  </div>
-
-                                                  <div style="display: flex; margin: 10px">
-                                                    <a><img src="{{ asset('images/delete-user.png') }}" alt="Listar alunos vinculados inativos" style="width: 20px; height: 20px;"></a>
-                                                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Estudantes vinculados inativos</p>
-                                                  </div>
-
-                                                  <div style="display: flex; margin: 10px">
-                                                    <a><img src="{{ asset('images/orientadores.png') }}" alt="Listar orientadores vinculados" style="width: 25px; height: 25px;"></a>
-                                                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:4px">Orientadores </p>
-                                                  </div>
-
-                                                </div>
-                                              </div>
-                                            </div>
-                                        -->
+               
             </div>
         </div>
 

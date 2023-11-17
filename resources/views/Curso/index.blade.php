@@ -86,10 +86,10 @@
                   <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info curso" style="height: 30px; width: 30px;">
                 </a>
                 @if (auth()->user()->typage->tipo_servidor != 'gestor')
-                  <a href="{{url('/disciplinas/create_diciplina_curso/$cursos->id')}}">
+                  <a href="{{url('/disciplinas/create_diciplina_curso/$cursos->id')}}" type="button"> 
                     <img src="{{asset('images/add_disciplina.svg')}}" title="Adicionar uma disciplina" alt="Cadastrar Disciplina no curso" style="height: 27px; width: 30px;">
                   </a>
-                  <a href="{{url('/cursos/$cursos->id/edit')}}">
+                  <a href="{{url('/cursos/$cursos->id/edit')}}" type="button">
                     <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar curso">
                   </a>
                   <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$cursos->id}}">
@@ -105,41 +105,6 @@
           </tbody>
         </table>
       </div>
-<!--
-      <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-            width: 150px; height: 50%;">
-        <div style="align-self: center; margin-right: auto">
-          <br>
-          <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
-        </div>
-
-        <div style="align-self: center; margin-right: auto">
-          <div style="display: flex; margin: 10px">
-            <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
-          </div>
-
-          <div style="align-self: center; margin-right: auto">
-            <div style="display: flex; margin: 10px">
-              <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
-              <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
-            </div>
-            <div style="display: flex; margin: 10px">
-              <a><img src="{{asset("images/delete.png")}}" alt="Deletar aluno" style="width: 20px; height: 20px;"></a>
-              <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
-            </div>
-            <div style="display: flex; margin: 10px">
-            <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
-          </div>
-          <div style="display: flex; margin: 10px">
-            <a><img src="/images/add-disciplina.png" alt="AddDisciplina" style="width: 20px; height: 20px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Adicionar uma disciplina</p>
-          </div>
-          </div>
-        </div>
-      </div>
-  -->
     </div>
   </div>
 

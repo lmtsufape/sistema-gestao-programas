@@ -51,7 +51,7 @@
                             <img src="{{ asset('images/arrowdown.svg') }}" title="Opções do meu perfil" alt="Seta para baixo" style="height: auto; width: auto">
                         </button>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding: 15px">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding: 15px;">
                             @if (auth()->user()->typage_type == "App\Models\Servidor")
                             {{-- a com icon de UserVector  --}}
                             <a href="{{ route('meu-perfil-servidor') }}" class="caixinhasetinha">
