@@ -81,7 +81,7 @@
 
                                         <td class="align-middle">
                                             <a type="button" data-bs-toggle="modal"
-                                                data-bs-target="#modal_show_{{ $servidor->id }}">
+                                                data-bs-target="#modal_show{{ $servidor->id }}">
                                                 <img src="{{ asset('images/information.svg') }}" title="Informações"
                                                     alt="Info servidor" style="height: 30px; width: 30px;">
                                             </a>
@@ -92,7 +92,7 @@
                                             </a>
                                                 @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
                                                 <a type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_delete_{{ $servidor->id }}">
+                                                    data-bs-target="#modal_delete{{ $servidor->id }}">
                                                     <img src="{{ asset('images/delete.svg') }}" title="Remover"
                                                         alt="Deletar servidor" style="height: 30px; width: 30px;">
                                                 </a>
@@ -110,20 +110,20 @@
                         </table>
                     </div>
                 </div>
-
+            @endif  
         </div>
 
         <script type="text/javascript">
             function exibirModalAdicionaPermissao(id) {
-                $('#modal_adicionaPermissao_' + id).modal('show');
+                $('#modal_adicionaPermissao' + id).modal('show');
             }
 
             function exibirModalDeletar(id) {
-                $('#modal_delete_' + id).modal('show');
+                $('#modal_delete' + id).modal('show');
             }
 
             function exibirModalVisualizar(id) {
-                $('#modal_show_' + id).modal('show');
+                $('#modal_show' + id).modal('show');
             }
         </script>
     @else
