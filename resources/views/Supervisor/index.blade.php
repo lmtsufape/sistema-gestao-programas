@@ -67,7 +67,7 @@
                                                 <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info supervisor"
                                                     style="height: 30px; width: 30px;">
                                             </a>
-                                            <a href="{{ url('/supervisor/' . $supervisor->id . '/edit') }}">
+                                            <a type="button" href="{{ url('/supervisor/' . $supervisor->id . '/edit') }}">
                                                 <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar supervisor"
                                                     style="height: 30px; width: 30px;">
                                             </a>
