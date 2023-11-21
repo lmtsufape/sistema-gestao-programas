@@ -11,8 +11,14 @@ use App\Models\Estagio;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
-use Exception;
 use TCPDF;
+use PhpOffice\PhpWord\TemplateProcessor;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\Settings;
+use App\Services\DocService;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Testing\MimeType;
+
 
 class PDFController extends Controller
 {
@@ -71,47 +77,45 @@ class PDFController extends Controller
         }
     }
 
-    private function toPDF($images, $dados)
+    private function toPDF($path, $dados)
     {
-        $pdf = new TCPDF();
-        $pdf->SetMargins(0, 0, 0);
-        $pdf->SetPrintHeader(false);
-        $pdf->setPrintFooter(false);
+        $pdfContent = null;
 
-        $pdf->AddPage();
 
-        foreach ($images as $index => $image) {
-            if ($index !== 0) {
-                $pdf->AddPage();
-            }
+        Settings::setPdfRendererPath(base_path('vendor/dompdf/dompdf'));
+        Settings::setPdfRendererName(Settings::PDF_RENDERER_DOMPDF);
 
-            // Salvar a imagem editada temporariamente
-            $tmpImagePath = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
-            $image->save($tmpImagePath, 100);
+        $phpWord = IOFactory::load($path);
 
-            // Incorporar a imagem no PDF
-            $pdf->Image($tmpImagePath, 7, 0, 200);
+        // Salvar como HTML
+        $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
+        $htmlFilePath = storage_path('app/docs/pdfs/temp/' . $this->documentType . '_' . Auth::id() . '.html');
+        $htmlWriter->save($htmlFilePath);
+        dd($htmlFilePath);
 
-            unlink($tmpImagePath); // Excluir a imagem temporária após uso
-        }
+        // Carregar o documento DOCX usando a biblioteca PHPWord
+        $phpWord = IOFactory::load($path);
 
-        // // Salvar a imagem editada temporariamente
-        // $tmpImagePath = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
-        // $image->save($tmpImagePath, 100);
+        // Configurar a saída para PDF
+        $pdfWriter = IOFactory::createWriter($phpWord, 'PDF');
 
-        // // Incorporar a imagem no PDF
-        // $pdf->Image($tmpImagePath, 7, 0, 200);
+        // Salvar o PDF em um arquivo temporário
+        $pdfPath = storage_path('app/docs/pdfs/temp/' . $this->documentType . '_' . Auth::id() . '.pdf');
+        $pdfWriter->save($pdfPath);
 
-        // Capturar a saída PDF em uma variável
-        ob_start();
-        $pdf->Output('documento.pdf', 'I');
-        $pdfContent = ob_get_contents();
-        ob_end_clean();
+        // Ler o conteúdo do arquivo PDF
+        $pdfContent = base64_encode(file_get_contents($pdfPath));
+
+        // Limpar o arquivo temporário do PDF
+        unlink($pdfPath);
+
 
 
         try {
-            DB::beginTransaction();
 
+
+
+            DB::beginTransaction();
 
             $listaDocumentosId = $this->getListaDeDocumentosId();
             $alunoId = Auth::id();
@@ -139,14 +143,8 @@ class PDFController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
+            // Tratar exceções, logar erros, etc.
         }
-
-        // Renderizar o PDF no navegador
-        //$pdf->Output('documento.pdf', 'I');
-
-        //unlink($tmpImagePath);
-
-        $pdf->close();
 
         return $pdfContent;
     }
@@ -164,7 +162,7 @@ class PDFController extends Controller
         //     return redirect()->back()->with('error', 'Você não tem permissão para visualizar este documento.');
         // }
 
-        $pdf = $documento->pdf;
+        $pdf = base64_decode($documento->pdf);
 
         if (config('database.default') === 'pgsql') {
             $pdf = stream_get_contents($pdf);
@@ -187,6 +185,17 @@ class PDFController extends Controller
         }
 
         return Response::make($pdf, 200, $headers);
+    }
+
+    public function viewDoc()
+    {
+        $nomeArquivo = '1.docx';
+        $conteudoArquivo = Storage::disk('public')->get($nomeArquivo);
+
+        // Converte o conteúdo do arquivo em um array de bytes (Uint8Array)
+        $conteudoArrayBytes = array_values(unpack('C*', $conteudoArquivo));
+
+        return view('estagio.documentos.preview', ['conteudoArrayBytes' => $conteudoArrayBytes]);
     }
 
     private function editTermoCompromisso($documentPaths, $dados)
@@ -419,228 +428,270 @@ class PDFController extends Controller
 
     private function editTermoEncaminhamento($documentPaths, $dados)
     {
-        $image1 = Image::make($documentPaths[0]);
+        // $image1 = Image::make($documentPaths[0]);
 
-        /*$dados[0] = 'Universidade de Pernambuco';
+        // /*$dados[0] = 'Universidade de Pernambuco';
 
-        $image->text($dados[], 280, 695, function ($font) {
-            $font->file(resource_path(self::FONT));
-            $font->size(42);
-            $font->color(self::AZUL);
+        // $image->text($dados[], 280, 695, function ($font) {
+        //     $font->file(resource_path(self::FONT));
+        //     $font->size(42);
+        //     $font->color(self::AZUL);
 
-        }); */
+        // }); */
 
-        $image1->text($dados['instituicao'], 300, 695, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
+        // $image1->text($dados['instituicao'], 300, 695, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(42);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image1->text($dados['nome'], 280, 1060, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
+        // $image1->text($dados['nome'], 280, 1060, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(42);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image1->text($dados['periodo'], 700, 1153, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
+        // $image1->text($dados['periodo'], 700, 1153, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(42);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image1->text($dados['curso'], 260, 1245, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
+        // $image1->text($dados['curso'], 260, 1245, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(42);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image1->text($dados['ano_etapa'], 500, 1340, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
+        // $image1->text($dados['ano_etapa'], 500, 1340, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(42);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image1->text($dados['versao_estagio'], 1370, 1430, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
+        // $image1->text($dados['versao_estagio'], 1370, 1430, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(42);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image1->text($dados['data_inicio'], 2000, 1430, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
+        // $image1->text($dados['data_inicio'], 2000, 1430, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(42);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image1->text($dados['data_fim'], 290, 1520, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
+        // $image1->text($dados['data_fim'], 290, 1520, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(42);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image1->text($dados['ano'], 667, 1519, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(42);
-            $font->color(self::AZUL);
-        });
+        // $image1->text($dados['ano'], 667, 1519, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(42);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2 = Image::make($documentPaths[1]);
+        // $image2 = Image::make($documentPaths[1]);
 
-        $image2->text($dados['nome_supervisor'], 472, 325, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['nome_supervisor'], 472, 325, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['cpf_supervisor'], 147, 364, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['cpf_supervisor'], 147, 364, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['formação_supervisor'], 584, 364, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['formação_supervisor'], 584, 364, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['instituicao_estagio'], 190, 450, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['instituicao_estagio'], 190, 450, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['telefone_supervisor'], 187, 490, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['telefone_supervisor'], 187, 490, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['email_supervisor'], 598, 490, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['email_supervisor'], 598, 490, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['nome'], 194, 575, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['nome'], 194, 575, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['versao_estagio'], 350, 617, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['versao_estagio'], 350, 617, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['cidade_estágio'], 540, 700, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['cidade_estágio'], 540, 700, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['dia_atual'], 740, 700, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['dia_atual'], 740, 700, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['mes_atual'], 860, 700, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['mes_atual'], 860, 700, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['ano'], 1045, 702, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['ano'], 1045, 702, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['instituicao'], 220, 1220, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['instituicao'], 220, 1220, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['cnpj_estagio'], 170, 1275, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['cnpj_estagio'], 170, 1275, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['local_estagio'], 270, 1332, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['local_estagio'], 270, 1332, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['endereco_estagio'], 200, 1389, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['endereco_estagio'], 200, 1389, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['n_estagio'], 145, 1443, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['n_estagio'], 145, 1443, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['complemento_estagio'], 446, 1443, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['complemento_estagio'], 446, 1443, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['cep_estagio'], 157, 1500, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['cep_estagio'], 157, 1500, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['bairro_estagio'], 480, 1500, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['bairro_estagio'], 480, 1500, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['cidade_estagio'], 780, 1500, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['cidade_estagio'], 780, 1500, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['estado_estagio'], 1040, 1500, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['estado_estagio'], 1040, 1500, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['representantelegal_estagio'], 310, 1555, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['representantelegal_estagio'], 310, 1555, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['cargo_representantelegal'], 870, 1555, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['cargo_representantelegal'], 870, 1555, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
-        $image2->text($dados['horario_estagio'], 296, 1612, function ($font) {
-            $font->file(resource_path('fonts/Arial.ttf'));
-            $font->size(23);
-            $font->color(self::AZUL);
-        });
+        // $image2->text($dados['horario_estagio'], 296, 1612, function ($font) {
+        //     $font->file(resource_path('fonts/Arial.ttf'));
+        //     $font->size(23);
+        //     $font->color(self::AZUL);
+        // });
 
 
-        $images = [$image1, $image2];
-        $this->toPDF($images, $dados);
-        Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
-        //$estagio = new EstagioController();
+        // $images = [$image1, $image2];
+        //$this->toPDF($images, $dados);
+        // Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
+        // //$estagio = new EstagioController();
+
+
+
+        $templateProcessor = new TemplateProcessor(storage_path('app/docs/termo_encaminhamento/termo_encaminhamento.docx'));
+        $templateProcessor->setValue('instituicao', $dados['instituicao']);
+        $templateProcessor->setValue('nome', $dados['nome']);
+        $templateProcessor->setValue('periodo', $dados['periodo']);
+        $templateProcessor->setValue('curso', $dados['curso']);
+        $templateProcessor->setValue('ano_etapa', $dados['ano_etapa']);
+        $templateProcessor->setValue('versao_estagio', $dados['versao_estagio']);
+        $templateProcessor->setValue('data_inicio', $dados['data_inicio']);
+        $templateProcessor->setValue('data_fim', $dados['data_fim']);
+        $templateProcessor->setValue('ano', $dados['ano']);
+        $templateProcessor->setValue('nome_supervisor', $dados['nome_supervisor']);
+        $templateProcessor->setValue('cpf_supervisor', $dados['cpf_supervisor']);
+        //$templateProcessor->setValue('formacao_supervisor', $dados['formacao_supervisor']);
+        $templateProcessor->setValue('instituicao_estagio', $dados['instituicao_estagio']);
+        $templateProcessor->setValue('telefone_supervisor', $dados['telefone_supervisor']);
+        $templateProcessor->setValue('email_supervisor', $dados['email_supervisor']);
+        $templateProcessor->setValue('nome', $dados['nome']);
+        $templateProcessor->setValue('versao_estagio', $dados['versao_estagio']);
+        $templateProcessor->setValue('cidade_estagio', $dados['cidade_estagio']);
+        $templateProcessor->setValue('dia_atual', $dados['dia_atual']);
+        $templateProcessor->setValue('mes_atual', $dados['mes_atual']);
+        $templateProcessor->setValue('ano', $dados['ano']);
+        $templateProcessor->setValue('instituicao', $dados['instituicao']);
+        $templateProcessor->setValue('cnpj_estagio', $dados['cnpj_estagio']);
+        $templateProcessor->setValue('local_estagio', $dados['local_estagio']);
+        $templateProcessor->setValue('endereco_estagio', $dados['endereco_estagio']);
+        $templateProcessor->setValue('n_estagio', $dados['n_estagio']);
+        $templateProcessor->setValue('complemento_estagio', $dados['complemento_estagio']);
+        $templateProcessor->setValue('cep_estagio', $dados['cep_estagio']);
+        $templateProcessor->setValue('bairro_estagio', $dados['bairro_estagio']);
+        $templateProcessor->setValue('cidade_estagio', $dados['cidade_estagio']);
+        $templateProcessor->setValue('estado_estagio', $dados['estado_estagio']);
+        $templateProcessor->setValue('representantelegal_estagio', $dados['representantelegal_estagio']);
+        $templateProcessor->setValue('cargo_representantelegal', $dados['cargo_representantelegal']);
+        $templateProcessor->setValue('horario_estagio', $dados['horario_estagio']);
+        $path = storage_path('app/docs/pdfs/temp/termo_encaminhamento_' . Auth::id() . '.docx');
+        $templateProcessor->saveAs($path);
+
+        $pdfContent = $this->toPDF($path, $dados);
 
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
@@ -1890,46 +1941,46 @@ class PDFController extends Controller
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
-    public function gerarPDF_Supervisor_UPE($path,$aluno, $curso, $disciplina, $tipo)
+    public function gerarPDF_Supervisor_UPE($path, $aluno, $curso, $disciplina, $tipo)
     {
         $pdf = new TCPDF();
         $pdf->SetMargins(0, 0, 0);
         $pdf->SetPrintHeader(false);
         $pdf->setPrintFooter(false);
-    
+
         $pdf->AddPage();
 
         $tmpImagePath = tempnam(sys_get_temp_dir(), 'documento') . '.jpg';
         $image = Image::make($path);
-    
+
         $image->text($aluno, 750, 625, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(37);
             $font->color('#00009C');
         });
-    
+
         $image->text($disciplina . "/" . $curso, 1350, 695, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(37);
             $font->color('#00009C');
         });
-    
-        $image->text($tipo, 400 , 837, function ($font) {
+
+        $image->text($tipo, 400, 837, function ($font) {
             $font->file(resource_path('fonts/Arial.ttf'));
             $font->size(37);
             $font->color('#00009C');
         });
-    
+
         $image->save($tmpImagePath, 100);
 
         $pdf->Image($tmpImagePath, 7, 0, 200);
 
-        unlink($tmpImagePath); 
+        unlink($tmpImagePath);
         $pdfFilePath = tempnam(sys_get_temp_dir(), 'pdf') . '.pdf';
-        
+
         $pdf->Output($pdfFilePath, 'F');
         $pdf->close();
-    
+
         return $pdfFilePath;
     }
 
