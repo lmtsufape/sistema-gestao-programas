@@ -307,9 +307,13 @@ Route::prefix('estagio')->group(function () {
         Route::post('/{id}/ficha-frequencia-ufape', [DocumentoEstagioController::class, 'ficha_frequencia_ufape'])->name('estagio.documentos.UFAPE.ficha-frequencia.store');
 
         Route::get('/visualizar-pdf/{docId}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
+        
+        //rota para visualizar os doc que foram convertidos para nova forma de preencher
+        Route::get('/visualizar-doc/{docId}', [PDFController::class, 'viewDoc'])->name('visualizar.doc');
+        Route::get('/download-doc/{docId}', [PDFController::class, 'downloadDoc'])->name('download.doc');
+
     });
 });
-
 Route::get('/meus-estagios', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
 
 //Rotas de Supervisor

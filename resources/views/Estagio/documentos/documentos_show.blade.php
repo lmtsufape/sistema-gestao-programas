@@ -119,8 +119,8 @@
                                 @endphp
                                 <td class="align-middle">
                                     <!-- <a>
-                                                                                    <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento" style="height: 30px; width: 30px;">
-                                                                                </a> -->
+                                                                                                                    <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento" style="height: 30px; width: 30px;">
+                                                                                                                </a> -->
                                     @if ($documento_enviado)
                                         @can('aluno')
                                             <!-- Verifica se o usuário tem a função de aluno -->
@@ -145,8 +145,8 @@
 
                                                 @if ($hoje > $dataLimite)
                                                     <!-- <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{ $lista_documento->documento_id }}">
-                                                                                                                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
-                                                                                                                            </a> -->
+                                                                                                                                                                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
+                                                                                                                                                                            </a> -->
                                                 @elseif ($lista_documento->is_completo == 0)
                                                     <!-- Se o documento não estiver completo -->
                                                     @if (!empty(trim($lista_documento->observacao)))
@@ -156,7 +156,8 @@
                                                                 alt="Ver Observação" style="height: 30px; width: 30px;">
                                                         </a>
                                                     @endif
-                                                    <a type="button" href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
+                                                    <a type="button"
+                                                        href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
                                                         <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento"
                                                             title="Editar documento" style="height: 30px; width: 30px;">
                                                     </a>
@@ -186,19 +187,22 @@
 
                                         @canany(['admin', 'servidor', 'gestor'])
                                             @if ($lista_documento->is_visualizado == 1)
-                                                <a type="button" href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}"
+                                                <a type="button"
+                                                    href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                     class="aprovar-documento-link">
                                                     <img src="{{ asset('images/document-checkmark.svg') }}" alt="Aprovar Documento"
                                                         title="Aprovar documento" style="height: 30px; width: 30px;">
                                                 </a>
 
-                                                <a type="button" href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}"
+                                                <a type="button"
+                                                    href="{{ route('negar.documento', ['id' => $lista_documento->documento_id]) }}"
                                                     class="negar-documento-link">
                                                     <img src="{{ asset('images/document-dismiss.svg') }}" alt="Negar Documento"
                                                         title= "Negar documento" style="height: 30px; width: 30px;">
                                                 </a>
 
-                                                <a type="button" href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
+                                                <a type="button"
+                                                    href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
                                                     <img src="{{ asset('images/information.svg') }}" alt="Ver Observação"
                                                         style="height: 30px; width: 30px;">
                                                 </a>
@@ -211,7 +215,8 @@
                                                     title="Negar documento" style="height: 30px; width: 30px; opacity: 50%;"
                                                     disabled>
 
-                                                <a type="button" href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
+                                                <a type="button"
+                                                    href="{{ route('observacao.edit', ['id' => $lista_documento->documento_id]) }}">
                                                     <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação"
                                                         style="height: 30px; width: 30px;">
                                                 </a>
@@ -234,20 +239,29 @@
                                         @endcan
                                     @endif
                                     @if ($documento_enviado)
-                                                
-                                        @if($rota = 'estagio.documentos.UFAPE.seguro')
-
-                                        <a type="button "href="{{ route('estagio.documentos.UFAPE.seguro', ['id' => $lista_documento->estagio_id]) }}"
-                                            target="_blank" id="pdfLink" onclick="return openPdfLinkInNewTab(this.href)">
-                                            <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
-                                                title="Documento preenchido" style="height: 30px; width: 30px;">
-                                        </a>
+                                        @if ($rota = 'estagio.documentos.UFAPE.seguro' && $instituicao == 'UFAPE')
+                                            <a type="button "href="{{ route('estagio.documentos.UFAPE.seguro', ['id' => $lista_documento->estagio_id]) }}"
+                                                target="_blank" id="pdfLink"
+                                                onclick="return openPdfLinkInNewTab(this.href)">
+                                                <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
+                                                    title="Documento preenchido" style="height: 30px; width: 30px;">
+                                            </a>
                                         @else
-                                        <a type="button" href="{{ route('visualizar.pdf', ['docId' => $lista_documento->documento_id]) }}"
-                                            target="_blank" id="pdfLink" onclick="return openPdfLinkInNewTab(this.href)">
-                                            <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
-                                                title="Documento preenchido" style="height: 30px; width: 30px;">
-                                        </a>
+                                            <a type="button"
+                                                href="{{ route('visualizar.pdf', ['docId' => $lista_documento->documento_id]) }}"
+                                                target="_blank" id="pdfLink"
+                                                onclick="return openPdfLinkInNewTab(this.href)">
+                                                <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
+                                                    title="Documento preenchido" style="height: 30px; width: 30px;">
+                                            </a>
+                                            <a href="{{ route('visualizar.doc', ['docId' => $lista_documento->documento_id]) }}"
+                                                target="_blank" id="pdfLink"
+                                                onclick="return openPdfLinkInNewTab(this.href)">
+                                                <img src="{{ asset('images/listar_edital.svg') }}"
+                                                    alt="Documento Preenchido TEMPORARIO"
+                                                    title="Documento preenchido TEMPORARIO"
+                                                    style="height: 30px; width: 30px;">
+                                            </a>
                                         @endif
 
                                         <iframe id="pdfIframe" style="display: none;"></iframe>
