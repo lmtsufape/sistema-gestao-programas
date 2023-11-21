@@ -58,7 +58,7 @@
                                         <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info aluno"
                                             style="height: 30px; width: 30px;">
                                     </a>
-                                    <a href="{{ route('edital.ativarVinculo', ['id' => $vinculo->id]) }}">
+                                    <a type="button" href="{{ route('edital.ativarVinculo', ['id' => $vinculo->id]) }}">
                                         <img src="{{ asset('images/vincular_estudante.svg') }}" title="Vincular" alt="Ativar Vinculo aluno"
                                             style="height: 30px; width: 30px;">
                                     </a>
@@ -67,7 +67,7 @@
                                         <img src="{{ asset('images/document.svg') }}" title="Ver documentos" title="Ver documentos" alt="Documento aluno"
                                             style="height: 30px; width: 30px;">
                                     </a>
-                                    {{-- <a href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}">Baixar PDF</a> --}}
+                                    {{-- <a type="button" href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}">Baixar PDF</a> --}}
                                 </td>
                             </tr>
                             @include('Edital.components_alunos_inativos.modal_legenda')

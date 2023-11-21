@@ -70,30 +70,7 @@
                 @endforeach
             </table>
         </div>
-        <!--
-    <div style="background-color: #F2F2F2; border-radius: 15px; justify-content: center; align-items: center
-            ; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 150px; height: 40%;">
-
-      <div style="align-self: center; margin-right: auto">
-        <br>
-        <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
-      </div>
-      <div style="align-self: center; margin-right: auto">
-        <div style="display: flex; margin: 10px">
-          <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
-        </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
-        </div>
-        <div style="display: flex; margin: 10px">
-          <a><img src="{{asset("images/searchicon.png")}}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-          <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
-        </div>
-      </div>
-    </div>
--->
+       
     </div>
     <br>
     <br>

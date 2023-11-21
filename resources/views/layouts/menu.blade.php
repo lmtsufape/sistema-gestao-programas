@@ -25,7 +25,7 @@
                                 Listar
                                 <span><img src="{{ asset('images/arrow-3.png') }}" alt="mostrar" class="arrow-dd"></span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-dark" role="menu"
+                            <ul class="dropdown-menu menu" role="menu"
                                 aria-labelledby="dropdownMenuButton">
                                 @if (Auth::user()->typage->tipo_servidor != 'servidor')
                                     <li><a class="dropdown-item" href="{{ route('programas.index') }}">Programas</a></li>
@@ -50,7 +50,7 @@
                                 Gerenciar
                                 <span><img src="{{ asset('images/arrow-3.png') }}" alt="mostrar" class="arrow-dd"></span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-dark"role="menu" aria-labelledby="dropdownMenuButton">
+                            <ul class="dropdown-menu menu"role="menu" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item" href="{{ route('edital.index') }}">Editais</a></li>
                             @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')    
                                 <li><a class="dropdown-item" href="{{ route('cursos.index') }}">Cursos</a></li>
@@ -69,7 +69,7 @@
                                     <span><img src="{{ asset('images/arrow-3.png') }}" alt="mostrar"
                                             class="arrow-dd"></span>
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-dark"role="menu"
+                                <ul class="dropdown-menu menu"role="menu"
                                     aria-labelledby="dropdownMenuButton">
                                     <li><a class="dropdown-item" href="{{ url('/edital/create') }}">Editais</a></li>
                                     <li><a class="dropdown-item" href="{{ url('/cursos/create') }}">Cursos</a></li>

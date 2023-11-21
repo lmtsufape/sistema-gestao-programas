@@ -294,6 +294,9 @@ Route::prefix('estagio')->group(function () {
         Route::post('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor'])->name('estagio.documentos.UPE.relatorio-supervisor.store');
 
         // documentos UFAPE
+        Route::get('/{id}/seguro-ufape', [DocumentoEstagioController::class, 'seguro_ufape_form'])->name('estagio.documentos.UFAPE.seguro');
+        Route::post('/{id}/seguro-ufape', [DocumentoEstagioController::class, 'seguro_ufape'])->name('estagio.documentos.UFAPE.seguro.store');
+
         Route::get('/{id}/termo-de-compromisso-ufape', [DocumentoEstagioController::class, 'termo_compromisso_ufape_form'])->name('estagio.documentos.UFAPE.termo-de-compromisso');
         Route::post('/{id}/termo-de-compromisso-ufape', [DocumentoEstagioController::class, 'termo_compromisso_ufape'])->name('estagio.documentos.UFAPE.termo-de-compromisso.store');
 

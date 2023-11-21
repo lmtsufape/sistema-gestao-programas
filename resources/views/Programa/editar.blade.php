@@ -43,7 +43,7 @@
                 <label class="titulopequeno" for="servidor">Servidor<strong style="color: #8B5558">*</strong></label>
                 @foreach ($servidors as $servidor)
                     <div>
-                        <input type="radio" id="servidor_{{ $servidor->id }}" name="servidors[]" value="{{ $servidor->id }}" @if(in_array($servidor->id, $servidoresSelecionados)) checked @endif>
+                        <input type="checkbox" id="servidor_{{ $servidor->id }}" name="servidors[]" value="{{ $servidor->id }}" @if(in_array($servidor->id, $servidoresSelecionados)) checked @endif>
                         <label class="textinho" for="servidor_{{ $servidor->id }}">{{ $servidor->user->name }}</label>
                     </div>
                 @endforeach

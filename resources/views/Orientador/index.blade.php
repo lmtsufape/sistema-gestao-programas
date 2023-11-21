@@ -1,31 +1,6 @@
 @extends('templates.app')
 
 @section('body')
-    <style>
-        pagination {
-            display: inline-block;
-        }
-
-        .pagination a {
-            color: black;
-            float: left;
-            padding: 8px 16px;
-            text-decoration: none;
-            transition: background-color .3s;
-            border: 1px solid #ddd;
-            margin: 10px 4px;
-        }
-
-        .pagination a.active {
-            background-color: #3B864F;
-            color: white;
-            border: 1px solid #3B864F;
-        }
-
-        .pagination a:hover:not(.active) {
-            background-color: #34A853;
-        }
-    </style>
 
 
     @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
@@ -102,7 +77,7 @@
                                 </a> --}}
 
                                         
-                                        <a href=" {{ route('orientadors.edit', ['id' => $orientador->id]) }}">
+                                        <a href=" {{ route('orientadors.edit', ['id' => $orientador->id]) }}" type="button">
                                             <img src="{{ asset('images/pencil.svg') }}" title="Editar"
                                                 alt="Editar professor" style="height: 30px; width: 30px;">
                                         </a>
@@ -128,60 +103,12 @@
                         </tbody>
                     </table>
                 </div>
-                <!--
-                              <div style="background-color: #F2F2F2; border-radius: 10px; margin-top: 7px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-        width: 150px; height: 50%;">
-                                <div style="align-self: center; margin-right: auto">
-                                  <br>
-                                  <h4 class="fw-bold" style="font-size: 15px; color:#2D3875;">Legenda dos ícones:</h4>
-                                </div>
-
-                                <div style="align-self: center; margin-right: auto">
-                                  <div style="display: flex; margin: 10px">
-                                    <a><img src="/images/info.png" alt="Informacoes" style="width: 20px; height: 20px;"></a>
-                                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Informações</p>
-                                  </div>
-                                  {{--  <div style="display: flex; margin: 10px">
-            <a><img src="/images/document.png" alt="Documentos" style="width: 20px; height: 20px;"></a>
-            <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Documentos</p>
-          </div>  --}}
-                                </div>
-                                <div style="align-self: center; margin-right: auto">
-                                  <div style="display: flex; margin: 10px">
-                                    <a><img src="/images/edit-outline-blue.png" alt="Editar" style="width: 20px; height: 20px;"></a>
-                                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Editar</p>
-                                  </div>
-                                  <div style="display: flex; margin: 10px">
-                                    <a><img src="{{ asset('images/delete.png') }}" alt="Deletar orientador" style="width: 20px; height: 20px;"></a>
-                                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Deletar</p>
-                                  </div>
-                                  <div style="display: flex; margin: 10px">
-                                    <a><img src="{{ asset('images/searchicon.png') }}" alt="Procurar" style="width: 20px; height: 20px;"></a>
-                                    <p style="font-style: normal; font-weight: 400; font-size: 15px; line-height: 130%; margin:5px">Pesquisar</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                                  -->
-                {{-- <div style="margin: auto; width: 45%; padding: 10px;">
-        <div class="pagination">
-          <a href="#" style="border-radius: 15px; background: #131833; color: white;">Anterior</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">1</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">2</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">3</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">4</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">...</a>
-          <a href="#" style="border-radius: 15px; background: #34A853; color: white;">15</a>
-          <a href="#" style="border-radius: 15px; background: #131833; color: white;">Próximo</a>
-        </div>
-      </div>  --}}
 
             </div>
             <br>
             <br>
         @endif
         </div>
-
         <script type="text/javascript">
             function exibirModalEditar(id) {
                 $('#modal_edit_' + id).modal('show');

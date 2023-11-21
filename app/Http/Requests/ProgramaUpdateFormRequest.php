@@ -24,7 +24,7 @@ class ProgramaUpdateFormRequest extends FormRequest
     public function rules()
         {
             return [
-                "nome"=>"required|max:25",
+                "nome"=>"required|max:45",
                 "servidors" => 'required|array|min:1',
                 "descricao"=>"required"
             ];
@@ -34,7 +34,7 @@ class ProgramaUpdateFormRequest extends FormRequest
     public function messages(){
         return [
             "required" => "O campo :attribute é obrigatório.",
-            "nome.max" => "O campo nome não pode ter mais que 25 caracteres."
+            "nome.max" => "O campo nome não pode ter mais que 45 caracteres."
         ];
     }
 }
