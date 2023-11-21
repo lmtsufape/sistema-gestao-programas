@@ -28,8 +28,7 @@
         "spatie/laravel-permission": "^5.5",
         "spatie/pdf-to-image": "^1.2",
         "tecnickcom/tcpdf": "^6.6",
-        "twbs/bootstrap": "5.3.0",
-        "vish4395/laravel-file-viewer": "^1.0"
+        "twbs/bootstrap": "5.3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

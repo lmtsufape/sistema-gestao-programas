@@ -116,8 +116,8 @@
                                 @endphp
                                 <td class="align-middle">
                                     <!-- <a>
-                                                                                    <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento" style="height: 30px; width: 30px;">
-                                                                                </a> -->
+                                                                                            <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento" style="height: 30px; width: 30px;">
+                                                                                        </a> -->
                                     @if ($documento_enviado)
                                         @can('aluno')
                                             <!-- Verifica se o usuário tem a função de aluno -->
@@ -142,8 +142,8 @@
 
                                                 @if ($hoje > $dataLimite)
                                                     <!-- <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{ $lista_documento->documento_id }}">
-                                                                                                                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
-                                                                                                                            </a> -->
+                                                                                                                                            <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
+                                                                                                                                        </a> -->
                                                 @elseif ($lista_documento->is_completo == 0)
                                                     <!-- Se o documento não estiver completo -->
                                                     @if (!empty(trim($lista_documento->observacao)))
@@ -235,6 +235,11 @@
                                             target="_blank" id="pdfLink" onclick="return openPdfLinkInNewTab(this.href)">
                                             <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                                 title="Documento preenchido" style="height: 30px; width: 30px;">
+                                        </a>
+                                        <a href="{{ route('visualizar.doc', ['docId' => $lista_documento->documento_id]) }}"
+                                            target="_blank" id="pdfLink" onclick="return openPdfLinkInNewTab(this.href)">
+                                            <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido TEMPORARIO"
+                                                title="Documento preenchido TEMPORARIO" style="height: 30px; width: 30px;">
                                         </a>
 
                                         <iframe id="pdfIframe" style="display: none;"></iframe>
