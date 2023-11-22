@@ -181,6 +181,7 @@ Route::prefix('cursos')->group(function () {
     Route::put('/{id}', [CursoController::class, 'update'])->name('cursos.update');
     Route::delete('/{id}', [CursoController::class, 'destroy'])->name('cursos.delete');
     Route::get('{id}', [CursoController::class, 'show'])->name('cursos.show');
+    Route::get('/{id}/estagios', [CursoController::class, 'listar_estagio_curso'])->name('estagio.listar_estagio_curso');
 });
 
 // Rotas de Cadastrar-se
