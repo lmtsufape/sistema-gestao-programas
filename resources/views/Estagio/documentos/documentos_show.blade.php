@@ -239,7 +239,7 @@
                                         @endcan
                                     @endif
                                     @if ($documento_enviado)
-                                        @if ($rota = 'estagio.documentos.UFAPE.seguro' && $instituicao == 'UFAPE')
+                                        @if ($lista_documento->id == 8 && $instituicao == 'UFAPE')
                                             <a type="button "href="{{ route('estagio.documentos.UFAPE.seguro', ['id' => $lista_documento->estagio_id]) }}"
                                                 target="_blank" id="pdfLink"
                                                 onclick="return openPdfLinkInNewTab(this.href)">
