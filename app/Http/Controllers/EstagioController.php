@@ -249,7 +249,7 @@ class EstagioController extends Controller
             )
             ->get();
 
-        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos", "lista_documentos", "aluno"));
+        return view('Estagio.documentos.documentos_show', compact("estagio", "documentos", "lista_documentos", "aluno", "instituicao"));
     }
 
     public function getEstagioAtual()

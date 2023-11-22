@@ -101,21 +101,21 @@
                     </tr>
                     @include("Edital.components_vinculos.modal_show", ["vinculo" => $vinculo])
 
-                    @include('Orientador.components_alunos.modal_legenda')
+                    {{-- @include('Orientador.components_alunos.modal_legenda')
                     @include('Orientador.components_alunos.modal_show', [
                      'aluno' => $vinculo->aluno,
                      'vinculo' => $vinculo,
                    ])
                     @include('Orientador.components_alunos.modal_documents', [
                       'aluno' => $vinculo->aluno,
-                      'vinculo' => $vinculo,
+                      'vinculo' => $vinculo,c
                     ])
 
                     @include('Orientador.components_alunos.modal_delete', [
                           'aluno' => $vinculo->aluno,
                           'edital' => $vinculo->edital,
                           'vinculo' => $vinculo,
-                     ])
+                     ]) --}}
                     @endforeach
                     </tbody>
             </table>
