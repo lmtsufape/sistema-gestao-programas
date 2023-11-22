@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             InstituicaoSeeder::class,
             EstagioSeeder::class,
             SiglaInstituicaoSeeder::class,
+            AddMaisDocumentosALista::class,
         ]);
     }
 }

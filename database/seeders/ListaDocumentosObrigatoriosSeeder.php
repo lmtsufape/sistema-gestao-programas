@@ -103,19 +103,6 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
             'instituicao' => "UFAPE"
-        ]);
-
-        // $documento = ListaDocumentosObrigatorios::create([
-        //     'titulo' => "Termo Aditivo",
-        //     'descricao_documento' => "Ficha de frequência das atividades realizadas pelo aluno.",
-        //     'tipo_entrega' => "final",
-        
-        //     'tipo_estagio' => "eo",
-        //     'instituicao' => "UFAPE"
-        // ]);
-
-
-
-        
+        ]);    
     }
 }
