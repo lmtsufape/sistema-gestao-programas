@@ -102,14 +102,14 @@
             <br>
             <input class="boxcadastrar" type="text" name="nome_aluno" id="nome_aluno"
                 placeholder="Digite o nome do Aluno"
-                value="{{ $dados['nome_aluno'] ?? '' }}" required><br><br>
+                value="{{ $aluno->nome_aluno }}" readonly required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="cpf" class="titulopequeno">CPF do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cpf" id="cpf"
                 placeholder="Digite o CPF do Aluno"
-                value="{{ $dados['cpf'] ?? '' }}" required><br><br>
+                value="{{ $aluno->cpf }}" readonly required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="rg" class="titulopequeno">RG do aluno<strong style="color: #8B5558">*</strong></label>
@@ -186,14 +186,14 @@
             <br>
             <input class="boxcadastrar" type="text" name="aluno_curso" id="aluno_curso"
                 placeholder="Digite o curso do Aluno"
-                value="{{ $dados['aluno_curso'] ?? '' }}" required><br><br>
+                value="{{ $curso->nome }}" readonly required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="aluno_curso" class="titulopequeno">Componente Curricular<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="disciplina" id="disciplina"
                 placeholder="Digite o nome da componente curricular"
-                value="{{ $dados['disciplina'] ?? '' }}" required><br><br>
+                value="{{ $disciplina->nome }}" readonly required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="aluno_curso" class="titulopequeno">Período<strong style="color: #8B5558">*</strong></label>
@@ -219,14 +219,14 @@
 
             <label for="data_inicio" class="titulopequeno">Data de Início do Estágio<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="date" name="data_inicio" id="data_inicio"
-                value="{{ $dados['data_inicio'] ?? '' }}" required><br><br>
+            <input class="boxcadastrar" type="text" name="data_inicio" id="data_inicio"
+                value="{{ $estagio->data_inicio }}" readonly required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="data_fim" class="titulopequeno">Data de Término do Estágio<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="date" name="data_fim" id="data_fim"
-                value="{{ $dados['data_fim'] ?? '' }}" required><br><br>
+            <input class="boxcadastrar" type="text" name="data_fim" id="data_fim"
+                value="{{ $estagio->data_fim }}" readonly required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label class="titulopequeno">Carga horária na UFAPE:</label>
@@ -335,9 +335,6 @@
             <input class="boxcadastrar" type="text" name="horario_estagio_sexta" id="horario_estagio_sexta"
                 placeholder="Digite o horário de estágio (Sexta)"
                 value="{{ $dados['horario_estagio_sexta'] ?? '' }}"><br><br>
-
-
-            <!-- Adicione os outros campos de horário de estágio conforme necessário -->
 
             <!-- Cláusula 4 -->
             <label for="atividades_estagiario" class="titulopequeno">Atividades do estagiário<strong style="color: #8B5558">*</strong></label>

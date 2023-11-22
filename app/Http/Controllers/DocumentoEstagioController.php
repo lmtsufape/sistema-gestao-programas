@@ -534,10 +534,21 @@ class DocumentoEstagioController extends Controller
     {
         $estagio = Estagio::findOrFail($id);
         $aluno = Aluno::findOrFail($estagio->aluno_id);
-        $orientador = Orientador::findOrFail($estagio->orientador_id);
+        $disciplina = Disciplina::findOrFail($estagio->disciplina_id);
         $curso = Curso::findOrFail($estagio->curso_id);
 
-        return view('Estagio.documentos.UFAPE.termo_de_compromisso', compact("estagio"));
+        $id_estagio = $estagio->id;
+
+        if ($request->query("edit") == true) {
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 9)
+                ->first();
+
+            $dados = json_decode($documento->dados, true);
+            return view('Estagio.documentos.UFAPE.termo_de_compromisso', compact("estagio","aluno","curso","disciplina","dados"));
+        }
+
+        return view('Estagio.documentos.UFAPE.termo_de_compromisso', compact("estagio","aluno","curso","disciplina"));
     }
 
     public function termo_compromisso_ufape(Request $request){
