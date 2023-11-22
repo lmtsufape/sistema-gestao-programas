@@ -210,13 +210,6 @@
                 value="{{ $dados['departamento'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="endereco_concedente" class="titulopequeno">Endereço da concedente<strong style="color: #8B5558">*</strong></label>
-            <br>
-            <input class="boxcadastrar" type="text" name="endereco_concedente" id="endereco_concedente"
-                placeholder="Digite o endereço da Concedente"
-                value="{{ $dados['endereco_concedente'] ?? '' }}" required><br><br>
-            <div class="invalid-feedback"> Por favor preencha esse campo</div>
-
             <label for="data_inicio" class="titulopequeno">Data de Início do Estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="data_inicio" id="data_inicio"
