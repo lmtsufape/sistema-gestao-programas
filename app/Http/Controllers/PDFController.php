@@ -1875,6 +1875,8 @@ class PDFController extends Controller
         $templateProcessor->setValue('telefone', $dados['telefone']);
 
         $templateProcessor->setValue('aluno_curso', $dados['aluno_curso']);
+        $templateProcessor->setValue('disciplina', $dados['disciplina']);
+        $templateProcessor->setValue('periodo', $dados['periodo']);
         $templateProcessor->setValue('departamento', $dados['departamento']);
         $templateProcessor->setValue('endereco_concedente', $dados['endereco_concedente']);
         $templateProcessor->setValue('data_inicio', $dados['data_inicio']);

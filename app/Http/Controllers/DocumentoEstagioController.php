@@ -533,6 +533,9 @@ class DocumentoEstagioController extends Controller
     public function termo_compromisso_ufape_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
+        $aluno = Aluno::findOrFail($estagio->aluno_id);
+        $orientador = Orientador::findOrFail($estagio->orientador_id);
+        $curso = Curso::findOrFail($estagio->curso_id);
 
         return view('Estagio.documentos.UFAPE.termo_de_compromisso', compact("estagio"));
     }
@@ -569,6 +572,8 @@ class DocumentoEstagioController extends Controller
 
             //Cláusula 2
             'aluno_curso' => $request->input('aluno_curso'),
+            'disciplina' => $request->input('disciplina'),
+            'periodo' => $request->input('periodo'),
 
             //Cláusula 3
             'departamento' => $request->input('departamento'),
@@ -590,7 +595,7 @@ class DocumentoEstagioController extends Controller
             'horario_ufape_sexta' => $request->input('horario_ufape_sexta') ?? null,
 
             'segunda_estagio' => in_array('segunda', $request->input('dias_estagio', [])),
-            'terca_estagio' => in_array('terca', $request->input('dias_estagio', [])),
+            'terca_estagio' => in_array('terca' , $request->input('dias_estagio', [])),
             'quarta_estagio' => in_array('quarta', $request->input('dias_estagio', [])),
             'quinta_estagio' => in_array('quinta', $request->input('dias_estagio', [])),
             'sexta_estagio' => in_array('sexta', $request->input('dias_estagio', [])),

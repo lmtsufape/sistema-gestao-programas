@@ -189,6 +189,19 @@
                 value="{{ $dados['aluno_curso'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
+            <label for="aluno_curso" class="titulopequeno">Componente Curricular<strong style="color: #8B5558">*</strong></label>
+            <br>
+            <input class="boxcadastrar" type="text" name="disciplina" id="disciplina"
+                placeholder="Digite o nome da componente curricular"
+                value="{{ $dados['disciplina'] ?? '' }}" required><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
+
+            <label for="aluno_curso" class="titulopequeno">Período<strong style="color: #8B5558">*</strong></label>
+            <br>
+            <input class="boxcadastrar" type="text" name="periodo" id="periodo"
+                placeholder="Digite o seu período"
+                value="{{ $dados['periodo'] ?? '' }}" required><br><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
             <!-- Cláusula 3 -->
             <label for="departamento" class="titulopequeno">Departamento<strong style="color: #8B5558">*</strong></label>
             <br>
