@@ -71,6 +71,10 @@ class PDFController extends Controller
                 $documentPath2 = storage_path('app/docs/frequencia_residente/1.png');
                 return $this->editFrequenciaResidente([$documentPath1, $documentPath2], $dados);
                 break;
+            case 11:
+                $path = storage_path('app/docs/UFAPE/ficha_frequencia/ficha_frequencia.docx');
+                return $this->edit_ficha_frequencia_ufape($path, $dados);
+                break;
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
         }
@@ -543,10 +547,10 @@ class PDFController extends Controller
         $templateProcessor->setValue('representantelegal_estagio', $dados['representantelegal_estagio']);
         $templateProcessor->setValue('cargo_representantelegal', $dados['cargo_representantelegal']);
         $templateProcessor->setValue('horario_estagio', $dados['horario_estagio']);
-        $path = storage_path('app/docs/pdfs/temp/tempDoc.docx');
-        $templateProcessor->saveAs($path);
+        $temp_path = storage_path('app/docs/pdfs/temp/tempDoc.docx');
+        $templateProcessor->saveAs($temp_path);
 
-        $this->salvar_no_banco($path, $dados);
+        $this->salvar_no_banco($temp_path, $dados);
 
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
@@ -1837,6 +1841,32 @@ class PDFController extends Controller
         $pdf->close();
 
         return $pdfFilePath;
+    }
+
+    public function edit_ficha_frequencia_ufape($path, $dados) {
+
+        $tp = new TemplateProcessor(storage_path('app/docs/UFAPE/ficha_frequencia.docx'));
+        $tp->setValue('instituicao', $dados['instituicao']);
+        $tp->setValue('nome_estagiario', $dados['nome_estagiario']);
+        $tp->setValue('empresa', $dados['empresa']);
+        $tp->setValue('mes_ano_ref', $dados['mes_ano_ref']);
+        $tp->setValue('matricula', $dados['matricula']);
+        $tp->setValue('cnpj', $dados['cnpj']);
+        $tp->setValue('curso', $dados['curso']);
+        if ($dados['tipo'] == 'eo') {
+            $tp->setValue('eo', 'X');
+            $tp->setValue('eno', ' ');
+        } else {
+            $tp->setValue('eno', 'X');
+            $tp->setValue('eo', ' ');
+        }
+
+        $temp_path = storage_path('app/docs/pdfs/temp/tempDoc.docx');
+        $tp->saveAs($temp_path);
+
+        $this->salvar_no_banco($temp_path, $dados);
+
+        return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
 
