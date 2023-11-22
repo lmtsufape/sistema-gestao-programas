@@ -44,7 +44,7 @@
                 @if (auth()->user()->typage->tipo_servidor == 'gestor')
                 @endif
                 <h2 class="second-title">
-                    Estágios por Curso
+                    Estágios 
                 </h2>
                 <hr>
                 <br>
