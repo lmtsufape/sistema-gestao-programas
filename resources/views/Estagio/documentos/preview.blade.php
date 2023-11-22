@@ -7,7 +7,11 @@
     <div class="fundocadastrar">
         <div class="row" style="align-content: left;">
             <h1 class="titulogrande">
+                Pré-visualização do documento:
                 {{ $documento->lista_documentos_obrigatorios->titulo . ' - ' . $documento->aluno->nome_aluno }}</h1>
+            <h2 class="titulopequeno">- Alguns elementos do documento podem encontrar-se fora de posição ou ocultos devido à
+                pré-visualização.</h2>
+            <h2 class="titulopequeno">- Realize o download no final da página para visualização completa.</h2>
         </div>
 
         <div class= "border border-dark rounded row d-flex justify-content-center" id="container"></div>
