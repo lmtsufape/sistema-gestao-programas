@@ -3,7 +3,7 @@
 @section('body')
     <div class="fundocadastrar">
         <div class="row" style="align-content: left;">
-            <h1 class="titulogrande">Carta de Aceite do Supervisor</h1>
+            <h1 class="titulogrande">Carta de aceite do supervisor</h1>
         </div>
 
         @if (Session::has('pdf_generated_success'))
@@ -17,7 +17,7 @@
         <form action="{{ route('estagio.documentos.UFAPE.carta-aceite-supervisor.store', ['id' => $estagio->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <label for="Arquivo" class="titulopequeno">Insira o documento já preenchido pelo Supervisor<strong style="color: #8B5558">*</strong></label>
+            <label for="Arquivo" class="titulopequeno">Insira o documento já preenchido pelo supervisor<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="file" name="arquivo" id="arquivo" required><br>
             <div class="invalid-feedback">Por favor, anexe um arquivo</div><br>
