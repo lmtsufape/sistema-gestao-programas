@@ -119,14 +119,14 @@
                 value="{{ $dados['rg'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="org_expedicao" class="titulopequeno">Órgão de Expedição do RG<strong style="color: #8B5558">*</strong></label>
+            <label for="org_expedicao" class="titulopequeno">Órgão de expedição do RG<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="org_expedicao" id="org_expedicao"
                 placeholder="Digite o órgão de expedição do RG"
                 value="{{ $dados['org_expedicao'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="nascimento" class="titulopequeno">Data de Nascimento do aluno<strong style="color: #8B5558">*</strong></label>
+            <label for="nascimento" class="titulopequeno">Data de nascimento do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="date" name="nascimento" id="nascimento"
                 value="{{ $dados['nascimento'] ?? '' }}" required><br><br>
@@ -189,7 +189,7 @@
                 value="{{ $curso->nome }}" readonly required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="aluno_curso" class="titulopequeno">Componente Curricular<strong style="color: #8B5558">*</strong></label>
+            <label for="aluno_curso" class="titulopequeno">Componente curricular<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="disciplina" id="disciplina"
                 placeholder="Digite o nome da componente curricular"
@@ -210,13 +210,13 @@
                 value="{{ $dados['departamento'] ?? '' }}" required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="data_inicio" class="titulopequeno">Data de Início do Estágio<strong style="color: #8B5558">*</strong></label>
+            <label for="data_inicio" class="titulopequeno">Data de início do estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="data_inicio" id="data_inicio"
                 value="{{ $estagio->data_inicio }}" readonly required><br><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="data_fim" class="titulopequeno">Data de Término do Estágio<strong style="color: #8B5558">*</strong></label>
+            <label for="data_fim" class="titulopequeno">Data de término do estágio<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="data_fim" id="data_fim"
                 value="{{ $estagio->data_fim }}" readonly required><br><br>
