@@ -447,7 +447,7 @@ class DocumentoEstagioController extends Controller
                 // dd($arquivo_pdf);
 
                 $arquivo_pdf_blob = $arquivo_pdf->get();
-                $documento->pdf = $arquivo_pdf_blob;
+                $documento->pdf = base64_encode($arquivo_pdf_blob);
 
                 $documento->lista_documentos_obrigatorios_id = $listaDocumentosId;
                 $documento->dados = null;
@@ -476,7 +476,7 @@ class DocumentoEstagioController extends Controller
         $documento = DocumentoEstagio::where('estagio_id', $estagio->id)
             ->where('lista_documentos_obrigatorios_id', 8)
             ->first();
-        if($documento){
+        if ($documento) {
             $documento->is_visualizado = 1;
             $documento->save();
 
@@ -484,11 +484,12 @@ class DocumentoEstagioController extends Controller
 
             return view('Estagio.documentos.UFAPE.seguro', compact("estagio", "dados"));
         } else {
-            return view('Estagio.documentos.UFAPE.seguro', compact("estagio","aluno","curso"));
+            return view('Estagio.documentos.UFAPE.seguro', compact("estagio", "aluno", "curso"));
         }
     }
 
-    public function seguro_ufape($id, Request $request){
+    public function seguro_ufape($id, Request $request)
+    {
         $dados = [
             'email' => $request->input('email'),
             'aluno_nome' => $request->input('aluno_nome'),
@@ -503,16 +504,16 @@ class DocumentoEstagioController extends Controller
             'email_supervisor' => $request->input('email_supervisor'),
             'email_orientador' => $request->input('email_orientador'),
         ];
-        
+
 
         $estagio = Estagio::findorfail($id);
         $alunoid = $estagio->aluno_id;
 
         $doc = DocumentoEstagio::where('estagio_id', $id)
-                   ->where('aluno_id', $alunoid)
-                   ->first();
+            ->where('aluno_id', $alunoid)
+            ->first();
 
-        if ($doc){
+        if ($doc) {
             $doc->dados = json_encode($dados);
             $doc->save();
         } else {
@@ -527,7 +528,7 @@ class DocumentoEstagioController extends Controller
             $documento->save();
         }
 
-        return redirect()->route('estagio.documentos',['id' => $id]);
+        return redirect()->route('estagio.documentos', ['id' => $id]);
     }
 
     public function termo_compromisso_ufape_form($id, Request $request)
@@ -675,7 +676,7 @@ class DocumentoEstagioController extends Controller
                 // dd($arquivo_pdf);
 
                 $arquivo_pdf_blob = $arquivo_pdf->get();
-                $documento->pdf = $arquivo_pdf_blob;
+                $documento->pdf = base64_encode($arquivo_pdf_blob);
 
                 $documento->lista_documentos_obrigatorios_id = $listaDocumentosId;
                 $documento->dados = null;
@@ -697,10 +698,40 @@ class DocumentoEstagioController extends Controller
     public function ficha_frequencia_ufape_form($id, Request $request)
     {
         $estagio = Estagio::findOrFail($id);
+        $aluno = Aluno::findOrFail($estagio->aluno_id);
+        $curso = Curso::findOrFail($aluno->curso_id);
+        $id_estagio = $estagio->id;
 
-        return view('Estagio.documentos.UFAPE.ficha_frequencia', compact("estagio"));
+        if ($request->query("edit") == true) {
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 11)
+                ->first();
+
+            $dados = json_decode($documento->dados, true);
+            return view('Estagio.documentos.UFAPE.ficha_frequencia', compact("estagio", "aluno", "curso", "dados"));
+        }
+
+        return view('Estagio.documentos.UFAPE.ficha_frequencia', compact("estagio", "aluno", "curso"));
     }
 
+    public function ficha_frequencia_ufape(Request $request)
+    {
+
+        $pdf = new PDFController;
+        $dados = [
+            'instituicao' => $request->input('instituicao'),
+            'nome_estagiario' => $request->input('nome_estagiario'),
+            'unidade' => $request->input('unidade'),
+            'empresa' => $request->input('empresa'),
+            'mes_ano_ref' => $request->input('mes_ano_ref'),
+            'matricula' => $request->input('matricula'),
+            'cnpj' => $request->input('cnpj'),
+            'curso' => $request->input('curso'),
+            'tipo' => $request->input('checkTipo')
+        ];
+
+        return $pdf->editImage(11, $dados);
+    }
 
 
     public function aprovar_documento($id)
@@ -800,16 +831,16 @@ class DocumentoEstagioController extends Controller
     public function download($nome, $id)
     {
         $estagio = Estagio::findorfail($id);
-    
+
         $aluno = Aluno::findorfail($estagio->aluno_id);
         $curso = Curso::findorfail($estagio->curso_id);
         $disciplina = Disciplina::findorfail($estagio->disciplina_id);
-    
+
         $nome_aluno = $aluno->nome_aluno;
         $nome_curso = $curso->nome;
         $nome_disciplina = $disciplina->nome;
         $tipo_estagio_sigla = $estagio->tipo;
-    
+
         if ($tipo_estagio_sigla === 'eo') {
             $tipo_estagio = 'Obrigatório';
         } elseif ($tipo_estagio_sigla === 'eno') {
@@ -817,16 +848,16 @@ class DocumentoEstagioController extends Controller
         }
 
         $pdfController = new PDFController;
-    
+
         $path = storage_path('app/docs/relatorio_supervisor/0.png');
         $pdfFilePath = $pdfController->gerarPDF_Supervisor_UPE($path, $nome_aluno, $nome_curso, $nome_disciplina, $tipo_estagio); // Gere o PDF e obtenha o caminho do arquivo
-    
+
         if ($pdfFilePath === false) {
             return response()->json(['error' => 'Erro ao gerar o PDF'], 500);
         }
-    
+
         $fileName = $nome . '.pdf';
-    
+
         return response()->file($pdfFilePath, ['Content-Type' => 'application/pdf', 'Content-Disposition' => "inline; filename=\"$fileName\""]);
-    }    
+    }
 }

@@ -76,7 +76,7 @@
 
                                 </a> --}}
 
-                                        
+
                                         <a href=" {{ route('orientadors.edit', ['id' => $orientador->id]) }}" type="button">
                                             <img src="{{ asset('images/pencil.svg') }}" title="Editar"
                                                 alt="Editar professor" style="height: 30px; width: 30px;">
@@ -94,8 +94,8 @@
                                 <tr>
                                     {{--  nao apagar o tr  --}}
                                 </tr>
-                                @include('Orientador.components.modal_legenda')
                                 @include('Orientador.components.modal_show', ['orientador' => $orientador])
+                                @include('Orientador.components.modal_legenda')
                                 @include('Orientador.components.modal_delete', [
                                     'orientador' => $orientador,
                                 ])
