@@ -15,7 +15,7 @@ class AddMaisDocumentosALista extends Seeder
     public function run()
     {
         $documento = ListaDocumentosObrigatorios::create([
-            'titulo' => "Termo Aditivo",
+            'titulo' => "Termo aditivo",
             'descricao_documento' => "Termo aditivo do estágio.",
             'tipo_entrega' => "inicial",
             'tipo_estagio' => "eo",

@@ -72,8 +72,12 @@ class PDFController extends Controller
                 return $this->editFrequenciaResidente([$documentPath1, $documentPath2], $dados);
                 break;
             case 11:
-                $path = storage_path('app/docs/UFAPE/ficha_frequencia/ficha_frequencia.docx');
+                $path = storage_path('app/docs/UFAPE/ficha_frequencia.docx');
                 return $this->edit_ficha_frequencia_ufape($path, $dados);
+                break;
+            case 12:
+                $path = storage_path('app/docs/UFAPE/termo_aditivo.docx');
+                return $this->edit_termo_aditivo_ufape($path, $dados);
                 break;
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
@@ -1843,9 +1847,10 @@ class PDFController extends Controller
         return $pdfFilePath;
     }
 
-    public function edit_ficha_frequencia_ufape($path, $dados) {
+    public function edit_ficha_frequencia_ufape($path, $dados)
+    {
 
-        $tp = new TemplateProcessor(storage_path('app/docs/UFAPE/ficha_frequencia.docx'));
+        $tp = new TemplateProcessor($path);
         $tp->setValue('instituicao', $dados['instituicao']);
         $tp->setValue('nome_estagiario', $dados['nome_estagiario']);
         $tp->setValue('empresa', $dados['empresa']);
@@ -1869,6 +1874,47 @@ class PDFController extends Controller
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
+    public function edit_termo_aditivo_ufape($path, $dados)
+    {
+
+        $tp = new TemplateProcessor($path);
+        //concedente
+        $tp->setValue('concedente', $dados['concedente']);
+        $tp->setValue('cnpj_c', $dados['cnpj_c']);
+        $tp->setValue('endereco_c', $dados['endereco_c']);
+        $tp->setValue('bairro_c', $dados['bairro_c']);
+        $tp->setValue('cep_c', $dados['cep_c']);
+        $tp->setValue('cidade_c', $dados['cidade_c']);
+        $tp->setValue('estado_c', $dados['estado_c']);
+        $tp->setValue('representante_c', $dados['representante_c']);
+        $tp->setValue('cargo_c', $dados['cargo_c']);
+        $tp->setValue('email_c', $dados['email_c']);
+        $tp->setValue('telefone_c', $dados['telefone_c']);
+
+        //estagiario
+        $tp->setValue('nome_aluno', $dados['nome_aluno']);
+        $tp->setValue('cpf', $dados['cpf']);
+        $tp->setValue('rg', $dados['rg']);
+        $tp->setValue('orgao_expd_uf', $dados['orgao_expd_uf']);
+        $tp->setValue('data_nasc', $dados['data_nasc']);
+        $tp->setValue('endereco_e', $dados['endereco_e']);
+        $tp->setValue('bairro_e', $dados['bairro_e']);
+        $tp->setValue('cep_e', $dados['cep_e']);
+        $tp->setValue('cidade_e', $dados['cidade_e']);
+        $tp->setValue('estado_e', $dados['estado_e']);
+        $tp->setValue('email_e', $dados['email_e']);
+        $tp->setValue('telefone_e', $dados['telefone_e']);
+
+        //redação	
+        $tp->setValue('redacao', $dados['redacao']);
+
+        $temp_path = storage_path('app/docs/pdfs/temp/tempDoc.docx');
+        $tp->saveAs($temp_path);
+
+        $this->salvar_no_banco($temp_path, $dados);
+
+        return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
+    }
 
     public function getListaDeDocumentosId()
     {
