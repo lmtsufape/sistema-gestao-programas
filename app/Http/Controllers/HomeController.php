@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Programa;
 use Illuminate\Http\Request;
 use App\Models\Edital;
+use App\Models\Estagio;
+use App\Models\Curso;
 
 class HomeController extends Controller {
 
@@ -18,6 +20,7 @@ class HomeController extends Controller {
                 $programas = $user->programas()->get();
             }
         }
-        return view('home', compact('programas'));
+        $cursos = Curso::all();
+        return view('home', compact('programas', 'cursos'));
     }
 }

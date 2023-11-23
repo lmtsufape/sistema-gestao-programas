@@ -38,6 +38,32 @@
                 </div>
                 <br>
             </div>
+            <div class="container-fluid">
+
+
+                @if (auth()->user()->typage->tipo_servidor == 'gestor')
+                @endif
+                <h2 class="second-title">
+                    Estágios 
+                </h2>
+                <hr>
+                <br>
+                <div class="buttons-organization -gestor">
+                    @foreach ($cursos as $index => $curso)
+                        @if ($index % 2 == 0)
+                            <button class="botao-maior" href="{{ url('/cursos/' . $curso->id . '/estagios') }}"
+                                onclick="window.location.href='{{ url('/cursos/' . $curso->id . '/estagios') }}'">
+                            @else
+                                <button class="botao-maior" href="{{ url('/cursos/' . $curso->id . '/estagios') }}"
+                                    onclick="window.location.href='{{ url('/cursos/' . $curso->id . '/estagios') }}'">
+                        @endif
+                        <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
+                        <p class="third-title">{{ $curso->nome }}</p>
+                        </button>
+                    @endforeach
+                </div>
+                <br>
+            </div>
         @endif
 
 

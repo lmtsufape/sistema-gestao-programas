@@ -26,4 +26,8 @@ class Curso extends Model
         return $this->belongsToMany(Orientador::class, 'orientador_cursos');
     
     }
+
+    public function estagios(){
+        return $this->hasMany(Estagio::class, "curso_id");
+    }
 }

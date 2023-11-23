@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Disciplina;
+use App\Models\Estagio;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use App\Http\Requests\CursoStoreFormRequest;
@@ -139,5 +140,14 @@ class CursoController extends Controller
             DB::rollback();
             return redirect()->back()->withErrors( "Falha ao deletar curso. tente novamente mais tarde." );
         }
+    }
+
+    public function listar_estagio_curso($id)
+    {
+        $curso = Curso::find($id);
+        $cursos = Curso::all();
+        $estagios = Estagio::where("curso_id", $id)->orderBy('created_at', 'desc')->paginate(10);
+
+        return view("Estagio.index", compact("estagios", "cursos"));
     }
 }
