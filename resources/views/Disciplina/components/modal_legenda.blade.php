@@ -7,17 +7,17 @@
             </div>
             <div class="modal-body" style="text-align: start">
                 <div class="mb-3">
-                    <img src="{{ asset('images/information_red.svg') }}" alt="Info aluno"
+                    <img src="{{ asset('images/information_red.svg') }}" alt="Info disciplina"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Informações da disciplina</span>
                 </div>
                 <div class="mb-3">
-                    <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar aluno"
+                    <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar disciplina"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Editar a disciplina</span>
                 </div>
                 <div class="mb-3">
-                    <img src="{{ asset('images/delete_red.svg') }}" alt="Deletar aluno"
+                    <img src="{{ asset('images/delete_red.svg') }}" alt="Deletar disciplina"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Deletar a disciplina</span>
                 </div>
