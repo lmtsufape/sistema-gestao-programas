@@ -112,6 +112,12 @@
                                         case 11:
                                             $rota = 'estagio.documentos.UFAPE.ficha-frequencia';
                                             break;
+                                        case 12:
+                                            $rota = 'estagio.documentos.UFAPE.termo-aditivo';
+                                            break;
+                                        case 13:
+                                            $rota = 'estagio.documentos.UFAPE.ficha-frequencia';
+                                            break;
                                         default:
                                             $rota = null;
                                             break;
@@ -119,8 +125,8 @@
                                 @endphp
                                 <td class="align-middle">
                                     <!-- <a>
-                                                                                                                    <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento" style="height: 30px; width: 30px;">
-                                                                                                                </a> -->
+                                                                                                                            <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento" style="height: 30px; width: 30px;">
+                                                                                                                        </a> -->
                                     @if ($documento_enviado)
                                         @can('aluno')
                                             <!-- Verifica se o usuário tem a função de aluno -->
@@ -145,8 +151,8 @@
 
                                                 @if ($hoje > $dataLimite)
                                                     <!-- <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{ $lista_documento->documento_id }}">
-                                                                                                                                                                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
-                                                                                                                                                                            </a> -->
+                                                                                                                                                                                            <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
+                                                                                                                                                                                        </a> -->
                                                 @elseif ($lista_documento->is_completo == 0)
                                                     <!-- Se o documento não estiver completo -->
                                                     @if (!empty(trim($lista_documento->observacao)))

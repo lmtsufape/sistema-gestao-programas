@@ -307,6 +307,9 @@ Route::prefix('estagio')->group(function () {
         Route::get('/{id}/ficha-frequencia-ufape', [DocumentoEstagioController::class, 'ficha_frequencia_ufape_form'])->name('estagio.documentos.UFAPE.ficha-frequencia');
         Route::post('/{id}/ficha-frequencia-ufape', [DocumentoEstagioController::class, 'ficha_frequencia_ufape'])->name('estagio.documentos.UFAPE.ficha-frequencia.store');
 
+        Route::get('/{id}/termo-aditivo-ufape', [DocumentoEstagioController::class, 'termo_aditivo_ufape_form'])->name('estagio.documentos.UFAPE.termo-aditivo');
+        Route::post('/{id}/termo-aditivo-ufape', [DocumentoEstagioController::class, 'termo_aditivo_ufape'])->name('estagio.documentos.UFAPE.termo-aditivo.store');
+
         Route::get('/visualizar-pdf/{docId}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
         
         //rota para visualizar os doc que foram convertidos para nova forma de preencher

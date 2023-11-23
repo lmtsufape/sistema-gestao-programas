@@ -653,7 +653,7 @@ class DocumentoEstagioController extends Controller
 
             // $pdfController = new PDFController();
             // $listaDocumentosId = $pdfController->getListaDeDocumentosId();
-            $listaDocumentosId = 9;
+            $listaDocumentosId = 10;
 
             $documento = DocumentoEstagio::where('estagio_id', $estagio->id)
                 ->where('aluno_id', $aluno->id)
@@ -731,6 +731,65 @@ class DocumentoEstagioController extends Controller
         ];
 
         return $pdf->editImage(11, $dados);
+    }
+
+    public function termo_aditivo_ufape_form($id, Request $request)
+    {
+        $estagio = Estagio::findOrFail($id);
+        $aluno = Aluno::findOrFail($estagio->aluno_id);
+        $curso = Curso::findOrFail($aluno->curso_id);
+        $id_estagio = $estagio->id;
+
+        if ($request->query("edit") == true) {
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 12)
+                ->first();
+
+            $dados = json_decode($documento->dados, true);
+            return view('Estagio.documentos.UFAPE.termo_aditivo', compact("estagio", "aluno", "curso", "dados"));
+        }
+
+        return view('Estagio.documentos.UFAPE.termo_aditivo', compact("estagio", "aluno", "curso"));
+    }
+
+    public function termo_aditivo_ufape(Request $request)
+    {
+
+        $pdf = new PDFController;
+        $data = $request->input('data_nasc');
+        $data = date('d/m/Y', strtotime($data));
+
+        $dados = [
+            //concedente
+            'concedente' => $request->input('concedente'),
+            'cnpj_c' => $request->input('cnpj_c'),
+            'endereco_c' => $request->input('endereco_c'),
+            'bairro_c' => $request->input('bairro_c'),
+            'cep_c' => $request->input('cep_c'),
+            'cidade_c' => $request->input('cidade_c'),
+            'estado_c' => $request->input('estado_c'),
+            'representante_c' => $request->input('representante_c'),
+            'cargo_c' => $request->input('cargo_c'),
+            'email_c' => $request->input('email_c'),
+            'telefone_c' => $request->input('telefone_c'),
+            //estagiario
+            'nome_aluno' => $request->input('nome_aluno'),
+            'cpf' => $request->input('cpf'),
+            'rg' => $request->input('rg'),
+            'orgao_expd_uf' => $request->input('orgao_expd_uf'),
+            
+            'data_nasc' => $data,
+            'endereco_e' => $request->input('endereco_e'),
+            'bairro_e' => $request->input('bairro_e'),
+            'cep_e' => $request->input('cep_e'),
+            'cidade_e' => $request->input('cidade_e'),
+            'estado_e' => $request->input('estado_e'),
+            'email_e' => $request->input('email_e'),
+            'telefone_e' => $request->input('telefone_e'),
+            'redacao' => $request->input('redacao')
+        ];
+
+        return $pdf->editImage(12, $dados);
     }
 
 

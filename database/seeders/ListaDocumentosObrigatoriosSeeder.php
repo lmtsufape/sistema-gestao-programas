@@ -50,7 +50,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
 
         $documento = ListaDocumentosObrigatorios::create([
             'titulo' => "Relatório de acompanhamento do campo de estágio",
-            'descricao_documento' => "Relatório de Acompanhamento do Campo de Estágio.",
+            'descricao_documento' => "Relatório de acompanhamento do campo de estágio.",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
             'instituicao' => "UPE"
@@ -66,7 +66,7 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
 
         $documento = ListaDocumentosObrigatorios::create([
             'titulo' => "Formulário de frequência do residente na concedente",
-            'descricao_documento' => "Formulário de Frequência do Residente na Concedente.",
+            'descricao_documento' => "Formulário de frequência do residente na concedente.",
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
             'instituicao' => "UPE"
@@ -103,19 +103,6 @@ class ListaDocumentosObrigatoriosSeeder extends Seeder
             'tipo_entrega' => "final",
             'tipo_estagio' => "eo",
             'instituicao' => "UFAPE"
-        ]);
-
-        // $documento = ListaDocumentosObrigatorios::create([
-        //     'titulo' => "Termo Aditivo",
-        //     'descricao_documento' => "Ficha de frequência das atividades realizadas pelo aluno.",
-        //     'tipo_entrega' => "final",
-        
-        //     'tipo_estagio' => "eo",
-        //     'instituicao' => "UFAPE"
-        // ]);
-
-
-
-        
+        ]);    
     }
 }
