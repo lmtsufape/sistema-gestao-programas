@@ -1971,6 +1971,8 @@ class PDFController extends Controller
         $templateProcessor->saveAs($path);
 
         $this->salvar_no_banco($path, $dados);
+
+        return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
     public function edit_ficha_frequencia_ufape($path, $dados) {
