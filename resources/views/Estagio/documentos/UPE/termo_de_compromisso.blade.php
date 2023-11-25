@@ -50,7 +50,7 @@
 
             <label for="cnpj" class="titulopequeno">CNPJ<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="cnpj" id="cnpj" 
+            <input class="boxcadastrar" type="text" name="cnpj" pattern="[0-9]*" title="Somente números são permitidos" required id="cnpj" 
                 placeholder=" Digite o CNPJ da unidade concedente"
                 value="{{ $dados['cnpj'] ?? '' }}"
                 required><br><br>
@@ -70,7 +70,7 @@
 
             <label for="numero" class="titulopequeno">Número<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="numero" id="numero" 
+            <input class="boxcadastrar" type="text" name="numero"  pattern="[0-9]*" title="Somente números são permitidos" required id="numero" 
                 placeholder=" Digite o número do endereço da unidade concedente"
                 value="{{ $dados['numero'] ?? '' }}"
                 required><br><br>
@@ -83,7 +83,7 @@
 
             <label for="cep" class="titulopequeno">CEP<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="cep" id="cep" 
+            <input class="boxcadastrar" type="text" name="cep" pattern="[0-9]*" title="Somente números são permitidos" required id="cep" 
                 placeholder=" Digite o CEP do endereço da unidade concedente"
                 value="{{ $dados['cep'] ?? '' }}"
                 required><br><br>
@@ -102,11 +102,38 @@
                 value="{{ $dados['cidade'] ?? '' }}"
                 required><br><br>
 
-            <label for="estado" class="titulopequeno">Estado<strong style="color: #8B5558">*</strong></label>
+                <label for="estado" class="titulopequeno">Estado / UF<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="estado" id="estado"
-                placeholder=" Digite o estado que a unidade concedente está localizada"
-                value="{{ $dados['estado'] ?? '' }}" required><br><br>
+            <select aria-label="Default select example" class="boxcadastrar" id="estado" name="estado">
+                <option value="">Selecione</option>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AP">AP</option>
+                <option value="AM">AM</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="MG">MG</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PR">PR</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RS">RS</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="SC">SC</option>
+                <option value="SP">SP</option>
+                <option value="SE">SE</option>
+                <option value="TO">TO</option>
+            </select><br><br>
 
             <label for="representanteLegal" class="titulopequeno">Representante legal<strong style="color: #8B5558">*</strong></label>
             <br>
@@ -135,7 +162,7 @@
 
             <label for="cpfSupervisor" class="titulopequeno">CPF do supervisor<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="cpfSupervisor" id="cpfSupervisor"
+            <input class="boxcadastrar" type="text" name="cpfSupervisor" pattern="[0-9]*" title="Somente números são permitidos" required id="cpfSupervisor"
                 placeholder=" Digite o CPF do supervisor do estágio"
                 value="{{ $dados['cpfSupervisor'] ?? '' }}" required><br><br>
 
@@ -147,7 +174,7 @@
 
             <label for="telefoneSupervisor" class="titulopequeno">Telefone do supervisor<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="tel" name="telefoneSupervisor" id="telefoneSupervisor"
+            <input class="boxcadastrar" type="tel" name="telefoneSupervisor" pattern="[0-9]*" title="Somente números são permitidos" required id="telefoneSupervisor"
                 placeholder=" Digite o número do telefone do supervisor do estágio"
                 value="{{ $dados['telefoneSupervisor'] ?? '' }}" required><br><br>
 
@@ -162,23 +189,34 @@
 
             <label for="cpfAluno" class="titulopequeno">CPF do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="cpfAluno" id="cpfAluno" 
+            <input class="boxcadastrar" type="text" name="cpfAluno" pattern="[0-9]*" title="Somente números são permitidos" required id="cpfAluno" 
                 placeholder=" Digite o CPF do aluno que vai ser estagiário"
                 value="{{ $aluno->user->cpf }}"
                 readonly style="background: #eee; " required><br><br>
 
-            <label for="curso" class="titulopequeno">Curso<strong style="color: #8B5558">*</strong></label>
+                <label for="curso" class="titulopequeno">Curso<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="curso" id="curso" 
                 placeholder=" Digite o curso do aluno que vai ser estagiário"
                 value="{{ $aluno->curso->nome }}"
                     readonly style="background: #eee; " required><br><br>
 
-            <label for="periodo" class="titulopequeno">Período<strong style="color: #8B5558">*</strong></label>
+                    <label for="periodo" class="titulopequeno">Período<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="periodo" id="periodo"
-                placeholder=" Digite o período que está o aluno que vai ser estagiário"
-                value="{{ $dados['periodo'] ?? '' }}" required><br><br>
+            <select aria-label="Default select example" class="boxcadastrar" id="periodo" name="periodo">
+                <option value="">Selecione</option>
+                <option value="1">1°</option>
+                <option value="2">2°</option>
+                <option value="3">3°</option>
+                <option value="4">4°</option>
+                <option value="5">5°</option>
+                <option value="6">6°</option>
+                <option value="7">7°</option>
+                <option value="8">8°</option>
+                <option value="9">9°</option>
+                <option value="10">10°</option>
+                
+            </select><br><br>
 
             <label for="enderecoAluno" class="titulopequeno">Endereço do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
@@ -188,7 +226,7 @@
 
             <label for="numeroEnderecoAluno" class="titulopequeno">Número do endereço do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="numeroEnderecoAluno" id="numeroEnderecoAluno"
+            <input class="boxcadastrar" type="text" name="numeroEnderecoAluno" pattern="[0-9]*" title="Somente números são permitidos" required id="numeroEnderecoAluno"
                 placeholder=" Digite o número do endereço do aluno que vai ser estagiário"
                 value="{{ $dados['numeroEnderecoAluno'] ?? '' }}" required><br><br>
 
@@ -199,7 +237,7 @@
                 value="{{ $dados['complementoAluno'] ?? '' }}"><br><br>
             <label for="cepAluno" class="titulopequeno">CEP do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="cepAluno" id="cepAluno"
+            <input class="boxcadastrar" type="text" name="cepAluno" pattern="[0-9]*" title="Somente números são permitidos" required id="cepAluno"
                 placeholder=" Digite o CEP do endereço do aluno que vai ser estagiário"
                 value="{{ $dados['cepAluno'] ?? '' }}" required><br><br>
 
@@ -217,13 +255,40 @@
 
             <label for="estadoAluno" class="titulopequeno">Estado do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="estadoAluno" id="estadoAluno"
-                placeholder=" Digite o estado em que aluno que vai ser estagiário mora"
-                value="{{ $dados['estadoAluno'] ?? '' }}" required><br><br>
+            <select aria-label="Default select example" class="boxcadastrar" id="estadoAluno" name="estadoAluno">
+                <option value="">Selecione</option>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AP">AP</option>
+                <option value="AM">AM</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="MG">MG</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PR">PR</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RS">RS</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="SC">SC</option>
+                <option value="SP">SP</option>
+                <option value="SE">SE</option>
+                <option value="TO">TO</option>
+            </select><br><br>
 
             <label for="telefoneAluno" class="titulopequeno">Telefone do aluno<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="tel" name="telefoneAluno" id="telefoneAluno"
+            <input class="boxcadastrar" type="tel" name="telefoneAluno" pattern="[0-9]*" title="Somente números são permitidos" required  id="telefoneAluno"
                 placeholder=" Digite o número do telefone do aluno"
                 value="{{ $dados['telefoneAluno'] ?? '' }}" required><br><br>
 
@@ -239,5 +304,30 @@
             </div>
             
         </form>
+
+        <script>
+        $(document).ready(function() {
+            
+            $('#cnpj').mask('00.000.000/0000-00');
+
+            $('#numero').mask('0000000000');
+
+            $('#cep').mask('00000-000');
+
+            $('#cpfSupervisor').mask('000.000.000-00');    
+            
+            $('#telefoneSupervisor').mask('(00) 00000-0000');
+
+            $('#numeroEnderecoAluno').mask('0000000000');
+
+            $('#telefoneAluno').mask('(00) 00000-0000');
+
+            $('#cepAluno').mask('00000-000');
+
+            $('#cpfAluno').mask('000.000.000-00'); 
+
+        });
+    </script>
+
     </div>
 @endsection
