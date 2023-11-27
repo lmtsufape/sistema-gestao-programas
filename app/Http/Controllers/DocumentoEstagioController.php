@@ -14,10 +14,6 @@ use App\Models\Orientador;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use TCPDF;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Response;
-
 
 class DocumentoEstagioController extends Controller
 {
