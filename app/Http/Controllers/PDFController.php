@@ -14,12 +14,8 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use TCPDF;
 use PhpOffice\PhpWord\TemplateProcessor;
-use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Settings;
 use App\Services\DocService;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Testing\MimeType;
-
 
 class PDFController extends Controller
 {
@@ -30,6 +26,7 @@ class PDFController extends Controller
 
     public function __construct()
     {
+        Settings::setZipClass(Settings::PCLZIP);
         $estagioId = Route::current()->parameter('id');
         $this->estagio = Estagio::find($estagioId);
     }
@@ -518,44 +515,11 @@ class PDFController extends Controller
 
     private function editTermoEncaminhamento($dados)
     {
-        Settings::setZipClass(Settings::PCLZIP);
 
         $templateProcessor = new TemplateProcessor(storage_path('app/docs/termo_encaminhamento/termo_encaminhamento.docx'));
-        $templateProcessor->setValue('instituicao', $dados['instituicao']);
-        $templateProcessor->setValue('nome', $dados['nome']);
-        $templateProcessor->setValue('periodo', $dados['periodo']);
-        $templateProcessor->setValue('curso', $dados['curso']);
-        $templateProcessor->setValue('ano_etapa', $dados['ano_etapa']);
-        $templateProcessor->setValue('versao_estagio', $dados['versao_estagio']);
-        $templateProcessor->setValue('data_inicio', $dados['data_inicio']);
-        $templateProcessor->setValue('data_fim', $dados['data_fim']);
-        $templateProcessor->setValue('ano', $dados['ano']);
-        $templateProcessor->setValue('nome_supervisor', $dados['nome_supervisor']);
-        $templateProcessor->setValue('cpf_supervisor', $dados['cpf_supervisor']);
-        //$templateProcessor->setValue('formacao_supervisor', $dados['formacao_supervisor']);
-        $templateProcessor->setValue('instituicao_estagio', $dados['instituicao_estagio']);
-        $templateProcessor->setValue('telefone_supervisor', $dados['telefone_supervisor']);
-        $templateProcessor->setValue('email_supervisor', $dados['email_supervisor']);
-        $templateProcessor->setValue('nome', $dados['nome']);
-        $templateProcessor->setValue('versao_estagio', $dados['versao_estagio']);
-        $templateProcessor->setValue('cidade_estagio', $dados['cidade_estagio']);
-        $templateProcessor->setValue('dia_atual', $dados['dia_atual']);
-        $templateProcessor->setValue('mes_atual', $dados['mes_atual']);
-        $templateProcessor->setValue('ano', $dados['ano']);
-        $templateProcessor->setValue('instituicao', $dados['instituicao']);
-        $templateProcessor->setValue('cnpj_estagio', $dados['cnpj_estagio']);
-        $templateProcessor->setValue('local_estagio', $dados['local_estagio']);
-        $templateProcessor->setValue('endereco_estagio', $dados['endereco_estagio']);
-        $templateProcessor->setValue('n_estagio', $dados['n_estagio']);
-        $templateProcessor->setValue('complemento_estagio', $dados['complemento_estagio']);
-        $templateProcessor->setValue('cep_estagio', $dados['cep_estagio']);
-        $templateProcessor->setValue('bairro_estagio', $dados['bairro_estagio']);
-        $templateProcessor->setValue('cidade_estagio', $dados['cidade_estagio']);
-        $templateProcessor->setValue('estado_estagio', $dados['estado_estagio']);
-        $templateProcessor->setValue('representantelegal_estagio', $dados['representantelegal_estagio']);
-        $templateProcessor->setValue('cargo_representantelegal', $dados['cargo_representantelegal']);
-        $templateProcessor->setValue('horario_estagio', $dados['horario_estagio']);
-        $temp_path = storage_path('app/docs/pdfs/temp/tempDoc.docx');
+        $templateProcessor->setValues($dados);
+        $temp_path = DocService::tmpdoc();
+
         $templateProcessor->saveAs($temp_path);
 
         $this->salvar_no_banco($temp_path, $dados);
@@ -1855,135 +1819,81 @@ class PDFController extends Controller
     {
         Settings::setZipClass(Settings::PCLZIP);
 
-        $templateProcessor = new TemplateProcessor(storage_path('app/docs/termo_compromisso_ufape/termo_compromisso_ufape_lic.docx'));
-        $templateProcessor->setValue('nome_concedente', $dados['nome_concedente']);
-        $templateProcessor->setValue('cnpj', $dados['cnpj']);
-        $templateProcessor->setValue('endereco_concedente', $dados['endereco_concedente']);
-        $templateProcessor->setValue('bairro_concedente', $dados['bairro_concedente']);
-        $templateProcessor->setValue('cep_concedente', $dados['cep_concedente']);
-        $templateProcessor->setValue('cidade_concedente', $dados['cidade_concedente']);
-        $templateProcessor->setValue('estado_concedente', $dados['estado_concedente']);
-        $templateProcessor->setValue('representante', $dados['representante']);
-        $templateProcessor->setValue('representante_cargo', $dados['representante_cargo']);
-        $templateProcessor->setValue('representante_email', $dados['representante_email']);
-        $templateProcessor->setValue('representante_telefone', $dados['representante_telefone']);
-
-        $templateProcessor->setValue('nome_aluno', $dados['nome_aluno']);
-        $templateProcessor->setValue('cpf', $dados['cpf']);
-        $templateProcessor->setValue('rg', $dados['rg']);
-        $templateProcessor->setValue('org_expedicao', $dados['org_expedicao']);
-        $templateProcessor->setValue('nascimento', $dados['nascimento']);
-        $templateProcessor->setValue('endereco', $dados['endereco']);
-        $templateProcessor->setValue('bairro', $dados['bairro']);
-        $templateProcessor->setValue('cep', $dados['cep']);
-        $templateProcessor->setValue('cidade', $dados['cidade']);
-        $templateProcessor->setValue('estado', $dados['estado']);
-        $templateProcessor->setValue('email', $dados['email']);
-        $templateProcessor->setValue('telefone', $dados['telefone']);
-
-        $templateProcessor->setValue('aluno_curso', $dados['aluno_curso']);
-        $templateProcessor->setValue('disciplina', $dados['disciplina']);
-        $templateProcessor->setValue('periodo', $dados['periodo']);
-        $templateProcessor->setValue('departamento', $dados['departamento']);
-        $templateProcessor->setValue('endereco_concedente', $dados['endereco_concedente']);
-        $templateProcessor->setValue('data_inicio', $dados['data_inicio']);
-        $templateProcessor->setValue('data_fim', $dados['data_fim']);
+        $templateProcessor = new TemplateProcessor(storage_path('app/docs/UFAPE/termo_compromisso_ufape_lic.docx'));
+        $templateProcessor->setValues($dados);
         if ($dados['segunda_ufape']) {
             $templateProcessor->setValue('segunda_ufape', 'X');
         } else {
             $templateProcessor->setValue('segunda_ufape', '');
         }
-        
+
         if ($dados['terca_ufape']) {
             $templateProcessor->setValue('terca_ufape', 'X');
         } else {
             $templateProcessor->setValue('terca_ufape', '');
         }
-        
+
         if ($dados['quarta_ufape']) {
             $templateProcessor->setValue('quarta_ufape', 'X');
         } else {
             $templateProcessor->setValue('quarta_ufape', '');
         }
-        
+
         if ($dados['quinta_ufape']) {
             $templateProcessor->setValue('quinta_ufape', 'X');
         } else {
             $templateProcessor->setValue('quinta_ufape', '');
         }
-        
+
         if ($dados['sexta_ufape']) {
             $templateProcessor->setValue('sexta_ufape', 'X');
         } else {
             $templateProcessor->setValue('sexta_ufape', '');
         }
-    
-        $templateProcessor->setValue('horario_ufape_segunda', $dados['horario_ufape_segunda']);
-        $templateProcessor->setValue('horario_ufape_terca', $dados['horario_ufape_terca']);
-        $templateProcessor->setValue('horario_ufape_quarta', $dados['horario_ufape_quarta']);
-        $templateProcessor->setValue('horario_ufape_quinta', $dados['horario_ufape_quinta']);
-        $templateProcessor->setValue('horario_ufape_sexta', $dados['horario_ufape_sexta']);
 
         if ($dados['segunda_estagio']) {
             $templateProcessor->setValue('segunda_estagio', 'X');
         } else {
             $templateProcessor->setValue('segunda_estagio', '');
         }
-        
+
         if ($dados['terca_estagio']) {
             $templateProcessor->setValue('terca_estagio', 'X');
         } else {
             $templateProcessor->setValue('terca_estagio', '');
         }
-        
+
         if ($dados['quarta_estagio']) {
             $templateProcessor->setValue('quarta_estagio', 'X');
         } else {
             $templateProcessor->setValue('quarta_estagio', '');
         }
-        
+
         if ($dados['quinta_estagio']) {
             $templateProcessor->setValue('quinta_estagio', 'X');
         } else {
             $templateProcessor->setValue('quinta_estagio', '');
         }
-        
+
         if ($dados['sexta_estagio']) {
             $templateProcessor->setValue('sexta_estagio', 'X');
         } else {
             $templateProcessor->setValue('sexta_estagio', '');
         }
-        
-        $templateProcessor->setValue('horario_estagio_segunda', $dados['horario_estagio_segunda']);
-        $templateProcessor->setValue('horario_estagio_terca', $dados['horario_estagio_terca']);
-        $templateProcessor->setValue('horario_estagio_quarta', $dados['horario_estagio_quarta']);
-        $templateProcessor->setValue('horario_estagio_quinta', $dados['horario_estagio_quinta']);
-        $templateProcessor->setValue('horario_estagio_sexta', $dados['horario_estagio_sexta']);
 
-        $templateProcessor->setValue('carga_horaria_total', $dados['carga_horaria_total']);
-        $templateProcessor->setValue('atividades_estagiario', $dados['atividades_estagiario']);
-        $templateProcessor->setValue('orientador', $dados['orientador']);
-        $templateProcessor->setValue('supervisor_nome', $dados['supervisor_nome']);
-        $templateProcessor->setValue('supervisor_cargo', $dados['supervisor_cargo']);
+        $temp_path = DocService::tmpdoc();
 
+        $templateProcessor->saveAs($temp_path);
 
-        $path = storage_path('app/docs/pdfs/temp/tempDoc.docx');
-        $templateProcessor->saveAs($path);
-
-        $this->salvar_no_banco($path, $dados);
+        $this->salvar_no_banco($temp_path, $dados);
 
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
-    public function edit_ficha_frequencia_ufape($path, $dados) {
+    public function edit_ficha_frequencia_ufape($path, $dados)
+    {
         $tp = new TemplateProcessor($path);
-        $tp->setValue('instituicao', $dados['instituicao']);
-        $tp->setValue('nome_estagiario', $dados['nome_estagiario']);
-        $tp->setValue('empresa', $dados['empresa']);
-        $tp->setValue('mes_ano_ref', $dados['mes_ano_ref']);
-        $tp->setValue('matricula', $dados['matricula']);
-        $tp->setValue('cnpj', $dados['cnpj']);
-        $tp->setValue('curso', $dados['curso']);
+        $tp->setValues($dados);
         if ($dados['tipo'] == 'eo') {
             $tp->setValue('eo', 'X');
             $tp->setValue('eno', ' ');
@@ -1992,7 +1902,7 @@ class PDFController extends Controller
             $tp->setValue('eo', ' ');
         }
 
-        $temp_path = storage_path('app/docs/pdfs/temp/tempDoc.docx');
+        $temp_path = DocService::tmpdoc();
         $tp->saveAs($temp_path);
 
         $this->salvar_no_banco($temp_path, $dados);
@@ -2002,39 +1912,10 @@ class PDFController extends Controller
 
     public function edit_termo_aditivo_ufape($path, $dados)
     {
-
         $tp = new TemplateProcessor($path);
-        //concedente
-        $tp->setValue('concedente', $dados['concedente']);
-        $tp->setValue('cnpj_c', $dados['cnpj_c']);
-        $tp->setValue('endereco_c', $dados['endereco_c']);
-        $tp->setValue('bairro_c', $dados['bairro_c']);
-        $tp->setValue('cep_c', $dados['cep_c']);
-        $tp->setValue('cidade_c', $dados['cidade_c']);
-        $tp->setValue('estado_c', $dados['estado_c']);
-        $tp->setValue('representante_c', $dados['representante_c']);
-        $tp->setValue('cargo_c', $dados['cargo_c']);
-        $tp->setValue('email_c', $dados['email_c']);
-        $tp->setValue('telefone_c', $dados['telefone_c']);
+        $tp->setValues($dados);
 
-        //estagiario
-        $tp->setValue('nome_aluno', $dados['nome_aluno']);
-        $tp->setValue('cpf', $dados['cpf']);
-        $tp->setValue('rg', $dados['rg']);
-        $tp->setValue('orgao_expd_uf', $dados['orgao_expd_uf']);
-        $tp->setValue('data_nasc', $dados['data_nasc']);
-        $tp->setValue('endereco_e', $dados['endereco_e']);
-        $tp->setValue('bairro_e', $dados['bairro_e']);
-        $tp->setValue('cep_e', $dados['cep_e']);
-        $tp->setValue('cidade_e', $dados['cidade_e']);
-        $tp->setValue('estado_e', $dados['estado_e']);
-        $tp->setValue('email_e', $dados['email_e']);
-        $tp->setValue('telefone_e', $dados['telefone_e']);
-
-        //redação	
-        $tp->setValue('redacao', $dados['redacao']);
-
-        $temp_path = storage_path('app/docs/pdfs/temp/tempDoc.docx');
+        $temp_path = DocService::tmpdoc();
         $tp->saveAs($temp_path);
 
         $this->salvar_no_banco($temp_path, $dados);
