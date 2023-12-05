@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\Curso;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ use TCPDF;
 use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\Settings;
 use App\Services\DocService;
+use Carbon\Carbon;
 
 class PDFController extends Controller
 {
@@ -70,6 +72,10 @@ class PDFController extends Controller
                 break;
             case 9:
                 return $this->editTermoCompromissoUFAPE($dados);
+                break;
+            case 10:
+                $path = storage_path('app/docs/UFAPE/carta_aceite_supervisor.docx');
+                return $this->edit_carta_aceite_supervisor_ufape($path, $dados);
             case 11:
                 $path = storage_path('app/docs/UFAPE/ficha_frequencia.docx');
                 return $this->edit_ficha_frequencia_ufape($path, $dados);
@@ -180,6 +186,7 @@ class PDFController extends Controller
                 ->where('aluno_id', $alunoId)
                 ->where('estagio_id', $this->estagio->id)
                 ->first();
+
 
             if (!$documentoExistente) {
                 $documento = new DocumentoEstagio();
@@ -1921,6 +1928,74 @@ class PDFController extends Controller
         $this->salvar_no_banco($temp_path, $dados);
 
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
+    }
+
+    public function edit_carta_aceite_supervisor_ufape($path, $dados)
+    {
+        $tp = new TemplateProcessor($path);
+        $tp->setValue('aluno', $dados['aluno'] );
+        $tp->setValue('curso', $dados['curso'] );
+        $tp->setValue('data_inicio', $dados['data_inicio'] );
+        $tp->setValue('data_fim', $dados['data_fim'] );
+
+        $temp_path = DocService::tmpdoc();
+        $tp->saveAs($temp_path);
+
+
+        $doc = file_get_contents($temp_path);
+
+        $estagio = Estagio::find($this->estagio->id);
+
+        $conteudoArrayBytes = array_values(unpack('C*', $doc));
+
+        $documento = null;
+
+        return view('estagio.documentos.preview', ['conteudoArrayBytes' => $conteudoArrayBytes, 'documento' => $documento, 'estagio' => $estagio]);
+        // return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
+    }
+
+    public function downloadModeloDoc($estagioId, $docId)
+    {
+        $path = storage_path('app/docs/UFAPE/carta_aceite_supervisor.docx');
+        $estagio = Estagio::findOrFail($estagioId);
+        $aluno = Aluno::findOrFail($estagio->aluno_id);
+        $curso = Curso::findOrFail($estagio->curso_id);
+
+        $tp = new TemplateProcessor($path);
+        $tp->setValue('aluno', $aluno->nome_aluno );
+        $tp->setValue('curso', $curso->nome );
+
+        $dataInicio = Carbon::parse($estagio->data_inicio);
+        $dataInicioFormatada = $dataInicio->locale('pt_BR')->isoFormat('LL');
+
+        $dataFim = Carbon::parse($estagio->data_fim);
+        $dataFimFormatada = $dataFim->locale('pt_BR')->isoFormat('LL');
+
+        $tp->setValue('data_inicio', $dataInicioFormatada);
+        $tp->setValue('data_fim', $dataFimFormatada);
+
+        $temp_path = DocService::tmpdoc();
+        $tp->saveAs($temp_path);
+
+
+        $docBlob = file_get_contents($temp_path);
+        
+        $nome_aluno = $aluno->nome_aluno;
+
+
+        // Defina o nome do arquivo para download
+        $nomeArquivo = 'carta_de_aceite_supervisor' . '_' . $nome_aluno . '.docx';
+        $nome_arquivo_formatado = str_replace(' ', '_', $nomeArquivo);
+        $nome_arquivo_formatado = strtolower($nome_arquivo_formatado);
+        // Configurar os headers para o download do arquivo
+        $headers = [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'Content-Disposition' => 'attachment; filename="' . $nome_arquivo_formatado . '"',
+        ];
+
+        // Retornar a resposta com o conteúdo do arquivo e os headers configurados
+        return Response::make($docBlob, 200, $headers);
+
     }
 
     public function getListaDeDocumentosId()
