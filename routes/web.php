@@ -315,6 +315,7 @@ Route::prefix('estagio')->group(function () {
         //rota para visualizar os doc que foram convertidos para nova forma de preencher
         Route::get('/visualizar-doc/{docId}', [PDFController::class, 'viewDoc'])->name('visualizar.doc');
         Route::get('/download-doc/{docId}', [PDFController::class, 'downloadDoc'])->name('download.doc');
+        Route::get('/download-modelo-doc/{id}/{docId}', [PDFController::class, 'downloadModeloDoc'])->name('download.modelo.doc');
 
     });
 });
