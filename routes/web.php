@@ -290,7 +290,7 @@ Route::prefix('estagio')->group(function () {
         Route::get('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo_form'])->name('estagio.documentos.documento-completo');
         Route::post('/{id}/enviar-documento-completo', [DocumentoEstagioController::class, 'documento_completo'])->name('estagio.documentos.documento-completo.store');
         //--------------------------------------------------------------------------------------------------------------
-        
+
         Route::get('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor_form'])->name('estagio.documentos.UPE.relatorio-supervisor');
         Route::post('/{id}/relatorio-supervisor', [DocumentoEstagioController::class, 'relatorio_supervisor'])->name('estagio.documentos.UPE.relatorio-supervisor.store');
 
@@ -310,13 +310,16 @@ Route::prefix('estagio')->group(function () {
         Route::get('/{id}/termo-aditivo-ufape', [DocumentoEstagioController::class, 'termo_aditivo_ufape_form'])->name('estagio.documentos.UFAPE.termo-aditivo');
         Route::post('/{id}/termo-aditivo-ufape', [DocumentoEstagioController::class, 'termo_aditivo_ufape'])->name('estagio.documentos.UFAPE.termo-aditivo.store');
 
+        Route::get('/{id}/declaracao-ch-ufape', [DocumentoEstagioController::class, 'declaracao_ch_ufape_form'])->name('estagio.documentos.UFAPE.declaracao-ch-ufape');
+        Route::post('/{id}/declaracao-ch-ufape', [DocumentoEstagioController::class, 'declaracao_ch_ufape'])->name('estagio.documentos.UFAPE.declaracao-ch-ufape.store');
+
         Route::get('/visualizar-pdf/{docId}', [PDFController::class, 'viewPDF'])->name('visualizar.pdf');
-        
+
         //rota para visualizar os doc que foram convertidos para nova forma de preencher
         Route::get('/visualizar-doc/{docId}', [PDFController::class, 'viewDoc'])->name('visualizar.doc');
         Route::get('/download-doc/{docId}', [PDFController::class, 'downloadDoc'])->name('download.doc');
+      
         Route::get('/download-modelo-doc/{id}/{docId}', [PDFController::class, 'downloadModeloDoc'])->name('download.modelo.doc');
-
     });
 });
 Route::get('/meus-estagios', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');

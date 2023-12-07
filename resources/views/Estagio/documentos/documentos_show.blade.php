@@ -116,7 +116,7 @@
                                             $rota = 'estagio.documentos.UFAPE.termo-aditivo';
                                             break;
                                         case 13:
-                                            $rota = 'estagio.documentos.UFAPE.ficha-frequencia';
+                                            $rota = 'estagio.documentos.UFAPE.declaracao-ch-ufape';
                                             break;
                                         default:
                                             $rota = null;
