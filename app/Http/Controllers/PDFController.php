@@ -137,7 +137,8 @@ class PDFController extends Controller
 
 
             $listaDocumentosId = $this->getListaDeDocumentosId();
-            $alunoId = Auth::id();
+            $aluno = $this->estagio->aluno;
+            $alunoId = $aluno->id;
 
             $documentoExistente = DocumentoEstagio::where('lista_documentos_obrigatorios_id', $listaDocumentosId)
                 ->where('aluno_id', $alunoId)
@@ -184,7 +185,8 @@ class PDFController extends Controller
             DB::beginTransaction();
 
             $listaDocumentosId = $this->getListaDeDocumentosId();
-            $alunoId = Auth::id();
+            $aluno = $this->estagio->aluno;
+            $alunoId = $aluno->id;
 
             $documentoExistente = DocumentoEstagio::where('lista_documentos_obrigatorios_id', $listaDocumentosId)
                 ->where('aluno_id', $alunoId)
