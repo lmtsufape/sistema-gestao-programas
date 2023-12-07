@@ -13,7 +13,13 @@
         @endif
 
         <hr style="color:#5C1C26; background-color: #5C1C26">
-
+        
+        <hr style="color:#5C1C26; background-color: #5C1C26">
+        <a class="cadastrar-botao" style="text-decoration: none; color: white; margin-right: 10px" type="button"
+            href="{{ route('download.modelo.doc', ['id' => $estagio->id, 'docId' => 10]) }}" target="_blank" id="pdfLink"
+            onclick="return openPdfLinkInNewTab(this.href)">Baixar modelo</a>
+        <br><br>
+            
         <form action="{{ route('estagio.documentos.UFAPE.carta-aceite-supervisor.store', ['id' => $estagio->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
