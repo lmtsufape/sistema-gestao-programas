@@ -1957,7 +1957,8 @@ class PDFController extends Controller
         $this->salvar_no_banco($temp_path, $dados);
 
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
-  
+    }
+    
     public function edit_carta_aceite_supervisor_ufape($path, $dados)
     {
         $tp = new TemplateProcessor($path);
