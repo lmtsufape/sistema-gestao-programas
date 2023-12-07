@@ -13,6 +13,7 @@ use App\Models\ListaDocumentosObrigatorios;
 use App\Models\Orientador;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DocumentoEstagioController extends Controller
@@ -542,13 +543,14 @@ class DocumentoEstagioController extends Controller
                 ->first();
 
             $dados = json_decode($documento->dados, true);
-            return view('Estagio.documentos.UFAPE.termo_de_compromisso', compact("estagio","aluno","curso","disciplina","dados"));
+            return view('Estagio.documentos.UFAPE.termo_de_compromisso', compact("estagio", "aluno", "curso", "disciplina", "dados"));
         }
 
-        return view('Estagio.documentos.UFAPE.termo_de_compromisso', compact("estagio","aluno","curso","disciplina"));
+        return view('Estagio.documentos.UFAPE.termo_de_compromisso', compact("estagio", "aluno", "curso", "disciplina"));
     }
 
-    public function termo_compromisso_ufape(Request $request){
+    public function termo_compromisso_ufape(Request $request)
+    {
         $pdf = new PDFController;
         $dados = [
             //Concedente
@@ -594,7 +596,7 @@ class DocumentoEstagioController extends Controller
             'quarta_ufape' => in_array('quarta', $request->input('dias_ufape', [])),
             'quinta_ufape' => in_array('quinta', $request->input('dias_ufape', [])),
             'sexta_ufape' => in_array('sexta', $request->input('dias_ufape', [])),
-            
+
 
             'horario_ufape_segunda' => $request->input('horario_ufape_segunda') ?? null,
             'horario_ufape_terca' => $request->input('horario_ufape_terca') ?? null,
@@ -603,12 +605,12 @@ class DocumentoEstagioController extends Controller
             'horario_ufape_sexta' => $request->input('horario_ufape_sexta') ?? null,
 
             'segunda_estagio' => in_array('segunda', $request->input('dias_estagio', [])),
-            'terca_estagio' => in_array('terca' , $request->input('dias_estagio', [])),
+            'terca_estagio' => in_array('terca', $request->input('dias_estagio', [])),
             'quarta_estagio' => in_array('quarta', $request->input('dias_estagio', [])),
             'quinta_estagio' => in_array('quinta', $request->input('dias_estagio', [])),
             'sexta_estagio' => in_array('sexta', $request->input('dias_estagio', [])),
 
-        
+
             'horario_estagio_segunda' => $request->input('horario_estagio_segunda') ?? null,
             'horario_estagio_terca' => $request->input('horario_estagio_terca') ?? null,
             'horario_estagio_quarta' => $request->input('horario_estagio_quarta') ?? null,
@@ -773,7 +775,7 @@ class DocumentoEstagioController extends Controller
             'cpf' => $request->input('cpf'),
             'rg' => $request->input('rg'),
             'orgao_expd_uf' => $request->input('orgao_expd_uf'),
-            
+
             'data_nasc' => $data,
             'endereco_e' => $request->input('endereco_e'),
             'bairro_e' => $request->input('bairro_e'),
@@ -786,6 +788,58 @@ class DocumentoEstagioController extends Controller
         ];
 
         return $pdf->editImage(12, $dados);
+    }
+
+    public function declaracao_ch_ufape_form($id, Request $request)
+    {
+        $estagio = Estagio::findOrFail($id);
+        $aluno = Aluno::findOrFail($estagio->aluno_id);
+        $curso = Curso::findOrFail($aluno->curso_id);
+        $id_estagio = $estagio->id;
+
+        if ($request->query("edit") == true) {
+            $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
+                ->where('lista_documentos_obrigatorios_id', 13)
+                ->first();
+
+            $dados = json_decode($documento->dados, true);
+            return view('Estagio.documentos.UFAPE.declaracao_ch_eso', compact("estagio", "aluno", "curso", "dados"));
+        }
+
+        return view('Estagio.documentos.UFAPE.declaracao_ch_eso', compact("estagio", "aluno", "curso"));
+    }
+
+    public function declaracao_ch_ufape(Request $request)
+    {
+
+        $pdf = new PDFController;
+
+        $request->validate([
+            'logomarca_empresa' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+        ]);
+
+        //dd($request->logomarca_empresa);
+        $imageName = time() . '.' . $request->logomarca_empresa->extension();
+
+        $request->logomarca_empresa->move(storage_path('app/docs/UFAPE/logomarca_tmp'), $imageName);
+
+        //$imagem = $request->file('logomarca_empresa');
+
+
+        $dados = [
+            'logomarca_empresa' => $imageName,
+            'aluno' => $request->input('aluno'),
+            'cpf_aluno' => $request->input('cpf_aluno'),
+            'tipo_curso' => $request->input('tipo_curso'),
+            'curso' => $request->input('curso'),
+            'empresa' => $request->input('empresa'),
+            'data_inicio' => $request->input('data_inicio'),
+            'data_fim' => $request->input('data_fim'),
+            'carga_horaria' => $request->input('carga_horaria'),
+
+        ];
+
+        return $pdf->editImage(13, $dados);
     }
 
 

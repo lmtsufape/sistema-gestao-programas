@@ -78,6 +78,10 @@ class PDFController extends Controller
                 $path = storage_path('app/docs/UFAPE/termo_aditivo.docx');
                 return $this->edit_termo_aditivo_ufape($path, $dados);
                 break;
+            case 13:
+                $path = storage_path('app/docs/UFAPE/declaracao_ch_eso.docx');
+                return $this->edit_declaracao_ch($path, $dados);
+                break;
             default:
                 return redirect()->back()->with('error', 'Tipo de documento desconhecido.');
         }
@@ -1916,6 +1920,31 @@ class PDFController extends Controller
         $tp->setValues($dados);
 
         $temp_path = DocService::tmpdoc();
+        $tp->saveAs($temp_path);
+
+        $this->salvar_no_banco($temp_path, $dados);
+
+        return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
+    }
+
+    public function edit_declaracao_ch($path, $dados) {
+        $tp = new TemplateProcessor($path);
+        $tp->setValues($dados);
+        if ($dados['tipo_curso'] == 'bach') {
+            $tp->setValue('tipo_curso', 'bacharelado');
+        } else {
+            $tp->setValue('tipo_curso', 'licenciatura');
+        }
+
+        //dd($dados['logomarca_empresa']);
+
+        $img_path = storage_path('app/docs/UFAPE/logomarca_tmp/' . $dados['logomarca_empresa']);
+
+        $tp->setImageValue('logomarca_empresa', $img_path);
+        unlink($img_path);
+
+        $temp_path = DocService::tmpdoc();
+
         $tp->saveAs($temp_path);
 
         $this->salvar_no_banco($temp_path, $dados);
