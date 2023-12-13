@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EstagiosExport;
 use App\Http\Requests\EstagioStoreFormRequest;
 use App\Http\Requests\EstagioUpdateFormRequest;
 use App\Models\Aluno;
@@ -15,8 +16,10 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\ListaDocumentosObrigatorios;
-use Illuminate\Pagination\Paginator;
 use Kyslik\ColumnSortable\Sortable;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
+
 
 
 class EstagioController extends Controller
@@ -53,7 +56,7 @@ class EstagioController extends Controller
                 ->distinct()
                 ->paginate(15);
 
-                
+
 
             $cursos = Curso::all();
 
@@ -196,6 +199,72 @@ class EstagioController extends Controller
             DB::rollback();
             return redirect()->back()->withErrors("Falha ao deletar Estágio. tente novamente mais tarde.");
         }
+    }
+
+    public function export(Request $request)
+    {
+        $estagios = DB::table('estagios');
+
+        $cpf = $request->query('cpf');
+        if ($cpf != null) {
+            $aluno = Aluno::where('cpf', $cpf)->first();
+
+            if (!$aluno) {
+                return redirect()->route('estagio.export-form')->with('erro', 'Aluno não encontrado para o CPF fornecido.');
+            }
+
+            $estagios->where('aluno_id', $aluno->id);
+        }
+
+        $data_inicio = $request->query('data_inicio');
+        $data_fim = $request->query('data_fim');
+
+        if ($data_inicio != null && $data_fim != null) {
+            $estagios->whereBetween('data_inicio', [$request->query('data_inicio'), $request->input('data_fim')])
+                ->orderBy('data_inicio', 'asc');
+        }
+
+        $status = $request->query('status');
+        if ($status != null) {
+            $estagios->where('status', $request->query('status'));
+        }
+
+        $tipo = $request->query('tipo');
+        if ($tipo != null) {
+            $estagios->where('tipo', $request->query('tipo'));
+        }
+        
+        $curso = $request->query('curso');
+        if ($curso != null) {
+            $estagios->where('curso_id', $request->query('curso'));
+        }
+
+        $orientadorCPF = $request->query('orientador');
+        $orientador = Orientador::where('cpf', $orientadorCPF)->first();
+        if ($orientador != null) {
+            $estagios->where('orientador_id', $orientador->id);
+        }
+
+        $export = new EstagiosExport($estagios->orderBy('id', 'asc'));
+        $extensao = $request->query('extensao');
+
+        return Excel::download($export, 'estagios.' . $extensao)->deleteFileAfterSend(true);
+    }
+
+    public function export_form()
+    {
+        $alunos = Aluno::all();
+        $estagios = Estagio::all();
+        $cursos = Curso::all();
+        $orientadors = Orientador::all();
+        $estagiosAtivos = Estagio::where('status', true)->get();
+
+
+        $alunosComEstagio = Aluno::join('estagios', 'alunos.id', '=', 'estagios.aluno_id')
+            ->select('alunos.*')
+            ->distinct()
+            ->get();
+        return view('Estagio.exportar-dados', compact('alunos', 'estagios', 'alunosComEstagio', 'cursos', 'orientadors', 'estagiosAtivos'));
     }
 
     public function estagios_profile(Request $request)
