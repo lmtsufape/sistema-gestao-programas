@@ -1834,8 +1834,6 @@ class PDFController extends Controller
             $dados = array_slice($dados,0,-1);
             
             $templateProcessor = new TemplateProcessor(storage_path('app/docs/UFAPE/termo_compromisso_ufape_bach.docx'));
-
-            $templateProcessor->setValues($dados);
             
             if ($dados['segunda_ufape']) {
                 $templateProcessor->setValue('segunda_ufape', 'X');
@@ -1867,6 +1865,8 @@ class PDFController extends Controller
                 $templateProcessor->setValue('sexta_ufape', '');
             }
 
+            $templateProcessor->setValues($dados);
+
             $temp_path = DocService::tmpdoc();
 
             $templateProcessor->saveAs($temp_path);
@@ -1881,7 +1881,6 @@ class PDFController extends Controller
 
             $templateProcessor = new TemplateProcessor(storage_path('app/docs/UFAPE/termo_compromisso_ufape_lic.docx'));
 
-            $templateProcessor->setValues($dados);
             if ($dados['segunda_ufape']) {
                 $templateProcessor->setValue('segunda_ufape', 'X');
             } else {
@@ -1942,6 +1941,8 @@ class PDFController extends Controller
                 $templateProcessor->setValue('sexta_estagio', '');
             }
 
+            $templateProcessor->setValues($dados);
+            
             $temp_path = DocService::tmpdoc();
 
             $templateProcessor->saveAs($temp_path);
