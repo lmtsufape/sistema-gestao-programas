@@ -537,17 +537,28 @@ class DocumentoEstagioController extends Controller
 
         $id_estagio = $estagio->id;
 
+        $tipo_curso = explode(" ", $curso->nome)[0];
+
         if ($request->query("edit") == true) {
             $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
                 ->where('lista_documentos_obrigatorios_id', 9)
                 ->first();
 
             $dados = json_decode($documento->dados, true);
-            return view('Estagio.documentos.UFAPE.termo_de_compromisso_lic', compact("estagio", "aluno", "curso", "disciplina", "dados"));
+            
+            if($tipo_curso == "Bacharelado"){
+                return view('Estagio.documentos.UFAPE.termo_de_compromisso_bach', compact("estagio", "aluno", "curso", "disciplina", "dados"));
+            } elseif($tipo_curso == "Licenciatura"){
+                return view('Estagio.documentos.UFAPE.termo_de_compromisso_lic', compact("estagio", "aluno", "curso", "disciplina", "dados"));
+            }
         }
-
-        return view('Estagio.documentos.UFAPE.termo_de_compromisso_lic', compact("estagio", "aluno", "curso", "disciplina"));
-    }
+        
+        if($tipo_curso == "Bacharelado"){
+            return view('Estagio.documentos.UFAPE.termo_de_compromisso_bach', compact("estagio", "aluno", "curso", "disciplina"));
+        } elseif($tipo_curso == "Licenciatura"){
+            return view('Estagio.documentos.UFAPE.termo_de_compromisso_lic', compact("estagio", "aluno", "curso", "disciplina"));
+        }
+        }
 
     public function termo_compromisso_ufape(Request $request)
     {
