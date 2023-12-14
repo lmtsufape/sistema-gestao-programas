@@ -14,7 +14,7 @@
                 <h2 class="titulopequeno">{{ $estagio->descricao }}</h2>
             </div>
             <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
-                <div class="col-md-9 corpo p-2 px-6">
+                <div class="col-md-15 corpo p-2 px-6">
                     <table class="table">
                         <thead>
                             <tr class="table-head">
@@ -125,34 +125,20 @@
                                 @endphp
                                 <td class="align-middle">
                                     <!-- <a>
-                                                                                                                            <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento" style="height: 30px; width: 30px;">
-                                                                                                                        </a> -->
+                                                                                                                                                    <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento" style="height: 30px; width: 30px;">
+                                                                                                                                                </a> -->
                                     @if ($documento_enviado)
-                                        @can('aluno')
+                                        @can('admin', 'servidor', 'aluno')
                                             <!-- Verifica se o usuário tem a função de aluno -->
 
                                             @if (
                                                 $lista_documento->status == 'Aguardando documento assinado' ||
                                                     $lista_documento->status == 'Aguardando verificação' ||
                                                     $lista_documento->status == 'Negado')
-                                                {{-- <a type="button" href="{{ route($rota, ['id' => $estagio->id, 'edit' => true]) }}">
-                                                <img src="{{ asset('images/pencil.svg') }}" alt="Editar Documento" title="Editar documento" style="height: 30px; width: 30px;">
-                                                </a> --}}
-
-                                                {{-- <a type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_observacao_{{ $lista_documento->documento_id }}">
-                                                    <img src="{{ asset('images/information.svg') }}" title="Observação"
-                                                        alt="Ver Observação" style="height: 30px; width: 30px;">
-                                                </a> --}}
-
-                                                {{-- <a type="button" href="{{ route('observacao.show', ['id' => $lista_documento->id]) }}">
-                                                <img src="{{ asset('images/information_red.svg') }}" alt="Ver Observação" style="height: 30px; width: 30px;">
-                                                </a> --}}
-
                                                 @if ($hoje > $dataLimite)
                                                     <!-- <a type="button" data-bs-toggle="modal" data-bs-target="#modal_observacao_{{ $lista_documento->documento_id }}">
-                                                                                                                                                                                            <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
-                                                                                                                                                                                        </a> -->
+                                                                                                                                                                                                                                <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Ver Observação" style="height: 30px; width: 30px;">
+                                                                                                                                                                                                                            </a> -->
                                                 @elseif ($lista_documento->is_completo == 0)
                                                     <!-- Se o documento não estiver completo -->
                                                     @if (!empty(trim($lista_documento->observacao)))
@@ -230,7 +216,7 @@
 
                                         @endcan
                                     @else
-                                        @can('aluno')
+                                        @can('admin', 'servidor', 'aluno')
                                             <!-- Verifica se o usuário tem a função de aluno -->
                                             @if ($hoje > $dataLimite)
                                                 <img src="{{ asset('images/add_disciplina.svg') }}" alt="Documento Preenchido"
