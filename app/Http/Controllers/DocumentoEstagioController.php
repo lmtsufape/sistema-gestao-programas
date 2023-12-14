@@ -11,6 +11,7 @@ use App\Models\Estagio;
 use App\Models\Instituicao;
 use App\Models\ListaDocumentosObrigatorios;
 use App\Models\Orientador;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -537,97 +538,184 @@ class DocumentoEstagioController extends Controller
 
         $id_estagio = $estagio->id;
 
+        $tipo_curso = explode(" ", $curso->nome)[0];
+
         if ($request->query("edit") == true) {
             $documento = DocumentoEstagio::where('estagio_id', $id_estagio)
                 ->where('lista_documentos_obrigatorios_id', 9)
                 ->first();
 
             $dados = json_decode($documento->dados, true);
-            return view('Estagio.documentos.UFAPE.termo_de_compromisso', compact("estagio", "aluno", "curso", "disciplina", "dados"));
+            
+            if($tipo_curso == "Bacharelado"){
+                return view('Estagio.documentos.UFAPE.termo_de_compromisso_bach', compact("estagio", "aluno", "curso", "disciplina", "dados"));
+            } elseif($tipo_curso == "Licenciatura"){
+                return view('Estagio.documentos.UFAPE.termo_de_compromisso_lic', compact("estagio", "aluno", "curso", "disciplina", "dados"));
+            }
         }
-
-        return view('Estagio.documentos.UFAPE.termo_de_compromisso', compact("estagio", "aluno", "curso", "disciplina"));
-    }
+        
+        if($tipo_curso == "Bacharelado"){
+            return view('Estagio.documentos.UFAPE.termo_de_compromisso_bach', compact("estagio", "aluno", "curso", "disciplina"));
+        } elseif($tipo_curso == "Licenciatura"){
+            return view('Estagio.documentos.UFAPE.termo_de_compromisso_lic', compact("estagio", "aluno", "curso", "disciplina"));
+        }
+        }
 
     public function termo_compromisso_ufape(Request $request)
     {
+        $curso = $request->input('aluno_curso');
+        $tipo_curso = explode(" ", $curso)[0];
+
         $pdf = new PDFController;
-        $dados = [
-            //Concedente
-            'nome_concedente' => $request->input('nome_concedente'),
-            'cnpj' => $request->input('cnpj'),
-            'endereco_concedente' => $request->input('endereco_concedente'),
-            'bairro_concedente' => $request->input('bairro_concedente'),
-            'cep_concedente' => $request->input('cep_concedente'),
-            'cidade_concedente' => $request->input('estado_concedente'),
-            'estado_concedente' => $request->input('estado_concedente'),
-            'representante' => $request->input('representante'),
-            'representante_cargo' => $request->input('representante_cargo'),
-            'representante_email' => $request->input('representante_email'),
-            'representante_telefone' => $request->input('representante_telefone'),
+        $dados = null;
 
-            //Aluno
-            'nome_aluno' => $request->input('nome_aluno'),
-            'cpf' => $request->input('cpf'),
-            'rg' => $request->input('rg'),
-            'org_expedicao' => $request->input('org_expedicao'),
-            'nascimento' => $request->input('nascimento'),
-            'endereco' => $request->input('endereco'),
-            'bairro' => $request->input('bairro'),
-            'cep' => $request->input('cep'),
-            'cidade' => $request->input('estado'),
-            'estado' => $request->input('estado'),
-            'email' => $request->input('email'),
-            'telefone' => $request->input('telefone'),
+        $data_inicio_formatada = Carbon::parse($request->input('data_inicio'))->format('d-m-Y');
+        $data_fim_formatada = Carbon::parse($request->input('data_fim'))->format('d-m-Y');
 
-            //Cláusula 2
-            'aluno_curso' => $request->input('aluno_curso'),
-            'disciplina' => $request->input('disciplina'),
-            'periodo' => $request->input('periodo'),
-
-            //Cláusula 3
-            'departamento' => $request->input('departamento'),
-
-            'data_inicio' => $request->input('data_inicio'),
-            'data_fim' => $request->input('data_fim'),
-
-            'segunda_ufape' => in_array('segunda', $request->input('dias_ufape', [])),
-            'terca_ufape' => in_array('terca', $request->input('dias_ufape', [])),
-            'quarta_ufape' => in_array('quarta', $request->input('dias_ufape', [])),
-            'quinta_ufape' => in_array('quinta', $request->input('dias_ufape', [])),
-            'sexta_ufape' => in_array('sexta', $request->input('dias_ufape', [])),
-
-
-            'horario_ufape_segunda' => $request->input('horario_ufape_segunda') ?? null,
-            'horario_ufape_terca' => $request->input('horario_ufape_terca') ?? null,
-            'horario_ufape_quarta' => $request->input('horario_ufape_quarta') ?? null,
-            'horario_ufape_quinta' => $request->input('horario_ufape_quinta') ?? null,
-            'horario_ufape_sexta' => $request->input('horario_ufape_sexta') ?? null,
-
-            'segunda_estagio' => in_array('segunda', $request->input('dias_estagio', [])),
-            'terca_estagio' => in_array('terca', $request->input('dias_estagio', [])),
-            'quarta_estagio' => in_array('quarta', $request->input('dias_estagio', [])),
-            'quinta_estagio' => in_array('quinta', $request->input('dias_estagio', [])),
-            'sexta_estagio' => in_array('sexta', $request->input('dias_estagio', [])),
-
-
-            'horario_estagio_segunda' => $request->input('horario_estagio_segunda') ?? null,
-            'horario_estagio_terca' => $request->input('horario_estagio_terca') ?? null,
-            'horario_estagio_quarta' => $request->input('horario_estagio_quarta') ?? null,
-            'horario_estagio_quinta' => $request->input('horario_estagio_quinta') ?? null,
-            'horario_estagio_sexta' => $request->input('horario_estagio_sexta') ?? null,
-
-            'carga_horaria_total' => $request->input('carga_horaria_total'),
-            //Cláusula 4
-            'atividades_estagiario' => $request->input('atividades_estagiario'),
-
-            //Cláusula 8
-            'orientador' => $request->input('orientador'),
-
-            //Cláusula 9
-            'supervisor_nome' => $request->input('supervisor_nome'),
-            'supervisor_cargo' => $request->input('supervisor_cargo'),
-        ];
+        if($tipo_curso = "Bacharelado"){
+            $dados = [
+                //Concedente
+                'nome_concedente' => $request->input('nome_concedente'),
+                'cnpj' => $request->input('cnpj'),
+                'endereco_concedente' => $request->input('endereco_concedente'),
+                'bairro_concedente' => $request->input('bairro_concedente'),
+                'cep_concedente' => $request->input('cep_concedente'),
+                'cidade_concedente' => $request->input('estado_concedente'),
+                'estado_concedente' => $request->input('estado_concedente'),
+                'representante' => $request->input('representante'),
+                'representante_cargo' => $request->input('representante_cargo'),
+                'representante_email' => $request->input('representante_email'),
+                'representante_telefone' => $request->input('representante_telefone'),
+    
+                //Aluno
+                'nome_aluno' => $request->input('nome_aluno'),
+                'cpf' => $request->input('cpf'),
+                'rg' => $request->input('rg'),
+                'org_expedicao' => $request->input('org_expedicao'),
+                'nascimento' => $request->input('nascimento'),
+                'endereco' => $request->input('endereco'),
+                'bairro' => $request->input('bairro'),
+                'cep' => $request->input('cep'),
+                'cidade' => $request->input('estado'),
+                'estado' => $request->input('estado'),
+                'email' => $request->input('email'),
+                'telefone' => $request->input('telefone'),
+    
+                //Cláusula 2
+                'aluno_curso' => $request->input('aluno_curso'),
+                'disciplina' => $request->input('disciplina'),
+                'periodo' => $request->input('periodo'),
+    
+                //Cláusula 3
+                'departamento' => $request->input('departamento'),
+                
+                'data_inicio' => $data_inicio_formatada,
+                'data_fim' => $data_fim_formatada,
+    
+                'segunda_ufape' => in_array('segunda', $request->input('dias_ufape', [])),
+                'terca_ufape' => in_array('terca', $request->input('dias_ufape', [])),
+                'quarta_ufape' => in_array('quarta', $request->input('dias_ufape', [])),
+                'quinta_ufape' => in_array('quinta', $request->input('dias_ufape', [])),
+                'sexta_ufape' => in_array('sexta', $request->input('dias_ufape', [])),
+    
+    
+                'horario_ufape_segunda' => $request->input('horario_ufape_segunda') ?? null,
+                'horario_ufape_terca' => $request->input('horario_ufape_terca') ?? null,
+                'horario_ufape_quarta' => $request->input('horario_ufape_quarta') ?? null,
+                'horario_ufape_quinta' => $request->input('horario_ufape_quinta') ?? null,
+                'horario_ufape_sexta' => $request->input('horario_ufape_sexta') ?? null,
+    
+                'carga_horaria_total' => $request->input('carga_horaria_total'),
+                //Cláusula 4
+                'atividades_estagiario' => $request->input('atividades_estagiario'),
+    
+                //Cláusula 8
+                'orientador' => $request->input('orientador'),
+    
+                //Cláusula 9
+                'supervisor_nome' => $request->input('supervisor_nome'),
+                'supervisor_cargo' => $request->input('supervisor_cargo'),
+                'tipo_curso' => "Bacharelado",
+            ];
+        } elseif ($tipo_curso = "Licenciatura"){
+            $dados = [
+                //Concedente
+                'nome_concedente' => $request->input('nome_concedente'),
+                'cnpj' => $request->input('cnpj'),
+                'endereco_concedente' => $request->input('endereco_concedente'),
+                'bairro_concedente' => $request->input('bairro_concedente'),
+                'cep_concedente' => $request->input('cep_concedente'),
+                'cidade_concedente' => $request->input('estado_concedente'),
+                'estado_concedente' => $request->input('estado_concedente'),
+                'representante' => $request->input('representante'),
+                'representante_cargo' => $request->input('representante_cargo'),
+                'representante_email' => $request->input('representante_email'),
+                'representante_telefone' => $request->input('representante_telefone'),
+    
+                //Aluno
+                'nome_aluno' => $request->input('nome_aluno'),
+                'cpf' => $request->input('cpf'),
+                'rg' => $request->input('rg'),
+                'org_expedicao' => $request->input('org_expedicao'),
+                'nascimento' => $request->input('nascimento'),
+                'endereco' => $request->input('endereco'),
+                'bairro' => $request->input('bairro'),
+                'cep' => $request->input('cep'),
+                'cidade' => $request->input('estado'),
+                'estado' => $request->input('estado'),
+                'email' => $request->input('email'),
+                'telefone' => $request->input('telefone'),
+    
+                //Cláusula 2
+                'aluno_curso' => $request->input('aluno_curso'),
+                'disciplina' => $request->input('disciplina'),
+                'periodo' => $request->input('periodo'),
+    
+                //Cláusula 3
+                'departamento' => $request->input('departamento'),
+    
+                'data_inicio' => $data_inicio_formatada,
+                'data_fim' => $data_fim_formatada,
+    
+                'segunda_ufape' => in_array('segunda', $request->input('dias_ufape', [])),
+                'terca_ufape' => in_array('terca', $request->input('dias_ufape', [])),
+                'quarta_ufape' => in_array('quarta', $request->input('dias_ufape', [])),
+                'quinta_ufape' => in_array('quinta', $request->input('dias_ufape', [])),
+                'sexta_ufape' => in_array('sexta', $request->input('dias_ufape', [])),
+    
+    
+                'horario_ufape_segunda' => $request->input('horario_ufape_segunda') ?? null,
+                'horario_ufape_terca' => $request->input('horario_ufape_terca') ?? null,
+                'horario_ufape_quarta' => $request->input('horario_ufape_quarta') ?? null,
+                'horario_ufape_quinta' => $request->input('horario_ufape_quinta') ?? null,
+                'horario_ufape_sexta' => $request->input('horario_ufape_sexta') ?? null,
+    
+                'segunda_estagio' => in_array('segunda', $request->input('dias_estagio', [])),
+                'terca_estagio' => in_array('terca', $request->input('dias_estagio', [])),
+                'quarta_estagio' => in_array('quarta', $request->input('dias_estagio', [])),
+                'quinta_estagio' => in_array('quinta', $request->input('dias_estagio', [])),
+                'sexta_estagio' => in_array('sexta', $request->input('dias_estagio', [])),
+    
+    
+                'horario_estagio_segunda' => $request->input('horario_estagio_segunda') ?? null,
+                'horario_estagio_terca' => $request->input('horario_estagio_terca') ?? null,
+                'horario_estagio_quarta' => $request->input('horario_estagio_quarta') ?? null,
+                'horario_estagio_quinta' => $request->input('horario_estagio_quinta') ?? null,
+                'horario_estagio_sexta' => $request->input('horario_estagio_sexta') ?? null,
+    
+                'carga_horaria_total' => $request->input('carga_horaria_total'),
+                //Cláusula 4
+                'atividades_estagiario' => $request->input('atividades_estagiario'),
+    
+                //Cláusula 8
+                'orientador' => $request->input('orientador'),
+    
+                //Cláusula 9
+                'supervisor_nome' => $request->input('supervisor_nome'),
+                'supervisor_cargo' => $request->input('supervisor_cargo'),
+                'tipo_curso' => "Licenciatura",
+            ];
+        }
 
         return $pdf->editImage(9, $dados);
     }
