@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Database\Eloquent\Builder;
+use Carbon\Carbon;
 
 class Estagio extends Model
 {
@@ -43,6 +45,10 @@ class Estagio extends Model
         'aluno_id',
     ];
 
+    public function scopeIniciadoEntre($query, $dataInicial, $dataFinal)
+    {
+        return $query->whereBetween('data_inicio', [$dataInicial, $dataFinal]);
+    }
 
     public function aluno()
     {

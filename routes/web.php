@@ -250,6 +250,9 @@ Route::prefix('estagio')->group(function () {
     Route::get('/verificar-aluno', [EstagioController::class, 'verificar_aluno_view'])->name('estagio.verificarAluno');
     Route::post('/verificar-aluno', [EstagioController::class, 'verificarAluno'])->name('estagio.verificarAluno.control');
 
+    Route::get('/exportar-dados', [EstagioController::class, 'export_form'])->name('estagio.export-form');
+    Route::get('/export', [EstagioController::class, 'export'])->name('estagio.export');
+
     // Route::get('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento_form'])->name('estagio.formularios.termo_encaminhamento');
     // Route::post('/documentos/termo_encaminhamento', [DocumentoEstagioController::class, 'termo_encaminhamento'])->name('estagio.formularios.termo_encaminhamento.store');
     // comentado temporariamente
@@ -318,7 +321,7 @@ Route::prefix('estagio')->group(function () {
         //rota para visualizar os doc que foram convertidos para nova forma de preencher
         Route::get('/visualizar-doc/{docId}', [PDFController::class, 'viewDoc'])->name('visualizar.doc');
         Route::get('/download-doc/{docId}', [PDFController::class, 'downloadDoc'])->name('download.doc');
-      
+
         Route::get('/download-modelo-doc/{id}/{docId}', [PDFController::class, 'downloadModeloDoc'])->name('download.modelo.doc');
     });
 });

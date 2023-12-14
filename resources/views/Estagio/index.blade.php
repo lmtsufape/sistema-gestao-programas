@@ -50,8 +50,10 @@
                     onclick="window.location.href = '{{ route('estagio.verificarAluno') }}'">Cadastrar estágio</button>
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
                     onclick="window.location.href = '{{ route('estagio.editConfig') }}'">Configurar estágios</button>
-                <button class="cadastrar-botao" type="button"
+                <button class="cadastrar-botao" style="margin-right: 10px" type="button"
                     onclick="window.location.href = '{{ route('instituicao.index') }}'">Informações da instituição</button>
+                <button class="cadastrar-botao" type="button"
+                    onclick="window.location.href = '{{ route('estagio.export-form') }}'">Exportar dados</button>
             </form>
 
 
