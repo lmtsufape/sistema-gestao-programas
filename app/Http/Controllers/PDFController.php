@@ -1830,75 +1830,126 @@ class PDFController extends Controller
     {
         Settings::setZipClass(Settings::PCLZIP);
 
-        $templateProcessor = new TemplateProcessor(storage_path('app/docs/UFAPE/termo_compromisso_ufape_lic.docx'));
-        $templateProcessor->setValues($dados);
-        if ($dados['segunda_ufape']) {
-            $templateProcessor->setValue('segunda_ufape', 'X');
-        } else {
-            $templateProcessor->setValue('segunda_ufape', '');
+        if($dados['tipo_curso'] == "Bacharelado"){
+            $dados = array_slice($dados,0,-1);
+            
+            $templateProcessor = new TemplateProcessor(storage_path('app/docs/UFAPE/termo_compromisso_ufape_bach.docx'));
+
+            $templateProcessor->setValues($dados);
+            
+            if ($dados['segunda_ufape']) {
+                $templateProcessor->setValue('segunda_ufape', 'X');
+            } else {
+                $templateProcessor->setValue('segunda_ufape', '');
+            }
+
+            if ($dados['terca_ufape']) {
+                $templateProcessor->setValue('terca_ufape', 'X');
+            } else {
+                $templateProcessor->setValue('terca_ufape', '');
+            }
+
+            if ($dados['quarta_ufape']) {
+                $templateProcessor->setValue('quarta_ufape', 'X');
+            } else {
+                $templateProcessor->setValue('quarta_ufape', '');
+            }
+
+            if ($dados['quinta_ufape']) {
+                $templateProcessor->setValue('quinta_ufape', 'X');
+            } else {
+                $templateProcessor->setValue('quinta_ufape', '');
+            }
+
+            if ($dados['sexta_ufape']) {
+                $templateProcessor->setValue('sexta_ufape', 'X');
+            } else {
+                $templateProcessor->setValue('sexta_ufape', '');
+            }
+
+            $temp_path = DocService::tmpdoc();
+
+            $templateProcessor->saveAs($temp_path);
+
+            $this->salvar_no_banco($temp_path, $dados);
+
+            return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
+
+        } elseif($dados['tipo_curso'] == "Licenciatura"){
+
+            $dados = array_slice($dados,0,-1);
+
+            $templateProcessor = new TemplateProcessor(storage_path('app/docs/UFAPE/termo_compromisso_ufape_lic.docx'));
+
+            $templateProcessor->setValues($dados);
+            if ($dados['segunda_ufape']) {
+                $templateProcessor->setValue('segunda_ufape', 'X');
+            } else {
+                $templateProcessor->setValue('segunda_ufape', '');
+            }
+
+            if ($dados['terca_ufape']) {
+                $templateProcessor->setValue('terca_ufape', 'X');
+            } else {
+                $templateProcessor->setValue('terca_ufape', '');
+            }
+
+            if ($dados['quarta_ufape']) {
+                $templateProcessor->setValue('quarta_ufape', 'X');
+            } else {
+                $templateProcessor->setValue('quarta_ufape', '');
+            }
+
+            if ($dados['quinta_ufape']) {
+                $templateProcessor->setValue('quinta_ufape', 'X');
+            } else {
+                $templateProcessor->setValue('quinta_ufape', '');
+            }
+
+            if ($dados['sexta_ufape']) {
+                $templateProcessor->setValue('sexta_ufape', 'X');
+            } else {
+                $templateProcessor->setValue('sexta_ufape', '');
+            }
+
+            if ($dados['segunda_estagio']) {
+                $templateProcessor->setValue('segunda_estagio', 'X');
+            } else {
+                $templateProcessor->setValue('segunda_estagio', '');
+            }
+
+            if ($dados['terca_estagio']) {
+                $templateProcessor->setValue('terca_estagio', 'X');
+            } else {
+                $templateProcessor->setValue('terca_estagio', '');
+            }
+
+            if ($dados['quarta_estagio']) {
+                $templateProcessor->setValue('quarta_estagio', 'X');
+            } else {
+                $templateProcessor->setValue('quarta_estagio', '');
+            }
+
+            if ($dados['quinta_estagio']) {
+                $templateProcessor->setValue('quinta_estagio', 'X');
+            } else {
+                $templateProcessor->setValue('quinta_estagio', '');
+            }
+
+            if ($dados['sexta_estagio']) {
+                $templateProcessor->setValue('sexta_estagio', 'X');
+            } else {
+                $templateProcessor->setValue('sexta_estagio', '');
+            }
+
+            $temp_path = DocService::tmpdoc();
+
+            $templateProcessor->saveAs($temp_path);
+
+            $this->salvar_no_banco($temp_path, $dados);
+
+            return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
         }
-
-        if ($dados['terca_ufape']) {
-            $templateProcessor->setValue('terca_ufape', 'X');
-        } else {
-            $templateProcessor->setValue('terca_ufape', '');
-        }
-
-        if ($dados['quarta_ufape']) {
-            $templateProcessor->setValue('quarta_ufape', 'X');
-        } else {
-            $templateProcessor->setValue('quarta_ufape', '');
-        }
-
-        if ($dados['quinta_ufape']) {
-            $templateProcessor->setValue('quinta_ufape', 'X');
-        } else {
-            $templateProcessor->setValue('quinta_ufape', '');
-        }
-
-        if ($dados['sexta_ufape']) {
-            $templateProcessor->setValue('sexta_ufape', 'X');
-        } else {
-            $templateProcessor->setValue('sexta_ufape', '');
-        }
-
-        if ($dados['segunda_estagio']) {
-            $templateProcessor->setValue('segunda_estagio', 'X');
-        } else {
-            $templateProcessor->setValue('segunda_estagio', '');
-        }
-
-        if ($dados['terca_estagio']) {
-            $templateProcessor->setValue('terca_estagio', 'X');
-        } else {
-            $templateProcessor->setValue('terca_estagio', '');
-        }
-
-        if ($dados['quarta_estagio']) {
-            $templateProcessor->setValue('quarta_estagio', 'X');
-        } else {
-            $templateProcessor->setValue('quarta_estagio', '');
-        }
-
-        if ($dados['quinta_estagio']) {
-            $templateProcessor->setValue('quinta_estagio', 'X');
-        } else {
-            $templateProcessor->setValue('quinta_estagio', '');
-        }
-
-        if ($dados['sexta_estagio']) {
-            $templateProcessor->setValue('sexta_estagio', 'X');
-        } else {
-            $templateProcessor->setValue('sexta_estagio', '');
-        }
-
-        $temp_path = DocService::tmpdoc();
-
-        $templateProcessor->saveAs($temp_path);
-
-        $this->salvar_no_banco($temp_path, $dados);
-
-        return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
     public function edit_ficha_frequencia_ufape($path, $dados)
