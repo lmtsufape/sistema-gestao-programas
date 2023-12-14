@@ -3,7 +3,7 @@
 @section('body')
     <div class="fundocadastrar">
         <div class="row" style="align-content: left;">
-            <h1 class="titulogrande">Termo de compromisso</h1>
+            <h1 class="titulogrande">Termo de compromisso - Licenciatura</h1>
         </div>
 
         @if (Session::has('pdf_generated_success'))
