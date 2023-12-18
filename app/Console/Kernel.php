@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('Update:StatusEstagio')->daily();
+        $schedule->command('limpar:arquivos')->daily();
     }
 
     /**
