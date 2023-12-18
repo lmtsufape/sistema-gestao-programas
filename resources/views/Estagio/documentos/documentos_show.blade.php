@@ -216,7 +216,7 @@
 
                                         @endcan
                                     @else
-                                        @can('admin', 'servidor', 'aluno')
+                                        @canany(['admin', 'servidor', 'aluno'])
                                             <!-- Verifica se o usuário tem a função de aluno -->
                                             @if ($hoje > $dataLimite)
                                                 <img src="{{ asset('images/add_disciplina.svg') }}" alt="Documento Preenchido"
