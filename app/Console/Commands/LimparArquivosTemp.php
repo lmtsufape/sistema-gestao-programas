@@ -38,7 +38,7 @@ class LimparArquivosTemp extends Command
      */
     public function handle()
     {
-        $diretorio = storage_path('app/docs/temp');
+        $diretorio = storage_path('app/docs/tmp');
 
         File::cleanDirectory($diretorio);
 
