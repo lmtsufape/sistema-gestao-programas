@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class LimparArquivosTemp extends Command
 {
@@ -11,14 +12,14 @@ class LimparArquivosTemp extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'limpar:arquivos';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Exclui arquivos em uma pasta específica periodicamente';
 
     /**
      * Create a new command instance.
@@ -37,6 +38,10 @@ class LimparArquivosTemp extends Command
      */
     public function handle()
     {
-        return 0;
+        $diretorio = storage_path('app/docs/temp');
+
+        File::cleanDirectory($diretorio);
+
+        $this->info('Arquivos excluídos com sucesso!');
     }
 }
