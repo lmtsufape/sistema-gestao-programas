@@ -128,7 +128,7 @@
                                                                                                                                                     <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento" style="height: 30px; width: 30px;">
                                                                                                                                                 </a> -->
                                     @if ($documento_enviado)
-                                        @can('admin', 'servidor', 'aluno')
+                                        @canany(['admin', 'servidor', 'aluno'])
                                             <!-- Verifica se o usuário tem a função de aluno -->
 
                                             @if (
