@@ -143,7 +143,7 @@ Route::prefix('edital')->group(function () {
     Route::get('/{fileName}/documentos', [EditalController::class, 'download_outros_documentos'])->name('outros_documentos.download');
     Route::get('/{id}/disciplinas', [EditalController::class, 'listar_disciplinas'])->name('edital.listar_disciplinas');
     Route::get('/{id}/orientadores', [EditalController::class, 'listar_orientadores'])->name('edital.listar_orientadores');
-    Route::get('/cpfs', [SeuControlador::class, 'getCpfs']);
+    Route::get('/cpfs', [EditalController::class, 'getCpfs']);
     Route::get('/{aluno_id}/{edital_id}/editar_vinculo', [EditalController::class, 'editar_vinculo'])->name('edital.editar_vinculo');
     Route::put('/vinculo/{id}', [EditalController::class, 'updateVinculo'])->name('edital.update_vinculo');
     Route::get('/{id}/delete', [EditalController::class, 'deletarVinculo'])->name('edital.aluno.delete');

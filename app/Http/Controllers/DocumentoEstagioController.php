@@ -88,7 +88,14 @@ class DocumentoEstagioController extends Controller
             'estadoAluno' => $request->input('estadoAluno'),
             'telefoneAluno' => $request->input('telefoneAluno'),
             'emailAluno' => $request->input('emailAluno'),
+            'hora_inicial' => $request->input('hora_inicial'),
+            'hora_final' => $request->input('hora_final'),
+            'quant_semanas' => $request->input('quant_semanas'),
+            'data_inicio' => $request->input('data_inicio'),
+            'data_fim' => $request->input('data_fim'),
         ];
+
+        // dd($dados);
 
         return $pdf->editImage(2, $dados);
     }
