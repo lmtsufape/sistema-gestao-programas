@@ -19,7 +19,7 @@ class LimparArquivosTemp extends Command
      *
      * @var string
      */
-    protected $description = 'Exclui arquivos em uma pasta específica periodicamente';
+    protected $description = 'Exclui arquivos na pasta tmp do storage periodicamente';
 
     /**
      * Create a new command instance.
