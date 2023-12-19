@@ -259,14 +259,7 @@ class PDFController extends Controller
         $documento = DocumentoEstagio::find($docId);
         $estagio = Estagio::find($documento->estagio_id);
 
-        $documentoObrigatorio = ListaDocumentosObrigatorios::find($documento->lista_documentos_obrigatorios_id);
-
-        $aluno = Auth::user();
-
         $doc = $documento->pdf;
-
-        $nomeArquivo = '1.docx';
-        //$conteudoArquivo = Storage::disk('public')->get($nomeArquivo);
 
         // Converte o conteúdo do arquivo em um array de bytes (Uint8Array)
         $conteudoArrayBytes = array_values(unpack('C*', $doc));
@@ -303,7 +296,7 @@ class PDFController extends Controller
         $tp->setValue('quant_semanas', $dados['quant_semanas'] . 'h');
         $tp->setValues($dados);
 
-        
+
         $temp_path = DocService::tmpdoc();
 
         $tp->saveAs($temp_path);
@@ -1621,11 +1614,11 @@ class PDFController extends Controller
     {
         Settings::setZipClass(Settings::PCLZIP);
 
-        if($dados['tipo_curso'] == "Bacharelado"){
-            $dados = array_slice($dados,0,-1);
-            
+        if ($dados['tipo_curso'] == "Bacharelado") {
+            $dados = array_slice($dados, 0, -1);
+
             $templateProcessor = new TemplateProcessor(storage_path('app/docs/UFAPE/termo_compromisso_ufape_bach.docx'));
-            
+
             if ($dados['segunda_ufape']) {
                 $templateProcessor->setValue('segunda_ufape', 'X');
             } else {
@@ -1665,10 +1658,9 @@ class PDFController extends Controller
             $this->salvar_no_banco($temp_path, $dados);
 
             return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
+        } elseif ($dados['tipo_curso'] == "Licenciatura") {
 
-        } elseif($dados['tipo_curso'] == "Licenciatura"){
-
-            $dados = array_slice($dados,0,-1);
+            $dados = array_slice($dados, 0, -1);
 
             $templateProcessor = new TemplateProcessor(storage_path('app/docs/UFAPE/termo_compromisso_ufape_lic.docx'));
 
@@ -1733,7 +1725,7 @@ class PDFController extends Controller
             }
 
             $templateProcessor->setValues($dados);
-            
+
             $temp_path = DocService::tmpdoc();
 
             $templateProcessor->saveAs($temp_path);
@@ -1777,7 +1769,8 @@ class PDFController extends Controller
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
-    public function edit_declaracao_ch($path, $dados) {
+    public function edit_declaracao_ch($path, $dados)
+    {
         $tp = new TemplateProcessor($path);
         $tp->setValues($dados);
         if ($dados['tipo_curso'] == 'bach') {
@@ -1801,14 +1794,14 @@ class PDFController extends Controller
 
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
-    
+
     public function edit_carta_aceite_supervisor_ufape($path, $dados)
     {
         $tp = new TemplateProcessor($path);
-        $tp->setValue('aluno', $dados['aluno'] );
-        $tp->setValue('curso', $dados['curso'] );
-        $tp->setValue('data_inicio', $dados['data_inicio'] );
-        $tp->setValue('data_fim', $dados['data_fim'] );
+        $tp->setValue('aluno', $dados['aluno']);
+        $tp->setValue('curso', $dados['curso']);
+        $tp->setValue('data_inicio', $dados['data_inicio']);
+        $tp->setValue('data_fim', $dados['data_fim']);
 
         $temp_path = DocService::tmpdoc();
         $tp->saveAs($temp_path);
@@ -1834,8 +1827,8 @@ class PDFController extends Controller
         $curso = Curso::findOrFail($estagio->curso_id);
 
         $tp = new TemplateProcessor($path);
-        $tp->setValue('aluno', $aluno->nome_aluno );
-        $tp->setValue('curso', $curso->nome );
+        $tp->setValue('aluno', $aluno->nome_aluno);
+        $tp->setValue('curso', $curso->nome);
 
         $dataInicio = Carbon::parse($estagio->data_inicio);
         $dataInicioFormatada = $dataInicio->locale('pt_BR')->isoFormat('LL');
@@ -1851,7 +1844,7 @@ class PDFController extends Controller
 
 
         $docBlob = file_get_contents($temp_path);
-        
+
         $nome_aluno = $aluno->nome_aluno;
 
 
