@@ -255,33 +255,7 @@ class DocumentoEstagioController extends Controller
             'prof_componente_curricular' => $request->input('prof_componente_curricular'),
             'prof_orientador' => $request->input('prof_orientador'),
             'local_estagio' => $request->input('local_estagio'),
-            'supervisor_estagio' => $request->input('supervisor_estagio'),
-
-            'data1' => $request->input('data1') ?: ' ', 'atividade1' => $request->input('atividade1') ?: ' ', 'ch1' => $request->input('ch1') ?: ' ',
-            'data2' => $request->input('data2') ?: ' ', 'atividade2' => $request->input('atividade2') ?: ' ', 'ch2' => $request->input('ch2') ?: ' ',
-            'data3' => $request->input('data3') ?: ' ', 'atividade3' => $request->input('atividade3') ?: ' ', 'ch3' => $request->input('ch3') ?: ' ',
-            'data4' => $request->input('data4') ?: ' ', 'atividade4' => $request->input('atividade4') ?: ' ', 'ch4' => $request->input('ch4') ?: ' ',
-            'data5' => $request->input('data5') ?: ' ', 'atividade5' => $request->input('atividade5') ?: ' ', 'ch5' => $request->input('ch5') ?: ' ',
-            'data6' => $request->input('data6') ?: ' ', 'atividade6' => $request->input('atividade6') ?: ' ', 'ch6' => $request->input('ch6') ?: ' ',
-            'data7' => $request->input('data7') ?: ' ', 'atividade7' => $request->input('atividade7') ?: ' ', 'ch7' => $request->input('ch7') ?: ' ',
-            'data8' => $request->input('data8') ?: ' ', 'atividade8' => $request->input('atividade8') ?: ' ', 'ch8' => $request->input('ch8') ?: ' ',
-            'data9' => $request->input('data9') ?: ' ', 'atividade9' => $request->input('atividade9') ?: ' ', 'ch9' => $request->input('ch9') ?: ' ',
-            'data10' => $request->input('data10') ?: ' ', 'atividade10' => $request->input('atividade10') ?: ' ', 'ch10' => $request->input('ch10') ?: ' ',
-            'data11' => $request->input('data11') ?: ' ', 'atividade11' => $request->input('atividade11') ?: ' ', 'ch11' => $request->input('ch11') ?: ' ',
-            'data12' => $request->input('data12') ?: ' ', 'atividade12' => $request->input('atividade12') ?: ' ', 'ch12' => $request->input('ch12') ?: ' ',
-            'data13' => $request->input('data13') ?: ' ', 'atividade13' => $request->input('atividade13') ?: ' ', 'ch13' => $request->input('ch13') ?: ' ',
-            'data14' => $request->input('data14') ?: ' ', 'atividade14' => $request->input('atividade14') ?: ' ', 'ch14' => $request->input('ch14') ?: ' ',
-            'data15' => $request->input('data15') ?: ' ', 'atividade15' => $request->input('atividade15') ?: ' ', 'ch15' => $request->input('ch15') ?: ' ',
-            'data16' => $request->input('data16') ?: ' ', 'atividade16' => $request->input('atividade16') ?: ' ', 'ch16' => $request->input('ch16') ?: ' ',
-            'data17' => $request->input('data17') ?: ' ', 'atividade17' => $request->input('atividade17') ?: ' ', 'ch17' => $request->input('ch17') ?: ' ',
-            'data18' => $request->input('data18') ?: ' ', 'atividade18' => $request->input('atividade18') ?: ' ', 'ch18' => $request->input('ch18') ?: ' ',
-            'data19' => $request->input('data19') ?: ' ', 'atividade19' => $request->input('atividade19') ?: ' ', 'ch19' => $request->input('ch19') ?: ' ',
-            'data20' => $request->input('data20') ?: ' ', 'atividade20' => $request->input('atividade20') ?: ' ', 'ch20' => $request->input('ch20') ?: ' ',
-            'data21' => $request->input('data21') ?: ' ', 'atividade21' => $request->input('atividade21') ?: ' ', 'ch21' => $request->input('ch21') ?: ' ',
-            'data22' => $request->input('data22') ?: ' ', 'atividade22' => $request->input('atividade22') ?: ' ', 'ch22' => $request->input('ch22') ?: ' ',
-
-
-            'ch_total' => $request->input('ch_total')
+            'supervisor_estagio' => $request->input('supervisor_estagio')
         ];
 
         return $pdf->editImage(4, $dados);
