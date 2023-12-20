@@ -162,24 +162,36 @@
                 id="cargo" 
                 placeholder="Digite o cargo do eupervisor do estágio"
                 required><br>
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="educacaoEscolar" class="titulopequeno">Educacao escolar (Sim ou não)<strong style="color: #8B5558">*</strong></label>
+            <label class="titulopequeno">
+                <input type="checkbox" name="educacaoEscolar" id="educacaoEscolar" value="Sim">
+                Educação escolar<strong style="color: #8B5558"></strong>
+            </label>
+            <div class="invalid-feedback">Por favor, marque esta opção</div><br>
             <br>
-            <input class="boxcadastrar" type="text" name="educacaoEscolar"
-                id="educacaoEscolar" 
-                placeholder="Educacao escolar (Sim ou não)"
-                required><br>
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
+            <label class="titulopequeno">
+                <input type="checkbox" name="educacaoNaoEscolar" id="educacaoNaoEscolar" value="Sim">
+                Educação não-escolar<strong style="color: #8B5558"></strong>
+            </label>
+            <div class="invalid-feedback">Por favor, marque esta opção</div><br>
+            <br>
             
-            <label for="educacaoNaoEscolar" class="titulopequeno">Educacao não-escolar (Sim ou não)<strong style="color: #8B5558">*</strong></label>
+            <label for="anoInfantil" class="titulopequeno">Ano - Educação Infantil<strong style="color: #8B5558"></strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="educacaoNaoEscolar"
-                id="educacaoNaoEscolar" 
-                placeholder="Educacao não-escolar (Sim ou não)"
-                required><br>
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
-
+            <input class="boxcadastrar" type="text" name="anoInfantil" id="anoInfantil" placeholder="Digite o ano da Etapa da Educação Infantil">
+            <div class="invalid-feedback">Por favor preencha esse campo</div><br>
+            
+            <label for="anoFundamental" class="titulopequeno">Ano - Ensino Fundamental<strong style="color: #8B5558"></strong></label>
+            <br>
+            <input class="boxcadastrar" type="text" name="anoFundamental" id="anoFundamental" placeholder="Digite o ano da Etapa do Ensino Fundamental">
+            <div class="invalid-feedback">Por favor preencha esse campo</div><br>
+            
+            <label for="anoMedio" class="titulopequeno">Ano - Ensino Médio<strong style="color: #8B5558"></strong></label>
+            <br>
+            <input class="boxcadastrar" type="text" name="anoMedio" id="anoMedio" placeholder="Digite o ano da Etapa do Ensino Médio">
+            <div class="invalid-feedback">Por favor preencha esse campo</div><br>
+            
             <label for="modalidade" class="titulopequeno">Modalidade<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="modalidade"
@@ -222,6 +234,14 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
+            <label for="semestreLetivo" class="titulopequeno">Período de Vigência do Estágio<strong style="color: #8B5558">*</strong></label>
+            <br>
+            <input class="boxcadastrar" type="text" name="periodoVigencia"
+                id="periodoVigencia" 
+                placeholder="Digite o período de vigência do estágio"
+                required><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
+
             <label for="cargaHorariaSemanal" class="titulopequeno">Carga horária semanal<strong style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="cargaHorariaSemanal"
@@ -245,6 +265,12 @@
                 placeholder="Digite o horário de realização do estágio"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
+            
+            <label for="objetivosEstagio" class="titulopequeno">Objetivos do Estágio<strong style="color: #8B5558">*</strong></label>
+            <br>
+            <textarea class="boxcadastrar" name="objetivosEstagio" id="objetivosEstagio" placeholder="Digite os Objetivos do estágio" required rows="5" style="height: 150px;"></textarea>
+            <div class="invalid-feedback">Por favor preencha esse campo</div><br>
+                       
             
 
             <br><br>

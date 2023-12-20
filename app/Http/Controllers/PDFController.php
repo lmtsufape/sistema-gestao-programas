@@ -815,6 +815,19 @@ class PDFController extends Controller
     private function editPlanoDeAtividades($dados)
     {
         $tp = new TemplateProcessor(storage_path('app/docs/UPE/eo/plano_atividades.docx'));
+
+        if ($dados['educacaoEscolar'] == "Sim"){
+            $tp->setValue('educacaoEscolar', "X");
+        } else {
+            $tp->setValue('educacaoEscolar', "");
+        }
+
+        if ($dados['educacaoNaoEscolar'] == "Sim"){
+            $tp->setValue('educacaoNaoEscolar', "X");
+        } else {
+            $tp->setValue('educacaoNaoEscolar', "");
+        }
+        
         $tp->setValues($dados);
 
         $temp_path = DocService::tmpdoc();
