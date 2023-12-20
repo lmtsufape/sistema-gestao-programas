@@ -193,7 +193,7 @@ class DocumentoEstagioController extends Controller
             'curso' => $request->input('curso'),
             'periodo' => $request->input('periodo'),
             //CAMPO DE ESTAGIO
-            'instituicao' => $request->input('instituição'),
+            'instituicao' => $request->input('instituicao'),
             'endereco' => $request->input('endereco'),
             'numCasa' => $request->input('numCasa'),
             'complemento' => $request->input('complemento'),

@@ -20,16 +20,16 @@
 
             <label for="Nome" class="titulopequeno">Nome<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="Nome"
-                id="Nome" 
+            <input class="boxcadastrar" type="text" name="nome"
+                id="nome" 
                 placeholder="Digite o nome do estagiário"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
             <label for="Email" class="titulopequeno">Email<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="Email"
-                id="Email" 
+            <input class="boxcadastrar" type="text" name="email"
+                id="email" 
                 placeholder="Digite o email do estagiário"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
