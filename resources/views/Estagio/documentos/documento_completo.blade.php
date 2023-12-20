@@ -8,7 +8,7 @@
         </div>
         <br>
         <a class="cadastrar-botao" style="text-decoration: none; color: white; margin-right: 10px" type="button"
-            href="{{ route('visualizar.pdf', ['docId' => $documento->id]) }}" target="_blank">Fazer o download de: {{ $lista_documento->titulo }}</a>
+            href="{{ route('download.doc', ['docId' => $documento->id]) }}">Fazer o download de: {{ $lista_documento->titulo }}</a>
         <br>
         @if (Session::has('pdf_generated_success'))
             <div class="alert alert-success">
