@@ -92,10 +92,12 @@
                                 @endphp
                                 <tr>
                                     <td class="align-middle">
-                                        @if ($estagio->status == 0)
-                                            {{ 'Inativo' }}
+                                        @if ($estagio->status == 1)
+                                            <span class="badge badge-success"
+                                                style="background-color: green; color: white;">Ativo</span>
                                         @else
-                                            {{ 'Ativo' }}
+                                            <span class="badge badge-danger"
+                                                style="background-color: red; color: white;">Inativo</span>
                                         @endif
                                     </td>
                                     <td class="align-middle">{{ $estagio->descricao }}</td>
