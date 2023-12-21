@@ -44,7 +44,7 @@
 
 
         <div style="display: flex; justify-content: space-evenly; align-items: center;">
-            <h1 class="titulo"><strong>Meus estágios</strong></h1>
+            <h1 class="titulo"><strong>Estágios vinculados</strong></h1>
         </div>
 
         <form class="search-container" action="{{ route('Estagio.estagios-aluno') }}" method="GET">
@@ -66,6 +66,7 @@
                     <tr class="table-head">
                         <th scope="col" class="text-center align-middle">Status</th>
                         <th scope="col" class="text-center align-middle">Descrição</i></th>
+                        <th scope="col" class="text-center align-middle">Curso</i></th>
                         <th scope="col" class="text-center align-middle">Data de solicitação</i></th>
                         <th scope="col" class="text-center align-middle">Data de início</th>
                         <th scope="col" class="text-center align-middle">Data de fim</th>
@@ -92,6 +93,7 @@
                                 @endif
                             </td>
                             <td class="align-middle">{{ $estagio->descricao }}</td>
+                            <td class="align-middle">{{ $estagio->curso->nome }}</td>
                             <td class="align-middle">{{ date_format(date_create($estagio->data_solicitacao), 'd/m/Y') }}
                             </td>
                             <td class="align-middle">{{ date_format(date_create($estagio->data_inicio), 'd/m/Y') }}</td>

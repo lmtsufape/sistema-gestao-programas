@@ -326,7 +326,7 @@ Route::prefix('estagio')->group(function () {
     });
 });
 Route::get('/meus-estagios', [EstagioController::class, 'estagios_profile'])->name('Estagio.estagios-aluno');
-
+Route::get('/estagios-orientador', [EstagioController::class, 'estagios_orientador'])->name('Estagio.estagios-orientador');
 //Rotas de Supervisor
 Route::prefix('supervisor')->group(function () {
     Route::get('/', [SupervisorController::class, 'index'])->name('supervisor.index');
