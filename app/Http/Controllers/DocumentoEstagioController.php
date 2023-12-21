@@ -193,7 +193,7 @@ class DocumentoEstagioController extends Controller
             'curso' => $request->input('curso'),
             'periodo' => $request->input('periodo'),
             //CAMPO DE ESTAGIO
-            'instituicao' => $request->input('instituição'),
+            'instituicao' => $request->input('instituicao'),
             'endereco' => $request->input('endereco'),
             'numCasa' => $request->input('numCasa'),
             'complemento' => $request->input('complemento'),
@@ -209,15 +209,20 @@ class DocumentoEstagioController extends Controller
             'cargo' => $request->input('cargo'),
             'educacaoEscolar' => $request->input('educacaoEscolar'),
             'educacaoNaoEscolar' => $request->input('educacaoNaoEscolar'),
+            'anoInfantil' => $request->input('anoInfantil'),
+            'anoFundamental' => $request->input('anoFundamental'),
+            'anoMedio' => $request->input('anoMedio'),
             'modalidade' => $request->input('modalidade'),
             //PROGRAMA DE ESTAGIO
             'semestreLetivo' => $request->input('semestreLetivo'),
             'componenteCurricular' => $request->input('componenteCurricular'),
             'professorComponenteCurricular' => $request->input('professorComponenteCurricular'),
             'professorOrientador' => $request->input('professorOrientador'),
+            'periodoVigencia' => $request->input('periodoVigencia'),
             'cargaHorariaSemanal' => $request->input('cargaHorariaSemanal'),
             'diasRealizacao' => $request->input('diasRealizacao'),
             'horario' => $request->input('horario'),
+            'objetivosEstagio' => $request->input('objetivosEstagio'),
         ];
 
         return $pdf->editImage(3, $dados);
