@@ -118,6 +118,12 @@
                         <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 20px;">
                         <p class="third-title"> Meus editais </p>
                     </button>
+
+                    <button class="botao" href="{{ url('/estagios-orientador') }}"
+                        onclick="window.location.href='{{ url('/estagios-orientador') }}'">
+                        <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 20px;">
+                        <p class="third-title"> Meus estagios </p>
+                    </button>
                 </div>
                 <br>
             </div>
