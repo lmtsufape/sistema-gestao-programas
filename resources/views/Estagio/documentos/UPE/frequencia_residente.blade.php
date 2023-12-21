@@ -79,7 +79,11 @@
                 value="{{ $dados['numMatricula'] ?? '' }}"
                 placeholder="Digite o n° da matrícula do/a professor/a preceptor/a"
                 required><br>
-            <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
+            <div class="invalid-feedback"> Por favor preencha esse campo</div>
+
+            <p>Este formulário facilita o preenchimento do seu documento para maior comodidade. Pedimos que baixe o
+                documento já preenchido e, ao final do estágio, por favor, envie-o integralmente. Agradecemos pela sua
+                colaboração.</p>
 
             <br><br>
             <div class="botoessalvarvoltar">

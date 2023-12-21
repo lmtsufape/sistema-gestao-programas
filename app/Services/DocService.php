@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\File;
 class DocService
 {
     public static function tmpdoc()
-    {
+    {   
         $nomeUnico = 'doc_' . Str::uuid() . '.docx';
         $caminhoTemporario = storage_path('app/docs/tmp/') . $nomeUnico;
 
