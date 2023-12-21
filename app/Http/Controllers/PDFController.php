@@ -41,11 +41,13 @@ class PDFController extends Controller
         switch ($this->documentType) {
                 //termo de encaminhamento
             case 1:
-                return $this->editTermoEncaminhamento($dados);
+                $path = storage_path('app/docs/UPE/eo/termo_encaminhamento.docx');
+                return $this->editTermoEncaminhamento($path, $dados);
                 break;
                 //termo de compromisso
             case 2:
-                return $this->editTermoCompromisso($dados);
+                $path = storage_path('app/docs/UPE/eo/termo_compromisso.docx');
+                return $this->editTermoCompromisso($path, $dados);
                 break;
                 //plano de atividades
             case 3:
@@ -53,8 +55,8 @@ class PDFController extends Controller
                 break;
                 //ficha de frequência
             case 4:
-                $documentPath = storage_path('app/docs/ficha_frequencia/0.png');
-                return $this->editFichaFrequencia($dados);
+                $path = storage_path('app/docs/UPE/eo/ficha_frequencia.docx');
+                return $this->editFichaFrequencia($path, $dados);
                 break;
                 // Relatório de Acompanhamento do Campo de Estágio
             case 5:
@@ -63,12 +65,12 @@ class PDFController extends Controller
                 return $this->editRelatorioCampo([$documentPath1, $documentPath2], $dados);
                 break;
             case 7:
-                $documentPath1 = storage_path('app/docs/frequencia_residente/0.png');
-                $documentPath2 = storage_path('app/docs/frequencia_residente/1.png');
-                return $this->editFrequenciaResidente([$documentPath1, $documentPath2], $dados);
+                $path = storage_path('app/docs/UPE/eo/frequencia_residente.docx');
+                return $this->editFrequenciaResidente($path, $dados);
                 break;
             case 9:
-                return $this->editTermoCompromissoUFAPE($dados);
+                $path = storage_path('app/docs/UFAPE/termo_compromisso_ufape_bach.docx');
+                return $this->editTermoCompromissoUFAPE($path, $dados);
                 break;
             case 10:
                 $path = storage_path('app/docs/UFAPE/carta_aceite_supervisor.docx');
@@ -288,9 +290,9 @@ class PDFController extends Controller
         return Response::make($docBlob, 200, $headers);
     }
 
-    private function editTermoCompromisso($dados)
+    private function editTermoCompromisso($path, $dados)
     {
-        $tp = new TemplateProcessor(storage_path('app/docs/UPE/eo/termo_compromisso.docx'));
+        $tp = new TemplateProcessor($path);
 
         $tp->setValue('quant_semanas', $dados['quant_semanas'] . 'h');
         $tp->setValues($dados);
@@ -307,10 +309,10 @@ class PDFController extends Controller
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
-    private function editTermoEncaminhamento($dados)
+    private function editTermoEncaminhamento($path, $dados)
     {
 
-        $templateProcessor = new TemplateProcessor(storage_path('app/docs/UPE/eo/termo_encaminhamento.docx'));
+        $templateProcessor = new TemplateProcessor($path);
         $templateProcessor->setValues($dados);
         $temp_path = DocService::tmpdoc();
 
@@ -318,20 +320,21 @@ class PDFController extends Controller
 
         $this->salvar_no_banco($temp_path, $dados);
 
+        Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
+
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
-    private function editFichaFrequencia($dados)
+    private function editFichaFrequencia($path, $dados)
     {
-
-        $tp = new TemplateProcessor(storage_path('app/docs/UPE/eo/ficha_frequencia.docx'));
+        $tp = new TemplateProcessor($path);
         $tp->setValues($dados);
         $temp_path = DocService::tmpdoc();
 
         $tp->saveAs($temp_path);
 
         $this->salvar_no_banco($temp_path, $dados);
-        
+
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
 
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
@@ -366,66 +369,16 @@ class PDFController extends Controller
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
 
-    private function editFrequenciaResidente($documentPaths, $dados)
+    private function editFrequenciaResidente($path, $dados)
     {
+        $tp = new TemplateProcessor($path);
+        $tp->setValues($dados);
+        $temp_path = DocService::tmpdoc();
 
-        $image1 = Image::make($documentPaths[0]);
-
-        $image1->text($dados['residente'], 158, 465, function ($font) {
-            $font->file(resource_path(self::FONT));
-            $font->size(39);
-            $font->color(self::AZUL);
-        });
-
-        $image1->text($dados['curso'], 315, 533, function ($font) {
-            $font->file(resource_path(self::FONT));
-            $font->size(39);
-            $font->color(self::AZUL);
-        });
-
-        $image1->text($dados['unidade'], 1878, 533, function ($font) {
-            $font->file(resource_path(self::FONT));
-            $font->size(39);
-            $font->color(self::AZUL);
-        });
-
-        $image1->text($dados['nomeConcedente'], 158, 721, function ($font) {
-            $font->file(resource_path(self::FONT));
-            $font->size(39);
-            $font->color(self::AZUL);
-        });
-
-        $image1->text($dados['etapaEducacaoBasica'], 1694, 721, function ($font) {
-            $font->file(resource_path(self::FONT));
-            $font->size(39);
-            $font->color(self::AZUL);
-        });
-
-        $image1->text($dados['ano'], 2321, 721, function ($font) {
-            $font->file(resource_path(self::FONT));
-            $font->size(39);
-            $font->color(self::AZUL);
-        });
-
-        $image1->text($dados['nomeProf'], 162, 857, function ($font) {
-            $font->file(resource_path(self::FONT));
-            $font->size(39);
-            $font->color(self::AZUL);
-        });
-
-        $image1->text($dados['numMatricula'], 1707, 857, function ($font) {
-            $font->file(resource_path(self::FONT));
-            $font->size(39);
-            $font->color(self::AZUL);
-        });
-
-        $image2 = Image::make($documentPaths[1]);
-
-        $images = [$image1, $image2];
-        $this->toPDF($images, $dados);
+        $tp->saveAs($temp_path);
+        $this->salvar_no_banco($temp_path, $dados);
 
         Session::flash('pdf_generated_success', 'Documento preenchido com sucesso!');
-        //$estagio = new EstagioController();
 
         return redirect()->to(route('estagio.documentos', ['id' => $this->estagio->id]));
     }
@@ -981,14 +934,14 @@ class PDFController extends Controller
         return $pdfFilePath;
     }
 
-    public function editTermoCompromissoUFAPE($dados)
+    public function editTermoCompromissoUFAPE($path, $dados)
     {
         Settings::setZipClass(Settings::PCLZIP);
 
         if ($dados['tipo_curso'] == "Bacharelado") {
             $dados = array_slice($dados, 0, -1);
 
-            $templateProcessor = new TemplateProcessor(storage_path('app/docs/UFAPE/termo_compromisso_ufape_bach.docx'));
+            $templateProcessor = new TemplateProcessor($path);
 
             if ($dados['segunda_ufape']) {
                 $templateProcessor->setValue('segunda_ufape', 'X');
