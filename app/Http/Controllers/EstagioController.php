@@ -28,47 +28,37 @@ class EstagioController extends Controller
 
     public function index(Request $request)
     {
-        if (sizeof($request->query()) > 0) {
-            $campo = $request->query('campo');
-            $valor = $request->query('valor');
+        $query = Estagio::sortable(['descricao', 'created_at', 'status'])
+            ->orderBy('created_at', 'desc');
 
-            // if ($valor == null) {
-            //     return redirect()->back()->withErrors("Deve ser informado algum valor para o filtro.");
-            // }
+        $statusFilter = $request->input('status_filter');
 
-            $estagios = Estagio::sortable(['descricao', 'created_at', 'status']) // Adicione as colunas que podem ser ordenadas aqui
-                ->where(function ($query) use ($valor) {
-                    $query->orWhereHas('aluno', function ($subquery) use ($valor) {
-                        $subquery->where('cpf', 'LIKE', "%{$valor}%")
-                            ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
-                    })
-                        ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
-                            $subquery->where('cpf', 'LIKE', "%{$valor}%")
-                                ->orWhere('name', 'LIKE', "%{$valor}%")
-                                ->orWhere('email', 'LIKE', "%{$valor}%")
-                                ->orWhere('matricula', 'LIKE', "%{$valor}%");
-                        })
-                        //Query para a tabela estagios
-                        ->orWhere('descricao', 'LIKE', "%{$valor}%");
-                })
-                ->orderBy('created_at', 'asc')
-                ->orderBy('status', 'desc')
-                ->distinct()
-                ->paginate(15);
-
-
-
-            $cursos = Curso::all();
-
-            return view('Estagio.index', compact('estagios', 'cursos'));
-        } else {
-            $estagios = Estagio::sortable(['descricao', 'created_at', 'status'])
-                ->orderBy('created_at', 'desc')
-                ->paginate(15);
-
-            $cursos = Curso::all();
-            return view('Estagio.index', compact('estagios', 'cursos'));
+        if ($statusFilter && $statusFilter !== 'todos') {
+            $query->where('status', $statusFilter == 'ativos' ? 1 : 0);
         }
+
+        if ($request->filled('valor')) {
+            $valor = $request->input('valor');
+
+            $query->where(function ($query) use ($valor) {
+                $query->orWhereHas('aluno', function ($subquery) use ($valor) {
+                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                        ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
+                })
+                    ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
+                        $subquery->where('cpf', 'LIKE', "%{$valor}%")
+                            ->orWhere('name', 'LIKE', "%{$valor}%")
+                            ->orWhere('email', 'LIKE', "%{$valor}%")
+                            ->orWhere('matricula', 'LIKE', "%{$valor}%");
+                    })
+                    ->orWhere('descricao', 'LIKE', "%{$valor}%");
+            });
+        }
+
+        $estagios = $query->distinct()->paginate(15);
+        $cursos = Curso::all();
+
+        return view('Estagio.index', compact('estagios', 'cursos'));
     }
 
     public function create()
@@ -233,7 +223,7 @@ class EstagioController extends Controller
         if ($tipo != null) {
             $estagios->where('tipo', $request->query('tipo'));
         }
-        
+
         $curso = $request->query('curso');
         if ($curso != null) {
             $estagios->where('curso_id', $request->query('curso'));
