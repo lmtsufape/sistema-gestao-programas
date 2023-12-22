@@ -1,7 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['admin', 'servidor', 'gestor', 'aluno'])
+    @canany(['admin', 'servidor', 'gestor', 'aluno', 'orientador'])
         <div class="container-fluid">
             @if (Session::has('pdf_generated_success'))
                 <div class="alert alert-success">
@@ -11,7 +11,7 @@
             <br>
             <div style="display: flex; flex-direction:column; justify-content: space-evenly; align-items: center;">
                 <h1 class="titulo-estagio"><strong>Documentos do estágio - {{ $aluno->nome_aluno }}</strong></h1>
-                <h2 class="titulopequeno">{{ $estagio->descricao }}</h2>
+                <h2 class="titulopequeno">{{ $estagio->descricao }} - {{$estagio->curso->nome}}</h2>
             </div>
             <div class="d-flex flex-wrap justify-content-center" style="flex-direction: row-reverse;">
                 <div class="col-md-15 corpo p-2 px-6">
@@ -239,13 +239,13 @@
                                                     title="Documento preenchido" style="height: 30px; width: 30px;">
                                             </a>
                                         @else
-                                            <a type="button"
+                                            {{-- <a type="button"
                                                 href="{{ route('visualizar.pdf', ['docId' => $lista_documento->documento_id]) }}"
                                                 target="_blank" id="pdfLink"
                                                 onclick="return openPdfLinkInNewTab(this.href)">
                                                 <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"
                                                     title="Documento preenchido" style="height: 30px; width: 30px;">
-                                            </a>
+                                            </a> --}}
                                             <a href="{{ route('visualizar.doc', ['docId' => $lista_documento->documento_id]) }}"
                                                 target="_blank" id="pdfLink"
                                                 onclick="return openPdfLinkInNewTab(this.href)">

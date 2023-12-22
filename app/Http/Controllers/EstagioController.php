@@ -274,6 +274,23 @@ class EstagioController extends Controller
         return view('Estagio.estagios-aluno', compact('estagios'));
     }
 
+    public function estagios_orientador(Request $request)
+    {
+        $orientador_id = auth()->user()->typage_id;
+
+        $valorBusca = $request->input('valor');
+        $estagios = Estagio::where('orientador_id', $orientador_id)
+            ->where(function ($query) use ($valorBusca) {
+                $query->where('descricao', 'LIKE', "%$valorBusca%")
+                    ->orWhere('created_at', 'LIKE', "%$valorBusca%")
+                    ->orWhere('data_inicio', 'LIKE', "%$valorBusca%")
+                    ->orWhere('data_fim', 'LIKE', "%$valorBusca%");
+            })
+            ->get();
+
+        return view('Estagio.estagios-orientador', compact('estagios'));
+    }
+
 
     public function showDocuments($id)
     {
