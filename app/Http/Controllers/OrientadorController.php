@@ -73,7 +73,8 @@ class OrientadorController extends Controller
      */
     public function store(OrientadorFormRequest $request)
     {
-        try{
+        try {
+            DB::beginTransaction();
             $orientador = new Orientador();
             $orientador->cpf = $request->cpf;
             $orientador->matricula = $request->matricula;
@@ -110,15 +111,21 @@ class OrientadorController extends Controller
                     $confirm -> enviandoEmail();
                     $mensagem_sucesso = "Orientador cadastrado com sucesso.";
 
+                    DB::commit();
                     return redirect('/orientadors')->with('sucesso', 'Orientador cadastrado com sucesso.');
 
                 } else {
+                    DB::rollBack();
+
                     return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
                 }
             }else{
+                DB::rollBack();
+
                 return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
             }
         } catch (Exception $e) {
+            DB::rollBack();
 
             return redirect()->back()->withErrors("Falha ao cadastrar orientador. Tente novamente mais tarde.");
         }
