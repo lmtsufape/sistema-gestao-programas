@@ -115,7 +115,7 @@
             }
 
             function exibirModalDeletar(id) {
-                $('#modal_delete_' + id).modal('show');
+                $('#modal_delete_denied' + id).modal('show');
             }
 
             function exibirModalVisualizar(id) {
