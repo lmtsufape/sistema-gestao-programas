@@ -73,7 +73,8 @@ class OrientadorController extends Controller
      */
     public function store(OrientadorFormRequest $request)
     {
-        try{
+        try {
+            DB::beginTransaction();
             $orientador = new Orientador();
             $orientador->cpf = $request->cpf;
             $orientador->matricula = $request->matricula;
@@ -110,15 +111,21 @@ class OrientadorController extends Controller
                     $confirm -> enviandoEmail();
                     $mensagem_sucesso = "Orientador cadastrado com sucesso.";
 
+                    DB::commit();
                     return redirect('/orientadors')->with('sucesso', 'Orientador cadastrado com sucesso.');
 
                 } else {
+                    DB::rollBack();
+
                     return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
                 }
             }else{
+                DB::rollBack();
+
                 return redirect()->back()->withErrors( "Falha ao cadastrar orientador. tente novamente mais tarde." );
             }
         } catch (Exception $e) {
+            DB::rollBack();
 
             return redirect()->back()->withErrors("Falha ao cadastrar orientador. Tente novamente mais tarde.");
         }
@@ -277,36 +284,28 @@ class OrientadorController extends Controller
         }
     }
 
-    public function delete($id)
-    {
-        $orientador = Orientador::findOrFail($id);
-        return view('orientadors.delete', ['orientador' => $orientador]);
-    }
-
-    public function destroy(Request $request)
+    public function destroy($id)
     {
         try{
             DB::beginTransaction();
-
-            $id = $request->only(['id']);
-            $orientador = Orientador::findOrFail($id)->first();
-
-            $orientador->cursos()->detach($request->cursos);
+            $orientador = Orientador::findOrFail($id);
+            $orientador->cursos()->detach();
             
-            $imageName = $orientador->user->image;            
+            $imageName = $orientador->user->image;
+            ManipulacaoImagens::deletarImagem($imageName);
             
             $orientador->user->delete();
-            $orientador->delete();            
-            ManipulacaoImagens::deletarImagem($imageName); 
+            $orientador->delete();
             DB::commit();
 
-            return redirect(route("orientadors.index"))->with('sucesso', 'Orientador Deletado com sucesso.');;
-            
+            return redirect(route("orientadors.index"))->with('sucesso', 'Orientador Deletado com sucesso.');
         } catch(QueryException $e){
             DB::rollback();
+
             return redirect()->back()->withErrors( "Falha ao deletar Orientador. O Orientador possui vínculo com algum Edital." );
         }catch (Exception $e) {
             DB::rollback();
+
             return redirect()->back()->withErrors("Falha ao deletar orientador. Tente novamente mais tarde.");
         }
     }

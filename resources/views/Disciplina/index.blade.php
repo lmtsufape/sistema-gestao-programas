@@ -59,7 +59,7 @@
                 <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info programa" style="height: 30px; width: 30px;">
               </a>
               @if (auth()->user()->typage->tipo_servidor != 'gestor')
-                <a href="{{url('/disciplinas/$disciplinas->id/edit')}}" type="button">
+                <a href="{{url("/disciplinas/$disciplinas->id/edit")}}" type="button">
                   <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar programa" style="height: 30px; width: 30px;">
                 </a>
                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$disciplinas->id}}">
