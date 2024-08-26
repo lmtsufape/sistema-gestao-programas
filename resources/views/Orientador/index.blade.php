@@ -61,10 +61,10 @@
                         @foreach ($orientadors as $orientador)
                             <tbody>
                                 <tr>
-                                    <td class="align-middle">{{ $orientador->user->name }}</td>
-                                    <td class="align-middle">{{ $orientador->user->email }}</td>
-                                    <td class="align-middle">{{ $orientador->cpf }}</td>
-                                    <td class="align-middle">{{ $orientador->matricula }}</td>
+                                    <td class="align-middle">{{ $orientador->user->name ?? 'Não encontrado' }}</td>
+                                    <td class="align-middle">{{ $orientador->user->email ?? 'Não encontrado' }}</td>
+                                    <td class="align-middle">{{ $orientador->cpf ?? 'Não encontrado' }}</td>
+                                    <td class="align-middle">{{ $orientador->matricula ?? 'Não encontrado' }}</td>
                                     <td class="align-middle">
                                         <a type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal_show_{{ $orientador->id }}">
