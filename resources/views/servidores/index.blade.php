@@ -75,7 +75,7 @@
                                             @break
 
                                             @case('gestor')
-                                                <td class="align-middle">Gestor Institucional</td>
+                                                <td class="align-middle">Diretor</td>
                                             @break
                                         @endswitch
 
