@@ -48,7 +48,7 @@
                                 @break
 
                                 @case('gestor')
-                                    <div class="textoinfomodal"> Gestor Institucional</div>
+                                    <div class="textoinfomodal"> Diretor</div>
                                 @break
                             @endswitch
                         </div>

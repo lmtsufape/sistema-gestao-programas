@@ -59,7 +59,7 @@
 </ul>
 
 <ul style="padding-left: 5%">
-    <li>Pró-Reitor e Gestor Institucional</li>
+    <li>Pró-Reitor e Diretor</li>
     <ul>
         <li>Consultar:</li>
         <ul>
