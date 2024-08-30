@@ -11,31 +11,31 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Informações do edital</span>
                 </div>
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
+                @cannot('pro_reitor')
                     <div class="mb-3">
                         <img src="{{ asset('images/link-variant_red.svg') }}" alt="Vincular aluno"
                             style=" width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Vincular estudante ao edital</span>
                     </div>
-                @endif
+                @endcannot
                 <div class="mb-3">
                     <img src="{{ asset('images/account-check_red.svg') }}" alt="Listar aluno"
                         style=" width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Listar estudantes vinculados ao edital</span>
                 </div>
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
+                @cannot('pro_reitor')
                     <div class="mb-3">
                         <img src="{{ asset('images/account-remove_red.svg') }}" alt="Listar aluno"
                             style=" width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Listar estudantes vinculados inativos ao edital</span>
                     </div>
-                @endif
+                @endcannot
                 <div class="mb-3">
                     <img src="{{ asset('images/card-account-details_red.svg') }}" alt="Listar orientadores"
                         style=" width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Listar orientadores vinculados ao edital</span>
                 </div>
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
+                @cannot('pro_reitor')
                     <div class="mb-3">
                         <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar aluno"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
@@ -46,7 +46,7 @@
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Deletar o edital</span>
                     </div>
-                @endif
+                @endcannot
             </div>
             <div class="modal-footer border-0"></div>
         </div>

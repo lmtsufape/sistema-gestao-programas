@@ -18,9 +18,9 @@
     <form class="search-container" action="{{route('disciplinas.index')}}" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
         <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
-        @if (auth()->user()->typage->tipo_servidor != 'gestor')
+        @cannot('gestor')
           <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("disciplinas.create") }}'">Cadastrar disciplina</button>
-        @endif   
+        @endcannot
       </form>
 
     <br>
@@ -58,14 +58,14 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$disciplinas->id}}">
                 <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info programa" style="height: 30px; width: 30px;">
               </a>
-              @if (auth()->user()->typage->tipo_servidor != 'gestor')
+              @cannot('gestor')
                 <a href="{{url("/disciplinas/$disciplinas->id/edit")}}" type="button">
                   <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar programa" style="height: 30px; width: 30px;">
                 </a>
                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$disciplinas->id}}">
                   <img src="{{asset('images/delete.svg')}}"title="Remover" alt="Deletar programa" style="height: 30px; width: 30px;">
                 </a>
-              @endif
+              @endcannot
             </td>
           </tr>
         </tbody>

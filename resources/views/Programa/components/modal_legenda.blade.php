@@ -11,19 +11,19 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Informações do programa</span>
                 </div>
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                @cannot(['pro_reitor', 'gestor'])
                     <div class="mb-3">
                         <img src="{{ asset('images/account-plus_red.svg') }}" alt="Atribuir servidor"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Atribuir servidor ao programa</span>
                     </div>
-                @endif
+                @endcannot
                 <div class="mb-3">
                     <img src="{{ asset('images/file_red.svg') }}" alt="Listar edital"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Listar editais do programa</span>
                 </div>
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                @cannot(['pro_reitor', 'gestor'])
                     <div class="mb-3">
                         <img src="{{ asset('images/file-plus_red.svg') }}" alt="Add edital"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
@@ -39,7 +39,7 @@
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Deletar o programa</span>
                     </div>
-                @endif
+                @endcannot
             </div>
             <div class="modal-footer border-0"></div>
         </div>

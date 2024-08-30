@@ -11,7 +11,7 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Informações do servidor</span>
                 </div>
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                @cannot(['pro_reitor', 'gestor'])
                     <div class="mb-3">
                         <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar servidor"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
@@ -22,7 +22,7 @@
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Deletar o servidor</span>
                     </div>
-                @endif
+                @endcannot
             </div>
             <div class="modal-footer border-0"></div>
         </div>

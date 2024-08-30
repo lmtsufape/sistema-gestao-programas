@@ -20,10 +20,10 @@
                 <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
                     id="valor" name="valor" style="text-align: start">
                 <button class="search-button" title="Fazer a pesquisa" type="submit" value=""></button>
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                @cannot('pro_reitor', 'gestor')
                     <button class="cadastrar-botao" type="button"
                         onclick="window.location.href = '{{ route('servidores.create') }}'"">Cadastrar servidor</button>
-                @endif
+                @endcannot
             </form>
 
             <br>
@@ -90,13 +90,13 @@
                                                 <img src="{{ asset('images/pencil.svg') }}" title="Editar"
                                                     alt="Editar servidor" style="height: 30px; width: 30px;">
                                             </a>
-                                                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                                            @cannot(['pro_reitor', 'gestor'])
                                                 <a type="button" data-bs-toggle="modal"
                                                     data-bs-target="#modal_delete{{ $servidor->id }}">
                                                     <img src="{{ asset('images/delete.svg') }}" title="Remover"
                                                         alt="Deletar servidor" style="height: 30px; width: 30px;">
                                                 </a>
-                                            @endif
+                                            @endcannot
                                         </td>
                                     </tr>
 

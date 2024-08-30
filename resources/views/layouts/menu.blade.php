@@ -13,7 +13,7 @@
 </head>
 
 @auth
-    @if (auth()->user()->typage_type == 'App\Models\Servidor')
+    @can('servidor')
         <header>
             <!-- Isso aqui é a barra de cima -->
             <nav class="navbar navbar-menu d-flex">
@@ -27,19 +27,19 @@
                             </button>
                             <ul class="dropdown-menu menu" role="menu"
                                 aria-labelledby="dropdownMenuButton">
-                                @if (Auth::user()->typage->tipo_servidor != 'servidor')
+                                @cannot('servidor')
                                     <li><a class="dropdown-item" href="{{ route('programas.index') }}">Programas</a></li>
                                     <li><a class="dropdown-item" href="{{ route('servidores.index') }}">Servidores</a></li>
-                                @endif
+                                @endcannot
 
-                                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
+                                @cannot('pro_reitor')
                                     <li><a class="dropdown-item" href="{{ route('alunos.index') }}">Estudantes</a></li>
-                                @endif
+                                @endcannot
                                 <li><a class="dropdown-item" href="{{ route('orientadors.index') }}">Professores</a></li>
-                                @if (auth()->user()->typage->tipo_servidor == 'gestor')
+                                @can('gestor')
                                     <li><a class="dropdown-item" href="{{ route('cursos.index') }}">Cursos</a></li>
                                     <li><a class="dropdown-item" href="{{ route('disciplinas.index') }}">Disciplinas</a></li>
-                                @endif
+                                @endcan
                             </ul>
                         </div>
                     </div>
@@ -52,15 +52,15 @@
                             </button>
                             <ul class="dropdown-menu menu"role="menu" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item" href="{{ route('edital.index') }}">Editais</a></li>
-                            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')    
+                            @cannot(['pro_reitor', 'gestor'])
                                 <li><a class="dropdown-item" href="{{ route('cursos.index') }}">Cursos</a></li>
                                 <li><a class="dropdown-item" href="{{ route('disciplinas.index') }}">Disciplinas</a></li>
                                 <li><a class="dropdown-item" href="{{ route('estagio.index') }}">Estágio</a></li>
-                            @endif
+                            @endcannot
                             </ul>
                         </div>
                     </div>
-                    @if (auth()->user()->typage->tipo_servidor == 'adm')
+                    @can('admin')
                         <div class="botoesdd">
                             <div class="dropdown">
                                 <button class="btn-menu " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
@@ -79,9 +79,9 @@
                                 </ul>
                             </div>
                         </div>
-                    @endif
+                    @endcan
                 </div>
             </nav>
         </header>
-    @endif
+    @endcan
 @endauth

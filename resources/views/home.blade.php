@@ -5,13 +5,10 @@
 @endsection
 @section('body')
     @auth
-        @if (auth()->user()->typage_type == 'App\Models\Servidor')
+        @can('servidor')
             <div class="container-fluid">
 
                 {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
-
-                @if (auth()->user()->typage->tipo_servidor == 'gestor')
-                @endif
                 <h2 class="second-title">
                     Programas
                 </h2>
@@ -39,10 +36,6 @@
                 <br>
             </div>
             <div class="container-fluid">
-
-
-                @if (auth()->user()->typage->tipo_servidor == 'gestor')
-                @endif
                 <h2 class="second-title">
                     Estágios 
                 </h2>
@@ -64,14 +57,14 @@
                 </div>
                 <br>
             </div>
-        @endif
+        @endcan
 
 
 
     @endauth
 
     @auth
-        @if (auth()->user()->typage_type == 'App\Models\Aluno')
+        @can('aluno')
             <div class="container-fluid">
                 <h2 class="second-title">
                     Programas
@@ -94,11 +87,11 @@
 
                 </div>
             </div>
-        @endif
+        @endcan
     @endauth
 
     @auth
-        @if (auth()->user()->typage_type == 'App\Models\Orientador')
+        @can('orientador')
             <div class="container-fluid">
                 <h2 class="second-title">
                     Programas
@@ -127,6 +120,6 @@
                 </div>
                 <br>
             </div>
-        @endif
+        @endcan
     @endauth
 @endsection
