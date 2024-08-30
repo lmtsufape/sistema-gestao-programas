@@ -247,7 +247,7 @@ class PDFController extends Controller
             'Content-Disposition' => "inline; filename=\"$nome_arquivo.pdf\"",
         ];
 
-        if (Auth::user()->typage_type == "App\Models\Servidor") {
+        if (Auth::user()->can('servidor')) {
             $documento->is_visualizado = true;
             $documento->save();
         }

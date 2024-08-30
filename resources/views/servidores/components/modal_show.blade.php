@@ -35,7 +35,7 @@
                         <label class="tituloinfomodal form-label mt-3">Tipo do servidor:</label>
                         <div class="textoinfomodal">
                             @switch($servidor->tipo_servidor)
-                                @case('adm')
+                                @case('admin')
                                     <div class="textoinfomodal"> Administrador</div>
                                 @break
 

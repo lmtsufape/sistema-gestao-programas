@@ -13,10 +13,10 @@ class HomeController extends Controller {
     public function index() {
         $user = auth()->user()->typage;
         $programas = [];
-        if(auth()->user()->typage_type != 'App\Models\Orientador' && auth()->user()->typage_type != 'App\Models\Aluno'){
-            if($user->tipo_servidor == 'adm'){
+        if (auth()->user()->cannot(['orientador', 'aluno'])){
+            if (auth()->user()->can('admin')) {
                 $programas = Programa::all();
-            } else{
+            } else {
                 $programas = $user->programas()->get();
             }
         }

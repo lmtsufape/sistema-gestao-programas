@@ -65,7 +65,7 @@ class ServidorController extends Controller {
             #dd($request->input('cpf'));
             switch($request->input('tipo_servidor')){
                 case 0:
-                    $permission = "adm";
+                    $permission = "admin";
                     break;
                 case 1:
                     $permission = "pro_reitor";
@@ -149,7 +149,7 @@ class ServidorController extends Controller {
 
             switch($request->input('tipo_servidor')){
                 case 0:
-                $permission = "adm";
+                    $permission = "admin";
                     break;
                 case 1:
                     $permission = "pro_reitor";
@@ -214,7 +214,7 @@ class ServidorController extends Controller {
 
             switch($request->input('tipo_servidor')){
                 case 0:
-                $permission = "adm";
+                    $permission = "admin";
                     break;
                 case 1:
                     $permission = "pro_reitor";

@@ -62,7 +62,7 @@
                                         <td class="align-middle">{{ $servidor->user->email }}</td>
                                         <td class="align-middle">{{ $servidor->cpf }}</td>
                                         @switch($servidor->tipo_servidor)
-                                            @case('adm')
+                                            @case('admin')
                                                 <td class="align-middle">Administrador</td>
                                             @break
 

@@ -66,7 +66,7 @@ class EstagioController extends Controller
         $aluno = null;
         $disciplinas = null;
 
-        if (auth()->user()->typage_type == "App\Models\Aluno") {
+        if (auth()->user()->can('aluno')) {
             //Se for aluno, vamos obter o aluno pelo typage_id
             $aluno_id = auth()->user()->typage_id;
             $aluno = Aluno::Where('id', $aluno_id)->first();
@@ -105,7 +105,7 @@ class EstagioController extends Controller
         $estagio->save();
         DB::commit();
 
-        if (auth()->user()->typage_type == "App\Models\Aluno") {
+        if (auth()->user()->can('aluno')) {
             return redirect('/meus-estagios')->with('sucesso', 'Estágio cadastrado com sucesso.');
         }
 
@@ -117,7 +117,7 @@ class EstagioController extends Controller
         $aluno = null;
         $disciplinas = null;
 
-        if (auth()->user()->typage_type == "App\Models\Aluno") {
+        if (auth()->user()->can('aluno')) {
             //Se for aluno, vamos obter o aluno pelo typage_id
             $aluno_id = auth()->user()->typage_id;
             $aluno = Aluno::Where('id', $aluno_id)->first();
