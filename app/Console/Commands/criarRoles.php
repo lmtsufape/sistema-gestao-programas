@@ -75,6 +75,61 @@ class criarRoles extends Command
 
         Permission::truncate();
 
+        Permission::insert([
+            # Aluno
+            ['name' => 'cadastrar aluno', 'guard_name' => 'web'],
+            ['name' => 'editar aluno', 'guard_name' => 'web'],
+            ['name' => 'listar aluno', 'guard_name' => 'web'],
+            ['name' => 'visualizar aluno', 'guard_name' => 'web'],
+            ['name' => 'deletar aluno', 'guard_name' => 'web'],
+            ['name' => 'home aluno', 'guard_name' => 'web'],
+
+            # Orientador
+            ['name' => 'cadastrar orientador', 'guard_name' => 'web'],
+            ['name' => 'editar orientador', 'guard_name' => 'web'],
+            ['name' => 'listar orientador', 'guard_name' => 'web'],
+            ['name' => 'visualizar orientador', 'guard_name' => 'web'],
+            ['name' => 'deletar orientador', 'guard_name' => 'web'],
+            ['name' => 'home orientador', 'guard_name' => 'web'],
+
+            # Servidor
+            ['name' => 'cadastrar servidor', 'guard_name' => 'web'],
+            ['name' => 'editar servidor', 'guard_name' => 'web'],
+            ['name' => 'listar servidor', 'guard_name' => 'web'],
+            ['name' => 'visualizar servidor', 'guard_name' => 'web'],
+            ['name' => 'deletar servidor', 'guard_name' => 'web'],
+            ['name' => 'home servidor', 'guard_name' => 'web'],
+
+            # Curso
+            ['name' => 'cadastrar curso', 'guard_name' => 'web'],
+            ['name' => 'editar curso', 'guard_name' => 'web'],
+            ['name' => 'listar curso', 'guard_name' => 'web'],
+            ['name' => 'visualizar curso', 'guard_name' => 'web'],
+            ['name' => 'deletar curso', 'guard_name' => 'web'],
+
+            # Disciplina
+            ['name' => 'cadastrar Disciplina', 'guard_name' => 'web'],
+            ['name' => 'editar Disciplina', 'guard_name' => 'web'],
+            ['name' => 'listar Disciplina', 'guard_name' => 'web'],
+            ['name' => 'visualizar Disciplina', 'guard_name' => 'web'],
+            ['name' => 'deletar Disciplina', 'guard_name' => 'web'],
+
+            # Programa
+            ['name' => 'cadastrar programa', 'guard_name' => 'web'],
+            ['name' => 'editar programa', 'guard_name' => 'web'],
+            ['name' => 'listar programa', 'guard_name' => 'web'],
+            ['name' => 'visualizar programa', 'guard_name' => 'web'],
+            ['name' => 'deletar programa', 'guard_name' => 'web'],
+            //['name' => 'crud editais programa', 'guard_name' => 'web'], não entendi bem esse crud
+
+            # Edital
+            ['name' => 'cadastrar edital', 'guard_name' => 'web'],
+            ['name' => 'editar edital', 'guard_name' => 'web'],
+            ['name' => 'listar edital', 'guard_name' => 'web'],
+            ['name' => 'visualizar edital', 'guard_name' => 'web'],
+            ['name' => 'deletar edital', 'guard_name' => 'web'],
+        ]);
+
         return 0;
     }
 }
