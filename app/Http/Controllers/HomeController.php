@@ -11,13 +11,14 @@ use App\Models\Curso;
 class HomeController extends Controller {
 
     public function index() {
-        $user = auth()->user()->typage;
+        $user = auth()->user();
         $programas = [];
-        if (auth()->user()->cannot(['orientador', 'aluno'])){
-            if (auth()->user()->can('admin')) {
-                $programas = Programa::all();
-            } else {
+        if ($user) {
+            if ($user->hasAnyRole(['orientador', 'estudante'])) {
                 $programas = $user->programas()->get();
+            }
+            else if ($user->hasRole('administrador')) {
+                $programas = Programa::all();
             }
         }
         $cursos = Curso::all();

@@ -5,7 +5,7 @@
 @endsection
 @section('body')
     @auth
-        @can('servidor')
+        @hasanyrole('tecnico|coordenador|pro-reitor|diretor|supervisor|administrador')
             <div class="container-fluid">
 
                 {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
@@ -57,14 +57,14 @@
                 </div>
                 <br>
             </div>
-        @endcan
+        @endhasanyrole
 
 
 
     @endauth
 
     @auth
-        @can('aluno')
+        @role('estudante')
             <div class="container-fluid">
                 <h2 class="second-title">
                     Programas
@@ -87,11 +87,11 @@
 
                 </div>
             </div>
-        @endcan
+        @endrole
     @endauth
 
     @auth
-        @can('orientador')
+        @role('orientador')
             <div class="container-fluid">
                 <h2 class="second-title">
                     Programas
@@ -120,6 +120,6 @@
                 </div>
                 <br>
             </div>
-        @endcan
+        @endrole
     @endauth
 @endsection

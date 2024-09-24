@@ -45,7 +45,7 @@ class UpdatePermission extends Command
             ['name' => 'coordenador', 'guard_name' => 'web'],
             ['name' => 'estudante', 'guard_name' => 'web'],
             ['name' => 'orientador', 'guard_name' => 'web'],
-            ['name' => 'pro reitor', 'guard_name' => 'web'], 
+            ['name' => 'pro-reitor', 'guard_name' => 'web'], 
             ['name' => 'diretor', 'guard_name' => 'web'],
             ['name' => 'supervisor', 'guard_name' => 'web'],
             ['name' => 'administrador', 'guard_name' => 'web'],
@@ -66,8 +66,7 @@ class UpdatePermission extends Command
             $userRoles = $user->getAllPermissions()->pluck('name')->toArray();
             
             foreach ($userRoles as $role) {
-                $role = Role::where('name', $permissionToRoles[$role])->first();
-                $user->assignRole($role);
+                $user->assignRole($permissionToRoles[$role]);
             }
 
             $user->syncPermissions([]);
