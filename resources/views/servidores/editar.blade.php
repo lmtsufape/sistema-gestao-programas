@@ -1,6 +1,6 @@
 @extends("templates.app")
 @section("body")
-    @canany(['admin', 'pro_reitor', 'gestor'])
+    @can('editar servidor')
 
         <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1rem; margin-bottom: 3.6rem; ">
 

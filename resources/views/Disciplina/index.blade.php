@@ -2,7 +2,7 @@
 
 @section("body")
 
-@canany(['admin', 'servidor', 'gestor'])
+@can('listar disciplina')
 <div class="container-fluid">
   @if (session('sucesso'))
   <div class="alert alert-success">
@@ -18,9 +18,9 @@
     <form class="search-container" action="{{route('disciplinas.index')}}" method="GET">
         <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
         <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
-        @cannot('gestor')
+        @can('cadastrar disciplina')
           <button class="cadastrar-botao" type="button" onclick="window.location.href = '{{ route("disciplinas.create") }}'">Cadastrar disciplina</button>
-        @endcannot
+        @endcan
       </form>
 
     <br>
@@ -58,14 +58,16 @@
               <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$disciplinas->id}}">
                 <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info programa" style="height: 30px; width: 30px;">
               </a>
-              @cannot('gestor')
+              @can('editar programa')
                 <a href="{{url("/disciplinas/$disciplinas->id/edit")}}" type="button">
                   <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar programa" style="height: 30px; width: 30px;">
                 </a>
+              @endcan
+              @can('deletar programa')
                 <a type="button" data-bs-toggle="modal" data-bs-target="#modal_delete_{{$disciplinas->id}}">
                   <img src="{{asset('images/delete.svg')}}"title="Remover" alt="Deletar programa" style="height: 30px; width: 30px;">
                 </a>
-              @endcannot
+              @endcan
             </td>
           </tr>
         </tbody>

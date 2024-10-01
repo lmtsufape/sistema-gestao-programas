@@ -2,7 +2,7 @@
 
 @section("body")
 
-@canany(['admin', 'servidor', 'gestor'])
+@can('editar vinculo estudante-edital')
 
 <style>
     select[multiple] {

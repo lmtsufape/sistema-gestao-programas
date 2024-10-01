@@ -1,4 +1,4 @@
-@canany(['admin', 'pro_reitor', 'gestor'])
+@can('visualizar supervisor')
     <div class="modal " id="modal_show_{{ $supervisor->id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-create p-2">
@@ -48,7 +48,7 @@
                 color: #fff;
             }
         </style>
-        @elsecan
-        <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-        <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{ url('/home') }}">Voltar</a>
-    @endcan
+@else
+    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{ url('/home') }}">Voltar</a>
+@endcan

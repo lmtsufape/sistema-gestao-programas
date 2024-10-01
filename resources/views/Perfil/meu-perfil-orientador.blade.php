@@ -11,7 +11,7 @@
     </div>
 
     @auth
-    @can('orientador')
+    @role('orientador')
         <div class="container-fluid" style="padding-top: 10px;">
 
             @if ($orientador->user->image)
@@ -25,7 +25,7 @@
                 <div style="color: var(--preto-p-200, #2B2B2B); font-family: Inter; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">{{$orientador->user->name_social}}</div>
             </div>
         </div>
-    @endcan
+    @endrole
 
     <br>
 

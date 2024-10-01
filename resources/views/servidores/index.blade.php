@@ -1,7 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['admin', 'pro_reitor', 'gestor'])
+    @can('listar servidor')
 
         <div class="container-fluid">
             @if (session('sucesso'))
@@ -20,10 +20,10 @@
                 <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
                     id="valor" name="valor" style="text-align: start">
                 <button class="search-button" title="Fazer a pesquisa" type="submit" value=""></button>
-                @cannot('pro_reitor', 'gestor')
+                @can('cadastrar servidor')
                     <button class="cadastrar-botao" type="button"
                         onclick="window.location.href = '{{ route('servidores.create') }}'"">Cadastrar servidor</button>
-                @endcannot
+                @endcan
             </form>
 
             <br>
@@ -85,18 +85,19 @@
                                                 <img src="{{ asset('images/information.svg') }}" title="Informações"
                                                     alt="Info servidor" style="height: 30px; width: 30px;">
                                             </a>
-                                        
-                                            <a type="button" href="{{ url('/servidores/' . $servidor->id . '/edit') }}">
-                                                <img src="{{ asset('images/pencil.svg') }}" title="Editar"
-                                                    alt="Editar servidor" style="height: 30px; width: 30px;">
-                                            </a>
-                                            @cannot(['pro_reitor', 'gestor'])
+                                            @can('editar servidor')
+                                                <a type="button" href="{{ url('/servidores/' . $servidor->id . '/edit') }}">
+                                                    <img src="{{ asset('images/pencil.svg') }}" title="Editar"
+                                                        alt="Editar servidor" style="height: 30px; width: 30px;">
+                                                </a>
+                                            @endcan
+                                            @can('deletar servidor')
                                                 <a type="button" data-bs-toggle="modal"
                                                     data-bs-target="#modal_delete{{ $servidor->id }}">
                                                     <img src="{{ asset('images/delete.svg') }}" title="Remover"
                                                         alt="Deletar servidor" style="height: 30px; width: 30px;">
                                                 </a>
-                                            @endcannot
+                                            @endcan
                                         </td>
                                     </tr>
 

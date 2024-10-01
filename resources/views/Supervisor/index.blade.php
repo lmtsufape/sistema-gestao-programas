@@ -1,7 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['admin', 'pro_reitor', 'gestor'])
+    @can('listar supervisor')
 
         <div class="container-fluid">
             @if (session('sucesso'))

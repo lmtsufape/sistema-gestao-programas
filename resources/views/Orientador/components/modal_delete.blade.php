@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor'])
+@can('deletar orientador')
   <div class="modal" id="modal_delete_{{$orientador->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content fundomodaldelete">

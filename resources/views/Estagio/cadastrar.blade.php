@@ -1,7 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['admin', 'servidor', 'gestor', 'aluno'])
+    @can('cadastrar estagio')
 
         <div class="container-fluid"
             style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
@@ -133,16 +133,16 @@
                     </div>
 
                     <div class="botoessalvarvoltar">
-                        @canany(['admin', 'servidor', 'gestor'])
+                        @hasanyrole(['admin', 'servidor', 'gestor'])
                             <input type="button" value="Voltar" href="{{ url('/estagio/') }}"
                                 onclick="window.location.href='{{ url('/estagio/') }}'" class="botaovoltar">
                             <input class="botaosalvar" type="submit" value="Salvar">
-                        @endcan
-                        @can('aluno')
+                        @endhasanyrole
+                        @role('estudante')
                             <input type="button" value="Voltar" href="{{ url('/meus-estagios/') }}"
                                 onclick="window.location.href='{{ url('/meus-estagios/') }}'" class="botaovoltar">
                             <input class="botaosalvar" type="submit" value="Salvar">
-                        @endcan
+                        @endrole
                     </div>
                 </form>
             </div>

@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor', 'aluno', 'orientador', 'pro_reitor', 'gestor'])
+@can('visualizar estagio')
     <div class="modal " id="modal_show{{ $estagio->id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-create p-2">

@@ -11,42 +11,46 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Informações do edital</span>
                 </div>
-                @cannot('pro_reitor')
+                @can('vincular estudante-edital')
                     <div class="mb-3">
                         <img src="{{ asset('images/link-variant_red.svg') }}" alt="Vincular aluno"
                             style=" width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Vincular estudante ao edital</span>
                     </div>
-                @endcannot
-                <div class="mb-3">
-                    <img src="{{ asset('images/account-check_red.svg') }}" alt="Listar aluno"
-                        style=" width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Listar estudantes vinculados ao edital</span>
-                </div>
-                @cannot('pro_reitor')
+                @endcan
+                @can('listar vinculo estudante-edital')
+                    <div class="mb-3">
+                        <img src="{{ asset('images/account-check_red.svg') }}" alt="Listar aluno"
+                            style=" width: 30px; padding-bottom: 5px">
+                        <span class="textoinfomodal">Listar estudantes vinculados ao edital</span>
+                    </div>
+                @endcan
+                @can('listar vinculo estudante-edital inativo')
                     <div class="mb-3">
                         <img src="{{ asset('images/account-remove_red.svg') }}" alt="Listar aluno"
                             style=" width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Listar estudantes vinculados inativos ao edital</span>
                     </div>
-                @endcannot
+                @endcan
                 <div class="mb-3">
                     <img src="{{ asset('images/card-account-details_red.svg') }}" alt="Listar orientadores"
                         style=" width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Listar orientadores vinculados ao edital</span>
                 </div>
-                @cannot('pro_reitor')
+                @can('editar edital')
                     <div class="mb-3">
                         <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar aluno"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Editar o edital</span>
                     </div>
+                @endcan
+                @can('deletar edital')
                     <div class="mb-3">
                         <img src="{{ asset('images/delete_red.svg') }}" alt="Deletar aluno"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Deletar o edital</span>
                     </div>
-                @endcannot
+                @endcan
             </div>
             <div class="modal-footer border-0"></div>
         </div>

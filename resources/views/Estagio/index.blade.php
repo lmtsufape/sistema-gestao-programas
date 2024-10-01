@@ -1,7 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
+    @can('listar estagio')
 
         <style>
             .sortable a {

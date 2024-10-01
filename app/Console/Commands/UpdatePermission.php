@@ -14,14 +14,18 @@ class UpdatePermission extends Command
      *
      * @var string
      */
-    protected $signature = 'permission:fix-roles';
+    protected $signature = 'permission:fix';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'cria as roles na tabela de roles';
+    protected $description = 'Cria todas as roles necessárias.
+        Atribui os users a suas roles respectivas baseando-se nas permissões atuais.
+        Limpa a tabela de permissões.
+        Cria todas as permissões necessárias. (ou a maioria pelo menos)
+        Atribui as permissões as roles.';
 
     /**
      * Create a new command instance.
@@ -57,7 +61,9 @@ class UpdatePermission extends Command
             'orientador' => 'orientador',
             'admin' => 'administrador',
             'pro_reitor' => 'pro-reitor',
-            'gestor' => 'diretor'
+            'gestor' => 'diretor',
+            'coordenador' => 'coordenador',
+            'supervisor' => 'supervisor'
         ];
 
         $users = User::all();
@@ -82,6 +88,7 @@ class UpdatePermission extends Command
             ['name' => 'visualizar estudante', 'guard_name' => 'web'],
             ['name' => 'deletar estudante', 'guard_name' => 'web'],
             ['name' => 'home estudante', 'guard_name' => 'web'],
+            ['name' => 'listar estudante inativo', 'guard_name' => 'web'],
 
             # Orientador
             ['name' => 'cadastrar orientador', 'guard_name' => 'web'],
@@ -107,11 +114,11 @@ class UpdatePermission extends Command
             ['name' => 'deletar curso', 'guard_name' => 'web'],
 
             # Disciplina
-            ['name' => 'cadastrar Disciplina', 'guard_name' => 'web'],
-            ['name' => 'editar Disciplina', 'guard_name' => 'web'],
-            ['name' => 'listar Disciplina', 'guard_name' => 'web'],
-            ['name' => 'visualizar Disciplina', 'guard_name' => 'web'],
-            ['name' => 'deletar Disciplina', 'guard_name' => 'web'],
+            ['name' => 'cadastrar disciplina', 'guard_name' => 'web'],
+            ['name' => 'editar disciplina', 'guard_name' => 'web'],
+            ['name' => 'listar disciplina', 'guard_name' => 'web'],
+            ['name' => 'visualizar disciplina', 'guard_name' => 'web'],
+            ['name' => 'deletar disciplina', 'guard_name' => 'web'],
 
             # Programa
             ['name' => 'cadastrar programa', 'guard_name' => 'web'],
@@ -130,13 +137,39 @@ class UpdatePermission extends Command
             # ['name' => 'crud projetos edital', 'guard_name' => 'web'],
 
             # Estagio
+            ['name' => 'listar estagio', 'guard_name' => 'web'],
             ['name' => 'cadastrar estagio', 'guard_name' => 'web'],
             ['name' => 'editar estagio', 'guard_name' => 'web'],
             ['name' => 'deletar estagio', 'guard_name' => 'web'],
+            ['name' => 'configurar estagio', 'guard_name' => 'web'],
+            ['name' => 'listar documento estagio', 'guard_name' => 'web'],
+            ['name' => 'preencher documento estagio', 'guard_name' => 'web'],
+            ['name' => 'visualizar documento estagio', 'guard_name' => 'web'],
+            ['name' => 'validar documento estagio', 'guard_name' => 'web'],
+            ['name' => 'editar observacao estagio', 'guard_name' => 'web'],
+            ['name' => 'visualizar instituicao estagio', 'guard_name' => 'web'],
+            
+            # Vínculo entre estudante e edital
+            ['name' => 'listar vinculo estudante-edital', 'guard_name' => 'web'],
+            ['name' => 'vincular estudante-edital', 'guard_name' => 'web'],
+            ['name' => 'editar vinculo estudante-edital', 'guard_name' => 'web'],
+            ['name' => 'visualizar vinculo estudante-edital', 'guard_name' => 'web'],
+            ['name' => 'desvincular estudante-edital', 'guard_name' => 'web'],
 
-            # Vínculo de estudante com edital
-            ['name' => 'modificar estudante-edital', 'guard_name' => 'web'],
-            ['name' => 'listar estudante-edital', 'guard_name' => 'web'],
+            # Vínculo entre servidor e programa
+            ['name' => 'vincular servidor-programa', 'guard_name' => 'web'],
+            
+            # Vínculo entre edital e programa
+            ['name' => 'cadastrar edital-programa', 'guard_name' => 'web'],
+            
+            ['name' => 'adicionar permissao', 'guard_name' => 'web'],
+
+            # Supervisor
+            ['name' => 'listar supervisor', 'guard_name' => 'web'],
+            ['name' => 'cadastar supervisor', 'guard_name' => 'web'],
+            ['name' => 'visualizar supervisor', 'guard_name' => 'web'],
+            ['name' => 'editar supervisor', 'guard_name' => 'web'],
+            ['name' => 'deletar supervisor', 'guard_name' => 'web'],
         ]);
 
         Role::each(function ($role) {
@@ -149,6 +182,8 @@ class UpdatePermission extends Command
                     $role->givePermissionTo('visualizar estudante');
                     $role->givePermissionTo('deletar estudante');
                     $role->givePermissionTo('home estudante');
+                    $role->givePermissionTo('listar estudante inativo');
+                    $role->givePermissionTo('verificar estudante');
 
                     # CRUD orientador
                     $role->givePermissionTo('cadastrar orientador');
@@ -169,11 +204,11 @@ class UpdatePermission extends Command
                     $role->givePermissionTo('deletar curso');
                     
                     # CRUD disciplina
-                    $role->givePermissionTo('cadastrar Disciplina');
-                    $role->givePermissionTo('editar Disciplina');
-                    $role->givePermissionTo('listar Disciplina');
-                    $role->givePermissionTo('visualizar Disciplina');
-                    $role->givePermissionTo('deletar Disciplina');
+                    $role->givePermissionTo('cadastrar disciplina');
+                    $role->givePermissionTo('editar disciplina');
+                    $role->givePermissionTo('listar disciplina');
+                    $role->givePermissionTo('visualizar disciplina');
+                    $role->givePermissionTo('deletar disciplina');
                     
                     # CRUD edital
                     $role->givePermissionTo('cadastrar edital');
@@ -182,17 +217,50 @@ class UpdatePermission extends Command
                     $role->givePermissionTo('visualizar edital');
                     $role->givePermissionTo('deletar edital');
 
-                    # Associação de estudante com edital
-                    $role->givePermissionTo('modificar estudante-edital');
-                    $role->givePermissionTo('listar estudante-edital');
+                    # Vínculo entre estudante e edital
+                    $role->givePermissionTo('listar vinculo estudante-edital');
+                    $role->givePermissionTo('vincular estudante-edital');
+                    $role->givePermissionTo('editar vinculo estudante-edital');
+                    $role->givePermissionTo('visualizar vinculo estudante-edital');
+                    $role->givePermissionTo('desvincular estudante-edital');
+                    $role->givePermissionTo('listar vinculo estudante-edital inativo');
+
+                    # Estágio
+                    $role->givePermissionTo('listar estagio');
+                    $role->givePermissionTo('cadastrar estagio');
+                    $role->givePermissionTo('editar estagio');
+                    $role->givePermissionTo('configurar estagio');
+                    $role->givePermissionTo('deletar estagio');
+                    $role->givePermissionTo('validar documento estagio');
+                    $role->givePermissionTo('visualizar documento estagio');
+                    $role->givePermissionTo('listar documento estagio');
+                    $role->givePermissionTo('editar observacao estagio');
+                    $role->givePermissionTo('editar instituicao estagio');
+                    $role->givePermissionTo('visualizar instituicao estagio');
+
                     break;
                 case 'orientador' or 'coordenador':
                     # Home orientador
                     $role->givePermissionTo('home orientador');
+
+                    $role->givePermissionTo('listar estudante inativo');
+                    
+                    $role->givePermissionTo('listar documento estagio');
+
                     break;
                 case 'estudante':
                     # Home estudante
                     $role->givePermissionTo('home estudante');
+
+                    $role->givePermissionTo('visualizar vinculo estudante-edital');
+
+                    # Estagio
+                    $role->givePermissionTo('cadastrar estagio');
+                    $role->givePermissionTo('preencher documento estagio');
+                    $role->givePermissionTo('listar documento estagio');
+                    $role->givePermissionTo('editar instituicao estagio');
+                    $role->givePermissionTo('visualizar instituicao estagio');
+
                     break;
                 case 'pro-reitor':
                     # Visualizar estudante
@@ -222,42 +290,93 @@ class UpdatePermission extends Command
                     # Visualizar edital
                     $role->givePermissionTo('listar edital');
                     $role->givePermissionTo('visualizar edital');
+                    
+                    # Vínculo estudante-edital
+                    $role->givePermissionTo('listar vinculo estudante-edital');
+                    $role->givePermissionTo('listar vinculo estudante-edital inativo');
+                    $role->givePermissionTo('visualizar vinculo estudante-edital');
+                    
+                    # Estágio
+                    $role->givePermissionTo('listar estagio');
+                    $role->givePermissionTo('configurar estagio');
+                    $role->givePermissionTo('visualizar documento estagio');
+                    
+                    # Vínculo servidor-programa
+                    $role->givePermissionTo('vincular servidor-programa');
+                    
+                    # Vínculo edital-programa
+                    $role->givePermissionTo('cadastrar edital-programa');
+                    
+                    $role->givePermissionTo('adicionar permissao');
+                    
+                    # Supervisor
+                    $role->givePermissionTo('listar supervisor');
+                    $role->givePermissionTo('cadastrar supervisor');
+                    $role->givePermissionTo('visualizar supervisor');
+                    $role->givePermissionTo('editar supervisor');
+                    $role->givePermissionTo('deletar supervisor');
 
-                    $role->givePermissionTo('listar estudante-edital');
                     break;
                 case 'diretor':
-                    # Visualizar estudante
+                    # estudante
                     $role->givePermissionTo('editar estudante');
                     $role->givePermissionTo('listar estudante');
                     $role->givePermissionTo('visualizar estudante');
+                    $role->givePermissionTo('listar estudante inativo');
+                    $role->givePermissionTo('verificar estudante');
 
-                    # Visualizar orientador
+                    # orientador
                     $role->givePermissionTo('listar orientador');
                     $role->givePermissionTo('visualizar orientador');
 
-                    # Visualizar tecnico
+                    # tecnico
                     $role->givePermissionTo('editar tecnico');
                     $role->givePermissionTo('listar tecnico');
                     $role->givePermissionTo('visualizar tecnico');
 
-                    # Visualizar curso
+                    # curso
                     $role->givePermissionTo('listar curso');
                     $role->givePermissionTo('visualizar curso');
 
-                    # Visualizar programa
+                    # programa
                     $role->givePermissionTo('editar programa');
                     $role->givePermissionTo('listar programa');
                     $role->givePermissionTo('visualizar programa');
 
-                    # Visualizar disciplina
+                    # disciplina
                     $role->givePermissionTo('listar disciplina');
                     $role->givePermissionTo('visualizar disciplina');
 
-                    # Visualizar edital
+                    # edital
                     $role->givePermissionTo('cadastrar edital');
                     $role->givePermissionTo('editar edital');
                     $role->givePermissionTo('listar edital');
                     $role->givePermissionTo('visualizar edital');
+
+                    # Vínculo entre estudante e edital
+                    $role->givePermissionTo('listar vinculo estudante-edital');
+                    $role->givePermissionTo('vincular estudante-edital');
+                    $role->givePermissionTo('editar vinculo estudante-edital');
+                    $role->givePermissionTo('visualizar vinculo estudante-edital');
+                    $role->givePermissionTo('listar vinculo estudante-edital inativo');
+
+                    # Estágio
+                    $role->givePermissionTo('listar estagio');
+                    $role->givePermissionTo('cadastrar estagio');
+                    $role->givePermissionTo('editar estagio');
+                    $role->givePermissionTo('configurar estagio');
+                    $role->givePermissionTo('validar documento estagio');
+                    $role->givePermissionTo('visualizar documento estagio');
+                    $role->givePermissionTo('editar observacao estagio');
+                    $role->givePermissionTo('editar instituicao estagio');
+                    $role->givePermissionTo('visualizar instituicao estagio');
+
+                    # Vínculo edital-programa
+                    $role->givePermissionTo('cadastrar edital-programa');
+
+                    # Supervisor
+                    $role->givePermissionTo('visualizar supervisor');
+
                     break;
             }
         });

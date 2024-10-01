@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor', 'orientador'])
+@can('desvincular estudante-edital')
     <div class="modal" id="modal_delete{{ $pivo->aluno_id }}_{{ $pivo->edtial_id }}" tabindex="-1"
         aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

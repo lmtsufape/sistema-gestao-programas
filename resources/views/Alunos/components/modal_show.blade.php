@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor', 'gestor'])
+@can('visualizar estudante')
     <div data-backdrop="static" data-keyboard="false" role="dialog" class="modal" id="modal_edit_{{ $aluno->id }}"
         tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -100,7 +100,7 @@
         });
     </script>
 
-    @elsecan
+@else
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
     <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{ url('/home') }}">Voltar</a>
 @endcan

@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor', 'aluno', 'orientador', 'gestor'])
+@can('visualizar vinculo estudante-edital')
     <div class="modal " id="modal_show{{ $vinculo->id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-create p-2">

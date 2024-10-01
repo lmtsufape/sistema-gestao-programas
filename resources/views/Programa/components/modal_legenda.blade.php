@@ -11,35 +11,39 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Informações do programa</span>
                 </div>
-                @cannot(['pro_reitor', 'gestor'])
+                @can('vincular servidor-programa')
                     <div class="mb-3">
                         <img src="{{ asset('images/account-plus_red.svg') }}" alt="Atribuir servidor"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Atribuir servidor ao programa</span>
                     </div>
-                @endcannot
+                @endcan
                 <div class="mb-3">
                     <img src="{{ asset('images/file_red.svg') }}" alt="Listar edital"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Listar editais do programa</span>
                 </div>
-                @cannot(['pro_reitor', 'gestor'])
+                @can('cadastrar edital-programa')
                     <div class="mb-3">
                         <img src="{{ asset('images/file-plus_red.svg') }}" alt="Add edital"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Adicionar edital do programa</span>
                     </div>
+                @endcan
+                @can('editar programa')
                     <div class="mb-3">
                         <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar programa"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Editar o programa</span>
                     </div>
+                @endcan
+                @can('deletar programa')
                     <div class="mb-3">
                         <img src="{{ asset('images/delete_red.svg') }}" alt="Deletar programa"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Deletar o programa</span>
                     </div>
-                @endcannot
+                @endcan
             </div>
             <div class="modal-footer border-0"></div>
         </div>

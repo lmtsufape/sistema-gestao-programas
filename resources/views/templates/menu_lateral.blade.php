@@ -27,7 +27,7 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
   <hr>
   <div class="offcanvas-body" style="display: flex;flex-direction: column;justify-content: space-between;">
     @auth
-      @can('servidor')
+      @hasanyrole(['tecnico', 'coordenador', 'pro-reitor', 'diretor', 'supervisor', 'administrador'])
 
         <div style="padding: 5px;">
             <a href="{{route('meu-perfil-servidor')}}" class="link_navbar">
@@ -37,26 +37,29 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
             </a>
             <hr>
 
-            @cannot('servidor')
+            @can('listar programa')
               <a href="{{route("programas.index")}}" class="link_navbar">
                 <img src="{{asset("images/iconsbarralateral/listarbl.png")}}" alt="listarprog" style="height:17px; width:24px;">
                 <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
                 padding-top: 1px">Listar programas</p>
-
-                <a href="{{route("servidores.index")}}" class="link_navbar">
-                  <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarServ" style="height:24px; width:24px;">
-                  <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
-                  padding-top: 4px">Listagem de servidores</p>
-                </a>
               </a>
-            @endcannot
-            <!-- @can('pro_reitor')
+            @endcan
+                
+            @can('listar servidor')
+              <a href="{{route("servidores.index")}}" class="link_navbar">
+                <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarServ" style="height:24px; width:24px;">
+                <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
+                padding-top: 4px">Listagem de servidores</p>
+              </a>
+            @endcan
+            
+            {{-- @can('pro_reitor')
             <a href="{{route("programas.index")}}" style="display: flex; color: #000; text-decoration: none;">
               <img src="{{asset("images/iconsbarralateral/listarbl.png")}}" alt="listarprog" style="height:17px; width:24px;">
               <p style="font-style: normal; font-weight: 400; font-size: 14px; line-height: 16px; padding-left: 5px;
               padding-top: 1px">Listar programas</p>
             </a>
-            @endcan -->
+            @endcan --}}
             
             <a href="{{route("alunos.index")}}" class="link_navbar">
               <img src="{{asset("images/iconsbarralateral/listaruserbl.png")}}" alt="listarAlunos" style="height:24px; width:24px;">
@@ -100,7 +103,7 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
 
       @endcan
 
-      @can('orientador')
+      @role('orientador')
         <div style="padding: 5px;">
           <a href="{{route('meu-perfil-orientador')}}" class="link_navbar">
               <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
@@ -142,10 +145,10 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
           </a>--}}
           <hr>
         </div>
-      @endcan
+      @endrole
 
 
-      @can('aluno')
+      @role('aluno')
       <div style="padding: 5px;">
         <a href="{{route('meu-perfil-aluno')}}" class="link_navbar">
             <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">
@@ -171,7 +174,7 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
             padding-top: 5px">Gerar documentos</p>
         </a>--}}
         </div>
-      @endcan
+      @endrole
     @endauth
 
     <form action="/logout" method="POST">

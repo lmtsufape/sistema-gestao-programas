@@ -1,7 +1,7 @@
 @extends("templates.app")
 
 @section("body")
-@canany(['admin', 'servidor'])
+@can('editar curso')
     <style>
         select[multiple] {
             overflow: hidden;

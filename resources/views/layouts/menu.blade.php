@@ -13,7 +13,7 @@
 </head>
 
 @auth
-    @can('servidor')
+    @hasanyrole(['tecnico', 'coordenador', 'diretor', 'pro-reitor', 'administrador'])
         <header>
             <!-- Isso aqui é a barra de cima -->
             <nav class="navbar navbar-menu d-flex">
@@ -27,17 +27,22 @@
                             </button>
                             <ul class="dropdown-menu menu" role="menu"
                                 aria-labelledby="dropdownMenuButton">
-                                @cannot('servidor')
+                                @can('listar programa')
                                     <li><a class="dropdown-item" href="{{ route('programas.index') }}">Programas</a></li>
+                                @endcan
+                                @can('listar servidor')
                                     <li><a class="dropdown-item" href="{{ route('servidores.index') }}">Servidores</a></li>
-                                @endcannot
-
-                                @cannot('pro_reitor')
+                                @endcan
+                                @can('listar estudante')
                                     <li><a class="dropdown-item" href="{{ route('alunos.index') }}">Estudantes</a></li>
                                 @endcannot
-                                <li><a class="dropdown-item" href="{{ route('orientadors.index') }}">Professores</a></li>
-                                @can('gestor')
+                                @can('listar orientador')
+                                    <li><a class="dropdown-item" href="{{ route('orientadors.index') }}">Professores</a></li>
+                                @endcan
+                                @can('listar curso')
                                     <li><a class="dropdown-item" href="{{ route('cursos.index') }}">Cursos</a></li>
+                                @endcan
+                                @can('listar disciplina')
                                     <li><a class="dropdown-item" href="{{ route('disciplinas.index') }}">Disciplinas</a></li>
                                 @endcan
                             </ul>
@@ -45,22 +50,22 @@
                     </div>
                     <div class="botoesdd">
                         <div class="dropdown">
-                            <button class="btn-menu " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                            <button class="btn-menu" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
                                 <img src="{{ asset('images/folder-outline.png') }}" alt="gerenciar" class="image-size">
                                 Gerenciar
                                 <span><img src="{{ asset('images/arrow-3.png') }}" alt="mostrar" class="arrow-dd"></span>
                             </button>
                             <ul class="dropdown-menu menu"role="menu" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item" href="{{ route('edital.index') }}">Editais</a></li>
-                            @cannot(['pro_reitor', 'gestor'])
+                            @unlessrole(['pro-reitor', 'diretor'])
                                 <li><a class="dropdown-item" href="{{ route('cursos.index') }}">Cursos</a></li>
                                 <li><a class="dropdown-item" href="{{ route('disciplinas.index') }}">Disciplinas</a></li>
                                 <li><a class="dropdown-item" href="{{ route('estagio.index') }}">Estágio</a></li>
-                            @endcannot
+                            @endunless
                             </ul>
                         </div>
                     </div>
-                    @can('admin')
+                    @role('administrador')
                         <div class="botoesdd">
                             <div class="dropdown">
                                 <button class="btn-menu " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
@@ -79,9 +84,9 @@
                                 </ul>
                             </div>
                         </div>
-                    @endcan
+                    @endrole
                 </div>
             </nav>
         </header>
-    @endcan
+    @endhasanyrole
 @endauth

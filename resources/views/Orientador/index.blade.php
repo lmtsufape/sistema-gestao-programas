@@ -3,7 +3,7 @@
 @section('body')
 
 
-    @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
+    @can('listar orientador')
         <div class="container-fluid">
             @if (session('sucesso'))
                 <div class="alert alert-success">
@@ -21,10 +21,10 @@
                 <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
                     id="valor" name="valor" style="text-align: start">
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
-                @cannot(['pro_reitor', 'gestor'])
+                @can('cadastrar orientador')
                     <button class="cadastrar-botao" type="button"
                         onclick="window.location.href = '{{ route('orientadors.create') }}'">Cadastrar professor</button>
-                @endcannot
+                @endcan
             </form>
 
         </div>
@@ -81,13 +81,13 @@
                                             <img src="{{ asset('images/pencil.svg') }}" title="Editar"
                                                 alt="Editar professor" style="height: 30px; width: 30px;">
                                         </a>
-                                        @cannot(['pro_reitor', 'gestor'])
+                                        @can('deletar orientador')
                                             <a type="button" data-bs-toggle="modal"
                                                 data-bs-target="#modal_delete_{{ $orientador->id }}">
                                                 <img src="{{ asset('images/delete.svg') }}" title="Remover"
                                                     alt="Deletar professor" style="height: 30px; width: 30px;">
                                             </a>
-                                        @endcannot
+                                        @endcan
 
                                     </td>
                                 </tr>

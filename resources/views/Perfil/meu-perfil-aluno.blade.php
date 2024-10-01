@@ -13,7 +13,7 @@
         </div>
 
         @auth
-            @can('aluno')
+            @role('aluno')
                 <div class="container-fluid" style="padding-top: 10px;">
 
                     @if ($aluno->user->image)
@@ -97,5 +97,5 @@
                         </div>
                     @endauth
                 </div>
-            @endcan
+            @endrole
 @endsection

@@ -18,12 +18,14 @@
                     <span class="textoinfomodal">Adicionar documentos</span>
                 </div>
 
-                @cannot(['pro_reitor', 'gestor', 'orientador'])
+                @can('editar estudante')
                     <div class="mb-3">
                         <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar aluno"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Editar o estudante</span>
                     </div>
+                @endcannot
+                @can('desvincular estudante-edital')
                     <div class="mb-3">
                         <img src="{{ asset('images/Unlink_red.svg') }}" alt="Desvincular aluno"
                             style="height: 30px; width: 30px; padding-bottom: 5px">

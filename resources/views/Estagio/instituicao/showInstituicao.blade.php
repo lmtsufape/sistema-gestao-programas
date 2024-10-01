@@ -2,7 +2,7 @@
 
 @section('body')
 
-@canany(['admin', 'servidor', 'gestor', 'aluno'])
+@can('visualizar instituicao estagio')
 
 <div class="fundocadastrar">
     <div class="container-fluid">

@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor'])
+@can('deletar curso')
     <div class="modal" id="modal_delete_{{ $curso->id }}" tabindex="-1" aria-labelledby="deleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

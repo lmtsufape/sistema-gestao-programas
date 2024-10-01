@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor', 'gestor'])
+@can('visualizar disciplina')
     <div class="modal" id="modal_show_{{ $disciplina->id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-create p-2">
@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    @elsecan
+@else
     <h3 class="titulomodal">Você não possui permissão!</h3>
     <a class="apagarmodalbotao" style="margin-top: 1rem" href="{{ url('/home') }}">Voltar</a>
 @endcan
