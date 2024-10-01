@@ -128,7 +128,6 @@ class UpdatePermission extends Command
             ['name' => 'listar programa', 'guard_name' => 'web'],
             ['name' => 'visualizar programa', 'guard_name' => 'web'],
             ['name' => 'deletar programa', 'guard_name' => 'web'],
-            # ['name' => 'crud editais programa', 'guard_name' => 'web'], não entendi bem esse crud
 
             # Edital
             ['name' => 'cadastrar edital', 'guard_name' => 'web'],
@@ -136,7 +135,7 @@ class UpdatePermission extends Command
             ['name' => 'listar edital', 'guard_name' => 'web'],
             ['name' => 'visualizar edital', 'guard_name' => 'web'],
             ['name' => 'deletar edital', 'guard_name' => 'web'],
-            # ['name' => 'crud projetos edital', 'guard_name' => 'web'],
+            ['name' => 'adicionar documento edital', 'guard_name' => 'web'],
 
             # Estagio
             ['name' => 'listar estagio', 'guard_name' => 'web'],
@@ -151,6 +150,7 @@ class UpdatePermission extends Command
             ['name' => 'editar observacao estagio', 'guard_name' => 'web'],
             ['name' => 'visualizar instituicao estagio', 'guard_name' => 'web'],
             ['name' => 'editar instituicao estagio', 'guard_name' => 'web'],
+            ['name' => 'exportar dados estagio', 'guard_name' => 'web'],
             
             # Vínculo entre estudante e edital
             ['name' => 'listar vinculo estudante-edital', 'guard_name' => 'web'],
@@ -247,15 +247,19 @@ class UpdatePermission extends Command
                     $role->givePermissionTo('editar observacao estagio');
                     $role->givePermissionTo('editar instituicao estagio');
                     $role->givePermissionTo('visualizar instituicao estagio');
+                    $role->givePermissionTo('exportar dados estagio');
 
                     break;
-                case 'orientador' or 'coordenador':
+                case 'orientador':
+                case 'coordenador':
                     # Home orientador
                     $role->givePermissionTo('home orientador');
 
                     $role->givePermissionTo('listar estudante inativo');
                     
                     $role->givePermissionTo('listar documento estagio');
+                    
+                    $role->givePermissionTo('adicionar documento edital');
 
                     break;
                 case 'estudante':
@@ -281,9 +285,9 @@ class UpdatePermission extends Command
                     $role->givePermissionTo('listar orientador');
                     $role->givePermissionTo('visualizar orientador');
 
-                    # Visualizar tecnico
-                    $role->givePermissionTo('listar tecnico');
-                    $role->givePermissionTo('visualizar tecnico');
+                    # Visualizar servidor
+                    $role->givePermissionTo('listar servidor');
+                    $role->givePermissionTo('visualizar servidor');
 
                     # Visualizar curso
                     $role->givePermissionTo('listar curso');
@@ -310,6 +314,7 @@ class UpdatePermission extends Command
                     $role->givePermissionTo('listar estagio');
                     $role->givePermissionTo('configurar estagio');
                     $role->givePermissionTo('visualizar documento estagio');
+                    $role->givePermissionTo('exportar dados estagio');
                     
                     # Vínculo servidor-programa
                     $role->givePermissionTo('vincular servidor-programa');
@@ -339,10 +344,10 @@ class UpdatePermission extends Command
                     $role->givePermissionTo('listar orientador');
                     $role->givePermissionTo('visualizar orientador');
 
-                    # tecnico
-                    $role->givePermissionTo('editar tecnico');
-                    $role->givePermissionTo('listar tecnico');
-                    $role->givePermissionTo('visualizar tecnico');
+                    # servidor
+                    $role->givePermissionTo('listar servidor');
+                    $role->givePermissionTo('editar servidor');
+                    $role->givePermissionTo('visualizar servidor');
 
                     # curso
                     $role->givePermissionTo('listar curso');
@@ -380,6 +385,7 @@ class UpdatePermission extends Command
                     $role->givePermissionTo('editar observacao estagio');
                     $role->givePermissionTo('editar instituicao estagio');
                     $role->givePermissionTo('visualizar instituicao estagio');
+                    $role->givePermissionTo('exportar dados estagio');
 
                     # Vínculo edital-programa
                     $role->givePermissionTo('cadastrar edital-programa');

@@ -61,20 +61,20 @@
                                         <td class="align-middle">{{ $servidor->user->name }}</td>
                                         <td class="align-middle">{{ $servidor->user->email }}</td>
                                         <td class="align-middle">{{ $servidor->cpf }}</td>
-                                        @switch($servidor->tipo_servidor)
-                                            @case('admin')
+                                        @switch($servidor->roles->first()->name)
+                                            @case('administrador')
                                                 <td class="align-middle">Administrador</td>
                                             @break
 
-                                            @case('pro_reitor')
+                                            @case('pro-reitor')
                                                 <td class="align-middle">Pró-reitor</td>
                                             @break
 
-                                            @case('servidor')
+                                            @case('tecnico')
                                                 <td class="align-middle">Técnico Administrativo</td>
                                             @break
 
-                                            @case('gestor')
+                                            @case('diretor')
                                                 <td class="align-middle">Diretor</td>
                                             @break
                                         @endswitch

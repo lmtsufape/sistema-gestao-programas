@@ -1,7 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['admin', 'orientador'])
+    @can('adicionar documento edital')
 
         <style>
             select[multiple] {

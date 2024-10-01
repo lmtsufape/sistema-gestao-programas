@@ -34,20 +34,20 @@
                     <div class="mb-3">
                         <label class="tituloinfomodal form-label mt-3">Tipo do servidor:</label>
                         <div class="textoinfomodal">
-                            @switch($servidor->tipo_servidor)
-                                @case('admin')
+                            @switch($servidor->roles->first()->name)
+                                @case('administrador')
                                     <div class="textoinfomodal"> Administrador</div>
                                 @break
 
-                                @case('pro_reitor')
+                                @case('pro-reitor')
                                     <div class="textoinfomodal"> Pró-Reitor</div>
                                 @break
 
-                                @case('servidor')
-                                    <div class="textoinfomodal"> Servidor</div>
+                                @case('tecnico')
+                                    <div class="textoinfomodal"> Técnico Administrativo</div>
                                 @break
 
-                                @case('gestor')
+                                @case('diretor')
                                     <div class="textoinfomodal"> Diretor</div>
                                 @break
                             @endswitch
