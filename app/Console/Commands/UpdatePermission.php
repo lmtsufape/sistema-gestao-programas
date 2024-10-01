@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 
 class UpdatePermission extends Command
 {
@@ -89,6 +90,7 @@ class UpdatePermission extends Command
             ['name' => 'deletar estudante', 'guard_name' => 'web'],
             ['name' => 'home estudante', 'guard_name' => 'web'],
             ['name' => 'listar estudante inativo', 'guard_name' => 'web'],
+            ['name' => 'verificar estudante', 'guard_name' => 'web'],
 
             # Orientador
             ['name' => 'cadastrar orientador', 'guard_name' => 'web'],
@@ -148,9 +150,11 @@ class UpdatePermission extends Command
             ['name' => 'validar documento estagio', 'guard_name' => 'web'],
             ['name' => 'editar observacao estagio', 'guard_name' => 'web'],
             ['name' => 'visualizar instituicao estagio', 'guard_name' => 'web'],
+            ['name' => 'editar instituicao estagio', 'guard_name' => 'web'],
             
             # Vínculo entre estudante e edital
             ['name' => 'listar vinculo estudante-edital', 'guard_name' => 'web'],
+            ['name' => 'listar vinculo estudante-edital inativo', 'guard_name' => 'web'],
             ['name' => 'vincular estudante-edital', 'guard_name' => 'web'],
             ['name' => 'editar vinculo estudante-edital', 'guard_name' => 'web'],
             ['name' => 'visualizar vinculo estudante-edital', 'guard_name' => 'web'],
@@ -171,6 +175,12 @@ class UpdatePermission extends Command
             ['name' => 'editar supervisor', 'guard_name' => 'web'],
             ['name' => 'deletar supervisor', 'guard_name' => 'web'],
         ]);
+
+        // Limpar cache de permissões
+        Artisan::call('permission:cache-reset');
+
+        // Iniciar permissões manualmente
+        Permission::get(); // Isso força o carregamento de permissões no sistema
 
         Role::each(function ($role) {
             switch ($role->name) {
