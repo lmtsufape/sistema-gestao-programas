@@ -170,7 +170,7 @@ class UpdatePermission extends Command
 
             # Supervisor
             ['name' => 'listar supervisor', 'guard_name' => 'web'],
-            ['name' => 'cadastar supervisor', 'guard_name' => 'web'],
+            ['name' => 'cadastrar supervisor', 'guard_name' => 'web'],
             ['name' => 'visualizar supervisor', 'guard_name' => 'web'],
             ['name' => 'editar supervisor', 'guard_name' => 'web'],
             ['name' => 'deletar supervisor', 'guard_name' => 'web'],
