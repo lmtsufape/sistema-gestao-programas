@@ -13,7 +13,7 @@
         </div>
 
         @auth
-            @role('aluno')
+            @role('estudante')
                 <div class="container-fluid" style="padding-top: 10px;">
 
                     @if ($aluno->user->image)

@@ -101,7 +101,7 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
             </a>--}}
         </div>
 
-      @endcan
+      @endhasanyrole
 
       @role('orientador')
         <div style="padding: 5px;">
@@ -148,7 +148,7 @@ aria-labelledby="offcanvasWithBothOptionsLabel" style="background: #F4F5FB; box-
       @endrole
 
 
-      @role('aluno')
+      @role('estudante')
       <div style="padding: 5px;">
         <a href="{{route('meu-perfil-aluno')}}" class="link_navbar">
             <img src="{{asset("images/iconsbarralateral/userbl.png")}}" alt="user" style="height:24px; width:24px;">

@@ -35,7 +35,7 @@
                                 @endcan
                                 @can('listar estudante')
                                     <li><a class="dropdown-item" href="{{ route('alunos.index') }}">Estudantes</a></li>
-                                @endcannot
+                                @endcan
                                 @can('listar orientador')
                                     <li><a class="dropdown-item" href="{{ route('orientadors.index') }}">Professores</a></li>
                                 @endcan

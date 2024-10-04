@@ -65,7 +65,7 @@
                                     <span style="margin-left: 5px;">Meu perfil</span>
                                 </a>
                             @endrole
-                            @role('aluno')
+                            @role('estudante')
                                 <a href="{{ route('meu-perfil-aluno') }}" class="caixinhasetinha">
                                     <img src="{{ asset('images/UserVector.svg') }}" alt="Icone de usuário">
                                     <span style="margin-left: 5px;">Meu perfil</span>

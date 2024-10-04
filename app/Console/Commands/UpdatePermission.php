@@ -3,10 +3,11 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
-use Illuminate\Support\Facades\Artisan;
+use App\Models\Servidor;
 
 class UpdatePermission extends Command
 {
@@ -26,7 +27,8 @@ class UpdatePermission extends Command
         Atribui os users a suas roles respectivas baseando-se nas permissões atuais.
         Limpa a tabela de permissões.
         Cria todas as permissões necessárias. (ou a maioria pelo menos)
-        Atribui as permissões as roles.';
+        Atribui as permissões as roles.
+        ATENÇÃO, usar somente uma vez. Não é necessário usar caso o banco for preenchido com o novo seeder.';
 
     /**
      * Create a new command instance.
@@ -61,6 +63,7 @@ class UpdatePermission extends Command
             'aluno' => 'estudante',
             'orientador' => 'orientador',
             'admin' => 'administrador',
+            'adm' => 'administrador',
             'pro_reitor' => 'pro-reitor',
             'gestor' => 'diretor',
             'coordenador' => 'coordenador',
@@ -395,6 +398,10 @@ class UpdatePermission extends Command
 
                     break;
             }
+        });
+
+        Servidor::each(function ($servidor) use ($permissionToRoles) {
+            $servidor->update(['tipo_servidor' => $permissionToRoles[$servidor->tipo_servidor]]);
         });
 
         return 0;

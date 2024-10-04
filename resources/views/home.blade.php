@@ -5,7 +5,7 @@
 @endsection
 @section('body')
     @auth
-        @hasanyrole('tecnico|coordenador|pro-reitor|diretor|supervisor|administrador')
+        @hasanyrole(['tecnico', 'coordenador', 'pro-reitor', 'diretor', 'supervisor', 'administrador'])
             <div class="container-fluid">
 
                 {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
