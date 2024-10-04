@@ -34,7 +34,7 @@ class GestorAdministrativoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store ($request)
+    public function store($request)
     {
         $gestor = new GestorAdministrativo();
         $gestor->cpf = $request->cpf;
@@ -48,8 +48,8 @@ class GestorAdministrativoController extends Controller
                 'cpf' => $request->cpf,
                 'password' => Hash::make($request->senha),
             ]);
-            // dd($user);
-            $user->givePermissionTo('gestor');
+
+            $user->assignRole('diretor');
             $user->save();
             Auth::login($user);
         }

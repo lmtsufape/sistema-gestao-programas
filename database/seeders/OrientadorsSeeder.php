@@ -29,7 +29,7 @@ class orientadorsSeeder extends Seeder
             'name' => "Orientador 1",
             'email' => "orientador@gmail.com",
             'password' =>  Hash::make('12345678')
-        ])->givePermissionTo('orientador');
+        ])->assignRole('orientador');
 
         $orientador1 = Orientador::create([
             'cpf' => "786.116.540-05",
@@ -43,6 +43,6 @@ class orientadorsSeeder extends Seeder
             'name' => "Orientador 2",
             'email' => "orientador2@gmail.com",
             'password' =>  Hash::make('12345678')
-        ])->givePermissionTo('orientador');
+        ])->assignRole('orientador');
     }
 }

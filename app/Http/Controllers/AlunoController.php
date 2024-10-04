@@ -44,7 +44,7 @@ class AlunoController extends Controller
                     'password' => Hash::make($request->senha),
                     'image' => $imageName
                 ]);
-                $user->givePermissionTo('aluno');
+                $user->assignRole('estudante');
                 $user->save();
                 DB::commit();
 
