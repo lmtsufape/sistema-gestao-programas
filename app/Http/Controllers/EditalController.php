@@ -60,7 +60,7 @@ class EditalController extends Controller
             return view("Edital.index", compact("editais", "orientadors"));
 
         } else {
-            if(auth()->user()->can('admin'))
+            if(auth()->user()->hasRole('administrador'))
             {
                 $editais = Edital::all()->sortBy('id');
             }
@@ -110,7 +110,7 @@ class EditalController extends Controller
         $user = auth()->user()->typage;
         $disciplinas = Disciplina::all();
 
-        if(auth()->user()->can('admin'))
+        if(auth()->user()->hasRole('administrador'))
         {
             $programas = Programa::all()->sortBy('id');
         }
@@ -278,7 +278,7 @@ class EditalController extends Controller
         $disciplinas = Disciplina::all();
         $disciplinasSelecionadas = $edital->disciplinas->pluck('id')->toArray();
 
-        if(auth()->user()->can('admin'))
+        if(auth()->user()->hasRole('administrador'))
         {
             $programas = Programa::all()->sortBy('id');
         }

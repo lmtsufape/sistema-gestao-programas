@@ -50,7 +50,7 @@ class ProgramaController extends Controller
                 }
             };
 
-            if(auth()->user()->can('admin')){
+            if(auth()->user()->hasRole('administrador')){
                 $programas = Programa::where($filtro);
             }else{
                 $programas = $user->programas()->where($filtro);
@@ -60,7 +60,7 @@ class ProgramaController extends Controller
             return view("Programa.index", compact("programas", "servidors", "users"));
         } else {
             $programas = [];
-            if(auth()->user()->can('admin')){
+            if(auth()->user()->hasRole('administrador')){
                 $programas = Programa::all();
             } else{
                 $programas = $user->programas()->get();
