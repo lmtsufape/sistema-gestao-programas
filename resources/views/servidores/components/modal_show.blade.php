@@ -34,23 +34,33 @@
                     <div class="mb-3">
                         <label class="tituloinfomodal form-label mt-3">Tipo do servidor:</label>
                         <div class="textoinfomodal">
-                            @switch($servidor->roles->first()->name)
-                                @case('administrador')
-                                    <div class="textoinfomodal"> Administrador</div>
-                                @break
+                            @foreach($servidor->user->roles as $key => $role)
+                                @switch($role->name)
+                                    @case('administrador')
+                                        <div class="textoinfomodal"> Administrador
+                                    @break
+                            
+                                    @case('pro-reitor')
+                                        <div class="textoinfomodal"> Pró-Reitor
+                                    @break
+                            
+                                    @case('tecnico')
+                                        <div class="textoinfomodal"> Técnico Administrativo
+                                    @break
+                            
+                                    @case('diretor')
+                                        <div class="textoinfomodal"> Diretor
+                                    @break
 
-                                @case('pro-reitor')
-                                    <div class="textoinfomodal"> Pró-Reitor</div>
-                                @break
+                                    @case('coordenador')
+                                        <div class="textoinfomodal"> Coordenador
+                                    @break
 
-                                @case('tecnico')
-                                    <div class="textoinfomodal"> Técnico Administrativo</div>
-                                @break
-
-                                @case('diretor')
-                                    <div class="textoinfomodal"> Diretor</div>
-                                @break
-                            @endswitch
+                                    @case('supervisor')
+                                        <div class="textoinfomodal"> Supervisor
+                                    @break
+                                @endswitch
+                            @endforeach
                         </div>
                         <div class="modal-footer border-0">
                         </div>

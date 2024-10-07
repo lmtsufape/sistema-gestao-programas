@@ -55,33 +55,49 @@
                                     </th>
                                 </tr>
                             </thead>
-                            @foreach ($servidores as $servidor)
-                                <tbody>
+                            <tbody>
+                                @foreach ($servidores as $servidor)
                                     <tr>
                                         <td class="align-middle">{{ $servidor->user->name }}</td>
                                         <td class="align-middle">{{ $servidor->user->email }}</td>
                                         <td class="align-middle">{{ $servidor->cpf }}</td>
-                                        @switch($servidor->roles->first()->name)
-                                            @case('administrador')
-                                                <td class="align-middle">Administrador</td>
-                                            @break
+                                        <td>
+                                            @foreach($servidor->user->roles as $key => $role)
+                                                @switch($role->name)
+                                                    @case('administrador')
+                                                        <span>Administrador</span>
+                                                    @break
+                                            
+                                                    @case('pro-reitor')
+                                                        <span>Pró-Reitor</span>
+                                                    @break
+                                            
+                                                    @case('tecnico')
+                                                        <span>Técnico Administrativo</span>
+                                                    @break
+                                            
+                                                    @case('diretor')
+                                                        <span>Diretor</span>
+                                                    @break
 
-                                            @case('pro-reitor')
-                                                <td class="align-middle">Pró-reitor</td>
-                                            @break
+                                                    @case('supervisor')
+                                                        <span>Supervisor</span>
+                                                    @break
 
-                                            @case('tecnico')
-                                                <td class="align-middle">Técnico Administrativo</td>
-                                            @break
-
-                                            @case('diretor')
-                                                <td class="align-middle">Diretor</td>
-                                            @break
-                                        @endswitch
+                                                    @case('coordenador')
+                                                        <span>Coordenador</span>
+                                                    @break
+                                                @endswitch
+                                        
+                                                @if(!$loop->last)
+                                                    <span>|</span>
+                                                @endif
+                                            @endforeach
+                                        </td>
 
                                         <td class="align-middle">
                                             <a type="button" data-bs-toggle="modal"
-                                                data-bs-target="#modal_show{{ $servidor->id }}">
+                                                data-bs-target="#modal_show_{{ $servidor->id }}">
                                                 <img src="{{ asset('images/information.svg') }}" title="Informações"
                                                     alt="Info servidor" style="height: 30px; width: 30px;">
                                             </a>
@@ -93,7 +109,7 @@
                                             @endcan
                                             @can('deletar servidor')
                                                 <a type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_delete{{ $servidor->id }}">
+                                                    data-bs-target="#modal_delete_{{ $servidor->id }}">
                                                     <img src="{{ asset('images/delete.svg') }}" title="Remover"
                                                         alt="Deletar servidor" style="height: 30px; width: 30px;">
                                                 </a>
@@ -106,7 +122,7 @@
                                         'servidor' => $servidor,
                                     ])
                                     @include('servidores.components.modal_show', ['servidor' => $servidor])
-                            @endforeach
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
