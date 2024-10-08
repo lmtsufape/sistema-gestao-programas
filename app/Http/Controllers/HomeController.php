@@ -14,11 +14,11 @@ class HomeController extends Controller {
         $user = auth()->user();
         $programas = [];
         if ($user) {
-            if ($user->hasAnyRole(['orientador', 'estudante'])) {
-                $programas = $user->programas()->get();
-            }
-            else if ($user->hasRole('administrador')) {
+            if ($user->hasRole('administrador')) {
                 $programas = Programa::all();
+            }
+            else if ($user->hasAnyRole(['orientador', 'estudante'])) {
+                $programas = $user->typage->programas;
             }
         }
         $cursos = Curso::all();

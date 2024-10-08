@@ -1,4 +1,4 @@
-@can('visualizar edital')
+@can('visualizar proprio edital')
     <div class="modal " id="modal_show{{ $edital->id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content modal-create p-2">

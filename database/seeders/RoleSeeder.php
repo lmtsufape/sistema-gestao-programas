@@ -107,6 +107,9 @@ class RoleSeeder extends Seeder
                 'home estudante',
                 'visualizar vinculo estudante-edital',
 
+                # Edital
+                'visualizar proprio edital',
+
                 # Estagio
                 'cadastrar estagio',
                 'preencher documento estagio',

@@ -62,6 +62,7 @@ class PermissionsSeeder extends Seeder
             ['name' => 'editar edital', 'guard_name' => 'web'],
             ['name' => 'listar edital', 'guard_name' => 'web'],
             ['name' => 'visualizar edital', 'guard_name' => 'web'],
+            ['name' => 'visualizar proprio edital', 'guard_name' => 'web'],
             ['name' => 'deletar edital', 'guard_name' => 'web'],
             ['name' => 'adicionar documento edital', 'guard_name' => 'web'],
 

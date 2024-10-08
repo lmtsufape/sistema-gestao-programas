@@ -137,6 +137,7 @@ class UpdatePermission extends Command
             ['name' => 'editar edital', 'guard_name' => 'web'],
             ['name' => 'listar edital', 'guard_name' => 'web'],
             ['name' => 'visualizar edital', 'guard_name' => 'web'],
+            ['name' => 'visualizar proprio edital', 'guard_name' => 'web'],
             ['name' => 'deletar edital', 'guard_name' => 'web'],
             ['name' => 'adicionar documento edital', 'guard_name' => 'web'],
 
@@ -270,6 +271,9 @@ class UpdatePermission extends Command
                     $role->givePermissionTo('home estudante');
 
                     $role->givePermissionTo('visualizar vinculo estudante-edital');
+
+                    # Edital 
+                    $role->givePermissionTo('visualizar proprio edital');
 
                     # Estagio
                     $role->givePermissionTo('cadastrar estagio');
