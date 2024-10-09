@@ -76,7 +76,6 @@
 
                                 </a> --}}
 
-                                    <td>
                                         <a href=" {{ route('orientadors.edit', ['id' => $orientador->id]) }}" type="button">
                                             <img src="{{ asset('images/pencil.svg') }}" title="Editar"
                                                 alt="Editar professor" style="height: 30px; width: 30px;">
@@ -88,8 +87,6 @@
                                                     alt="Deletar professor" style="height: 30px; width: 30px;">
                                             </a>
                                         @endcan
-
-                                    </td>
                                 </tr>
                                 <tr>
                                     {{--  nao apagar o tr  --}}
