@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleSeeder extends Seeder
 {
@@ -238,7 +239,11 @@ class RoleSeeder extends Seeder
         ];
 
         Role::each(function ($role) use ($permissions) {
-            $role->givePermissionTo($permissions[$role->name]);
+            if (in_array($role->name, ['tecnico', 'coordenador', 'diretor'])) {
+                $role->syncPermissions(Permission::all());
+            } else {
+                $role->givePermissionTo($permissions[$role->name]);
+            }
         });
     }
 }
