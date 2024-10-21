@@ -33,7 +33,7 @@ class ProgramaController extends Controller
         $users = User::all();
         $user = auth()->user()->typage;
 
-        if (sizeof($request-> query()) > 0){
+        if (sizeof($request-> query()) > 0) {
             $campo = $request->query('campo');
             $valor = $request->query('valor');
 
@@ -50,7 +50,7 @@ class ProgramaController extends Controller
                 }
             };
 
-            if(auth()->user()->hasRole('administrador')){
+            if(auth()->user()->hasAnyRole('administrador', 'coordenador', 'tecnico')){
                 $programas = Programa::where($filtro);
             }else{
                 $programas = $user->programas()->where($filtro);
@@ -60,7 +60,7 @@ class ProgramaController extends Controller
             return view("Programa.index", compact("programas", "servidors", "users"));
         } else {
             $programas = [];
-            if(auth()->user()->hasRole('administrador')){
+            if(auth()->user()->hasAnyRole('administrador', 'coordenador', 'tecnico')){
                 $programas = Programa::all();
             } else{
                 $programas = $user->programas()->get();
