@@ -81,6 +81,8 @@
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
 
+                    <input type="hidden" name="programa" value="{{ $programa->id }}">
+
                     <label class="titulopequeno" for="titulo_edital">Título<strong style="color: #8B5558">*</strong></label>
                     <input class="boxcadastrar" placeholder="Digite o título" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
 
