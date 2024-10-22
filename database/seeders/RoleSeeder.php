@@ -97,6 +97,7 @@ class RoleSeeder extends Seeder
                 'listar estudante inativo',
                 'listar documento estagio',
                 'adicionar documento edital',
+                'visualizar vinculo estudante-edital',
             ],
             'coordenador' => [
                 'home orientador',

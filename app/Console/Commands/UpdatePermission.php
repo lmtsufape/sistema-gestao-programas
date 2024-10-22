@@ -200,6 +200,8 @@ class UpdatePermission extends Command
                     $role->givePermissionTo('listar documento estagio');
                     
                     $role->givePermissionTo('adicionar documento edital');
+                    
+                    $role->givePermissionTo('visualizar vinculo estudante-edital');
                     break;
                 case 'coordenador':
                     $role->syncPermissions(Permission::all());
