@@ -16,13 +16,8 @@
                 <br>
                 <div class="buttons-organization -gestor">
                     @foreach ($programas as $index => $programa)
-                        @if ($index % 2 == 0)
-                            <button class="botao" href="{{ url('/programas/' . $programa->id . '/editais') }}"
-                                onclick="window.location.href='{{ url('/programas/' . $programa->id . '/editais') }}'">
-                            @else
-                                <button class="botao" href="{{ url('/programas/' . $programa->id . '/editais') }}"
-                                    onclick="window.location.href='{{ url('/programas/' . $programa->id . '/editais') }}'">
-                        @endif
+                        <button class="botao" href="{{ url('/programas/' . $programa->id . '/editais') }}"
+                            onclick="window.location.href='{{ url('/programas/' . $programa->id . '/editais') }}'">
                         <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
                         <p class="third-title">{{ $programa->nome }}</p>
                         </button>
