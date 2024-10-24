@@ -86,12 +86,12 @@
                   <img src="{{asset('images/information.svg')}}" title="Informações" alt="Info curso" style="height: 30px; width: 30px;">
                 </a>
                 @can('cadastrar disciplina')
-                  <a href="{{url('/disciplinas/create_diciplina_curso/$cursos->id')}}" type="button"> 
+                  <a href="{{ route('disciplinas_curso.create', $cursos->id) }}" type="button"> 
                     <img src="{{asset('images/add_disciplina.svg')}}" title="Adicionar uma disciplina" alt="Cadastrar Disciplina no curso" style="height: 27px; width: 30px;">
                   </a>
                 @endcan
                 @can('editar curso')
-                  <a href="{{url('/cursos/$cursos->id/edit')}}" type="button">
+                  <a href="{{ route('cursos.edit', $cursos->id) }}" type="button"> 
                     <img src="{{asset('images/pencil.svg')}}" title="Editar" alt="Editar curso">
                   </a>
                 @endcan
