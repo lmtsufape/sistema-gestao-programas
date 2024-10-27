@@ -19,6 +19,7 @@ use App\Models\ListaDocumentosObrigatorios;
 use Kyslik\ColumnSortable\Sortable;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
+use App\Filters\EstagioFilter;
 
 
 
@@ -26,36 +27,34 @@ class EstagioController extends Controller
 {
     use Sortable;
 
-    public function index(Request $request)
+    public function index(Request $request, EstagioFilter $filtro)
     {
         $query = Estagio::sortable(['descricao', 'created_at', 'status'])
             ->orderBy('created_at', 'desc');
 
-        $statusFilter = $request->input('status_filter');
+        $estagios = Estagio::query();
+        $filtro->apply($estagios, $request);
+        $estagios = $estagios->paginate(15)->appends($request->except('page'));
 
-        if ($statusFilter && $statusFilter !== 'todos') {
-            $query->where('status', $statusFilter == 'ativos' ? 1 : 0);
-        }
+        // if ($request->filled('valor')) {
+        //     $valor = $request->input('valor');
 
-        if ($request->filled('valor')) {
-            $valor = $request->input('valor');
+        //     $query->where(function ($query) use ($valor) {
+        //         $query->orWhereHas('aluno', function ($subquery) use ($valor) {
+        //             $subquery->where('cpf', 'LIKE', "%{$valor}%")
+        //                 ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
+        //         })
+        //             ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
+        //                 $subquery->where('cpf', 'LIKE', "%{$valor}%")
+        //                     ->orWhere('name', 'LIKE', "%{$valor}%")
+        //                     ->orWhere('email', 'LIKE', "%{$valor}%")
+        //                     ->orWhere('matricula', 'LIKE', "%{$valor}%");
+        //             })
+        //             ->orWhere('descricao', 'LIKE', "%{$valor}%");
+        //     });
+        // }
 
-            $query->where(function ($query) use ($valor) {
-                $query->orWhereHas('aluno', function ($subquery) use ($valor) {
-                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
-                        ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
-                })
-                    ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
-                        $subquery->where('cpf', 'LIKE', "%{$valor}%")
-                            ->orWhere('name', 'LIKE', "%{$valor}%")
-                            ->orWhere('email', 'LIKE', "%{$valor}%")
-                            ->orWhere('matricula', 'LIKE', "%{$valor}%");
-                    })
-                    ->orWhere('descricao', 'LIKE', "%{$valor}%");
-            });
-        }
-
-        $estagios = $query->distinct()->paginate(15);
+        // $estagios = $query->distinct()->paginate(15);
         $cursos = Curso::all();
 
         return view('Estagio.index', compact('estagios', 'cursos'));
