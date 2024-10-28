@@ -34,12 +34,29 @@
                             </select>
                         </div>
                         <div class="col-md-4" style="display: block">
-                            <label for="status">status</label>
+                            <label for="status">Status</label>
                             <select class="form-select" aria-label="status select" name="status" id="status">
                                 <option value="" {{ request()->status === null ? 'selected' : '' }}>Todos</option>
                                 <option value="1" {{ request()->status === '1' ? 'selected' : '' }}>Ativos</option>
                                 <option value="0" {{ request()->status === '0' ? 'selected' : '' }}>Inativos</option>
                             </select>
+                        </div>
+                        <div class="col-md-4">
+                            <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <label>Cursos</label>
+                            </a>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    @foreach ($cursos as $curso)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="{{ $curso->id }}" id="curso-{{ $loop->iteration }}" name="cursos[]" @if (in_array($curso->id, request()->cursos)) checked @endif
+                                            <label class="form-check-label" for="curso-{{ $loop->index }}">
+                                            {{ $curso->nome }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>

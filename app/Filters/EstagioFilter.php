@@ -10,11 +10,11 @@ class EstagioFilter
     public function apply(Builder $query, Request $request)
     {
         return $query->when($request->filled('obrigatoriedade'), function ($q) use ($request) {
-            $obrigatoriedade = $request->obrigatoriedade ? 'eo' : 'eno';
-            $q->where('tipo', $obrigatoriedade);
+            $q->where('tipo', $request->obrigatoriedade ? 'eo' : 'eno');
         })->when($request->filled('status'), function ($q) use ($request) {
-            $status = $request->status;
-            $q->where('status', $status);
+            $q->where('status', $request->status);
+        })->when($request->filled('cursos'), function ($q) use ($request) {
+            $q->whereIn('curso_id', $request->cursos);
         });
     }
 }
