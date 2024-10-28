@@ -55,8 +55,8 @@
                             <a data-bs-toggle="collapse" href="#collapseCursos" role="button" aria-expanded="false" aria-controls="collapseCursos">
                                 <label>Cursos</label>
                             </a>
-                            <div class="collapse" id="collapseCursos">
-                                <div class="card card-body">
+                            <div class="card card-body">
+                                <div class="collapse" id="collapseCursos">
                                     @foreach ($cursos as $curso)
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="{{ $curso->id }}" id="curso-{{ $loop->iteration }}" name="cursos[]" @if (in_array($curso->id, request()->cursos ?? [])) checked @endif>
@@ -74,8 +74,8 @@
                             <a data-bs-toggle="collapse" href="#collapseDisciplinas" role="button" aria-expanded="false" aria-controls="collapseDisciplinas">
                                 <label>Disciplinas</label>
                             </a>
-                            <div class="collapse" id="collapseDisciplinas">
-                                <div class="card card-body">
+                            <div class="card card-body">
+                                <div class="collapse" id="collapseDisciplinas">
                                     @foreach ($disciplinas as $disciplina)
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="{{ $disciplina->nome }}" id="disciplina-{{ $loop->iteration }}" name="disciplinas[]" @if (in_array($disciplina->nome, request()->disciplinas ?? [])) checked @endif>
