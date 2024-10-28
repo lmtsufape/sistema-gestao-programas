@@ -42,16 +42,35 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <a data-bs-toggle="collapse" href="#collapseCursos" role="button" aria-expanded="false" aria-controls="collapseCursos">
                                 <label>Cursos</label>
                             </a>
-                            <div class="collapse" id="collapseExample">
+                            <div class="collapse" id="collapseCursos">
                                 <div class="card card-body">
                                     @foreach ($cursos as $curso)
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="{{ $curso->id }}" id="curso-{{ $loop->iteration }}" name="cursos[]" @if (in_array($curso->id, request()->cursos)) checked @endif
-                                            <label class="form-check-label" for="curso-{{ $loop->index }}">
-                                            {{ $curso->nome }}
+                                            <input class="form-check-input" type="checkbox" value="{{ $curso->id }}" id="curso-{{ $loop->iteration }}" name="cursos[]" @if (in_array($curso->id, request()->cursos ?? [])) checked @endif>
+                                            <label class="form-check-label" for="curso-{{ $loop->iteration }}">
+                                                {{ $curso->nome }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-4">
+                            <a data-bs-toggle="collapse" href="#collapseDisciplinas" role="button" aria-expanded="false" aria-controls="collapseDisciplinas">
+                                <label>Disciplinas</label>
+                            </a>
+                            <div class="collapse" id="collapseDisciplinas">
+                                <div class="card card-body">
+                                    @foreach ($disciplinas as $disciplina)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="{{ $disciplina->nome }}" id="disciplina-{{ $loop->iteration }}" name="disciplinas[]" @if (in_array($disciplina->nome, request()->disciplinas ?? [])) checked @endif>
+                                            <label class="form-check-label" for="disciplina-{{ $loop->iteration }}">
+                                                {{ $disciplina->nome }}
                                             </label>
                                         </div>
                                     @endforeach

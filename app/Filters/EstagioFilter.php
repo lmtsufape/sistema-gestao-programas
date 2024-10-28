@@ -4,6 +4,7 @@ namespace App\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EstagioFilter
 {
@@ -15,6 +16,9 @@ class EstagioFilter
             $q->where('status', $request->status);
         })->when($request->filled('cursos'), function ($q) use ($request) {
             $q->whereIn('curso_id', $request->cursos);
+        })->when($request->filled('disciplinas'), function ($q) use ($request) {
+            $disciplinas_id = DB::table('disciplinas')->whereIn('nome', $request->disciplinas)->pluck('id');
+            $q->whereIn('disciplina_id', $disciplinas_id);
         });
     }
 }
