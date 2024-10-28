@@ -13,6 +13,16 @@
         width: 70%;
         max-width: unset;
     }
+
+    #filterEstagioModal .col-md-4:nth-child(2) {
+        display: block;
+    }
+
+    #filterEstagioModal a {
+        color: inherit;
+        text-decoration: none;
+        cursor: default;
+    }
 </style>
 
 <div class="modal" id="filterEstagioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -33,7 +43,7 @@
                                 <option value="0" {{ request()->obrigatoriedade === '0' ? 'selected' : '' }}>Não Obrigatórios</option>
                             </select>
                         </div>
-                        <div class="col-md-4" style="display: block">
+                        <div class="col-md-4">
                             <label for="status">Status</label>
                             <select class="form-select" aria-label="status select" name="status" id="status">
                                 <option value="" {{ request()->status === null ? 'selected' : '' }}>Todos</option>
