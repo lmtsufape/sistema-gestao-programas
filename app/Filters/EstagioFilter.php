@@ -19,6 +19,8 @@ class EstagioFilter
         })->when($request->filled('disciplinas'), function ($q) use ($request) {
             $disciplinas_id = DB::table('disciplinas')->whereIn('nome', $request->disciplinas)->pluck('id');
             $q->whereIn('disciplina_id', $disciplinas_id);
+        })->when($request->filled(['data_inicio_solicitacao', 'data_fim_solicitacao']), function ($q) use ($request) {
+            $q->whereDate('created_at', '>=', $request->data_inicio_solicitacao)->whereDate('created_at', '<=', $request->data_fim_solicitacao);
         });
     }
 }

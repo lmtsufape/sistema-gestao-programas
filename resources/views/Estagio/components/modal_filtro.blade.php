@@ -52,6 +52,21 @@
                             </select>
                         </div>
                         <div class="col-md-4">
+                            <label>Data de Solicitação</label>
+                            <div class="d-flex">
+                                <div class="col-6 pe-2">
+                                    <label for="data-inicio-solicitacao">Data Início:</label>
+                                    <input class="form-control" type="date" id="data-inicio-solicitacao" name="data_inicio_solicitacao" value="{{ request()->data_inicio_solicitacao }}">
+                                </div>
+                                <div class="col-6 ps-2">
+                                    <label for="data-fim-solicitacao">Data Fim:</label>
+                                    <input class="form-control" type="date" id="data-fim-solicitacao" name="data_fim_solicitacao" value="{{ request()->data_fim_solicitacao }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-4">
                             <a data-bs-toggle="collapse" href="#collapseCursos" role="button" aria-expanded="false" aria-controls="collapseCursos">
                                 <label>Cursos</label>
                             </a>
@@ -68,8 +83,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row my-3">
                         <div class="col-md-4">
                             <a data-bs-toggle="collapse" href="#collapseDisciplinas" role="button" aria-expanded="false" aria-controls="collapseDisciplinas">
                                 <label>Disciplinas</label>
