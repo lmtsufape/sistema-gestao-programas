@@ -20,14 +20,13 @@ use Kyslik\ColumnSortable\Sortable;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 use App\Filters\EstagioFilter;
-
-
+use App\Http\Requests\EstagioFilterRequest;
 
 class EstagioController extends Controller
 {
     use Sortable;
 
-    public function index(Request $request, EstagioFilter $filtro)
+    public function index(EstagioFilterRequest $request, EstagioFilter $filtro)
     {
         $query = Estagio::sortable(['descricao', 'created_at', 'status'])
             ->orderBy('created_at', 'desc');
