@@ -172,9 +172,17 @@
                 </form>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-warning" onclick="resetarFiltro()">Resetar Filtro</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="submit" form="filterForm" class="btn" id="filter-button">Filtrar</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function resetarFiltro() {
+        $('#filterEstagioModal :input').val('');
+        $('#filterEstagioModal input[type="checkbox"]').prop('checked', false);
+    }
+</script>
