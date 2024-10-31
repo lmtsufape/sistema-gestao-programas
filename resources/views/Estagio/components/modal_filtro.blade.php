@@ -44,7 +44,7 @@
                             <label for="busca">Busca</label>
 
                             <input class="form-control" type="text" placeholder="Digite os termos da busca"
-                                id="busca" name="busca" style="text-align: start">
+                                id="busca" name="busca" value="{{ request()->busca }}">
                         </div>
 
                         <div class="col-md-4">
@@ -52,9 +52,9 @@
 
                             <select class="form-select form-select-lg" aria-label="orientador select" name="orientador"
                                 id="orientador">
-                                <option value="" {{ request()->orientador === null ? 'selected' : '' }}>Todos</option>
+                                <option value="" @if (!request()->orientador) selected @endif>Todos</option>
                                 @foreach ($orientadores as $orientador)
-                                    <option value="{{ $orientador->id }}" {{ request()->orientador === $orientador->id ? 'selected' : '' }}>{{ $orientador->user->name }}</option>
+                                    <option value="{{ $orientador->id }}" @if (request()->orientador == $orientador->id) selected @endif>{{ $orientador->user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -92,9 +92,9 @@
 
                             <select class="form-select form-select-lg" aria-label="aluno select" name="aluno"
                                 id="aluno">
-                                <option value="" {{ request()->aluno === null ? 'selected' : '' }}>Todos</option>
+                                <option value="" @if (!request()->aluno) selected @endif>Todos</option>
                                 @foreach ($alunos as $aluno)
-                                    <option value="{{ $aluno->id }}" {{ request()->aluno === $aluno->id ? 'selected' : '' }}>{{ $aluno->nome_aluno }}</option>
+                                    <option value="{{ $aluno->id }}" @if (request()->aluno == $aluno->id) selected @endif>{{ $aluno->nome_aluno }}</option>
                                 @endforeach
                             </select>
                         </div>
