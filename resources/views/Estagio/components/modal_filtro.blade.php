@@ -24,7 +24,7 @@
     }
 
     #filterEstagioModal .card {
-        max-height: 250px;
+        height: 250px;
         overflow-y: auto;
     }
 </style>
@@ -48,21 +48,15 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label>Data de Solicitação</label>
-                            <div class="d-flex">
-                                <div class="col-6 pe-2">
-                                    <label for="data-inicio-solicitacao">Data Início:</label>
+                            <label for="orientador">Orientador</label>
 
-                                    <input class="form-control" type="date" id="data-inicio-solicitacao"
-                                        name="data_inicio_solicitacao" value="{{ request()->data_inicio_solicitacao }}">
-                                </div>
-
-                                <div class="col-6 ps-2">
-                                    <label for="data-fim-solicitacao">Data Fim:</label>
-                                    <input class="form-control" type="date" id="data-fim-solicitacao"
-                                        name="data_fim_solicitacao" value="{{ request()->data_fim_solicitacao }}">
-                                </div>
-                            </div>
+                            <select class="form-select form-select-lg" aria-label="orientador select" name="orientador"
+                                id="orientador">
+                                <option value="" {{ request()->orientador === null ? 'selected' : '' }}>Todos</option>
+                                @foreach ($orientadores as $orientador)
+                                    <option value="{{ $orientador->id }}" {{ request()->orientador === $orientador->id ? 'selected' : '' }}>{{ $orientador->user->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -158,15 +152,21 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label for="orientador">Orientador</label>
+                            <label>Período da Data de Solicitação</label>
+                            <div class="d-flex">
+                                <div class="col-6 pe-2">
+                                    <label for="data-inicio-solicitacao">Data de Início:</label>
 
-                            <select class="form-select form-select-lg" aria-label="orientador select" name="orientador"
-                                id="orientador">
-                                <option value="" {{ request()->orientador === null ? 'selected' : '' }}>Todos</option>
-                                @foreach ($orientadores as $orientador)
-                                    <option value="{{ $orientador->id }}" {{ request()->orientador === $orientador->id ? 'selected' : '' }}>{{ $orientador->user->name }}</option>
-                                @endforeach
-                            </select>
+                                    <input class="form-control" type="date" id="data-inicio-solicitacao"
+                                        name="data_inicio_solicitacao" value="{{ request()->data_inicio_solicitacao }}">
+                                </div>
+
+                                <div class="col-6 ps-2">
+                                    <label for="data-fim-solicitacao">Data de Fim:</label>
+                                    <input class="form-control" type="date" id="data-fim-solicitacao"
+                                        name="data_fim_solicitacao" value="{{ request()->data_fim_solicitacao }}">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
