@@ -155,14 +155,14 @@
                             <label>Período da Data de Solicitação</label>
                             <div class="d-flex">
                                 <div class="col-6 pe-2">
-                                    <label for="data-inicio-solicitacao">Data de Início:</label>
+                                    <label for="data-inicio-solicitacao">Data de Início</label>
 
                                     <input class="form-control" type="date" id="data-inicio-solicitacao"
                                         name="data_inicio_solicitacao" value="{{ request()->data_inicio_solicitacao }}">
                                 </div>
 
                                 <div class="col-6 ps-2">
-                                    <label for="data-fim-solicitacao">Data de Fim:</label>
+                                    <label for="data-fim-solicitacao">Data de Fim</label>
                                     <input class="form-control" type="date" id="data-fim-solicitacao"
                                         name="data_fim_solicitacao" value="{{ request()->data_fim_solicitacao }}">
                                 </div>
