@@ -30,7 +30,7 @@
 </style>
 
 <div class="modal" id="filterEstagioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" id="modal-frame">
+    <div class="modal-dialog modal-dialog-centered" id="modal-frame">
         <div class="modal-content">
             <div class="modal-header" id="filter-header">
                 <h3 class="modal-title" id="exampleModalLabel">Filtrar Estágio</h3>
@@ -92,6 +92,18 @@
                                 </option>
                             </select>
                         </div>
+
+                        <div class="col-md-4">
+                            <label for="aluno">Aluno</label>
+
+                            <select class="form-select form-select-lg" aria-label="aluno select" name="aluno"
+                                id="aluno">
+                                <option value="" {{ request()->aluno === null ? 'selected' : '' }}>Todos</option>
+                                @foreach ($alunos as $aluno)
+                                    <option value="{{ $aluno->id }}" {{ request()->aluno === $aluno->id ? 'selected' : '' }}>{{ $aluno->nome_aluno }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row my-3">
@@ -143,6 +155,18 @@
                                     @endforeach
                                 </ul>
                             </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="orientador">Orientador</label>
+
+                            <select class="form-select form-select-lg" aria-label="orientador select" name="orientador"
+                                id="orientador">
+                                <option value="" {{ request()->orientador === null ? 'selected' : '' }}>Todos</option>
+                                @foreach ($orientadores as $orientador)
+                                    <option value="{{ $orientador->id }}" {{ request()->orientador === $orientador->id ? 'selected' : '' }}>{{ $orientador->user->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </form>

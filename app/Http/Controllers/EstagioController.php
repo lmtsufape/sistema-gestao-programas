@@ -56,8 +56,10 @@ class EstagioController extends Controller
         // $estagios = $query->distinct()->paginate(15);
         $cursos = Curso::all();
         $disciplinas = Disciplina::distinct('nome')->get();
+        $alunos = Aluno::all();
+        $orientadores = Orientador::all();
 
-        return view('Estagio.index', compact('estagios', 'cursos', 'disciplinas'));
+        return view('Estagio.index', compact('estagios', 'cursos', 'disciplinas', 'alunos', 'orientadores'));
     }
 
     public function create()

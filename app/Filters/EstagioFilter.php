@@ -25,6 +25,10 @@ class EstagioFilter
             foreach ($request->busca as $termo) {
                 $q->where(DB::raw("unaccent(descricao)"), 'ilike', "%$termo%"); # Busca sem acentuação
             }
+        })->when($request->filled('aluno'), function ($q) use ($request) { # Filtro alunos
+            $q->where('aluno_id', $request->aluno);
+        })->when($request->filled('orientador'), function ($q) use ($request) { # Filtro orientadores
+            $q->where('orientador_id', $request->orientador);
         });
     }
 }
