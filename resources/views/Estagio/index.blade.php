@@ -52,7 +52,7 @@
                 <h1 class="titulo"><strong>Estágios</strong></h1>
             </div>
 
-            <form class="search-container" action="{{ route('estagio.index') }}" method="get" id="filterForm">
+            <form class="search-container" action="{{ route('estagio.index') }}" method="get" id="search-form">
                 <input class="search-input" type="text" placeholder="Digite os termos da busca" id="busca" name="busca" value="{{ request()->busca }}">
                 <button type="button" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterEstagioModal">
                     Filtrar

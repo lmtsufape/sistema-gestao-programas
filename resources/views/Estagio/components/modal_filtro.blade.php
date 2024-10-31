@@ -29,16 +29,16 @@
     }
 </style>
 
-<div class="modal" id="filterEstagioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" id="filterEstagioModal" tabindex="-1" aria-labelledby="filterEstagioModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" id="modal-frame">
         <div class="modal-content">
             <div class="modal-header" id="filter-header">
-                <h3 class="modal-title" id="exampleModalLabel">Filtrar Estágio</h3>
+                <h3 class="modal-title">Filtrar Estágio</h3>
 
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="text-align: left">
-                <form action="{{ route('estagio.index') }}" method="get" id="filterForm">
+                <form action="{{ route('estagio.index') }}" method="get" id="filter-form">
                     <div class="row my-3">
                         <div class="col-md-8">
                             <label for="busca">Busca</label>
@@ -174,7 +174,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" onclick="resetarFiltro()">Resetar Filtro</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" form="filterForm" class="btn" id="filter-button">Filtrar</button>
+                <button type="submit" form="filter-form" class="btn" id="filter-button">Filtrar</button>
             </div>
         </div>
     </div>
