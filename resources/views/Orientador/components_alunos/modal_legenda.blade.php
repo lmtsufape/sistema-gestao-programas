@@ -18,18 +18,20 @@
                     <span class="textoinfomodal">Adicionar documentos</span>
                 </div>
 
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor' && auth()->user()->typage_type != 'App\Models\Orientador')
+                @can('editar estudante')
                     <div class="mb-3">
                         <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar aluno"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Editar o estudante</span>
                     </div>
+                @endcan
+                @can('desvincular estudante-edital')
                     <div class="mb-3">
                         <img src="{{ asset('images/Unlink_red.svg') }}" alt="Desvincular aluno"
                             style="height: 30px; width: 30px; padding-bottom: 5px">
                         <span class="textoinfomodal">Desvincular o estudante</span>
                     </div>
-                @endif
+                @endcan
                 <div class="mb-3">
                     <img src="{{ asset('images/file_red.svg') }}" alt="Docs aluno"
                         style="height: 30px; width: 30px; padding-bottom: 5px">

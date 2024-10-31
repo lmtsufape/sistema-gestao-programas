@@ -1,4 +1,4 @@
-@canany(['admin', 'pro_reitor', 'gestor'])
+@can('visualizar servidor')
     <div class="modal " id="modal_show_{{ $servidor->id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-create p-2">
@@ -34,23 +34,33 @@
                     <div class="mb-3">
                         <label class="tituloinfomodal form-label mt-3">Tipo do servidor:</label>
                         <div class="textoinfomodal">
-                            @switch($servidor->tipo_servidor)
-                                @case('adm')
-                                    <div class="textoinfomodal"> Administrador</div>
-                                @break
+                            @foreach($servidor->user->roles as $key => $role)
+                                @switch($role->name)
+                                    @case('administrador')
+                                        <div class="textoinfomodal"> Administrador
+                                    @break
+                            
+                                    @case('pro-reitor')
+                                        <div class="textoinfomodal"> Pró-Reitor
+                                    @break
+                            
+                                    @case('tecnico')
+                                        <div class="textoinfomodal"> Técnico Administrativo
+                                    @break
+                            
+                                    @case('diretor')
+                                        <div class="textoinfomodal"> Diretor
+                                    @break
 
-                                @case('pro_reitor')
-                                    <div class="textoinfomodal"> Pró-Reitor</div>
-                                @break
+                                    @case('coordenador')
+                                        <div class="textoinfomodal"> Coordenador
+                                    @break
 
-                                @case('servidor')
-                                    <div class="textoinfomodal"> Servidor</div>
-                                @break
-
-                                @case('gestor')
-                                    <div class="textoinfomodal"> Diretor</div>
-                                @break
-                            @endswitch
+                                    @case('supervisor')
+                                        <div class="textoinfomodal"> Supervisor
+                                    @break
+                                @endswitch
+                            @endforeach
                         </div>
                         <div class="modal-footer border-0">
                         </div>
@@ -76,4 +86,4 @@
         @elsecan
         <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
         <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{ url('/home') }}">Voltar</a>
-    @endcan
+@endcan

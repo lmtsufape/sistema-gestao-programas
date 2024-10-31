@@ -1,7 +1,7 @@
 @extends("templates.app")
 
 @section("body")
-@canany(['admin', 'servidor', 'gestor'])
+@can('cadastrar curso')
 
     <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:10px; ">
         @if (session('sucesso'))

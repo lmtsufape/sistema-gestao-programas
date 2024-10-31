@@ -1,6 +1,6 @@
 @extends("templates.app")
 @section("body")
-    @canany(['admin', 'pro_reitor', 'gestor'])
+    @can('editar servidor')
 
         <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 1rem; margin-bottom: 3.6rem; ">
 
@@ -50,26 +50,26 @@
                     <select name="tipo_servidor" id="tipo_servidor"
                     class="boxcadastrar" aria-label="Default select example">
 
-                        @if ($servidor->tipo_servidor == 'adm')
+                        @if ($servidor->tipo_servidor == 'administrador')
                             <option value="0" selected>Administrador</option>
                             <option value="1">Pró-Reitor</option>
                             <option value="3">Diretor</option>
-                            <option value="2">Servidor</option>
-                        @elseif ($servidor->tipo_servidor == 'pro_reitor')
+                            <option value="2">Técnico Administrativo</option>
+                        @elseif ($servidor->tipo_servidor == 'pro-reitor')
                             <option value="0">Administrador</option>
                             <option value="1" selected>Pró-Reitor</option>
                             <option value="3">Diretor</option>
-                            <option value="2">Servidor</option>
-                        @elseif ($servidor->tipo_servidor == 'gestor')
+                            <option value="2">Técnico Administrativo</option>
+                        @elseif ($servidor->tipo_servidor == 'diretor')
                             <option value="0">Administrador</option>
                             <option value="1">Pró-Reitor</option>
                             <option value="3" selected>Diretor</option>
-                            <option value="2">Servidor</option>
+                            <option value="2">Técnico Administrativo</option>
                         @else
                             <option value="0">Administrador</option>
                             <option value="1">Pró-Reitor</option>
                             <option value="3">Diretor</option>
-                            <option value="2" selected>Servidor</option>
+                            <option value="2" selected>Técnico Administrativo</option>
                         @endif
 
                     </select><br><br>

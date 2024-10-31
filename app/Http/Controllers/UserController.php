@@ -67,7 +67,7 @@ class UserController extends Controller
                                 'email' => $request->email,
                                 'password' => Hash::make($request->senha),
                                 'image' => $imageName
-                            ])->givePermissionTo('aluno')
+                            ])->assignRole('estudante')
                         ){
                             $user = $aluno->user;
                             Auth::login($user);
@@ -96,7 +96,7 @@ class UserController extends Controller
                             'cpf' => $request->input('cpf'),
                             'password' => Hash::make($request->input('senha')),
                             'image' => $imageName
-                        ])->givePermissionTo('servidor')
+                        ])->assignRole('tecnico')
                     ){
                         $user = $servidor->user;
                         Auth::login($user);
@@ -127,7 +127,7 @@ class UserController extends Controller
                             'image' => $imageName
                         ]);
                         // dd($user);
-                        $user->givePermissionTo('orientador');
+                        $user->assignRole('orientador');
                         $orientador->cursos()->attach($request->cursos);
                         $user->save();
                         Auth::login($user);

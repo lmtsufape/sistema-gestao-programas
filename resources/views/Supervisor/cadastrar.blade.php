@@ -2,7 +2,7 @@
 
 @section("body")
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin-top: 2.5em; margin-bottom:3.6em;">
-    @canany(['admin', 'pro_reitor'])
+    @can('cadastrar supervisor')
         @if (session('sucesso'))
             <div class="alert alert-success">
                 {{session('sucesso')}}
@@ -121,9 +121,9 @@
                 margin:5px;
             }
         </style>
-    @elsecan
-    <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-    <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
+    @else
+        <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+        <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url("/home")}}">Voltar</a>
     @endcan
 
 <script  src="{{ mix('js/app.js') }}">

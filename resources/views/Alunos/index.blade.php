@@ -1,7 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['admin', 'servidor', 'gestor'])
+    @can('listar estudante')
         <div class="container-fluid">
             @if (session('sucesso'))
                 <div class="alert alert-success">
@@ -19,10 +19,10 @@
                 <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor"
                     name="valor" style="text-align: start">
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
-                @if (auth()->user()->typage->tipo_servidor != 'gestor')
+                @can('cadastrar estudante')
                     <button class="cadastrar-botao" type="button"
                         onclick="window.location.href = '{{ route('alunos.create') }}'">Cadastrar estudantes</button>
-                @endif
+                @endcan
             </form>
 
             <br>
@@ -70,15 +70,13 @@
                                                     <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar aluno"
                                                         style="height: 30px; width: 30px;">
                                             </a>
-                                            @if (auth()->user()->typage->tipo_servidor != 'gestor')
+                                            @can('deletar estudante')
                                                 <a type="button" data-bs-toggle="modal"
                                                     data-bs-target="#modal_delete_{{ $aluno->id }}" title="Deletar o estudante">
                                                     <img src="{{ asset('images/delete.svg') }}" title="Remover" alt="Deletar aluno"
                                                         style="height: 30px; width: 30px;">
                                                 </a>
-                                            @endif
-
-
+                                            @endcan
                                         </td>
                                     </tr>
                                     <tr></tr>

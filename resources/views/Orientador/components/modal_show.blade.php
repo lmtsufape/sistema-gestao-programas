@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
+@can('visualizar orientador')
     <div class="modal " id="modal_show_{{ $orientador->id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-create p-2">
@@ -55,7 +55,7 @@
     </div>
     </div>
     </div>
-    @elsecan
+@else
     <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
     <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{ url('/home') }}">Voltar</a>
 @endcan

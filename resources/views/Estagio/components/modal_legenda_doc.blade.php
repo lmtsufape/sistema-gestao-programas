@@ -11,23 +11,22 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Informações do estágio</span>
                 </div>
-                @can('aluno')
-
-                <div class="mb-3">
-                    <img src="{{ asset('images/adddiscipline_red.svg') }}" alt="Listar edital"
-                        style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Preencher documento</span>
-                </div>
-                <div class="mb-3">
-                    <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar estágio"
-                        style="height: 25px; width: 25px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Editar o documento do estágio</span>
-                </div>
-                <div class="mb-3">
-                    <img src="{{ asset('images/mostrar-documentos-red.svg') }}" alt="Listar edital"
-                        style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Enviar documento completo</span>
-                </div>
+                @can('preencher documento estagio')
+                    <div class="mb-3">
+                        <img src="{{ asset('images/adddiscipline_red.svg') }}" alt="Listar edital"
+                            style="height: 30px; width: 30px; padding-bottom: 5px">
+                        <span class="textoinfomodal">Preencher documento</span>
+                    </div>
+                    <div class="mb-3">
+                        <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar estágio"
+                            style="height: 25px; width: 25px; padding-bottom: 5px">
+                        <span class="textoinfomodal">Editar o documento do estágio</span>
+                    </div>
+                    <div class="mb-3">
+                        <img src="{{ asset('images/mostrar-documentos-red.svg') }}" alt="Listar edital"
+                            style="height: 30px; width: 30px; padding-bottom: 5px">
+                        <span class="textoinfomodal">Enviar documento completo</span>
+                    </div>
                 @endcan
 
                 <div class="mb-3">
@@ -36,7 +35,7 @@
                     <span class="textoinfomodal">Ver documento</span>
                 </div>
 
-                @canany(['admin', 'servidor', 'gestor'])
+                @can('validar documento estagio')
                 <div class="mb-3">
                     <img src="{{ asset('images/document-checkmark-red.svg') }}" alt="Listar edital"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
@@ -47,7 +46,7 @@
                         style="height: 30px; width: 30px; padding-bottom: 5px">
                     <span class="textoinfomodal">Negar documento</span>
                 </div>
-                @endcanany
+                @endcan
                 {{--  com o documento disabled  --}}
                 {{--  <div class="mb-3">
                     <img src="{{ asset('images/listar_edital.svg') }}" alt="Documento Preenchido"

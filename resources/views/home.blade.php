@@ -5,13 +5,10 @@
 @endsection
 @section('body')
     @auth
-        @if (auth()->user()->typage_type == 'App\Models\Servidor')
+        @hasanyrole(['tecnico', 'coordenador', 'pro-reitor', 'diretor', 'supervisor', 'administrador'])
             <div class="container-fluid">
 
                 {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
-
-                @if (auth()->user()->typage->tipo_servidor == 'gestor')
-                @endif
                 <h2 class="second-title">
                     Programas
                 </h2>
@@ -19,13 +16,8 @@
                 <br>
                 <div class="buttons-organization -gestor">
                     @foreach ($programas as $index => $programa)
-                        @if ($index % 2 == 0)
-                            <button class="botao" href="{{ url('/programas/' . $programa->id . '/editais') }}"
-                                onclick="window.location.href='{{ url('/programas/' . $programa->id . '/editais') }}'">
-                            @else
-                                <button class="botao" href="{{ url('/programas/' . $programa->id . '/editais') }}"
-                                    onclick="window.location.href='{{ url('/programas/' . $programa->id . '/editais') }}'">
-                        @endif
+                        <button class="botao" href="{{ url('/programas/' . $programa->id . '/editais') }}"
+                            onclick="window.location.href='{{ url('/programas/' . $programa->id . '/editais') }}'">
                         <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
                         <p class="third-title">{{ $programa->nome }}</p>
                         </button>
@@ -39,10 +31,6 @@
                 <br>
             </div>
             <div class="container-fluid">
-
-
-                @if (auth()->user()->typage->tipo_servidor == 'gestor')
-                @endif
                 <h2 class="second-title">
                     Estágios 
                 </h2>
@@ -64,14 +52,14 @@
                 </div>
                 <br>
             </div>
-        @endif
+        @endhasanyrole
 
 
 
     @endauth
 
     @auth
-        @if (auth()->user()->typage_type == 'App\Models\Aluno')
+        @role('estudante')
             <div class="container-fluid">
                 <h2 class="second-title">
                     Programas
@@ -94,11 +82,11 @@
 
                 </div>
             </div>
-        @endif
+        @endrole
     @endauth
 
     @auth
-        @if (auth()->user()->typage_type == 'App\Models\Orientador')
+        @role('orientador')
             <div class="container-fluid">
                 <h2 class="second-title">
                     Programas
@@ -127,6 +115,6 @@
                 </div>
                 <br>
             </div>
-        @endif
+        @endrole
     @endauth
 @endsection

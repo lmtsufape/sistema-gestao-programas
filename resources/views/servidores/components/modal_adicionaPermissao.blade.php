@@ -1,4 +1,4 @@
-@canany(['admin', 'pro_reitor'])
+@can('adicionar permissao')
   <div class="modal" id="modal_adicionaPermissao_{{$servidor->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content modal-create" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">

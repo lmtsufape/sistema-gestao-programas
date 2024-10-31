@@ -3,7 +3,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
+    @can('exportar dados estagio')
         <div class="fundocadastrar">
             <div class="row" style="align-content: left;">
                 <h1 class="titulogrande">Exportar dados dos estágios</h1>

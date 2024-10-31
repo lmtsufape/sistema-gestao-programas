@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor', 'gestor'])
+@can('visualizar curso')
     <div class="modal " id="modal_show_{{ $curso->id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-create p-2">

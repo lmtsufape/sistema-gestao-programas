@@ -11,21 +11,21 @@
     </div>
 
     @auth
-    @if (auth()->user()->typage_type == "App\Models\Orientador")
-    <div class="container-fluid" style="padding-top: 10px;">
+    @role('orientador')
+        <div class="container-fluid" style="padding-top: 10px;">
 
-        @if ($orientador->user->image)
-        <div style="display: flex; align-items: center; gap: 20px; align-self: stretch;">
-            <img src="/images/fotos-perfil/{{ $orientador->user->image }}" class="img-fluid" style="width: 80px; height: 80px; border-radius:50px" alt="Foto de perfil">
-            <div style="color: var(--preto-p-200, #2B2B2B); font-family: Inter; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">{{$orientador->user->name_social}}</div>
+            @if ($orientador->user->image)
+            <div style="display: flex; align-items: center; gap: 20px; align-self: stretch;">
+                <img src="/images/fotos-perfil/{{ $orientador->user->image }}" class="img-fluid" style="width: 80px; height: 80px; border-radius:50px" alt="Foto de perfil">
+                <div style="color: var(--preto-p-200, #2B2B2B); font-family: Inter; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">{{$orientador->user->name_social}}</div>
+            </div>
+            @else
+            <div style="display: flex; align-items: center; gap: 20px; align-self: stretch;">
+                <img src="/images/sem-foto-perfil.png" class="img-fluid" style="width: 80px; height: 80px;" alt="Foto de perfil">
+                <div style="color: var(--preto-p-200, #2B2B2B); font-family: Inter; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">{{$orientador->user->name_social}}</div>
+            </div>
         </div>
-        @else
-        <div style="display: flex; align-items: center; gap: 20px; align-self: stretch;">
-            <img src="/images/sem-foto-perfil.png" class="img-fluid" style="width: 80px; height: 80px;" alt="Foto de perfil">
-            <div style="color: var(--preto-p-200, #2B2B2B); font-family: Inter; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">{{$orientador->user->name_social}}</div>
-        </div>
-    </div>
-    @endif
+    @endrole
 
     <br>
 

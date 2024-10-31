@@ -1,7 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['admin', 'servidor', 'gestor', 'aluno', 'orientador'])
+    @can('listar documento estagio')
         <div class="container-fluid">
             @if (Session::has('pdf_generated_success'))
                 <div class="alert alert-success">
@@ -128,7 +128,7 @@
                                                                                                                                                     <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento" style="height: 30px; width: 30px;">
                                                                                                                                                 </a> -->
                                     @if ($documento_enviado)
-                                        @canany(['admin', 'servidor', 'aluno'])
+                                        @hasanyrole(['administrador', 'tecnico', 'estudante'])
                                             <!-- Verifica se o usuário tem a função de aluno -->
 
                                             @if (
@@ -175,9 +175,9 @@
                                                     </a>
                                                 @endif
                                             @endif
-                                        @endcan
+                                        @endhasanyrole
 
-                                        @canany(['admin', 'servidor', 'gestor'])
+                                        @can('validar documento estagio')
                                             @if ($lista_documento->is_visualizado == 1)
                                                 <a type="button"
                                                     href="{{ route('aprovar.documento', ['id' => $lista_documento->documento_id]) }}"
@@ -216,7 +216,7 @@
 
                                         @endcan
                                     @else
-                                        @canany(['admin', 'servidor', 'aluno'])
+                                        @hasanyrole(['administrador', 'tecnico', 'estudante'])
                                             <!-- Verifica se o usuário tem a função de aluno -->
                                             @if ($hoje > $dataLimite)
                                                 <img src="{{ asset('images/add_disciplina.svg') }}" alt="Documento Preenchido"
@@ -228,7 +228,7 @@
                                                         title="Preencher documento" style="height: 30px; width: 30px;">
                                                 </a>
                                             @endif
-                                        @endcan
+                                        @endhasanyrole
                                     @endif
                                     @if ($documento_enviado)
                                         @if ($lista_documento->id == 8 && $instituicao == 'UFAPE')

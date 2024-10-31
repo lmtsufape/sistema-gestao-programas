@@ -1,7 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['admin', 'pro_reitor', 'gestor'])
+    @can('listar programa')
         <div class="container-fluid">
             @if (session('sucesso'))
                 <div class="alert alert-success">
@@ -20,10 +20,10 @@
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
 
 
-                @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                @can('cadastrar programa')
                     <button class="cadastrar-botao" type="button"
                         onclick="window.location.href = '{{ route('programas.create') }}'">Cadastrar programa</button>
-                @endif
+                @endcan
 
             </form>
 
@@ -65,33 +65,37 @@
                                                 <img src="{{ asset('images/information.svg') }}" title="Informações"
                                                     alt="Info programa" style="height: 30px; width: 30px;">
                                             </a>
-                                            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')
+                                            @can('vincular servidor-programa')
                                                 <a type="button" href="{{ url("/programas/$programas->id/atribuir-servidor") }}">
                                                     <img src="{{ asset('images/add_servidor.svg') }}" title="Adicionar servidor"
                                                         alt="Add Servidor" style="height: 30px; width: 30px;">
                                                 </a>
-                                            @endif
-                                            <a type="button" href="{{ url("/programas/$programas->id/editais") }}">
-                                                <img src="{{ asset('images/listar_edital.svg') }}" title="Listar edital"
+                                            @endcan
+                                            @can('listar edital')
+                                                <a type="button" href="{{ url("/programas/$programas->id/editais") }}">
+                                                    <img src="{{ asset('images/listar_edital.svg') }}" title="Listar edital"
                                                     alt="Listar edital" style="height: 30px; width: 30px;">
-                                            </a>
-                                            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor')
+                                                </a>
+                                            @endcan
+                                            @can('cadastrar edital')
                                                 <a type="button" href="{{ url("/programas/$programas->id/criar-edital") }}">
                                                     <img src="{{ asset('images/add_edital.svg') }}" title="Adicionar edital"
                                                         alt="Add Edital" style="height: 30px; width: 30px;">
                                                 </a>
+                                            @endcan
+                                            @can('editar programa')
                                                 <a type="button" href="{{ url("/programas/$programas->id/edit") }}">
                                                     <img src="{{ asset('images/pencil.svg') }}" title="Editar"
                                                         alt="Editar programa" style="height: 30px; width: 30px;">
                                                 </a>
-                                            @endif    
-                                            @if (auth()->user()->typage->tipo_servidor != 'pro_reitor' && auth()->user()->typage->tipo_servidor != 'gestor')   
+                                            @endcan
+                                            @can('deletar programa')   
                                                 <a type="button" data-bs-toggle="modal"
                                                     data-bs-target="#modal_delete_{{ $programas->id }}">
                                                     <img src="{{ asset('images/delete.svg') }}"title="Remover"
                                                         alt="Deletar programa" style="height: 30px; width: 30px;">
                                                 </a>
-                                            @endif     
+                                            @endcan
                                         </td>
                                     </tr>
                                     @include('Programa.components.modal_legenda')

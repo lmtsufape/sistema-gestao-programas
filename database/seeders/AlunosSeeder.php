@@ -24,7 +24,7 @@ class AlunosSeeder extends Seeder
             'cpf' => "348.126.240-02",
             'name_social' => 'vitão',
             'password' =>  Hash::make('12345678')
-        ])->givePermissionTo('aluno');
+        ])->assignRole('estudante');
 
         $aluno1 = Aluno::create([
             'nome_aluno' => "Arlenio",
@@ -39,6 +39,6 @@ class AlunosSeeder extends Seeder
             'cpf' => "476.051.020-62",
             'name_social' => 'arlen',
             'password' =>  Hash::make('12345678')
-        ])->givePermissionTo('aluno');
+        ])->assignRole('estudante');
     }
 }

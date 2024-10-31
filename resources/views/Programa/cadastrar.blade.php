@@ -3,7 +3,7 @@
 @section("body")
 
 
-@canany(['admin', 'pro_reitor', 'gestor'])
+@can('cadastrar programa')
     <div class="container-fluid" style="display: flex; justify-content: center; align-items: center; margin-top: 1em; margin-bottom:10px; flex-direction: column;">
 
         @if (session('sucesso'))

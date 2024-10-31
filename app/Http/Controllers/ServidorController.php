@@ -65,22 +65,22 @@ class ServidorController extends Controller {
             #dd($request->input('cpf'));
             switch($request->input('tipo_servidor')){
                 case 0:
-                    $permission = "adm";
+                    $role = "administrador";
                     break;
                 case 1:
-                    $permission = "pro_reitor";
+                    $role = "pro-reitor";
                     break;
                 case 2:
-                    $permission = "servidor";
+                    $role = "tecnico";
                     break;
                 case 3:
-                    $permission = "gestor";
+                    $role = "diretor";
                     break;
             };
 
             $servidor = Servidor::Create([
                 'cpf' => $request->input('cpf'),
-                'tipo_servidor' => $permission,
+                'tipo_servidor' => $role,
                 'instituicaoVinculo' => $request->input('instituicaoVinculo'),
                 'matricula' => $request->input('matricula')
             ]);
@@ -98,7 +98,7 @@ class ServidorController extends Controller {
                     'email' => $request->input('email'),
                     'password' => Hash::make($request->input('senha')),
                     'image' => $imageName
-                ])->givePermissionTo($permission)
+                ])->assignRole($role)
             ){
                 #$mensagem_sucesso = "Orientador cadastrado com sucesso.";
 
@@ -149,16 +149,16 @@ class ServidorController extends Controller {
 
             switch($request->input('tipo_servidor')){
                 case 0:
-                $permission = "adm";
+                    $permission = "administrador";
                     break;
                 case 1:
-                    $permission = "pro_reitor";
+                    $permission = "pro-reitor";
                     break;
                 case 2:
-                    $permission = "servidor";
+                    $permission = "tecnico";
                     break;
                 case 3:
-                    $permission = "gestor";
+                    $permission = "diretor";
                     break;
             };
             $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;
@@ -214,16 +214,16 @@ class ServidorController extends Controller {
 
             switch($request->input('tipo_servidor')){
                 case 0:
-                $permission = "adm";
+                    $permission = "administrador";
                     break;
                 case 1:
-                    $permission = "pro_reitor";
+                    $permission = "pro-reitor";
                     break;
                 case 2:
-                    $permission = "servidor";
+                    $permission = "tecnico";
                     break;
                 case 3:
-                    $permission = "gestor";
+                    $permission = "diretor";
                     break;
             };
             $servidor->cpf = $request->cpf == $servidor->cpf ? $servidor->cpf : $request->cpf;

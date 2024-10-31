@@ -52,25 +52,25 @@
                         </button>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding: 15px;">
-                            @if (auth()->user()->typage_type == "App\Models\Servidor")
-                            {{-- a com icon de UserVector  --}}
-                            <a href="{{ route('meu-perfil-servidor') }}" class="caixinhasetinha">
-                                <img src="{{ asset('images/UserVector.svg') }}" alt="Icone de usuário">
-                                <span style="margin-left: 5px;">Meu perfil</span>
-                            </a>
-                            @endif
-                            @if (auth()->user()->typage_type == "App\Models\Orientador")
-                            <a href="{{ route('meu-perfil-orientador') }}" class="caixinhasetinha">
-                                <img src="{{ asset('images/UserVector.svg') }}" alt="Icone de usuário">
-                                <span style="margin-left: 5px;">Meu perfil</span>
-                            </a>
-                            @endif
-                            @if (auth()->user()->typage_type == "App\Models\Aluno")
-                            <a href="{{ route('meu-perfil-aluno') }}" class="caixinhasetinha">
-                                <img src="{{ asset('images/UserVector.svg') }}" alt="Icone de usuário">
-                                <span style="margin-left: 5px;">Meu perfil</span>
-                            </a>
-                            @endif
+                            @role('tecnico')
+                                {{-- a com icon de UserVector  --}}
+                                <a href="{{ route('meu-perfil-servidor') }}" class="caixinhasetinha">
+                                    <img src="{{ asset('images/UserVector.svg') }}" alt="Icone de usuário">
+                                    <span style="margin-left: 5px;">Meu perfil</span>
+                                </a>
+                            @endrole
+                            @role('orientador')
+                                <a href="{{ route('meu-perfil-orientador') }}" class="caixinhasetinha">
+                                    <img src="{{ asset('images/UserVector.svg') }}" alt="Icone de usuário">
+                                    <span style="margin-left: 5px;">Meu perfil</span>
+                                </a>
+                            @endrole
+                            @role('estudante')
+                                <a href="{{ route('meu-perfil-aluno') }}" class="caixinhasetinha">
+                                    <img src="{{ asset('images/UserVector.svg') }}" alt="Icone de usuário">
+                                    <span style="margin-left: 5px;">Meu perfil</span>
+                                </a>
+                            @endrole
                             <form action="/logout" method="POST">
                                 @csrf
                                 <div style="padding-top: 10px">

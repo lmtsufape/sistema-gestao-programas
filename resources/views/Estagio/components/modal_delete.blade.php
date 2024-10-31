@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor'])
+@can('deletar estagio')
   <div class="modal" id="modal_delete_{{$estagio->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content fundomodaldelete">
@@ -21,15 +21,15 @@
     </div>
   </div>
 @else
-<div class="modal" id="modal_delete_{{$estagio->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
-            <div class="modal-header">
-                <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
-                <a class="btn btn-primary submit" data-bs-dismiss="modal" style="margin-top: 1rem" >Fechar</a>
+  <div class="modal" id="modal_delete_{{$estagio->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content" style="border-radius: 15px; background-color: #F9F9F9; font-family: 'Roboto', sans-serif;">
+              <div class="modal-header">
+                  <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
+                  <a class="btn btn-primary submit" data-bs-dismiss="modal" style="margin-top: 1rem" >Fechar</a>
 
-            </div>
-        </div>
-    </div>
-</div>
+              </div>
+          </div>
+      </div>
+  </div>
 @endcan

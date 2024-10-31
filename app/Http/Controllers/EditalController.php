@@ -21,6 +21,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
 use function PHPSTORM_META\type;
@@ -60,7 +61,7 @@ class EditalController extends Controller
             return view("Edital.index", compact("editais", "orientadors"));
 
         } else {
-            if($user->tipo_servidor == 'adm')
+            if(auth()->user()->hasRole('administrador'))
             {
                 $editais = Edital::all()->sortBy('id');
             }
@@ -110,7 +111,7 @@ class EditalController extends Controller
         $user = auth()->user()->typage;
         $disciplinas = Disciplina::all();
 
-        if($user->tipo_servidor == 'adm')
+        if(auth()->user()->hasRole('administrador'))
         {
             $programas = Programa::all()->sortBy('id');
         }
@@ -278,7 +279,7 @@ class EditalController extends Controller
         $disciplinas = Disciplina::all();
         $disciplinasSelecionadas = $edital->disciplinas->pluck('id')->toArray();
 
-        if($user->tipo_servidor == 'adm')
+        if(auth()->user()->hasRole('administrador'))
         {
             $programas = Programa::all()->sortBy('id');
         }
@@ -339,37 +340,35 @@ class EditalController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
         try {
-            $editalAlunoOrientador = EditalAlunoOrientadors::where('edital_id', $id)->first();
-            if ($editalAlunoOrientador){
+            $existeEdital = EditalAlunoOrientadors::where([
+                ['edital_id', $id],
+                ['status', true]
+            ])->exists();
+
+            if ($existeEdital) {
                 return redirect()->back()->withErrors( "Falha ao deletar Edital. Existem alunos vinculados a ele." );
-            }
-            else{
+            } else {
                 DB::beginTransaction();
-                try{
-                    $edital = Edital::Where('id', $id)->first();
-                    if($edital->disciplinas != null){
-                        $edital->disciplinas()->detach($edital->disciplinas);
-                    }
-                    $edital->delete();
+                $edital = Edital::find($id);
+                $edital->disciplinas()->detach();
+                $edital->delete();
 
-                    DB::commit();
-                    return redirect()->route('edital.index')->with('sucesso', 'Edital deletado com sucesso.');
-
-                } catch(exception $e){
-                    DB::rollback();
-
-                    return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
-                }
+                DB::commit();
+                return redirect()->route('edital.index')->with('sucesso', 'Edital deletado com sucesso.');
             }
-        } catch(exception $e){
+        } catch (\Illuminate\Database\QueryException $e) {
             DB::rollback();
 
-            return redirect()->back()->withErrors( "Falha ao editar Edital. tente novamente mais tarde." );
+            return redirect()->back()->withErrors("Falha ao deletar Edital. Erro ao executar operação no banco de dados.");
+        } catch(Exception $e) {
+            DB::rollback();
+
+            return redirect()->back()->withErrors( "Falha ao deletar Edital. Erro: " . $e->getMessage());
         }
     }
     public function listar_alunos(Request $request, $id){

@@ -1,7 +1,7 @@
 @extends('templates.app')
 
 @section('body')
-    @canany(['admin', 'servidor', 'pro_reitor', 'gestor'])
+    @can('listar estagio')
 
         <style>
             .sortable a {
@@ -23,6 +23,16 @@
                 content: " \25BC";
                 /* Triângulo para baixo */
             }
+
+            .filter-button {
+                background-color: #fff;
+                border: 1px solid var(--preto-p-50, #E6E6E6);
+                margin-left: 5px;
+                font-size: 16px;
+                height: 4.8vh;
+                padding: 10px 20px;
+                cursor: pointer;
+            }
         </style>
 
         <div class="container-fluid">
@@ -42,25 +52,21 @@
                 <h1 class="titulo"><strong>Estágios</strong></h1>
             </div>
 
-            <form class="search-container" action="{{ route('estagio.index') }}" method="GET">
-                <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
-                    id="valor" name="valor" style="text-align: start">
-                <select class="search-input" style="width: 1%;" name="status_filter">
-                    <option value="todos">Todos</option>
-                    <option value="ativos" {{ Request::input('status_filter') == 'ativos' ? 'selected' : '' }}>Ativos</option>
-                    <option value="inativos" {{ Request::input('status_filter') == 'inativos' ? 'selected' : '' }}>Inativos
-                    </option>
-                </select>
+            <form class="search-container" action="{{ route('estagio.index') }}" method="get" id="search-form">
+                <input class="search-input" type="text" placeholder="Digite os termos da busca" id="busca" name="busca" value="{{ request()->busca }}">
+                <button type="button" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterEstagioModal">
+                    Filtrar
+                </button>
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
+                
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
-                    onclick="window.location.href = '{{ route('estagio.verificarAluno') }}'">Cadastrar estágio</button>
+                onclick="window.location.href = '{{ route('estagio.verificarAluno') }}'">Cadastrar estágio</button>
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
-                    onclick="window.location.href = '{{ route('estagio.editConfig') }}'">Configurar estágios</button>
+                onclick="window.location.href = '{{ route('estagio.editConfig') }}'">Configurar estágios</button>
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
-                    onclick="window.location.href = '{{ route('instituicao.index') }}'">Informações da instituição</button>
+                onclick="window.location.href = '{{ route('instituicao.index') }}'">Informações da instituição</button>
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
-                    onclick="window.location.href = '{{ route('estagio.export-form') }}'">Exportar dados</button>
-
+                onclick="window.location.href = '{{ route('estagio.export-form') }}'">Exportar dados</button>
             </form>
 
 
@@ -163,6 +169,7 @@
             <br>
             <br>
         </div>
+        @include('Estagio.components.modal_filtro')
 
         <script type="text/javascript">
             function exibirModalDeletar(id) {

@@ -1,4 +1,4 @@
-@canany(['admin', 'servidor'])
+@can('deletar edital')
   <div class="modal" id="modal_delete_{{$edital->id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content fundomodaldelete">

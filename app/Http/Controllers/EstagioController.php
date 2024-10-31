@@ -19,46 +19,25 @@ use App\Models\ListaDocumentosObrigatorios;
 use Kyslik\ColumnSortable\Sortable;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
-
-
+use App\Filters\EstagioFilter;
+use App\Http\Requests\EstagioFilterRequest;
 
 class EstagioController extends Controller
 {
     use Sortable;
 
-    public function index(Request $request)
+    public function index(EstagioFilterRequest $request, EstagioFilter $filtro)
     {
-        $query = Estagio::sortable(['descricao', 'created_at', 'status'])
-            ->orderBy('created_at', 'desc');
+        $estagios = Estagio::sortable();
+        $filtro->apply($estagios, $request);
+        $estagios = $estagios->paginate(15)->appends($request->except('page'));
 
-        $statusFilter = $request->input('status_filter');
-
-        if ($statusFilter && $statusFilter !== 'todos') {
-            $query->where('status', $statusFilter == 'ativos' ? 1 : 0);
-        }
-
-        if ($request->filled('valor')) {
-            $valor = $request->input('valor');
-
-            $query->where(function ($query) use ($valor) {
-                $query->orWhereHas('aluno', function ($subquery) use ($valor) {
-                    $subquery->where('cpf', 'LIKE', "%{$valor}%")
-                        ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
-                })
-                    ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
-                        $subquery->where('cpf', 'LIKE', "%{$valor}%")
-                            ->orWhere('name', 'LIKE', "%{$valor}%")
-                            ->orWhere('email', 'LIKE', "%{$valor}%")
-                            ->orWhere('matricula', 'LIKE', "%{$valor}%");
-                    })
-                    ->orWhere('descricao', 'LIKE', "%{$valor}%");
-            });
-        }
-
-        $estagios = $query->distinct()->paginate(15);
         $cursos = Curso::all();
+        $disciplinas = Disciplina::distinct('nome')->get();
+        $alunos = Aluno::all();
+        $orientadores = Orientador::all();
 
-        return view('Estagio.index', compact('estagios', 'cursos'));
+        return view('Estagio.index', compact('estagios', 'cursos', 'disciplinas', 'alunos', 'orientadores'));
     }
 
     public function create()
@@ -66,7 +45,7 @@ class EstagioController extends Controller
         $aluno = null;
         $disciplinas = null;
 
-        if (auth()->user()->typage_type == "App\Models\Aluno") {
+        if (auth()->user()->hasRole('estudante')) {
             //Se for aluno, vamos obter o aluno pelo typage_id
             $aluno_id = auth()->user()->typage_id;
             $aluno = Aluno::Where('id', $aluno_id)->first();
@@ -105,7 +84,7 @@ class EstagioController extends Controller
         $estagio->save();
         DB::commit();
 
-        if (auth()->user()->typage_type == "App\Models\Aluno") {
+        if (auth()->user()->hasRole('estudante')) {
             return redirect('/meus-estagios')->with('sucesso', 'Estágio cadastrado com sucesso.');
         }
 
@@ -117,7 +96,7 @@ class EstagioController extends Controller
         $aluno = null;
         $disciplinas = null;
 
-        if (auth()->user()->typage_type == "App\Models\Aluno") {
+        if (auth()->user()->hasRole('estudante')) {
             //Se for aluno, vamos obter o aluno pelo typage_id
             $aluno_id = auth()->user()->typage_id;
             $aluno = Aluno::Where('id', $aluno_id)->first();

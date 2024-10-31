@@ -1,7 +1,7 @@
 @extends("templates.app")
 
 @section("body")
-    @canany(['admin', 'servidor', 'gestor' ])
+    @can('cadastrar edital')
         <style>
             select[multiple] {
                 overflow: hidden;
@@ -80,6 +80,8 @@
 
                 <form action="{{route('edital.store')}}" method="POST">
                     @csrf
+
+                    <input type="hidden" name="programa" value="{{ $programa->id }}">
 
                     <label class="titulopequeno" for="titulo_edital">Título<strong style="color: #8B5558">*</strong></label>
                     <input class="boxcadastrar" placeholder="Digite o título" type="text" name="titulo_edital" id="titulo_edital" value="{{ old('titulo_edital') }}" required><br><br>
@@ -213,5 +215,5 @@
     @else
         <h3 style="margin-top: 1rem">Você não possui permissão!</h3>
         <a class="btn btn-primary submit" style="margin-top: 1rem" href="{{url('/login')}}">Voltar</a>
-  @endcan
+    @endcan
 @endsection

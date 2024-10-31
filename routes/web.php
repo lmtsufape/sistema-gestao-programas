@@ -133,7 +133,7 @@ Route::prefix('edital')->group(function () {
     Route::get('/{id}/edit', [EditalController::class, 'edit'])->where('id', '[0-9]+')->name('edital.edit');
     Route::put('/{id}', [EditalController::class, 'update'])->name('edital.update');
     Route::delete('/{id}', [EditalController::class, 'destroy'])->name('edital.delete');
-    Route::get('{id}', [EditalController::class, 'show'])->name('edital.show');
+    Route::get('/{id}', [EditalController::class, 'show'])->name('edital.show');
     Route::post('/cadastrar-aluno/{id}', [EditalController::class, 'inscrever_aluno'])->name('edital.aluno');
     Route::get('/{id}/alunos', [EditalController::class, 'listar_alunos'])->name('edital.vinculo');
     Route::get('/{id}/alunos/desvinculados', [EditalController::class, 'listar_alunos_inativos'])->name('edital.vinculoInativo');
