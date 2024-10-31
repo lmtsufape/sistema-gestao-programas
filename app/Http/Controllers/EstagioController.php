@@ -28,32 +28,10 @@ class EstagioController extends Controller
 
     public function index(EstagioFilterRequest $request, EstagioFilter $filtro)
     {
-        $query = Estagio::sortable(['descricao', 'created_at', 'status'])
-            ->orderBy('created_at', 'desc');
-
-        $estagios = Estagio::query();
+        $estagios = Estagio::sortable();
         $filtro->apply($estagios, $request);
         $estagios = $estagios->paginate(15)->appends($request->except('page'));
 
-        // if ($request->filled('valor')) {
-        //     $valor = $request->input('valor');
-
-        //     $query->where(function ($query) use ($valor) {
-        //         $query->orWhereHas('aluno', function ($subquery) use ($valor) {
-        //             $subquery->where('cpf', 'LIKE', "%{$valor}%")
-        //                 ->orWhere('nome_aluno', 'LIKE', "%{$valor}%");
-        //         })
-        //             ->orWhereHas('orientador.user', function ($subquery) use ($valor) {
-        //                 $subquery->where('cpf', 'LIKE', "%{$valor}%")
-        //                     ->orWhere('name', 'LIKE', "%{$valor}%")
-        //                     ->orWhere('email', 'LIKE', "%{$valor}%")
-        //                     ->orWhere('matricula', 'LIKE', "%{$valor}%");
-        //             })
-        //             ->orWhere('descricao', 'LIKE', "%{$valor}%");
-        //     });
-        // }
-
-        // $estagios = $query->distinct()->paginate(15);
         $cursos = Curso::all();
         $disciplinas = Disciplina::distinct('nome')->get();
         $alunos = Aluno::all();
