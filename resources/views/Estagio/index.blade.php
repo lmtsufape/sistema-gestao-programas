@@ -52,22 +52,21 @@
                 <h1 class="titulo"><strong>Estágios</strong></h1>
             </div>
 
-            <form class="search-container" action="{{ route('estagio.index') }}" method="GET">
-                <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title=""
-                    id="valor" name="valor" style="text-align: start">
-                    <button type="button" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterEstagioModal">
-                        Filtrar
-                    </button>
+            <form class="search-container" action="{{ route('estagio.index') }}" method="get" id="filterForm">
+                <input class="search-input" type="text" placeholder="Digite os termos da busca" id="busca" name="busca" value="{{ request()->busca }}">
+                <button type="button" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterEstagioModal">
+                    Filtrar
+                </button>
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
+                
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
-                    onclick="window.location.href = '{{ route('estagio.verificarAluno') }}'">Cadastrar estágio</button>
+                onclick="window.location.href = '{{ route('estagio.verificarAluno') }}'">Cadastrar estágio</button>
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
-                    onclick="window.location.href = '{{ route('estagio.editConfig') }}'">Configurar estágios</button>
+                onclick="window.location.href = '{{ route('estagio.editConfig') }}'">Configurar estágios</button>
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
-                    onclick="window.location.href = '{{ route('instituicao.index') }}'">Informações da instituição</button>
+                onclick="window.location.href = '{{ route('instituicao.index') }}'">Informações da instituição</button>
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
-                    onclick="window.location.href = '{{ route('estagio.export-form') }}'">Exportar dados</button>
-
+                onclick="window.location.href = '{{ route('estagio.export-form') }}'">Exportar dados</button>
             </form>
 
 
