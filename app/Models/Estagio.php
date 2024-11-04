@@ -12,9 +12,7 @@ use Carbon\Carbon;
 class Estagio extends Model
 {
     use SoftDeletes;
-
     use Sortable;
-
 
     protected $fillable = [
         'descricao',
@@ -22,13 +20,21 @@ class Estagio extends Model
         'data_fim',
         'data_solicitacao',
         'tipo',
-        'status'
+        'supervisor',
+        'status',
+        'aluno_id',
+        'orientador_id',
+        'curso_id',
+        'disciplina_id',
+    ];
+
+    protected $casts = [
+        'status' => 'boolean',
     ];
 
     protected $dates = [
         'data_inicio',
         'data_fim',
-
     ];
 
     public $sortable = [

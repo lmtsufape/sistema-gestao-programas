@@ -23,17 +23,17 @@
                     @csrf
                     @method('PUT')
                     @if ($aluno)
-                        <input type="hidden" name="checkStatus" value="1">
+                        <input type="hidden" name="status" value="1">
                     @else
-                        <div id="checkStatus">
+                        <div id="status">
                             <label class="titulopequeno" for="status">Status: <strong
                                     style="color: #8B5558">*</strong></label>
                             <br>
-                            <input type="radio" name="checkStatus" value=1 required
+                            <input type="radio" name="status" value="1" required
                                 @if ($estagio->status == 1) checked @endif>
-                            <label class="textinho" for="checkStatus_ativo">Ativo</label>
+                            <label class="textinho" for="status_ativo">Ativo</label>
                             <br>
-                            <input type="radio" name="checkStatus" value=0 required
+                            <input type="radio" name="status" value="0" required
                                 @if ($estagio->status == 0) checked @endif>
                             <label class="textinho" for="checkStatus_inativo">Inativo</label><br><br>
                         </div>
@@ -60,16 +60,16 @@
                         </div>
                     </div>
 
-                    <div id="checkTipo">
+                    <div id="tipo">
                         <label class="titulopequeno" for="tipo">Tipo: <strong style="color: #8B5558">*</strong></label>
                         <br>
-                        <input type="radio" name="checkTipo" value="eo" required
+                        <input type="radio" name="tipo" value="eo" required
                             @if ($estagio->tipo == 'eo') checked @endif>
-                        <label class="textinho" for="checkTipo_obrigatorio">Obrigatório</label>
+                        <label class="textinho" for="tipo_obrigatorio">Obrigatório</label>
                         <br>
-                        <input type="radio" name="checkTipo" value="eno" required
+                        <input type="radio" name="tipo" value="eno" required
                             @if ($estagio->tipo == 'eno') checked @endif>
-                        <label class="textinho" for="checkTipo_nao_obrigatorio">Não obrigatório</label><br><br>
+                        <label class="textinho" for="tipo_nao_obrigatorio">Não obrigatório</label><br><br>
                     </div>
 
                     @if ($aluno)
@@ -89,7 +89,7 @@
                     <br>
 
                     <label class="titulopequeno" for="orientador">Orientador<strong style="color: #8B5558">*</strong></label>
-                    <select aria-label="Default select example" class="boxcadastrar" name="orientador" id="orientador">
+                    <select aria-label="Default select example" class="boxcadastrar" name="orientador_id" id="orientador_id">
                         <option value disabled selected hidden> Selecione o orientador</option>
                         @foreach ($orientadors as $orientador)
                             <option value="{{ $orientador->id }}"
@@ -102,12 +102,12 @@
                     <textarea class="boxcadastrar"
                         placeholder='Digite os dados do supervisor do estágio, por exemplo: nome, contato etc. separados por ";" (ponto e vírgula).''
                         name="supervisor" id="supervisor" cols="30
-                        rows="3">{{ old('supervisor') }}</textarea><br><br>
+                        rows="3" value="teste">{{ $estagio->supervisor ?? old('supervisor') }}</textarea><br><br>
 
 
                     @if ($aluno)
                         <label class="titulopequeno" for="curso">Curso<strong style="color: #8B5558">*</strong></label>
-                        <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso"
+                        <select aria-label="Default select example" class="boxcadastrar" name="curso_id" id="curso_id"
                             style="background: #eee; pointer-events: none; touch-action: none;">
                             <option value disabled selected hidden> Selecione o curso</option>
                             @foreach ($cursos as $curso)
@@ -117,7 +117,7 @@
                         </select><br><br>
                     @else
                         <label class="titulopequeno" for="curso">Curso<strong style="color: #8B5558">*</strong></label>
-                        <select aria-label="Default select example" class="boxcadastrar" name="curso" id="curso">
+                        <select aria-label="Default select example" class="boxcadastrar" name="curso_id" id="curso_id">
                             <option value disabled selected hidden> Selecione o curso</option>
                             @foreach ($cursos as $curso)
                                 <option value="{{ $curso->id }}" {{ $estagio->curso_id == $curso->id ? 'selected' : '' }}>
@@ -129,7 +129,7 @@
                     <div id="disciplinas" @if ($estagio->tipo == 'eno') hidden @endif>
                         <label class="titulopequeno" for="curso">Disciplina<strong
                                 style="color: #8B5558">*</strong></label>
-                        <select aria-label="Default select example" class="boxcadastrar" name="disciplina" id="disciplina">
+                        <select aria-label="Default select example" class="boxcadastrar" name="disciplina_id" id="disciplina_id">
                             <option value disabled selected hidden> Selecione a disciplina</option>
                             @foreach ($disciplinas as $disciplina)
                                 <option value="{{ $disciplina->id }}"
@@ -140,8 +140,7 @@
                     </div>
 
                     <div class="botoessalvarvoltar">
-                        <input type="button" value="Voltar" href="{{ url('/home/') }}"
-                            onclick="window.location.href='{{ url('/home/') }}'" class="botaovoltar">
+                        <input type="button" value="Voltar" onclick="window.location.href='{{ route('estagio.index') }}'" class="botaovoltar">
                         <input class="botaosalvar" type="submit" value="Salvar">
                     </div>
                 </form>
@@ -153,8 +152,8 @@
             const selectDisciplina = document.getElementById('disciplina');
 
             $(document).ready(function() {
-                $("input[name='checkTipo']").change(function() {
-                    if ($("input[name='checkTipo']:checked").val() == "eo") {
+                $("input[name='tipo']").change(function() {
+                    if ($("input[name='tipo']:checked").val() == "eo") {
                         $("#disciplinas").removeAttr("hidden");
                         selectDisciplina.required = true;
                     } else {
