@@ -9,6 +9,10 @@
         background-color: #972E3F;
     }
 
+    #filter-button:hover {
+        background-color: #852838;
+    }
+
     #modal-frame {
         width: 70%;
         max-width: unset;
@@ -173,7 +177,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" onclick="resetarFiltro()">Resetar Filtro</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="color: white">Cancelar</button>
                 <button type="submit" form="filter-form" class="btn" id="filter-button">Filtrar</button>
             </div>
         </div>
