@@ -24,7 +24,8 @@ use App\Models\ListaDocumentosObrigatorios;
 // Rotas de autenticacao
 Route::get('/', function () {
     return view('auth.login');
-});
+})->middleware('guest');
+
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/home', [UserController::class, 'store'])->name('store');
 
