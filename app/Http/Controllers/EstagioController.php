@@ -31,7 +31,6 @@ class EstagioController extends Controller
         $estagios = Estagio::sortable();
         $filtro->apply($estagios, $request);
         $estagios = $estagios->orderBy('updated_at', 'desc')->paginate(15)->appends($request->except('page'));
-
         $cursos = Curso::all();
         $disciplinas = Disciplina::distinct('nome')->get();
         $alunos = Aluno::all();

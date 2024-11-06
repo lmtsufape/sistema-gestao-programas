@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use App\Http\Requests\CursoStoreFormRequest;
 use App\Http\Requests\CursoUpdateFormRequest;
+use App\Models\Aluno;
+use App\Models\Orientador;
+use App\Filters\EstagioFilter;
 
 class CursoController extends Controller
 {
@@ -142,12 +145,18 @@ class CursoController extends Controller
         }
     }
 
-    public function listar_estagio_curso($id)
+    public function listar_estagio_curso($id, EstagioFilter $filtro)
     {
-        $curso = Curso::find($id);
-        $cursos = Curso::all();
-        $estagios = Estagio::where("curso_id", $id)->orderBy('created_at', 'desc')->paginate(10);
+        $request = new Request(['cursos' => [$id]]);
+        $estagios = Estagio::sortable();
+        $filtro->apply($estagios, $request);
+        $estagios = $estagios->orderBy('updated_at', 'desc')->paginate(15)->appends($request->except('page'));
 
-        return view("Estagio.index", compact("estagios", "cursos"));
+        $cursos = Curso::all();
+        $disciplinas = Disciplina::distinct('nome')->get();
+        $alunos = Aluno::all();
+        $orientadores = Orientador::all();
+
+        return view('Estagio.index', compact('estagios', 'cursos', 'disciplinas', 'alunos', 'orientadores'));
     }
 }
