@@ -14,7 +14,7 @@
     }
 
     #modal-frame {
-        width: 70%;
+        width: 55%;
         max-width: unset;
     }
 
