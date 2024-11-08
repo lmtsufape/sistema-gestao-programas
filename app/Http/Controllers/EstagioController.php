@@ -30,8 +30,7 @@ class EstagioController extends Controller
     {
         $estagios = Estagio::sortable();
         $filtro->apply($estagios, $request);
-        $estagios = $estagios->paginate(15)->appends($request->except('page'));
-
+        $estagios = $estagios->orderBy('updated_at', 'desc')->paginate(15)->appends($request->except('page'));
         $cursos = Curso::all();
         $disciplinas = Disciplina::distinct('nome')->get();
         $alunos = Aluno::all();
@@ -117,39 +116,16 @@ class EstagioController extends Controller
 
     public function update(EstagioUpdateFormRequest $request, $id)
     {
-        DB::beginTransaction();
-        try {
-            $estagio = Estagio::find($id);
+        $dados = $request->validated();
+        $estagio = Estagio::find($id);
 
-            $estagio->descricao = $request->descricao ? $request->descricao : $estagio->descricao;
-            $estagio->supervisor = $request->supervisor ? $request->supervisor : $estagio->supervisor;
-            $estagio->data_inicio = $request->data_inicio ? $request->data_inicio : $estagio->data_inicio;
-            $estagio->data_fim = $request->data_fim ? $request->data_fim : $estagio->data_fim;
-            $estagio->status = $request->checkStatus ? $request->checkStatus : $estagio->status;
-
-            $aluno = Aluno::Where('cpf', $request->cpf_aluno)->first();
-
-            $estagio->aluno_id = $request->cpf_aluno ? $aluno->id : $estagio->aluno_id;
-
-            $estagio->orientador_id = $request->orientador ? $request->orientador : $estagio->orientador_id;
-            $estagio->curso_id = $request->curso ? $request->curso : $estagio->curso_id;
-            $estagio->disciplina_id = $request->disciplina ?  $request->disciplina : $estagio->disciplina_id;
-            $estagio->tipo = $request->checkTipo ? $request->checkTipo : $estagio->tipo;
-
-            $estagio->update();
-
-            DB::commit();
-
-            return redirect()->route('estagio.index')
-                ->with('sucesso', 'Estágio editado com sucesso.');
-        } catch (Exception $e) {
-            DB::rollback();
-            $errorMessage = "Falha ao editar Estágio. Tente novamente mais tarde.";
-
-            // $errorMessage .= " " . $e->getMessage();
-
-            return redirect()->back()->withErrors(['error' => $errorMessage]);
+        if (!$estagio) {
+            abort(404, 'Estágio não encontrado');
         }
+
+        $estagio->update($dados);
+
+        return redirect()->route('estagio.index')->with('sucesso', 'Estágio editado com sucesso.');
     }
 
 

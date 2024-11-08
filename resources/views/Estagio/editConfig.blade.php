@@ -27,7 +27,7 @@
                     </div>
                     @foreach ($documentos as $documento)
                         <div class="form-group">
-                            <label class="titulopequeno" for="{{ $documento->id }}">{{ $documento->titulo }}</label>
+                            <label class="titulopequeno" for="{{ $documento->id }}">{{ $documento->titulo }}<strong style="color: #8B5558">*</strong></label>
                             <input class="boxcadastrar" type="date" class="form-control" name="{{ $documento->id }}"
                                 value="{{ $documento->data_limite }}">
                         </div>
