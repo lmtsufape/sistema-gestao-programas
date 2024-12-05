@@ -84,8 +84,12 @@ class EditalController extends Controller
 
             return view("Edital.index", compact("editais", "orientadors"));
         }
+    }
 
+    public function listar() {
+        $vinculos = EditalAlunoOrientadors::all();
 
+        return view('Orientador.editais-orientador',compact("vinculos"));
     }
 
     public function getCpfs() {
