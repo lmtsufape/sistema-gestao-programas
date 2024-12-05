@@ -125,10 +125,11 @@ Route::prefix('programas')->group(function () {
 // Rotas de Edital
 
 // Route::get('/vinculo/create', [EditalController::class, "cadastrar_alunos"]);
-Route::resource('/edital', EditalController::class);
+Route::resource('/edital', EditalController::class)->except('show');
 
 Route::prefix('edital')->group(function () {
     Route::get('/', [EditalController::class, 'index'])->name('edital.index');
+    Route::get('/listar', [EditalController::class, 'listar'])->name('edital.listar');
     Route::get('/create', [EditalController::class, 'create'])->name('edital.create');
     Route::post('/', [EditalController::class, 'store'])->name('edital.store');
     Route::get('/{id}/edit', [EditalController::class, 'edit'])->where('id', '[0-9]+')->name('edital.edit');
