@@ -39,7 +39,7 @@
 
 
     <div style="display: flex; justify-content: space-evenly; align-items: center;">
-        <h1 class="titulo"><strong>@if (Route::currentRouteName() === 'edital.listar') Editais - Todos os editais @else Editais - Vínculos Ativos @endif</strong></h1>
+        <h1 class="titulo"><strong>Meus Editais - Vínculos Ativos</strong></h1>
     </div>
 
     <form class="search-container" action="" method="GET">
