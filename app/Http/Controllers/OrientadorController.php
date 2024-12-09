@@ -321,13 +321,13 @@ class OrientadorController extends Controller
     }   
 
     public function editais_profile_orientador(Request $request) {
-
-        //Manda apenas os vinculos ativos
-        $vinculos = EditalAlunoOrientadors::where('orientador_id', $request->user()->typage_id)->where('status', true)->get();
-        // $editais = array();
-        // foreach ($pivos as $pivo){
-        //     array_push($editais, $pivo->edital);
-        // }
+        $vinculos = EditalAlunoOrientadors::where(function ($query) {
+            $query->where('orientador_id', auth()->user()->typage_id)->where('status', true);
+        })
+        ->orWhere('status', false)
+        ->orderBy('status', 'desc')
+        ->orderBy('titulo')
+        ->get();
 
         return view('Orientador.editais-orientador',compact("vinculos"));
     }

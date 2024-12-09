@@ -104,7 +104,7 @@
                     <button class="botao" href="{{ url('/editais-orientador') }}"
                         onclick="window.location.href='{{ url('/editais-orientador') }}'">
                         <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 20px;">
-                        <p class="third-title"> Meus editais </p>
+                        <p class="third-title"> Editais abertos </p>
                     </button>
 
                     <button class="botao" href="{{ url('/estagios-orientador') }}"

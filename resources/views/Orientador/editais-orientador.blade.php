@@ -39,7 +39,7 @@
 
 
     <div style="display: flex; justify-content: space-evenly; align-items: center;">
-        <h1 class="titulo"><strong>Meus Editais - Vínculos Ativos</strong></h1>
+        <h1 class="titulo"><strong>Editais vinculados ou abertos</strong></h1>
     </div>
 
     <form class="search-container" action="" method="GET">
@@ -60,6 +60,7 @@
                     <th scope="col" class="text-center align-middle">Data de fim</th>
                     <th scope="col" class="text-center align-middle">Programa</th>
                     <th scope="col" class="text-center align-middle">Estudante</i></th>
+                    <th scope="col" class="text-center align-middle">Status</i></th>
                     <th class="text-center">
                         Ações
                         <button type="button" class="infobutton align-bottom" data-bs-toggle="modal"
@@ -78,21 +79,24 @@
                         <td class="align-middle">{{date_format(date_create($vinculo->edital->data_fim), "d/m/Y")}}</td>
                         <td class="align-middle">{{$vinculo->edital->programa->nome}}</td>
                         <td class="align-middle">{{$vinculo->aluno->user->name}}</td>
+                        <td class="align-middle">{{ auth()->user()->typage_type === App\Models\Orientador::class && $vinculo->orientador_id === auth()->user()->typage_id ? 'Vinculado' : 'Aberto' }}</td>
                         <td class="align-middle">
                             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$vinculo->id}}">
                                 <img src="{{asset('images/information.svg')}}" title="Informações do edital" alt="Info edital"
                                      style="height: 30px; width: 30px;">
                             </a>
-                            <a type="button" href="{{route('edital.add-documentos-vinculo', ['id' => $vinculo->id]  )}}">
-                                <img src="{{asset('images/add_disciplina.svg')}}" title="Adicionar documentos" alt="Adicionar Documentos"
-                                     style="height: 25px; width: 25px;">
-                            </a>
-                            @if($vinculo->termo_aluno)
-                                <a type="button" data-bs-toggle="modal"
-                                   data-bs-target="#modal_documents{{ $vinculo->aluno->id }}">
-                                    <img src="{{ asset('images/document.svg') }}" title="Ver documentos"
-                                         alt="Documento aluno" style="height: 30px; width: 30px;">
+                            @if (auth()->user()->typage_type === App\Models\Orientador::class && $vinculo->orientador_id === auth()->user()->typage_id)
+                                <a type="button" href="{{route('edital.add-documentos-vinculo', ['id' => $vinculo->id]  )}}">
+                                    <img src="{{asset('images/add_disciplina.svg')}}" title="Adicionar documentos" alt="Adicionar Documentos"
+                                        style="height: 25px; width: 25px;">
                                 </a>
+                                @if($vinculo->termo_aluno)
+                                    <a type="button" data-bs-toggle="modal"
+                                    data-bs-target="#modal_documents{{ $vinculo->aluno->id }}">
+                                        <img src="{{ asset('images/document.svg') }}" title="Ver documentos"
+                                            alt="Documento aluno" style="height: 30px; width: 30px;">
+                                    </a>
+                                @endif
                             @endif
                         </td>
                     </tr>
