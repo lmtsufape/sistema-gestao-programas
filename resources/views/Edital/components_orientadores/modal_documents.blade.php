@@ -1,4 +1,4 @@
-<div class="modal " id="modal_documents{{$orientador->id}}" tabindex="-1" aria-hidden="true">
+<div class="modal " id="modal_documents_{{ $vinculo->id }}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content modal-create p-2">
       <div class="modal-header border-0">
