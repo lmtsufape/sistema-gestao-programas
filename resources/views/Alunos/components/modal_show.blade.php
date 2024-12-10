@@ -83,6 +83,15 @@
                             </span>
                             @endif
                         </div>
+
+                        <div class="mb-3">
+                            <label class="tituloinfomodal form-label mt-3">Orientadores</label>
+                            <ul>
+                                @foreach ($aluno->Orientadores->pluck('user.name') as $nome)
+                                    <li>{{ $nome }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </form>
             </div>
