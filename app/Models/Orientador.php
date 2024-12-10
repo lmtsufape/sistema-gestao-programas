@@ -38,6 +38,12 @@ class Orientador extends Model
             ]);
     }
 
+    public function alunosOrientados()
+    {
+        return $this->belongsToMany(Aluno::class, 'edital_aluno_orientadors', 'orientador_id', 'aluno_id')
+                    ->wherePivot('status', true);
+    }
+
     public function cursos(){
         return $this->belongsToMany(Curso::class, 'orientador_cursos');
     }
