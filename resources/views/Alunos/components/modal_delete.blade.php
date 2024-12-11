@@ -6,7 +6,7 @@
                 <div class="modal-header border-0">
                 </div>
                 <div class="modal-body" style="text-align: start">
-                    <p class="titulomodal">Você tem certeza de que deseja remover o estudante {{ $aluno->user->name }}?</p>
+                    <p class="titulomodal">Você tem certeza de que deseja remover o discente {{ $aluno->user->name }}?</p>
                 </div>
                 <div class="modal-footer d-flex justify-content-between border-0">
                     <button type="button" class="cancelarmodalbotao" data-bs-dismiss="modal">Cancelar</button>

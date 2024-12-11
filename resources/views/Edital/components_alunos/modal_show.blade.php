@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content modal-create p-2">
             <div class="modal-header border-0">
-                <p class="titulomodal">Informações do Estudantes</p>
+                <p class="titulomodal">Informações do discente</p>
                 <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="text-align: start">
@@ -27,14 +27,16 @@
                     <div class="textoinfomodal">{{ $vinculo->bolsa }}</div>
                 </div>
                 <div class="mb-3">
+                    <label class="tituloinfomodal form-label mt-3">Orientador responsável</label>
+                    <div class="textoinfomodal">{{ $vinculo->orientador->user->name }}</div>
+                </div>
+                <div class="mb-3">
                     <label class="tituloinfomodal form-label mt-3">Informações complementares</label>
                     <div class="textoinfomodal"> {{ $vinculo->info_complementares }}</div>
                 </div>
-
-                </div>
-                <div class="modal-footer border-0">
-                </div>
             </div>
+            <div class="modal-footer border-0"></div>
         </div>
     </div>
+</div>
 </div>

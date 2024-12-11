@@ -14,7 +14,7 @@
 
         <div class="fundocadastrar">
             <div class="row" style="align-content: left;">
-                <h1 class="titulogrande">Editar Professor</h1>
+                <h1 class="titulogrande">Editar Docente</h1>
             </div>
             <hr class="divisor">
             <form action="{{  route('orientadors.update', ['id'=> $orientador->id])   }}" method="POST" enctype="multipart/form-data">
@@ -49,7 +49,7 @@
                 <input class="boxcadastrar" type="text" name="matricula" id="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)" value="{{$orientador->matricula}}">
 
                 <label for="instituicaoVinculo" class="titulopequeno">Instituição<strong style="color: #8B5558">*</strong></label>
-                <input class="boxcadastrar" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a instituição vinculada ao professor" value="{{ $orientador->instituicaoVinculo }}" required>
+                <input class="boxcadastrar" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a instituição vinculada ao docente" value="{{ $orientador->instituicaoVinculo }}" required>
 
                 <label for="curso" class="titulopequeno">Curso(s)<strong style="color: #8B5558">*</strong></label>
                 <div class="row">

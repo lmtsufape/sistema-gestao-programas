@@ -64,20 +64,20 @@
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="nomeProf" class="titulopequeno">Nome do/a professor/a preceptor/a<strong
+            <label for="nomeProf" class="titulopequeno">Nome do/a docente preceptor/a<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="nomeProf" id="nomeProf" value="{{ $dados['nomeProf'] ?? '' }}"
-                placeholder="Digite o nome do/a professor/a preceptor/a"
+                placeholder="Digite o nome do/a docente preceptor/a"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
 
-            <label for="numMatricula" class="titulopequeno">N° da matrícula do/a professor/a preceptor/a<strong
+            <label for="numMatricula" class="titulopequeno">N° da matrícula do/a docente preceptor/a<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="numMatricula" id="numMatricula"
                 value="{{ $dados['numMatricula'] ?? '' }}"
-                placeholder="Digite o n° da matrícula do/a professor/a preceptor/a"
+                placeholder="Digite o n° da matrícula do/a docente preceptor/a"
                 required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 

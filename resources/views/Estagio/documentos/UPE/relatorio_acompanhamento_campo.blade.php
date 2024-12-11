@@ -30,7 +30,7 @@
                 <input class="boxcadastrar" type="text" name="semestre" id="semestre" placeholder="Digite o semestre" maxlength="6"
                     value="{{ $dados['semestre'] ?? '' }}"required><br><br>
                 <div class="invalid-feedback"> Por favor preencha esse campo</div>
-                <label for="nome" class="titulopequeno">Professor orientador<strong
+                <label for="nome" class="titulopequeno">Docente orientador<strong
                         style="color: #8B5558">*</strong></label><br>
                 <input class="boxcadastrar" type="text" name="orientador" id="orientador"
                     placeholder="Digite o nome do orientador" value="{{ $orientador->user->name }}" readonly
@@ -272,7 +272,7 @@
                 <br><br>
 
                 <label for="nome" class="titulopequeno">
-                    As atividades desenvolvidas pelos estudantes são compaatíveis com o curso e permitem que eles apliquem
+                    As atividades desenvolvidas pelos discentes são compatíveis com o curso e permitem que eles apliquem
                     os conhecimentos teóricos e práticos obtidos em sua formação.
                     <strong style="color: #8B5558">*</strong></label>
                 <br>

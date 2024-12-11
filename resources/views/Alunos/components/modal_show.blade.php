@@ -4,7 +4,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-create p-2">
                 <div class="modal-header border-0">
-                    <p class="titulomodal">Informações do estudante</p>
+                    <p class="titulomodal">Informações do discente</p>
                     <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('home') }}" method="post">
@@ -82,6 +82,15 @@
                                 <strong> {{ $errors->update->first('semestra_entrada') }} </strong>
                             </span>
                             @endif
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="tituloinfomodal form-label mt-3">Orientadores</label>
+                            <ul>
+                                @foreach ($aluno->Orientadores->pluck('user.name') as $nome)
+                                    <li>{{ $nome }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 </form>

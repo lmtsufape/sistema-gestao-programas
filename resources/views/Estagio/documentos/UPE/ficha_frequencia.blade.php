@@ -52,18 +52,18 @@
                 placeholder="Digite o componente curricular" value="{{ $dados['componente_curricular'] ?? '' }}"
                 required><br><br>
 
-            <label for="prof_componente_curricular" class="titulopequeno">Professor(a) do componente curricular<strong
+            <label for="prof_componente_curricular" class="titulopequeno">Docente do componente curricular<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="prof_componente_curricular" id="prof_componente_curricular"
-                placeholder="Digite o nome do professor do componente curricular"
+                placeholder="Digite o nome do docente do componente curricular"
                 value="{{ $dados['prof_componente_curricular'] ?? '' }}" required><br><br>
 
-            <label for="prof_orientador" class="titulopequeno">Professor(a) orientador(a)<strong
+            <label for="prof_orientador" class="titulopequeno">Docente orientador(a)<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="prof_orientador" id="prof_orientador"
-                value="{{ $orientador->user->name }}" placeholder="Digite o nome do professor orientador do estagiário"
+                value="{{ $orientador->user->name }}" placeholder="Digite o nome do docente orientador do estagiário"
                 readonly required><br><br>
 
             <label for="local_estagio" class="titulopequeno">Local do estágio<strong

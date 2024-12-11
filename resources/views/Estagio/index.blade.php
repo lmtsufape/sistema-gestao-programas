@@ -85,8 +85,8 @@
                                 <th scope="col" class="text-center align-middle sortable">@sortablelink('data_inicio', 'Data de início')</th>
                                 <th scope="col" class="text-center align-middle sortable">@sortablelink('data_fim', 'Data de fim')</th>
                                 <th scope="col" class="text-center align-middle sortable">@sortablelink('curso.nome', 'Curso')</th>
-                                <th scope="col" class="text-center align-middle sortable">@sortablelink('orientador.id', 'Professor')</th>
-                                <th scope="col" class="text-center align-middle sortable">@sortablelink('aluno.nome_aluno', 'Estudante')</th>
+                                <th scope="col" class="text-center align-middle sortable">@sortablelink('orientador.id', 'Docente')</th>
+                                <th scope="col" class="text-center align-middle sortable">@sortablelink('aluno.nome_aluno', 'Discente')</th>
                                 <th class="text-center">
                                     Ações
                                     <button type="button" class="infobutton align-bottom" data-bs-toggle="modal"

@@ -1,8 +1,8 @@
-<div class="modal " id="modal_documents{{$orientador->id}}" tabindex="-1" aria-hidden="true">
+<div class="modal " id="modal_documents_{{ $vinculo->id }}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content modal-create p-2">
       <div class="modal-header border-0">
-        <p class="titulomodal">Documentos do Professor</p>
+        <p class="titulomodal">Documentos do Docente</p>
         <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" style="text-align: start">

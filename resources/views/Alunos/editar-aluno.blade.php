@@ -11,7 +11,7 @@
     @endif
     <br>
     <div class="fundocadastrar">
-        <h1 class="titulogrande"> Estudantes</h1>
+        <h1 class="titulogrande"> Discentes</h1>
         <hr class="divisor">
         <form action="{{  route('alunos.update', ['id' => $aluno->id])  }}" method="POST" enctype="multipart/form-data">
             @csrf

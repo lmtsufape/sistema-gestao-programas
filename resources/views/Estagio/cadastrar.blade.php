@@ -67,13 +67,13 @@
                     </div>
 
                     @if ($aluno)
-                        <label class="titulopequeno" for="">CPF do estudante: <strong
+                        <label class="titulopequeno" for="">CPF do discente: <strong
                                 style="color: #8B5558">*</strong></label>
                         <input type="text" id="cpf" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"
                             value="{{ $aluno->cpf }}" placeholder="Digite o CPF do aluno" required
                             data-url="{{ url('/cpfs') }}" readonly style="background: #eee; ">
                     @else
-                        <label class="titulopequeno" for="">CPF do estudante: <strong
+                        <label class="titulopequeno" for="">CPF do discente: <strong
                                 style="color: #8B5558">*</strong></label>
                         <input type="text" id="cpf_aluno" class="boxcadastrar cpf-autocomplete" name="cpf_aluno"
                             value="{{ old('cpf_aluno') }}" placeholder="Digite o CPF do aluno" required

@@ -79,7 +79,7 @@
                                         @can('vincular estudante-edital')
                                             <a type="button" href="{{ route('edital.show', ['id' => $edital->id]) }}">
                                                 <img src="{{ asset('images/vincular_estudante.svg') }}"
-                                                title="Vincular estudante" alt="Vincular aluno"
+                                                title="Vincular discente" alt="Vincular aluno"
                                                 style="height: 30px; width: 30px;">
                                             </a>
                                         @endcan
@@ -87,7 +87,7 @@
                                             <a type="button" alt="Listar alunos"
                                                 href="{{ route('edital.vinculo', ['id' => $edital->id]) }}">
                                                 <img src="{{ asset('images/estudantes_vinculados.svg') }}"
-                                                    title="Listar estudantes vinculados" alt="Listar estudantes vinculados"
+                                                    title="Listar discentes vinculados" alt="Listar discentes vinculados"
                                                     style="height: 28px; width: 28px;">
                                             </a>
                                         @endcan
@@ -95,8 +95,8 @@
                                             <a type="button" alt="Listar alunos inativos"
                                             href="{{ route('edital.vinculoInativo', ['id' => $edital->id]) }}">
                                             <img src="{{ asset('images/estudantes_vinculados_inativos.svg') }}"
-                                            title="Listar estudantes vinculados inativos"
-                                            alt="Listar estudantes vinculados inativos"
+                                            title="Listar discentes vinculados inativos"
+                                            alt="Listar discentes vinculados inativos"
                                             style="height: 30px; width: 30px;">
                                             </a>
                                         @endcan

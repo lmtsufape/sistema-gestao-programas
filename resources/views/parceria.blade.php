@@ -29,7 +29,7 @@
             <ol style="padding-left: 5%;">
                 <li>Desenvolver ou qualificar sistemas voltados para o ensino, pesquisa, extensão e gestão no contexto universitário.</li>
                 <li>Desenvolver jogos digitais com foco no ensino de conteúdos curriculares para a educação infantil e anos iniciais do ensino fundamental e na perspectiva da iniciativa “Games for Change” (Games for Change).</li>
-                <li>Viabilizar o Laboratório Multidisciplinar de Tecnologias Sociais como um espaço de formação inicial de estudantes da UPE.</li>
+                <li>Viabilizar o Laboratório Multidisciplinar de Tecnologias Sociais como um espaço de formação inicial dos discentes da UPE.</li>
             </ol>
 
             <h3>Equipe</h3>

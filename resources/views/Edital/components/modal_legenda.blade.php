@@ -15,21 +15,21 @@
                     <div class="mb-3">
                         <img src="{{ asset('images/link-variant_red.svg') }}" alt="Vincular aluno"
                             style=" width: 30px; padding-bottom: 5px">
-                        <span class="textoinfomodal">Vincular estudante ao edital</span>
+                        <span class="textoinfomodal">Vincular discente ao edital</span>
                     </div>
                 @endcan
                 @can('listar vinculo estudante-edital')
                     <div class="mb-3">
                         <img src="{{ asset('images/account-check_red.svg') }}" alt="Listar aluno"
                             style=" width: 30px; padding-bottom: 5px">
-                        <span class="textoinfomodal">Listar estudantes vinculados ao edital</span>
+                        <span class="textoinfomodal">Listar discentes vinculados ao edital</span>
                     </div>
                 @endcan
                 @can('listar vinculo estudante-edital inativo')
                     <div class="mb-3">
                         <img src="{{ asset('images/account-remove_red.svg') }}" alt="Listar aluno"
                             style=" width: 30px; padding-bottom: 5px">
-                        <span class="textoinfomodal">Listar estudantes vinculados inativos ao edital</span>
+                        <span class="textoinfomodal">Listar discentes vinculados inativos ao edital</span>
                     </div>
                 @endcan
                 <div class="mb-3">

@@ -9,17 +9,17 @@
                 <div class="mb-3">
                     <img src="{{ asset('images/information_red.svg') }}" alt="Info aluno"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Informações do estudante</span>
+                    <span class="textoinfomodal">Informações do discente</span>
                 </div>
                 <div class="mb-3">
                     <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar aluno"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Editar o estudante</span>
+                    <span class="textoinfomodal">Editar o discente</span>
                 </div>
                 <div class="mb-3">
                     <img src="{{ asset('images/delete_red.svg') }}" alt="Deletar aluno"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Deletar o estudante</span>
+                    <span class="textoinfomodal">Deletar o discente</span>
                 </div>
             </div>
             <div class="modal-footer border-0"></div>

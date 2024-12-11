@@ -9,17 +9,17 @@
                 <div class="mb-3">
                     <img src="{{ asset('images/information_red.svg') }}" alt="Info aluno"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Informações do estudante</span>
+                    <span class="textoinfomodal">Informações do discente</span>
                 </div>
                 <div class="mb-3">
                     <img src="{{ asset('images/link-variant_red.svg') }}" alt="Vincular aluno"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Vincular o estudante</span>
+                    <span class="textoinfomodal">Vincular o discente</span>
                 </div>
                 <div class="mb-3">
                     <img src="{{ asset('images/file_red.svg') }}" alt="Docs aluno"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Documentos do estudante</span>
+                    <span class="textoinfomodal">Documentos do discente</span>
                 </div>
 
             </div>

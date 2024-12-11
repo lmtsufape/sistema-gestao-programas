@@ -41,6 +41,12 @@ class Aluno extends Model
                 'termo_compromisso_aluno',
             ]);
     }
+    
+    public function orientadores()
+    {
+        return $this->belongsToMany(Aluno::class, 'edital_aluno_orientadors', 'aluno_id', 'orientador_id')
+                    ->wherePivot('status', true);
+    }
 
     public static $rules = [
         'cpf' => 'bail|required|formato_cpf|cpf|unique:servidors|unique:alunos',

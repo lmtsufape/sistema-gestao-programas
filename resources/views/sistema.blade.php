@@ -22,7 +22,7 @@
         <div class="row" style="text-align: left;">
         <h1>Sobre o sistema</h1>
 <h3 style="padding-top: 10px;">O que é o sistema de gestão de programas acadêmicos (SGPA)?</h3>
-<p>É uma aplicação web desenvolvida no âmbito da cooperação técnica UFAPE-LMTS / UPE com o objetivo de facilitar o gerenciamento de programas acadêmicos, auxiliando os responsáveis nas suas rotinas de trabalho, como increver alunos e professores nos programas, etc.</p>
+<p>É uma aplicação web desenvolvida no âmbito da cooperação técnica UFAPE-LMTS / UPE com o objetivo de facilitar o gerenciamento de programas acadêmicos, auxiliando os responsáveis nas suas rotinas de trabalho, como increver alunos e docentes nos programas, etc.</p>
 
 <h3>Principais funcionalidades</h3>
 <ul style="padding-left: 5%">
@@ -39,7 +39,7 @@
         <li>Vincular em Editais:</li>
         <ul>
             <li>Alunos</li>
-            <li>Professores</li>
+            <li>Docentes</li>
         </ul>
     </ul>
 </ul>
@@ -53,7 +53,7 @@
             <li>Disciplinas</li>
             <li>Cursos</li>
             <li>Alunos</li>
-            <li>Professores</li>
+            <li>Docentes</li>
         </ul>
     </ul>
 </ul>
@@ -73,7 +73,7 @@
 </ul>
 
 <ul style="padding-left: 5%">
-    <li>Professor</li>
+    <li>Docente</li>
     <ul>
         <li>Consultar:</li>
         <ul>

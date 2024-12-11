@@ -55,7 +55,7 @@
                 <br>
 
                 <label for="instituicaoVinculo" class="titulopequeno">Instituição<strong style="color: #8B5558">*</strong></label>
-                <input class="boxcadastrar" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a instituição vinculada ao professor" value="{{ $orientador->instituicaoVinculo }}" required>
+                <input class="boxcadastrar" type="text" name="instituicaoVinculo" id="instituicaoVinculo" placeholder="Digite a instituição vinculada ao docente" value="{{ $orientador->instituicaoVinculo }}" required>
                 <br>
 
                 <label for="curso" class="titulopequeno">Curso(s)<strong style="color: #8B5558">*</strong></label>

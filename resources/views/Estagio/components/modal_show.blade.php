@@ -47,11 +47,11 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="tituloinfomodal form-label mt-3">Professor</label>
+                            <label class="tituloinfomodal form-label mt-3">Docente</label>
                             <div class="textoinfomodal"> {{ $estagio->orientador->user->name }} </div>
                         </div>
                         <div class="mb-3">
-                            <label class="tituloinfomodal form-label mt-3">Estudante</label>
+                            <label class="tituloinfomodal form-label mt-3">Discente</label>
                             <div class="textoinfomodal"> {{ $estagio->aluno->nome_aluno }} </div>
                         </div>
                         <div class="mb-3">

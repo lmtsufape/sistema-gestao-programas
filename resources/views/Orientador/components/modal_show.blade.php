@@ -3,13 +3,12 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-create p-2">
                 <div class="modal-header border-0">
-                    <p class="titulomodal">Informações do Professor</p>
+                    <p class="titulomodal">Informações do Docente</p>
                     <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="text-align: start">
                     @if ($orientador->user->image)
-                        <img src="/images/fotos-perfil/{{ $orientador->user->image }}" class="img-fluid profilepic mb-3"
-                            alt="Foto de perfil">
+                        <img src="/images/fotos-perfil/{{ $orientador->user->image }}" class="img-fluid profilepic mb-3" alt="Foto de perfil">
                     @else
                         <img src="/images/sem-foto-perfil.png" class="img-fluid profilepic mb-3" alt="Foto de perfil">
                     @endif
@@ -46,6 +45,14 @@
                     <div class="mb-3">
                         <label class="tituloinfomodal form-label mt-3">Instituição</label>
                         <div class="textoinfomodal"> {{ $orientador->instituicaoVinculo }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="tituloinfomodal form-label mt-3">Discentes orientados</label>
+                        <ul>
+                            @foreach ($orientador->alunosOrientados()->distinct()->orderBy('nome_aluno')->pluck('nome_aluno') as $nome)
+                                <li>{{ $nome }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
