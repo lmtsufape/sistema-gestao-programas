@@ -21,18 +21,18 @@
             <!-- INSTITUIÇÃO DE ENSINO -->
             <h1 class="titulogrande">Instituição de ensino</h1>
 
-            <label for="ProfessorComponenteCurricular" class="titulopequeno">Professor componente curricular<strong
+            <label for="ProfessorComponenteCurricular" class="titulopequeno">Docente componente curricular<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="text" name="ProfessorComponenteCurricular"
-                id="ProfessorComponenteCurricular" placeholder=" Digite o nome do professor do componente curricular"
+                id="ProfessorComponenteCurricular" placeholder=" Digite o nome do docente do componente curricular"
                 value="{{ $dados['professorComponenteCurricular'] ?? '' }}" required><br><br>
 
-            <label for="instituicaoEmail" class="titulopequeno">E-mail do professor do componente curricular<strong
+            <label for="instituicaoEmail" class="titulopequeno">E-mail do docente do componente curricular<strong
                     style="color: #8B5558">*</strong></label>
             <br>
             <input class="boxcadastrar" type="email" name="instituicaoEmail" id="instituicaoEmail"
-                placeholder=" Digite o email do professor do componente corricular"
+                placeholder=" Digite o email do docente do componente corricular"
                 value="{{ $dados['instituicaoEmail'] ?? '' }}" required><br><br>
 
             <label for="orientador" class="titulopequeno">Orientador<strong style="color: #8B5558">*</strong></label>

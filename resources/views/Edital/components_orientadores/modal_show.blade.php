@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content modal-create p-2">
             <div class="modal-header border-0">
-                <p class="titulomodal">Informações do Professor</p>
+                <p class="titulomodal">Informações do Docente</p>
                 <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="text-align: start">

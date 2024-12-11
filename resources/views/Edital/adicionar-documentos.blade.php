@@ -99,7 +99,7 @@
                     @method('PUT')
                     <input type="hidden" id="vinculo_id" name="vinculo_id" value="{{$vinculo->id}}">
 
-                    <label class="titulopequeno" for="termo_orientador">Termo do Professor <strong
+                    <label class="titulopequeno" for="termo_orientador">Termo do Docente <strong
                             style="color: red">*</strong></label>
                     <input type="file" id="termo_orientador" class="form-control boxcadastrar" name="termo_orientador" value="{{ old('termo_orientador') }}" required>
                     <br>

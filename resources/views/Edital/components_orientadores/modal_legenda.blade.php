@@ -9,12 +9,12 @@
                 <div class="mb-3">
                     <img src="{{ asset('images/information_red.svg') }}" alt="Info professor"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Informações do professor</span>
+                    <span class="textoinfomodal">Informações do Docente</span>
                 </div>
                 <div class="mb-3">
                     <img src="{{ asset('images/file_red.svg') }}" alt="Docs professor"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Documentos do professor</span>
+                    <span class="textoinfomodal">Documentos do Docente</span>
                 </div>
             </div>
             <div class="modal-footer border-0"></div>

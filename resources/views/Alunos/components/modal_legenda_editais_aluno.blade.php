@@ -14,7 +14,7 @@
                 <div class="mb-3">
                     <img src="{{ asset('images/card-account-details_red.svg') }}" alt="Editar aluno"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Professores vinculados</span>
+                    <span class="textoinfomodal">Docentes vinculados</span>
                 </div>
                 <div class="mb-3">
                     <img src="{{ asset('images/file-plus_red.svg') }}" alt="Enviar frequência mensal"

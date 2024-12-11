@@ -13,7 +13,7 @@
             <br>
 
             <div style="display: flex; justify-content: space-evenly; align-items: center;">
-                <h1 class="titulo"><strong>Professores</strong></h1>
+                <h1 class="titulo"><strong>Docentes</strong></h1>
             </div>
 
             {{-- TODO: Falta adicionar um modal com os possiveis filtros  --}}
@@ -23,7 +23,7 @@
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
                 @can('cadastrar orientador')
                     <button class="cadastrar-botao" type="button"
-                        onclick="window.location.href = '{{ route('orientadors.create') }}'">Cadastrar professor</button>
+                        onclick="window.location.href = '{{ route('orientadors.create') }}'">Cadastrar Docente</button>
                 @endcan
             </form>
 
@@ -35,7 +35,7 @@
         @if (sizeof($orientadors) == 0)
             <div class="empty">
                 <p>
-                    Não há professores cadastrados
+                    Não há Docentes cadastrados
                 </p>
             </div>
         @else
@@ -69,7 +69,7 @@
                                         <a type="button" data-bs-toggle="modal"
                                             data-bs-target="#modal_show_{{ $orientador->id }}">
                                             <img src="{{ asset('images/information.svg') }}" title="Informações"
-                                                alt="Info professor" style="height: 30px; width: 30px;">
+                                                alt="Info docente" style="height: 30px; width: 30px;">
                                         </a>
                                         {{--  <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents_{{$orientador->id}}">
                                 <img src="{{asset('images/document.png')}}" alt="Documento professor"  style="height: 30px; width: 30px;">
@@ -78,13 +78,13 @@
 
                                         <a href=" {{ route('orientadors.edit', ['id' => $orientador->id]) }}" type="button">
                                             <img src="{{ asset('images/pencil.svg') }}" title="Editar"
-                                                alt="Editar professor" style="height: 30px; width: 30px;">
+                                                alt="Editar docente" style="height: 30px; width: 30px;">
                                         </a>
                                         @can('deletar orientador')
                                             <a type="button" data-bs-toggle="modal"
                                                 data-bs-target="#modal_delete_{{ $orientador->id }}">
                                                 <img src="{{ asset('images/delete.svg') }}" title="Remover"
-                                                    alt="Deletar professor" style="height: 30px; width: 30px;">
+                                                    alt="Deletar docente" style="height: 30px; width: 30px;">
                                             </a>
                                         @endcan
                                 </tr>

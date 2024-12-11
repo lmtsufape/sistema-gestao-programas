@@ -16,9 +16,9 @@
         <br>
 
 
-        <div class="title-position">
-            <h1 class="titulo"><strong>Professores Vinculados</strong></h1>
-        </div>
+    <div class="title-position">
+        <h1 class="titulo"><strong>Docentes Vinculados</strong></h1>
+    </div>
 
         <form class="search-container" action="" method="GET">
             <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">

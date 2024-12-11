@@ -7,19 +7,19 @@
             </div>
             <div class="modal-body" style="text-align: start">
                 <div class="mb-3">
-                    <img src="{{ asset('images/information_red.svg') }}" alt="Info professor"
+                    <img src="{{ asset('images/information_red.svg') }}" alt="Info docente"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Informações do professor</span>
+                    <span class="textoinfomodal">Informações do docente</span>
                 </div>
                 <div class="mb-3">
-                    <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar professor"
+                    <img src="{{ asset('images/pencil_red.svg') }}" alt="Editar docente"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Editar o professor</span>
+                    <span class="textoinfomodal">Editar o docente</span>
                 </div>
                 <div class="mb-3">
-                    <img src="{{ asset('images/delete_red.svg') }}" alt="Deletar professor"
+                    <img src="{{ asset('images/delete_red.svg') }}" alt="Deletar docente"
                         style="height: 30px; width: 30px; padding-bottom: 5px">
-                    <span class="textoinfomodal">Deletar o professor</span>
+                    <span class="textoinfomodal">Deletar o docente</span>
                 </div>
             </div>
         </div>

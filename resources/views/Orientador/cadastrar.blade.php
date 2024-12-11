@@ -11,7 +11,7 @@
         @endif
         <div class="fundocadastrar">
             <h1 class="titulogrande">
-                Cadastrar Professor</h1>
+                Cadastrar Docente</h1>
             <hr class="divisor">
 
             <form action="{{route('orientadors.store')}}" method="POST" enctype="multipart/form-data">

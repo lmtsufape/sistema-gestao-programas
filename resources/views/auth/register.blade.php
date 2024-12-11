@@ -53,7 +53,7 @@
             <select aria-label="Default select example" class="boxinfo" name="tipoUser" id="tipoUser">
                 <option value disabled selected hidden>Selecione o perfil</option>
                 <option value="servidor">Técnico administrativo</option>
-                <option value="orientador">Professor</option>
+                <option value="orientador">Docente</option>
                 <option value="aluno">Estudante</option>
             </select>
 

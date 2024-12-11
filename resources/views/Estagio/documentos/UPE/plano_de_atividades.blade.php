@@ -156,14 +156,14 @@
             <input class="boxcadastrar" type="text" name="componenteCurricular" id="componenteCurricular" placeholder="Digite o componente curricular" value="{{ $dados['componenteCurricular'] ?? '' }}" required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
             
-            <label for="professorComponenteCurricular" class="titulopequeno">Professor do componente curricular<strong style="color: #8B5558">*</strong></label>
+            <label for="professorComponenteCurricular" class="titulopequeno">Docente do componente curricular<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="professorComponenteCurricular" id="professorComponenteCurricular" placeholder="Digite o nome do professor do componente curricular" value="{{ $dados['professorComponenteCurricular'] ?? '' }}" required><br>
+            <input class="boxcadastrar" type="text" name="professorComponenteCurricular" id="professorComponenteCurricular" placeholder="Digite o nome do docente do componente curricular" value="{{ $dados['professorComponenteCurricular'] ?? '' }}" required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
             
-            <label for="professorOrientador" class="titulopequeno">Professor orientador<strong style="color: #8B5558">*</strong></label>
+            <label for="professorOrientador" class="titulopequeno">Docente orientador<strong style="color: #8B5558">*</strong></label>
             <br>
-            <input class="boxcadastrar" type="text" name="professorOrientador" id="professorOrientador" placeholder="Digite o nome do professor orientador" value="{{ $dados['professorOrientador'] ?? '' }}" required><br>
+            <input class="boxcadastrar" type="text" name="professorOrientador" id="professorOrientador" placeholder="Digite o nome do docente orientador" value="{{ $dados['professorOrientador'] ?? '' }}" required><br>
             <div class="invalid-feedback"> Por favor preencha esse campo</div><br>
             
             <label for="periodoVigencia" class="titulopequeno">Período de Vigência do Estágio<strong style="color: #8B5558">*</strong></label>

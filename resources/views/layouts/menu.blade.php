@@ -34,7 +34,7 @@
                                     <li><a class="dropdown-item" href="{{ route('alunos.index') }}">Estudantes</a></li>
                                 @endcan
                                 @can('listar orientador')
-                                    <li><a class="dropdown-item" href="{{ route('orientadors.index') }}">Professores</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('orientadors.index') }}">Docentes</a></li>
                                 @endcan
                                 @can('listar curso')
                                     <li><a class="dropdown-item" href="{{ route('cursos.index') }}">Cursos</a></li>
