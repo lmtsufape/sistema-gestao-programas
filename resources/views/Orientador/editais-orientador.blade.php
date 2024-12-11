@@ -59,7 +59,7 @@
                     <th scope="col" class="text-center align-middle">Data de início</th>
                     <th scope="col" class="text-center align-middle">Data de fim</th>
                     <th scope="col" class="text-center align-middle">Programa</th>
-                    <th scope="col" class="text-center align-middle">Estudante</i></th>
+                    <th scope="col" class="text-center align-middle">Discente</i></th>
                     <th scope="col" class="text-center align-middle">Status</i></th>
                     <th class="text-center">
                         Ações

@@ -54,7 +54,7 @@
                 <option value disabled selected hidden>Selecione o perfil</option>
                 <option value="servidor">Técnico administrativo</option>
                 <option value="orientador">Docente</option>
-                <option value="aluno">Estudante</option>
+                <option value="aluno">Discente</option>
             </select>
 
             <div id="instituicaoVinculo" style="display:none">

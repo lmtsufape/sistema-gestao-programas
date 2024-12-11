@@ -90,7 +90,7 @@
             <div class="fundocadastrar">
                 <div class="row" style="display: flex; align-items: left;">
                     <h1 class="titulogrande">
-                        Vincular Estudante a {{ $edital->titulo_edital }}</h1>
+                        Vincular Discente a {{ $edital->titulo_edital }}</h1>
                     <p class= "titulopequeno">{{ $edital->descricao }}</p>
                 </div>
                 <hr>
@@ -99,7 +99,7 @@
 
                     @csrf
 
-                    <label class="titulopequeno" for="">CPF do estudante <strong style="color: #8B5558">*</strong></label>
+                    <label class="titulopequeno" for="">CPF do discente <strong style="color: #8B5558">*</strong></label>
                     <input type="text" id="cpf" class="boxcadastrar cpf-autocomplete" name="cpf"
                         value="{{ old('cpf') }}" placeholder="Digite o CPF do aluno" required data-url="{{ url('/cpfs') }}">
                     <br>

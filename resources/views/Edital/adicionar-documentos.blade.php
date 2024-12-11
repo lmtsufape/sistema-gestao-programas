@@ -104,12 +104,12 @@
                     <input type="file" id="termo_orientador" class="form-control boxcadastrar" name="termo_orientador" value="{{ old('termo_orientador') }}" required>
                     <br>
 
-                    <label class="titulopequeno" for="termo_aluno">Termo do Estudante <strong
+                    <label class="titulopequeno" for="termo_aluno">Termo do Discente <strong
                             style="color: red">*</strong></label>
                     <input type="file" id="termo_aluno" class="form-control boxcadastrar" name="termo_aluno" value="{{ old('termo_aluno') }}" required>
                     <br>
 
-                    <label class="titulopequeno" for="historico_escolar">Histórico Escolar do Estudante <strong
+                    <label class="titulopequeno" for="historico_escolar">Histórico Escolar do Discente <strong
                             style="color: red">*</strong></label>
                     <input type="file" id="historico_escolar" class="form-control boxcadastrar" name="historico_escolar" value="{{ old('historico_escolar') }}" required>
                     <br>

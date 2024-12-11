@@ -4,7 +4,7 @@
             <div class="modal-header border-0">
             </div>
             <div class="modal-body" style="text-align: start">
-                <p class="titulomodal">Deseja realmente remover o estudante?</h5>
+                <p class="titulomodal">Deseja realmente remover o discente?</h5>
             </div>
             <div class="modal-footer d-flex justify-content-between border-0">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

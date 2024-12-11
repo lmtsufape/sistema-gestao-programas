@@ -12,7 +12,7 @@
 
 
             <div style="display: flex; justify-content: space-evenly; align-items: center;">
-                <h1 class="titulo"><strong>Estudantes</strong></h1>
+                <h1 class="titulo"><strong>Discentes</strong></h1>
             </div>
 
             <form class="search-container" action="{{ route('alunos.index') }}" method="GET">
@@ -21,7 +21,7 @@
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
                 @can('cadastrar estudante')
                     <button class="cadastrar-botao" type="button"
-                        onclick="window.location.href = '{{ route('alunos.create') }}'">Cadastrar estudantes</button>
+                        onclick="window.location.href = '{{ route('alunos.create') }}'">Cadastrar discentes</button>
                 @endcan
             </form>
 
@@ -61,18 +61,18 @@
                                         <td class="align-middle">{{ $aluno->curso->nome }}</td>
                                         <td class="align-middle">
                                             <a type="button" data-bs-toggle="modal"
-                                                data-bs-target="#modal_edit_{{ $aluno->id }}" title="Informações do estudante">
+                                                data-bs-target="#modal_edit_{{ $aluno->id }}" title="Informações do discente">
                                                 <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info aluno"
                                                     style="height: 30px; width: 30px;">
                                             </a>
                                     
-                                            <a href=" {{ route('alunos.edit', ['id' => $aluno->id]) }}" title="Editar o estudante" type="button">
+                                            <a href=" {{ route('alunos.edit', ['id' => $aluno->id]) }}" title="Editar o discente" type="button">
                                                     <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar aluno"
                                                         style="height: 30px; width: 30px;">
                                             </a>
                                             @can('deletar estudante')
                                                 <a type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_delete_{{ $aluno->id }}" title="Deletar o estudante">
+                                                    data-bs-target="#modal_delete_{{ $aluno->id }}" title="Deletar o discente">
                                                     <img src="{{ asset('images/delete.svg') }}" title="Remover" alt="Deletar aluno"
                                                         style="height: 30px; width: 30px;">
                                                 </a>

@@ -10,7 +10,7 @@
         <br>
 
         <div style="display: flex; justify-content: space-evenly; align-items: center;">
-            <h1 class="titulo"><strong>Estudantes Vinculados - Inativos</strong></h1>
+            <h1 class="titulo"><strong>Discentes Vinculados - Inativos</strong></h1>
         </div>
 
         <form class="search-container" action="" method="GET">
@@ -19,7 +19,7 @@
             <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
             <button class="cadastrar-botao" type="button"
                 onclick="window.location.href = '{{ route('edital.show', ['id' => $edital->id]) }}'">Vincular
-                Estudante</button>
+                discente</button>
         </form>
 
         <br>

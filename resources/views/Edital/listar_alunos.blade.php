@@ -17,7 +17,7 @@
 
 
         <div class="title-position">
-            <h1 class="titulo"><strong>Estudantes Vinculados</strong></h1>
+            <h1 class="titulo"><strong>Discentes Vinculados</strong></h1>
         </div>
 
 
@@ -28,7 +28,7 @@
             @can('vincular estudante-edital')
                 <button class="cadastrar-botao" type="button"
                     onclick="window.location.href = '{{ route('edital.show', ['id' => $edital->id]) }}'">Vincular
-                    Estudantes</button>
+                    Discentes</button>
             @endcan
         </form>
 

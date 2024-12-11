@@ -272,7 +272,7 @@
                 <br><br>
 
                 <label for="nome" class="titulopequeno">
-                    As atividades desenvolvidas pelos estudantes são compaatíveis com o curso e permitem que eles apliquem
+                    As atividades desenvolvidas pelos discentes são compatíveis com o curso e permitem que eles apliquem
                     os conhecimentos teóricos e práticos obtidos em sua formação.
                     <strong style="color: #8B5558">*</strong></label>
                 <br>
