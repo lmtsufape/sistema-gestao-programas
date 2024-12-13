@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Exception;
 use Illuminate\Database\QueryException;
+use Carbon\Carbon;
 
 class OrientadorController extends Controller
 {
@@ -321,15 +322,53 @@ class OrientadorController extends Controller
     }   
 
     public function editais_profile_orientador(Request $request) {
-        $vinculos = EditalAlunoOrientadors::where(function ($query) {
-            $query->where('orientador_id', auth()->user()->typage_id)->where('status', true);
-        })
-        ->orWhere('status', false)
-        ->orderBy('status', 'desc')
-        ->orderBy('titulo')
-        ->get();
+        # Recupera todos os vinculos do usuário e todos os editais abertos, mapeia todos os dados relevantes e junta em uma só collection
+        $vinculos = EditalAlunoOrientadors::where('orientador_id', auth()->user()->typage_id)
+            ->where('status', true)
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'titulo' => $item->edital->titulo_edital,
+                    'data_inicio' => $item->edital->data_inicio,
+                    'data_fim' => $item->edital->data_fim,
+                    'programa' => $item->edital->programa->nome,
+                    'aluno' => [
+                        'id' => $item->aluno->id,
+                        'nome' => $item->aluno->user->name,
+                        'cpf' => $item->aluno->user->cpf,
+                        'termo' => $item->termo_aluno
+                    ],
+                    'tipo' => 'vinculado',
+                    'semestre' => $item->edital->semestre,
+                    'descricao' => $item->edital->descricao,
+                    'bolsista' => $item->bolsista,
+                    'disciplinas' => $item->edital->disciplinas,
+                    'valor_bolsa' => $item->edital->valor_bolsa,
+                ];
+            });
 
-        return view('Orientador.editais-orientador',compact("vinculos"));
+        $editaisAbertos = Edital::where('data_inicio', '<=', Carbon::today())
+            ->where('data_fim', '>=', Carbon::today())
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'id' => $item->id . 'edital',
+                    'titulo' => $item->titulo_edital,
+                    'data_inicio' => $item->data_inicio,
+                    'data_fim' => $item->data_fim,
+                    'programa' => $item->programa->nome,
+                    'tipo' => 'aberto',
+                    'semestre' => $item->semestre,
+                    'descricao' => $item->descricao,
+                    'disciplinas' => $item->disciplinas,
+                    'valor_bolsa' => $item->valor_bolsa
+                ];
+            });
+
+        $editais = $vinculos->concat($editaisAbertos)->sortBy(['tipo' => 'desc', 'titulo' => 'asc']);
+
+        return view('Orientador.editais-orientador',compact('editais'));
     }
 
 
