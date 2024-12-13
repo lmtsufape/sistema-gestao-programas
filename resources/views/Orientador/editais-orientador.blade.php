@@ -1,7 +1,6 @@
-@extends("templates.app")
+@extends('templates.app')
 
-@section("body")
-
+@section('body')
     <style>
         pagination {
             display: inline-block;
@@ -43,8 +42,7 @@
     </div>
 
     <form class="search-container" action="" method="GET">
-        <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor"
-               style="text-align: start">
+        <input class="search-input" onkeyup="" type="text" placeholder="Digite a busca" title="" id="valor" name="valor" style="text-align: start">
         <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
     </form>
     </div>
@@ -54,74 +52,49 @@
         <div class="col-md-9 corpo p-2 px-3">
             <table class="table">
                 <thead>
-                <tr class="table-head">
-                    <th scope="col" class="text-center align-middle">Título</i></th>
-                    <th scope="col" class="text-center align-middle">Data de início</th>
-                    <th scope="col" class="text-center align-middle">Data de fim</th>
-                    <th scope="col" class="text-center align-middle">Programa</th>
-                    <th scope="col" class="text-center align-middle">Discente</i></th>
-                    <th scope="col" class="text-center align-middle">Status</i></th>
-                    <th class="text-center">
-                        Ações
-                        <button type="button" class="infobutton align-bottom" data-bs-toggle="modal"
-                                data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
-                            <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda"
-                                 style="height: 20px; width: 20px;">
-                        </button>
-                    </th>
-                </tr>
+                    <tr class="table-head">
+                        <th scope="col" class="text-center align-middle">Título</i></th>
+                        <th scope="col" class="text-center align-middle">Data de início</th>
+                        <th scope="col" class="text-center align-middle">Data de fim</th>
+                        <th scope="col" class="text-center align-middle">Programa</th>
+                        <th scope="col" class="text-center align-middle">Discente</i></th>
+                        <th scope="col" class="text-center align-middle">Status</i></th>
+                        <th class="text-center">
+                            Ações
+                            <button type="button" class="infobutton align-bottom" data-bs-toggle="modal" data-bs-target="#modal_legenda" title="Ver legenda dos ícones">
+                                <img src="{{ asset('images/infolegenda.svg') }}" alt="Legenda" style="height: 20px; width: 20px;">
+                            </button>
+                        </th>
+                    </tr>
                 </thead>
-                @foreach ($vinculos as $vinculo)
-                    <tbody>
-                    <tr style="text-align: center;">
-                        <td class="align-middle">{{ $vinculo->edital->titulo_edital}}</td>
-                        <td class="align-middle">{{date_format(date_create($vinculo->edital->data_inicio), "d/m/Y")}}</td>
-                        <td class="align-middle">{{date_format(date_create($vinculo->edital->data_fim), "d/m/Y")}}</td>
-                        <td class="align-middle">{{$vinculo->edital->programa->nome}}</td>
-                        <td class="align-middle">{{$vinculo->aluno->user->name}}</td>
-                        <td class="align-middle">{{ auth()->user()->typage_type === App\Models\Orientador::class && $vinculo->orientador_id === auth()->user()->typage_id ? 'Vinculado' : 'Aberto' }}</td>
-                        <td class="align-middle">
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{$vinculo->id}}">
-                                <img src="{{asset('images/information.svg')}}" title="Informações do edital" alt="Info edital"
-                                     style="height: 30px; width: 30px;">
-                            </a>
-                            @if (auth()->user()->typage_type === App\Models\Orientador::class && $vinculo->orientador_id === auth()->user()->typage_id)
-                                <a type="button" href="{{route('edital.add-documentos-vinculo', ['id' => $vinculo->id]  )}}">
-                                    <img src="{{asset('images/add_disciplina.svg')}}" title="Adicionar documentos" alt="Adicionar Documentos"
-                                        style="height: 25px; width: 25px;">
+                <tbody>
+                    @foreach ($editais as $edital)
+                        <tr style="text-align: center;">
+                            <td class="align-middle">{{ $edital['titulo'] }}</td>
+                            <td class="align-middle">{{ $edital['data_inicio']->format('d/m/Y') }}</td>
+                            <td class="align-middle">{{ $edital['data_fim']->format('d/m/Y') }}</td>
+                            <td class="align-middle">{{ $edital['programa'] }}</td>
+                            <td class="align-middle">{{ $edital['aluno']['nome'] ?? '-' }}</td>
+                            <td class="align-middle">{{ $edital['tipo'] }}</td>
+                            <td class="align-middle">
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show{{ $edital['id'] }}">
+                                    <img src="{{ asset('images/information.svg') }}" title="Informações do edital" alt="Info edital" style="height: 30px; width: 30px;">
                                 </a>
-                                @if($vinculo->termo_aluno)
-                                    <a type="button" data-bs-toggle="modal"
-                                    data-bs-target="#modal_documents{{ $vinculo->aluno->id }}">
-                                        <img src="{{ asset('images/document.svg') }}" title="Ver documentos"
-                                            alt="Documento aluno" style="height: 30px; width: 30px;">
+                                @if ($edital['tipo'] === 'vinculado')
+                                    <a type="button" href="{{ route('edital.add-documentos-vinculo', ['id' => $edital['id']]) }}">
+                                        <img src="{{ asset('images/add_disciplina.svg') }}" title="Adicionar documentos" alt="Adicionar Documentos" style="height: 25px; width: 25px;">
                                     </a>
+                                    @if ($edital['aluno']['termo'])
+                                        <a type="button" data-bs-toggle="modal" data-bs-target="#modal_documents{{ $edital['aluno']['id'] }}">
+                                            <img src="{{ asset('images/document.svg') }}" title="Ver documentos" alt="Documento aluno" style="height: 30px; width: 30px;">
+                                        </a>
+                                    @endif
                                 @endif
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        {{-- Não apagar esse tr  --}}
-                    </tr>
-                    @include("Edital.components_vinculos.modal_show", ["vinculo" => $vinculo])
-
-                    {{-- @include('Orientador.components_alunos.modal_legenda')
-                    @include('Orientador.components_alunos.modal_show', [
-                     'aluno' => $vinculo->aluno,
-                     'vinculo' => $vinculo,
-                   ])
-                    @include('Orientador.components_alunos.modal_documents', [
-                      'aluno' => $vinculo->aluno,
-                      'vinculo' => $vinculo,c
-                    ])
-
-                    @include('Orientador.components_alunos.modal_delete', [
-                          'aluno' => $vinculo->aluno,
-                          'edital' => $vinculo->edital,
-                          'vinculo' => $vinculo,
-                     ]) --}}
+                            </td>
+                        </tr>
+                        @include('Edital.components_vinculos.modal_show', ['vinculo' => $edital])
                     @endforeach
-                    </tbody>
+                </tbody>
             </table>
         </div>
     </div>
