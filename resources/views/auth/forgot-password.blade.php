@@ -1,53 +1,53 @@
-@extends("templates.app")
+@extends('templates.app')
 
 
-@section("body")
-<div class="container content" style="margin-top: 3rem">
-    <div class="row justify-content-center">
-        <div class="col-md-8" style="margin-bottom:20px">
-            <div class="card shadow bg-white" style="border-radius:12px; border-width:0px;">
-                <div class="card-header" style="border-top-left-radius: 12px; border-top-right-radius: 12px; background-color: #fff">
-                    <div class="d-flex justify-content-between align-items-center" style="margin-top: 9px; margin-bottom:6px">
-                        <h5 class="card-title mb-0" style="font-size:25px; font-family:Arial, Helvetica, sans-serif; color:#1492E6">Redefinir Senha</h5>
-                    </div>    
+@section('body')
+
+    @if (session('sucesso'))
+        <div class="alert alert-sucess">
+            <p style="color: green">{{ session('sucesso') }}</p>
+        </div>
+    @endif
+    <br>
+
+    <div class="container">
+        <div class="login row">
+
+            <div class="col div-paragraph">
+                <h2 class="title-login">O que é?</h2>
+                <p class="paragraph">
+                    O sistema tem como intuito auxiliar no gerenciamento dos programas acadêmicos, como bolsas, monitorias e
+                    estágios.
+                    Desenvolvido para simplificar e automatizar, a plataforma proporciona controle e eficiência nas
+                    funções acadêmicas e garante que cada parte envolvida tenha visibilidade e participação ativa em todo o
+                    processo.
+                    Promove, desse modo, uma comunicação clara e otimizada.
+                </p>
+            </div>
+
+            <div class="col form-card">
+                <div class="form-content">
+                    <h2 class="title-form">Redefinir Senha</h2>
+                    <hr class="divisor-login">
                 </div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Endereço de E-mail') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                <form class="form-content" method="POST" action="{{ route('password.email') }}">
+                    @csrf
+                    
+                    <div class="form-body">
+                        <div class="field">
+                            <label for="email" class="titulo-login">E-mail</label>
+                            <input id="email" placeholder="Digite seu e-mail" name="email"
+                                class="input-login form-control input-modal-create" type="text">
                         </div>
 
-                        <div style="display:flex" class="d-flex justify-content-center">
-
-                            <button type="submit" class="btn btn-primary submit-button"
-                                    style="background: #34A853; height: 60px; width: 250px; border-radius: 15px;
-                                    margin-left: 0; margin-top: 30px; width: 30%; border: none;">
-                                    {{ __('Enviar link para redefinição de senha') }}
-                            </button>
+                        <div class="form-buttons">
+                            <a href="{{ route('login') }}" class="register-button">Voltar</a>
+                            <button type="submit" class="red-button">Confirmar</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
 @endsection

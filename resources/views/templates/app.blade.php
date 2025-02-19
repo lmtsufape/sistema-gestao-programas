@@ -67,8 +67,8 @@
                         @endforeach
                     </ul>
                 </div>
-
             @endif
+            
             @yield('body')
         </div>
     </div>
