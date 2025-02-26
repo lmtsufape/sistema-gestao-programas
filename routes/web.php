@@ -189,8 +189,6 @@ Route::prefix('cursos')->group(function () {
 // Route::get('/cadastrar-se', [CadastrarSeController::class, "cadastrarSe"]);
 // Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 //---------------------------------------------PERFIL------------------------------------------------------------
 //
