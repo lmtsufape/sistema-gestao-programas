@@ -81,6 +81,24 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <div class="botoesdd">
+                            <div class="dropdown">
+                                <button class="btn-menu " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                                    <img src="{{ asset('images/list-box-outline.png') }}" alt="listar" class="image-size">
+                                    Relatórios
+                                    <span><img src="{{ asset('images/arrow-3.png') }}" alt="mostrar"
+                                            class="arrow-dd"></span>
+                                </button>
+                                <ul class="dropdown-menu menu"role="menu"
+                                    aria-labelledby="dropdownMenuButton" style="width: 290px">
+                                    <li><a class="dropdown-item" href="#">Ver informações</a></li>
+                                    <li><a class="dropdown-item" href="#">Listar docentes por edital</a></li>
+                                    <li><a class="dropdown-item" href="#">Listar docentes por discentes</a></li>
+                                    <li><a class="dropdown-item" href="#">Listar edital com docentes e discentes</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     @endrole
                 </div>
             </nav>
