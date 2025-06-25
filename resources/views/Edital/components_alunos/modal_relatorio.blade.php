@@ -67,7 +67,7 @@
                 </div>
             @endif
 
-            @if($relatorio_enviado->status === 1)
+            @if($relatorio_enviado?->status === 1)
                 <div class="modal-footer border-0 d-flex justify-content-center mt-4">
                     <form action="{{ route('relatorio.parecer') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -82,13 +82,13 @@
                         </button>
                     </form>
                 </div>
-            @elseif($relatorio_enviado->status === 2)
+            @elseif($relatorio_enviado?->status === 2)
                 <div class="modal-footer border-0 d-flex justify-content-between mt-4">
                     <button type="" class="btn btn-success">
                         {{ $relatorio_enviado->status_label }}
                     </button>
                 </div>
-            @elseif($relatorio_enviado->status === 3)
+            @elseif($relatorio_enviado?->status === 3)
                 <div class="modal-footer border-0 d-flex justify-content-between mt-4">
                         <button type="" class="btn btn-warning mb-3">
                             {{ $relatorio_enviado->status_label }}
