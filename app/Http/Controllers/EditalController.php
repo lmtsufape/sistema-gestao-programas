@@ -17,6 +17,7 @@ use App\Http\Requests\EditalUpdateFormRequest;
 use App\Http\Requests\VinculoUpdateFormRequest;
 use App\Models\FrequenciaMensalAlunos;
 use App\Models\HistoricoVinculoAlunos;
+use App\Models\RelatorioFinal;
 use App\Models\User;
 use Exception;
 use Illuminate\Validation\ValidationException;
@@ -897,5 +898,92 @@ class EditalController extends Controller
         }
     }
 
+    public function enviarRelatorio(Request $request)
+    {
+        $vinculo = EditalAlunoOrientadors::where('edital_id', $request->edital_id)
+        ->whereHas('aluno', function ($query) {
+            $query->where('cpf', Auth::user()->cpf);
+        })->firstOrFail();
 
+        $relatorio_enviado = RelatorioFinal::where('edital_aluno_orientador_id', $vinculo->id)->first();
+
+        if($relatorio_enviado) {
+            return back()->withErrors(['falha' => 'Relatório final já enviado anteriormente!']);
+        }
+
+        $request->validate([
+            'relatorio_final' => 'required|mimes:pdf|max:2048',
+        ]);
+
+        $relatorio_aluno = "";
+        $caminho = null;
+
+        $semestre = str_replace('.', '_', $vinculo->edital->semestre);
+
+        try {
+            DB::beginTransaction();
+
+            if ($request->hasFile('relatorio_final') && $request->file('relatorio_final')->isValid()) {
+                $aluno_nome = preg_replace('/[^A-Za-z0-9_\-]/', '_', Auth::user()->name);
+                $relatorio_aluno = "relatorio_final_{$vinculo->id}_{$aluno_nome}_{$semestre}." . $request->relatorio_final->extension();
+                $request->relatorio_final->storeAs('relatorio_final', $relatorio_aluno);
+            }
+
+            $caminho = $request->file('relatorio_final')->storeAs('relatorio_final', $relatorio_aluno);
+
+            $relatorio = new RelatorioFinal();
+            $relatorio->caminho = $caminho;
+            $relatorio->edital_aluno_orientador_id = $vinculo->id;
+            $relatorio->save();
+
+            DB::commit();
+
+            return back()->with('sucesso', 'Relatório final enviado com sucesso!');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            if ($caminho && Storage::exists($caminho)) {
+                Storage::delete($caminho);
+            }
+
+            return back()->withErrors(['falha' => 'Falha ao enviar o relatório. Tente novamente.']);
+        }
+    }
+
+    public function download_relatorio_final($relatorio_id) {
+        $relatorio = RelatorioFinal::findOrFail($relatorio_id)->first();
+
+        if(Storage::exists($relatorio->caminho)) {
+            return Storage::download($relatorio->caminho);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+    }
+
+    public function visualizar_relatorio_final($relatorio_id)
+    {
+        $relatorio = RelatorioFinal::findOrFail($relatorio_id);
+
+        if (Storage::exists($relatorio->caminho)) {
+            return Storage::response($relatorio->caminho);
+        } else {
+            return redirect()->back()->with('falha', 'Arquivo não encontrado.');
+        }
+    }
+
+    public function parecer_relatorio_final(Request $request)
+    {
+        $relatorio = RelatorioFinal::findOrFail($request->relatorio_id);
+
+        if($request->parecer == 2) {
+            $relatorio->status = $request->parecer;
+        } elseif($request->parecer == 3) {
+            $relatorio->status = $request->parecer;
+        }
+
+        $relatorio->update();
+
+        return back()->with('sucesso', 'Relatório avaliado com sucesso!');
+    }
 }

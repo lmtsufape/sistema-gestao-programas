@@ -3,7 +3,7 @@
 @section('body')
     <div class="container-fluid">
         @if (session('sucesso'))
-            <div class="alert alert-sucess">
+            <div class="alert alert-success">
                 {{ session('sucesso') }}
             </div>
         @endif
@@ -84,6 +84,11 @@
                                         <img src="{{ asset('images/document.svg') }}" title="Ver documentos"
                                             alt="Documento aluno" style="height: 30px; width: 30px;">
                                     </a>
+
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_relatorio">
+                                        <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Relatorio"
+                                            style="height: 30px; width: 30px; " title="Relatório Final">
+                                    </a>
                                     {{-- <a type="button" href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}">Baixar PDF</a> --}}
 
                                 </td>
@@ -105,6 +110,7 @@
                                 'edital' => $vinculo->edital,
                                 'vinculo' => $vinculo,
                             ])
+                            @include('Edital.components_alunos.modal_relatorio')
                         @endforeach
                     </tbody>
                 </table>
