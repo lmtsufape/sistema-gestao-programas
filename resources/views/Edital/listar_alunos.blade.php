@@ -53,7 +53,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                       
+
                         @foreach ($vinculos as $vinculo)
                             <tr>
                                 <td class="align-middle">{{ $vinculo->aluno->nome_aluno }}</td>
@@ -67,16 +67,15 @@
                                     </a>
                                     @can('editar vinculo estudante-edital')
                                         <a type="button"
-                                                href="{{ route('edital.editar_vinculo', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
-                                                <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar edital"
-                                                    style="height: 30px; width: 30px;">
+                                            href="{{ route('edital.editar_vinculo', ['aluno_id' => $vinculo->aluno->id, 'edital_id' => $vinculo->edital->id]) }}">
+                                            <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar edital"
+                                                style="height: 30px; width: 30px;">
                                         </a>
                                     @endcan
                                     @can('desvincular estudante-edital')
-                                        <a type="button"
-                                        href="{{ route('edital.aluno.delete', ['id' => $vinculo->id]) }}">
-                                        <img src="{{ asset('images/unlink.png') }}" title="Desvincular"
-                                        alt="Deletar edital" style="height: 25px; width: 25px;">
+                                        <a type="button" href="{{ route('edital.aluno.delete', ['id' => $vinculo->id]) }}">
+                                            <img src="{{ asset('images/unlink.png') }}" title="Desvincular"
+                                                alt="Deletar edital" style="height: 25px; width: 25px;">
                                         </a>
                                     @endcan
                                     <a type="button" data-bs-toggle="modal"
@@ -85,9 +84,11 @@
                                             alt="Documento aluno" style="height: 30px; width: 30px;">
                                     </a>
 
-                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_relatorio">
-                                        <img src="{{ asset('images/mostrar-documentos.svg') }}" alt="Relatorio"
-                                            style="height: 30px; width: 30px; " title="Relatório Final">
+                                    <a type="button" data-bs-toggle="modal"
+                                        data-bs-target="#modal_relatorio_{{ $vinculo->id }}">
+                                        <div style="color: blue; height: 30px; width: 30px;">
+                                            {!! file_get_contents(public_path('images/file-plus_red.svg')) !!}
+                                        </div>
                                     </a>
                                     {{-- <a type="button" href="{{ route('termo_aluno.download', ['fileName' => $vinculo->termo_compromisso_aluno]) }}">Baixar PDF</a> --}}
 
@@ -115,7 +116,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
         </div>
         <br>
         <br>

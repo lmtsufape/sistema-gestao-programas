@@ -975,14 +975,12 @@ class EditalController extends Controller
     public function parecer_relatorio_final(Request $request)
     {
         $relatorio = RelatorioFinal::findOrFail($request->relatorio_id);
+        $dados = $request->validate([
+            'status' => 'required|integer|in:2,3',
+            'parecer' => 'nullable|string'
+        ]);
 
-        if($request->parecer == 2) {
-            $relatorio->status = $request->parecer;
-        } elseif($request->parecer == 3) {
-            $relatorio->status = $request->parecer;
-        }
-
-        $relatorio->update();
+        $relatorio->update($dados);
 
         return back()->with('sucesso', 'Relatório avaliado com sucesso!');
     }
