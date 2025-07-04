@@ -907,7 +907,7 @@ class EditalController extends Controller
 
         $relatorio_enviado = RelatorioFinal::where('edital_aluno_orientador_id', $vinculo->id)->first();
 
-        if($relatorio_enviado) {
+        if($relatorio_enviado && $relatorio_enviado->status != 3) {
             return back()->withErrors(['falha' => 'Relatório final já enviado anteriormente!']);
         }
 
