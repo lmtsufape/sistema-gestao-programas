@@ -6,7 +6,7 @@
     $relatorio_enviado = App\Models\RelatorioFinal::where('edital_aluno_orientador_id', $vinculo->id)->first();
 @endphp
 
-<div class="modal " tabindex="-1" aria-hidden="true" id="modal_relatorio">
+<div class="modal " tabindex="-1" aria-hidden="true" id="modal_relatorio_{{ $edital->id }}">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content modal-create p-2">
             <div class="modal-header border-0">
@@ -21,7 +21,7 @@
                     <div class="modal-body" style="text-align: start">
                         <input class="w-75 form-control" type="file" name="relatorio_final" id="relatorio_final" title="Envie seu relatório final" required>
                     </div>
-                    
+
                     <input type="hidden" name="edital_id" value="{{$edital->id}}">
 
                     <div class="modal-footer border-0 mb-3">
@@ -41,12 +41,12 @@
                                 <div class="textoinfomodal">
                                     {{ $edital->semestre }} </div>
                             </div>
-                    
+
                             <div class="mb-3">
                                 <label class="tituloinfomodal form-label mt-3">Programa</label>
                                 <div class="textoinfomodal">{{ $edital->programa->nome }} </div>
                             </div>
-                            
+
                             <div class="mb-3">
                                 <label class="tituloinfomodal form-label mt-3">Baixar</label>
                                 <div>
@@ -68,11 +68,6 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
-
-                        
-
-                        <div class="modal-footer border-0">
                         </div>
                     </div>
                 @endif
