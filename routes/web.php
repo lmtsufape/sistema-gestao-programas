@@ -189,8 +189,6 @@ Route::prefix('cursos')->group(function () {
 // Route::get('/cadastrar-se', [CadastrarSeController::class, "cadastrarSe"]);
 // Route::post('/cadastrar-se/store', [CadastrarSeController::class, "store"]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 //---------------------------------------------PERFIL------------------------------------------------------------
 //
@@ -229,6 +227,13 @@ Route::get('/listar_alunos-orientador', [OrientadorController::class, 'lista_alu
 
 //Rota para frequencia mensal
 Route::post('/frequencia-aluno', [EditalController::class, 'enviarFrequencia'])->name('frequencia.enviar');
+
+//Rota para envio do relatório final
+Route::post('/relatorio-aluno', [EditalController::class, 'enviarRelatorio'])->name('relatorio.enviar');
+Route::get('/{relatorio_id}/relatorio-final/download', [EditalController::class, 'download_relatorio_final'])->name('relatorio.download');
+Route::get('/{relatorio_id}/relatorio-final/visualizar', [EditalController::class, 'visualizar_relatorio_final'])->name('relatorio.visualizar');
+Route::post('/relatorio-final/parecer/update', [EditalController::class, 'parecer_relatorio_final'])->name('relatorio.parecer');
+
 
 //Rotas do Estágio
 

@@ -22,11 +22,6 @@
                         <p class="third-title">{{ $programa->nome }}</p>
                         </button>
                     @endforeach
-                    <button class="botao" href="{{ route('estagio.index') }}"
-                        onclick="window.location.href='{{ route('estagio.index') }}'">
-                        <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
-                        <p class="third-title">Estágio</p>
-                    </button>
                 </div>
                 <br>
             </div>
@@ -37,6 +32,11 @@
                 <hr>
                 <br>
                 <div class="buttons-organization -gestor">
+                    <button class="botao" href="{{ route('estagio.index') }}"
+                        onclick="window.location.href='{{ route('estagio.index') }}'">
+                        <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
+                        <p class="third-title">Todos os Estágios</p>
+                    </button>
                     @foreach ($cursos as $index => $curso)
                         @if ($index % 2 == 0)
                             <button class="botao-maior" href="{{ url('/cursos/' . $curso->id . '/estagios') }}"

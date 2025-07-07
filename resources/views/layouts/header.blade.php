@@ -29,9 +29,8 @@
             <div>
                 <div class="d-lg-flex justify-content-end">
                     @auth
-                    <button class="botaoinvisivel" type="button">
-                        <img src="{{ asset('images/sininho.svg') }}" title="Notificações do sistema" alt="Notificações" style="height: auto; width: auto">
-                    </button>
+                    <livewire:notification-bell />
+
                     @if (Auth::user()->image)
                     <img src="{{ asset('images/fotos-perfil/' . Auth::user()->image) }}" title="Minha foto de perfil" class="img-fluid fotoUserAuth" alt="Foto de perfil">
                     @else

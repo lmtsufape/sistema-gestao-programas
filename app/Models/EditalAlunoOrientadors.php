@@ -43,4 +43,9 @@ class EditalAlunoOrientadors extends Model
     {
         return $this->hasMany(FrequenciaMensalAlunos::class, 'edital_aluno_orientador_id');
     }
+
+    public function relatorio()
+    {
+        return $this->hasOne(RelatorioFinal::class, 'edital_aluno_orientador_id');
+    }
 }
