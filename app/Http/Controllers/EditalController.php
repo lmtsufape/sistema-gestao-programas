@@ -931,10 +931,16 @@ class EditalController extends Controller
 
             $caminho = $request->file('relatorio_final')->storeAs('relatorio_final', $relatorio_aluno);
 
-            $relatorio = new RelatorioFinal();
-            $relatorio->caminho = $caminho;
-            $relatorio->edital_aluno_orientador_id = $vinculo->id;
-            $relatorio->save();
+            if ($relatorio_enviado) {
+                $relatorio_enviado->caminho = $caminho;
+                $relatorio_enviado->status = 1;
+                $relatorio_enviado->update();
+            } else {
+                $relatorio = new RelatorioFinal();
+                $relatorio->caminho = $caminho;
+                $relatorio->edital_aluno_orientador_id = $vinculo->id;
+                $relatorio->save();
+            }
 
             DB::commit();
 
@@ -952,7 +958,7 @@ class EditalController extends Controller
     }
 
     public function download_relatorio_final($relatorio_id) {
-        $relatorio = RelatorioFinal::findOrFail($relatorio_id)->first();
+        $relatorio = RelatorioFinal::findOrFail($relatorio_id);
 
         if(Storage::exists($relatorio->caminho)) {
             return Storage::download($relatorio->caminho);

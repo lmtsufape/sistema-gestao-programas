@@ -36,7 +36,7 @@
                         <div class="modal-body" style="text-align: start">
                             <div class="mb-3">
                                 <label class="tituloinfomodal form-label mt-3">Status</label>
-                                <div class="textoinfomodal">
+                                <div class="textoinfomodal" style="color: {{ $relatorio_enviado->status_color }}; font-weight: bolder;">
                                     Enviado - {{ $relatorio_enviado->status_label }} </div>
                             </div>
 
