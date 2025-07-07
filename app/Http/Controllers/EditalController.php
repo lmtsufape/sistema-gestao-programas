@@ -24,6 +24,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\RelatorioEnviado;
 
 use function PHPSTORM_META\type;
 
@@ -935,11 +936,13 @@ class EditalController extends Controller
                 $relatorio_enviado->caminho = $caminho;
                 $relatorio_enviado->status = 1;
                 $relatorio_enviado->update();
+                User::find(5)->notify(new RelatorioEnviado($relatorio_enviado));
             } else {
                 $relatorio = new RelatorioFinal();
                 $relatorio->caminho = $caminho;
                 $relatorio->edital_aluno_orientador_id = $vinculo->id;
                 $relatorio->save();
+                User::find(5)->notify(new RelatorioEnviado($relatorio));
             }
 
             DB::commit();

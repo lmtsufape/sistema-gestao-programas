@@ -65,4 +65,9 @@ class RelatorioFinal extends Model
             default => 'black',
         };
     }
+
+    public function editalAlunoOrientador()
+    {
+        return $this->belongsTo(EditalAlunoOrientadors::class, 'edital_aluno_orientador_id');
+    }
 }
