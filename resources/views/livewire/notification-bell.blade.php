@@ -16,17 +16,17 @@
                 <button wire:click="marcarTodasComoLidas" class="btn btn-sm btn-link p-0">Marcar como lidas</button>
             @endif
         </li>
+
         <li>
-            <hr class="dropdown-divider">
+            <hr class="dropdown-divider my-0">
         </li>
 
         @forelse ($this->notificacoes as $notificacao)
             @if ($notificacao->data['link'] ?? false)
-                <a href="{{ $notificacao->data['link'] }}">
-                    <li class="px-3 py-2">
-                        <div class="small">{{ $notificacao->data['mensagem'] }}</div>
-                        <div class="text-muted small">{{ $notificacao->created_at->diffForHumans() }}</div>
-                    </li>
+                <a href="{{ $notificacao->data['link'] }}"
+                    class="d-block px-3 py-2 text-decoration-none text-dark hover-notificacao">
+                    <div class="small">{{ $notificacao->data['mensagem'] }}</div>
+                    <div class="text-muted small">{{ $notificacao->created_at->diffForHumans() }}</div>
                 </a>
             @else
                 <li class="px-3 py-2">
@@ -39,3 +39,10 @@
         @endforelse
     </ul>
 </div>
+
+<style>
+    .hover-notificacao:hover {
+        background-color: #dddddd;
+        transition: background-color 0.2s ease;
+    }
+</style>
