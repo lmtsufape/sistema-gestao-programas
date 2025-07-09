@@ -9,7 +9,7 @@
     $relatorio_enviado = App\Models\RelatorioFinal::where('edital_aluno_orientador_id', $vinculo->id)->first();
 @endphp
 
-<div class="modal " tabindex="-1" aria-hidden="true" id="modal_relatorio_{{ $edital->id }}">
+<div class="modal " tabindex="-1" aria-hidden="true" id="modal_relatorio_{{ $id }}">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content modal-create p-2">
             <div class="modal-header border-0">
@@ -77,7 +77,7 @@
                             @if ($relatorio_enviado->status !== 1)
                                 <div class="mb-3">
                                     <label class="tituloinfomodal form-label mt-3" for="parecer">Parecer</label>
-                                    <textarea class="form-control" name="parecer" id="parecer" rows="3" placeholder="Digite um parecer (opcional)"
+                                    <textarea class="form-control" name="parecer" id="parecer" rows="3" placeholder="{{ auth()->user()->typage_type === Aluno::class ? 'Digite um parecer (opcional)' : 'Nenhum parecer adicionado.'}}"
                                         disabled>{{ $relatorio_enviado->parecer }}</textarea>
                                 </div>
 

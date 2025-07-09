@@ -37,11 +37,11 @@ class Edital extends Model
     {
         return $this->belongsToMany(Aluno::class, 'edital_aluno_orientadors')
             ->withPivot([
-                'data_inicio', 
-                'data_fim', 
-                'bolsa', 
+                'data_inicio',
+                'data_fim',
+                'bolsa',
                 'status',
-                'info_complementares', 
+                'info_complementares',
                 #'disciplina_id',
                 'aluno_id',
                 'edital_id',
@@ -61,7 +61,6 @@ class Edital extends Model
 
     public function disciplinas(){
         return $this->belongsToMany(Disciplina::class, 'edital_disciplinas');
-    
-    }
 
+    }
 }

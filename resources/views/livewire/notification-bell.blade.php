@@ -16,13 +16,24 @@
                 <button wire:click="marcarTodasComoLidas" class="btn btn-sm btn-link p-0">Marcar como lidas</button>
             @endif
         </li>
-        <li><hr class="dropdown-divider"></li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
 
         @forelse ($this->notificacoes as $notificacao)
-            <li class="px-3 py-2">
-                <div class="small">{{ $notificacao->data['mensagem'] }}</div>
-                <div class="text-muted small">{{ $notificacao->created_at->diffForHumans() }}</div>
-            </li>
+            @if ($notificacao->data['link'] ?? false)
+                <a href="{{ $notificacao->data['link'] }}">
+                    <li class="px-3 py-2">
+                        <div class="small">{{ $notificacao->data['mensagem'] }}</div>
+                        <div class="text-muted small">{{ $notificacao->created_at->diffForHumans() }}</div>
+                    </li>
+                </a>
+            @else
+                <li class="px-3 py-2">
+                    <div class="small">{{ $notificacao->data['mensagem'] }}</div>
+                    <div class="text-muted small">{{ $notificacao->created_at->diffForHumans() }}</div>
+                </li>
+            @endif
         @empty
             <li class="text-center text-muted py-2">Sem novas notificações</li>
         @endforelse

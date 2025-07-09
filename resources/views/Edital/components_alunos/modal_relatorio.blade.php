@@ -2,7 +2,7 @@
     $relatorio_enviado = App\Models\RelatorioFinal::where('edital_aluno_orientador_id', $vinculo->id)->first();
 @endphp
 
-<div class="modal" tabindex="-1" aria-hidden="true" id="modal_relatorio_{{ $vinculo->id }}">
+<div class="modal" tabindex="-1" aria-hidden="true" id="modal_relatorio_{{ $id }}">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content modal-create p-2">
             <div class="modal-header border-0">

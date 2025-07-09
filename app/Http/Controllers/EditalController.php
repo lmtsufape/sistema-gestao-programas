@@ -24,7 +24,9 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
-use App\Notifications\RelatorioEnviado;
+use App\Notifications\RelatorioEnviadoNotification;
+use App\Notifications\RelatorioAvaliadoNotification;
+
 
 use function PHPSTORM_META\type;
 
@@ -382,7 +384,7 @@ class EditalController extends Controller
             $campo = $request->query('campo');
             $valor = $request->query('valor');
 
-            if ($valor == null){
+            if ($valor == null && $request->query('modal') == null){
                 return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
             }
 
@@ -414,7 +416,7 @@ class EditalController extends Controller
             ->get();
 
 
-            return view("Edital.listar_alunos", compact("vinculos", "edital", "frequencia"));
+            return view("Edital.listar_alunos", compact("vinculos", "edital"));
         }else{
             $vinculos = EditalAlunoOrientadors::where('edital_id', $id)->where('status', true)->get();
             $frequencias = FrequenciaMensalAlunos::where('edital_aluno_orientador_id', $id)->get();
@@ -936,13 +938,13 @@ class EditalController extends Controller
                 $relatorio_enviado->caminho = $caminho;
                 $relatorio_enviado->status = 1;
                 $relatorio_enviado->update();
-                User::find(5)->notify(new RelatorioEnviado($relatorio_enviado));
+                User::find(5)->notify(new RelatorioEnviadoNotification($relatorio_enviado));
             } else {
                 $relatorio = new RelatorioFinal();
                 $relatorio->caminho = $caminho;
                 $relatorio->edital_aluno_orientador_id = $vinculo->id;
                 $relatorio->save();
-                User::find(5)->notify(new RelatorioEnviado($relatorio));
+                User::find(5)->notify(new RelatorioEnviadoNotification($relatorio));
             }
 
             DB::commit();
@@ -990,6 +992,9 @@ class EditalController extends Controller
         ]);
 
         $relatorio->update($dados);
+
+        $user = $relatorio->editalAlunoOrientador->aluno->user;
+        $user->notify(new RelatorioAvaliadoNotification($relatorio));
 
         return back()->with('sucesso', 'Relatório avaliado com sucesso!');
     }

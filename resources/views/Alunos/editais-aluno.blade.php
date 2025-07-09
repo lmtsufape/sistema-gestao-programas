@@ -39,7 +39,11 @@
                         </th>
                     </tr>
                 </thead>
-                @foreach ($editais as $edital)
+                @foreach ($pivos as $pivot)
+                    @php
+                        $edital = $pivot->edital;
+                    @endphp
+
                     @isset($edital)
                         <tbody>
                             <tr>
@@ -88,18 +92,17 @@
                                         @endforeach
                                     @endif
 
-                                    <a type="button" data-bs-toggle="modal" data-bs-target="#modal_relatorio_{{ $edital->id }}">
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="{{ '#modal_relatorio_' . $pivot->id }}">
                                         <img src="{{ asset('images/file-plus_red.svg') }}" alt="Relatorio"
                                             style="height: 30px; width: 30px; " title="Relatório Final">
                                     </a>
-
                                 </td>
                             </tr>
 
                         </tbody>
                         @include('Edital.components.modal_show', ['edital' => $edital])
                         @include('Alunos.components.modal_frequencia')
-                        @include('Alunos.components.modal_relatorio')
+                        @include('Alunos.components.modal_relatorio', ['id' => $pivot->id])
                     @endisset
                 @endforeach
             </table>
@@ -107,4 +110,19 @@
     </div>
 
     @include('Alunos.components.modal_legenda_editais_aluno')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const modalId = params.get('modal');
+
+            if (modalId) {
+                const modalEl = document.getElementById(`modal_relatorio_${modalId}`);
+                if (modalEl) {
+                    const modal = new bootstrap.Modal(modalEl);
+                    modal.show();
+                }
+            }
+        });
+    </script>
 @endsection

@@ -111,7 +111,7 @@
                                 'edital' => $vinculo->edital,
                                 'vinculo' => $vinculo,
                             ])
-                            @include('Edital.components_alunos.modal_relatorio')
+                            @include('Edital.components_alunos.modal_relatorio', ['id' => $vinculo->id])
                         @endforeach
                     </tbody>
                 </table>
@@ -135,5 +135,20 @@
         function exibirModalDocumentos(id) {
             $('#modal_documents' + id).modal('documents');
         }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const modalId = params.get('modal');
+
+            if (modalId) {
+                const modalEl = document.getElementById(`modal_relatorio_${modalId}`);
+                if (modalEl) {
+                    const modal = new bootstrap.Modal(modalEl);
+                    modal.show();
+                }
+            }
+        });
     </script>
 @endsection
