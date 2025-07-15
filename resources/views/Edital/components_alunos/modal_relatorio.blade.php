@@ -30,7 +30,7 @@
 
                     <div class="modal-body" style="text-align: start">
                         <div class="container-fluid">
-                            <div class="row mb-3">
+                            <div class="row mb-5">
                                 <div class="col">
                                     <label class="tituloinfomodal form-label">Status</label>
                                     <div class="textoinfomodal">Enviado - {{ $relatorio_enviado->status_label }}</div>
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            <div class="row mb-5">
                                 <div class="col">
                                     <label class="tituloinfomodal form-label">Semestre</label>
                                     <div class="textoinfomodal">{{ $edital->semestre }}</div>
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            <div class="row mb-5">
                                 <div class="col">
                                     <label class="tituloinfomodal form-label">Baixar</label>
                                     <div>
@@ -80,14 +80,14 @@
                             </div>
 
                             @if ($relatorio_enviado->parecer && auth()->user()->typage_type !== App\Models\Aluno::class)
-                                <div class="row mb-3">
+                                <div class="row mb-5">
                                     <label class="tituloinfomodal form-label" for="parecer">Parecer anterior</label>
                                     <textarea class="form-control" disabled>{{ $relatorio_enviado->parecer }}</textarea>
                                 </div>
                             @endif
 
                             @if ($status === 1)
-                                <div class="row mb-3">
+                                <div class="row">
                                     <label class="tituloinfomodal form-label" for="parecer">Parecer</label>
                                     <textarea class="form-control" name="parecer" id="parecer" rows="8" placeholder="Digite um parecer (opcional)"></textarea>
                                 </div>
