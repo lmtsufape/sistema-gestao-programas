@@ -32,30 +32,31 @@
                         <div class="container-fluid">
                             <div class="row mb-3">
                                 <div class="col">
-                                    <label class="tituloinfomodal form-label mt-3">Status</label>
+                                    <label class="tituloinfomodal form-label">Status</label>
                                     <div class="textoinfomodal">Enviado - {{ $relatorio_enviado->status_label }}</div>
                                 </div>
 
                                 <div class="col">
-
+                                    <label class="tituloinfomodal form-label">Data de envio inicial</label>
+                                    <div class="textoinfomodal">{{ $relatorio_enviado->created_at->format('d/m/Y H:i') }}</div>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col">
-                                    <label class="tituloinfomodal form-label mt-3">Semestre</label>
+                                    <label class="tituloinfomodal form-label">Semestre</label>
                                     <div class="textoinfomodal">{{ $edital->semestre }}</div>
                                 </div>
 
                                 <div class="col">
-                                    <label class="tituloinfomodal form-label mt-3">Programa</label>
+                                    <label class="tituloinfomodal form-label">Programa</label>
                                     <div class="textoinfomodal">{{ $edital->programa->nome }}</div>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col">
-                                    <label class="tituloinfomodal form-label mt-3">Baixar</label>
+                                    <label class="tituloinfomodal form-label">Baixar</label>
                                     <div>
                                         <a href="{{ route('relatorio.download', ['relatorio_id' => $relatorio_enviado->id]) }}"
                                             target="_blank">
@@ -66,7 +67,7 @@
                                 </div>
 
                                 <div class="col">
-                                    <label class="tituloinfomodal form-label mt-3">Visualizar</label>
+                                    <label class="tituloinfomodal form-label">Visualizar</label>
                                     <div>
                                         <a href="{{ route('relatorio.visualizar', ['relatorio_id' => $relatorio_enviado->id]) }}"
                                             target="_blank">

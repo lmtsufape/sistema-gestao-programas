@@ -20,14 +20,16 @@ class RelatorioFinal extends Model
     /**
      * Retorna a chave do status (ex: 'aprovado') com base no valor inteiro.
      */
-    public static function getStatusName(int $value): ?string {
+    public static function getStatusName(int $value): ?string
+    {
         return array_search($value, self::STATUS_ENUM, true);
     }
 
     /**
      * Retorna o rótulo legível do status.
      */
-    public static function getStatusLabel(string $key): ?string {
+    public static function getStatusLabel(string $key): ?string
+    {
         return match ($key) {
             'em_analise' => 'Em análise',
             'aprovado'   => 'Aprovado',
@@ -39,15 +41,33 @@ class RelatorioFinal extends Model
     /**
      * Accessor para obter a chave do status.
      */
-    public function getStatusKeyAttribute(): ?string {
+    public function getStatusKeyAttribute(): ?string
+    {
         return self::getStatusName($this->status);
     }
 
     /**
      * Accessor para obter o rótulo do status.
      */
-    public function getStatusLabelAttribute(): ?string {
+    public function getStatusLabelAttribute(): ?string
+    {
         $key = $this->status_key;
         return $key ? self::getStatusLabel($key) : null;
+    }
+
+    // No modelo RelatorioFinal
+    public function getStatusColorAttribute()
+    {
+        return match ($this->status) {
+            1 => 'blue',
+            2 => 'green',
+            3 => '#c10b00',
+            default => 'black',
+        };
+    }
+
+    public function editalAlunoOrientador()
+    {
+        return $this->belongsTo(EditalAlunoOrientadors::class, 'edital_aluno_orientador_id');
     }
 }

@@ -24,6 +24,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\RelatorioEnviado;
 
 use function PHPSTORM_META\type;
 
@@ -907,7 +908,7 @@ class EditalController extends Controller
 
         $relatorio_enviado = RelatorioFinal::where('edital_aluno_orientador_id', $vinculo->id)->first();
 
-        if($relatorio_enviado) {
+        if($relatorio_enviado && $relatorio_enviado->status != 3) {
             return back()->withErrors(['falha' => 'Relatório final já enviado anteriormente!']);
         }
 
@@ -931,10 +932,18 @@ class EditalController extends Controller
 
             $caminho = $request->file('relatorio_final')->storeAs('relatorio_final', $relatorio_aluno);
 
-            $relatorio = new RelatorioFinal();
-            $relatorio->caminho = $caminho;
-            $relatorio->edital_aluno_orientador_id = $vinculo->id;
-            $relatorio->save();
+            if ($relatorio_enviado) {
+                $relatorio_enviado->caminho = $caminho;
+                $relatorio_enviado->status = 1;
+                $relatorio_enviado->update();
+                User::find(5)->notify(new RelatorioEnviado($relatorio_enviado));
+            } else {
+                $relatorio = new RelatorioFinal();
+                $relatorio->caminho = $caminho;
+                $relatorio->edital_aluno_orientador_id = $vinculo->id;
+                $relatorio->save();
+                User::find(5)->notify(new RelatorioEnviado($relatorio));
+            }
 
             DB::commit();
 
@@ -952,7 +961,7 @@ class EditalController extends Controller
     }
 
     public function download_relatorio_final($relatorio_id) {
-        $relatorio = RelatorioFinal::findOrFail($relatorio_id)->first();
+        $relatorio = RelatorioFinal::findOrFail($relatorio_id);
 
         if(Storage::exists($relatorio->caminho)) {
             return Storage::download($relatorio->caminho);
