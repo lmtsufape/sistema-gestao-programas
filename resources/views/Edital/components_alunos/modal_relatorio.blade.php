@@ -57,14 +57,14 @@
               </div>
 
               <div class="col-md-6 align-items-center">
-                <label class="form-label text-muted small mb-0 me-2">Baixar</label>
+                <label class="form-label text-muted small mb-0 me-2">Baixar Relatório</label>
                 <a href="{{ route('relatorio.download', $relatorio_enviado->id) }}" target="_blank" class="btn btn-outline-primary btn-sm">
                   <i class="bi bi-download"></i>
                 </a>
               </div>
 
               <div class="col-md-6 align-items-center">
-                <label class="form-label text-muted small mb-0 me-2">Visualizar</label>
+                <label class="form-label text-muted small mb-0 me-2">Visualizar Relatório</label>
                 <a href="{{ route('relatorio.visualizar', $relatorio_enviado->id) }}" target="_blank" class="btn btn-outline-secondary btn-sm">
                   <i class="bi bi-eye-fill"></i>
                 </a>

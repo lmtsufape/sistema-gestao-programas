@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="tituloinfomodal form-label mt-3">Baixar</label>
+                                <label class="tituloinfomodal form-label mt-3">Baixar Relatório</label>
                                 <div>
                                     <a type="button"
                                         href="{{ route('relatorio.download', ['relatorio_id' => $relatorio_enviado->id]) }}"
@@ -64,7 +64,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="tituloinfomodal form-label mt-3">Visualizar</label>
+                                <label class="tituloinfomodal form-label mt-3">Visualizar Relatório</label>
                                 <div>
                                     <a href="{{ route('relatorio.visualizar', ['relatorio_id' => $relatorio_enviado->id]) }}"
                                         target="_blank">
