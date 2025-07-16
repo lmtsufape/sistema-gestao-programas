@@ -61,7 +61,7 @@ class RelatorioFinal extends Model
         return match ($this->status) {
             1 => 'blue',
             2 => 'green',
-            3 => '#c10b00',
+            3 => '#c36410',
             default => 'black',
         };
     }
