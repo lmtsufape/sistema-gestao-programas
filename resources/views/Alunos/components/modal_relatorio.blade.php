@@ -1,101 +1,128 @@
-<!-- Modal -->
+<!-- Modal de Envio/Reenvio de Relatório Final -->
 @php
     $vinculo = App\Models\EditalAlunoOrientadors::where('edital_id', $edital->id)
-        ->whereHas('aluno', function ($query) {
-            $query->where('cpf', Auth::user()->cpf);
-        })
+        ->whereHas('aluno', fn($q) => $q->where('cpf', Auth::user()->cpf))
         ->firstOrFail();
-
     $relatorio_enviado = App\Models\RelatorioFinal::where('edital_aluno_orientador_id', $vinculo->id)->first();
 @endphp
 
-<div class="modal " tabindex="-1" aria-hidden="true" id="modal_relatorio_{{ $id }}">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-        <div class="modal-content modal-create p-2">
-            <div class="modal-header border-0">
-                <p class="titulomodal">Relatório Final</p>
-                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal" id="modal_relatorio_{{ $id }}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+    <div class="modal-content shadow-lg rounded-3">
+
+      <!-- Header -->
+      <div class="modal-header text-white border-0 py-3 px-4 rounded-top" style="background-color: #972E3F">
+        <h5 class="modal-title fw-bold">
+          <i class="bi bi-file-earmark-arrow-up-fill me-2"></i>
+          Relatório Final
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form action="{{ route('relatorio.enviar') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="edital_id" value="{{ $edital->id }}">
+
+        @if (!$relatorio_enviado)
+          <div class="modal-body py-4 px-5">
+            <div class="row g-4">
+              <div class="col-12">
+                <label for="relatorio_final" class="form-label text-muted small">Envie seu relatório final</label>
+                <input type="file"
+                       class="form-control form-control-sm"
+                       name="relatorio_final"
+                       id="relatorio_final"
+                       required>
+              </div>
             </div>
+          </div>
 
-            <form action="{{ Route('relatorio.enviar') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+          <div class="modal-footer border-0 px-5 pb-4">
+            <button type="submit" class="btn" style="background-color: #972E3F">
+              <i class="bi bi-send-fill me-1"></i> Enviar
+            </button>
+          </div>
 
-                @if (!$relatorio_enviado)
-                    <div class="modal-body" style="text-align: start">
-                        <input class="w-75 form-control" type="file" name="relatorio_final" id="relatorio_final"
-                            title="Envie seu relatório final" required>
-                    </div>
+        @else
+          @php
+            $status = $relatorio_enviado->status;
+            $statusLabel = $relatorio_enviado->status_label;
+          @endphp
 
-                    <input type="hidden" name="edital_id" value="{{ $edital->id }}">
+          <div class="modal-body py-4 px-5">
+            <div class="row g-4">
 
-                    <div class="modal-footer border-0 mb-3">
-                        <button type="submit" class="botaosalvar">Enviar</button>
-                    </div>
-                @else
-                    <div class="modal-body" style="text-align: start">
-                        <div class="modal-body" style="text-align: start">
-                            <div class="mb-3">
-                                <label class="tituloinfomodal form-label mt-3">Status</label>
-                                <div class="textoinfomodal" style="color: {{ $relatorio_enviado->status_color }}; font-weight: bolder;">
-                                    Enviado - {{ $relatorio_enviado->status_label }} </div>
-                            </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted small">Status</label>
+                <div class="fw-semibold" style="color: {{ $relatorio_enviado->status_color }};">
+                  Enviado – {{ $statusLabel }}
+                </div>
+              </div>
 
-                            <div class="mb-3">
-                                <label class="tituloinfomodal form-label mt-3">Semestre</label>
-                                <div class="textoinfomodal">
-                                    {{ $edital->semestre }} </div>
-                            </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted small">Status</label>
+                <div class="fw-semibold">{{ $relatorio_enviado->created_at->format('d/m/Y H:i') }}</div>
+              </div>
 
-                            <div class="mb-3">
-                                <label class="tituloinfomodal form-label mt-3">Programa</label>
-                                <div class="textoinfomodal">{{ $edital->programa->nome }} </div>
-                            </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted small">Semestre</label>
+                <div class="fw-semibold">{{ $edital->semestre }}</div>
+              </div>
 
-                            <div class="mb-3">
-                                <label class="tituloinfomodal form-label mt-3">Baixar Relatório</label>
-                                <div>
-                                    <a type="button"
-                                        href="{{ route('relatorio.download', ['relatorio_id' => $relatorio_enviado->id]) }}"
-                                        target="_blank">
-                                        <img src="{{ asset('images/download.svg') }}" alt="Download relatório final"
-                                            style="height: 30px; width: 30px; " title="Download relatório final">
-                                    </a>
-                                </div>
-                            </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted small">Programa</label>
+                <div class="fw-semibold">{{ $edital->programa->nome }}</div>
+              </div>
 
-                            <div class="mb-3">
-                                <label class="tituloinfomodal form-label mt-3">Visualizar Relatório</label>
-                                <div>
-                                    <a href="{{ route('relatorio.visualizar', ['relatorio_id' => $relatorio_enviado->id]) }}"
-                                        target="_blank">
-                                        <img src="{{ asset('images/eye-fill.svg') }}" alt="Visualizar relatório final"
-                                            style="height: 30px; width: 30px;" title="Visualizar relatório final">
-                                    </a>
-                                </div>
-                            </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted small mb-0 me-2">Baixar Relatório</label>
+                <a href="{{ route('relatorio.download', $relatorio_enviado->id) }}"
+                   target="_blank"
+                   class="btn btn-outline-primary btn-sm">
+                  <i class="bi bi-download"></i>
+                </a>
+              </div>
 
-                            @if ($relatorio_enviado->status !== 1)
-                                <div class="mb-3">
-                                    <label class="tituloinfomodal form-label mt-3" for="parecer">Parecer</label>
-                                    <textarea class="form-control" name="parecer" id="parecer" rows="3" placeholder="{{ auth()->user()->typage_type === Aluno::class ? 'Digite um parecer (opcional)' : 'Nenhum parecer adicionado.'}}"
-                                        disabled>{{ $relatorio_enviado->parecer }}</textarea>
-                                </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted small mb-0 me-2">Visualizar Relatório</label>
+                <a href="{{ route('relatorio.visualizar', $relatorio_enviado->id) }}"
+                   target="_blank"
+                   class="btn btn-outline-secondary btn-sm">
+                  <i class="bi bi-eye-fill"></i>
+                </a>
+              </div>
 
-                                @if ($relatorio_enviado->status === 3)
-                                    <input class="w-75 form-control" type="file" name="relatorio_final"
-                                        id="relatorio_final" title="Envie seu relatório final" required>
+              @if ($status !== 1)
+                <div class="col-12">
+                  <label for="parecer" class="form-label text-muted small">Parecer</label>
+                  <textarea class="form-control" rows="3" disabled>{{ $relatorio_enviado->parecer ?? 'Nenhum parecer disponível' }}</textarea>
+                </div>
+              @endif
 
-                                    <input type="hidden" name="edital_id" value="{{ $edital->id }}">
+              @if ($status === 3)
+                <div class="col-12">
+                  <label for="relatorio_final" class="form-label text-muted small">Reenvie seu relatório</label>
+                  <input type="file"
+                         class="form-control form-control-sm"
+                         name="relatorio_final"
+                         id="relatorio_final"
+                         required>
+                </div>
+              @endif
 
-                                    <div class="modal-footer border-0 mb-3">
-                                        <button type="submit" class="botaosalvar">Reenviar</button>
-                                    </div>
-                                @endif
-                            @endif
-                        </div>
-                    </div>
-                @endif
-            </form>
-        </div>
+            </div>
+          </div>
+
+          @if ($status === 3)
+            <div class="modal-footer border-0 px-5 pb-4">
+              <button type="submit" class="btn" style="background-color: #972E3F; color: white;">
+                <i class="bi bi-arrow-repeat me-1"></i> Reenviar
+              </button>
+            </div>
+          @endif
+
+        @endif
+      </form>
     </div>
+  </div>
 </div>

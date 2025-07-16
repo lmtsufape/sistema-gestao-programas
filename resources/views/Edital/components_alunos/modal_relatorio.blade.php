@@ -90,7 +90,7 @@
           @if (in_array($status, [1,2,3]))
             <div class="modal-footer border-0 px-5 pb-4">
               @if ($status === 1)
-                <button type="button" class="btn btn-outline-danger" onclick="confirmParecer('devolver')">
+                <button type="button" class="btn btn-outline-warning" onclick="confirmParecer('devolver')">
                   <i class="bi bi-arrow-counterclockwise me-1"></i> Devolver
                 </button>
                 <button type="button" class="btn btn-success ms-3" onclick="confirmParecer('aprovar')">
