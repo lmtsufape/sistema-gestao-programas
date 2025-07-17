@@ -32,7 +32,7 @@ class AlunoController extends Controller
 
             $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
-                $imageName = ManipulacaoImagens::salvarImagem($request->image);                
+                $imageName = ManipulacaoImagens::salvarImagem($request->image);
             }
 
             if ($aluno->save()) {
@@ -78,7 +78,7 @@ class AlunoController extends Controller
                 $imageName = ManipulacaoImagens::salvarImagem($request->image);
                 if($aluno->user->image){
                     //Se tiver uma imagem anterior, aí deleta do servidor pra colocar a nova no lugar
-                    ManipulacaoImagens::deletarImagem($aluno->user->image);                 
+                    ManipulacaoImagens::deletarImagem($aluno->user->image);
                 }
             }
             $aluno->user->image = $request->image == null ? $aluno->user->image : $imageName;
@@ -125,14 +125,14 @@ class AlunoController extends Controller
 
             $id = $request->only(['id']);
             $aluno = Aluno::findOrFail($id)->first();
-            $imageName = $aluno->user->image;            
+            $imageName = $aluno->user->image;
             $aluno->user->delete();
             $aluno->delete();
-            ManipulacaoImagens::deletarImagem($imageName); 
+            ManipulacaoImagens::deletarImagem($imageName);
             DB::commit();
 
             return redirect(route("alunos.index"))->with('sucesso', 'Aluno deletado com sucesso.');
-        
+
 
         } catch(QueryException $e){
             DB::rollback();
@@ -146,7 +146,7 @@ class AlunoController extends Controller
 
     public function index(Request $request)
     {
-        
+
         if (sizeof($request-> query()) > 0){
             $campo = $request->query('campo');
             $valor = $request->query('valor');
@@ -208,7 +208,7 @@ class AlunoController extends Controller
             if($request->hasFile('image') && $request->file('image')->isValid()) {
                 $imageName = ManipulacaoImagens::salvarImagem($request->image);
                 if($aluno->user->image){
-                    ManipulacaoImagens::deletarImagem($aluno->user->image); //Se houver uma nova imagem, remove a anterior do servidor                                
+                    ManipulacaoImagens::deletarImagem($aluno->user->image); //Se houver uma nova imagem, remove a anterior do servidor
                 }
             }
             $aluno->user->image = $request->image == null ? $aluno->user->image : $imageName;
@@ -256,11 +256,8 @@ class AlunoController extends Controller
 
     public function editais_profile(Request $request) {
         $pivos = EditalAlunoOrientadors::where('aluno_id', $request->user()->typage_id)->get();
-        $editais = array();
-        foreach ($pivos as $pivo){
-            array_push($editais, $pivo->edital);
-        }
-        return view('Alunos.editais-aluno',compact("editais", "pivos"));
+
+        return view('Alunos.editais-aluno',compact('pivos'));
     }
 
     public function frequencia_modal(Request $request) {

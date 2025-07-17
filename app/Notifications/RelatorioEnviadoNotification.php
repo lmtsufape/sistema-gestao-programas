@@ -8,8 +8,10 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\RelatorioFinal;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class RelatorioEnviado extends Notification implements ShouldQueue
+class RelatorioEnviadoNotification extends Notification implements ShouldQueue, ShouldBroadcast
 {
     use Queueable;
 
@@ -20,6 +22,11 @@ class RelatorioEnviado extends Notification implements ShouldQueue
         $this->relatorio = $relatorio;
     }
 
+    public function broadcastOn()
+    {
+        return new PrivateChannel("App.Models.User.5");
+    }
+
     public function via($notifiable)
     {
         return ['mail', 'database', 'broadcast'];
@@ -28,17 +35,16 @@ class RelatorioEnviado extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Novo Relatório Enviado')
-                    ->line("O aluno {$this->relatorio->name} enviou um novo relatório.")
-                    ->action('Visualizar Relatório', url("/edital/{$this->relatorio->editalAlunoOrientador->edital->id}/alunos"));
+            ->subject('Novo Relatório Enviado')
+            ->line("O aluno {$this->relatorio->name} enviou um novo relatório.")
+            ->action('Visualizar Relatório', url("/edital/{$this->relatorio->editalAlunoOrientador->edital->id}/alunos?modal={$this->relatorio->editalAlunoOrientador->id}"));
     }
 
     public function toDatabase($notifiable)
     {
         return [
             'mensagem' => "O aluno {$this->relatorio->editalAlunoOrientador->aluno->user->name} enviou um novo relatório.",
-            'aluno_id' => $this->relatorio->editalAlunoOrientador->aluno->id,
-            'relatorio_id' => $this->relatorio->id,
+            'link' => url("/edital/{$this->relatorio->editalAlunoOrientador->edital->id}/alunos?modal={$this->relatorio->editalAlunoOrientador->id}")
         ];
     }
 
@@ -46,8 +52,7 @@ class RelatorioEnviado extends Notification implements ShouldQueue
     {
         return new BroadcastMessage([
             'mensagem' => "O aluno {$this->relatorio->editalAlunoOrientador->aluno->user->name} enviou um novo relatório.",
-            'aluno_id' => $this->relatorio->editalAlunoOrientador->aluno->id,
-            'relatorio_id' => $this->relatorio->id,
+            'link' => url("/edital/{$this->relatorio->editalAlunoOrientador->edital->id}/alunos?modal={$this->relatorio->editalAlunoOrientador->id}")
         ]);
     }
 }

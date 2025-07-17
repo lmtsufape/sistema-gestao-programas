@@ -73,18 +73,3 @@
 
         </div>
     </div>
-    <style>
-        .btn {
-            color: #fff;
-            background: #34A853;
-            border-color: #34A853;
-            border-radius: 20px;
-            width: 120px;
-        }
-
-        .btn:hover {
-            background-color: #40b760;
-            border-color: #40b760;
-            color: #fff;
-        }
-    </style>

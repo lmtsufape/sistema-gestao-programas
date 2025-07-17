@@ -6,6 +6,8 @@ use Livewire\Component;
 
 class NotificationBell extends Component
 {
+    protected $listeners = ['atualizarNotificacoes' => '$refresh'];
+
     public function getNotificacoesProperty()
     {
         return auth()->user()->unreadNotifications;
