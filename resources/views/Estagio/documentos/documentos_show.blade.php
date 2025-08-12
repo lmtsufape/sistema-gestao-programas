@@ -128,7 +128,7 @@
                                                                                                                                                     <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info documento" style="height: 30px; width: 30px;">
                                                                                                                                                 </a> -->
                                     @if ($documento_enviado)
-                                        @hasanyrole(['administrador', 'tecnico', 'estudante'])
+                                        @hasanyrole(['administrador', 'tecnico_estagios', 'estudante'])
                                             <!-- Verifica se o usuário tem a função de aluno -->
 
                                             @if (
@@ -216,7 +216,7 @@
 
                                         @endcan
                                     @else
-                                        @hasanyrole(['administrador', 'tecnico', 'estudante'])
+                                        @hasanyrole(['administrador', 'tecnico_estagios', 'estudante'])
                                             <!-- Verifica se o usuário tem a função de aluno -->
                                             @if ($hoje > $dataLimite)
                                                 <img src="{{ asset('images/add_disciplina.svg') }}" alt="Documento Preenchido"
