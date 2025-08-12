@@ -12,16 +12,19 @@ class HomeController extends Controller {
 
     public function index() {
         $user = auth()->user();
-        $programas = [];
-        if ($user) {
-            if ($user->hasRole('administrador')) {
-                $programas = Programa::all();
-            }
-            else if ($user->hasAnyRole(['orientador', 'estudante'])) {
-                $programas = $user->typage->programas;
-            }
+        $typage = $user->typage;
+
+        if ($user->hasAnyRole(['coordenador_programas', 'tecnico_programas'])) {
+            $programas = $typage?->programas;
+            $cursos = collect();
         }
-        $cursos = Curso::all();
+        if ($user->hasAnyRole(['coordenador_estagios', 'tecnico_estagios'])) {
+            $programas = collect();
+            $cursos = Curso::all();
+        } else {
+            $programas = Programa::all();
+            $cursos = Curso::all();
+        }
         return view('home', compact('programas', 'cursos'));
     }
 }

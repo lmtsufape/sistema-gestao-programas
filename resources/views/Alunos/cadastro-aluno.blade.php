@@ -21,7 +21,7 @@
         <form action="{{route('alunos.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="image" class="titulopequeno">Imagem do Perfil</label>
-            <div style="display: flex; flex-direction: row; gap:15px; margin-bottom:20px; align-items:center"> 
+            <div style="display: flex; flex-direction: row; gap:15px; margin-bottom:20px; align-items:center">
                 <img src="/images/sem-foto-perfil.png" alt="Foto Perfil" style="width: 100px; height: 100px; border-radius: 50%;"/>
                 <input type="file" id="image" name="image" class="form-control boxinfo">
             </div>
@@ -38,7 +38,7 @@
             <input class="boxinfo cpf-autocomplete" type="text" id="inputCpf" name="cpf" required placeholder="Digite o CPF" value="{{ isset($cpf) ? $cpf : old('cpf') }}">
             <div class="invalid-feedback"> Por favor, preencha esse campo</div>
             <br><br>
-            
+
 
 
             <label for="inputSemestre" class="titulopequeno">Semestre de Entrada<strong style="color: #8B5558;">*</strong></label>

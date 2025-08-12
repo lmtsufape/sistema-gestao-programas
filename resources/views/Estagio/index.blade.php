@@ -58,7 +58,7 @@
                     Filtrar
                 </button>
                 <input class="search-button" title="Fazer a pesquisa" type="submit" value=""></input>
-                
+
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
                 onclick="window.location.href = '{{ route('estagio.verificarAluno') }}'">Cadastrar estágio</button>
                 <button class="cadastrar-botao" style="margin-right: 10px" type="button"
