@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
-class PermissionsSeeder extends Seeder 
+class PermissionsSeeder extends Seeder
 {
     public function run ()
     {
@@ -68,6 +68,7 @@ class PermissionsSeeder extends Seeder
 
             # Estagio
             ['name' => 'listar estagio', 'guard_name' => 'web'],
+            ['name' => 'visualizar estagio', 'guard_name' => 'web'],
             ['name' => 'cadastrar estagio', 'guard_name' => 'web'],
             ['name' => 'editar estagio', 'guard_name' => 'web'],
             ['name' => 'deletar estagio', 'guard_name' => 'web'],
@@ -80,7 +81,7 @@ class PermissionsSeeder extends Seeder
             ['name' => 'visualizar instituicao estagio', 'guard_name' => 'web'],
             ['name' => 'editar instituicao estagio', 'guard_name' => 'web'],
             ['name' => 'exportar dados estagio', 'guard_name' => 'web'],
-            
+
             # Vínculo entre estudante e edital
             ['name' => 'listar vinculo estudante-edital', 'guard_name' => 'web'],
             ['name' => 'listar vinculo estudante-edital inativo', 'guard_name' => 'web'],
@@ -91,10 +92,10 @@ class PermissionsSeeder extends Seeder
 
             # Vínculo entre servidor e programa
             ['name' => 'vincular servidor-programa', 'guard_name' => 'web'],
-            
+
             # Vínculo entre edital e programa
             ['name' => 'cadastrar edital-programa', 'guard_name' => 'web'],
-            
+
             ['name' => 'adicionar permissao', 'guard_name' => 'web'],
 
             # Supervisor

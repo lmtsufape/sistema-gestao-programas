@@ -1,4 +1,4 @@
-<div class="dropdown align-self-center me-5">
+<div class="dropdown align-self-center pt-3 me-5">
     <a href="#" class="position-relative d-inline-block" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-bell fa-2x text-dark"></i>
 

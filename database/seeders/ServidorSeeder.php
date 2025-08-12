@@ -22,22 +22,36 @@ class ServidorSeeder extends Seeder
             'name' => "Admin",
             'cpf' => "770.934.340-61",
             'email' => "admin@gmail.com",
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('password')
         ])->assignRole('administrador');
 
-        $tecnico = Servidor::create([
-            'cpf' => "929.053.520-27",
+        $tecnico_programas = Servidor::create([
+            'cpf' => "999.053.520-27",
             'instituicaoVinculo' => 'UPE',
             'matricula' => 223456,
-            'tipo_servidor' => 'tecnico'
+            'tipo_servidor' => 'tecnico_programas',
         ]);
 
-        $tecnico->user()->create([
-            'name' => "Tecnico Adm 1",
-            'cpf' => "929.053.520-27",
-            'email' => "tecnico@gmail.com",
-            'password' => Hash::make('12345678')
-        ])->assignRole('tecnico');
+        $tecnico_programas->user()->create([
+            'name' => "Tecnico Programas",
+            'cpf' => "999.053.520-27",
+            'email' => "tecnico_programas@gmail.com",
+            'password' => Hash::make('password')
+        ])->assignRole('tecnico_programas');
+
+        $tecnico_estagio = Servidor::create([
+            'cpf' => "777.053.520-27",
+            'instituicaoVinculo' => 'UPE',
+            'matricula' => 345567,
+            'tipo_servidor' => 'tecnico_estagios',
+        ]);
+
+        $tecnico_estagio->user()->create([
+            'name' => "Tecnico Estagio",
+            'cpf' => "777.053.520-27",
+            'email' => "tecnico_estagios@gmail.com",
+            'password' => Hash::make('password')
+        ])->assignRole('tecnico_estagios');
 
         $pro_reitor = Servidor::create([
             'cpf' => "339.292.350-80",
@@ -50,7 +64,7 @@ class ServidorSeeder extends Seeder
             'name' => "Pro Reitor",
             'cpf' => "339.292.350-80",
             'email' => "proreitor@gmail.com",
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('password')
         ])->assignRole('pro-reitor');
 
         $diretor = Servidor::create([
@@ -64,7 +78,7 @@ class ServidorSeeder extends Seeder
             'name' => "Gestor 1",
             'cpf' => "961.091.750-05",
             'email' => "diretor@gmail.com",
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('password')
         ])->assignRole('diretor');
     }
 }
