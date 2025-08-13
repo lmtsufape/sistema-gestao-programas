@@ -20,7 +20,7 @@ class RoleSeeder extends Seeder
             ['name' => 'coordenador', 'guard_name' => 'web'],
             ['name' => 'estudante', 'guard_name' => 'web'],
             ['name' => 'orientador', 'guard_name' => 'web'],
-            ['name' => 'pro-reitor', 'guard_name' => 'web'], 
+            ['name' => 'pro-reitor', 'guard_name' => 'web'],
             ['name' => 'diretor', 'guard_name' => 'web'],
             ['name' => 'supervisor', 'guard_name' => 'web'],
             ['name' => 'administrador', 'guard_name' => 'web'],
@@ -113,7 +113,6 @@ class RoleSeeder extends Seeder
                 'visualizar proprio edital',
 
                 # Estagio
-                'cadastrar estagio',
                 'preencher documento estagio',
                 'listar documento estagio',
                 'editar instituicao estagio',
@@ -147,26 +146,26 @@ class RoleSeeder extends Seeder
                 # Edital
                 'listar edital',
                 'visualizar edital',
-                
+
                 # Vínculo estudante-edital
                 'listar vinculo estudante-edital',
                 'listar vinculo estudante-edital inativo',
                 'visualizar vinculo estudante-edital',
-                
+
                 # Estágio
                 'listar estagio',
                 'configurar estagio',
                 'visualizar documento estagio',
                 'exportar dados estagio',
-                
+
                 # Vínculo servidor-programa
                 'vincular servidor-programa',
-                
+
                 # Vínculo edital-programa
                 'cadastrar edital-programa',
-                
+
                 'adicionar permissao',
-                
+
                 # Supervisor
                 'listar supervisor',
                 'cadastrar supervisor',
