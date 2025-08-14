@@ -50,17 +50,17 @@ class ProgramaController extends Controller
                 }
             };
 
-            if(auth()->user()->hasAnyRole('administrador', 'coordenador', 'tecnico')){
+            if(auth()->user()->hasAnyRole('administrador', 'coordenador', 'tecnico_programas')){
                 $programas = Programa::where($filtro);
             }else{
                 $programas = $user->programas()->where($filtro);
             }
             $programas = $programas->orderBy('programas.created_at', 'desc')->select("programas.*")->get();
-        
+
             return view("Programa.index", compact("programas", "servidors", "users"));
         } else {
             $programas = [];
-            if(auth()->user()->hasAnyRole('administrador', 'coordenador', 'tecnico')){
+            if(auth()->user()->hasAnyRole('administrador', 'coordenador', 'tecnico_programas')){
                 $programas = Programa::all();
             } else{
                 $programas = $user->programas()->get();
@@ -94,7 +94,7 @@ class ProgramaController extends Controller
             'data_inicio' => 'required|date_format:Y-m-d|before:data_fim',
             'data_fim' => 'required|date_format:Y-m-d|after:data_inicio'
             ]);
-    
+
         if ($validador->fails()) {
              return redirect()->back()->withErrors($validador)->withInput();
         }
@@ -165,7 +165,7 @@ class ProgramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProgramaUpdateFormRequest $request, $id)
-    {   
+    {
         DB::beginTransaction();
         try{
             $programa = Programa::find($id);
@@ -196,7 +196,7 @@ class ProgramaController extends Controller
     // public function delete($id)
     // {
     //     $programa = Programa::findOrFail($id);
-        
+
     //     return view('programas.delete');
     // }
 
@@ -208,14 +208,14 @@ class ProgramaController extends Controller
             {
                 return redirect()->back()->withErrors( "Falha ao deletar Programa. Existem editais vinculados a ele." );
             } else{
-            
-        
+
+
                 DB::beginTransaction();
                 try{
                     $id = $request->only(['id']);
                     $programa = Programa::findOrFail($id)->first();
-                    
-                    $programa->servidores()->detach($request->servidors); 
+
+                    $programa->servidores()->detach($request->servidors);
 
                     // Programa_servidor::where("programa_id", $programa->id)->delete();
 
@@ -241,7 +241,7 @@ class ProgramaController extends Controller
         $orientadors = Orientador::all();
 
         $editais = $programa->editais;
-        
+
         return view("Edital.index", compact("editais", "orientadors"));
 
                 // if (sizeof($request-> query()) > 0){
@@ -314,16 +314,16 @@ class ProgramaController extends Controller
     //         $edital->data_fim = $request->data_fim;
     //         $edital->titulo_edital = $request->titulo_edital;
     //         $edital->valor_bolsa = $request->tem_bolsa == 1 ? $request->valor_bolsa : ($request->valor_bolsa == 0 ? "Voluntário" : null);
-         
+
     //         $edital->programa_id = $request->programa;
-            
+
     //         $edital->save();
 
     //         $disciplinas_id = $request->disciplinas;
     //         if($disciplinas_id != null){
     //             foreach ($disciplinas_id as $id) {
     //                 $disciplina = Disciplina::Where('id', $id)->first();
-    //                 $disciplina->editais()->attach($edital->id); 
+    //                 $disciplina->editais()->attach($edital->id);
     //             }
     //         }
 
@@ -335,7 +335,7 @@ class ProgramaController extends Controller
 
     //     } catch(Exception $e){
     //         DB::rollback();
-            
+
     //         return redirect()->back()->withErrors( "Falha ao cadastrar Edital no Programa" . $programa->nome . ". tente novamente mais tarde." );
     //     }
     // }
@@ -345,7 +345,7 @@ class ProgramaController extends Controller
         $edital = Edital::Where('id', $id)->first();
         //dd($edital);
         $programas = Programa::all();
-        
+
         return view("Edital.editar", compact("edital", "programas"));
     }
 
@@ -385,12 +385,12 @@ class ProgramaController extends Controller
 
     public function store_servidor(AdicionarServidorProgramaFormRequest $request)
     {
-        
+
         DB::beginTransaction();
         try{
 
             $programa = Programa::Where('id', $request->id)->first();
-            
+
             $servidors_id = $request->servidors;
             foreach ($servidors_id as $servidor_id) {
                 if(! $programa->servidores->contains($servidor_id)){

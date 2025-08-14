@@ -5,53 +5,57 @@
 @endsection
 @section('body')
     @auth
-        @hasanyrole(['tecnico', 'coordenador', 'pro-reitor', 'diretor', 'supervisor', 'administrador'])
-            <div class="container-fluid">
+        @hasanyrole(['tecnico_programas', 'coordenador_programas', 'tecnico_estagios', 'coordenador_estagios', 'pro-reitor', 'diretor', 'supervisor', 'administrador'])
+            @hasanyrole(['tecnico_programas', 'coordenador_progrmas'])
+                <div class="container-fluid">
 
-                {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
-                <h2 class="second-title">
-                    Programas
-                </h2>
-                <hr>
-                <br>
-                <div class="buttons-organization -gestor">
-                    @foreach ($programas as $index => $programa)
-                        <button class="botao" href="{{ url('/programas/' . $programa->id . '/editais') }}"
-                            onclick="window.location.href='{{ url('/programas/' . $programa->id . '/editais') }}'">
-                        <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
-                        <p class="third-title">{{ $programa->nome }}</p>
-                        </button>
-                    @endforeach
+                    {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
+                    <h2 class="second-title">
+                        Programas
+                    </h2>
+                    <hr>
+                    <br>
+                    <div class="buttons-organization -gestor">
+                        @foreach ($programas as $index => $programa)
+                            <button class="botao" href="{{ url('/programas/' . $programa->id . '/editais') }}"
+                                onclick="window.location.href='{{ url('/programas/' . $programa->id . '/editais') }}'">
+                            <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
+                            <p class="third-title">{{ $programa->nome }}</p>
+                            </button>
+                        @endforeach
+                    </div>
+                    <br>
                 </div>
-                <br>
-            </div>
-            <div class="container-fluid">
-                <h2 class="second-title">
-                    Estágios 
-                </h2>
-                <hr>
-                <br>
-                <div class="buttons-organization -gestor">
-                    <button class="botao" href="{{ route('estagio.index') }}"
-                        onclick="window.location.href='{{ route('estagio.index') }}'">
-                        <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
-                        <p class="third-title">Todos os Estágios</p>
-                    </button>
-                    @foreach ($cursos as $index => $curso)
-                        @if ($index % 2 == 0)
-                            <button class="botao-maior" href="{{ url('/cursos/' . $curso->id . '/estagios') }}"
-                                onclick="window.location.href='{{ url('/cursos/' . $curso->id . '/estagios') }}'">
-                            @else
+            @endhasanyrole
+            @hasanyrole(['tecnico_estagios', 'coordenador_estagios'])
+                <div class="container-fluid">
+                    <h2 class="second-title">
+                        Estágios
+                    </h2>
+                    <hr>
+                    <br>
+                    <div class="buttons-organization -gestor">
+                        <button class="botao" href="{{ route('estagio.index') }}"
+                            onclick="window.location.href='{{ route('estagio.index') }}'">
+                            <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
+                            <p class="third-title">Todos os Estágios</p>
+                        </button>
+                        @foreach ($cursos as $index => $curso)
+                            @if ($index % 2 == 0)
                                 <button class="botao-maior" href="{{ url('/cursos/' . $curso->id . '/estagios') }}"
                                     onclick="window.location.href='{{ url('/cursos/' . $curso->id . '/estagios') }}'">
-                        @endif
-                        <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
-                        <p class="third-title">{{ $curso->nome }}</p>
-                        </button>
-                    @endforeach
+                                @else
+                                    <button class="botao-maior" href="{{ url('/cursos/' . $curso->id . '/estagios') }}"
+                                        onclick="window.location.href='{{ url('/cursos/' . $curso->id . '/estagios') }}'">
+                            @endif
+                            <img src="{{ asset('images/list-box.svg') }}" alt="logodoc" style="padding-right: 10px;">
+                            <p class="third-title">{{ $curso->nome }}</p>
+                            </button>
+                        @endforeach
+                    </div>
+                    <br>
                 </div>
-                <br>
-            </div>
+            @endhasanyrole
         @endhasanyrole
 
 

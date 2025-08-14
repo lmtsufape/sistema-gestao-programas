@@ -10,7 +10,7 @@
 </head>
 
 @auth
-    @hasanyrole(['tecnico', 'coordenador', 'diretor', 'pro-reitor', 'administrador'])
+    @hasanyrole(['tecnico_programas', 'tecnico_estagios', 'coordenador_programas', 'coordenador_estagios', 'diretor', 'pro-reitor', 'administrador'])
         <header>
             <!-- Isso aqui é a barra de cima -->
             <nav class="navbar navbar-menu d-flex">
@@ -53,12 +53,16 @@
                                 <span><img src="{{ asset('images/arrow-3.png') }}" alt="mostrar" class="arrow-dd"></span>
                             </button>
                             <ul class="dropdown-menu menu"role="menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="{{ route('edital.index') }}">Editais</a></li>
-                            @unlessrole(['pro-reitor', 'diretor'])
-                                <li><a class="dropdown-item" href="{{ route('cursos.index') }}">Cursos</a></li>
-                                <li><a class="dropdown-item" href="{{ route('disciplinas.index') }}">Disciplinas</a></li>
-                                <li><a class="dropdown-item" href="{{ route('estagio.index') }}">Estágio</a></li>
-                            @endunless
+                                @can('listar edital')
+                                    <li><a class="dropdown-item" href="{{ route('edital.index') }}">Editais</a></li>
+                                @endcan
+                                @unlessrole(['pro-reitor', 'diretor'])
+                                    <li><a class="dropdown-item" href="{{ route('cursos.index') }}">Cursos</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('disciplinas.index') }}">Disciplinas</a></li>
+                                @endunless
+                                @can('listar estagio')
+                                    <li><a class="dropdown-item" href="{{ route('estagio.index') }}">Estágio</a></li>
+                                @endcan
                             </ul>
                         </div>
                     </div>

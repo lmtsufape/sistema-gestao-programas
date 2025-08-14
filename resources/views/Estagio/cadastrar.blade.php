@@ -133,7 +133,7 @@
                     </div>
 
                     <div class="botoessalvarvoltar">
-                        @hasanyrole(['administrador', 'tecnico', 'diretor', 'coordenador'])
+                        @hasanyrole(['administrador', 'tecnico_estagios', 'diretor', 'coordenador'])
                             <input type="button" value="Voltar" href="{{ url('/estagio/') }}"
                                 onclick="window.location.href='{{ url('/estagio/') }}'" class="botaovoltar">
                             <input class="botaosalvar" type="submit" value="Salvar">

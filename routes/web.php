@@ -11,6 +11,7 @@ use App\Http\Controllers\DocumentoEstagioController;
 use App\Http\Controllers\EstagioController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\FrequenciaController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstituicaoController;
 use App\Http\Controllers\ListaDocumentosObrigatoriosController;
 use Illuminate\Support\Facades\Mail;
@@ -29,7 +30,10 @@ Route::get('/', function () {
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/home', [UserController::class, 'store'])->name('store');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function() {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+});
 
 Route::get('/sistema', function () {
     return view('sistema');
