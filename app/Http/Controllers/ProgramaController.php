@@ -242,7 +242,7 @@ class ProgramaController extends Controller
 
         $editais = $programa->editais;
 
-        return view("Edital.index", compact("editais", "orientadors"));
+        return view("Edital.index", compact("editais", "orientadors", 'programa'));
 
                 // if (sizeof($request-> query()) > 0){
         //     $campo = $request->query('campo');

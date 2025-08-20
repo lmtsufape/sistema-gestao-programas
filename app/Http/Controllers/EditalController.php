@@ -110,29 +110,33 @@ class EditalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(?Programa $programa = null)
     {
         $user = auth()->user()->typage;
         $disciplinas = Disciplina::all();
+        if(!$programa){
 
-        if(auth()->user()->hasRole('administrador'))
-        {
-            $programas = Programa::all()->sortBy('id');
-        }
-        else
-        {
-            $programas = [];
-            $programas_serv = Programa_servidor::where('servidor_id', Auth::user()->typage_id)->get();
-
-            foreach($programas_serv as $programa_serv)
+            if(auth()->user()->hasRole('administrador'))
             {
-                $programa = Programa::findOrFail($programa_serv->programa_id);
-
-                $programas[] = $programa;
+                $programas = Programa::all()->sortBy('id');
             }
-        }
+            else
+            {
+                $programas = [];
+                $programas_serv = Programa_servidor::where('servidor_id', Auth::user()->typage_id)->get();
 
-        return view("Edital.cadastrar", compact("programas", "disciplinas"));
+                foreach($programas_serv as $programa_serv)
+                {
+                    $programa = Programa::findOrFail($programa_serv->programa_id);
+
+                    $programas[] = $programa;
+                }
+            }
+            return view("Edital.cadastrar", compact("programas", "disciplinas"));
+        }
+        return view("Edital.cadastrar", compact('programa', 'disciplinas'));
+
+
     }
 
     public function store(editalstoreFormRequest $request)
