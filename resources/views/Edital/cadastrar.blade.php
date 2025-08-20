@@ -26,14 +26,17 @@
                     <label class="titulopequeno" for="semestre">Semestre de Início<strong style="color: #8B5558;">*</strong></label>
                     <input class="boxcadastrar" placeholder="Digite o semestre (Ex: 2023.2)" type="text" name="semestre" id="semestre" value="{{ old('semestre') }}" required><br><br>
 
-                    <label class="titulopequeno" for="programa">Programa<strong style="color: #8B5558;">*</strong></label>
-                    <select aria-label="Default select example" class="boxcadastrar" name="programa" id="programa" >
-                        <option  value disabled selected hidden> Selecione o Programa</option>
-                            @foreach ($programas as $programa)
-                                <option value="{{$programa->id}}" {{ old('programa') == $programa->id ? 'selected' : '' }}>{{$programa->nome}}</option>
-                            @endforeach
-                    </select><br><br>
-
+                    @empty($programa)
+                        <label class="titulopequeno" for="programa">Programa<strong style="color: #8B5558;">*</strong></label>
+                        <select aria-label="Default select example" class="boxcadastrar" name="programa" id="programa" >
+                            <option  value disabled selected hidden> Selecione o Programa</option>
+                                @foreach ($programas as $programa)
+                                    <option value="{{$programa->id}}" {{ old('programa') == $programa->id ? 'selected' : '' }}>{{$programa->nome}}</option>
+                                @endforeach
+                        </select><br><br>
+                    @else
+                        <input type="hidden" name="programa" id="programa" value="{{$programa->id}}">
+                    @endempty
 
                     <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
                         <div style="width: 50%">

@@ -46,7 +46,7 @@ class EditalStoreFormRequest extends FormRequest
             "data_inicio.after" => "O campo :attribute deve ser uma data válida: DD/MM/AAAA.",
             "data_fim.after" => 'A data final deve ser posterior à data de início.',
             "numeric" => "O campo :attribute deve ser um número.",
-            "regex" => "O campo :attribute deve seguir o exemplo: 2023.3"             
+            "regex" => "O campo :attribute deve seguir o exemplo: 2023.3"
         ];
     }
 }

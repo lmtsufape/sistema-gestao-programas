@@ -110,6 +110,16 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     @livewireScripts
+
+    <script>
+        $(document).ready(function(){
+            $('#semestre').mask('20A0.0', {
+                translation: {
+                    'A': { pattern: /[2-9]/ }   
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>
