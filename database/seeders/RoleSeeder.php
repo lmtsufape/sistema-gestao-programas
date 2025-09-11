@@ -261,7 +261,6 @@ class RoleSeeder extends Seeder
                 'visualizar proprio edital',
 
                 # Estagio
-                'cadastrar estagio',
                 'preencher documento estagio',
                 'listar documento estagio',
                 'editar instituicao estagio',

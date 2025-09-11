@@ -32,7 +32,7 @@
 
                 @can('cadastrar edital')
                     <button class="cadastrar-botao" type="button"
-                    onclick="window.location.href = '{{ route('edital.create') }}'">Cadastrar edital
+                    onclick="window.location.href = '{{ route('edital.create', $programa ?? null) }}'">Cadastrar edital
                     </button>
                 @endcan
             </form>
@@ -129,7 +129,7 @@
                         @endforeach
                     </table>
                 </div>
-               
+
             </div>
         </div>
 
