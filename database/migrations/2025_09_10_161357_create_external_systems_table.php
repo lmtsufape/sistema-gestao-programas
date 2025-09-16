@@ -16,7 +16,7 @@ class CreateExternalSystemsTable extends Migration
         Schema::create('external_systems', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->text('api_token')->nullable();        // criptografado
+            $table->text('api_token')->nullable();         // criptografado
             $table->string('api_token_last4')->nullable(); // para exibição
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('rotated_at')->nullable();

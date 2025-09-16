@@ -989,19 +989,20 @@ class EditalController extends Controller
 
     public function parecer_relatorio_final(Request $request)
     {
-        $relatorio = RelatorioFinal::findOrFail($request->relatorio_id);
         $dados = $request->validate([
             'status' => 'required|integer|in:2,3',
             'parecer' => 'nullable|string'
         ]);
 
-        $relatorio->update($dados);
+        $relatorio = RelatorioFinal::findOrFail($request->relatorio_id);
 
+        $relatorio->update($dados);
+        
         $user = $relatorio->editalAlunoOrientador->aluno->user;
         $user->notify(new RelatorioAvaliadoNotification($relatorio));
 
         $relatorio->fresh();
-        if ($relatorio->getStatusLabel() == 'Aprovado') {
+        if ($relatorio->status == RelatorioFinal::STATUS_ENUM['aprovado']) {
             $json = [
                 'titulo' => $relatorio->editalAlunoOrientador->titulo,
                 'data_inicio' => $relatorio->editalAlunoOrientador->data_inicio,
@@ -1011,6 +1012,7 @@ class EditalController extends Controller
                 'participante_cpf' => $relatorio->editalAlunoOrientador->aluno->user->cpf,
                 'participante_email' => $relatorio->editalAlunoOrientador->aluno->user->email,
             ];
+            dd($json);
         }
 
         return back()->with('sucesso', 'Relatório avaliado com sucesso!');

@@ -53,7 +53,6 @@ class ExternalSystemController extends Controller
 
     public function destroy(string $name)
     {
-        dd($name);
         $system = ExternalSystem::where('name', $name)->firstOrFail();
         $system->update([
             'api_token'       => null,
