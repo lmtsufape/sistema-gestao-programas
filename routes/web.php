@@ -21,6 +21,7 @@ use App\Http\Controllers\MeusProgramasController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PDFController;
 use App\Models\ListaDocumentosObrigatorios;
+use App\Http\Controllers\ExternalSystemController;
 
 // Rotas de autenticacao
 Route::get('/', function () {
@@ -345,4 +346,11 @@ Route::prefix('supervisor')->group(function () {
     Route::get('/{id}/edit', [SupervisorController::class, 'edit'])->where('id', '[0-9]+')->name('supervisor.edit');
     Route::put('/{id}', [SupervisorController::class, 'update'])->name('supervisor.update');
     Route::delete('/{id}', [SupervisorController::class, 'destroy'])->name('supervisor.delete');
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::delete('/integrations/tokens/{name}', [ExternalSystemController::class, 'destroy'])->name('integrations.delete');
+    Route::get('/integrations/tokens', [ExternalSystemController::class, 'index'])->name('integrations.index');
+    Route::post('/integrations/tokens', [ExternalSystemController::class, 'upsert'])->name('integrations.upsert');
 });
