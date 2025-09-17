@@ -26,7 +26,7 @@ class SistemaExternoController extends Controller
                     ]
                 ];
             })->toArray();
-            
+
         $systems = ['Certifica'];
 
         return view('integrations.tokens', compact('tokens', 'systems'));
@@ -52,6 +52,7 @@ class SistemaExternoController extends Controller
                         'api_token'       => $token, // criptografado pelo cast no model
                         'api_token_last4' => substr($token, -4),
                         'rotated_at'      => now(),
+                        'last_used_at'    => null
                     ]
                 );
             }

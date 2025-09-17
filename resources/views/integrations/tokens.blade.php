@@ -52,7 +52,7 @@
 
       @foreach ($systems as $system)
         @php
-          $hasToken = isset($tokens[$system]) && !empty($tokens[$system] && !empty($tokens[$system]['token']));
+          $hasToken = isset($tokens[$system]) && !empty($tokens[$system]) && !empty($tokens[$system]['last_chars']);
           $inputId  = 'token-' . $loop->index;
           // URL de delete com fallback
           $deleteUrl = \Illuminate\Support\Facades\Route::has('integrations.delete')
