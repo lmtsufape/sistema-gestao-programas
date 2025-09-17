@@ -22,7 +22,7 @@
 
   <div class="page-wrap">
     <div class="d-flex align-items-center justify-content-between gap-2 page-title-wrap mb-3">
-      <h1 class="h5 mb-0">Gerenciar Tokens de Integração</h1>
+      <h1 class="mb-0">Gerenciar Tokens de Integração</h1>
     </div>
 
     {{-- Feedbacks --}}
@@ -52,7 +52,7 @@
 
       @foreach ($systems as $system)
         @php
-          $hasToken = isset($tokens[$system]) && !empty($tokens[$system]);
+          $hasToken = isset($tokens[$system]) && !empty($tokens[$system] && !empty($tokens[$system]['token']));
           $inputId  = 'token-' . $loop->index;
           // URL de delete com fallback
           $deleteUrl = \Illuminate\Support\Facades\Route::has('integrations.delete')
@@ -112,6 +112,14 @@
             <small class="text-muted d-block mt-1">
               {{ $hasToken ? 'Um token já está salvo. Deixe em branco para manter.' : 'Nenhum token cadastrado ainda.' }}
             </small>
+            @if($hasToken)
+              <small class="text-muted d-block mt-1">
+                <strong>Última rotação:</strong> {{ isset($tokens[$system]['rotated_at']) ? \Carbon\Carbon::parse($tokens[$system]['rotated_at'])->format('d/m/Y H:i') : 'Não disponível' }}
+              </small>
+              <small class="text-muted d-block mt-1">
+                <strong>Último uso:</strong> {{ isset($tokens[$system]['last_used_at']) ? \Carbon\Carbon::parse($tokens[$system]['last_used_at'])->format('d/m/Y H:i') : 'Não disponível' }}
+              </small>
+            @endif
           </div>
         </div>
       @endforeach

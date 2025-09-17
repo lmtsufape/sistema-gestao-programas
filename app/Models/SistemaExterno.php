@@ -15,6 +15,8 @@ class SistemaExterno extends Model
         'name',
         'api_token',
         'api_token_last4',
+        'last_used_at',
+        'rotated_at'
     ];
 
     protected $casts = [
