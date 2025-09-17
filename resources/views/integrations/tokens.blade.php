@@ -65,7 +65,7 @@
             <div class="d-flex align-items-center gap-2">
               <span class="fw-semibold">{{ $system }}</span>
               @if($hasToken)
-                <span class="badge text-bg-success">Conectado</span>
+                <span class="badge text-bg-success">Adicionado</span>
               @else
                 <span class="badge text-bg-secondary">Sem token</span>
               @endif
@@ -118,7 +118,7 @@
 
       {{-- Botão único de salvar todas as alterações --}}
       <div class="d-flex justify-content-end mt-3">
-        <button type="submit" class="btn btn-primary btn-lg">
+        <button type="submit" class="btn btn-lg" style="background-color: #972E3F; color: white">
           <i class="bi bi-check2-circle"></i> Salvar todas as alterações
         </button>
       </div>
