@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ExternalSystem;
+use App\Models\SistemaExterno;
 use Illuminate\Support\Facades\DB;
 
-class ExternalSystemController extends Controller
+class SistemaExternoController extends Controller
 {
     public function __construct()
     {
@@ -15,7 +15,7 @@ class ExternalSystemController extends Controller
 
     public function index()
     {
-        $tokens = ExternalSystem::pluck('api_token_last4', 'name')->toArray();
+        $tokens = SistemaExterno::pluck('api_token_last4', 'name')->toArray();
         $systems = ['Certifica'];
 
         return view('integrations.tokens', compact('tokens', 'systems'));
@@ -35,7 +35,7 @@ class ExternalSystemController extends Controller
                     continue;
                 }
 
-                ExternalSystem::updateOrCreate(
+                SistemaExterno::updateOrCreate(
                     ['name' => $name],
                     [
                         'api_token'       => $token, // criptografado pelo cast no model
@@ -53,7 +53,7 @@ class ExternalSystemController extends Controller
 
     public function destroy(string $name)
     {
-        $system = ExternalSystem::where('name', $name)->firstOrFail();
+        $system = SistemaExterno::where('name', $name)->firstOrFail();
         $system->update([
             'api_token'       => null,
             'api_token_last4' => null,

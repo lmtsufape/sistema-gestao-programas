@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ExternalSystem extends Model
+class SistemaExterno extends Model
 {
     use HasFactory;
+
+    protected $table = 'sistemas_externos';
 
     protected $fillable = [
         'name',

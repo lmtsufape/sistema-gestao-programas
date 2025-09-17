@@ -21,7 +21,7 @@ use App\Http\Controllers\MeusProgramasController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PDFController;
 use App\Models\ListaDocumentosObrigatorios;
-use App\Http\Controllers\ExternalSystemController;
+use App\Http\Controllers\SistemaExternoController;
 
 // Rotas de autenticacao
 Route::get('/', function () {
@@ -31,9 +31,8 @@ Route::get('/', function () {
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/home', [UserController::class, 'store'])->name('store');
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 });
 
 Route::get('/sistema', function () {
@@ -350,7 +349,7 @@ Route::prefix('supervisor')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::delete('/integrations/tokens/{name}', [ExternalSystemController::class, 'destroy'])->name('integrations.delete');
-    Route::get('/integrations/tokens', [ExternalSystemController::class, 'index'])->name('integrations.index');
-    Route::post('/integrations/tokens', [ExternalSystemController::class, 'upsert'])->name('integrations.upsert');
+    Route::delete('/integrations/tokens/{name}', [SistemaExternoController::class, 'destroy'])->name('integrations.delete');
+    Route::get('/integrations/tokens', [SistemaExternoController::class, 'index'])->name('integrations.index');
+    Route::post('/integrations/tokens', [SistemaExternoController::class, 'upsert'])->name('integrations.upsert');
 });
