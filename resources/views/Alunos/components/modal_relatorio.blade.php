@@ -60,7 +60,7 @@
               </div>
 
               <div class="col-md-6">
-                <label class="form-label text-muted small">Status</label>
+                <label class="form-label text-muted small">Data de Envio</label>
                 <div class="fw-semibold">{{ $relatorio_enviado->created_at->format('d/m/Y H:i') }}</div>
               </div>
 

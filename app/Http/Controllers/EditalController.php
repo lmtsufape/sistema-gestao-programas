@@ -1000,6 +1000,19 @@ class EditalController extends Controller
         $user = $relatorio->editalAlunoOrientador->aluno->user;
         $user->notify(new RelatorioAvaliadoNotification($relatorio));
 
+        $relatorio->fresh();
+        if ($relatorio->getStatusLabel() == 'Aprovado') {
+            $json = [
+                'titulo' => $relatorio->editalAlunoOrientador->titulo,
+                'data_inicio' => $relatorio->editalAlunoOrientador->data_inicio,
+                'data_fim' => $relatorio->editalAlunoOrientador->data_fim,
+                'gestor_cpf' => auth()->user()->cpf,
+                'participante_nome' => $relatorio->editalAlunoOrientador->aluno->user->name,
+                'participante_cpf' => $relatorio->editalAlunoOrientador->aluno->user->cpf,
+                'participante_email' => $relatorio->editalAlunoOrientador->aluno->user->email,
+            ];
+        }
+
         return back()->with('sucesso', 'Relatório avaliado com sucesso!');
     }
 }
