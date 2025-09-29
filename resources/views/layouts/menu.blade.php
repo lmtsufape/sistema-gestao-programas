@@ -96,7 +96,7 @@
                                 </button>
                                 <ul class="dropdown-menu menu"role="menu"
                                     aria-labelledby="dropdownMenuButton" style="width: 290px">
-                                    <li><a class="dropdown-item" href="#">Ver informações</a></li>
+                                    <li><a class="dropdown-item" href="{{route('relatorios')}}">Ver informações</a></li>
                                     <li><a class="dropdown-item" href="#">Listar docentes por edital</a></li>
                                     <li><a class="dropdown-item" href="#">Listar docentes por discentes</a></li>
                                     <li><a class="dropdown-item" href="#">Listar edital com docentes e discentes</a></li>

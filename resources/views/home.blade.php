@@ -6,7 +6,7 @@
 @section('body')
     @auth
         @hasanyrole(['tecnico_programas', 'coordenador_programas', 'tecnico_estagios', 'coordenador_estagios', 'pro-reitor', 'diretor', 'supervisor', 'administrador'])
-            @hasanyrole(['tecnico_programas', 'coordenador_progrmas', 'administrador'])
+            @hasanyrole(['tecnico_programas', 'coordenador_programas', 'administrador'])
                 <div class="container-fluid">
 
                     {{--  condição para se for admin aparacer a opão de Cadastrar programa  --}}
