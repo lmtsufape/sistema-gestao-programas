@@ -55,7 +55,7 @@ class ParecerRelatorioFinalJob implements ShouldQueue
                     'titulo' => "Relatório Final - $semestre",
                     'inicio' => $dataInicio->format('Y-m-d'),
                     'fim' => $dataFim->format('Y-m-d'),
-                    'natureza' => $relatorio->editalAlunoOrientador->natureza ?? 'tipo teste importação api',
+                    'natureza' => $relatorio->editalAlunoOrientador->edital->programa->nome,
                     'atividades' => [
                         [
                             'descricao' => $relatorio->editalAlunoOrientador->titulo,
@@ -67,7 +67,7 @@ class ParecerRelatorioFinalJob implements ShouldQueue
                                     'email' => $relatorio->editalAlunoOrientador->aluno->user->email,
                                     'cpf' => $relatorio->editalAlunoOrientador->aluno->user->cpf,
                                     'carga' => 20, // Adjust based on actual data
-                                    'curso' => $relatorio->editalAlunoOrientador->aluno->curso->nome ?? 'Ciência da Computação'
+                                    'curso' => $relatorio->editalAlunoOrientador->aluno->curso->nome
                                 ]
                             ]
                         ]
