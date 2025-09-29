@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\HistoricoVinculoAlunos;
-use App\Models\Supervisor;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,14 +12,15 @@ class DatabaseSeeder extends Seeder
             PermissionsSeeder::class,
             RoleSeeder::class,
             CursoSeeder::class,
-            AlunosSeeder::class,
+            AlunoSeeder::class,
             OrientadorsSeeder::class,
             ServidorSeeder::class,
+            UserSeeder::class,
             ProgramasSeeder::class,
             DisciplinaSeeder::class,
             Programa_servidorsSeeder::class,
             EditalSeeder::class,
-            Edital_Aluno_OrientadorSeeder::class,
+            EditalAlunoOrientadorsSeeder::class,
             RelatorioSeeder::class,
             HistoricoVinculoAlunosSeeder::class,
             ListaDocumentosObrigatoriosSeeder::class,
