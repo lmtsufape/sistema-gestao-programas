@@ -8,6 +8,7 @@ use App\Models\User;
 
 class Aluno extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'cpf',
         'nome_aluno',
@@ -25,15 +26,15 @@ class Aluno extends Model
         return $this->belongsTo(Curso::class, "curso_id");
     }
 
-    public function editais() 
+    public function editais()
     {
         return $this->belongsToMany(Edital::class, 'edital_aluno_orientadors')
             ->withPivot([
-                'data_inicio', 
-                'data_fim', 
-                'bolsa', 
+                'data_inicio',
+                'data_fim',
+                'bolsa',
                 'status',
-                'info_complementares', 
+                'info_complementares',
                 #'disciplina_id',
                 'aluno_id',
                 'edital_id',
@@ -41,7 +42,7 @@ class Aluno extends Model
                 'termo_compromisso_aluno',
             ]);
     }
-    
+
     public function orientadores()
     {
         return $this->belongsToMany(Aluno::class, 'edital_aluno_orientadors', 'aluno_id', 'orientador_id')

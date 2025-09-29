@@ -24,6 +24,12 @@ class EditalAlunoOrientadors extends Model
         'orientador_id',
     ];
 
+    protected $casts = [
+        'data_inicio' => 'date',
+        'data_fim'  => 'date',
+        'semestre'  => 'boolean'
+    ];
+
     public function edital()
     {
         return $this->belongsTo(Edital::class, "edital_id");
