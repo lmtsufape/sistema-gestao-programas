@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ServidorFormRequest;
 use App\Http\Requests\ServidorFormUpdateRequest;
 use App\Http\Requests\AdicionarPermissaoFormRequest;
+use App\Models\DocumentoEstagio;
+use App\Models\Edital;
+use App\Models\EditalAlunoOrientadors;
 use App\Models\Servidor;
 use App\Models\Tipo_servidor;
 use App\Models\User;
@@ -18,7 +21,8 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Database\QueryException;
-
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ServidorController extends Controller {
 
@@ -341,4 +345,90 @@ class ServidorController extends Controller {
     //     $servidor = Auth::id();
     //     return view('Perfil.meu-perfil-servidor', compact('servidor'));
     // }
+
+    public function relatorios(Request $request)
+    {
+        $dt_ini_col = 'editals.data_inicio';
+        $dt_fin_col   = 'editals.data_fim';
+
+        $base = Edital::query()
+            ->join('programas as p', 'p.id', '=', 'editals.programa_id')
+            ->leftJoin('edital_aluno_orientadors as eao', 'editals.id', '=', 'eao.edital_id');
+
+        $query = QueryBuilder::for($base)
+                    ->allowedFilters([
+                        AllowedFilter::callback('data_inicial', function ($qb, $ini) use ($dt_ini_col, $dt_fin_col) {
+                            if (!$ini) return;
+                            $fim = request('filter.data_final');
+
+                            if ($fim) {
+                                $qb->whereDate($dt_ini_col, '<=', $fim)
+                                   ->where(function ($q) use ($dt_fin_col, $ini) {
+                                       $q->whereNull($dt_fin_col)
+                                         ->orWhereDate($dt_fin_col, '>=', $ini);
+                                   });
+                            } else {
+                                $qb->where(function ($q) use ($dt_fin_col, $ini) {
+                                    $q->whereNull($dt_fin_col)
+                                      ->orWhereDate($dt_fin_col, '>=', $ini);
+                                });
+                            }
+                        }),
+                        AllowedFilter::callback('data_final', function ($qb, $fim) use ($dt_ini_col) {
+                            if (!$fim) return;
+                            $qb->whereDate($dt_ini_col, '<=', $fim);
+                        }),
+                        AllowedFilter::exact('semestre', 'editals.semestre'),
+                        AllowedFilter::callback('tipo_vinculo', function ($qb, $v) {
+                            if (!$v) return;
+                            if ($v === 'bolsista')   $qb->where('eao.bolsista', true);
+                            if ($v === 'voluntario') $qb->where('eao.bolsista', false);
+                        }),
+                    ]);
+
+        $infos_por_programas = $query->select([
+                                    'p.id as programa_id',
+                                    'p.nome as programa_nome',
+                                    'editals.semestre',
+                                    DB::raw("COUNT(DISTINCT eao.aluno_id) FILTER (WHERE eao.bolsista IS TRUE)  AS total_bolsistas"),
+                                    DB::raw("COUNT(DISTINCT eao.aluno_id) FILTER (WHERE eao.bolsista IS FALSE) AS total_voluntarios"),
+                                    DB::raw("COUNT(DISTINCT eao.aluno_id) AS total_alunos"),
+                                    DB::raw("COUNT(DISTINCT editals.id) AS total_editais_no_semestre"),
+                                ])
+                                ->groupBy('p.id','p.nome','editals.semestre')
+                                ->orderBy('semestre', 'asc')
+                                ->orderBy('p.nome','asc')
+                                ->get();
+
+        $infos_por_programas = $infos_por_programas->groupBy('programa_id')->map(function($grupo){
+            $primeiro_elemento_grupo = $grupo->first();
+
+            return [
+                'programa_id' => $primeiro_elemento_grupo->programa_id,
+                'programa_nome' => $primeiro_elemento_grupo->programa_nome,
+                'tipo' => [
+                    'bolsistas' => [
+                        'total'        => (int) $grupo->sum('total_bolsistas'),
+                        'por_semestre' => $grupo->pluck('total_bolsistas','semestre')
+                                              ->map(fn($v)=>(int)$v)->sortKeys()->toArray(),
+                    ],
+
+                    'voluntarios' => [
+                        'total'        => (int) $grupo->sum('total_voluntarios'),
+                        'por_semestre' => $grupo->pluck('total_voluntarios','semestre')
+                                              ->map(fn($v)=>(int)$v)->sortKeys()->toArray(),
+                    ],
+
+                    'total' => [
+                        'geral'        => (int) $grupo->sum('total_alunos'),
+                        'por_semestre' => $grupo->pluck('total_alunos','semestre')
+                                              ->map(fn($v)=>(int)$v)->sortKeys()->toArray(),
+                    ]
+                ],
+                'total_editais' => $primeiro_elemento_grupo->total_editais_no_semestre
+            ];
+        });
+
+        return view('relatorios', compact('infos_por_programas'));
+    }
 }
