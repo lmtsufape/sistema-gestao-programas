@@ -24,22 +24,6 @@
                     </div>
                     <div class="mb-3">
 
-                        <label class="tituloinfomodal form-label mt-3">Data de Início</label>
-
-                        <div class="textoinfomodal">
-                            {{ date_format(date_create($programa->data_inicio), 'd/m/Y') }}
-                        </div>
-                    </div>
-                    <div class="mb-3">
-
-                        <label class="tituloinfomodal form-label mt-3">Data de Fim</label>
-
-                        <div class="textoinfomodal">
-                            {{ date_format(date_create($programa->data_fim), 'd/m/Y') }}
-                        </div>
-                    </div>
-                    <div class="mb-3">
-
                         <label class="tituloinfomodal form-label mt-3">Servidores</label>
 
                         <div class="textoinfomodal">

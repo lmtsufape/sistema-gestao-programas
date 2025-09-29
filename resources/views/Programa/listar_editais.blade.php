@@ -82,8 +82,6 @@
         ;margin-bottom: 5px; min-height: 350px">
       <thead>
         <tr>
-          <th scope="col"> Data de início</th>
-          <th scope="col"> Data de fim</th>
           <th scope="col"> Programa</th>
           <th scope="col">Ações</th>
         </tr>
@@ -91,8 +89,6 @@
       <tbody>
         @foreach ($editals as $edital)
         <tr>
-          <td> {{date_format(date_create($edital->data_inicio), "d/m/Y")}}</td>
-          <td> {{date_format(date_create($edital->data_fim), "d/m/Y")}}</td>
           <td> {{$edital->programa->nome}}</td>
           <td>
             <a type="button" data-bs-toggle="modal" data-bs-target="#modal_show_{{$edital->id}}">

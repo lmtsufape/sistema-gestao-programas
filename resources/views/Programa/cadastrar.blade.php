@@ -28,20 +28,6 @@
                 <label for="descricao" class="titulopequeno">Descrição<strong style="color: #8B5558">*</strong></label>
                 <input type="text" name="descricao" value="{{ old('descricao') }}" id="descricao" placeholder="Digite a descrição do programa" class="boxcadastrar" required><br><br>
 
-                <div style="display: flex; width: 100%; justify-content: space-between; gap: 2%">
-                    <div style="width: 50%">
-                    <label class="titulopequeno" for="data_inicio">Data de início<strong style="color: #8B5558">*</strong></label>
-                    <br>
-                    <input class="boxcadastrar" type="date" name="data_inicio" id="data_inicio" value="{{ old('data_inicio') }}"><br><br>
-                    </div>
-                    <div style="width: 50%">
-                    <label class="titulopequeno"  for="data_fim" >Data de fim<strong style="color: #8B5558">*</strong></label>
-                    <br>
-                    <input class="boxcadastrar"  type="date" name="data_fim" id="data_fim" value="{{ old('data_fim') }}"><br><br>
-                    </div>
-                </div>
-
-                <br><br>
                 <div class="botoessalvarvoltar">
                     <input type="button" value="Voltar" href="{{url('/programas/')}}" onclick="window.location.href='{{url('/programas/')}}'" class="botaovoltar">
                     <input class="botaosalvar" type="submit" value="Salvar">
