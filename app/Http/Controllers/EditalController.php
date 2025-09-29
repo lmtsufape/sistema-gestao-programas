@@ -965,7 +965,8 @@ class EditalController extends Controller
     {
         $dados = $request->validate([
             'status' => 'required|integer|in:2,3',
-            'parecer' => 'nullable|string'
+            'parecer' => 'nullable|string',
+            'carga_horaria' => 'required|integer|min:0'
         ]);
 
         $relatorio = RelatorioFinal::findOrFail($request->relatorio_id);

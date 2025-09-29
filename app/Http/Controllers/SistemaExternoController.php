@@ -15,8 +15,7 @@ class SistemaExternoController extends Controller
 
     public function index()
     {
-        $tokens = SistemaExterno::select('name', 'api_token_last4', 'rotated_at', 'last_used_at')
-            ->get()
+        $tokens = SistemaExterno::get(['name', 'api_token_last4', 'rotated_at', 'last_used_at'])
             ->mapWithKeys(function ($system) {
                 return [
                     $system->name => [
@@ -36,7 +35,7 @@ class SistemaExternoController extends Controller
     {
         $data = $request->validate([
             'systems'   => 'required|array',
-            'systems.*' => 'nullable|string|max:4096', // token pode ser vazio (não altera)
+            'systems.*' => 'nullable|string|max:4096', // O token pode ser vazio (se for, não faz nada)
         ]);
 
         DB::transaction(function () use ($data) {

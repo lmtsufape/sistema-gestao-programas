@@ -50,12 +50,13 @@ class ParecerRelatorioFinalJob implements ShouldQueue
             }
 
             // Monta o JSON conforme a especificação
+            $natureza = $relatorio->editalAlunoOrientador->edital->programa->nome;
             $json = [
                 [
-                    'titulo' => "Relatório Final - $semestre",
+                    'titulo' => "Relatório Final - $natureza $semestre",
                     'inicio' => $dataInicio->format('Y-m-d'),
                     'fim' => $dataFim->format('Y-m-d'),
-                    'natureza' => $relatorio->editalAlunoOrientador->edital->programa->nome,
+                    'natureza' => $natureza,
                     'atividades' => [
                         [
                             'descricao' => $relatorio->editalAlunoOrientador->titulo,
@@ -66,7 +67,7 @@ class ParecerRelatorioFinalJob implements ShouldQueue
                                     'nome' => $relatorio->editalAlunoOrientador->aluno->user->name,
                                     'email' => $relatorio->editalAlunoOrientador->aluno->user->email,
                                     'cpf' => $relatorio->editalAlunoOrientador->aluno->user->cpf,
-                                    'carga' => 20, // Adjust based on actual data
+                                    'carga' => $relatorio->carga_horaria,
                                     'curso' => $relatorio->editalAlunoOrientador->aluno->curso->nome
                                 ]
                             ]
