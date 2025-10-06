@@ -29,6 +29,8 @@ use App\Notifications\RelatorioAvaliadoNotification;
 use App\Models\SistemaExterno;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Event;
+use App\Events\RelatorioEnviadoEvent;
 
 use function PHPSTORM_META\type;
 
@@ -916,16 +918,18 @@ class EditalController extends Controller
                 $relatorio_enviado->caminho = $caminho;
                 $relatorio_enviado->status = 1;
                 $relatorio_enviado->update();
-                User::find(5)->notify(new RelatorioEnviadoNotification($relatorio_enviado));
             } else {
-                $relatorio = new RelatorioFinal();
-                $relatorio->caminho = $caminho;
-                $relatorio->edital_aluno_orientador_id = $vinculo->id;
-                $relatorio->save();
-                User::find(5)->notify(new RelatorioEnviadoNotification($relatorio));
+                $relatorio_enviado = new RelatorioFinal();
+                $relatorio_enviado->caminho = $caminho;
+                $relatorio_enviado->edital_aluno_orientador_id = $vinculo->id;
+                $relatorio_enviado->save();
             }
 
             DB::commit();
+
+            $users = User::role(['tecnico_programas', 'coordenador_programas'])->get();
+            $users->each->notify(new RelatorioEnviadoNotification($relatorio_enviado));
+            broadcast(new RelatorioEnviadoEvent($relatorio_enviado));
 
             return back()->with('sucesso', 'Relatório final enviado com sucesso!');
         } catch (\Exception $e) {

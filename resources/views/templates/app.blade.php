@@ -8,8 +8,8 @@
 
     @if (Auth::check())
         <meta name="user-id" content="{{ Auth::id() }}">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     @endif
-
 
     <title>Sistema de Gestão de Programas Academicos</title>
 
@@ -48,31 +48,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
     <script defer="defer" src="//barra.brasil.gov.br/barra_2.0.js" type="text/javascript"></script>
 
-    <!-- Laravel Echo e Pusher via CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/pusher-js@latest/dist/web/pusher.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/laravel-echo/dist/echo.iife.js"></script>
+    <!-- Pusher JS -->
+    <script src="https://unpkg.com/pusher-js@8/dist/web/pusher.min.js"></script>
+
+    <!-- Laravel Echo -->
+    <script src="https://unpkg.com/laravel-echo@1.15.0/dist/echo.iife.js"></script>
 
     <script>
-        window.Pusher = Pusher;
-
-        window.Echo = new Echo.default({
-            broadcaster: 'pusher',
-            key: '{{ env('PUSHER_APP_KEY') }}',
-            cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
-            forceTLS: true,
-            encrypted: true,
-            authEndpoint: '/broadcasting/auth',
-            auth: {
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                }
-            }
-        });
+        window.pusherKey = '{{ config('broadcasting.connections.pusher.key') }}';
+        window.pusherCluster = '{{ config('broadcasting.connections.pusher.options.cluster') }}';
     </script>
 
     <!-- Arquivo JS personalizado -->
     <script src="{{ asset('js/notificacoes.js') }}"></script>
-
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -112,10 +100,12 @@
     @livewireScripts
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('#semestre').mask('20A0.0', {
                 translation: {
-                    'A': { pattern: /[2-9]/ }   
+                    'A': {
+                        pattern: /[2-9]/
+                    }
                 }
             });
         })
