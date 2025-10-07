@@ -33,6 +33,7 @@ Route::post('/home', [UserController::class, 'store'])->name('store');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/relatorios', [ServidorController::class, 'relatorios'])->name('relatorios');
 });
 
 Route::get('/sistema', function () {
