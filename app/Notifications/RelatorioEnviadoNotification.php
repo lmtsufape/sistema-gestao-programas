@@ -8,10 +8,8 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\RelatorioFinal;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class RelatorioEnviadoNotification extends Notification implements ShouldQueue, ShouldBroadcast
+class RelatorioEnviadoNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -22,14 +20,9 @@ class RelatorioEnviadoNotification extends Notification implements ShouldQueue, 
         $this->relatorio = $relatorio;
     }
 
-    public function broadcastOn()
-    {
-        return new PrivateChannel("App.Models.User.5");
-    }
-
     public function via($notifiable)
     {
-        return ['mail', 'database', 'broadcast'];
+        return ['mail', 'database'];
     }
 
     public function toMail($notifiable)
@@ -46,13 +39,5 @@ class RelatorioEnviadoNotification extends Notification implements ShouldQueue, 
             'mensagem' => "O aluno {$this->relatorio->editalAlunoOrientador->aluno->user->name} enviou um novo relatório.",
             'link' => url("/edital/{$this->relatorio->editalAlunoOrientador->edital->id}/alunos?modal={$this->relatorio->editalAlunoOrientador->id}")
         ];
-    }
-
-    public function toBroadcast($notifiable)
-    {
-        return new BroadcastMessage([
-            'mensagem' => "O aluno {$this->relatorio->editalAlunoOrientador->aluno->user->name} enviou um novo relatório.",
-            'link' => url("/edital/{$this->relatorio->editalAlunoOrientador->edital->id}/alunos?modal={$this->relatorio->editalAlunoOrientador->id}")
-        ]);
     }
 }

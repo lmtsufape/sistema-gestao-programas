@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('programas-channel', function ($user) {
+    return $user->hasAnyRole(['tecnico_programas', 'coordenador_programas']);
+});
