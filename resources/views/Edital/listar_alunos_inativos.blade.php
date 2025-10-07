@@ -47,7 +47,7 @@
                     @foreach ($vinculos as $vinculo)
                         <tbody>
                             <tr>
-                                <td class="align-middle"> {{ $vinculo->aluno->nome_aluno }} </td>
+                                <td class="align-middle"> {{ $vinculo->aluno->user->name }} </td>
                                 <td class="align-middle"> {{ $vinculo->edital->titulo_edital }} </td>
                                 <td class="align-middle">{{ date_format(date_create($vinculo->data_inicio), 'd/m/Y') }}</td>
                                 <td class="align-middle">{{ date_format(date_create($vinculo->data_fim), 'd/m/Y') }}</td>

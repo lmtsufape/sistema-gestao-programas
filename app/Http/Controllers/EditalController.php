@@ -93,12 +93,12 @@ class EditalController extends Controller
     }
 
     public function getCpfs() {
-    $cpfs = Aluno::select('cpf', 'nome_aluno')->get();
+    $cpfs = Aluno::select('user.cpf', 'name')->get();
 
     $data = $cpfs->map(function ($item) {
         return [
             'cpf' => $item->cpf,
-            'nome' => $item->nome_aluno,
+            'nome' => $item->name,
         ];
     });
 

@@ -10,9 +10,7 @@ class Aluno extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'cpf',
-        'nome_aluno',
-        'curso',
+        'curso_id',
         'semestre_entrada',
     ];
 

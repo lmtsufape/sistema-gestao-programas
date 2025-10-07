@@ -105,7 +105,7 @@
             @method("PUT")
 
             <label class="titulopequeno" for="nome_aluno">Nome do Aluno</label>
-            <input type="text" id="nome_aluno" class="boxcadastrar" placeholder="Nome do aluno" value="{{$aluno->nome_aluno}}" disabled>
+            <input type="text" id="nome_aluno" class="boxcadastrar" placeholder="Nome do aluno" value="{{$aluno->user->name}}" disabled>
             <br><br>
 
             <label class="titulopequeno" for="info_complementares">Informações complementares</label>
