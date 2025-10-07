@@ -57,6 +57,13 @@
                                         <span style="margin-left: 5px;">Meu perfil</span>
                                     </a>
                                 @endrole
+                                @role('administrador')
+                                    <a href="{{ route('integrations.index') }}" class="caixinhasetinha">
+                                        <img src="{{ asset('images/UserVector.svg') }}" alt="Icone de usuário">
+                                        <span style="margin-left: 5px;">Integrações</span>
+                                    </a>
+                                @endrole
+
                                 <form action="/logout" method="POST">
                                     @csrf
                                     <div style="padding-top: 10px">

@@ -30,4 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'certifica' => [
+        'url' => env('CERTIFICA_URL'),
+        'endpoint' => '/api/criar-certificado'
+    ]
 ];

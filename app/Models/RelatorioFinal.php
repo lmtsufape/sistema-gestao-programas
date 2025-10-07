@@ -9,7 +9,7 @@ class RelatorioFinal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['status', 'caminho', 'edital_aluno_orientador_id', 'parecer'];
+    protected $fillable = ['status', 'caminho', 'edital_aluno_orientador_id', 'parecer', 'carga_horaria'];
 
     public const STATUS_ENUM = [
         'em_analise' => 1,
