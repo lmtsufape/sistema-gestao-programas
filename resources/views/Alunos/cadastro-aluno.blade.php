@@ -26,12 +26,12 @@
                 <input type="file" id="image" name="image" class="form-control boxinfo">
             </div>
 
-            <label for="inputName" class="titulopequeno">Nome<strong style="color: #8B5558;">*</strong></label>
-            <input class="boxcadastrar" type="text" id="inputName" name="nome" required placeholder="Digite o nome" value="{{ old('nome') }}">
+            <label for="name" class="titulopequeno">Nome<strong style="color: #8B5558;">*</strong></label>
+            <input class="boxcadastrar" type="text" id="name" name="name" required placeholder="Digite o nome" value="{{ old('name') }}">
             <div class="invalid-feedback">Por favor preencha esse campo</div>
 
-            <label for="inputNomeSocial" class="titulopequeno">Nome Social</label>
-            <input class="boxcadastrar" type="text" id="inputNomeSocial" name="name_social" placeholder="Digite o nome" value="{{ old('name_social') }}">
+            <label for="name_social" class="titulopequeno">Nome Social</label>
+            <input class="boxcadastrar" type="text" id="name_social" name="name_social" placeholder="Digite o nome" value="{{ old('name_social') }}">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="inputCpf" class="titulopequeno">CPF<strong style="color: #8B5558;">*</strong></label>
@@ -48,7 +48,7 @@
 
 
             <label for="inputCurso" class="titulopequeno">Curso<strong style="color: #8B5558;">*</strong></label>
-            <select aria-label="Default select example" class="boxcadastrar" id="inputCurso" name="curso">
+            <select aria-label="Default select example" class="boxcadastrar" id="inputCurso" name="curso_id">
                 <option value disabled selected hidden>Selecione o curso</option>
                 @foreach ($cursos as $curso)
                 <option value="{{$curso->id}}" {{ old('curso') == $curso->id ? 'selected' : '' }} >{{$curso->nome}}</option>
@@ -61,7 +61,7 @@
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="inputPassword4" class="titulopequeno">Senha<strong style="color: #8B5558;">*</strong></label>
-            <input type="password"  class="boxcadastrar" id="inputPassword4" name="senha" required placeholder="Digite a senha">
+            <input type="password"  class="boxcadastrar" id="inputPassword4" name="password" required placeholder="Digite a senha">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <div class="botoessalvarvoltar">

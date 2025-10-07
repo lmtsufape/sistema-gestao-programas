@@ -35,19 +35,10 @@
                             </div>
                         </div>
                     @endif
-
-                    <!-- @if ($aluno->name_social != null)
-                            <div style="display: flex; flex-direction: column;">
-                            <label style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; color: var(--preto-p-100, #6B6B6B); font-family: Inter; font-size: 14px; font-style: normal; font-weight: 500; line-height: normal; margin-top: 8px;">Nome completo</label>
-                            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; color: var(--preto-p-200, #2B2B2B); font-family: Inter; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">{{ $aluno->name_social }} </div>
-                            </div>
-                            @endif -->
-
                     <br>
 
-                    <div style="display: flex; flex-direction: column;">
-                        <label
-                            style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; color: var(--preto-p-100, #6B6B6B); font-family: Inter; font-size: 14px; font-style: normal; font-weight: 500; line-height: normal; margin-top: 8px;">Nome
+                    <div class="form-group">
+                        <label class="form-label" aria>Nome
                             completo</label>
                         <div
                             style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; color: var(--preto-p-200, #2B2B2B); font-family: Inter; font-size: 16px; font-style: normal; font-weight: 700; line-height: normal;">
@@ -83,19 +74,19 @@
                                     {{ $aluno->semestre_entrada }} </div>
                             </div>
 
-                            @endif
                             <br>
                             <br>
                         </div>
                         {{-- editar perfil - botão  --}}
                         <div style="display:flex; justify-content:right; margin-bottom: 10px;  gap: 20px; margin-top: 20px">
-                            <a href="{{ url('/alunos/' . $aluno->id . '/editarmeuperfil') }}" class="btn btn-primary"
+                            <a href="{{ route('alunos.edit', compact('aluno')) }}" class="btn btn-primary"
                                 style="display: flex; padding: 8.5px 15.5px; align-items: center; gap: 6px; border-radius: 10px; border: 1.5px solid var(--teste-12, #BD8184); background-color: white; color: var(--teste-11, #972E3F);
-                font-family: Inter; font-size: 12px; font-style: normal; font-weight: 700; line-height: normal; align-items: flex-end;">
+                            font-family: Inter; font-size: 12px; font-style: normal; font-weight: 700; line-height: normal; align-items: flex-end;">
                                 <img src="{{ asset('images/lapis-editarperfil.png') }}" style="width: 20px; height: 20px;"
                                     alt="Editar servidor"> Editar</a>
                         </div>
-                    @endauth
+                    </div>
                 </div>
             @endrole
+        @endauth
 @endsection

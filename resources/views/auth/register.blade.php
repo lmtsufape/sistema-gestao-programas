@@ -19,22 +19,12 @@
 
         <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <!-- imagem de perfil
-
-            <label for="image" class="titulo-cad">Imagem do Perfil</label>
-            <img src="/images/fotos-perfil/sem-foto-perfil.png" alt="Foto Perfil" class="images" /><br>
-            <div class="row d-flex justify-content-center">
-                <div class="col-6 ">
-                    <input type="file" id="image" name="image" class="form-control boxinfo">
-                </div>
-            </div> -->
-
-            <label for="nome" class="titulo-cad">Nome<strong style="color: #8B5558">*</strong></label>
-            <input class="boxinfo" type="text" id="nome" name="nome" required placeholder="Digite o nome">
+            <label for="name" class="titulo-cad">Nome<strong style="color: #8B5558">*</strong></label>
+            <input class="boxinfo" type="text" id="name" name="name" required placeholder="Digite o nome">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="nome_social" class="titulo-cad">Nome Social</label>
-            <input class="boxinfo" type="text" id="nome_social" name="nome_social" placeholder="Digite o nome social">
+            <label for="name_social" class="titulo-cad">Nome Social</label>
+            <input class="boxinfo" type="text" id="name_social" name="name_social" placeholder="Digite o nome social">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="cpf" class="titulo-cad">CPF<strong style="color: #8B5558">*</strong></label>
@@ -45,8 +35,8 @@
             <input class="boxinfo" type="email" id="email" name="email" required placeholder="Digite o email">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
-            <label for="senha" class="titulo-cad">Senha<strong style="color: #8B5558">*</strong></label>
-            <input type="password"  class="boxinfo" id="senha" name="senha" required placeholder="Digite a senha">
+            <label for="password" class="titulo-cad">Senha<strong style="color: #8B5558">*</strong></label>
+            <input type="password"  class="boxinfo" id="password" name="password" required placeholder="Digite a senha">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
 
             <label for="tipoUser" class="titulo-cad">Perfil<strong style="color: #8B5558">*</strong></label>
@@ -57,7 +47,7 @@
                 <option value="aluno">Discente</option>
             </select>
 
-            <div id="instituicaoVinculo" style="display:none">
+            <div id="instituicaoVinculo" class="d-none">
                 <label class="titulo-cad" for="instituicaoVinculo">Intituição de Vínculo<strong style="color: #8B5558">*</strong></label>
                 <div class="vinculo">
                     <div class="form-check">
@@ -72,17 +62,17 @@
                 </div>
             </div>
 
-            <div id="curso" style="display:none">
-                <label class="titulo-cad">Curso</label>
-                <select aria-label="Default select example" class="boxinfo" name="curso" id="curso">
-                    <option value disabled selected hidden>Selecione o curso</option>
+            <div id="curso" class="d-none">
+                <label for="curso_id" class="titulo-cad">Curso</label>
+                <select aria-label="Default select example" class="boxinfo" name="curso_id" id="curso_id">
+                    <option selected hidden>Selecione o curso</option>
                     @foreach ($cursos as $curso)
                         <option value="{{$curso->id}}">{{$curso->nome}}</option>
                     @endforeach
                 </select>
             </div>
 
-            <div id="cursos" style="display:none">
+            <div id="cursos" class="d-none">
                 <label class="titulo-cad">Curso(s) que Leciona</label>
                 <div class="row">
                     @foreach ($cursos as $curso)
@@ -95,21 +85,19 @@
             </div>
 
 
-            <div id="matricula" style="display:none">
+            <div id="matricula" class="d-none">
                 <label class="titulo-cad" for="matricula">Matrícula<strong style="color: #8B5558">*</strong></label>
                 <input class="boxinfo" type="text" id="matricula" name="matricula" placeholder="Digite a matrícula (Exemplo: SIAPE)">
             </div>
 
 
-            <div id="semestre" style="display:none">
+            <div id="semestre-div" class="d-none">
                 <label class="titulo-cad" for="semestre_entrada">Semestre de entrada<strong style="color: #8B5558">*</strong></label>
-                <input class="boxinfo semestre-autocomplete" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre (Exemplo: 2023.2)">
+                <input class="boxinfo" type="text"  id="semestre_entrada" name="semestre_entrada" placeholder="Digite o semestre (Exemplo: 2023.2)">
             </div>
 
-            <br>
-            <br>
 
-            <div class="container-botoes">
+            <div class="container-botoes pt-5">
                 <a href="/">
                 <input type="button" value="Voltar" class="botaovoltar"/>
                 </a>
@@ -134,33 +122,16 @@
             var selectedOption = $(this).val();
 
             if (selectedOption == "aluno") {
-                $("#curso").show();
-                $("#semestre").show();
-                $("#cursos").hide();
-                $("#matricula").hide();
-                $("#tipo_servidor").hide();
-                $("#instituicaoVinculo").hide();
+                $("#curso, #semestre-div").removeClass("d-none");
+                $("#cursos, #matricula, #tipo_servidor, #instituicaoVinculo").addClass("d-none");
             } else if (selectedOption == "orientador") {
-                $("#cursos").show();
-                $("#curso").hide();
-                $("#semestre").hide();
-                $("#matricula").show();
-                $("#tipo_servidor").hide();
-                $("#instituicaoVinculo").show();
+                $("#cursos, #matricula, #instituicaoVinculo").removeClass("d-none");
+                $("#curso, #semestre-div, #tipo_servidor").addClass("d-none");
             } else if (selectedOption == "servidor") {
-                $("#cursos").hide();
-                $("#curso").hide();
-                $("#semestre").hide();
-                $("#matricula").show();
-                $("#tipo_servidor").show();
-                $("#instituicaoVinculo").show();
+                $("#matricula, #tipo_servidor, #instituicaoVinculo").removeClass("d-none");
+                $("#cursos, #curso, #semestre-div").addClass("d-none");
             } else {
-                $("#cursos").hide();
-                $("#curso").hide();
-                $("#semestre").hide();
-                $("#matricula").hide();
-                $("#tipo_servidor").hide();
-                $("#instituicaoVinculo").hide();
+                $("#matricula, #tipo_servidor, #instituicaoVinculo, #cursos, #curso, #semestre-div").addClass("d-none");
             }
         });
     });
