@@ -5,8 +5,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\DB;
 
-class RoleSeeder extends Seeder
+class RolePermissionSeeder extends Seeder
 {
     // Define os papéis
     private $roles = [
@@ -422,48 +423,57 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        // Atualizar permissões
-        $existingPermissions = Permission::pluck('name')->toArray();
-        $permissionsToDelete = array_diff($existingPermissions, $this->permissions);
-        $permissionsToCreate = array_diff($this->permissions, $existingPermissions);
+        try {
+            DB::beginTransaction();
 
-        // Remover permissões que não estão na lista
-        Permission::whereIn('name', $permissionsToDelete)->delete();
+            // Atualizar permissões
+            $existingPermissions = Permission::pluck('name')->toArray();
+            $permissionsToDelete = array_diff($existingPermissions, $this->permissions);
+            $permissionsToCreate = array_diff($this->permissions, $existingPermissions);
 
-        // Criar novas permissões
-        foreach ($permissionsToCreate as $permission) {
-            Permission::create(['name' => $permission, 'guard_name' => 'web']);
-        }
+            // Remover permissões que não estão na lista
+            Permission::whereIn('name', $permissionsToDelete)->delete();
 
-        // Atualizar papéis
-        $existingRoles = Role::pluck('name')->toArray();
-        $rolesToDelete = array_diff($existingRoles, $this->roles);
-        $rolesToCreate = array_diff($this->roles, $existingRoles);
-
-        // Remover papéis que não estão na lista
-        Role::whereIn('name', $rolesToDelete)->delete();
-
-        // Criar novos papéis
-        foreach ($rolesToCreate as $roleName) {
-            Role::create([
-                'name' => $roleName,
-                'guard_name' => 'web'
-            ]);
-        }
-
-        // Atualizar permissões para cada papel
-        foreach ($this->roles as $roleName) {
-            $role = Role::where('name', $roleName)->first();
-            if ($role) {
-                $permissions = in_array($roleName, [
-                    'tecnico_programas',
-                    'tecnico_estagios',
-                    'coordenador_programas',
-                    'coordenador_estagios',
-                    'diretor'
-                ]) ? $this->permissions : ($this->rolePermission[$roleName] ?? []);
-                $role->syncPermissions($permissions);
+            // Criar novas permissões
+            foreach ($permissionsToCreate as $permission) {
+                Permission::create(['name' => $permission, 'guard_name' => 'web']);
             }
+
+            // Atualizar papéis
+            $existingRoles = Role::pluck('name')->toArray();
+            $rolesToDelete = array_diff($existingRoles, $this->roles);
+            $rolesToCreate = array_diff($this->roles, $existingRoles);
+
+            // Remover papéis que não estão na lista
+            Role::whereIn('name', $rolesToDelete)->delete();
+
+            // Criar novos papéis
+            foreach ($rolesToCreate as $roleName) {
+                Role::create([
+                    'name' => $roleName,
+                    'guard_name' => 'web'
+                ]);
+            }
+
+            // Atualizar permissões para cada papel
+            foreach ($this->roles as $roleName) {
+                $role = Role::where('name', $roleName)->first();
+                if ($role) {
+                    $permissions = in_array($roleName, [
+                        'tecnico_programas',
+                        'tecnico_estagios',
+                        'coordenador_programas',
+                        'coordenador_estagios',
+                        'diretor'
+                    ]) ? $this->permissions : ($this->rolePermission[$roleName] ?? []);
+                    $role->syncPermissions($permissions);
+                }
+            }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $this->command->error($e->getMessage());
         }
     }
 }
