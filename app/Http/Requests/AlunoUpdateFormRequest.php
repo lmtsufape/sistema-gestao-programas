@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AlunoUpdateFormRequest extends FormRequest
 {
@@ -24,9 +25,14 @@ class AlunoUpdateFormRequest extends FormRequest
     public function rules()
     {
         return [
-            "nome" => "max:50",
-            "email" => "email",
-            "cpf" => "formato_cpf|cpf|unique:servidors|unique:orientadors"
+            "name" => ["max:50"],
+            'cpf'   => ['required', 'cpf', Rule::unique('users', 'cpf')->ignore($this->route('aluno')->user->id),],
+            'name_social'   => ['nullable', 'string', 'max:255'],
+            "email" => ["email"],
+            'password' => ['nullable', 'string', 'min:8'],
+            'image' => ['nullable','image','mimes:jpg,jpeg,png,webp','max:2048'],
+            'semestre_entrada' =>['required'],
+            'curso_id'  => []
         ];
     }
 

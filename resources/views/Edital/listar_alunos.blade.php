@@ -56,7 +56,7 @@
 
                         @foreach ($vinculos as $vinculo)
                             <tr>
-                                <td class="align-middle">{{ $vinculo->aluno->nome_aluno }}</td>
+                                <td class="align-middle">{{ $vinculo->aluno->user->name }}</td>
                                 <td class="align-middle">{{ $vinculo->edital->titulo_edital }}</td>
                                 <td>
                                     <a type="button" data-bs-toggle="modal"

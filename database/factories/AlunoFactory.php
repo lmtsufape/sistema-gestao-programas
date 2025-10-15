@@ -15,8 +15,6 @@ class AlunoFactory extends Factory
     public function definition()
     {
         return [
-            'nome_aluno' => $this->faker->name(),
-            'cpf' => $this->faker->unique()->numerify('###.###.###-##'),
             'curso_id' => Curso::inRandomOrder()->first()->id,
             'semestre_entrada' => $this->faker->numberBetween(2020, 2026) . '.' . $this->faker->randomElement([1, 2]),
         ];
@@ -26,10 +24,10 @@ class AlunoFactory extends Factory
     {
         return $this->afterCreating(function ($aluno) {
             $aluno->user()->create([
-                'name' => $aluno->nome_aluno,
+                'name' => $this->faker->name(),
                 'email' => $this->faker->unique()->safeEmail(),
                 'password' => bcrypt('password'),
-                'cpf' => $aluno->cpf,
+                'cpf' => $this->faker->unique()->numerify('###.###.###-##'),
             ])->assignRole('estudante');
         });
     }

@@ -49,8 +49,8 @@
                     <div class="mb-3">
                         <label class="tituloinfomodal form-label mt-3">Discentes orientados</label>
                         <ul>
-                            @foreach ($orientador->alunosOrientados()->distinct()->orderBy('nome_aluno')->pluck('nome_aluno') as $nome)
-                                <li>{{ $nome }}</li>
+                            @foreach ($orientador->alunosOrientados()->distinct()->with('user')->get()->sortBy('user.name')->values() as $aluno)
+                                <li>{{ $aluno->user->name }}</li>
                             @endforeach
                         </ul>
                     </div>

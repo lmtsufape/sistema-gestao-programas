@@ -24,12 +24,13 @@ class AlunoStoreFormRequest extends FormRequest
     public function rules()
     {
         return [
-            "nome"=>"required|max:50",
-            "email"=>"required|email",
-            "senha"=>"required|min:4|max:30",
-            "cpf" => "required|formato_cpf|cpf|unique:servidors|unique:alunos|unique:orientadors",
-            "curso" => "required",
-            "semestre_entrada" => "required"
+            "name"=> ['required', 'max:50'],
+            "email"=> ['required', 'email'],
+            "password"=> ['required', 'string', 'min:8', 'max:30'],
+            "cpf" => [ 'required', 'cpf', 'unique:users,cpf'],
+            "curso_id" => [ "required"],
+            "semestre_entrada" => ['required'],
+            'image' => ['nullable','image','mimes:jpg,jpeg,png,webp','max:2048'],
         ];
     }
 
@@ -39,8 +40,8 @@ class AlunoStoreFormRequest extends FormRequest
             "required" => "O campo :attribute é obrigatório.",
             "email" => "O email está no formato incorreto.",
             "nome.max" => "O campo nome não pode ter mais que 50 caracteres.",
-            "senha.max" => "A senha não pode ter mais que 30 dígitos.",
-            "senha.min" => "A senha não pode ter menos que 4 dígitos.",
+            "password.max" => "A senha não pode ter mais que 30 dígitos.",
+            "password.min" => "A senha não pode ter menos que 4 dígitos.",
             "unique" => "CPF já está em uso."
         ];
     }

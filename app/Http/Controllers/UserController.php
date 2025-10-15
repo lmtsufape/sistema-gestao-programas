@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Aluno;
 use App\Models\Curso;
 use App\Models\Orientador;
@@ -31,52 +31,34 @@ class UserController extends Controller
         return view('auth.forgot-password');
     }
 
-    public function store(UserRequest $request) {
+    public function store(StoreUserRequest $request) {
 
-        //dd($request);
-        // $existingCpf = User::where('cpf', $request->cpf)->first();
-        // if($existingCpf) {
-        //     return redirect()->back()->withErrors( "CPF já existe." );
-        // }
-        //dd($request);
         DB::beginTransaction();
         try {
-
             //Image Upload -> Se não colocar, vai ficar a imagem padrão
             $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
                 $imageName = ManipulacaoImagens::salvarImagem($request->image);
-                
+
             }
 
             switch ($request->tipoUser){
                 case('aluno'):
-                    $aluno = new Aluno();
-                    $aluno->nome_aluno = $request->nome;
-                    $aluno->cpf = $request->cpf;
-                    $aluno->curso_id = $request->curso;
-                    $aluno->semestre_entrada = $request->semestre_entrada;
+                    $aluno = Aluno::create($request->safe()->only([
+                        'semestre_entrada',
+                        'curso_id',
+                    ]));
+                    if ($aluno){
+                        $aluno->user()->create($request->safe()->only([
+                            'name', 'cpf', 'name_social', 'email', 'password', 'image'
+                        ]))->assignRole('estudante');
+
+                        Auth::login($aluno->user);
+                        
+                        DB::commit();
+                        return redirect('/home')->with('sucesso', 'Cadastro com sucesso.');
 
 
-                    if ($aluno->save()){
-                        if (
-                            $aluno->user()->create([
-                                'name' => $request->nome,
-                                'cpf' => $request->cpf,
-                                'name_social' => $request->nome_social == null ? "-": $request->nome_social,
-                                'email' => $request->email,
-                                'password' => Hash::make($request->senha),
-                                'image' => $imageName
-                            ])->assignRole('estudante')
-                        ){
-                            $user = $aluno->user;
-                            Auth::login($user);
-                            DB::commit();
-                            return redirect('/home')->with('sucesso', 'Cadastro com sucesso.');
-
-                        } else {
-                            return redirect()->back()->withErrors( "Falha ao se cadastrar." );
-                        }
                     }
                     break;
 
@@ -142,7 +124,8 @@ class UserController extends Controller
                 }
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->back()->withErrors( "Falha ao se cadastrar." );
+            dd($e);
+            return redirect()->back()->with( "Falha ao se cadastrar." );
         }
     }
 

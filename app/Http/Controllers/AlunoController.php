@@ -18,96 +18,122 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Exception;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
 
 class AlunoController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        if (sizeof($request-> query()) > 0){
+            $campo = $request->query('campo');
+            $valor = $request->query('valor');
+
+            if ($valor == null){
+                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
+            }
+
+            $alunos = Aluno::with(["user" => function($q) use ($valor){
+                                            $q->orWhere("name", "LIKE", "%{$valor}%");
+                                            $q->orWhere("email", "LIKE", "%{$valor}%");
+                                            $q->orWhere("cpf", "LIKE", "%{$valor}%");
+                                            }])
+                        ->orderBy('user.name')->get();
+
+            return view("Alunos.index", compact("alunos"));
+        } else {
+            $alunos = Aluno::with('user')->get();
+            return view("Alunos.index", compact("alunos"));
+        }
+    }
+
     public function store(AlunoStoreFormRequest $request){
         DB::beginTransaction();
         try {
-            $aluno = new Aluno();
-            $aluno->nome_aluno = $request->nome;
-            $aluno->cpf = $request->cpf;
-            $aluno->curso_id = $request->curso;
-            $aluno->semestre_entrada = $request->semestre_entrada;
+            $aluno = Aluno::create($request->safe()->only([
+                                                                'curso_id',
+                                                                'semestre_entrada'
+                                                                ]));
 
             $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
                 $imageName = ManipulacaoImagens::salvarImagem($request->image);
             }
 
-            if ($aluno->save()) {
-                $user = $aluno->user()->create([
-                    'name' => $request->nome,
-                    'name_social' => $request->name_social == null ? "-" : $request->name_social,
-                    'email' => $request->email,
-                    'cpf' => $request->cpf,
-                    'password' => Hash::make($request->senha),
-                    'image' => $imageName
-                ]);
-                $user->assignRole('estudante');
-                $user->save();
-                DB::commit();
+            $aluno->user()->create($request->safe()->only([
+                'name',
+                'name_social',
+                'email',
+                'cpf',
+                'password'//colocar image
+                ]))->assignRole('estudante');
 
-                return redirect('/alunos')->with('sucesso', 'Aluno cadastrado com sucesso.');
-            } else {
-                return redirect()->back()->withErrors("Falha ao cadastrar aluno. Tente novamente mais tarde.");
-            }
+            DB::commit();
+
+            return back()->with('sucesso', 'Aluno cadastrado com sucesso.');
         } catch (Exception $e) {
             DB::rollback();
-            return redirect()->back()->withErrors("Falha ao cadastrar aluno. Tente novamente mais tarde.");
+            return redirect()->back()->with($e);
         }
     }
 
 
-    public function update(AlunoUpdateFormRequest $request, $id)
+    public function edit(Aluno $aluno){
+
+        $this->authorize('edit', $aluno);
+
+        $cursos = Curso::all();
+
+        return view("Alunos.editarmeuperfil", compact('aluno', 'cursos'));
+    }
+
+
+    public function update(AlunoUpdateFormRequest $request, Aluno $aluno)
     {
+
+        DB::beginTransaction();
+        $path_novo = null;
+        $path_antigo = optional($aluno->user)->image;
+
         try{
-            #dd($request);
-            $aluno = Aluno::find($id);
-            #dd($request);
-            $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
-            $aluno->semestre_entrada = $request->semestre_entrada;
-            $aluno->curso_id = $request->curso;
-            $aluno->nome_aluno = $request->nome;
-            $aluno->user->name = $request->nome;
-            $aluno->user->email = $request->email;
-            $aluno->user->name_social = $request->nome_social;
+            $aluno->update($request->safe()->only([
+                'semestre_entrada',
+                'curso_id',
+            ]));
 
-            $imageName = null;
             if($request->hasFile('image') && $request->file('image')->isValid()) {
-                $imageName = ManipulacaoImagens::salvarImagem($request->image);
-                if($aluno->user->image){
-                    //Se tiver uma imagem anterior, aí deleta do servidor pra colocar a nova no lugar
-                    ManipulacaoImagens::deletarImagem($aluno->user->image);
-                }
-            }
-            $aluno->user->image = $request->image == null ? $aluno->user->image : $imageName;
-
-            if ($request->senha != null){
-                if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
-                    $aluno->user->password = Hash::make($request->senha);
-                } else {
-                    return redirect()->back()->withErrors( "Senha deve ter entre 4 e 30 dígitos" );
-                }
-            }else{
-                //Senha eh null
-                return redirect()->back()->withErrors( "O campo Senha é obrigatório!" );
-
+                $path_novo = ManipulacaoImagens::salvarImagem($request->file('image'));
             }
 
-            if ($aluno->save()){
+            $dados = $request->safe()->only([
+                'name',
+                'name_social',
+                'email',
+                'cpf',
+                'status',
+            ]);
 
-                if ($aluno->user->update()){
-                    return redirect('/alunos')->with('sucesso', 'Aluno atualizado com sucesso.');
-                } else {
-                    return redirect()->back()->withErrors( "Falha ao editar Aluno. tente novamente mais tarde." );
-                }
-
+            if ($path_novo) {
+                $dados['image'] = $path_novo;
             }
 
-        } catch(exception $e){
-            dd($e->getMessage());
-            return redirect()->back()->withErrors( "Falha ao editar aluno. tente novamente mais tarde." );
+            $aluno->user()->update($dados);
+
+            DB::commit();
+
+            ManipulacaoImagens::deletarImagem($path_antigo);
+
+            return back()->with('sucesso', 'Aluno atualizado com sucesso.');
+
+
+        } catch(Exception $e){
+            if ($path_novo && Storage::disk('public')->exists($path_novo)) {
+                try { Storage::disk('public')->delete($path_novo); } catch (\Throwable $t) {}
+            }
+
+            DB::rollBack();
+
+            return redirect()->back()->withErrors( $e );
 
         }
     }
@@ -144,97 +170,8 @@ class AlunoController extends Controller
         }
     }
 
-    public function index(Request $request)
-    {
-
-        if (sizeof($request-> query()) > 0){
-            $campo = $request->query('campo');
-            $valor = $request->query('valor');
-
-            if ($valor == null){
-                return redirect()->back()->withErrors( "Deve ser informado algum valor para o filtro." );
-            }
-
-            $alunos = Aluno::join("users", "users.typage_id", "=", "alunos.id");
-            $alunos = $alunos->where(function ($query) use ($valor) {
-                if ($valor) {
-                    $query->orWhere("users.name", "LIKE", "%{$valor}%");
-                    $query->orWhere("users.email", "LIKE", "%{$valor}%");
-                    $query->orWhere("alunos.cpf", "LIKE", "%{$valor}%");
-                }
-            })->orderBy('alunos.created_at', 'desc')->select("alunos.*")->distinct()->get();
-
-            return view("Alunos.index", compact("alunos"));
-        } else {
-            $alunos = Aluno::all();
-            return view("Alunos.index", compact("alunos"));
-        }
 
 
-
-    }
-
-    public function edit($id){
-        $aluno = Aluno::find($id);
-        $cursos = Curso::all();
-        return view("Alunos.editar-aluno", compact('aluno', 'cursos'));
-    }
-
-    public function editarmeuperfil($id){
-        $aluno = Aluno::find($id);
-        $cursos = Curso::all();
-
-        // Verifique se o ID do aluno corresponde ao ID do usuário autenticado
-        if ($aluno->user->id !== auth()->user()->id) {
-            return redirect()->route('home')->with('erro', 'Você não tem permissão para editar este perfil.');
-        }
-
-        return view("Alunos.editarmeuperfil", compact('aluno', 'cursos'));
-    }
-
-    public function atualizarPerfilAluno(AlunoUpdateFormRequest $request, $id)
-    {
-        try {
-            $aluno = Aluno::find($id);
-            $aluno->cpf = $request->cpf == $aluno->cpf ? $aluno->cpf : $request->cpf;
-            $aluno->semestre_entrada = $request->semestre_entrada;
-            $aluno->curso_id = $request->curso;
-            $aluno->nome_aluno = $request->nome;
-            $aluno->user->name = $request->nome;
-            $aluno->user->email = $request->email;
-            $aluno->user->name_social = $request->nome_social;
-
-            $imageName = null;
-            if($request->hasFile('image') && $request->file('image')->isValid()) {
-                $imageName = ManipulacaoImagens::salvarImagem($request->image);
-                if($aluno->user->image){
-                    ManipulacaoImagens::deletarImagem($aluno->user->image); //Se houver uma nova imagem, remove a anterior do servidor
-                }
-            }
-            $aluno->user->image = $request->image == null ? $aluno->user->image : $imageName;
-
-            if ($request->senha != null){
-                if (strlen($request->senha) > 3 && strlen($request->senha) < 30){
-                    $aluno->user->password = Hash::make($request->senha);
-                } else {
-                    return redirect()->back()->withErrors( "Senha deve ter entre 4 e 30 dígitos" );
-                }
-            }
-
-            if ($aluno->save()){
-
-                if ($aluno->user->update()){
-                    return redirect('/meu-perfil-aluno')->with('sucesso', 'Perfil atualizado com sucesso.');
-                } else {
-                    return redirect()->back()->withErrors( "Falha ao editar o seu perfil, tente novamente mais tarde." );
-                }
-
-            }
-
-        } catch (Exception $e) {
-            return redirect()->back()->withErrors("Falha ao editar o seu perfil, tente novamente mais tarde.");
-        }
-    }
 
     public function create(){
         $cursos = Curso::all();

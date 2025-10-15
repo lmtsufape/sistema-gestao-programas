@@ -73,10 +73,10 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password')
         ])->assignRole('diretor');
 
-        $aluno = Aluno::firstWhere('cpf', '348.126.240-02');
+        $aluno = Aluno::find(1);
         $aluno->user()->create([
             'name' => "Aluno",
-            'cpf' => $aluno->cpf,
+            'cpf' => '348.126.240-02',
             'email' => "aluno@gmail.com",
             'password' => bcrypt('password')
         ])->assignRole('estudante');

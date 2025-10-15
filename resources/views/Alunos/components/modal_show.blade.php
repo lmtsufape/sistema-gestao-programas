@@ -54,7 +54,7 @@
                             <label for="cpf_edit" class="tituloinfomodal form-label">
                                 CPF</label>
                             <div class="textoinfomodal">
-                                {{ old('name', $aluno->cpf) }}</div>
+                                {{ old('name', $aluno->user->cpf) }}</div>
                             @if (!empty($errors->update->first('cpf')))
                                 <span class="invalid-feedback d-block">
                                     <strong> {{ $errors->update->first('cpf') }} </strong>

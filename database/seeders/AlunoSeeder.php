@@ -12,8 +12,6 @@ class AlunoSeeder extends Seeder
     public function run()
     {
         Aluno::create([
-            'nome_aluno' => "aluno",
-            'cpf' => "348.126.240-02",
             'curso_id' => 1,
             'semestre_entrada' => "2025.2"
         ]);

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     public function authorize()
     {
@@ -16,13 +16,15 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            "nome" => "required|max:50",
-            "nome_social" => "max:50",
-            "email" => "required|email|unique:users,email",
-            "tipoUser" => 'required',
-            "senha" => "required|min:8|max:30",
-            "cpf" => "required|formato_cpf|unique:servidors|unique:alunos|unique:orientadors",
-            "matricula" => "unique:orientadors,matricula|unique:servidors,matricula"
+            "name" => ["required", "max:50"],
+            "name_social" => ["max:50"],
+            "email" => ["required", "email", "unique:users,email"],
+            "tipoUser" => ['required', 'in:servidor,orientado,aluno'],
+            "password" => ["required", "min:8", "max:30"],
+            "cpf" => ["required", "cpf", "unique:users"],
+            'curso_id'  => ['required_if:tipoUser,aluno', 'exists:cursos,id',],
+            'semestre_entrada' => ['required_if:tipoUser,aluno'],
+            "matricula" => ["unique:orientadors,matricula", "unique:servidors,matricula"]
         ];
     }
 

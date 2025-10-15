@@ -8,7 +8,7 @@
             <div class="modal-body" style="text-align: start">
                 <div class="mb-3">
                     <label class="tituloinfomodal form-label mt-3">Nome do aluno</label>
-                    <div class="textoinfomodal"> {{ $aluno->nome_aluno }} </div>
+                    <div class="textoinfomodal"> {{ $aluno->user->name }} </div>
                 </div>
                 <div class="mb-3">
                     <label class="tituloinfomodal form-label mt-3">Edital</label>

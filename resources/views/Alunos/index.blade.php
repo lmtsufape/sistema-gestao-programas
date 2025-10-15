@@ -57,7 +57,7 @@
                                     <tr>
                                         <td class="align-middle">{{ $aluno->user->name }}</td>
                                         <td class="align-middle">{{ $aluno->user->name_social }}</td>
-                                        <td class="align-middle">{{ $aluno->cpf }}</td>
+                                        <td class="align-middle">{{ $aluno->user->cpf }}</td>
                                         <td class="align-middle">{{ $aluno->curso->nome }}</td>
                                         <td class="align-middle">
                                             <a type="button" data-bs-toggle="modal"
@@ -65,10 +65,10 @@
                                                 <img src="{{ asset('images/information.svg') }}" title="Informações" alt="Info aluno"
                                                     style="height: 30px; width: 30px;">
                                             </a>
-                                    
-                                            <a href=" {{ route('alunos.edit', ['id' => $aluno->id]) }}" title="Editar o discente" type="button">
-                                                    <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar aluno"
-                                                        style="height: 30px; width: 30px;">
+
+                                            <a href="{{ route('alunos.edit', $aluno)}}" title="Editar o discente">
+                                                <img src="{{ asset('images/pencil.svg') }}" title="Editar" alt="Editar aluno"
+                                                    style="height: 30px; width: 30px;">
                                             </a>
                                             @can('deletar estudante')
                                                 <a type="button" data-bs-toggle="modal"

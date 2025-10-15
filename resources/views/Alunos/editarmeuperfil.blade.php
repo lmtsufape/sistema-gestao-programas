@@ -12,7 +12,7 @@
         <div class="row" style="align-content: left;">
             <h1 class="titulogrande">Editar Perfil</h1>
         </div>
-        <form action="{{ route('meu-perfil-aluno.atualizar', ['id' => $aluno->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('alunos.update', compact('aluno') )}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method("PUT")
 
@@ -27,22 +27,22 @@
                     </div>
                 </div>
 
-            <label for="nome_social" class="titulopequeno">Nome Social</label>
-            <input type="text" id="nome_social" name="nome_social" value="{{$aluno->user->name_social}}" class="boxcadastrar">
+            <label for="name_social" class="titulopequeno">Nome Social</label>
+            <input type="text" id="name_social" name="name_social" value="{{$aluno->user->name_social}}" class="boxcadastrar">
             <br>
 
-            <label for="nome" class="titulopequeno">Nome Completo<strong style="color: #8B5558">*</strong></label>
-            <input type="text" id="nome" name="nome" required value="{{$aluno->user->name}}"class="boxcadastrar">
+            <label for="name" class="titulopequeno">Nome Completo<strong style="color: #8B5558">*</strong></label>
+            <input type="text" id="name" name="name" required value="{{$aluno->user->name}}"class="boxcadastrar">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
             <br>
 
-            <label for="email" for="nome" class="titulopequeno">E-mail<strong style="color: #8B5558">*</strong></label>
+            <label for="email" class="titulopequeno">E-mail<strong style="color: #8B5558">*</strong></label>
             <input type="text" id="email" name="email" required value="{{$aluno->user->email}}" class="boxcadastrar">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
             <br>
 
             <label for="cpf" for="nome" class="titulopequeno">CPF<strong style="color: #8B5558">*</strong></label>
-            <input type="text" id="cpf" name="cpf" required value="{{$aluno->cpf}}" class="boxcadastrar cpf-autocomplete">
+            <input type="text" id="cpf" name="cpf" required value="{{$aluno->user->cpf}}" class="boxcadastrar cpf-autocomplete">
             <div class="invalid-feedback"> Por favor preencha esse campo</div>
             <br>
 
