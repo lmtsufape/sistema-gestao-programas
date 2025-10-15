@@ -15,7 +15,10 @@ class NotificationBell extends Component
 
     public function marcarTodasComoLidas()
     {
-        auth()->user()->unreadNotifications->markAsRead();
+        $user = auth()->user();
+        $user->unreadNotifications->markAsRead();
+        $user->refresh();
+        $this->emitSelf('$refresh');
     }
 
     public function render()
